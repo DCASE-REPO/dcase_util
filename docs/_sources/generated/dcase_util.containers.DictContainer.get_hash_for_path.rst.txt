@@ -1,0 +1,6 @@
+dcase_util.containers.DictContainer.get_hash_for_path
+=====================================================
+
+.. currentmodule:: dcase_util.containers
+
+.. automethod:: DictContainer.get_hash_for_path

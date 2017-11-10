@@ -1,0 +1,72 @@
+dcase_util.datasets.AcousticSceneDataset
+========================================
+
+.. currentmodule:: dcase_util.datasets
+
+.. autoclass:: AcousticSceneDataset
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~AcousticSceneDataset.__init__
+      ~AcousticSceneDataset.absolute_to_relative
+      ~AcousticSceneDataset.check_filelist
+      ~AcousticSceneDataset.dataset_bytes
+      ~AcousticSceneDataset.dataset_size_on_disk
+      ~AcousticSceneDataset.dataset_size_string
+      ~AcousticSceneDataset.download_packages
+      ~AcousticSceneDataset.eval
+      ~AcousticSceneDataset.eval_files
+      ~AcousticSceneDataset.evaluation_setup_filename
+      ~AcousticSceneDataset.event_label_count
+      ~AcousticSceneDataset.event_labels
+      ~AcousticSceneDataset.extract_packages
+      ~AcousticSceneDataset.file_error_meta
+      ~AcousticSceneDataset.file_features
+      ~AcousticSceneDataset.file_meta
+      ~AcousticSceneDataset.folds
+      ~AcousticSceneDataset.initialize
+      ~AcousticSceneDataset.load
+      ~AcousticSceneDataset.load_crossvalidation_data
+      ~AcousticSceneDataset.load_meta
+      ~AcousticSceneDataset.log
+      ~AcousticSceneDataset.prepare
+      ~AcousticSceneDataset.process_meta_item
+      ~AcousticSceneDataset.relative_to_absolute_path
+      ~AcousticSceneDataset.scene_label_count
+      ~AcousticSceneDataset.scene_labels
+      ~AcousticSceneDataset.show
+      ~AcousticSceneDataset.tag_count
+      ~AcousticSceneDataset.tags
+      ~AcousticSceneDataset.test
+      ~AcousticSceneDataset.test_files
+      ~AcousticSceneDataset.train
+      ~AcousticSceneDataset.train_files
+      ~AcousticSceneDataset.validation_files_balanced
+      ~AcousticSceneDataset.validation_files_dataset
+      ~AcousticSceneDataset.validation_files_random
+      ~AcousticSceneDataset.validation_split
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~AcousticSceneDataset.audio_file_count
+      ~AcousticSceneDataset.audio_files
+      ~AcousticSceneDataset.error_meta
+      ~AcousticSceneDataset.error_meta_count
+      ~AcousticSceneDataset.fold_count
+      ~AcousticSceneDataset.logger
+      ~AcousticSceneDataset.meta
+      ~AcousticSceneDataset.meta_count
+   
+   

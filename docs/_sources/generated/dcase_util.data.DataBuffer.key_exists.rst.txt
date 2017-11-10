@@ -1,0 +1,6 @@
+dcase_util.data.DataBuffer.key_exists
+=====================================
+
+.. currentmodule:: dcase_util.data
+
+.. automethod:: DataBuffer.key_exists

@@ -1,0 +1,6 @@
+dcase_util.files.FileLock.expired
+=================================
+
+.. currentmodule:: dcase_util.files
+
+.. autoattribute:: FileLock.expired

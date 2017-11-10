@@ -1,0 +1,6 @@
+dcase_util.containers.DataArrayContainer.plot
+=============================================
+
+.. currentmodule:: dcase_util.containers
+
+.. automethod:: DataArrayContainer.plot

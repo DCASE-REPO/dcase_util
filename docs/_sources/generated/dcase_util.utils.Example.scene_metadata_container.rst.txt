@@ -1,0 +1,6 @@
+dcase_util.utils.Example.scene_metadata_container
+=================================================
+
+.. currentmodule:: dcase_util.utils
+
+.. automethod:: Example.scene_metadata_container

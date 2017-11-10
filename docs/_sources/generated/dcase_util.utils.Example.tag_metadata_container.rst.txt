@@ -1,0 +1,6 @@
+dcase_util.utils.Example.tag_metadata_container
+===============================================
+
+.. currentmodule:: dcase_util.utils
+
+.. automethod:: Example.tag_metadata_container

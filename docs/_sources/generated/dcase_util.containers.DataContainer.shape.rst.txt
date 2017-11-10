@@ -1,0 +1,6 @@
+dcase_util.containers.DataContainer.shape
+=========================================
+
+.. currentmodule:: dcase_util.containers
+
+.. autoattribute:: DataContainer.shape

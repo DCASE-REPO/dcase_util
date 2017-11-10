@@ -1,0 +1,41 @@
+dcase_util.keras.ProgressLoggerCallback
+=======================================
+
+.. currentmodule:: dcase_util.keras
+
+.. autoclass:: ProgressLoggerCallback
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~ProgressLoggerCallback.__init__
+      ~ProgressLoggerCallback.add_external_metric
+      ~ProgressLoggerCallback.get_operator
+      ~ProgressLoggerCallback.on_batch_begin
+      ~ProgressLoggerCallback.on_batch_end
+      ~ProgressLoggerCallback.on_epoch_begin
+      ~ProgressLoggerCallback.on_epoch_end
+      ~ProgressLoggerCallback.on_train_begin
+      ~ProgressLoggerCallback.on_train_end
+      ~ProgressLoggerCallback.set_external_metric_value
+      ~ProgressLoggerCallback.set_model
+      ~ProgressLoggerCallback.set_params
+      ~ProgressLoggerCallback.update
+      ~ProgressLoggerCallback.update_progress_log
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ProgressLoggerCallback.logger
+   
+   

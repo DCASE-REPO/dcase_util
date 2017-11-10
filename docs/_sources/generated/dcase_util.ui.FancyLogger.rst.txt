@@ -1,0 +1,40 @@
+dcase_util.ui.FancyLogger
+=========================
+
+.. currentmodule:: dcase_util.ui
+
+.. autoclass:: FancyLogger
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~FancyLogger.__init__
+      ~FancyLogger.data
+      ~FancyLogger.debug
+      ~FancyLogger.error
+      ~FancyLogger.foot
+      ~FancyLogger.info
+      ~FancyLogger.line
+      ~FancyLogger.row
+      ~FancyLogger.section_header
+      ~FancyLogger.sep
+      ~FancyLogger.sub_header
+      ~FancyLogger.table
+      ~FancyLogger.title
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~FancyLogger.logger
+   
+   

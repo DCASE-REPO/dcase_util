@@ -1,0 +1,71 @@
+dcase_util.containers.DataRepository
+====================================
+
+.. currentmodule:: dcase_util.containers
+
+.. autoclass:: DataRepository
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~DataRepository.__init__
+      ~DataRepository.clear
+      ~DataRepository.copy
+      ~DataRepository.delimiter
+      ~DataRepository.detect_file_format
+      ~DataRepository.empty
+      ~DataRepository.exists
+      ~DataRepository.fromkeys
+      ~DataRepository.get
+      ~DataRepository.get_container
+      ~DataRepository.get_dump_content
+      ~DataRepository.get_file_information
+      ~DataRepository.get_hash
+      ~DataRepository.get_hash_for_path
+      ~DataRepository.get_leaf_path_list
+      ~DataRepository.get_path
+      ~DataRepository.has_key
+      ~DataRepository.is_package
+      ~DataRepository.items
+      ~DataRepository.iteritems
+      ~DataRepository.iterkeys
+      ~DataRepository.itervalues
+      ~DataRepository.keys
+      ~DataRepository.load
+      ~DataRepository.log
+      ~DataRepository.merge
+      ~DataRepository.plot
+      ~DataRepository.pop
+      ~DataRepository.popitem
+      ~DataRepository.push_processing_chain_item
+      ~DataRepository.save
+      ~DataRepository.set_container
+      ~DataRepository.set_path
+      ~DataRepository.setdefault
+      ~DataRepository.show
+      ~DataRepository.stream_ids
+      ~DataRepository.update
+      ~DataRepository.validate_format
+      ~DataRepository.values
+      ~DataRepository.viewitems
+      ~DataRepository.viewkeys
+      ~DataRepository.viewvalues
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~DataRepository.labels
+      ~DataRepository.logger
+      ~DataRepository.valid_formats
+   
+   

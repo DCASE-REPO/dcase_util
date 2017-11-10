@@ -1,0 +1,16 @@
+dcase_util.utils.DisableLogger
+==============================
+
+.. currentmodule:: dcase_util.utils
+
+.. autoclass:: DisableLogger
+
+   
+   .. automethod:: __init__
+
+   
+   
+
+   
+   
+   

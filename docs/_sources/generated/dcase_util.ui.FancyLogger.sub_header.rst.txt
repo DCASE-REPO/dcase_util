@@ -1,0 +1,6 @@
+dcase_util.ui.FancyLogger.sub_header
+====================================
+
+.. currentmodule:: dcase_util.ui
+
+.. automethod:: FancyLogger.sub_header

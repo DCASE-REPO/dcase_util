@@ -1,0 +1,73 @@
+dcase_util.datasets.CHiMEHome_DomesticAudioTag_DevelopmentSet
+=============================================================
+
+.. currentmodule:: dcase_util.datasets
+
+.. autoclass:: CHiMEHome_DomesticAudioTag_DevelopmentSet
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.__init__
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.absolute_to_relative
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.check_filelist
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.dataset_bytes
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.dataset_size_on_disk
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.dataset_size_string
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.download_packages
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.eval
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.eval_files
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.evaluation_setup_filename
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.event_label_count
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.event_labels
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.extract_packages
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.file_error_meta
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.file_features
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.file_meta
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.folds
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.initialize
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.load
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.load_crossvalidation_data
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.load_meta
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.log
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.prepare
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.process_meta_item
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.relative_to_absolute_path
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.scene_label_count
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.scene_labels
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.show
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.tag_count
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.tagcode_to_taglabel
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.tags
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.test
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.test_files
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.train
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.train_files
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.validation_files_balanced
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.validation_files_dataset
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.validation_files_random
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.validation_split
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.audio_file_count
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.audio_files
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.error_meta
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.error_meta_count
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.fold_count
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.logger
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.meta
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.meta_count
+   
+   

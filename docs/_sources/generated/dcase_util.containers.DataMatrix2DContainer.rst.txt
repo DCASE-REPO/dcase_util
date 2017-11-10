@@ -1,0 +1,56 @@
+dcase_util.containers.DataMatrix2DContainer
+===========================================
+
+.. currentmodule:: dcase_util.containers
+
+.. autoclass:: DataMatrix2DContainer
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~DataMatrix2DContainer.__init__
+      ~DataMatrix2DContainer.delimiter
+      ~DataMatrix2DContainer.detect_file_format
+      ~DataMatrix2DContainer.empty
+      ~DataMatrix2DContainer.exists
+      ~DataMatrix2DContainer.freeze
+      ~DataMatrix2DContainer.get_file_information
+      ~DataMatrix2DContainer.get_focused
+      ~DataMatrix2DContainer.get_frames
+      ~DataMatrix2DContainer.is_package
+      ~DataMatrix2DContainer.load
+      ~DataMatrix2DContainer.log
+      ~DataMatrix2DContainer.plot
+      ~DataMatrix2DContainer.push_processing_chain_item
+      ~DataMatrix2DContainer.reset_focus
+      ~DataMatrix2DContainer.save
+      ~DataMatrix2DContainer.set_focus
+      ~DataMatrix2DContainer.show
+      ~DataMatrix2DContainer.validate_format
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~DataMatrix2DContainer.T
+      ~DataMatrix2DContainer.data
+      ~DataMatrix2DContainer.focus_start
+      ~DataMatrix2DContainer.focus_stop
+      ~DataMatrix2DContainer.frames
+      ~DataMatrix2DContainer.length
+      ~DataMatrix2DContainer.logger
+      ~DataMatrix2DContainer.shape
+      ~DataMatrix2DContainer.stats
+      ~DataMatrix2DContainer.valid_formats
+      ~DataMatrix2DContainer.vector_length
+   
+   

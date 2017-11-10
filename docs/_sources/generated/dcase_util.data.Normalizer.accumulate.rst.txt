@@ -1,0 +1,6 @@
+dcase_util.data.Normalizer.accumulate
+=====================================
+
+.. currentmodule:: dcase_util.data
+
+.. automethod:: Normalizer.accumulate

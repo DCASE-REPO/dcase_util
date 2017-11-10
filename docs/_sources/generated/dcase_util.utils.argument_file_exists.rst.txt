@@ -1,0 +1,6 @@
+dcase_util.utils.argument_file_exists
+=====================================
+
+.. currentmodule:: dcase_util.utils
+
+.. autofunction:: argument_file_exists

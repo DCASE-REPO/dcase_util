@@ -1,0 +1,6 @@
+dcase_util.files.RemotePackage.remote_info
+==========================================
+
+.. currentmodule:: dcase_util.files
+
+.. automethod:: RemotePackage.remote_info

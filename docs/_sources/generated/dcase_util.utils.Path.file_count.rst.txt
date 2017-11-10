@@ -1,0 +1,6 @@
+dcase_util.utils.Path.file_count
+================================
+
+.. currentmodule:: dcase_util.utils
+
+.. automethod:: Path.file_count

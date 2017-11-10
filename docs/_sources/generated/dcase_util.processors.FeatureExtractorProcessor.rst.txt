@@ -1,0 +1,33 @@
+dcase_util.processors.FeatureExtractorProcessor
+===============================================
+
+.. currentmodule:: dcase_util.processors
+
+.. autoclass:: FeatureExtractorProcessor
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~FeatureExtractorProcessor.__init__
+      ~FeatureExtractorProcessor.get_processing_chain_item
+      ~FeatureExtractorProcessor.process
+      ~FeatureExtractorProcessor.push_processing_chain_item
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~FeatureExtractorProcessor.input_type
+      ~FeatureExtractorProcessor.logger
+      ~FeatureExtractorProcessor.output_type
+   
+   

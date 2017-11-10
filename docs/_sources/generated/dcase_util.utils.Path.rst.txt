@@ -1,0 +1,31 @@
+dcase_util.utils.Path
+=====================
+
+.. currentmodule:: dcase_util.utils
+
+.. autoclass:: Path
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~Path.__init__
+      ~Path.create
+      ~Path.exists
+      ~Path.file_count
+      ~Path.file_list
+      ~Path.makedirs
+      ~Path.posix
+      ~Path.posix_to_nt
+      ~Path.size_bytes
+      ~Path.size_string
+   
+   
+
+   
+   
+   

@@ -1,0 +1,6 @@
+dcase_util.features.SpectralCentroidExtractor.extract
+=====================================================
+
+.. currentmodule:: dcase_util.features
+
+.. automethod:: SpectralCentroidExtractor.extract

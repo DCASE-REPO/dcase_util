@@ -1,0 +1,6 @@
+dcase_util.containers.BinaryMatrix2DContainer.data
+==================================================
+
+.. currentmodule:: dcase_util.containers
+
+.. autoattribute:: BinaryMatrix2DContainer.data

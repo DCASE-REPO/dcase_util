@@ -1,0 +1,57 @@
+dcase_util.containers.FeatureContainer
+======================================
+
+.. currentmodule:: dcase_util.containers
+
+.. autoclass:: FeatureContainer
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~FeatureContainer.__init__
+      ~FeatureContainer.delimiter
+      ~FeatureContainer.detect_file_format
+      ~FeatureContainer.empty
+      ~FeatureContainer.exists
+      ~FeatureContainer.freeze
+      ~FeatureContainer.get_file_information
+      ~FeatureContainer.get_focused
+      ~FeatureContainer.get_frames
+      ~FeatureContainer.is_package
+      ~FeatureContainer.load
+      ~FeatureContainer.log
+      ~FeatureContainer.plot
+      ~FeatureContainer.push_processing_chain_item
+      ~FeatureContainer.reset_focus
+      ~FeatureContainer.save
+      ~FeatureContainer.set_focus
+      ~FeatureContainer.show
+      ~FeatureContainer.validate_format
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~FeatureContainer.T
+      ~FeatureContainer.data
+      ~FeatureContainer.focus_start
+      ~FeatureContainer.focus_stop
+      ~FeatureContainer.frames
+      ~FeatureContainer.hop_length_seconds
+      ~FeatureContainer.length
+      ~FeatureContainer.logger
+      ~FeatureContainer.shape
+      ~FeatureContainer.stats
+      ~FeatureContainer.valid_formats
+      ~FeatureContainer.vector_length
+   
+   

@@ -1,0 +1,6 @@
+dcase_util.utils.get_parameter_hash
+===================================
+
+.. currentmodule:: dcase_util.utils
+
+.. autofunction:: get_parameter_hash

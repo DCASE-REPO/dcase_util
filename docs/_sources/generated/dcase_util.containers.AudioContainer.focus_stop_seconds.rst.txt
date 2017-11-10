@@ -1,0 +1,6 @@
+dcase_util.containers.AudioContainer.focus_stop_seconds
+=======================================================
+
+.. currentmodule:: dcase_util.containers
+
+.. autoattribute:: AudioContainer.focus_stop_seconds

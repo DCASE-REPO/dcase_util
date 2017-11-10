@@ -1,0 +1,6 @@
+dcase_util.utils.SimpleMathStringEvaluator.eval
+===============================================
+
+.. currentmodule:: dcase_util.utils
+
+.. automethod:: SimpleMathStringEvaluator.eval

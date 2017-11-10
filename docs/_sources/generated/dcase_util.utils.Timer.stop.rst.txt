@@ -1,0 +1,6 @@
+dcase_util.utils.Timer.stop
+===========================
+
+.. currentmodule:: dcase_util.utils
+
+.. automethod:: Timer.stop

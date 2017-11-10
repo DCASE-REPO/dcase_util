@@ -1,0 +1,62 @@
+dcase_util.processors.EventRollEncodingProcessor
+================================================
+
+.. currentmodule:: dcase_util.processors
+
+.. autoclass:: EventRollEncodingProcessor
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~EventRollEncodingProcessor.__init__
+      ~EventRollEncodingProcessor.delimiter
+      ~EventRollEncodingProcessor.detect_file_format
+      ~EventRollEncodingProcessor.empty
+      ~EventRollEncodingProcessor.encode
+      ~EventRollEncodingProcessor.exists
+      ~EventRollEncodingProcessor.freeze
+      ~EventRollEncodingProcessor.get_file_information
+      ~EventRollEncodingProcessor.get_focused
+      ~EventRollEncodingProcessor.get_frames
+      ~EventRollEncodingProcessor.get_processing_chain_item
+      ~EventRollEncodingProcessor.is_package
+      ~EventRollEncodingProcessor.load
+      ~EventRollEncodingProcessor.log
+      ~EventRollEncodingProcessor.pad
+      ~EventRollEncodingProcessor.plot
+      ~EventRollEncodingProcessor.process
+      ~EventRollEncodingProcessor.push_processing_chain_item
+      ~EventRollEncodingProcessor.reset_focus
+      ~EventRollEncodingProcessor.save
+      ~EventRollEncodingProcessor.set_focus
+      ~EventRollEncodingProcessor.show
+      ~EventRollEncodingProcessor.validate_format
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~EventRollEncodingProcessor.T
+      ~EventRollEncodingProcessor.data
+      ~EventRollEncodingProcessor.focus_start
+      ~EventRollEncodingProcessor.focus_stop
+      ~EventRollEncodingProcessor.frames
+      ~EventRollEncodingProcessor.input_type
+      ~EventRollEncodingProcessor.length
+      ~EventRollEncodingProcessor.logger
+      ~EventRollEncodingProcessor.output_type
+      ~EventRollEncodingProcessor.shape
+      ~EventRollEncodingProcessor.stats
+      ~EventRollEncodingProcessor.valid_formats
+      ~EventRollEncodingProcessor.vector_length
+   
+   

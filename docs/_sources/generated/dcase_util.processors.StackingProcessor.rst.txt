@@ -1,0 +1,46 @@
+dcase_util.processors.StackingProcessor
+=======================================
+
+.. currentmodule:: dcase_util.processors
+
+.. autoclass:: StackingProcessor
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~StackingProcessor.__init__
+      ~StackingProcessor.delimiter
+      ~StackingProcessor.detect_file_format
+      ~StackingProcessor.empty
+      ~StackingProcessor.exists
+      ~StackingProcessor.get_file_information
+      ~StackingProcessor.get_processing_chain_item
+      ~StackingProcessor.is_package
+      ~StackingProcessor.load
+      ~StackingProcessor.log
+      ~StackingProcessor.process
+      ~StackingProcessor.push_processing_chain_item
+      ~StackingProcessor.save
+      ~StackingProcessor.show
+      ~StackingProcessor.stack
+      ~StackingProcessor.validate_format
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~StackingProcessor.input_type
+      ~StackingProcessor.logger
+      ~StackingProcessor.output_type
+      ~StackingProcessor.valid_formats
+   
+   

@@ -1,0 +1,6 @@
+dcase_util.utils.ApplicationPaths.directory_name
+================================================
+
+.. currentmodule:: dcase_util.utils
+
+.. automethod:: ApplicationPaths.directory_name

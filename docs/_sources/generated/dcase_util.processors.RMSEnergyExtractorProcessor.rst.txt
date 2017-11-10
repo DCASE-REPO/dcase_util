@@ -1,0 +1,39 @@
+dcase_util.processors.RMSEnergyExtractorProcessor
+=================================================
+
+.. currentmodule:: dcase_util.processors
+
+.. autoclass:: RMSEnergyExtractorProcessor
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~RMSEnergyExtractorProcessor.__init__
+      ~RMSEnergyExtractorProcessor.extract
+      ~RMSEnergyExtractorProcessor.get_processing_chain_item
+      ~RMSEnergyExtractorProcessor.get_spectrogram
+      ~RMSEnergyExtractorProcessor.get_window_function
+      ~RMSEnergyExtractorProcessor.log
+      ~RMSEnergyExtractorProcessor.process
+      ~RMSEnergyExtractorProcessor.push_processing_chain_item
+      ~RMSEnergyExtractorProcessor.show
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~RMSEnergyExtractorProcessor.input_type
+      ~RMSEnergyExtractorProcessor.label
+      ~RMSEnergyExtractorProcessor.logger
+      ~RMSEnergyExtractorProcessor.output_type
+   
+   

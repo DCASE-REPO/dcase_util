@@ -1,0 +1,6 @@
+dcase_util.containers.TextContainer.save
+========================================
+
+.. currentmodule:: dcase_util.containers
+
+.. automethod:: TextContainer.save

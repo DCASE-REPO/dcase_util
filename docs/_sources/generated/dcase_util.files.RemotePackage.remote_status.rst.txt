@@ -1,0 +1,6 @@
+dcase_util.files.RemotePackage.remote_status
+============================================
+
+.. currentmodule:: dcase_util.files
+
+.. autoattribute:: RemotePackage.remote_status

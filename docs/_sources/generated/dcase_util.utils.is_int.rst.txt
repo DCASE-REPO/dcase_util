@@ -1,0 +1,6 @@
+dcase_util.utils.is_int
+=======================
+
+.. currentmodule:: dcase_util.utils
+
+.. autofunction:: is_int

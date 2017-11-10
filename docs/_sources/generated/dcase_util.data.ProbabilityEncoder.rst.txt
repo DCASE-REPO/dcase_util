@@ -1,0 +1,44 @@
+dcase_util.data.ProbabilityEncoder
+==================================
+
+.. currentmodule:: dcase_util.data
+
+.. autoclass:: ProbabilityEncoder
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~ProbabilityEncoder.__init__
+      ~ProbabilityEncoder.binarization
+      ~ProbabilityEncoder.collapse_probabilities
+      ~ProbabilityEncoder.collapse_probabilities_windowed
+      ~ProbabilityEncoder.delimiter
+      ~ProbabilityEncoder.detect_file_format
+      ~ProbabilityEncoder.empty
+      ~ProbabilityEncoder.exists
+      ~ProbabilityEncoder.get_file_information
+      ~ProbabilityEncoder.is_package
+      ~ProbabilityEncoder.load
+      ~ProbabilityEncoder.log
+      ~ProbabilityEncoder.max_selection
+      ~ProbabilityEncoder.save
+      ~ProbabilityEncoder.show
+      ~ProbabilityEncoder.validate_format
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ProbabilityEncoder.logger
+      ~ProbabilityEncoder.valid_formats
+   
+   

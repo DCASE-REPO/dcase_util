@@ -1,0 +1,57 @@
+dcase_util.data.BinaryMatrixEncoder
+===================================
+
+.. currentmodule:: dcase_util.data
+
+.. autoclass:: BinaryMatrixEncoder
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~BinaryMatrixEncoder.__init__
+      ~BinaryMatrixEncoder.delimiter
+      ~BinaryMatrixEncoder.detect_file_format
+      ~BinaryMatrixEncoder.empty
+      ~BinaryMatrixEncoder.exists
+      ~BinaryMatrixEncoder.freeze
+      ~BinaryMatrixEncoder.get_file_information
+      ~BinaryMatrixEncoder.get_focused
+      ~BinaryMatrixEncoder.get_frames
+      ~BinaryMatrixEncoder.is_package
+      ~BinaryMatrixEncoder.load
+      ~BinaryMatrixEncoder.log
+      ~BinaryMatrixEncoder.pad
+      ~BinaryMatrixEncoder.plot
+      ~BinaryMatrixEncoder.push_processing_chain_item
+      ~BinaryMatrixEncoder.reset_focus
+      ~BinaryMatrixEncoder.save
+      ~BinaryMatrixEncoder.set_focus
+      ~BinaryMatrixEncoder.show
+      ~BinaryMatrixEncoder.validate_format
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~BinaryMatrixEncoder.T
+      ~BinaryMatrixEncoder.data
+      ~BinaryMatrixEncoder.focus_start
+      ~BinaryMatrixEncoder.focus_stop
+      ~BinaryMatrixEncoder.frames
+      ~BinaryMatrixEncoder.length
+      ~BinaryMatrixEncoder.logger
+      ~BinaryMatrixEncoder.shape
+      ~BinaryMatrixEncoder.stats
+      ~BinaryMatrixEncoder.valid_formats
+      ~BinaryMatrixEncoder.vector_length
+   
+   

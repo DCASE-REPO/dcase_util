@@ -1,0 +1,65 @@
+dcase_util.containers.DictContainer
+===================================
+
+.. currentmodule:: dcase_util.containers
+
+.. autoclass:: DictContainer
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~DictContainer.__init__
+      ~DictContainer.clear
+      ~DictContainer.copy
+      ~DictContainer.delimiter
+      ~DictContainer.detect_file_format
+      ~DictContainer.empty
+      ~DictContainer.exists
+      ~DictContainer.fromkeys
+      ~DictContainer.get
+      ~DictContainer.get_dump_content
+      ~DictContainer.get_file_information
+      ~DictContainer.get_hash
+      ~DictContainer.get_hash_for_path
+      ~DictContainer.get_leaf_path_list
+      ~DictContainer.get_path
+      ~DictContainer.has_key
+      ~DictContainer.is_package
+      ~DictContainer.items
+      ~DictContainer.iteritems
+      ~DictContainer.iterkeys
+      ~DictContainer.itervalues
+      ~DictContainer.keys
+      ~DictContainer.load
+      ~DictContainer.log
+      ~DictContainer.merge
+      ~DictContainer.pop
+      ~DictContainer.popitem
+      ~DictContainer.save
+      ~DictContainer.set_path
+      ~DictContainer.setdefault
+      ~DictContainer.show
+      ~DictContainer.update
+      ~DictContainer.validate_format
+      ~DictContainer.values
+      ~DictContainer.viewitems
+      ~DictContainer.viewkeys
+      ~DictContainer.viewvalues
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~DictContainer.logger
+      ~DictContainer.valid_formats
+   
+   

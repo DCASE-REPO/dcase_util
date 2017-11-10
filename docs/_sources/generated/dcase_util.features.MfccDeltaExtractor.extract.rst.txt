@@ -1,0 +1,6 @@
+dcase_util.features.MfccDeltaExtractor.extract
+==============================================
+
+.. currentmodule:: dcase_util.features
+
+.. automethod:: MfccDeltaExtractor.extract

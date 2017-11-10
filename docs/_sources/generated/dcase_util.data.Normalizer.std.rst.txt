@@ -1,0 +1,6 @@
+dcase_util.data.Normalizer.std
+==============================
+
+.. currentmodule:: dcase_util.data
+
+.. autoattribute:: Normalizer.std

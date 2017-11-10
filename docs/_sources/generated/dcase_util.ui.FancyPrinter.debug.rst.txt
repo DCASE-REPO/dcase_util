@@ -1,0 +1,6 @@
+dcase_util.ui.FancyPrinter.debug
+================================
+
+.. currentmodule:: dcase_util.ui
+
+.. automethod:: FancyPrinter.debug

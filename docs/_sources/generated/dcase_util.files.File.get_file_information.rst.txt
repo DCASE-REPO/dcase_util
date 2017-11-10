@@ -1,0 +1,6 @@
+dcase_util.files.File.get_file_information
+==========================================
+
+.. currentmodule:: dcase_util.files
+
+.. automethod:: File.get_file_information

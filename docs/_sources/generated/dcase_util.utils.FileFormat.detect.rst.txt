@@ -1,0 +1,6 @@
+dcase_util.utils.FileFormat.detect
+==================================
+
+.. currentmodule:: dcase_util.utils
+
+.. automethod:: FileFormat.detect

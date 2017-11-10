@@ -1,0 +1,6 @@
+dcase_util.features.MfccStaticExtractor.extract
+===============================================
+
+.. currentmodule:: dcase_util.features
+
+.. automethod:: MfccStaticExtractor.extract

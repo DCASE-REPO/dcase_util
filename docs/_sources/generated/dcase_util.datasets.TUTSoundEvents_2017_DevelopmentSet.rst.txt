@@ -1,0 +1,72 @@
+dcase_util.datasets.TUTSoundEvents_2017_DevelopmentSet
+======================================================
+
+.. currentmodule:: dcase_util.datasets
+
+.. autoclass:: TUTSoundEvents_2017_DevelopmentSet
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~TUTSoundEvents_2017_DevelopmentSet.__init__
+      ~TUTSoundEvents_2017_DevelopmentSet.absolute_to_relative
+      ~TUTSoundEvents_2017_DevelopmentSet.check_filelist
+      ~TUTSoundEvents_2017_DevelopmentSet.dataset_bytes
+      ~TUTSoundEvents_2017_DevelopmentSet.dataset_size_on_disk
+      ~TUTSoundEvents_2017_DevelopmentSet.dataset_size_string
+      ~TUTSoundEvents_2017_DevelopmentSet.download_packages
+      ~TUTSoundEvents_2017_DevelopmentSet.eval
+      ~TUTSoundEvents_2017_DevelopmentSet.eval_files
+      ~TUTSoundEvents_2017_DevelopmentSet.evaluation_setup_filename
+      ~TUTSoundEvents_2017_DevelopmentSet.event_label_count
+      ~TUTSoundEvents_2017_DevelopmentSet.event_labels
+      ~TUTSoundEvents_2017_DevelopmentSet.extract_packages
+      ~TUTSoundEvents_2017_DevelopmentSet.file_error_meta
+      ~TUTSoundEvents_2017_DevelopmentSet.file_features
+      ~TUTSoundEvents_2017_DevelopmentSet.file_meta
+      ~TUTSoundEvents_2017_DevelopmentSet.folds
+      ~TUTSoundEvents_2017_DevelopmentSet.initialize
+      ~TUTSoundEvents_2017_DevelopmentSet.load
+      ~TUTSoundEvents_2017_DevelopmentSet.load_crossvalidation_data
+      ~TUTSoundEvents_2017_DevelopmentSet.load_meta
+      ~TUTSoundEvents_2017_DevelopmentSet.log
+      ~TUTSoundEvents_2017_DevelopmentSet.prepare
+      ~TUTSoundEvents_2017_DevelopmentSet.process_meta_item
+      ~TUTSoundEvents_2017_DevelopmentSet.relative_to_absolute_path
+      ~TUTSoundEvents_2017_DevelopmentSet.scene_label_count
+      ~TUTSoundEvents_2017_DevelopmentSet.scene_labels
+      ~TUTSoundEvents_2017_DevelopmentSet.show
+      ~TUTSoundEvents_2017_DevelopmentSet.tag_count
+      ~TUTSoundEvents_2017_DevelopmentSet.tags
+      ~TUTSoundEvents_2017_DevelopmentSet.test
+      ~TUTSoundEvents_2017_DevelopmentSet.test_files
+      ~TUTSoundEvents_2017_DevelopmentSet.train
+      ~TUTSoundEvents_2017_DevelopmentSet.train_files
+      ~TUTSoundEvents_2017_DevelopmentSet.validation_files_balanced
+      ~TUTSoundEvents_2017_DevelopmentSet.validation_files_dataset
+      ~TUTSoundEvents_2017_DevelopmentSet.validation_files_random
+      ~TUTSoundEvents_2017_DevelopmentSet.validation_split
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~TUTSoundEvents_2017_DevelopmentSet.audio_file_count
+      ~TUTSoundEvents_2017_DevelopmentSet.audio_files
+      ~TUTSoundEvents_2017_DevelopmentSet.error_meta
+      ~TUTSoundEvents_2017_DevelopmentSet.error_meta_count
+      ~TUTSoundEvents_2017_DevelopmentSet.fold_count
+      ~TUTSoundEvents_2017_DevelopmentSet.logger
+      ~TUTSoundEvents_2017_DevelopmentSet.meta
+      ~TUTSoundEvents_2017_DevelopmentSet.meta_count
+   
+   

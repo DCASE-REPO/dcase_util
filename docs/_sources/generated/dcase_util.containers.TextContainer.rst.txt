@@ -1,0 +1,51 @@
+dcase_util.containers.TextContainer
+===================================
+
+.. currentmodule:: dcase_util.containers
+
+.. autoclass:: TextContainer
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~TextContainer.__init__
+      ~TextContainer.append
+      ~TextContainer.count
+      ~TextContainer.delimiter
+      ~TextContainer.detect_file_format
+      ~TextContainer.empty
+      ~TextContainer.exists
+      ~TextContainer.extend
+      ~TextContainer.get_dump_content
+      ~TextContainer.get_file_information
+      ~TextContainer.index
+      ~TextContainer.insert
+      ~TextContainer.is_package
+      ~TextContainer.load
+      ~TextContainer.log
+      ~TextContainer.pop
+      ~TextContainer.remove
+      ~TextContainer.reverse
+      ~TextContainer.save
+      ~TextContainer.show
+      ~TextContainer.sort
+      ~TextContainer.update
+      ~TextContainer.validate_format
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~TextContainer.logger
+      ~TextContainer.valid_formats
+   
+   

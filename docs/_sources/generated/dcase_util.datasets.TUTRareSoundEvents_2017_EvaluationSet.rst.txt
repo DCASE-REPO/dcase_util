@@ -1,0 +1,73 @@
+dcase_util.datasets.TUTRareSoundEvents_2017_EvaluationSet
+=========================================================
+
+.. currentmodule:: dcase_util.datasets
+
+.. autoclass:: TUTRareSoundEvents_2017_EvaluationSet
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~TUTRareSoundEvents_2017_EvaluationSet.__init__
+      ~TUTRareSoundEvents_2017_EvaluationSet.absolute_to_relative
+      ~TUTRareSoundEvents_2017_EvaluationSet.check_filelist
+      ~TUTRareSoundEvents_2017_EvaluationSet.dataset_bytes
+      ~TUTRareSoundEvents_2017_EvaluationSet.dataset_size_on_disk
+      ~TUTRareSoundEvents_2017_EvaluationSet.dataset_size_string
+      ~TUTRareSoundEvents_2017_EvaluationSet.download_packages
+      ~TUTRareSoundEvents_2017_EvaluationSet.eval
+      ~TUTRareSoundEvents_2017_EvaluationSet.eval_files
+      ~TUTRareSoundEvents_2017_EvaluationSet.evaluation_setup_filename
+      ~TUTRareSoundEvents_2017_EvaluationSet.event_label_count
+      ~TUTRareSoundEvents_2017_EvaluationSet.event_labels
+      ~TUTRareSoundEvents_2017_EvaluationSet.extract_packages
+      ~TUTRareSoundEvents_2017_EvaluationSet.file_error_meta
+      ~TUTRareSoundEvents_2017_EvaluationSet.file_features
+      ~TUTRareSoundEvents_2017_EvaluationSet.file_meta
+      ~TUTRareSoundEvents_2017_EvaluationSet.folds
+      ~TUTRareSoundEvents_2017_EvaluationSet.initialize
+      ~TUTRareSoundEvents_2017_EvaluationSet.load
+      ~TUTRareSoundEvents_2017_EvaluationSet.load_crossvalidation_data
+      ~TUTRareSoundEvents_2017_EvaluationSet.load_meta
+      ~TUTRareSoundEvents_2017_EvaluationSet.log
+      ~TUTRareSoundEvents_2017_EvaluationSet.prepare
+      ~TUTRareSoundEvents_2017_EvaluationSet.process_meta_item
+      ~TUTRareSoundEvents_2017_EvaluationSet.relative_to_absolute_path
+      ~TUTRareSoundEvents_2017_EvaluationSet.scene_label_count
+      ~TUTRareSoundEvents_2017_EvaluationSet.scene_labels
+      ~TUTRareSoundEvents_2017_EvaluationSet.show
+      ~TUTRareSoundEvents_2017_EvaluationSet.synthesize
+      ~TUTRareSoundEvents_2017_EvaluationSet.tag_count
+      ~TUTRareSoundEvents_2017_EvaluationSet.tags
+      ~TUTRareSoundEvents_2017_EvaluationSet.test
+      ~TUTRareSoundEvents_2017_EvaluationSet.test_files
+      ~TUTRareSoundEvents_2017_EvaluationSet.train
+      ~TUTRareSoundEvents_2017_EvaluationSet.train_files
+      ~TUTRareSoundEvents_2017_EvaluationSet.validation_files_balanced
+      ~TUTRareSoundEvents_2017_EvaluationSet.validation_files_dataset
+      ~TUTRareSoundEvents_2017_EvaluationSet.validation_files_random
+      ~TUTRareSoundEvents_2017_EvaluationSet.validation_split
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~TUTRareSoundEvents_2017_EvaluationSet.audio_file_count
+      ~TUTRareSoundEvents_2017_EvaluationSet.audio_files
+      ~TUTRareSoundEvents_2017_EvaluationSet.error_meta
+      ~TUTRareSoundEvents_2017_EvaluationSet.error_meta_count
+      ~TUTRareSoundEvents_2017_EvaluationSet.fold_count
+      ~TUTRareSoundEvents_2017_EvaluationSet.logger
+      ~TUTRareSoundEvents_2017_EvaluationSet.meta
+      ~TUTRareSoundEvents_2017_EvaluationSet.meta_count
+   
+   

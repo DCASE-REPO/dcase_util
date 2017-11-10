@@ -1,0 +1,6 @@
+dcase_util.containers.DataContainer.reset_focus
+===============================================
+
+.. currentmodule:: dcase_util.containers
+
+.. automethod:: DataContainer.reset_focus

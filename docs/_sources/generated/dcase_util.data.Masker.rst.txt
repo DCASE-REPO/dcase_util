@@ -1,0 +1,42 @@
+dcase_util.data.Masker
+======================
+
+.. currentmodule:: dcase_util.data
+
+.. autoclass:: Masker
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~Masker.__init__
+      ~Masker.delimiter
+      ~Masker.detect_file_format
+      ~Masker.empty
+      ~Masker.exists
+      ~Masker.get_file_information
+      ~Masker.is_package
+      ~Masker.load
+      ~Masker.log
+      ~Masker.mask
+      ~Masker.save
+      ~Masker.set_mask
+      ~Masker.show
+      ~Masker.validate_format
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Masker.logger
+      ~Masker.valid_formats
+   
+   

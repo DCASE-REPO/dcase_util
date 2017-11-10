@@ -1,0 +1,6 @@
+dcase_util.data.Selector.select
+===============================
+
+.. currentmodule:: dcase_util.data
+
+.. automethod:: Selector.select

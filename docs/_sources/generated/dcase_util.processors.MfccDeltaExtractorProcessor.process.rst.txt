@@ -1,0 +1,6 @@
+dcase_util.processors.MfccDeltaExtractorProcessor.process
+=========================================================
+
+.. currentmodule:: dcase_util.processors
+
+.. automethod:: MfccDeltaExtractorProcessor.process

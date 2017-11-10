@@ -1,0 +1,6 @@
+dcase_util.containers.DictContainer.log
+=======================================
+
+.. currentmodule:: dcase_util.containers
+
+.. automethod:: DictContainer.log

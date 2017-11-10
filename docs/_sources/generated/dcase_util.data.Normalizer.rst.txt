@@ -1,0 +1,46 @@
+dcase_util.data.Normalizer
+==========================
+
+.. currentmodule:: dcase_util.data
+
+.. autoclass:: Normalizer
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~Normalizer.__init__
+      ~Normalizer.accumulate
+      ~Normalizer.delimiter
+      ~Normalizer.detect_file_format
+      ~Normalizer.empty
+      ~Normalizer.exists
+      ~Normalizer.finalize
+      ~Normalizer.get_file_information
+      ~Normalizer.is_package
+      ~Normalizer.load
+      ~Normalizer.log
+      ~Normalizer.normalize
+      ~Normalizer.reset
+      ~Normalizer.save
+      ~Normalizer.show
+      ~Normalizer.validate_format
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Normalizer.logger
+      ~Normalizer.mean
+      ~Normalizer.std
+      ~Normalizer.valid_formats
+   
+   

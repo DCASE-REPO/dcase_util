@@ -1,0 +1,6 @@
+dcase_util.ui.FancyStringifier.line
+===================================
+
+.. currentmodule:: dcase_util.ui
+
+.. automethod:: FancyStringifier.line

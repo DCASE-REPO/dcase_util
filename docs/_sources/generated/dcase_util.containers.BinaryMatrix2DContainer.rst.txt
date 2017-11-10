@@ -1,0 +1,57 @@
+dcase_util.containers.BinaryMatrix2DContainer
+=============================================
+
+.. currentmodule:: dcase_util.containers
+
+.. autoclass:: BinaryMatrix2DContainer
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~BinaryMatrix2DContainer.__init__
+      ~BinaryMatrix2DContainer.delimiter
+      ~BinaryMatrix2DContainer.detect_file_format
+      ~BinaryMatrix2DContainer.empty
+      ~BinaryMatrix2DContainer.exists
+      ~BinaryMatrix2DContainer.freeze
+      ~BinaryMatrix2DContainer.get_file_information
+      ~BinaryMatrix2DContainer.get_focused
+      ~BinaryMatrix2DContainer.get_frames
+      ~BinaryMatrix2DContainer.is_package
+      ~BinaryMatrix2DContainer.load
+      ~BinaryMatrix2DContainer.log
+      ~BinaryMatrix2DContainer.pad
+      ~BinaryMatrix2DContainer.plot
+      ~BinaryMatrix2DContainer.push_processing_chain_item
+      ~BinaryMatrix2DContainer.reset_focus
+      ~BinaryMatrix2DContainer.save
+      ~BinaryMatrix2DContainer.set_focus
+      ~BinaryMatrix2DContainer.show
+      ~BinaryMatrix2DContainer.validate_format
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~BinaryMatrix2DContainer.T
+      ~BinaryMatrix2DContainer.data
+      ~BinaryMatrix2DContainer.focus_start
+      ~BinaryMatrix2DContainer.focus_stop
+      ~BinaryMatrix2DContainer.frames
+      ~BinaryMatrix2DContainer.length
+      ~BinaryMatrix2DContainer.logger
+      ~BinaryMatrix2DContainer.shape
+      ~BinaryMatrix2DContainer.stats
+      ~BinaryMatrix2DContainer.valid_formats
+      ~BinaryMatrix2DContainer.vector_length
+   
+   

@@ -1,0 +1,6 @@
+dcase_util.containers.TextContainer.load
+========================================
+
+.. currentmodule:: dcase_util.containers
+
+.. automethod:: TextContainer.load

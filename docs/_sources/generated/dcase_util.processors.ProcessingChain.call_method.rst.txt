@@ -1,0 +1,6 @@
+dcase_util.processors.ProcessingChain.call_method
+=================================================
+
+.. currentmodule:: dcase_util.processors
+
+.. automethod:: ProcessingChain.call_method

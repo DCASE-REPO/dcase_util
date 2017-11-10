@@ -1,0 +1,65 @@
+dcase_util.containers.RepositoryContainer
+=========================================
+
+.. currentmodule:: dcase_util.containers
+
+.. autoclass:: RepositoryContainer
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~RepositoryContainer.__init__
+      ~RepositoryContainer.clear
+      ~RepositoryContainer.copy
+      ~RepositoryContainer.delimiter
+      ~RepositoryContainer.detect_file_format
+      ~RepositoryContainer.empty
+      ~RepositoryContainer.exists
+      ~RepositoryContainer.fromkeys
+      ~RepositoryContainer.get
+      ~RepositoryContainer.get_dump_content
+      ~RepositoryContainer.get_file_information
+      ~RepositoryContainer.get_hash
+      ~RepositoryContainer.get_hash_for_path
+      ~RepositoryContainer.get_leaf_path_list
+      ~RepositoryContainer.get_path
+      ~RepositoryContainer.has_key
+      ~RepositoryContainer.is_package
+      ~RepositoryContainer.items
+      ~RepositoryContainer.iteritems
+      ~RepositoryContainer.iterkeys
+      ~RepositoryContainer.itervalues
+      ~RepositoryContainer.keys
+      ~RepositoryContainer.load
+      ~RepositoryContainer.log
+      ~RepositoryContainer.merge
+      ~RepositoryContainer.pop
+      ~RepositoryContainer.popitem
+      ~RepositoryContainer.save
+      ~RepositoryContainer.set_path
+      ~RepositoryContainer.setdefault
+      ~RepositoryContainer.show
+      ~RepositoryContainer.update
+      ~RepositoryContainer.validate_format
+      ~RepositoryContainer.values
+      ~RepositoryContainer.viewitems
+      ~RepositoryContainer.viewkeys
+      ~RepositoryContainer.viewvalues
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~RepositoryContainer.logger
+      ~RepositoryContainer.valid_formats
+   
+   

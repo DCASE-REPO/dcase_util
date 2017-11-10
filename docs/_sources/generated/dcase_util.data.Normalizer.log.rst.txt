@@ -1,0 +1,6 @@
+dcase_util.data.Normalizer.log
+==============================
+
+.. currentmodule:: dcase_util.data
+
+.. automethod:: Normalizer.log

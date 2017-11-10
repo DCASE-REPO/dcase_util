@@ -1,0 +1,6 @@
+dcase_util.data.DecisionEncoder.find_contiguous_regions
+=======================================================
+
+.. currentmodule:: dcase_util.data
+
+.. automethod:: DecisionEncoder.find_contiguous_regions

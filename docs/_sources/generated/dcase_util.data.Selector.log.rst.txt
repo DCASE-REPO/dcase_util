@@ -1,0 +1,6 @@
+dcase_util.data.Selector.log
+============================
+
+.. currentmodule:: dcase_util.data
+
+.. automethod:: Selector.log

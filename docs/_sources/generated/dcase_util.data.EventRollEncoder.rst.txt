@@ -1,0 +1,58 @@
+dcase_util.data.EventRollEncoder
+================================
+
+.. currentmodule:: dcase_util.data
+
+.. autoclass:: EventRollEncoder
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~EventRollEncoder.__init__
+      ~EventRollEncoder.delimiter
+      ~EventRollEncoder.detect_file_format
+      ~EventRollEncoder.empty
+      ~EventRollEncoder.encode
+      ~EventRollEncoder.exists
+      ~EventRollEncoder.freeze
+      ~EventRollEncoder.get_file_information
+      ~EventRollEncoder.get_focused
+      ~EventRollEncoder.get_frames
+      ~EventRollEncoder.is_package
+      ~EventRollEncoder.load
+      ~EventRollEncoder.log
+      ~EventRollEncoder.pad
+      ~EventRollEncoder.plot
+      ~EventRollEncoder.push_processing_chain_item
+      ~EventRollEncoder.reset_focus
+      ~EventRollEncoder.save
+      ~EventRollEncoder.set_focus
+      ~EventRollEncoder.show
+      ~EventRollEncoder.validate_format
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~EventRollEncoder.T
+      ~EventRollEncoder.data
+      ~EventRollEncoder.focus_start
+      ~EventRollEncoder.focus_stop
+      ~EventRollEncoder.frames
+      ~EventRollEncoder.length
+      ~EventRollEncoder.logger
+      ~EventRollEncoder.shape
+      ~EventRollEncoder.stats
+      ~EventRollEncoder.valid_formats
+      ~EventRollEncoder.vector_length
+   
+   

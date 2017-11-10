@@ -1,0 +1,6 @@
+dcase_util.datasets.Dataset.dataset_bytes
+=========================================
+
+.. currentmodule:: dcase_util.datasets
+
+.. automethod:: Dataset.dataset_bytes

@@ -1,0 +1,6 @@
+dcase_util.files.RemoteFile.local_modified
+==========================================
+
+.. currentmodule:: dcase_util.files
+
+.. autoattribute:: RemoteFile.local_modified

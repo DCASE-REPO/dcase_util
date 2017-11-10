@@ -1,0 +1,6 @@
+dcase_util.processors.StackingProcessor.process
+===============================================
+
+.. currentmodule:: dcase_util.processors
+
+.. automethod:: StackingProcessor.process

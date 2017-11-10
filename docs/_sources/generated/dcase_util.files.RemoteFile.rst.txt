@@ -1,0 +1,81 @@
+dcase_util.files.RemoteFile
+===========================
+
+.. currentmodule:: dcase_util.files
+
+.. autoclass:: RemoteFile
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~RemoteFile.__init__
+      ~RemoteFile.clear
+      ~RemoteFile.copy
+      ~RemoteFile.delimiter
+      ~RemoteFile.detect_file_format
+      ~RemoteFile.download
+      ~RemoteFile.empty
+      ~RemoteFile.exists
+      ~RemoteFile.fromkeys
+      ~RemoteFile.get
+      ~RemoteFile.get_dump_content
+      ~RemoteFile.get_file_information
+      ~RemoteFile.get_hash
+      ~RemoteFile.get_hash_for_path
+      ~RemoteFile.get_leaf_path_list
+      ~RemoteFile.get_path
+      ~RemoteFile.has_key
+      ~RemoteFile.is_content_type
+      ~RemoteFile.is_package
+      ~RemoteFile.items
+      ~RemoteFile.iteritems
+      ~RemoteFile.iterkeys
+      ~RemoteFile.itervalues
+      ~RemoteFile.keys
+      ~RemoteFile.load
+      ~RemoteFile.local_changed
+      ~RemoteFile.local_exists
+      ~RemoteFile.local_size_string
+      ~RemoteFile.log
+      ~RemoteFile.merge
+      ~RemoteFile.pop
+      ~RemoteFile.popitem
+      ~RemoteFile.remote_exists
+      ~RemoteFile.remote_info
+      ~RemoteFile.remote_size_string
+      ~RemoteFile.save
+      ~RemoteFile.set_path
+      ~RemoteFile.setdefault
+      ~RemoteFile.show
+      ~RemoteFile.update
+      ~RemoteFile.validate_format
+      ~RemoteFile.values
+      ~RemoteFile.viewitems
+      ~RemoteFile.viewkeys
+      ~RemoteFile.viewvalues
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~RemoteFile.local_bytes
+      ~RemoteFile.local_md5
+      ~RemoteFile.local_modified
+      ~RemoteFile.logger
+      ~RemoteFile.remote_bytes
+      ~RemoteFile.remote_file
+      ~RemoteFile.remote_modified
+      ~RemoteFile.remote_status
+      ~RemoteFile.valid_content_types
+      ~RemoteFile.valid_formats
+   
+   

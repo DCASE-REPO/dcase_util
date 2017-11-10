@@ -1,0 +1,72 @@
+dcase_util.datasets.Dataset
+===========================
+
+.. currentmodule:: dcase_util.datasets
+
+.. autoclass:: Dataset
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~Dataset.__init__
+      ~Dataset.absolute_to_relative
+      ~Dataset.check_filelist
+      ~Dataset.dataset_bytes
+      ~Dataset.dataset_size_on_disk
+      ~Dataset.dataset_size_string
+      ~Dataset.download_packages
+      ~Dataset.eval
+      ~Dataset.eval_files
+      ~Dataset.evaluation_setup_filename
+      ~Dataset.event_label_count
+      ~Dataset.event_labels
+      ~Dataset.extract_packages
+      ~Dataset.file_error_meta
+      ~Dataset.file_features
+      ~Dataset.file_meta
+      ~Dataset.folds
+      ~Dataset.initialize
+      ~Dataset.load
+      ~Dataset.load_crossvalidation_data
+      ~Dataset.load_meta
+      ~Dataset.log
+      ~Dataset.prepare
+      ~Dataset.process_meta_item
+      ~Dataset.relative_to_absolute_path
+      ~Dataset.scene_label_count
+      ~Dataset.scene_labels
+      ~Dataset.show
+      ~Dataset.tag_count
+      ~Dataset.tags
+      ~Dataset.test
+      ~Dataset.test_files
+      ~Dataset.train
+      ~Dataset.train_files
+      ~Dataset.validation_files_balanced
+      ~Dataset.validation_files_dataset
+      ~Dataset.validation_files_random
+      ~Dataset.validation_split
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Dataset.audio_file_count
+      ~Dataset.audio_files
+      ~Dataset.error_meta
+      ~Dataset.error_meta_count
+      ~Dataset.fold_count
+      ~Dataset.logger
+      ~Dataset.meta
+      ~Dataset.meta_count
+   
+   

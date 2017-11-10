@@ -1,0 +1,72 @@
+dcase_util.datasets.TUT_SED_Synthetic_2016
+==========================================
+
+.. currentmodule:: dcase_util.datasets
+
+.. autoclass:: TUT_SED_Synthetic_2016
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~TUT_SED_Synthetic_2016.__init__
+      ~TUT_SED_Synthetic_2016.absolute_to_relative
+      ~TUT_SED_Synthetic_2016.check_filelist
+      ~TUT_SED_Synthetic_2016.dataset_bytes
+      ~TUT_SED_Synthetic_2016.dataset_size_on_disk
+      ~TUT_SED_Synthetic_2016.dataset_size_string
+      ~TUT_SED_Synthetic_2016.download_packages
+      ~TUT_SED_Synthetic_2016.eval
+      ~TUT_SED_Synthetic_2016.eval_files
+      ~TUT_SED_Synthetic_2016.evaluation_setup_filename
+      ~TUT_SED_Synthetic_2016.event_label_count
+      ~TUT_SED_Synthetic_2016.event_labels
+      ~TUT_SED_Synthetic_2016.extract_packages
+      ~TUT_SED_Synthetic_2016.file_error_meta
+      ~TUT_SED_Synthetic_2016.file_features
+      ~TUT_SED_Synthetic_2016.file_meta
+      ~TUT_SED_Synthetic_2016.folds
+      ~TUT_SED_Synthetic_2016.initialize
+      ~TUT_SED_Synthetic_2016.load
+      ~TUT_SED_Synthetic_2016.load_crossvalidation_data
+      ~TUT_SED_Synthetic_2016.load_meta
+      ~TUT_SED_Synthetic_2016.log
+      ~TUT_SED_Synthetic_2016.prepare
+      ~TUT_SED_Synthetic_2016.process_meta_item
+      ~TUT_SED_Synthetic_2016.relative_to_absolute_path
+      ~TUT_SED_Synthetic_2016.scene_label_count
+      ~TUT_SED_Synthetic_2016.scene_labels
+      ~TUT_SED_Synthetic_2016.show
+      ~TUT_SED_Synthetic_2016.tag_count
+      ~TUT_SED_Synthetic_2016.tags
+      ~TUT_SED_Synthetic_2016.test
+      ~TUT_SED_Synthetic_2016.test_files
+      ~TUT_SED_Synthetic_2016.train
+      ~TUT_SED_Synthetic_2016.train_files
+      ~TUT_SED_Synthetic_2016.validation_files_balanced
+      ~TUT_SED_Synthetic_2016.validation_files_dataset
+      ~TUT_SED_Synthetic_2016.validation_files_random
+      ~TUT_SED_Synthetic_2016.validation_split
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~TUT_SED_Synthetic_2016.audio_file_count
+      ~TUT_SED_Synthetic_2016.audio_files
+      ~TUT_SED_Synthetic_2016.error_meta
+      ~TUT_SED_Synthetic_2016.error_meta_count
+      ~TUT_SED_Synthetic_2016.fold_count
+      ~TUT_SED_Synthetic_2016.logger
+      ~TUT_SED_Synthetic_2016.meta
+      ~TUT_SED_Synthetic_2016.meta_count
+   
+   

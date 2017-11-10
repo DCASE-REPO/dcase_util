@@ -1,0 +1,6 @@
+dcase_util.utils.Path.size_bytes
+================================
+
+.. currentmodule:: dcase_util.utils
+
+.. automethod:: Path.size_bytes

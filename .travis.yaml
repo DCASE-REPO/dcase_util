@@ -1,0 +1,32 @@
+language:
+    - python
+python:
+    - "2.7"
+    - "3.5"
+    - "3.6"
+
+notifications:
+  email: false
+
+before_install:
+    - "sudo apt-get install -qq python-scipy"
+
+# command to install dependencies
+install:
+    - "pip install -r requirements.txt"
+    - "pip install python-coveralls"
+    - "pip install coveralls"
+    - "pip install nose"
+    - "pip install scikit-learn"
+    - "python setup.py develop"
+
+# command to run tests
+script:
+    - "nosetests --with-coverage --cover-erase --nocapture --cover-package=dcase_util -v -w tests/"
+
+after_success:
+    - "coveralls"
+    - "python setup.py develop --uninstall"
+
+after_failure:
+    - "python setup.py develop --uninstall"

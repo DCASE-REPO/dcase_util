@@ -1,0 +1,39 @@
+dcase_util.processors.MelExtractorProcessor
+===========================================
+
+.. currentmodule:: dcase_util.processors
+
+.. autoclass:: MelExtractorProcessor
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~MelExtractorProcessor.__init__
+      ~MelExtractorProcessor.extract
+      ~MelExtractorProcessor.get_processing_chain_item
+      ~MelExtractorProcessor.get_spectrogram
+      ~MelExtractorProcessor.get_window_function
+      ~MelExtractorProcessor.log
+      ~MelExtractorProcessor.process
+      ~MelExtractorProcessor.push_processing_chain_item
+      ~MelExtractorProcessor.show
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~MelExtractorProcessor.input_type
+      ~MelExtractorProcessor.label
+      ~MelExtractorProcessor.logger
+      ~MelExtractorProcessor.output_type
+   
+   

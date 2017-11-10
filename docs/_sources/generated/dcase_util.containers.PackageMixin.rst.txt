@@ -1,0 +1,30 @@
+dcase_util.containers.PackageMixin
+==================================
+
+.. currentmodule:: dcase_util.containers
+
+.. autoclass:: PackageMixin
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~PackageMixin.__init__
+      ~PackageMixin.extract
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~PackageMixin.logger
+      ~PackageMixin.package_password
+   
+   

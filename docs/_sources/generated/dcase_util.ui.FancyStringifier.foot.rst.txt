@@ -1,0 +1,6 @@
+dcase_util.ui.FancyStringifier.foot
+===================================
+
+.. currentmodule:: dcase_util.ui
+
+.. automethod:: FancyStringifier.foot

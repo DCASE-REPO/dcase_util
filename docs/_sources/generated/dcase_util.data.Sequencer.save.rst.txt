@@ -1,0 +1,6 @@
+dcase_util.data.Sequencer.save
+==============================
+
+.. currentmodule:: dcase_util.data
+
+.. automethod:: Sequencer.save

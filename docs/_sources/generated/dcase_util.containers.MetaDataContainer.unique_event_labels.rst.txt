@@ -1,0 +1,6 @@
+dcase_util.containers.MetaDataContainer.unique_event_labels
+===========================================================
+
+.. currentmodule:: dcase_util.containers
+
+.. autoattribute:: MetaDataContainer.unique_event_labels

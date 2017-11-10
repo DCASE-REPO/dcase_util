@@ -1,0 +1,49 @@
+dcase_util.tools.SubmissionChecker
+==================================
+
+.. currentmodule:: dcase_util.tools
+
+.. autoclass:: SubmissionChecker
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~SubmissionChecker.__init__
+      ~SubmissionChecker.delimiter
+      ~SubmissionChecker.detect_file_format
+      ~SubmissionChecker.empty
+      ~SubmissionChecker.exists
+      ~SubmissionChecker.get_file_information
+      ~SubmissionChecker.is_package
+      ~SubmissionChecker.load
+      ~SubmissionChecker.log
+      ~SubmissionChecker.main_structure
+      ~SubmissionChecker.parameter_file
+      ~SubmissionChecker.process
+      ~SubmissionChecker.save
+      ~SubmissionChecker.show
+      ~SubmissionChecker.submission_authors
+      ~SubmissionChecker.submission_info
+      ~SubmissionChecker.system_description
+      ~SubmissionChecker.system_meta
+      ~SubmissionChecker.system_output
+      ~SubmissionChecker.system_output_file
+      ~SubmissionChecker.validate_format
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~SubmissionChecker.logger
+      ~SubmissionChecker.valid_formats
+   
+   

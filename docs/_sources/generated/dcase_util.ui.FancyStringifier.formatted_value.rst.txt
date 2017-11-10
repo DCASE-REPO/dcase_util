@@ -1,0 +1,6 @@
+dcase_util.ui.FancyStringifier.formatted_value
+==============================================
+
+.. currentmodule:: dcase_util.ui
+
+.. automethod:: FancyStringifier.formatted_value

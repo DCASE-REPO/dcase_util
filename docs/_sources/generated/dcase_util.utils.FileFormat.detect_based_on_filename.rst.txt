@@ -1,0 +1,6 @@
+dcase_util.utils.FileFormat.detect_based_on_filename
+====================================================
+
+.. currentmodule:: dcase_util.utils
+
+.. automethod:: FileFormat.detect_based_on_filename

@@ -1,0 +1,6 @@
+dcase_util.containers.AudioContainer.normalize
+==============================================
+
+.. currentmodule:: dcase_util.containers
+
+.. automethod:: AudioContainer.normalize

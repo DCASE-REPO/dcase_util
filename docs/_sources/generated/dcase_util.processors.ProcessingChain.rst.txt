@@ -1,0 +1,65 @@
+dcase_util.processors.ProcessingChain
+=====================================
+
+.. currentmodule:: dcase_util.processors
+
+.. autoclass:: ProcessingChain
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~ProcessingChain.__init__
+      ~ProcessingChain.append
+      ~ProcessingChain.call_method
+      ~ProcessingChain.chain_string
+      ~ProcessingChain.count
+      ~ProcessingChain.delimiter
+      ~ProcessingChain.detect_file_format
+      ~ProcessingChain.empty
+      ~ProcessingChain.exists
+      ~ProcessingChain.extend
+      ~ProcessingChain.get_dump_content
+      ~ProcessingChain.get_field
+      ~ProcessingChain.get_file_information
+      ~ProcessingChain.index
+      ~ProcessingChain.insert
+      ~ProcessingChain.is_package
+      ~ProcessingChain.load
+      ~ProcessingChain.log
+      ~ProcessingChain.log_chain
+      ~ProcessingChain.pop
+      ~ProcessingChain.process
+      ~ProcessingChain.processor_class
+      ~ProcessingChain.processor_class_reference
+      ~ProcessingChain.processor_exists
+      ~ProcessingChain.push_processor
+      ~ProcessingChain.remove
+      ~ProcessingChain.remove_field
+      ~ProcessingChain.reverse
+      ~ProcessingChain.save
+      ~ProcessingChain.search
+      ~ProcessingChain.show
+      ~ProcessingChain.show_chain
+      ~ProcessingChain.sort
+      ~ProcessingChain.update
+      ~ProcessingChain.validate_format
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ProcessingChain.logger
+      ~ProcessingChain.valid_formats
+      ~ProcessingChain.valid_input_types
+      ~ProcessingChain.valid_output_types
+   
+   

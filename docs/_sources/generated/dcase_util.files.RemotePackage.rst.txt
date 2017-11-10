@@ -1,0 +1,83 @@
+dcase_util.files.RemotePackage
+==============================
+
+.. currentmodule:: dcase_util.files
+
+.. autoclass:: RemotePackage
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~RemotePackage.__init__
+      ~RemotePackage.clear
+      ~RemotePackage.copy
+      ~RemotePackage.delimiter
+      ~RemotePackage.detect_file_format
+      ~RemotePackage.download
+      ~RemotePackage.empty
+      ~RemotePackage.exists
+      ~RemotePackage.extract
+      ~RemotePackage.fromkeys
+      ~RemotePackage.get
+      ~RemotePackage.get_dump_content
+      ~RemotePackage.get_file_information
+      ~RemotePackage.get_hash
+      ~RemotePackage.get_hash_for_path
+      ~RemotePackage.get_leaf_path_list
+      ~RemotePackage.get_path
+      ~RemotePackage.has_key
+      ~RemotePackage.is_content_type
+      ~RemotePackage.is_package
+      ~RemotePackage.items
+      ~RemotePackage.iteritems
+      ~RemotePackage.iterkeys
+      ~RemotePackage.itervalues
+      ~RemotePackage.keys
+      ~RemotePackage.load
+      ~RemotePackage.local_changed
+      ~RemotePackage.local_exists
+      ~RemotePackage.local_size_string
+      ~RemotePackage.log
+      ~RemotePackage.merge
+      ~RemotePackage.pop
+      ~RemotePackage.popitem
+      ~RemotePackage.remote_exists
+      ~RemotePackage.remote_info
+      ~RemotePackage.remote_size_string
+      ~RemotePackage.save
+      ~RemotePackage.set_path
+      ~RemotePackage.setdefault
+      ~RemotePackage.show
+      ~RemotePackage.update
+      ~RemotePackage.validate_format
+      ~RemotePackage.values
+      ~RemotePackage.viewitems
+      ~RemotePackage.viewkeys
+      ~RemotePackage.viewvalues
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~RemotePackage.local_bytes
+      ~RemotePackage.local_md5
+      ~RemotePackage.local_modified
+      ~RemotePackage.logger
+      ~RemotePackage.package_password
+      ~RemotePackage.remote_bytes
+      ~RemotePackage.remote_file
+      ~RemotePackage.remote_modified
+      ~RemotePackage.remote_status
+      ~RemotePackage.valid_content_types
+      ~RemotePackage.valid_formats
+   
+   

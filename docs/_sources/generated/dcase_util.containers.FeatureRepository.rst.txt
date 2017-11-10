@@ -1,0 +1,71 @@
+dcase_util.containers.FeatureRepository
+=======================================
+
+.. currentmodule:: dcase_util.containers
+
+.. autoclass:: FeatureRepository
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~FeatureRepository.__init__
+      ~FeatureRepository.clear
+      ~FeatureRepository.copy
+      ~FeatureRepository.delimiter
+      ~FeatureRepository.detect_file_format
+      ~FeatureRepository.empty
+      ~FeatureRepository.exists
+      ~FeatureRepository.fromkeys
+      ~FeatureRepository.get
+      ~FeatureRepository.get_container
+      ~FeatureRepository.get_dump_content
+      ~FeatureRepository.get_file_information
+      ~FeatureRepository.get_hash
+      ~FeatureRepository.get_hash_for_path
+      ~FeatureRepository.get_leaf_path_list
+      ~FeatureRepository.get_path
+      ~FeatureRepository.has_key
+      ~FeatureRepository.is_package
+      ~FeatureRepository.items
+      ~FeatureRepository.iteritems
+      ~FeatureRepository.iterkeys
+      ~FeatureRepository.itervalues
+      ~FeatureRepository.keys
+      ~FeatureRepository.load
+      ~FeatureRepository.log
+      ~FeatureRepository.merge
+      ~FeatureRepository.plot
+      ~FeatureRepository.pop
+      ~FeatureRepository.popitem
+      ~FeatureRepository.push_processing_chain_item
+      ~FeatureRepository.save
+      ~FeatureRepository.set_container
+      ~FeatureRepository.set_path
+      ~FeatureRepository.setdefault
+      ~FeatureRepository.show
+      ~FeatureRepository.stream_ids
+      ~FeatureRepository.update
+      ~FeatureRepository.validate_format
+      ~FeatureRepository.values
+      ~FeatureRepository.viewitems
+      ~FeatureRepository.viewkeys
+      ~FeatureRepository.viewvalues
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~FeatureRepository.labels
+      ~FeatureRepository.logger
+      ~FeatureRepository.valid_formats
+   
+   

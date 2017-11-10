@@ -1,0 +1,6 @@
+dcase_util.files.FileLock.lock
+==============================
+
+.. currentmodule:: dcase_util.files
+
+.. automethod:: FileLock.lock

@@ -1,0 +1,6 @@
+dcase_util.files.File.delimiter
+===============================
+
+.. currentmodule:: dcase_util.files
+
+.. automethod:: File.delimiter

@@ -1,0 +1,6 @@
+dcase_util.datasets.Dataset.process_meta_item
+=============================================
+
+.. currentmodule:: dcase_util.datasets
+
+.. automethod:: Dataset.process_meta_item

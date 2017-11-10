@@ -1,0 +1,6 @@
+dcase_util.data.Masker.log
+==========================
+
+.. currentmodule:: dcase_util.data
+
+.. automethod:: Masker.log

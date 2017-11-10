@@ -1,0 +1,6 @@
+dcase_util.data.BinaryMatrixEncoder.pad
+=======================================
+
+.. currentmodule:: dcase_util.data
+
+.. automethod:: BinaryMatrixEncoder.pad

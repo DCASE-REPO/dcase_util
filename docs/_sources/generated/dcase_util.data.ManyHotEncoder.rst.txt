@@ -1,0 +1,58 @@
+dcase_util.data.ManyHotEncoder
+==============================
+
+.. currentmodule:: dcase_util.data
+
+.. autoclass:: ManyHotEncoder
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~ManyHotEncoder.__init__
+      ~ManyHotEncoder.delimiter
+      ~ManyHotEncoder.detect_file_format
+      ~ManyHotEncoder.empty
+      ~ManyHotEncoder.encode
+      ~ManyHotEncoder.exists
+      ~ManyHotEncoder.freeze
+      ~ManyHotEncoder.get_file_information
+      ~ManyHotEncoder.get_focused
+      ~ManyHotEncoder.get_frames
+      ~ManyHotEncoder.is_package
+      ~ManyHotEncoder.load
+      ~ManyHotEncoder.log
+      ~ManyHotEncoder.pad
+      ~ManyHotEncoder.plot
+      ~ManyHotEncoder.push_processing_chain_item
+      ~ManyHotEncoder.reset_focus
+      ~ManyHotEncoder.save
+      ~ManyHotEncoder.set_focus
+      ~ManyHotEncoder.show
+      ~ManyHotEncoder.validate_format
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ManyHotEncoder.T
+      ~ManyHotEncoder.data
+      ~ManyHotEncoder.focus_start
+      ~ManyHotEncoder.focus_stop
+      ~ManyHotEncoder.frames
+      ~ManyHotEncoder.length
+      ~ManyHotEncoder.logger
+      ~ManyHotEncoder.shape
+      ~ManyHotEncoder.stats
+      ~ManyHotEncoder.valid_formats
+      ~ManyHotEncoder.vector_length
+   
+   

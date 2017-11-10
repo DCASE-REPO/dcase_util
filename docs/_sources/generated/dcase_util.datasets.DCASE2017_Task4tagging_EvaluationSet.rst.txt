@@ -1,0 +1,72 @@
+dcase_util.datasets.DCASE2017_Task4tagging_EvaluationSet
+========================================================
+
+.. currentmodule:: dcase_util.datasets
+
+.. autoclass:: DCASE2017_Task4tagging_EvaluationSet
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~DCASE2017_Task4tagging_EvaluationSet.__init__
+      ~DCASE2017_Task4tagging_EvaluationSet.absolute_to_relative
+      ~DCASE2017_Task4tagging_EvaluationSet.check_filelist
+      ~DCASE2017_Task4tagging_EvaluationSet.dataset_bytes
+      ~DCASE2017_Task4tagging_EvaluationSet.dataset_size_on_disk
+      ~DCASE2017_Task4tagging_EvaluationSet.dataset_size_string
+      ~DCASE2017_Task4tagging_EvaluationSet.download_packages
+      ~DCASE2017_Task4tagging_EvaluationSet.eval
+      ~DCASE2017_Task4tagging_EvaluationSet.eval_files
+      ~DCASE2017_Task4tagging_EvaluationSet.evaluation_setup_filename
+      ~DCASE2017_Task4tagging_EvaluationSet.event_label_count
+      ~DCASE2017_Task4tagging_EvaluationSet.event_labels
+      ~DCASE2017_Task4tagging_EvaluationSet.extract_packages
+      ~DCASE2017_Task4tagging_EvaluationSet.file_error_meta
+      ~DCASE2017_Task4tagging_EvaluationSet.file_features
+      ~DCASE2017_Task4tagging_EvaluationSet.file_meta
+      ~DCASE2017_Task4tagging_EvaluationSet.folds
+      ~DCASE2017_Task4tagging_EvaluationSet.initialize
+      ~DCASE2017_Task4tagging_EvaluationSet.load
+      ~DCASE2017_Task4tagging_EvaluationSet.load_crossvalidation_data
+      ~DCASE2017_Task4tagging_EvaluationSet.load_meta
+      ~DCASE2017_Task4tagging_EvaluationSet.log
+      ~DCASE2017_Task4tagging_EvaluationSet.prepare
+      ~DCASE2017_Task4tagging_EvaluationSet.process_meta_item
+      ~DCASE2017_Task4tagging_EvaluationSet.relative_to_absolute_path
+      ~DCASE2017_Task4tagging_EvaluationSet.scene_label_count
+      ~DCASE2017_Task4tagging_EvaluationSet.scene_labels
+      ~DCASE2017_Task4tagging_EvaluationSet.show
+      ~DCASE2017_Task4tagging_EvaluationSet.tag_count
+      ~DCASE2017_Task4tagging_EvaluationSet.tags
+      ~DCASE2017_Task4tagging_EvaluationSet.test
+      ~DCASE2017_Task4tagging_EvaluationSet.test_files
+      ~DCASE2017_Task4tagging_EvaluationSet.train
+      ~DCASE2017_Task4tagging_EvaluationSet.train_files
+      ~DCASE2017_Task4tagging_EvaluationSet.validation_files_balanced
+      ~DCASE2017_Task4tagging_EvaluationSet.validation_files_dataset
+      ~DCASE2017_Task4tagging_EvaluationSet.validation_files_random
+      ~DCASE2017_Task4tagging_EvaluationSet.validation_split
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~DCASE2017_Task4tagging_EvaluationSet.audio_file_count
+      ~DCASE2017_Task4tagging_EvaluationSet.audio_files
+      ~DCASE2017_Task4tagging_EvaluationSet.error_meta
+      ~DCASE2017_Task4tagging_EvaluationSet.error_meta_count
+      ~DCASE2017_Task4tagging_EvaluationSet.fold_count
+      ~DCASE2017_Task4tagging_EvaluationSet.logger
+      ~DCASE2017_Task4tagging_EvaluationSet.meta
+      ~DCASE2017_Task4tagging_EvaluationSet.meta_count
+   
+   

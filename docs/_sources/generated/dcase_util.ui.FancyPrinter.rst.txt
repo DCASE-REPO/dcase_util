@@ -1,0 +1,40 @@
+dcase_util.ui.FancyPrinter
+==========================
+
+.. currentmodule:: dcase_util.ui
+
+.. autoclass:: FancyPrinter
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~FancyPrinter.__init__
+      ~FancyPrinter.data
+      ~FancyPrinter.debug
+      ~FancyPrinter.error
+      ~FancyPrinter.foot
+      ~FancyPrinter.info
+      ~FancyPrinter.line
+      ~FancyPrinter.row
+      ~FancyPrinter.section_header
+      ~FancyPrinter.sep
+      ~FancyPrinter.sub_header
+      ~FancyPrinter.table
+      ~FancyPrinter.title
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~FancyPrinter.logger
+   
+   

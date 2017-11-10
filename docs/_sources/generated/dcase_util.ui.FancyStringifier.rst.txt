@@ -1,0 +1,39 @@
+dcase_util.ui.FancyStringifier
+==============================
+
+.. currentmodule:: dcase_util.ui
+
+.. autoclass:: FancyStringifier
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~FancyStringifier.__init__
+      ~FancyStringifier.class_name
+      ~FancyStringifier.data
+      ~FancyStringifier.foot
+      ~FancyStringifier.formatted_value
+      ~FancyStringifier.line
+      ~FancyStringifier.row
+      ~FancyStringifier.section_header
+      ~FancyStringifier.sep
+      ~FancyStringifier.sub_header
+      ~FancyStringifier.table
+      ~FancyStringifier.title
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~FancyStringifier.logger
+   
+   

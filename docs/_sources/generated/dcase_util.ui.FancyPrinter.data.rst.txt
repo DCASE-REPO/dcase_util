@@ -1,0 +1,6 @@
+dcase_util.ui.FancyPrinter.data
+===============================
+
+.. currentmodule:: dcase_util.ui
+
+.. automethod:: FancyPrinter.data

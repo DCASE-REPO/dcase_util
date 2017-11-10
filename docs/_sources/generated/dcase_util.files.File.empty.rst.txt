@@ -1,0 +1,6 @@
+dcase_util.files.File.empty
+===========================
+
+.. currentmodule:: dcase_util.files
+
+.. automethod:: File.empty

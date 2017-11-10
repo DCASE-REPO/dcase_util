@@ -1,0 +1,6 @@
+dcase_util.containers.DataArrayContainer.focus_stop
+===================================================
+
+.. currentmodule:: dcase_util.containers
+
+.. autoattribute:: DataArrayContainer.focus_stop

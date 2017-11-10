@@ -1,0 +1,6 @@
+dcase_util.processors.RepositoryFeatureExtractorProcessor.process
+=================================================================
+
+.. currentmodule:: dcase_util.processors
+
+.. automethod:: RepositoryFeatureExtractorProcessor.process

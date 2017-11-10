@@ -1,0 +1,42 @@
+dcase_util.data.Aggregator
+==========================
+
+.. currentmodule:: dcase_util.data
+
+.. autoclass:: Aggregator
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~Aggregator.__init__
+      ~Aggregator.aggregate
+      ~Aggregator.delimiter
+      ~Aggregator.detect_file_format
+      ~Aggregator.empty
+      ~Aggregator.exists
+      ~Aggregator.get_file_information
+      ~Aggregator.is_package
+      ~Aggregator.load
+      ~Aggregator.log
+      ~Aggregator.save
+      ~Aggregator.show
+      ~Aggregator.validate_format
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Aggregator.logger
+      ~Aggregator.valid_formats
+      ~Aggregator.valid_method
+   
+   

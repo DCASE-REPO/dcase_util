@@ -1,0 +1,6 @@
+dcase_util.data.Sequencer.show
+==============================
+
+.. currentmodule:: dcase_util.data
+
+.. automethod:: Sequencer.show

@@ -1,0 +1,41 @@
+dcase_util.keras.StopperCallback
+================================
+
+.. currentmodule:: dcase_util.keras
+
+.. autoclass:: StopperCallback
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~StopperCallback.__init__
+      ~StopperCallback.add_external_metric
+      ~StopperCallback.get_operator
+      ~StopperCallback.on_batch_begin
+      ~StopperCallback.on_batch_end
+      ~StopperCallback.on_epoch_begin
+      ~StopperCallback.on_epoch_end
+      ~StopperCallback.on_train_begin
+      ~StopperCallback.on_train_end
+      ~StopperCallback.set_external_metric_value
+      ~StopperCallback.set_model
+      ~StopperCallback.set_params
+      ~StopperCallback.stop
+      ~StopperCallback.update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~StopperCallback.logger
+   
+   

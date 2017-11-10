@@ -1,0 +1,42 @@
+dcase_util.keras.StasherCallback
+================================
+
+.. currentmodule:: dcase_util.keras
+
+.. autoclass:: StasherCallback
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~StasherCallback.__init__
+      ~StasherCallback.add_external_metric
+      ~StasherCallback.get_best
+      ~StasherCallback.get_operator
+      ~StasherCallback.log
+      ~StasherCallback.on_batch_begin
+      ~StasherCallback.on_batch_end
+      ~StasherCallback.on_epoch_begin
+      ~StasherCallback.on_epoch_end
+      ~StasherCallback.on_train_begin
+      ~StasherCallback.on_train_end
+      ~StasherCallback.set_external_metric_value
+      ~StasherCallback.set_model
+      ~StasherCallback.set_params
+      ~StasherCallback.update
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~StasherCallback.logger
+   
+   

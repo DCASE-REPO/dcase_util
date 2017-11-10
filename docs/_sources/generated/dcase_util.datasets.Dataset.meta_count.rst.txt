@@ -1,0 +1,6 @@
+dcase_util.datasets.Dataset.meta_count
+======================================
+
+.. currentmodule:: dcase_util.datasets
+
+.. autoattribute:: Dataset.meta_count

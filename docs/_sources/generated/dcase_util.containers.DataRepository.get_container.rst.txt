@@ -1,0 +1,6 @@
+dcase_util.containers.DataRepository.get_container
+==================================================
+
+.. currentmodule:: dcase_util.containers
+
+.. automethod:: DataRepository.get_container

@@ -1,0 +1,38 @@
+dcase_util.files.File
+=====================
+
+.. currentmodule:: dcase_util.files
+
+.. autoclass:: File
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~File.__init__
+      ~File.delimiter
+      ~File.detect_file_format
+      ~File.empty
+      ~File.exists
+      ~File.get_file_information
+      ~File.is_package
+      ~File.load
+      ~File.save
+      ~File.validate_format
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~File.logger
+      ~File.valid_formats
+   
+   

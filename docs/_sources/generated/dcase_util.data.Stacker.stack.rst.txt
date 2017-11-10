@@ -1,0 +1,6 @@
+dcase_util.data.Stacker.stack
+=============================
+
+.. currentmodule:: dcase_util.data
+
+.. automethod:: Stacker.stack

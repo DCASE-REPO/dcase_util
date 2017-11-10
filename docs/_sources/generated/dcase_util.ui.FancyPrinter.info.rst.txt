@@ -1,0 +1,6 @@
+dcase_util.ui.FancyPrinter.info
+===============================
+
+.. currentmodule:: dcase_util.ui
+
+.. automethod:: FancyPrinter.info

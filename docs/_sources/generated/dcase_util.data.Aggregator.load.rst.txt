@@ -1,0 +1,6 @@
+dcase_util.data.Aggregator.load
+===============================
+
+.. currentmodule:: dcase_util.data
+
+.. automethod:: Aggregator.load

@@ -1,0 +1,6 @@
+dcase_util.tools.SubmissionChecker.system_meta
+==============================================
+
+.. currentmodule:: dcase_util.tools
+
+.. automethod:: SubmissionChecker.system_meta

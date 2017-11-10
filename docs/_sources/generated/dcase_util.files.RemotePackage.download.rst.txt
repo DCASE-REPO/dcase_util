@@ -1,0 +1,6 @@
+dcase_util.files.RemotePackage.download
+=======================================
+
+.. currentmodule:: dcase_util.files
+
+.. automethod:: RemotePackage.download

@@ -1,0 +1,6 @@
+dcase_util.keras.create_sequential_model
+========================================
+
+.. currentmodule:: dcase_util.keras
+
+.. autofunction:: create_sequential_model

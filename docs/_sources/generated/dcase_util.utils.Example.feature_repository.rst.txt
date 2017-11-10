@@ -1,0 +1,6 @@
+dcase_util.utils.Example.feature_repository
+===========================================
+
+.. currentmodule:: dcase_util.utils
+
+.. automethod:: Example.feature_repository

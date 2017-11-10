@@ -1,0 +1,6 @@
+dcase_util.containers.ProbabilityItem.label
+===========================================
+
+.. currentmodule:: dcase_util.containers
+
+.. autoattribute:: ProbabilityItem.label

@@ -1,0 +1,65 @@
+dcase_util.containers.AudioContainer
+====================================
+
+.. currentmodule:: dcase_util.containers
+
+.. autoclass:: AudioContainer
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~AudioContainer.__init__
+      ~AudioContainer.delimiter
+      ~AudioContainer.detect_file_format
+      ~AudioContainer.exists
+      ~AudioContainer.freeze
+      ~AudioContainer.get_file_information
+      ~AudioContainer.get_focused
+      ~AudioContainer.is_package
+      ~AudioContainer.load
+      ~AudioContainer.load_from_youtube
+      ~AudioContainer.log
+      ~AudioContainer.mixdown
+      ~AudioContainer.normalize
+      ~AudioContainer.plot
+      ~AudioContainer.plot_spec
+      ~AudioContainer.plot_wave
+      ~AudioContainer.resample
+      ~AudioContainer.reset_focus
+      ~AudioContainer.save
+      ~AudioContainer.set_focus
+      ~AudioContainer.show
+      ~AudioContainer.validate_format
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~AudioContainer.channels
+      ~AudioContainer.data
+      ~AudioContainer.duration_ms
+      ~AudioContainer.duration_samples
+      ~AudioContainer.duration_sec
+      ~AudioContainer.empty
+      ~AudioContainer.focus_channel
+      ~AudioContainer.focus_start_samples
+      ~AudioContainer.focus_start_seconds
+      ~AudioContainer.focus_stop_samples
+      ~AudioContainer.focus_stop_seconds
+      ~AudioContainer.length
+      ~AudioContainer.loaded
+      ~AudioContainer.logger
+      ~AudioContainer.shape
+      ~AudioContainer.streams
+      ~AudioContainer.valid_formats
+   
+   

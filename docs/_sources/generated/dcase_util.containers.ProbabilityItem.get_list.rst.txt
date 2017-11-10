@@ -1,0 +1,6 @@
+dcase_util.containers.ProbabilityItem.get_list
+==============================================
+
+.. currentmodule:: dcase_util.containers
+
+.. automethod:: ProbabilityItem.get_list

@@ -1,0 +1,39 @@
+dcase_util.processors.MfccDeltaExtractorProcessor
+=================================================
+
+.. currentmodule:: dcase_util.processors
+
+.. autoclass:: MfccDeltaExtractorProcessor
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~MfccDeltaExtractorProcessor.__init__
+      ~MfccDeltaExtractorProcessor.extract
+      ~MfccDeltaExtractorProcessor.get_processing_chain_item
+      ~MfccDeltaExtractorProcessor.get_spectrogram
+      ~MfccDeltaExtractorProcessor.get_window_function
+      ~MfccDeltaExtractorProcessor.log
+      ~MfccDeltaExtractorProcessor.process
+      ~MfccDeltaExtractorProcessor.push_processing_chain_item
+      ~MfccDeltaExtractorProcessor.show
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~MfccDeltaExtractorProcessor.input_type
+      ~MfccDeltaExtractorProcessor.label
+      ~MfccDeltaExtractorProcessor.logger
+      ~MfccDeltaExtractorProcessor.output_type
+   
+   

@@ -1,0 +1,77 @@
+dcase_util.containers.MetaDataContainer
+=======================================
+
+.. currentmodule:: dcase_util.containers
+
+.. autoclass:: MetaDataContainer
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~MetaDataContainer.__init__
+      ~MetaDataContainer.add_time
+      ~MetaDataContainer.append
+      ~MetaDataContainer.count
+      ~MetaDataContainer.delimiter
+      ~MetaDataContainer.detect_file_format
+      ~MetaDataContainer.empty
+      ~MetaDataContainer.event_stat_counts
+      ~MetaDataContainer.exists
+      ~MetaDataContainer.extend
+      ~MetaDataContainer.filter
+      ~MetaDataContainer.filter_time_segment
+      ~MetaDataContainer.get_dump_content
+      ~MetaDataContainer.get_field
+      ~MetaDataContainer.get_file_information
+      ~MetaDataContainer.get_string
+      ~MetaDataContainer.index
+      ~MetaDataContainer.insert
+      ~MetaDataContainer.is_package
+      ~MetaDataContainer.load
+      ~MetaDataContainer.log
+      ~MetaDataContainer.log_all
+      ~MetaDataContainer.pop
+      ~MetaDataContainer.process_events
+      ~MetaDataContainer.remove
+      ~MetaDataContainer.remove_field
+      ~MetaDataContainer.reverse
+      ~MetaDataContainer.save
+      ~MetaDataContainer.scene_stat_counts
+      ~MetaDataContainer.search
+      ~MetaDataContainer.show
+      ~MetaDataContainer.show_all
+      ~MetaDataContainer.sort
+      ~MetaDataContainer.stats
+      ~MetaDataContainer.tag_stat_counts
+      ~MetaDataContainer.to_event_roll
+      ~MetaDataContainer.update
+      ~MetaDataContainer.validate_format
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~MetaDataContainer.event_count
+      ~MetaDataContainer.event_label_count
+      ~MetaDataContainer.file_count
+      ~MetaDataContainer.logger
+      ~MetaDataContainer.max_offset
+      ~MetaDataContainer.scene_label_count
+      ~MetaDataContainer.tag_count
+      ~MetaDataContainer.unique_event_labels
+      ~MetaDataContainer.unique_files
+      ~MetaDataContainer.unique_identifiers
+      ~MetaDataContainer.unique_scene_labels
+      ~MetaDataContainer.unique_tags
+      ~MetaDataContainer.valid_formats
+   
+   

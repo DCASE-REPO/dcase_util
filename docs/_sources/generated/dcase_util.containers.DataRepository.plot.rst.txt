@@ -1,0 +1,6 @@
+dcase_util.containers.DataRepository.plot
+=========================================
+
+.. currentmodule:: dcase_util.containers
+
+.. automethod:: DataRepository.plot

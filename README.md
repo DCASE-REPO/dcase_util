@@ -50,4 +50,4 @@ Changelog
 License
 =======
 
-Code released under the [MIT license](https://github.com/DCASE-REPO/dcase_util/tree/master/LICENSE.txt).
+Code released under the [MIT license](https://github.com/DCASE-REPO/dcase_util/tree/master/LICENSE).

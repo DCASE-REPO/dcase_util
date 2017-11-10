@@ -1,0 +1,6 @@
+dcase_util.containers.MetaDataItem.event_label
+==============================================
+
+.. currentmodule:: dcase_util.containers
+
+.. autoattribute:: MetaDataItem.event_label

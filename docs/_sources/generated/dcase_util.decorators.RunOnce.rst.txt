@@ -1,0 +1,22 @@
+dcase_util.decorators.RunOnce
+=============================
+
+.. currentmodule:: dcase_util.decorators
+
+.. autoclass:: RunOnce
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~RunOnce.__init__
+   
+   
+
+   
+   
+   

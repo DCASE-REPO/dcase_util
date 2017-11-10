@@ -1,0 +1,6 @@
+dcase_util.data.DataBuffer.clear
+================================
+
+.. currentmodule:: dcase_util.data
+
+.. automethod:: DataBuffer.clear

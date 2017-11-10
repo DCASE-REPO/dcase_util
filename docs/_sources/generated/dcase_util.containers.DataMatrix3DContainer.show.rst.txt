@@ -1,0 +1,6 @@
+dcase_util.containers.DataMatrix3DContainer.show
+================================================
+
+.. currentmodule:: dcase_util.containers
+
+.. automethod:: DataMatrix3DContainer.show

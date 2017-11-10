@@ -1,0 +1,41 @@
+dcase_util.data.Stacker
+=======================
+
+.. currentmodule:: dcase_util.data
+
+.. autoclass:: Stacker
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~Stacker.__init__
+      ~Stacker.delimiter
+      ~Stacker.detect_file_format
+      ~Stacker.empty
+      ~Stacker.exists
+      ~Stacker.get_file_information
+      ~Stacker.is_package
+      ~Stacker.load
+      ~Stacker.log
+      ~Stacker.save
+      ~Stacker.show
+      ~Stacker.stack
+      ~Stacker.validate_format
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Stacker.logger
+      ~Stacker.valid_formats
+   
+   

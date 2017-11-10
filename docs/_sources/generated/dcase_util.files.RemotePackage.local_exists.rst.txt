@@ -1,0 +1,6 @@
+dcase_util.files.RemotePackage.local_exists
+===========================================
+
+.. currentmodule:: dcase_util.files
+
+.. automethod:: RemotePackage.local_exists

@@ -1,0 +1,35 @@
+dcase_util.containers.FileMixin
+===============================
+
+.. currentmodule:: dcase_util.containers
+
+.. autoclass:: FileMixin
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~FileMixin.__init__
+      ~FileMixin.delimiter
+      ~FileMixin.detect_file_format
+      ~FileMixin.empty
+      ~FileMixin.exists
+      ~FileMixin.get_file_information
+      ~FileMixin.is_package
+      ~FileMixin.validate_format
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~FileMixin.logger
+   
+   

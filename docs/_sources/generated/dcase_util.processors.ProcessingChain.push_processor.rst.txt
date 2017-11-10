@@ -1,0 +1,6 @@
+dcase_util.processors.ProcessingChain.push_processor
+====================================================
+
+.. currentmodule:: dcase_util.processors
+
+.. automethod:: ProcessingChain.push_processor

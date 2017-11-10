@@ -1,0 +1,32 @@
+dcase_util.features.ZeroCrossingRateExtractor
+=============================================
+
+.. currentmodule:: dcase_util.features
+
+.. autoclass:: ZeroCrossingRateExtractor
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~ZeroCrossingRateExtractor.__init__
+      ~ZeroCrossingRateExtractor.extract
+      ~ZeroCrossingRateExtractor.log
+      ~ZeroCrossingRateExtractor.show
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ZeroCrossingRateExtractor.label
+      ~ZeroCrossingRateExtractor.logger
+   
+   

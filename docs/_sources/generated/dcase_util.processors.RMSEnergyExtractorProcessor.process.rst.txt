@@ -1,0 +1,6 @@
+dcase_util.processors.RMSEnergyExtractorProcessor.process
+=========================================================
+
+.. currentmodule:: dcase_util.processors
+
+.. automethod:: RMSEnergyExtractorProcessor.process

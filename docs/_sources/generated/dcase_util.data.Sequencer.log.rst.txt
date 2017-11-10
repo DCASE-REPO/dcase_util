@@ -1,0 +1,6 @@
+dcase_util.data.Sequencer.log
+=============================
+
+.. currentmodule:: dcase_util.data
+
+.. automethod:: Sequencer.log

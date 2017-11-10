@@ -1,0 +1,58 @@
+dcase_util.data.OneHotEncoder
+=============================
+
+.. currentmodule:: dcase_util.data
+
+.. autoclass:: OneHotEncoder
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~OneHotEncoder.__init__
+      ~OneHotEncoder.delimiter
+      ~OneHotEncoder.detect_file_format
+      ~OneHotEncoder.empty
+      ~OneHotEncoder.encode
+      ~OneHotEncoder.exists
+      ~OneHotEncoder.freeze
+      ~OneHotEncoder.get_file_information
+      ~OneHotEncoder.get_focused
+      ~OneHotEncoder.get_frames
+      ~OneHotEncoder.is_package
+      ~OneHotEncoder.load
+      ~OneHotEncoder.log
+      ~OneHotEncoder.pad
+      ~OneHotEncoder.plot
+      ~OneHotEncoder.push_processing_chain_item
+      ~OneHotEncoder.reset_focus
+      ~OneHotEncoder.save
+      ~OneHotEncoder.set_focus
+      ~OneHotEncoder.show
+      ~OneHotEncoder.validate_format
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~OneHotEncoder.T
+      ~OneHotEncoder.data
+      ~OneHotEncoder.focus_start
+      ~OneHotEncoder.focus_stop
+      ~OneHotEncoder.frames
+      ~OneHotEncoder.length
+      ~OneHotEncoder.logger
+      ~OneHotEncoder.shape
+      ~OneHotEncoder.stats
+      ~OneHotEncoder.valid_formats
+      ~OneHotEncoder.vector_length
+   
+   

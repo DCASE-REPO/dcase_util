@@ -1,0 +1,6 @@
+dcase_util.containers.DataMatrix2DContainer.push_processing_chain_item
+======================================================================
+
+.. currentmodule:: dcase_util.containers
+
+.. automethod:: DataMatrix2DContainer.push_processing_chain_item

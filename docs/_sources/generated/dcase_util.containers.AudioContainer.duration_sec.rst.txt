@@ -1,0 +1,6 @@
+dcase_util.containers.AudioContainer.duration_sec
+=================================================
+
+.. currentmodule:: dcase_util.containers
+
+.. autoattribute:: AudioContainer.duration_sec

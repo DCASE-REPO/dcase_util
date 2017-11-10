@@ -1,0 +1,70 @@
+dcase_util.processors.AudioReadingProcessor
+===========================================
+
+.. currentmodule:: dcase_util.processors
+
+.. autoclass:: AudioReadingProcessor
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~AudioReadingProcessor.__init__
+      ~AudioReadingProcessor.delimiter
+      ~AudioReadingProcessor.detect_file_format
+      ~AudioReadingProcessor.exists
+      ~AudioReadingProcessor.freeze
+      ~AudioReadingProcessor.get_file_information
+      ~AudioReadingProcessor.get_focused
+      ~AudioReadingProcessor.get_processing_chain_item
+      ~AudioReadingProcessor.is_package
+      ~AudioReadingProcessor.load
+      ~AudioReadingProcessor.load_from_youtube
+      ~AudioReadingProcessor.log
+      ~AudioReadingProcessor.mixdown
+      ~AudioReadingProcessor.normalize
+      ~AudioReadingProcessor.plot
+      ~AudioReadingProcessor.plot_spec
+      ~AudioReadingProcessor.plot_wave
+      ~AudioReadingProcessor.process
+      ~AudioReadingProcessor.push_processing_chain_item
+      ~AudioReadingProcessor.resample
+      ~AudioReadingProcessor.reset_focus
+      ~AudioReadingProcessor.save
+      ~AudioReadingProcessor.set_focus
+      ~AudioReadingProcessor.show
+      ~AudioReadingProcessor.validate_format
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~AudioReadingProcessor.channels
+      ~AudioReadingProcessor.data
+      ~AudioReadingProcessor.duration_ms
+      ~AudioReadingProcessor.duration_samples
+      ~AudioReadingProcessor.duration_sec
+      ~AudioReadingProcessor.empty
+      ~AudioReadingProcessor.focus_channel
+      ~AudioReadingProcessor.focus_start_samples
+      ~AudioReadingProcessor.focus_start_seconds
+      ~AudioReadingProcessor.focus_stop_samples
+      ~AudioReadingProcessor.focus_stop_seconds
+      ~AudioReadingProcessor.input_type
+      ~AudioReadingProcessor.length
+      ~AudioReadingProcessor.loaded
+      ~AudioReadingProcessor.logger
+      ~AudioReadingProcessor.output_type
+      ~AudioReadingProcessor.shape
+      ~AudioReadingProcessor.streams
+      ~AudioReadingProcessor.valid_formats
+   
+   

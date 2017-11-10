@@ -1,0 +1,56 @@
+dcase_util.containers.DataMatrix3DContainer
+===========================================
+
+.. currentmodule:: dcase_util.containers
+
+.. autoclass:: DataMatrix3DContainer
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~DataMatrix3DContainer.__init__
+      ~DataMatrix3DContainer.delimiter
+      ~DataMatrix3DContainer.detect_file_format
+      ~DataMatrix3DContainer.empty
+      ~DataMatrix3DContainer.exists
+      ~DataMatrix3DContainer.freeze
+      ~DataMatrix3DContainer.get_file_information
+      ~DataMatrix3DContainer.get_focused
+      ~DataMatrix3DContainer.get_frames
+      ~DataMatrix3DContainer.is_package
+      ~DataMatrix3DContainer.load
+      ~DataMatrix3DContainer.log
+      ~DataMatrix3DContainer.plot
+      ~DataMatrix3DContainer.push_processing_chain_item
+      ~DataMatrix3DContainer.reset_focus
+      ~DataMatrix3DContainer.save
+      ~DataMatrix3DContainer.set_focus
+      ~DataMatrix3DContainer.show
+      ~DataMatrix3DContainer.validate_format
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~DataMatrix3DContainer.T
+      ~DataMatrix3DContainer.data
+      ~DataMatrix3DContainer.focus_start
+      ~DataMatrix3DContainer.focus_stop
+      ~DataMatrix3DContainer.frames
+      ~DataMatrix3DContainer.length
+      ~DataMatrix3DContainer.logger
+      ~DataMatrix3DContainer.shape
+      ~DataMatrix3DContainer.stats
+      ~DataMatrix3DContainer.valid_formats
+      ~DataMatrix3DContainer.vector_length
+   
+   

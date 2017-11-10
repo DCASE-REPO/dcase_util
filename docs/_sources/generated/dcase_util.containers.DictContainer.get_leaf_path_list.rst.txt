@@ -1,0 +1,6 @@
+dcase_util.containers.DictContainer.get_leaf_path_list
+======================================================
+
+.. currentmodule:: dcase_util.containers
+
+.. automethod:: DictContainer.get_leaf_path_list

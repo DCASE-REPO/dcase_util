@@ -1,0 +1,6 @@
+dcase_util.files.RemotePackage.remote_modified
+==============================================
+
+.. currentmodule:: dcase_util.files
+
+.. autoattribute:: RemotePackage.remote_modified

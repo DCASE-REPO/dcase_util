@@ -1,0 +1,6 @@
+dcase_util.utils.Example.event_metadata_container
+=================================================
+
+.. currentmodule:: dcase_util.utils
+
+.. automethod:: Example.event_metadata_container

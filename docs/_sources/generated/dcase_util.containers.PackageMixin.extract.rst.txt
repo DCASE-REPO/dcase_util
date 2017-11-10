@@ -1,0 +1,6 @@
+dcase_util.containers.PackageMixin.extract
+==========================================
+
+.. currentmodule:: dcase_util.containers
+
+.. automethod:: PackageMixin.extract

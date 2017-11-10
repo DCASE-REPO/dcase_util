@@ -1,0 +1,6 @@
+dcase_util.containers.DataMatrix2DContainer.reset_focus
+=======================================================
+
+.. currentmodule:: dcase_util.containers
+
+.. automethod:: DataMatrix2DContainer.reset_focus

@@ -1,0 +1,6 @@
+dcase_util.features.MelExtractor.extract
+========================================
+
+.. currentmodule:: dcase_util.features
+
+.. automethod:: MelExtractor.extract

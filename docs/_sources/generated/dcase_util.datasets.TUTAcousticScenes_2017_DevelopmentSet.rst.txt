@@ -1,0 +1,72 @@
+dcase_util.datasets.TUTAcousticScenes_2017_DevelopmentSet
+=========================================================
+
+.. currentmodule:: dcase_util.datasets
+
+.. autoclass:: TUTAcousticScenes_2017_DevelopmentSet
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~TUTAcousticScenes_2017_DevelopmentSet.__init__
+      ~TUTAcousticScenes_2017_DevelopmentSet.absolute_to_relative
+      ~TUTAcousticScenes_2017_DevelopmentSet.check_filelist
+      ~TUTAcousticScenes_2017_DevelopmentSet.dataset_bytes
+      ~TUTAcousticScenes_2017_DevelopmentSet.dataset_size_on_disk
+      ~TUTAcousticScenes_2017_DevelopmentSet.dataset_size_string
+      ~TUTAcousticScenes_2017_DevelopmentSet.download_packages
+      ~TUTAcousticScenes_2017_DevelopmentSet.eval
+      ~TUTAcousticScenes_2017_DevelopmentSet.eval_files
+      ~TUTAcousticScenes_2017_DevelopmentSet.evaluation_setup_filename
+      ~TUTAcousticScenes_2017_DevelopmentSet.event_label_count
+      ~TUTAcousticScenes_2017_DevelopmentSet.event_labels
+      ~TUTAcousticScenes_2017_DevelopmentSet.extract_packages
+      ~TUTAcousticScenes_2017_DevelopmentSet.file_error_meta
+      ~TUTAcousticScenes_2017_DevelopmentSet.file_features
+      ~TUTAcousticScenes_2017_DevelopmentSet.file_meta
+      ~TUTAcousticScenes_2017_DevelopmentSet.folds
+      ~TUTAcousticScenes_2017_DevelopmentSet.initialize
+      ~TUTAcousticScenes_2017_DevelopmentSet.load
+      ~TUTAcousticScenes_2017_DevelopmentSet.load_crossvalidation_data
+      ~TUTAcousticScenes_2017_DevelopmentSet.load_meta
+      ~TUTAcousticScenes_2017_DevelopmentSet.log
+      ~TUTAcousticScenes_2017_DevelopmentSet.prepare
+      ~TUTAcousticScenes_2017_DevelopmentSet.process_meta_item
+      ~TUTAcousticScenes_2017_DevelopmentSet.relative_to_absolute_path
+      ~TUTAcousticScenes_2017_DevelopmentSet.scene_label_count
+      ~TUTAcousticScenes_2017_DevelopmentSet.scene_labels
+      ~TUTAcousticScenes_2017_DevelopmentSet.show
+      ~TUTAcousticScenes_2017_DevelopmentSet.tag_count
+      ~TUTAcousticScenes_2017_DevelopmentSet.tags
+      ~TUTAcousticScenes_2017_DevelopmentSet.test
+      ~TUTAcousticScenes_2017_DevelopmentSet.test_files
+      ~TUTAcousticScenes_2017_DevelopmentSet.train
+      ~TUTAcousticScenes_2017_DevelopmentSet.train_files
+      ~TUTAcousticScenes_2017_DevelopmentSet.validation_files_balanced
+      ~TUTAcousticScenes_2017_DevelopmentSet.validation_files_dataset
+      ~TUTAcousticScenes_2017_DevelopmentSet.validation_files_random
+      ~TUTAcousticScenes_2017_DevelopmentSet.validation_split
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~TUTAcousticScenes_2017_DevelopmentSet.audio_file_count
+      ~TUTAcousticScenes_2017_DevelopmentSet.audio_files
+      ~TUTAcousticScenes_2017_DevelopmentSet.error_meta
+      ~TUTAcousticScenes_2017_DevelopmentSet.error_meta_count
+      ~TUTAcousticScenes_2017_DevelopmentSet.fold_count
+      ~TUTAcousticScenes_2017_DevelopmentSet.logger
+      ~TUTAcousticScenes_2017_DevelopmentSet.meta
+      ~TUTAcousticScenes_2017_DevelopmentSet.meta_count
+   
+   

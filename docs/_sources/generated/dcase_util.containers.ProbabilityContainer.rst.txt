@@ -1,0 +1,57 @@
+dcase_util.containers.ProbabilityContainer
+==========================================
+
+.. currentmodule:: dcase_util.containers
+
+.. autoclass:: ProbabilityContainer
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~ProbabilityContainer.__init__
+      ~ProbabilityContainer.append
+      ~ProbabilityContainer.count
+      ~ProbabilityContainer.delimiter
+      ~ProbabilityContainer.detect_file_format
+      ~ProbabilityContainer.empty
+      ~ProbabilityContainer.exists
+      ~ProbabilityContainer.extend
+      ~ProbabilityContainer.filter
+      ~ProbabilityContainer.get_dump_content
+      ~ProbabilityContainer.get_field
+      ~ProbabilityContainer.get_file_information
+      ~ProbabilityContainer.index
+      ~ProbabilityContainer.insert
+      ~ProbabilityContainer.is_package
+      ~ProbabilityContainer.load
+      ~ProbabilityContainer.log
+      ~ProbabilityContainer.pop
+      ~ProbabilityContainer.remove
+      ~ProbabilityContainer.remove_field
+      ~ProbabilityContainer.reverse
+      ~ProbabilityContainer.save
+      ~ProbabilityContainer.search
+      ~ProbabilityContainer.show
+      ~ProbabilityContainer.sort
+      ~ProbabilityContainer.update
+      ~ProbabilityContainer.validate_format
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ProbabilityContainer.file_list
+      ~ProbabilityContainer.logger
+      ~ProbabilityContainer.unique_labels
+      ~ProbabilityContainer.valid_formats
+   
+   

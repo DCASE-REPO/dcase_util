@@ -1,0 +1,47 @@
+dcase_util.processors.AggregationProcessor
+==========================================
+
+.. currentmodule:: dcase_util.processors
+
+.. autoclass:: AggregationProcessor
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~AggregationProcessor.__init__
+      ~AggregationProcessor.aggregate
+      ~AggregationProcessor.delimiter
+      ~AggregationProcessor.detect_file_format
+      ~AggregationProcessor.empty
+      ~AggregationProcessor.exists
+      ~AggregationProcessor.get_file_information
+      ~AggregationProcessor.get_processing_chain_item
+      ~AggregationProcessor.is_package
+      ~AggregationProcessor.load
+      ~AggregationProcessor.log
+      ~AggregationProcessor.process
+      ~AggregationProcessor.push_processing_chain_item
+      ~AggregationProcessor.save
+      ~AggregationProcessor.show
+      ~AggregationProcessor.validate_format
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~AggregationProcessor.input_type
+      ~AggregationProcessor.logger
+      ~AggregationProcessor.output_type
+      ~AggregationProcessor.valid_formats
+      ~AggregationProcessor.valid_method
+   
+   

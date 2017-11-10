@@ -1,0 +1,43 @@
+dcase_util.keras.ProgressPlotterCallback
+========================================
+
+.. currentmodule:: dcase_util.keras
+
+.. autoclass:: ProgressPlotterCallback
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~ProgressPlotterCallback.__init__
+      ~ProgressPlotterCallback.add_external_metric
+      ~ProgressPlotterCallback.close
+      ~ProgressPlotterCallback.draw
+      ~ProgressPlotterCallback.get_operator
+      ~ProgressPlotterCallback.on_batch_begin
+      ~ProgressPlotterCallback.on_batch_end
+      ~ProgressPlotterCallback.on_epoch_begin
+      ~ProgressPlotterCallback.on_epoch_end
+      ~ProgressPlotterCallback.on_train_begin
+      ~ProgressPlotterCallback.on_train_end
+      ~ProgressPlotterCallback.set_external_metric_value
+      ~ProgressPlotterCallback.set_model
+      ~ProgressPlotterCallback.set_params
+      ~ProgressPlotterCallback.update
+      ~ProgressPlotterCallback.update_progress_log
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ProgressPlotterCallback.logger
+   
+   

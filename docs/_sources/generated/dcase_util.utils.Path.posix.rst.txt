@@ -1,0 +1,6 @@
+dcase_util.utils.Path.posix
+===========================
+
+.. currentmodule:: dcase_util.utils
+
+.. automethod:: Path.posix

@@ -1,0 +1,6 @@
+dcase_util.utils.ApplicationPaths.save_parameters_to_path
+=========================================================
+
+.. currentmodule:: dcase_util.utils
+
+.. automethod:: ApplicationPaths.save_parameters_to_path

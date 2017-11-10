@@ -1,0 +1,6 @@
+dcase_util.data.DataBuffer.count
+================================
+
+.. currentmodule:: dcase_util.data
+
+.. autoattribute:: DataBuffer.count

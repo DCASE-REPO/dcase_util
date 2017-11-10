@@ -1,0 +1,6 @@
+dcase_util.files.Serializer.load_json
+=====================================
+
+.. currentmodule:: dcase_util.files
+
+.. automethod:: Serializer.load_json

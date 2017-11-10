@@ -1,0 +1,42 @@
+dcase_util.data.Selector
+========================
+
+.. currentmodule:: dcase_util.data
+
+.. autoclass:: Selector
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~Selector.__init__
+      ~Selector.delimiter
+      ~Selector.detect_file_format
+      ~Selector.empty
+      ~Selector.exists
+      ~Selector.get_file_information
+      ~Selector.is_package
+      ~Selector.load
+      ~Selector.log
+      ~Selector.save
+      ~Selector.select
+      ~Selector.set_mask
+      ~Selector.show
+      ~Selector.validate_format
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Selector.logger
+      ~Selector.valid_formats
+   
+   

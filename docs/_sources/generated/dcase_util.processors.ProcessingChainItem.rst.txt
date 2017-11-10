@@ -1,0 +1,65 @@
+dcase_util.processors.ProcessingChainItem
+=========================================
+
+.. currentmodule:: dcase_util.processors
+
+.. autoclass:: ProcessingChainItem
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~ProcessingChainItem.__init__
+      ~ProcessingChainItem.clear
+      ~ProcessingChainItem.copy
+      ~ProcessingChainItem.delimiter
+      ~ProcessingChainItem.detect_file_format
+      ~ProcessingChainItem.empty
+      ~ProcessingChainItem.exists
+      ~ProcessingChainItem.fromkeys
+      ~ProcessingChainItem.get
+      ~ProcessingChainItem.get_dump_content
+      ~ProcessingChainItem.get_file_information
+      ~ProcessingChainItem.get_hash
+      ~ProcessingChainItem.get_hash_for_path
+      ~ProcessingChainItem.get_leaf_path_list
+      ~ProcessingChainItem.get_path
+      ~ProcessingChainItem.has_key
+      ~ProcessingChainItem.is_package
+      ~ProcessingChainItem.items
+      ~ProcessingChainItem.iteritems
+      ~ProcessingChainItem.iterkeys
+      ~ProcessingChainItem.itervalues
+      ~ProcessingChainItem.keys
+      ~ProcessingChainItem.load
+      ~ProcessingChainItem.log
+      ~ProcessingChainItem.merge
+      ~ProcessingChainItem.pop
+      ~ProcessingChainItem.popitem
+      ~ProcessingChainItem.save
+      ~ProcessingChainItem.set_path
+      ~ProcessingChainItem.setdefault
+      ~ProcessingChainItem.show
+      ~ProcessingChainItem.update
+      ~ProcessingChainItem.validate_format
+      ~ProcessingChainItem.values
+      ~ProcessingChainItem.viewitems
+      ~ProcessingChainItem.viewkeys
+      ~ProcessingChainItem.viewvalues
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ProcessingChainItem.logger
+      ~ProcessingChainItem.valid_formats
+   
+   

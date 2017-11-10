@@ -1,0 +1,6 @@
+dcase_util.utils.Example.audio_container
+========================================
+
+.. currentmodule:: dcase_util.utils
+
+.. automethod:: Example.audio_container

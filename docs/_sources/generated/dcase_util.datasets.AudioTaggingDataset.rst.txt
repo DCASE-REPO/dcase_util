@@ -1,0 +1,72 @@
+dcase_util.datasets.AudioTaggingDataset
+=======================================
+
+.. currentmodule:: dcase_util.datasets
+
+.. autoclass:: AudioTaggingDataset
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~AudioTaggingDataset.__init__
+      ~AudioTaggingDataset.absolute_to_relative
+      ~AudioTaggingDataset.check_filelist
+      ~AudioTaggingDataset.dataset_bytes
+      ~AudioTaggingDataset.dataset_size_on_disk
+      ~AudioTaggingDataset.dataset_size_string
+      ~AudioTaggingDataset.download_packages
+      ~AudioTaggingDataset.eval
+      ~AudioTaggingDataset.eval_files
+      ~AudioTaggingDataset.evaluation_setup_filename
+      ~AudioTaggingDataset.event_label_count
+      ~AudioTaggingDataset.event_labels
+      ~AudioTaggingDataset.extract_packages
+      ~AudioTaggingDataset.file_error_meta
+      ~AudioTaggingDataset.file_features
+      ~AudioTaggingDataset.file_meta
+      ~AudioTaggingDataset.folds
+      ~AudioTaggingDataset.initialize
+      ~AudioTaggingDataset.load
+      ~AudioTaggingDataset.load_crossvalidation_data
+      ~AudioTaggingDataset.load_meta
+      ~AudioTaggingDataset.log
+      ~AudioTaggingDataset.prepare
+      ~AudioTaggingDataset.process_meta_item
+      ~AudioTaggingDataset.relative_to_absolute_path
+      ~AudioTaggingDataset.scene_label_count
+      ~AudioTaggingDataset.scene_labels
+      ~AudioTaggingDataset.show
+      ~AudioTaggingDataset.tag_count
+      ~AudioTaggingDataset.tags
+      ~AudioTaggingDataset.test
+      ~AudioTaggingDataset.test_files
+      ~AudioTaggingDataset.train
+      ~AudioTaggingDataset.train_files
+      ~AudioTaggingDataset.validation_files_balanced
+      ~AudioTaggingDataset.validation_files_dataset
+      ~AudioTaggingDataset.validation_files_random
+      ~AudioTaggingDataset.validation_split
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~AudioTaggingDataset.audio_file_count
+      ~AudioTaggingDataset.audio_files
+      ~AudioTaggingDataset.error_meta
+      ~AudioTaggingDataset.error_meta_count
+      ~AudioTaggingDataset.fold_count
+      ~AudioTaggingDataset.logger
+      ~AudioTaggingDataset.meta
+      ~AudioTaggingDataset.meta_count
+   
+   

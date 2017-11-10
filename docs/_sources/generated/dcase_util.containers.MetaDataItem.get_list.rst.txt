@@ -1,0 +1,6 @@
+dcase_util.containers.MetaDataItem.get_list
+===========================================
+
+.. currentmodule:: dcase_util.containers
+
+.. automethod:: MetaDataItem.get_list

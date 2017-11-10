@@ -1,0 +1,6 @@
+dcase_util.containers.AudioContainer.set_focus
+==============================================
+
+.. currentmodule:: dcase_util.containers
+
+.. automethod:: AudioContainer.set_focus

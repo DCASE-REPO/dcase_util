@@ -1,0 +1,6 @@
+dcase_util.datasets.Dataset.test
+================================
+
+.. currentmodule:: dcase_util.datasets
+
+.. automethod:: Dataset.test

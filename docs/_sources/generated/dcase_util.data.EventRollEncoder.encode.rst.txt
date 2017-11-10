@@ -1,0 +1,6 @@
+dcase_util.data.EventRollEncoder.encode
+=======================================
+
+.. currentmodule:: dcase_util.data
+
+.. automethod:: EventRollEncoder.encode

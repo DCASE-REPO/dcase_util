@@ -1,0 +1,6 @@
+dcase_util.containers.DataMatrix2DContainer.shape
+=================================================
+
+.. currentmodule:: dcase_util.containers
+
+.. autoattribute:: DataMatrix2DContainer.shape

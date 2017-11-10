@@ -1,0 +1,6 @@
+dcase_util.files.RemotePackage.local_bytes
+==========================================
+
+.. currentmodule:: dcase_util.files
+
+.. autoattribute:: RemotePackage.local_bytes

@@ -1,0 +1,6 @@
+dcase_util.features.SpectralFeatureExtractor.get_spectrogram
+============================================================
+
+.. currentmodule:: dcase_util.features
+
+.. automethod:: SpectralFeatureExtractor.get_spectrogram

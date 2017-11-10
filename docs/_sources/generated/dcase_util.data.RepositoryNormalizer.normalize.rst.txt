@@ -1,0 +1,6 @@
+dcase_util.data.RepositoryNormalizer.normalize
+==============================================
+
+.. currentmodule:: dcase_util.data
+
+.. automethod:: RepositoryNormalizer.normalize

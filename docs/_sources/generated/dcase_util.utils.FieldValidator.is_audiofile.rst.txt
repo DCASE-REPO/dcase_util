@@ -1,0 +1,6 @@
+dcase_util.utils.FieldValidator.is_audiofile
+============================================
+
+.. currentmodule:: dcase_util.utils
+
+.. automethod:: FieldValidator.is_audiofile

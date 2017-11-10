@@ -1,0 +1,30 @@
+dcase_util.containers.ContainerMixin
+====================================
+
+.. currentmodule:: dcase_util.containers
+
+.. autoclass:: ContainerMixin
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~ContainerMixin.__init__
+      ~ContainerMixin.log
+      ~ContainerMixin.show
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ContainerMixin.logger
+   
+   

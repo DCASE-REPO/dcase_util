@@ -1,0 +1,6 @@
+dcase_util.files.RemotePackage.extract
+======================================
+
+.. currentmodule:: dcase_util.files
+
+.. automethod:: RemotePackage.extract

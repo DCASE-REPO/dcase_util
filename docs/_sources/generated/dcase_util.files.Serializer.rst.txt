@@ -1,0 +1,33 @@
+dcase_util.files.Serializer
+===========================
+
+.. currentmodule:: dcase_util.files
+
+.. autoclass:: Serializer
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~Serializer.file_exists
+      ~Serializer.load_cpickle
+      ~Serializer.load_json
+      ~Serializer.load_marshal
+      ~Serializer.load_msgpack
+      ~Serializer.load_yaml
+      ~Serializer.logger
+      ~Serializer.save_cpickle
+      ~Serializer.save_json
+      ~Serializer.save_marshal
+      ~Serializer.save_msgpack
+      ~Serializer.save_yaml
+   
+   
+
+   
+   
+   

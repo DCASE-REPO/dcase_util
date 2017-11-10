@@ -1,0 +1,6 @@
+dcase_util.files.File.is_package
+================================
+
+.. currentmodule:: dcase_util.files
+
+.. automethod:: File.is_package

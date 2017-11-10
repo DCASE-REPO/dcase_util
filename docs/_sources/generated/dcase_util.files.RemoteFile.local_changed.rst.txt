@@ -1,0 +1,6 @@
+dcase_util.files.RemoteFile.local_changed
+=========================================
+
+.. currentmodule:: dcase_util.files
+
+.. automethod:: RemoteFile.local_changed

@@ -1,0 +1,6 @@
+dcase_util.processors.ProcessingChain.show_chain
+================================================
+
+.. currentmodule:: dcase_util.processors
+
+.. automethod:: ProcessingChain.show_chain

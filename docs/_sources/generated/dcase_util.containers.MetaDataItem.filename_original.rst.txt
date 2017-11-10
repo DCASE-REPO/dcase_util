@@ -1,0 +1,6 @@
+dcase_util.containers.MetaDataItem.filename_original
+====================================================
+
+.. currentmodule:: dcase_util.containers
+
+.. autoattribute:: MetaDataItem.filename_original

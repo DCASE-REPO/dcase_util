@@ -1,0 +1,6 @@
+dcase_util.data.DecisionEncoder.majority_vote
+=============================================
+
+.. currentmodule:: dcase_util.data
+
+.. automethod:: DecisionEncoder.majority_vote

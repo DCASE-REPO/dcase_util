@@ -1,0 +1,6 @@
+dcase_util.utils.setup_logging
+==============================
+
+.. currentmodule:: dcase_util.utils
+
+.. autodata:: setup_logging

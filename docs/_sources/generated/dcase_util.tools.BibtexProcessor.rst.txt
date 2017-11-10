@@ -1,0 +1,31 @@
+dcase_util.tools.BibtexProcessor
+================================
+
+.. currentmodule:: dcase_util.tools
+
+.. autoclass:: BibtexProcessor
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~BibtexProcessor.__init__
+      ~BibtexProcessor.abstract
+      ~BibtexProcessor.affiliation_list
+      ~BibtexProcessor.affiliation_list_fancy
+      ~BibtexProcessor.affiliation_str
+      ~BibtexProcessor.authors
+      ~BibtexProcessor.authors_fancy
+      ~BibtexProcessor.key
+      ~BibtexProcessor.submissions_fancy
+      ~BibtexProcessor.title
+   
+   
+
+   
+   
+   

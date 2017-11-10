@@ -1,0 +1,6 @@
+dcase_util.features.RMSEnergyExtractor.extract
+==============================================
+
+.. currentmodule:: dcase_util.features
+
+.. automethod:: RMSEnergyExtractor.extract

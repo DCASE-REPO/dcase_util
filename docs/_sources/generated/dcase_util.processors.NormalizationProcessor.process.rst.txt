@@ -1,0 +1,6 @@
+dcase_util.processors.NormalizationProcessor.process
+====================================================
+
+.. currentmodule:: dcase_util.processors
+
+.. automethod:: NormalizationProcessor.process

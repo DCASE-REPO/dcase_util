@@ -1,0 +1,45 @@
+dcase_util.files.FileLock
+=========================
+
+.. currentmodule:: dcase_util.files
+
+.. autoclass:: FileLock
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~FileLock.__init__
+      ~FileLock.delimiter
+      ~FileLock.detect_file_format
+      ~FileLock.empty
+      ~FileLock.exists
+      ~FileLock.get_file_information
+      ~FileLock.is_package
+      ~FileLock.load
+      ~FileLock.lock
+      ~FileLock.log
+      ~FileLock.release
+      ~FileLock.save
+      ~FileLock.show
+      ~FileLock.touch
+      ~FileLock.validate_format
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~FileLock.expired
+      ~FileLock.is_locked
+      ~FileLock.logger
+      ~FileLock.valid_formats
+   
+   

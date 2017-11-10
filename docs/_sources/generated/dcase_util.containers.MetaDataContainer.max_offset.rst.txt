@@ -1,0 +1,6 @@
+dcase_util.containers.MetaDataContainer.max_offset
+==================================================
+
+.. currentmodule:: dcase_util.containers
+
+.. autoattribute:: MetaDataContainer.max_offset

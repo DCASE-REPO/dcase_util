@@ -1,0 +1,72 @@
+dcase_util.datasets.SoundEventDataset
+=====================================
+
+.. currentmodule:: dcase_util.datasets
+
+.. autoclass:: SoundEventDataset
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~SoundEventDataset.__init__
+      ~SoundEventDataset.absolute_to_relative
+      ~SoundEventDataset.check_filelist
+      ~SoundEventDataset.dataset_bytes
+      ~SoundEventDataset.dataset_size_on_disk
+      ~SoundEventDataset.dataset_size_string
+      ~SoundEventDataset.download_packages
+      ~SoundEventDataset.eval
+      ~SoundEventDataset.eval_files
+      ~SoundEventDataset.evaluation_setup_filename
+      ~SoundEventDataset.event_label_count
+      ~SoundEventDataset.event_labels
+      ~SoundEventDataset.extract_packages
+      ~SoundEventDataset.file_error_meta
+      ~SoundEventDataset.file_features
+      ~SoundEventDataset.file_meta
+      ~SoundEventDataset.folds
+      ~SoundEventDataset.initialize
+      ~SoundEventDataset.load
+      ~SoundEventDataset.load_crossvalidation_data
+      ~SoundEventDataset.load_meta
+      ~SoundEventDataset.log
+      ~SoundEventDataset.prepare
+      ~SoundEventDataset.process_meta_item
+      ~SoundEventDataset.relative_to_absolute_path
+      ~SoundEventDataset.scene_label_count
+      ~SoundEventDataset.scene_labels
+      ~SoundEventDataset.show
+      ~SoundEventDataset.tag_count
+      ~SoundEventDataset.tags
+      ~SoundEventDataset.test
+      ~SoundEventDataset.test_files
+      ~SoundEventDataset.train
+      ~SoundEventDataset.train_files
+      ~SoundEventDataset.validation_files_balanced
+      ~SoundEventDataset.validation_files_dataset
+      ~SoundEventDataset.validation_files_random
+      ~SoundEventDataset.validation_split
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~SoundEventDataset.audio_file_count
+      ~SoundEventDataset.audio_files
+      ~SoundEventDataset.error_meta
+      ~SoundEventDataset.error_meta_count
+      ~SoundEventDataset.fold_count
+      ~SoundEventDataset.logger
+      ~SoundEventDataset.meta
+      ~SoundEventDataset.meta_count
+   
+   

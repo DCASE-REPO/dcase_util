@@ -1,0 +1,70 @@
+dcase_util.containers.DCASEAppParameterContainer
+================================================
+
+.. currentmodule:: dcase_util.containers
+
+.. autoclass:: DCASEAppParameterContainer
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~DCASEAppParameterContainer.__init__
+      ~DCASEAppParameterContainer.clear
+      ~DCASEAppParameterContainer.copy
+      ~DCASEAppParameterContainer.delimiter
+      ~DCASEAppParameterContainer.detect_file_format
+      ~DCASEAppParameterContainer.empty
+      ~DCASEAppParameterContainer.exists
+      ~DCASEAppParameterContainer.fromkeys
+      ~DCASEAppParameterContainer.get
+      ~DCASEAppParameterContainer.get_dump_content
+      ~DCASEAppParameterContainer.get_file_information
+      ~DCASEAppParameterContainer.get_hash
+      ~DCASEAppParameterContainer.get_hash_for_path
+      ~DCASEAppParameterContainer.get_leaf_path_list
+      ~DCASEAppParameterContainer.get_path
+      ~DCASEAppParameterContainer.get_path_translated
+      ~DCASEAppParameterContainer.has_key
+      ~DCASEAppParameterContainer.is_package
+      ~DCASEAppParameterContainer.items
+      ~DCASEAppParameterContainer.iteritems
+      ~DCASEAppParameterContainer.iterkeys
+      ~DCASEAppParameterContainer.itervalues
+      ~DCASEAppParameterContainer.keys
+      ~DCASEAppParameterContainer.load
+      ~DCASEAppParameterContainer.log
+      ~DCASEAppParameterContainer.merge
+      ~DCASEAppParameterContainer.override
+      ~DCASEAppParameterContainer.pop
+      ~DCASEAppParameterContainer.popitem
+      ~DCASEAppParameterContainer.process
+      ~DCASEAppParameterContainer.reset
+      ~DCASEAppParameterContainer.save
+      ~DCASEAppParameterContainer.set_path
+      ~DCASEAppParameterContainer.set_path_translated
+      ~DCASEAppParameterContainer.setdefault
+      ~DCASEAppParameterContainer.show
+      ~DCASEAppParameterContainer.update
+      ~DCASEAppParameterContainer.validate_format
+      ~DCASEAppParameterContainer.values
+      ~DCASEAppParameterContainer.viewitems
+      ~DCASEAppParameterContainer.viewkeys
+      ~DCASEAppParameterContainer.viewvalues
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~DCASEAppParameterContainer.logger
+      ~DCASEAppParameterContainer.valid_formats
+   
+   

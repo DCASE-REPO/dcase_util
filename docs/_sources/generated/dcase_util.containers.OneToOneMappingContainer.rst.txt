@@ -1,0 +1,67 @@
+dcase_util.containers.OneToOneMappingContainer
+==============================================
+
+.. currentmodule:: dcase_util.containers
+
+.. autoclass:: OneToOneMappingContainer
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~OneToOneMappingContainer.__init__
+      ~OneToOneMappingContainer.clear
+      ~OneToOneMappingContainer.copy
+      ~OneToOneMappingContainer.delimiter
+      ~OneToOneMappingContainer.detect_file_format
+      ~OneToOneMappingContainer.empty
+      ~OneToOneMappingContainer.exists
+      ~OneToOneMappingContainer.fromkeys
+      ~OneToOneMappingContainer.get
+      ~OneToOneMappingContainer.get_dump_content
+      ~OneToOneMappingContainer.get_file_information
+      ~OneToOneMappingContainer.get_hash
+      ~OneToOneMappingContainer.get_hash_for_path
+      ~OneToOneMappingContainer.get_leaf_path_list
+      ~OneToOneMappingContainer.get_path
+      ~OneToOneMappingContainer.has_key
+      ~OneToOneMappingContainer.is_package
+      ~OneToOneMappingContainer.items
+      ~OneToOneMappingContainer.iteritems
+      ~OneToOneMappingContainer.iterkeys
+      ~OneToOneMappingContainer.itervalues
+      ~OneToOneMappingContainer.keys
+      ~OneToOneMappingContainer.load
+      ~OneToOneMappingContainer.log
+      ~OneToOneMappingContainer.map
+      ~OneToOneMappingContainer.merge
+      ~OneToOneMappingContainer.pop
+      ~OneToOneMappingContainer.popitem
+      ~OneToOneMappingContainer.save
+      ~OneToOneMappingContainer.set_path
+      ~OneToOneMappingContainer.setdefault
+      ~OneToOneMappingContainer.show
+      ~OneToOneMappingContainer.update
+      ~OneToOneMappingContainer.validate_format
+      ~OneToOneMappingContainer.values
+      ~OneToOneMappingContainer.viewitems
+      ~OneToOneMappingContainer.viewkeys
+      ~OneToOneMappingContainer.viewvalues
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~OneToOneMappingContainer.flipped
+      ~OneToOneMappingContainer.logger
+      ~OneToOneMappingContainer.valid_formats
+   
+   

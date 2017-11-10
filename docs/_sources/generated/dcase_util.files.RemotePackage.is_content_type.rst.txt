@@ -1,0 +1,6 @@
+dcase_util.files.RemotePackage.is_content_type
+==============================================
+
+.. currentmodule:: dcase_util.files
+
+.. automethod:: RemotePackage.is_content_type

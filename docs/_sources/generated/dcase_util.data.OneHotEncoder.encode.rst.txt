@@ -1,0 +1,6 @@
+dcase_util.data.OneHotEncoder.encode
+====================================
+
+.. currentmodule:: dcase_util.data
+
+.. automethod:: OneHotEncoder.encode

@@ -1,0 +1,6 @@
+dcase_util.data.DecisionEncoder.process_activity
+================================================
+
+.. currentmodule:: dcase_util.data
+
+.. automethod:: DecisionEncoder.process_activity

@@ -1,0 +1,54 @@
+dcase_util.containers.DataContainer
+===================================
+
+.. currentmodule:: dcase_util.containers
+
+.. autoclass:: DataContainer
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~DataContainer.__init__
+      ~DataContainer.delimiter
+      ~DataContainer.detect_file_format
+      ~DataContainer.empty
+      ~DataContainer.exists
+      ~DataContainer.freeze
+      ~DataContainer.get_file_information
+      ~DataContainer.get_focused
+      ~DataContainer.get_frames
+      ~DataContainer.is_package
+      ~DataContainer.load
+      ~DataContainer.log
+      ~DataContainer.plot
+      ~DataContainer.push_processing_chain_item
+      ~DataContainer.reset_focus
+      ~DataContainer.save
+      ~DataContainer.set_focus
+      ~DataContainer.show
+      ~DataContainer.validate_format
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~DataContainer.data
+      ~DataContainer.focus_start
+      ~DataContainer.focus_stop
+      ~DataContainer.frames
+      ~DataContainer.length
+      ~DataContainer.logger
+      ~DataContainer.shape
+      ~DataContainer.stats
+      ~DataContainer.valid_formats
+   
+   

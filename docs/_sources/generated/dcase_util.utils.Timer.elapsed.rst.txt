@@ -1,0 +1,6 @@
+dcase_util.utils.Timer.elapsed
+==============================
+
+.. currentmodule:: dcase_util.utils
+
+.. automethod:: Timer.elapsed

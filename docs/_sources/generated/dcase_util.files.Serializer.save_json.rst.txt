@@ -1,0 +1,6 @@
+dcase_util.files.Serializer.save_json
+=====================================
+
+.. currentmodule:: dcase_util.files
+
+.. automethod:: Serializer.save_json

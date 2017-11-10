@@ -1,0 +1,36 @@
+dcase_util.utils.Example
+========================
+
+.. currentmodule:: dcase_util.utils
+
+.. autoclass:: Example
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~Example.__init__
+      ~Example.acoustic_scene_audio_filename
+      ~Example.audio_container
+      ~Example.audio_filename
+      ~Example.event_metadata_container
+      ~Example.feature_container
+      ~Example.feature_repository
+      ~Example.scene_metadata_container
+      ~Example.tag_metadata_container
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Example.example_folder
+   
+   
