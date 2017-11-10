@@ -1,14 +1,11 @@
 """ Unit tests for Stacker """
 
 import nose.tools
-import numpy
 import tempfile
 import os
 
 import dcase_util
-from dcase_util.containers import FeatureContainer
 from dcase_util.data import Stacker
-from IPython import embed
 
 
 def test_stack():
