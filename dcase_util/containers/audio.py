@@ -3,7 +3,6 @@
 
 
 from __future__ import print_function, absolute_import
-from six import iteritems
 import sys
 import os
 import soundfile
@@ -20,7 +19,9 @@ from dcase_util.utils import FileFormat, is_int
 
 class AudioContainer(ContainerMixin, FileMixin):
     """Audio container class."""
-    valid_formats = [FileFormat.WAV, FileFormat.FLAC, FileFormat.M4A, FileFormat.WEBM, FileFormat.MP3]  #: Valid file formats
+    valid_formats = [FileFormat.WAV, FileFormat.FLAC,
+                     FileFormat.M4A, FileFormat.WEBM,
+                     FileFormat.MP3]  #: Valid file formats
 
     def __init__(self,
                  data=None, fs=44100,
@@ -140,8 +141,13 @@ class AudioContainer(ContainerMixin, FileMixin):
                     output += ui.data(indent=4, field='Channel', value=self._focus_channel) + '\n'
 
             output += ui.line(indent=4, field='Duration') + '\n'
-            output += ui.data(indent=6, field='Seconds', value=self.focus_stop_seconds - self.focus_start_seconds, unit='sec') + '\n'
-            output += ui.data(indent=6, field='Samples', value=self.focus_stop_samples - self.focus_start_samples, unit='sec') + '\n'
+            output += ui.data(indent=6, field='Seconds',
+                              value=self.focus_stop_seconds - self.focus_start_seconds,
+                              unit='sec') + '\n'
+
+            output += ui.data(indent=6, field='Samples',
+                              value=self.focus_stop_samples - self.focus_start_samples,
+                              unit='sec') + '\n'
 
             output += ui.line(indent=4, field='Start point') + '\n'
             output += ui.data(indent=6, field='Seconds', value=self.focus_start_seconds, unit='sec') + '\n'
@@ -480,7 +486,7 @@ class AudioContainer(ContainerMixin, FileMixin):
             else:
                 return True
 
-    def load(self, filename=None, fs=None, mono=False, res_type='kaiser_best', start=None, stop=None):
+    def load(self, filename=None, fs='native', mono=False, res_type='kaiser_best', start=None, stop=None):
         """Load file
 
         Parameters
@@ -488,9 +494,10 @@ class AudioContainer(ContainerMixin, FileMixin):
         filename : str, optional
             File path, if None given filename parameter given to class constructor is used.
 
-        fs : int
+        fs : int or str
             Target sampling frequency, if loaded audio does have different sampling frequency, audio will
-            be re-sampled. If None given, value given to class constructor is used.
+            be re-sampled. If None given, value given to class constructor is used. If 'native' is given then
+            native sampling frequency defined by audio file is used.
 
         mono : bool
             Monophonic target, multi-channel audio will be down-mixed.
@@ -521,8 +528,9 @@ class AudioContainer(ContainerMixin, FileMixin):
             self.validate_format()
 
         if self.exists():
-            if fs is not None:
-                self.fs = fs
+            if fs is None:
+                # Use sampling frequency defined in class construction.
+                fs = self.fs
 
             if self.format == FileFormat.WAV:
                 info = soundfile.info(file=self.filename)
@@ -531,36 +539,67 @@ class AudioContainer(ContainerMixin, FileMixin):
                 if start is not None and stop is not None:
                     start_sample = int(start * info.samplerate)
                     stop_sample = int(stop * info.samplerate)
+
                     if stop_sample > info.frames:
                         stop_sample = info.frames
+
                 else:
                     start_sample = None
                     stop_sample = None
 
-                self._data, source_fs = soundfile.read(file=self.filename, start=start_sample, stop=stop_sample)
+                self._data, source_fs = soundfile.read(
+                    file=self.filename,
+                    start=start_sample,
+                    stop=stop_sample
+                )
+
                 self._data = self._data.T
 
                 # Down-mix audio
                 if mono and len(self._data.shape) > 1:
                     self._data = numpy.mean(self._data, axis=self.channel_axis)
 
-                # Resample
-                if self.fs != source_fs:
-                    import librosa
-                    self._data = librosa.core.resample(self._data, source_fs, self.fs, res_type=res_type)
+                if fs == 'native':
+                    # Use native sampling frequency.
+                    self.fs = source_fs
+
+                else:
+                    # Target sampling frequency defined, possibly re-sample signal.
+                    if fs != source_fs:
+                        import librosa
+                        self._data = librosa.core.resample(
+                            self._data,
+                            source_fs,
+                            fs,
+                            res_type=res_type
+                        )
+
+                    # Store sampling frequency
+                    self.fs = fs
 
             elif self.format in [FileFormat.FLAC, FileFormat.M4A, FileFormat.WEBM]:
                 import librosa
+
+                # Handle segment start and stop
                 if start is not None and stop is not None:
                     offset = start
                     duration = stop - start
+
                 else:
                     offset = 0.0
                     duration = None
 
+                if fs == 'native':
+                    # Use native sampling frequency
+                    sr = None
+
+                else:
+                    # Use target sampling frequency
+                    sr = fs
+
                 self._data, self.fs = librosa.load(
                     self.filename,
-                    sr=self.fs,
+                    sr=sr,
                     mono=mono,
                     res_type=res_type,
                     offset=offset,
@@ -568,12 +607,20 @@ class AudioContainer(ContainerMixin, FileMixin):
                 )
 
             else:
-                message = '{name}: Unknown format [{format}]'.format(name=self.__class__.__name__, format=self.filename)
+                message = '{name}: Unknown format [{format}]'.format(
+                    name=self.__class__.__name__,
+                    format=self.filename
+                )
+
                 self.logger.exception(message)
                 raise IOError(message)
 
         else:
-            message = '{name}: File does not exists [{file}]'.format(name=self.__class__.__name__, file=self.filename)
+            message = '{name}: File does not exists [{file}]'.format(
+                name=self.__class__.__name__,
+                file=self.filename
+            )
+
             self.logger.exception(message)
             raise IOError(message)
 
@@ -734,6 +781,8 @@ class AudioContainer(ContainerMixin, FileMixin):
 
             # Get temp file
             tmp_file = tempfile.NamedTemporaryFile(suffix='.'+youtube_audio.extension)
+
+            download_progress_bar = None
             if not silent:
                 # Create download progress bar
                 download_progress_bar = tqdm(
