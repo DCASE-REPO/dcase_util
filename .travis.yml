@@ -10,6 +10,7 @@ notifications:
 
 before_install:
     - "sudo apt-get install -qq python-scipy"
+    - "sudo apt-get install libav-tools"
 
 # command to install dependencies
 install:
