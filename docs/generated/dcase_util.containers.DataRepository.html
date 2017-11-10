@@ -1257,6 +1257,8 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-1-5">v0.1.5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-1-4">v0.1.4</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-1-0">v0.1.0</a></li>
 </ul>
 </li>
@@ -1375,7 +1377,7 @@ If given, repository is loaded in the initialization stage.</p>
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#dcase_util.containers.DataRepository.__init__" title="dcase_util.containers.DataRepository.__init__"><code class="xref py py-obj docutils literal"><span class="pre">__init__</span></code></a>([data,&nbsp;filename_dict,&nbsp;...])</td>
+<tr class="row-odd"><td><a class="reference internal" href="#dcase_util.containers.DataRepository.__init__" title="dcase_util.containers.DataRepository.__init__"><code class="xref py py-obj docutils literal"><span class="pre">__init__</span></code></a>([data,&nbsp;filename_dict,&nbsp;…])</td>
 <td>Constructor</td>
 </tr>
 <tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">clear</span></code>(()&nbsp;-&gt;&nbsp;None.&nbsp;&nbsp;Remove&nbsp;all&nbsp;items&nbsp;from&nbsp;D.)</td>
@@ -1396,10 +1398,10 @@ If given, repository is loaded in the initialization stage.</p>
 <tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">exists</span></code>()</td>
 <td>Checks that file exists</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">fromkeys</span></code>(...)</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">fromkeys</span></code>(…)</td>
 <td>v defaults to None.</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">get</span></code>((k[,d])&nbsp;-&gt;&nbsp;D[k]&nbsp;if&nbsp;k&nbsp;in&nbsp;D,&nbsp;...)</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">get</span></code>((k[,d])&nbsp;-&gt;&nbsp;D[k]&nbsp;if&nbsp;k&nbsp;in&nbsp;D,&nbsp;…)</td>
 <td></td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="dcase_util.containers.DataRepository.get_container.html#dcase_util.containers.DataRepository.get_container" title="dcase_util.containers.DataRepository.get_container"><code class="xref py py-obj docutils literal"><span class="pre">get_container</span></code></a>(label[,&nbsp;stream_id])</td>
@@ -1417,7 +1419,7 @@ If given, repository is loaded in the initialization stage.</p>
 <tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">get_hash_for_path</span></code>([dotted_path])</td>
 <td>Get unique hash string for the data under given path.</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">get_leaf_path_list</span></code>([target_field,&nbsp;...])</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">get_leaf_path_list</span></code>([target_field,&nbsp;…])</td>
 <td>Get path list to all leaf node in the nested dict.</td>
 </tr>
 <tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">get_path</span></code>(path[,&nbsp;default,&nbsp;data])</td>
@@ -1429,19 +1431,19 @@ If given, repository is loaded in the initialization stage.</p>
 <tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">is_package</span></code>([filename])</td>
 <td>Determine if the file is compressed package.</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">items</span></code>(()&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;D&#8217;s&nbsp;(key,&nbsp;value)&nbsp;pairs,&nbsp;...)</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">items</span></code>(()&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;D’s&nbsp;(key,&nbsp;value)&nbsp;pairs,&nbsp;…)</td>
 <td></td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">iteritems</span></code>(()&nbsp;-&gt;&nbsp;an&nbsp;iterator&nbsp;over&nbsp;the&nbsp;(key,&nbsp;...)</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">iteritems</span></code>(()&nbsp;-&gt;&nbsp;an&nbsp;iterator&nbsp;over&nbsp;the&nbsp;(key,&nbsp;…)</td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">iterkeys</span></code>(()&nbsp;-&gt;&nbsp;an&nbsp;iterator&nbsp;over&nbsp;the&nbsp;keys&nbsp;of&nbsp;D)</td>
 <td></td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">itervalues</span></code>(...)</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">itervalues</span></code>(…)</td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">keys</span></code>(()&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;D&#8217;s&nbsp;keys)</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">keys</span></code>(()&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;D’s&nbsp;keys)</td>
 <td></td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="dcase_util.containers.DataRepository.load.html#dcase_util.containers.DataRepository.load" title="dcase_util.containers.DataRepository.load"><code class="xref py py-obj docutils literal"><span class="pre">load</span></code></a>([filename_dict])</td>
@@ -1456,13 +1458,13 @@ If given, repository is loaded in the initialization stage.</p>
 <tr class="row-odd"><td><a class="reference internal" href="dcase_util.containers.DataRepository.plot.html#dcase_util.containers.DataRepository.plot" title="dcase_util.containers.DataRepository.plot"><code class="xref py py-obj docutils literal"><span class="pre">plot</span></code></a>()</td>
 <td>Visualize data stored in the repository.</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">pop</span></code>((k[,d])&nbsp;-&gt;&nbsp;v,&nbsp;...)</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">pop</span></code>((k[,d])&nbsp;-&gt;&nbsp;v,&nbsp;…)</td>
 <td>If key is not found, d is returned if given, otherwise KeyError is raised</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">popitem</span></code>(()&nbsp;-&gt;&nbsp;(k,&nbsp;v),&nbsp;...)</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">popitem</span></code>(()&nbsp;-&gt;&nbsp;(k,&nbsp;v),&nbsp;…)</td>
 <td>2-tuple; but raise KeyError if D is empty.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="dcase_util.containers.DataRepository.push_processing_chain_item.html#dcase_util.containers.DataRepository.push_processing_chain_item" title="dcase_util.containers.DataRepository.push_processing_chain_item"><code class="xref py py-obj docutils literal"><span class="pre">push_processing_chain_item</span></code></a>(processor_name[,&nbsp;...])</td>
+<tr class="row-even"><td><a class="reference internal" href="dcase_util.containers.DataRepository.push_processing_chain_item.html#dcase_util.containers.DataRepository.push_processing_chain_item" title="dcase_util.containers.DataRepository.push_processing_chain_item"><code class="xref py py-obj docutils literal"><span class="pre">push_processing_chain_item</span></code></a>(processor_name[,&nbsp;…])</td>
 <td>Push processing chain item</td>
 </tr>
 <tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">save</span></code>([filename])</td>
@@ -1474,7 +1476,7 @@ If given, repository is loaded in the initialization stage.</p>
 <tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">set_path</span></code>(path,&nbsp;new_value[,&nbsp;data])</td>
 <td>Set value in nested dict with dotted path</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">setdefault</span></code>((k[,d])&nbsp;-&gt;&nbsp;D.get(k,d),&nbsp;...)</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">setdefault</span></code>((k[,d])&nbsp;-&gt;&nbsp;D.get(k,d),&nbsp;…)</td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">show</span></code>()</td>
@@ -1483,22 +1485,22 @@ If given, repository is loaded in the initialization stage.</p>
 <tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">stream_ids</span></code>(label)</td>
 <td>Stream ids stores for the label in the repository.</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">update</span></code>(([E,&nbsp;...)</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">update</span></code>(([E,&nbsp;…)</td>
 <td>If E present and has a .keys() method, does:     for k in E: D[k] = E[k]</td>
 </tr>
 <tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">validate_format</span></code>()</td>
 <td>Validate file format</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">values</span></code>(()&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;D&#8217;s&nbsp;values)</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">values</span></code>(()&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;D’s&nbsp;values)</td>
 <td></td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">viewitems</span></code>(...)</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">viewitems</span></code>(…)</td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">viewkeys</span></code>(...)</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">viewkeys</span></code>(…)</td>
 <td></td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">viewvalues</span></code>(...)</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">viewvalues</span></code>(…)</td>
 <td></td>
 </tr>
 </tbody>

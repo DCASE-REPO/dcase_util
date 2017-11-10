@@ -1257,6 +1257,8 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-1-5">v0.1.5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-1-4">v0.1.4</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-1-0">v0.1.0</a></li>
 </ul>
 </li>
@@ -1342,13 +1344,13 @@
 </div></blockquote>
 <p><strong>data_path</strong> : str</p>
 <blockquote>
-<div><p>Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), &#8216;dcase_util_datasets&#8217;)
+<div><p>Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), ‘dcase_util_datasets’)
 is used.</p>
 </div></blockquote>
 <p><strong>included_content_types</strong> : list of str</p>
 <blockquote class="last">
-<div><p>Indicates what content type should be processed. One or multiple from [&#8216;all&#8217;, &#8216;audio&#8217;, &#8216;meta&#8217;, &#8216;code&#8217;,
-&#8216;documentation&#8217;]. If None given, [&#8216;all&#8217;] is used.</p>
+<div><p>Indicates what content type should be processed. One or multiple from [‘all’, ‘audio’, ‘meta’, ‘code’,
+‘documentation’]. If None given, [‘all’] is used.</p>
 </div></blockquote>
 </td>
 </tr>
@@ -1368,13 +1370,13 @@ is used.</p>
 </div></blockquote>
 <p><strong>data_path</strong> : str</p>
 <blockquote>
-<div><p>Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), &#8216;dcase_util_datasets&#8217;)
+<div><p>Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), ‘dcase_util_datasets’)
 is used.</p>
 </div></blockquote>
 <p><strong>included_content_types</strong> : list of str</p>
 <blockquote class="last">
-<div><p>Indicates what content type should be processed. One or multiple from [&#8216;all&#8217;, &#8216;audio&#8217;, &#8216;meta&#8217;, &#8216;code&#8217;,
-&#8216;documentation&#8217;]. If None given, [&#8216;all&#8217;] is used.</p>
+<div><p>Indicates what content type should be processed. One or multiple from [‘all’, ‘audio’, ‘meta’, ‘code’,
+‘documentation’]. If None given, [‘all’] is used.</p>
 </div></blockquote>
 </td>
 </tr>
@@ -1389,7 +1391,7 @@ is used.</p>
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#dcase_util.datasets.TUTAcousticScenes_2017_DevelopmentSet.__init__" title="dcase_util.datasets.TUTAcousticScenes_2017_DevelopmentSet.__init__"><code class="xref py py-obj docutils literal"><span class="pre">__init__</span></code></a>([storage_name,&nbsp;data_path,&nbsp;...])</td>
+<tr class="row-odd"><td><a class="reference internal" href="#dcase_util.datasets.TUTAcousticScenes_2017_DevelopmentSet.__init__" title="dcase_util.datasets.TUTAcousticScenes_2017_DevelopmentSet.__init__"><code class="xref py py-obj docutils literal"><span class="pre">__init__</span></code></a>([storage_name,&nbsp;data_path,&nbsp;…])</td>
 <td>Constructor</td>
 </tr>
 <tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">absolute_to_relative</span></code>(path)</td>
@@ -1416,13 +1418,13 @@ is used.</p>
 <tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">eval_files</span></code>([fold])</td>
 <td>List of evaluation files.</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">evaluation_setup_filename</span></code>([setup_part,&nbsp;...])</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">evaluation_setup_filename</span></code>([setup_part,&nbsp;…])</td>
 <td>Evaluation setup filename generation.</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">event_label_count</span></code>(\*\*kwargs)</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">event_label_count</span></code>(**kwargs)</td>
 <td>Number of unique event labels in the meta data.</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">event_labels</span></code>(\*\*kwargs)</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">event_labels</span></code>(**kwargs)</td>
 <td>List of unique event labels in the meta data.</td>
 </tr>
 <tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">extract_packages</span></code>()</td>
@@ -1491,16 +1493,16 @@ is used.</p>
 <tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">train_files</span></code>([fold])</td>
 <td>List of training files.</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">validation_files_balanced</span></code>([fold,&nbsp;...])</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">validation_files_balanced</span></code>([fold,&nbsp;…])</td>
 <td>List of validation files randomly selecting while maintaining data balance.</td>
 </tr>
 <tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">validation_files_dataset</span></code>([fold,&nbsp;verbose])</td>
 <td>List of validation files delivered by the dataset.</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">validation_files_random</span></code>([fold,&nbsp;...])</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">validation_files_random</span></code>([fold,&nbsp;…])</td>
 <td>List of validation files selected randomly from the training material.</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">validation_split</span></code>([fold,&nbsp;split_type,&nbsp;...])</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">validation_split</span></code>([fold,&nbsp;split_type,&nbsp;…])</td>
 <td>List of validation files.</td>
 </tr>
 </tbody>

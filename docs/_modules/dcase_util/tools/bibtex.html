@@ -1255,6 +1255,8 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-1-5">v0.1.5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-1-4">v0.1.4</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-1-0">v0.1.0</a></li>
 </ul>
 </li>
@@ -1392,8 +1394,8 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">key</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">,</span> <span class="s1">&#39;ignore&#39;</span><span class="p">),</span> <span class="s1">&#39;utf-8&#39;</span><span class="p">)</span></div>
 
-    <span class="nd">@staticmethod</span>
-<div class="viewcode-block" id="BibtexProcessor.authors"><a class="viewcode-back" href="../../../generated/dcase_util.tools.BibtexProcessor.authors.html#dcase_util.tools.BibtexProcessor.authors">[docs]</a>    <span class="k">def</span> <span class="nf">authors</span><span class="p">(</span><span class="n">authors</span><span class="p">):</span>
+<div class="viewcode-block" id="BibtexProcessor.authors"><a class="viewcode-back" href="../../../generated/dcase_util.tools.BibtexProcessor.authors.html#dcase_util.tools.BibtexProcessor.authors">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">authors</span><span class="p">(</span><span class="n">authors</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Author list in format [lastname1], [firstname1] and [lastname2], [firstname2].</span>
 
 <span class="sd">        Parameters</span>
@@ -1553,8 +1555,8 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">affiliation_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></div>
 
-    <span class="nd">@staticmethod</span>
-<div class="viewcode-block" id="BibtexProcessor.submissions_fancy"><a class="viewcode-back" href="../../../generated/dcase_util.tools.BibtexProcessor.submissions_fancy.html#dcase_util.tools.BibtexProcessor.submissions_fancy">[docs]</a>    <span class="k">def</span> <span class="nf">submissions_fancy</span><span class="p">(</span><span class="n">submissions</span><span class="p">,</span> <span class="n">css_class</span><span class="o">=</span><span class="s1">&#39;label label-primary&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="BibtexProcessor.submissions_fancy"><a class="viewcode-back" href="../../../generated/dcase_util.tools.BibtexProcessor.submissions_fancy.html#dcase_util.tools.BibtexProcessor.submissions_fancy">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">submissions_fancy</span><span class="p">(</span><span class="n">submissions</span><span class="p">,</span> <span class="n">css_class</span><span class="o">=</span><span class="s1">&#39;label label-primary&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;HTML string with submission labels</span>
 
 <span class="sd">        Parameters</span>
@@ -1581,8 +1583,8 @@
                 <span class="n">output</span> <span class="o">+=</span> <span class="n">sub</span><span class="o">+</span><span class="s1">&#39;, &#39;</span>
         <span class="k">return</span> <span class="n">output</span></div>
 
-    <span class="nd">@staticmethod</span>
-<div class="viewcode-block" id="BibtexProcessor.title"><a class="viewcode-back" href="../../../generated/dcase_util.tools.BibtexProcessor.title.html#dcase_util.tools.BibtexProcessor.title">[docs]</a>    <span class="k">def</span> <span class="nf">title</span><span class="p">(</span><span class="n">title</span><span class="p">):</span>
+<div class="viewcode-block" id="BibtexProcessor.title"><a class="viewcode-back" href="../../../generated/dcase_util.tools.BibtexProcessor.title.html#dcase_util.tools.BibtexProcessor.title">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">title</span><span class="p">(</span><span class="n">title</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Process publication title.</span>
 
 <span class="sd">        Parameters</span>
@@ -1651,8 +1653,8 @@
         <span class="n">title</span> <span class="o">=</span> <span class="n">titlecase</span><span class="p">(</span><span class="n">title</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span> <span class="n">callback</span><span class="o">=</span><span class="n">abbreviations</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">title</span></div>
 
-    <span class="nd">@staticmethod</span>
-<div class="viewcode-block" id="BibtexProcessor.abstract"><a class="viewcode-back" href="../../../generated/dcase_util.tools.BibtexProcessor.abstract.html#dcase_util.tools.BibtexProcessor.abstract">[docs]</a>    <span class="k">def</span> <span class="nf">abstract</span><span class="p">(</span><span class="n">abstract</span><span class="p">):</span>
+<div class="viewcode-block" id="BibtexProcessor.abstract"><a class="viewcode-back" href="../../../generated/dcase_util.tools.BibtexProcessor.abstract.html#dcase_util.tools.BibtexProcessor.abstract">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">abstract</span><span class="p">(</span><span class="n">abstract</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Process publication abstract.</span>
 
 <span class="sd">        Parameters</span>

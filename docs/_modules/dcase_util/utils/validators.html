@@ -1255,6 +1255,8 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-1-5">v0.1.5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-1-4">v0.1.4</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-1-0">v0.1.0</a></li>
 </ul>
 </li>
@@ -1351,8 +1353,8 @@
         <span class="n">FileFormat</span><span class="o">.</span><span class="n">RAW</span>
     <span class="p">]</span>
 
-    <span class="nd">@classmethod</span>
-<div class="viewcode-block" id="FieldValidator.process"><a class="viewcode-back" href="../../../generated/dcase_util.utils.FieldValidator.process.html#dcase_util.utils.FieldValidator.process">[docs]</a>    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">field</span><span class="p">):</span>
+<div class="viewcode-block" id="FieldValidator.process"><a class="viewcode-back" href="../../../generated/dcase_util.utils.FieldValidator.process.html#dcase_util.utils.FieldValidator.process">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">field</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Test field</span>
 
 <span class="sd">        Parameters</span>
@@ -1389,8 +1391,8 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">STRING</span></div>
 
-    <span class="nd">@classmethod</span>
-<div class="viewcode-block" id="FieldValidator.is_empty"><a class="viewcode-back" href="../../../generated/dcase_util.utils.FieldValidator.is_empty.html#dcase_util.utils.FieldValidator.is_empty">[docs]</a>    <span class="k">def</span> <span class="nf">is_empty</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">field</span><span class="p">):</span>
+<div class="viewcode-block" id="FieldValidator.is_empty"><a class="viewcode-back" href="../../../generated/dcase_util.utils.FieldValidator.is_empty.html#dcase_util.utils.FieldValidator.is_empty">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">is_empty</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">field</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Test for empty field</span>
 
 <span class="sd">        Parameters</span>
@@ -1409,8 +1411,8 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">False</span></div>
 
-    <span class="nd">@classmethod</span>
-<div class="viewcode-block" id="FieldValidator.is_number"><a class="viewcode-back" href="../../../generated/dcase_util.utils.FieldValidator.is_number.html#dcase_util.utils.FieldValidator.is_number">[docs]</a>    <span class="k">def</span> <span class="nf">is_number</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">field</span><span class="p">):</span>
+<div class="viewcode-block" id="FieldValidator.is_number"><a class="viewcode-back" href="../../../generated/dcase_util.utils.FieldValidator.is_number.html#dcase_util.utils.FieldValidator.is_number">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">is_number</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">field</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Test for number field</span>
 
 <span class="sd">        Parameters</span>
@@ -1435,8 +1437,8 @@
 
         <span class="k">return</span> <span class="kc">True</span></div>
 
-    <span class="nd">@classmethod</span>
-<div class="viewcode-block" id="FieldValidator.is_audiofile"><a class="viewcode-back" href="../../../generated/dcase_util.utils.FieldValidator.is_audiofile.html#dcase_util.utils.FieldValidator.is_audiofile">[docs]</a>    <span class="k">def</span> <span class="nf">is_audiofile</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">field</span><span class="p">):</span>
+<div class="viewcode-block" id="FieldValidator.is_audiofile"><a class="viewcode-back" href="../../../generated/dcase_util.utils.FieldValidator.is_audiofile.html#dcase_util.utils.FieldValidator.is_audiofile">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">is_audiofile</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">field</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Test for audio file field</span>
 
 <span class="sd">        Parameters</span>
@@ -1457,8 +1459,8 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">False</span></div>
 
-    <span class="nd">@classmethod</span>
-<div class="viewcode-block" id="FieldValidator.is_list"><a class="viewcode-back" href="../../../generated/dcase_util.utils.FieldValidator.is_list.html#dcase_util.utils.FieldValidator.is_list">[docs]</a>    <span class="k">def</span> <span class="nf">is_list</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">field</span><span class="p">):</span>
+<div class="viewcode-block" id="FieldValidator.is_list"><a class="viewcode-back" href="../../../generated/dcase_util.utils.FieldValidator.is_list.html#dcase_util.utils.FieldValidator.is_list">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">is_list</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">field</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Test for list field, valid delimiters [ : ; #]</span>
 
 <span class="sd">        Parameters</span>
@@ -1477,8 +1479,8 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">False</span></div>
 
-    <span class="nd">@classmethod</span>
-<div class="viewcode-block" id="FieldValidator.is_alpha"><a class="viewcode-back" href="../../../generated/dcase_util.utils.FieldValidator.is_alpha.html#dcase_util.utils.FieldValidator.is_alpha">[docs]</a>    <span class="k">def</span> <span class="nf">is_alpha</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="FieldValidator.is_alpha"><a class="viewcode-back" href="../../../generated/dcase_util.utils.FieldValidator.is_alpha.html#dcase_util.utils.FieldValidator.is_alpha">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">is_alpha</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Test for alpha field with length 1</span>
 
 <span class="sd">        Parameters</span>
