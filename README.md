@@ -3,8 +3,8 @@ DCASE Utilities
 
 A collection of utilities for Detection and Classification of Acoustic Scenes and Events
 
-[![Status](https://travis-ci.org/DCASE-REPO/dcase_utill.svg?branch=master)](https://travis-ci.org/DCASE-REPO/dcase_utill) 
-[![Coveralls](https://coveralls.io/repos/github/DCASE-REPO/dcase_utill/badge.svg?branch=master)](https://coveralls.io/github/DCASE-REPO/dcase_utill?branch=master)
+[![Build Status](https://travis-ci.org/DCASE-REPO/dcase_util.svg?branch=master)](https://travis-ci.org/DCASE-REPO/dcase_util)
+[![Coverage Status](https://coveralls.io/repos/github/DCASE-REPO/dcase_util/badge.svg?branch=master)](https://coveralls.io/github/DCASE-REPO/dcase_util?branch=master)
 [![PyPI](https://img.shields.io/pypi/v/dcase_util.svg)](https://pypi.python.org/pypi/dcase_util)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
