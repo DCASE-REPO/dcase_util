@@ -32,6 +32,10 @@ The latest stable release is available on PyPI, and you can install with pip:
 Changelog
 =========
 
+#### 0.1.5 / 2017-11-10
+
+* Fixing PYPI package
+
 #### 0.1.4 / 2017-11-10
 
 * Release PYPI package

@@ -29,12 +29,12 @@ try:
    import pypandoc
    long_description = pypandoc.convert_file('README.md', 'rst')
 
-except (IOError, ImportError):
+except (IOError, ImportError, RuntimeError):
     long_description = 'A collection of utilities for Detection and Classification of Acoustic Scenes and Events'
-print(long_description)
+
 setup(
     name='dcase_util',
-    version='0.1.4',
+    version='0.1.5',
     description='A collection of utilities for Detection and Classification of Acoustic Scenes and Events',
     author='Toni Heittola',
     author_email='toni.heittola@gmail.com',
