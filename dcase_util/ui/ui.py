@@ -156,7 +156,10 @@ class FancyStringifier(object):
             value = "None"
 
         if data_type == 'auto':
-            if isinstance(value, int):
+            if isinstance(value, bool):
+                data_type = 'bool'
+
+            elif isinstance(value, int):
                 data_type = 'int'
 
             elif isinstance(value, float):
@@ -194,6 +197,12 @@ class FancyStringifier(object):
             elif len(shape) == 4:
                 value = 'matrix ({0:d},{1:d},{2:d},{3:d})'.format(shape[0], shape[1], shape[2], shape[3])
 
+        elif data_type == 'bool':
+            if value:
+                value = 'True'
+            else:
+                value = 'False'
+
         elif data_type.startswith('str'):
             value = str(value)
 
@@ -215,7 +224,7 @@ class FancyStringifier(object):
         field : str
             Data field name
 
-        value : str, int, float, list or dict
+        value : str, bool, int, float, list or dict
             Data value
 
         unit : str
@@ -250,7 +259,7 @@ class FancyStringifier(object):
         if field is not None and value is not None:
             return ' ' * indent + line.format(
                 field=str(field),
-                value=str(value),
+                value=self.formatted_value(value),
                 unit=str(unit) if unit else '',
             )
 
@@ -262,7 +271,7 @@ class FancyStringifier(object):
         elif field is None and value is not None:
             return ' ' * indent + line.format(
                 field=' '*20,
-                value=str(value),
+                value=self.formatted_value(value),
                 unit=str(unit) if unit else '',
             )
 
@@ -717,7 +726,7 @@ class FancyLogger(object):
         field : str
             Data field name
 
-        value : str
+        value : str, bool, int, float, list or dict
             Data value
 
         unit : str
