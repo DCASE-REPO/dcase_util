@@ -15,8 +15,6 @@
   
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
   
-  
-  
 
   
 
@@ -51,7 +49,6 @@
 
 <body class="wy-body-for-nav" role="document">
 
-   
   <div class="wy-grid-for-nav">
 
     
@@ -88,10 +85,7 @@
           
             
             
-              
-            
-            
-              <ul>
+                <ul>
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation instructions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../installation.html#pypi">PyPI</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation.html#source">Source</a></li>
@@ -1275,10 +1269,8 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">DCASE Utilities</a>
-        
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">DCASE Utilities</a>
       </nav>
 
 
@@ -1287,40 +1279,23 @@
         <div class="rst-content">
           
 
-
-
-
-
-
-
-
-
-
-
-
+ 
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
-
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../index.html">Docs</a> &raquo;</li>
-        
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
           <li><a href="../containers.html">Containers</a> &raquo;</li>
-        
-      <li>dcase_util.containers.ProbabilityContainer</li>
-    
-    
+      
+    <li>dcase_util.containers.ProbabilityContainer</li>
       <li class="wy-breadcrumbs-aside">
         
-            
+          
         
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -1350,7 +1325,7 @@
 <tr class="row-even"><td><a class="reference internal" href="dcase_util.containers.ProbabilityContainer.append.html#dcase_util.containers.ProbabilityContainer.append" title="dcase_util.containers.ProbabilityContainer.append"><code class="xref py py-obj docutils literal"><span class="pre">append</span></code></a>(item)</td>
 <td>Append item to the meta data list</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">count</span></code>(…)</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">count</span></code>(...)</td>
 <td></td>
 </tr>
 <tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">delimiter</span></code>([exclude_delimiters])</td>
@@ -1366,7 +1341,7 @@
 <td>Checks that file exists</td>
 </tr>
 <tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">extend</span></code></td>
-<td>L.extend(iterable) – extend list by appending elements from the iterable</td>
+<td>L.extend(iterable) &#8211; extend list by appending elements from the iterable</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="dcase_util.containers.ProbabilityContainer.filter.html#dcase_util.containers.ProbabilityContainer.filter" title="dcase_util.containers.ProbabilityContainer.filter"><code class="xref py py-obj docutils literal"><span class="pre">filter</span></code></a>([filename,&nbsp;file_list,&nbsp;label])</td>
 <td>Filter content</td>
@@ -1380,11 +1355,11 @@
 <tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">get_file_information</span></code>()</td>
 <td>Get file information, filename</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">index</span></code>((value,&nbsp;[start,&nbsp;…)</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">index</span></code>((value,&nbsp;[start,&nbsp;...)</td>
 <td>Raises ValueError if the value is not present.</td>
 </tr>
 <tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">insert</span></code></td>
-<td>L.insert(index, object) – insert object before index</td>
+<td>L.insert(index, object) &#8211; insert object before index</td>
 </tr>
 <tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">is_package</span></code>([filename])</td>
 <td>Determine if the file is compressed package.</td>
@@ -1395,17 +1370,17 @@
 <tr class="row-odd"><td><a class="reference internal" href="dcase_util.containers.ProbabilityContainer.log.html#dcase_util.containers.ProbabilityContainer.log" title="dcase_util.containers.ProbabilityContainer.log"><code class="xref py py-obj docutils literal"><span class="pre">log</span></code></a>([level])</td>
 <td>Log container content</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">pop</span></code>(…)</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">pop</span></code>(...)</td>
 <td>Raises IndexError if list is empty or index is out of range.</td>
 </tr>
 <tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">remove</span></code></td>
-<td>L.remove(value) – remove first occurrence of value.</td>
+<td>L.remove(value) &#8211; remove first occurrence of value.</td>
 </tr>
 <tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">remove_field</span></code>(field_name)</td>
 <td>Remove field from data items</td>
 </tr>
 <tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">reverse</span></code></td>
-<td>L.reverse() – reverse <em>IN PLACE</em></td>
+<td>L.reverse() &#8211; reverse <em>IN PLACE</em></td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="dcase_util.containers.ProbabilityContainer.save.html#dcase_util.containers.ProbabilityContainer.save" title="dcase_util.containers.ProbabilityContainer.save"><code class="xref py py-obj docutils literal"><span class="pre">save</span></code></a>([filename,&nbsp;delimiter])</td>
 <td>Save content to csv file</td>
@@ -1417,7 +1392,7 @@
 <td>Print container content</td>
 </tr>
 <tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">sort</span></code></td>
-<td>L.sort(cmp=None, key=None, reverse=False) – stable sort <em>IN PLACE</em>;</td>
+<td>L.sort(cmp=None, key=None, reverse=False) &#8211; stable sort <em>IN PLACE</em>;</td>
 </tr>
 <tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">update</span></code>(data)</td>
 <td>Replace content with given list</td>
@@ -1454,18 +1429,15 @@
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="dcase_util.containers.ProbabilityContainer.show.html" class="btn btn-neutral float-right" title="dcase_util.containers.ProbabilityContainer.show" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="dcase_util.containers.ProbabilityContainer.show.html" class="btn btn-neutral float-right" title="dcase_util.containers.ProbabilityContainer.show" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="dcase_util.containers.ProbabilityItem.get_list.html" class="btn btn-neutral" title="dcase_util.containers.ProbabilityItem.get_list" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="dcase_util.containers.ProbabilityItem.get_list.html" class="btn btn-neutral" title="dcase_util.containers.ProbabilityItem.get_list" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -1498,8 +1470,7 @@
             VERSION:'1.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
+            HAS_SOURCE:  true
         };
     </script>
       <script type="text/javascript" src="../_static/jquery.js"></script>
