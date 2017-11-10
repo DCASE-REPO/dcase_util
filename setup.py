@@ -25,15 +25,26 @@ requirements = [
     'python-magic>=0.4.13',
 ]
 
+try:
+   import pypandoc
+   long_description = pypandoc.convert_file('README.md', 'rst')
+
+except (IOError, ImportError):
+    long_description = 'A collection of utilities for Detection and Classification of Acoustic Scenes and Events'
+print(long_description)
 setup(
     name='dcase_util',
-    version='0.1.0',
+    version='0.1.4',
     description='A collection of utilities for Detection and Classification of Acoustic Scenes and Events',
     author='Toni Heittola',
     author_email='toni.heittola@gmail.com',
     url='https://github.com/DCASE-REPO/dcase_util',
+    download_url='https://github.com/DCASE-REPO/dcase_util/releases',
     packages=find_packages(),
-    long_description='A collection of utilities for Detection and Classification of Acoustic Scenes and Events',
+    package_data={
+        '': ['utils/example_data/*']
+    },
+    long_description=long_description,
     classifiers=[
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python",
@@ -45,6 +56,7 @@ setup(
         "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: 3.6",
     ],
+    keywords='audio sound',
     license='MIT',
     install_requires=requirements,
     setup_requires=['nose>=1.3'],

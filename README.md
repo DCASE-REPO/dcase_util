@@ -26,22 +26,15 @@ See https://dcase-repo.github.io/dcase_util/ for detailed instruction, manuals a
 Installation instructions
 =========================
 
-The latest stable release is available on PyPI, and you can install with pip::
-
-    pip install dcase_util
-
-Alternatively you can download or clone toolbox and use ``pip`` to handle dependencies::
-
-    unzip dcase_util.zip
-    pip install -e dcase_util
-
-or::
-
-    git clone https://github.com/DCASE-REPO/dcase_util.git
-    pip install -e dcase_util
+The latest stable release is available on PyPI, and you can install with pip:
+`pip install dcase_util` 
 
 Changelog
 =========
+
+#### 0.1.4 / 2017-11-10
+
+* Release PYPI package
 
 #### 0.1.0 / 2017-11-09
 
