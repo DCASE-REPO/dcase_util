@@ -123,10 +123,13 @@ class FieldValidator(object):
         bool
 
         """
-        detected_format = FileFormat.detect(filename=field, use_content_for_unknown=False)
+
+        detected_format = FileFormat.detect(
+            filename=field,
+            use_content_for_unknown=False
+        )
 
         if detected_format in cls.audio_file_extensions:
-            #if field.endswith(tuple(cls.audio_file_extensions)):
             return True
 
         else:
