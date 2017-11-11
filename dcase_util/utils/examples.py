@@ -24,11 +24,11 @@ class Example(object):
 
     @classmethod
     def audio_filename(cls):
-        return pkg_resources.resource_filename(__name__, os.path.join(cls.example_folder, 'acoustic_scene.flac'))
+        return pkg_resources.resource_filename(__name__, os.path.join(cls.example_folder, 'acoustic_scene.wav'))
 
     @classmethod
     def acoustic_scene_audio_filename(cls):
-        return pkg_resources.resource_filename(__name__, os.path.join(cls.example_folder, 'acoustic_scene.flac'))
+        return pkg_resources.resource_filename(__name__, os.path.join(cls.example_folder, 'acoustic_scene.wav'))
 
     @classmethod
     def audio_container(cls):
