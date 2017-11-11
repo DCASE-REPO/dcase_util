@@ -428,8 +428,8 @@ if param.get_path('flow.evaluation'):
 
             if y_true:
                 class_wise_eer[fold-1, tag_id] = eer(
-                    y_score=y_score.values(),
-                    y_true=y_true.values()
+                    y_score=list(y_score.values()),
+                    y_true=list(y_true.values())
                 )
 
             else:

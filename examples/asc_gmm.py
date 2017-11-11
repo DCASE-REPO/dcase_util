@@ -16,6 +16,7 @@ def audio_filename_to_feature_filename(audio_filename, feature_path, feature_lab
         os.path.split(audio_filename)[1].replace('.wav', '.' + feature_label + '.cpickle')
     )
 
+
 log = dcase_util.ui.FancyLogger()
 log.title('Acoustic Scene Classification Example / GMM')
 
