@@ -881,7 +881,7 @@ ProbabilityContainer
     ProbabilityContainer.load
     ProbabilityContainer.save
     ProbabilityContainer.append
-    ProbabilityContainer.file_list
+    ProbabilityContainer.unique_files
     ProbabilityContainer.unique_labels
     ProbabilityContainer.filter
 
