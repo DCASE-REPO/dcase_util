@@ -16,6 +16,7 @@ class FancyStringifier(object):
         self.row_column_widths = []
         self.row_data_types = []
         self.row_indent = 2
+        self.row_column_separators = []
 
     @property
     def logger(self):
@@ -41,13 +42,16 @@ class FancyStringifier(object):
 
         return text
 
-    def section_header(self, text):
+    def section_header(self, text, indent=0):
         """Section header
 
         Parameters
         ----------
         text : str
             Section header text
+
+        indent : int
+            Amount of indention used for the line
 
         Returns
         -------
@@ -56,7 +60,7 @@ class FancyStringifier(object):
 
         """
 
-        return text + '\n' + self.sep()
+        return ' ' * indent + text + '\n' + self.sep(indent=indent)
 
     def sub_header(self, text='', indent=0):
         """Sub header
@@ -169,19 +173,25 @@ class FancyStringifier(object):
                 data_type = 'str'
 
         if data_type == 'float1' and is_float(value):
-            value = '{:6.1f}'.format(float(value))
+            value = '{:.1f}'.format(float(value))
 
         elif data_type == 'float2' and is_float(value):
-            value = '{:6.2f}'.format(float(value))
+            value = '{:.2f}'.format(float(value))
 
         elif data_type == 'float3' and is_float(value):
-            value = '{:6.3f}'.format(float(value))
+            value = '{:.3f}'.format(float(value))
 
         elif data_type == 'float4' and is_float(value):
-            value = '{:6.4f}'.format(float(value))
+            value = '{:.4f}'.format(float(value))
 
         elif data_type == 'int' and is_int(value):
             value = '{:d}'.format(int(value))
+
+        elif data_type == 'float1_percentage' and is_float(value):
+            value = '{:3.1f}%'.format(float(value))
+
+        elif data_type == 'float2_percentage' and is_float(value):
+            value = '{:3.2f}%'.format(float(value))
 
         elif isinstance(value, numpy.ndarray):
             shape = value.shape
@@ -463,6 +473,30 @@ class FancyStringifier(object):
         return output
 
     def row(self, *args, **kwargs):
+        """Table row
+
+        args : various
+            Data for columns
+
+        indent : int
+            Amount of indention used for the row. If None given, value from previous method call is used.
+
+        widths : list of int
+            Column widths. If None given, value from previous method call is used.
+
+        types : list of str
+            Column data types, see `formatted_value` method more. If None given, value from previous
+            method call is used.
+
+        separators : list of bool
+            Column vertical separators. If None given, value from previous method call is used.
+
+        Returns
+        -------
+        str
+
+        """
+
         if kwargs.get('indent'):
             self.row_indent = kwargs.get('indent')
 
@@ -471,6 +505,9 @@ class FancyStringifier(object):
 
         if kwargs.get('types'):
             self.row_data_types = kwargs.get('types')
+
+        if kwargs.get('separators'):
+            self.row_column_separators = kwargs.get('separators')
 
         line_string = ''
         for column_id, column_data in enumerate(args):
@@ -509,7 +546,11 @@ class FancyStringifier(object):
             elif column_data is None:
                 line_string += cell.format(' ')
 
-            line_string += '|'
+            if column_id < len(self.row_column_separators) and self.row_column_separators[column_id]:
+                line_string += '|'
+
+            else:
+                line_string += ' '
 
         return ' ' * self.row_indent + line_string
 
@@ -552,6 +593,7 @@ class FancyLogger(object):
         logger = logging.getLogger(__name__)
         if not logger.handlers:
             setup_logging()
+
         return logger
 
     def line(self, data='', indent=0, level='info'):
@@ -602,7 +644,9 @@ class FancyLogger(object):
                 self.logger.info(' ' * indent + line)
 
     def row(self, *args, **kwargs):
-        self.line(self.ui.row(*args, **kwargs))
+        self.line(
+            self.ui.row(*args, **kwargs)
+        )
 
     def title(self, text, level='info'):
         """Title, logged at info level
@@ -627,15 +671,24 @@ class FancyLogger(object):
 
         """
 
-        self.line(self.ui.title(text=text), level=level)
+        self.line(
+            self.ui.title(
+                text=text
+            ),
+            level=level
+        )
 
-    def section_header(self, text, level='info'):
+    def section_header(self, text, indent=0, level='info'):
         """Section header, logged at info level
 
         Parameters
         ----------
         text : str
             Section header text
+
+        indent : int
+            Amount of indention used for the line
+
         level : str
             Logging level, one of [info, debug, warning, warn, error]
 
@@ -652,7 +705,13 @@ class FancyLogger(object):
 
         """
 
-        self.line(self.ui.section_header(text=text), level=level)
+        self.line(
+            self.ui.section_header(
+                text=text,
+                indent=indent
+            ),
+            level=level
+        )
 
     def sub_header(self, text='', indent=0, level='info'):
         """Sub header
@@ -680,7 +739,13 @@ class FancyLogger(object):
 
         """
 
-        self.line(self.ui.sub_header(text=text, indent=indent), level=level)
+        self.line(
+            self.ui.sub_header(
+                text=text,
+                indent=indent
+            ),
+            level=level
+        )
 
     def foot(self, text='DONE', time=None, item_count=None, indent=2, level='info'):
         """Footer, logged at info level
@@ -715,7 +780,15 @@ class FancyLogger(object):
 
         """
 
-        self.line(self.ui.foot(text=text, time=time, item_count=item_count, indent=indent), level=level)
+        self.line(
+            self.ui.foot(
+                text=text,
+                time=time,
+                item_count=item_count,
+                indent=indent
+            ),
+            level=level
+        )
         self.line(level=level)
 
     def data(self, field=None, value=None, unit=None, indent=2, level='info'):
@@ -750,7 +823,15 @@ class FancyLogger(object):
 
         """
 
-        self.line(self.ui.data(field=field, value=value, unit=unit, indent=indent), level=level)
+        self.line(
+            self.ui.data(
+                field=field,
+                value=value,
+                unit=unit,
+                indent=indent
+            ),
+            level=level
+        )
 
     def sep(self, level='info', length=40, indent=0):
         """Horizontal separator, logged at info level
@@ -777,7 +858,13 @@ class FancyLogger(object):
 
         """
 
-        self.line(self.ui.sep(length=length, indent=indent), level=level)
+        self.line(
+            self.ui.sep(
+                length=length,
+                indent=indent
+            ),
+            level=level
+        )
 
     def table(self, cell_data=None, column_headers=None, column_types=None, column_separators=None,
               row_separators=None, indent=0, level='info'):
@@ -820,14 +907,17 @@ class FancyLogger(object):
 
         """
 
-        self.line(self.ui.table(
-            cell_data=cell_data,
-            column_headers=column_headers,
-            column_types=column_types,
-            column_separators=column_separators,
-            row_separators=row_separators,
-            indent=indent
-        ), level=level)
+        self.line(
+            self.ui.table(
+                cell_data=cell_data,
+                column_headers=column_headers,
+                column_types=column_types,
+                column_separators=column_separators,
+                row_separators=row_separators,
+                indent=indent
+            ),
+            level=level
+        )
 
     def info(self, text='', indent=0):
         """Info line logger
@@ -848,7 +938,11 @@ class FancyLogger(object):
 
         """
 
-        self.line(data=text, level='info', indent=indent)
+        self.line(
+            data=text,
+            level='info',
+            indent=indent
+        )
 
     def debug(self, text='', indent=0):
         """Debug line logger
@@ -868,7 +962,11 @@ class FancyLogger(object):
 
         """
 
-        self.line(data=text, level='debug', indent=indent)
+        self.line(
+            data=text,
+            level='debug',
+            indent=indent
+        )
 
     def error(self, text='', indent=0):
         """Error line logger
@@ -888,7 +986,11 @@ class FancyLogger(object):
 
         """
 
-        self.line(data=text, level='error', indent=indent)
+        self.line(
+            data=text,
+            level='error',
+            indent=indent
+        )
 
 
 class FancyPrinter(FancyLogger):
@@ -935,6 +1037,7 @@ class FancyPrinter(FancyLogger):
         logger = logging.getLogger(__name__)
         if not logger.handlers:
             setup_logging()
+
         return logger
 
     def line(self, data='', indent=0, level='info'):
