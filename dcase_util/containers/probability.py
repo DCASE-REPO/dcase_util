@@ -62,6 +62,7 @@ class ProbabilityItem(dict):
         logger = logging.getLogger(__name__)
         if not logger.handlers:
             setup_logging()
+
         return logger
 
     def show(self):
@@ -253,8 +254,8 @@ class ProbabilityContainer(ListDictContainer):
         super(ProbabilityContainer, self).append(item)
 
     @property
-    def file_list(self):
-        """List of unique files in the container
+    def unique_files(self):
+        """Unique files
 
         Returns
         -------
