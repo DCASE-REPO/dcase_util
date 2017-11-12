@@ -310,15 +310,29 @@ class ProbabilityContainer(ListDictContainer):
 
         data = []
         for item in self:
-            matched = False
-            if filename and item.filename == filename:
-                matched = True
-            if file_list and item.filename in file_list:
-                matched = True
-            if label and item.label == label:
-                matched = True
+            matched = []
+            if filename:
+                if item.filename == filename:
+                    matched.append(True)
 
-            if matched:
+                else:
+                    matched.append(False)
+
+            if file_list:
+                if item.filename in file_list:
+                    matched.append(True)
+
+                else:
+                    matched.append(False)
+
+            if label:
+                if item.label == label:
+                    matched.append(True)
+
+                else:
+                    matched.append(False)
+
+            if all(matched):
                 data.append(copy.deepcopy(item))
 
         return ProbabilityContainer(data)
