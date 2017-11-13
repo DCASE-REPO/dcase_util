@@ -495,7 +495,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.ProbabilityContainer.load.html">dcase_util.containers.ProbabilityContainer.load</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.ProbabilityContainer.save.html">dcase_util.containers.ProbabilityContainer.save</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.ProbabilityContainer.append.html">dcase_util.containers.ProbabilityContainer.append</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.ProbabilityContainer.file_list.html">dcase_util.containers.ProbabilityContainer.file_list</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.ProbabilityContainer.unique_files.html">dcase_util.containers.ProbabilityContainer.unique_files</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.ProbabilityContainer.unique_labels.html">dcase_util.containers.ProbabilityContainer.unique_labels</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.ProbabilityContainer.filter.html">dcase_util.containers.ProbabilityContainer.filter</a></li>
 </ul>
@@ -1465,6 +1465,7 @@
                  <span class="n">name</span><span class="o">=</span><span class="s1">&#39;dataset&#39;</span><span class="p">,</span>
                  <span class="n">storage_name</span><span class="o">=</span><span class="s1">&#39;dataset&#39;</span><span class="p">,</span>
                  <span class="n">data_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">local_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
 
                  <span class="n">show_progress_in_console</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                  <span class="n">log_system_progress</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
@@ -1498,6 +1499,9 @@
 <span class="sd">        data_path : str</span>
 <span class="sd">            Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), &#39;dcase_util_datasets&#39;)</span>
 <span class="sd">            is used.</span>
+
+<span class="sd">        local_path : str</span>
+<span class="sd">            Direct storage path setup for the dataset. If None, data_path and storage_name are used to create one.</span>
 
 <span class="sd">        show_progress_in_console : bool</span>
 <span class="sd">            Show progress in console.</span>
@@ -1572,7 +1576,11 @@
         <span class="k">if</span> <span class="n">data_path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">data_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tempfile</span><span class="o">.</span><span class="n">gettempdir</span><span class="p">(),</span> <span class="s1">&#39;dcase_util_datasets&#39;</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">local_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">storage_name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">local_path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">local_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">storage_name</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">local_path</span> <span class="o">=</span> <span class="n">local_path</span>
 
         <span class="c1"># Evaluation setup folder</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">evaluation_setup_folder</span> <span class="o">=</span> <span class="n">evaluation_setup_folder</span>

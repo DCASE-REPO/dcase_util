@@ -495,7 +495,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.ProbabilityContainer.load.html">dcase_util.containers.ProbabilityContainer.load</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.ProbabilityContainer.save.html">dcase_util.containers.ProbabilityContainer.save</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.ProbabilityContainer.append.html">dcase_util.containers.ProbabilityContainer.append</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.ProbabilityContainer.file_list.html">dcase_util.containers.ProbabilityContainer.file_list</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.ProbabilityContainer.unique_files.html">dcase_util.containers.ProbabilityContainer.unique_files</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.ProbabilityContainer.unique_labels.html">dcase_util.containers.ProbabilityContainer.unique_labels</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.ProbabilityContainer.filter.html">dcase_util.containers.ProbabilityContainer.filter</a></li>
 </ul>
@@ -1327,6 +1327,16 @@
 
         <span class="nb">dict</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
 
+        <span class="c1"># Compatibility with old field names</span>
+        <span class="k">if</span> <span class="s1">&#39;file&#39;</span> <span class="ow">in</span> <span class="bp">self</span> <span class="ow">and</span> <span class="s1">&#39;filename&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+            <span class="bp">self</span><span class="p">[</span><span class="s1">&#39;filename&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="s1">&#39;file&#39;</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="s1">&#39;event_onset&#39;</span> <span class="ow">in</span> <span class="bp">self</span> <span class="ow">and</span> <span class="s1">&#39;onset&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+            <span class="bp">self</span><span class="p">[</span><span class="s1">&#39;onset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="s1">&#39;event_onset&#39;</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="s1">&#39;event_offset&#39;</span> <span class="ow">in</span> <span class="bp">self</span> <span class="ow">and</span> <span class="s1">&#39;offset&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+            <span class="bp">self</span><span class="p">[</span><span class="s1">&#39;offset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="s1">&#39;event_offset&#39;</span><span class="p">]</span>
+
         <span class="c1"># Process fields</span>
         <span class="k">if</span> <span class="s1">&#39;filename&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
             <span class="c1"># Keep file paths in unix format even under Windows</span>
@@ -2079,7 +2089,8 @@
 <div class="viewcode-block" id="MetaDataContainer.load"><a class="viewcode-back" href="../../../generated/dcase_util.containers.MetaDataContainer.load.html#dcase_util.containers.MetaDataContainer.load">[docs]</a>    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">decimal</span><span class="o">=</span><span class="s1">&#39;point&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Load event list from delimited text file (csv-formatted)</span>
 
-<span class="sd">        Preferred delimiter is tab, however, other delimiters are supported automatically (they are sniffed automatically).</span>
+<span class="sd">        Preferred delimiter is tab, however, other delimiters are supported automatically</span>
+<span class="sd">        (they are sniffed automatically).</span>
 
 <span class="sd">        Supported input formats:</span>
 <span class="sd">            - [file(string)]</span>
@@ -2087,10 +2098,11 @@
 <span class="sd">            - [file(string)][scene_label(string)][identifier(string)]</span>
 <span class="sd">            - [event_onset (float)][tab][event_offset (float)]</span>
 <span class="sd">            - [event_onset (float)][tab][event_offset (float)][tab][event_label (string)]</span>
-<span class="sd">            - [file(string)][event_onset (float)][tab][event_offset (float)][tab][event_label (string)]</span>
-<span class="sd">            - [file(string)[tab][scene_label(string)][tab][event_onset (float)][tab][event_offset (float)][tab][event_label (string)]</span>
-<span class="sd">            - [file(string)[tab][scene_label(string)][tab][event_onset (float)][tab][event_offset (float)][tab][event_label (string)][tab][source(single character)]</span>
-<span class="sd">            - [file(string)[tab][scene_label(string)][tab][event_onset (float)][tab][event_offset (float)][tab][event_label (string)][tab][source(string)]</span>
+<span class="sd">            - [file(string)][tab][onset (float)][tab][offset (float)][tab][event_label (string)]</span>
+<span class="sd">            - [file(string)[tab][scene_label(string)][tab][onset (float)][tab][offset (float)]</span>
+<span class="sd">            - [file(string)[tab][scene_label(string)][tab][onset (float)][tab][offset (float)][tab][event_label (string)]</span>
+<span class="sd">            - [file(string)[tab][scene_label(string)][tab][onset (float)][tab][offset (float)][tab][event_label (string)][tab][source(single character)]</span>
+<span class="sd">            - [file(string)[tab][scene_label(string)][tab][onset (float)][tab][offset (float)][tab][event_label (string)][tab][source(string)]</span>
 <span class="sd">            - [file(string)[tab][tags (list of strings, delimited with ;)]</span>
 <span class="sd">            - [file(string)[tab][scene_label(string)][tab][tags (list of strings, delimited with ;)]</span>
 <span class="sd">            - [file(string)[tab][scene_label(string)][tab][tags (list of strings, delimited with ;)][tab][event_onset (float)][tab][event_offset (float)]</span>
@@ -2149,12 +2161,13 @@
                         <span class="c1"># Format: [file]</span>
                         <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                             <span class="bp">self</span><span class="o">.</span><span class="n">item_class</span><span class="p">({</span>
-                                <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                                <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
                             <span class="p">})</span>
                         <span class="p">)</span>
 
-                    <span class="k">elif</span> <span class="n">row_format</span> <span class="o">==</span> <span class="p">[</span><span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">]:</span>
-                        <span class="c1"># Format: [event_onset  event_offset]</span>
+                    <span class="k">elif</span> <span class="n">row_format</span> <span class="o">==</span> <span class="p">[</span><span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">]:</span>
+                        <span class="c1"># Format: [onset offset]</span>
                         <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                             <span class="bp">self</span><span class="o">.</span><span class="n">item_class</span><span class="p">({</span>
                                 <span class="s1">&#39;onset&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
@@ -2162,37 +2175,44 @@
                             <span class="p">})</span>
                         <span class="p">)</span>
 
-                    <span class="k">elif</span> <span class="n">row_format</span> <span class="o">==</span> <span class="p">[</span><span class="n">FieldValidator</span><span class="o">.</span><span class="n">AUDIOFILE</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">]:</span>
+                    <span class="k">elif</span> <span class="n">row_format</span> <span class="o">==</span> <span class="p">[</span><span class="n">FieldValidator</span><span class="o">.</span><span class="n">AUDIOFILE</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">]:</span>
                         <span class="c1"># Format: [file scene_label]</span>
                         <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                             <span class="bp">self</span><span class="o">.</span><span class="n">item_class</span><span class="p">({</span>
                                 <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-                                <span class="s1">&#39;scene_label&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                                <span class="s1">&#39;scene_label&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
                             <span class="p">})</span>
                         <span class="p">)</span>
 
-                    <span class="k">elif</span> <span class="n">row_format</span> <span class="o">==</span> <span class="p">[</span><span class="n">FieldValidator</span><span class="o">.</span><span class="n">AUDIOFILE</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">AUDIOFILE</span><span class="p">]:</span>
+                    <span class="k">elif</span> <span class="n">row_format</span> <span class="o">==</span> <span class="p">[</span><span class="n">FieldValidator</span><span class="o">.</span><span class="n">AUDIOFILE</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">AUDIOFILE</span><span class="p">]:</span>
                         <span class="c1"># Format: [file scene_label file], filename mapping included</span>
                         <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                             <span class="bp">self</span><span class="o">.</span><span class="n">item_class</span><span class="p">({</span>
                                 <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
                                 <span class="s1">&#39;scene_label&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
-                                <span class="s1">&#39;filename_original&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                                <span class="s1">&#39;filename_original&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
                             <span class="p">})</span>
                         <span class="p">)</span>
 
-                    <span class="k">elif</span> <span class="n">row_format</span> <span class="o">==</span> <span class="p">[</span><span class="n">FieldValidator</span><span class="o">.</span><span class="n">AUDIOFILE</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">]:</span>
+                    <span class="k">elif</span> <span class="n">row_format</span> <span class="o">==</span> <span class="p">[</span><span class="n">FieldValidator</span><span class="o">.</span><span class="n">AUDIOFILE</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">]:</span>
                         <span class="c1"># Format: [file scene_label identifier]</span>
                         <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                             <span class="bp">self</span><span class="o">.</span><span class="n">item_class</span><span class="p">({</span>
                                 <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
                                 <span class="s1">&#39;scene_label&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
-                                <span class="s1">&#39;identifier&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                                <span class="s1">&#39;identifier&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
                             <span class="p">})</span>
                         <span class="p">)</span>
 
-                    <span class="k">elif</span> <span class="n">row_format</span> <span class="o">==</span> <span class="p">[</span><span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">]:</span>
-                        <span class="c1"># Format: [onset  offset    event_label]</span>
+                    <span class="k">elif</span> <span class="n">row_format</span> <span class="o">==</span> <span class="p">[</span><span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">]:</span>
+                        <span class="c1"># Format: [onset offset event_label]</span>
                         <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                             <span class="bp">self</span><span class="o">.</span><span class="n">item_class</span><span class="p">({</span>
                                 <span class="s1">&#39;onset&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
@@ -2201,8 +2221,11 @@
                             <span class="p">})</span>
                         <span class="p">)</span>
 
-                    <span class="k">elif</span> <span class="n">row_format</span> <span class="o">==</span> <span class="p">[</span><span class="n">FieldValidator</span><span class="o">.</span><span class="n">AUDIOFILE</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">]</span> <span class="ow">or</span> <span class="n">row_format</span> <span class="o">==</span> <span class="p">[</span><span class="n">FieldValidator</span><span class="o">.</span><span class="n">AUDIOFILE</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">EMPTY</span><span class="p">]:</span>
-                        <span class="c1"># Format: [file onset  offset event_label]</span>
+                    <span class="k">elif</span> <span class="n">row_format</span> <span class="o">==</span> <span class="p">[</span><span class="n">FieldValidator</span><span class="o">.</span><span class="n">AUDIOFILE</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">]:</span>
+                        <span class="c1"># Format: [file onset offset event_label]</span>
                         <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                             <span class="bp">self</span><span class="o">.</span><span class="n">item_class</span><span class="p">({</span>
                                 <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
@@ -2212,31 +2235,71 @@
                             <span class="p">})</span>
                         <span class="p">)</span>
 
-                    <span class="k">elif</span> <span class="n">row_format</span> <span class="o">==</span> <span class="p">[</span><span class="n">FieldValidator</span><span class="o">.</span><span class="n">AUDIOFILE</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">]:</span>
-                        <span class="c1"># Format: [file event_label onset  offset]</span>
+                    <span class="k">elif</span> <span class="n">row_format</span> <span class="o">==</span> <span class="p">[</span><span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">]:</span>
+                        <span class="c1"># Format: [file onset offset event_label]</span>
+                        <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">item_class</span><span class="p">({</span>
+                                <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                                <span class="s1">&#39;onset&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                                <span class="s1">&#39;offset&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                                <span class="s1">&#39;event_label&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+                            <span class="p">})</span>
+                        <span class="p">)</span>
+
+
+                    <span class="k">elif</span> <span class="n">row_format</span> <span class="o">==</span> <span class="p">[</span><span class="n">FieldValidator</span><span class="o">.</span><span class="n">AUDIOFILE</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">]:</span>
+                        <span class="c1"># Format: [file scene_label onset offset]</span>
                         <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                             <span class="bp">self</span><span class="o">.</span><span class="n">item_class</span><span class="p">({</span>
                                 <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
                                 <span class="s1">&#39;onset&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
                                 <span class="s1">&#39;offset&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
-                                <span class="s1">&#39;event_label&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                                <span class="s1">&#39;scene_label&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
                             <span class="p">})</span>
                         <span class="p">)</span>
 
-                    <span class="k">elif</span> <span class="n">row_format</span> <span class="o">==</span> <span class="p">[</span><span class="n">FieldValidator</span><span class="o">.</span><span class="n">AUDIOFILE</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">]:</span>
-                        <span class="c1"># Format: [file onset  offset    event_label identifier]</span>
+                    <span class="k">elif</span> <span class="n">row_format</span> <span class="o">==</span> <span class="p">[</span><span class="n">FieldValidator</span><span class="o">.</span><span class="n">AUDIOFILE</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">]:</span>
+                        <span class="c1"># Format: [file onset offset event_label identifier]</span>
                         <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                             <span class="bp">self</span><span class="o">.</span><span class="n">item_class</span><span class="p">({</span>
                                 <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
                                 <span class="s1">&#39;onset&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
                                 <span class="s1">&#39;offset&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
                                 <span class="s1">&#39;event_label&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
-                                <span class="s1">&#39;identifier&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span>
+                                <span class="s1">&#39;identifier&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
                             <span class="p">})</span>
                         <span class="p">)</span>
 
-                    <span class="k">elif</span> <span class="n">row_format</span> <span class="o">==</span> <span class="p">[</span><span class="n">FieldValidator</span><span class="o">.</span><span class="n">AUDIOFILE</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">]:</span>
-                        <span class="c1"># Format: [file scene_label onset  offset    event_label]</span>
+                    <span class="k">elif</span> <span class="n">row_format</span> <span class="o">==</span> <span class="p">[</span><span class="n">FieldValidator</span><span class="o">.</span><span class="n">AUDIOFILE</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">]:</span>
+                        <span class="c1"># Format: [file scene_label onset offset]</span>
+                        <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">item_class</span><span class="p">({</span>
+                                <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                                <span class="s1">&#39;scene_label&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                                <span class="s1">&#39;onset&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                                <span class="s1">&#39;offset&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+                            <span class="p">})</span>
+                        <span class="p">)</span>
+
+                    <span class="k">elif</span> <span class="n">row_format</span> <span class="o">==</span> <span class="p">[</span><span class="n">FieldValidator</span><span class="o">.</span><span class="n">AUDIOFILE</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">]:</span>
+                        <span class="c1"># Format: [file scene_label onset offset event_label]</span>
                         <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                             <span class="bp">self</span><span class="o">.</span><span class="n">item_class</span><span class="p">({</span>
                                 <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
@@ -2247,8 +2310,13 @@
                             <span class="p">})</span>
                         <span class="p">)</span>
 
-                    <span class="k">elif</span> <span class="n">row_format</span> <span class="o">==</span> <span class="p">[</span><span class="n">FieldValidator</span><span class="o">.</span><span class="n">AUDIOFILE</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">ALPHA1</span><span class="p">]:</span>
-                        <span class="c1"># Format: [file scene_label onset  offset   event_label source_label]</span>
+                    <span class="k">elif</span> <span class="n">row_format</span> <span class="o">==</span> <span class="p">[</span><span class="n">FieldValidator</span><span class="o">.</span><span class="n">AUDIOFILE</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">ALPHA1</span><span class="p">]:</span>
+                        <span class="c1"># Format: [file scene_label onset offset event_label source_label]</span>
                         <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                             <span class="bp">self</span><span class="o">.</span><span class="n">item_class</span><span class="p">({</span>
                                 <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
@@ -2260,8 +2328,13 @@
                             <span class="p">})</span>
                         <span class="p">)</span>
 
-                    <span class="k">elif</span> <span class="n">row_format</span> <span class="o">==</span> <span class="p">[</span><span class="n">FieldValidator</span><span class="o">.</span><span class="n">AUDIOFILE</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">]:</span>
-                        <span class="c1"># Format: [file scene_label onset  offset   event_label source_label]</span>
+                    <span class="k">elif</span> <span class="n">row_format</span> <span class="o">==</span> <span class="p">[</span><span class="n">FieldValidator</span><span class="o">.</span><span class="n">AUDIOFILE</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">]:</span>
+                        <span class="c1"># Format: [file scene_label onset offset event_label source_label]</span>
                         <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                             <span class="bp">self</span><span class="o">.</span><span class="n">item_class</span><span class="p">({</span>
                                 <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
@@ -2273,7 +2346,13 @@
                             <span class="p">})</span>
                         <span class="p">)</span>
 
-                    <span class="k">elif</span> <span class="n">row_format</span> <span class="o">==</span> <span class="p">[</span><span class="n">FieldValidator</span><span class="o">.</span><span class="n">AUDIOFILE</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">ALPHA1</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">]:</span>
+                    <span class="k">elif</span> <span class="n">row_format</span> <span class="o">==</span> <span class="p">[</span><span class="n">FieldValidator</span><span class="o">.</span><span class="n">AUDIOFILE</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">ALPHA1</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">]:</span>
                         <span class="c1"># Format: [file scene_label onset offset event_label source_label identifier]</span>
                         <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                             <span class="bp">self</span><span class="o">.</span><span class="n">item_class</span><span class="p">({</span>
@@ -2287,7 +2366,13 @@
                             <span class="p">})</span>
                         <span class="p">)</span>
 
-                    <span class="k">elif</span> <span class="n">row_format</span> <span class="o">==</span> <span class="p">[</span><span class="n">FieldValidator</span><span class="o">.</span><span class="n">AUDIOFILE</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">]:</span>
+                    <span class="k">elif</span> <span class="n">row_format</span> <span class="o">==</span> <span class="p">[</span><span class="n">FieldValidator</span><span class="o">.</span><span class="n">AUDIOFILE</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">]:</span>
                         <span class="c1"># Format: [file scene_label onset offset event_label source_label identifier]</span>
                         <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                             <span class="bp">self</span><span class="o">.</span><span class="n">item_class</span><span class="p">({</span>
@@ -2301,7 +2386,9 @@
                             <span class="p">})</span>
                         <span class="p">)</span>
 
-                    <span class="k">elif</span> <span class="n">row_format</span> <span class="o">==</span> <span class="p">[</span><span class="n">FieldValidator</span><span class="o">.</span><span class="n">AUDIOFILE</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">LIST</span><span class="p">]:</span>
+                    <span class="k">elif</span> <span class="n">row_format</span> <span class="o">==</span> <span class="p">[</span><span class="n">FieldValidator</span><span class="o">.</span><span class="n">AUDIOFILE</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">LIST</span><span class="p">]:</span>
                         <span class="c1"># Format: [file scene_label tags]</span>
                         <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                             <span class="bp">self</span><span class="o">.</span><span class="n">item_class</span><span class="p">({</span>
@@ -2311,7 +2398,10 @@
                             <span class="p">})</span>
                         <span class="p">)</span>
 
-                    <span class="k">elif</span> <span class="n">row_format</span> <span class="o">==</span> <span class="p">[</span><span class="n">FieldValidator</span><span class="o">.</span><span class="n">AUDIOFILE</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">LIST</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">]:</span>
+                    <span class="k">elif</span> <span class="n">row_format</span> <span class="o">==</span> <span class="p">[</span><span class="n">FieldValidator</span><span class="o">.</span><span class="n">AUDIOFILE</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">LIST</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">]:</span>
                         <span class="c1"># Format: [file scene_label tags identifier]</span>
                         <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                             <span class="bp">self</span><span class="o">.</span><span class="n">item_class</span><span class="p">({</span>
@@ -2322,7 +2412,9 @@
                             <span class="p">})</span>
                         <span class="p">)</span>
 
-                    <span class="k">elif</span> <span class="n">row_format</span> <span class="o">==</span> <span class="p">[</span><span class="n">FieldValidator</span><span class="o">.</span><span class="n">AUDIOFILE</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">LIST</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">]:</span>
+                    <span class="k">elif</span> <span class="n">row_format</span> <span class="o">==</span> <span class="p">[</span><span class="n">FieldValidator</span><span class="o">.</span><span class="n">AUDIOFILE</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">LIST</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">]:</span>
                         <span class="c1"># Format: [file tags]</span>
                         <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                             <span class="bp">self</span><span class="o">.</span><span class="n">item_class</span><span class="p">({</span>
@@ -2332,7 +2424,11 @@
                             <span class="p">})</span>
                         <span class="p">)</span>
 
-                    <span class="k">elif</span> <span class="n">row_format</span> <span class="o">==</span> <span class="p">[</span><span class="n">FieldValidator</span><span class="o">.</span><span class="n">AUDIOFILE</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">LIST</span><span class="p">]:</span>
+                    <span class="k">elif</span> <span class="n">row_format</span> <span class="o">==</span> <span class="p">[</span><span class="n">FieldValidator</span><span class="o">.</span><span class="n">AUDIOFILE</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">,</span>
+                                        <span class="n">FieldValidator</span><span class="o">.</span><span class="n">LIST</span><span class="p">]:</span>
                         <span class="c1"># Format: [file scene_label onset offset tags]</span>
                         <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                             <span class="bp">self</span><span class="o">.</span><span class="n">item_class</span><span class="p">({</span>

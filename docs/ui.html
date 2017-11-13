@@ -496,7 +496,7 @@
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.ProbabilityContainer.load.html">dcase_util.containers.ProbabilityContainer.load</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.ProbabilityContainer.save.html">dcase_util.containers.ProbabilityContainer.save</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.ProbabilityContainer.append.html">dcase_util.containers.ProbabilityContainer.append</a></li>
-<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.ProbabilityContainer.file_list.html">dcase_util.containers.ProbabilityContainer.file_list</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.ProbabilityContainer.unique_files.html">dcase_util.containers.ProbabilityContainer.unique_files</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.ProbabilityContainer.unique_labels.html">dcase_util.containers.ProbabilityContainer.unique_labels</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.ProbabilityContainer.filter.html">dcase_util.containers.ProbabilityContainer.filter</a></li>
 </ul>
@@ -1396,7 +1396,7 @@ FancyLogger, <a class="reference internal" href="generated/dcase_util.utils.setu
 <tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.ui.FancyLogger.title.html#dcase_util.ui.FancyLogger.title" title="dcase_util.ui.FancyLogger.title"><code class="xref py py-obj docutils literal"><span class="pre">FancyLogger.title</span></code></a>(text[,&nbsp;level])</td>
 <td>Title, logged at info level</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.ui.FancyLogger.section_header.html#dcase_util.ui.FancyLogger.section_header" title="dcase_util.ui.FancyLogger.section_header"><code class="xref py py-obj docutils literal"><span class="pre">FancyLogger.section_header</span></code></a>(text[,&nbsp;level])</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.ui.FancyLogger.section_header.html#dcase_util.ui.FancyLogger.section_header" title="dcase_util.ui.FancyLogger.section_header"><code class="xref py py-obj docutils literal"><span class="pre">FancyLogger.section_header</span></code></a>(text[,&nbsp;indent,&nbsp;level])</td>
 <td>Section header, logged at info level</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.ui.FancyLogger.sub_header.html#dcase_util.ui.FancyLogger.sub_header" title="dcase_util.ui.FancyLogger.sub_header"><code class="xref py py-obj docutils literal"><span class="pre">FancyLogger.sub_header</span></code></a>([text,&nbsp;indent,&nbsp;level])</td>
@@ -1517,7 +1517,7 @@ FancyLogger, <a class="reference internal" href="generated/dcase_util.utils.setu
 <tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.ui.FancyPrinter.title.html#dcase_util.ui.FancyPrinter.title" title="dcase_util.ui.FancyPrinter.title"><code class="xref py py-obj docutils literal"><span class="pre">FancyPrinter.title</span></code></a>(text[,&nbsp;level])</td>
 <td>Title, logged at info level</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.ui.FancyPrinter.section_header.html#dcase_util.ui.FancyPrinter.section_header" title="dcase_util.ui.FancyPrinter.section_header"><code class="xref py py-obj docutils literal"><span class="pre">FancyPrinter.section_header</span></code></a>(text[,&nbsp;level])</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.ui.FancyPrinter.section_header.html#dcase_util.ui.FancyPrinter.section_header" title="dcase_util.ui.FancyPrinter.section_header"><code class="xref py py-obj docutils literal"><span class="pre">FancyPrinter.section_header</span></code></a>(text[,&nbsp;indent,&nbsp;...])</td>
 <td>Section header, logged at info level</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.ui.FancyPrinter.sub_header.html#dcase_util.ui.FancyPrinter.sub_header" title="dcase_util.ui.FancyPrinter.sub_header"><code class="xref py py-obj docutils literal"><span class="pre">FancyPrinter.sub_header</span></code></a>([text,&nbsp;indent,&nbsp;level])</td>
@@ -1563,7 +1563,7 @@ FancyLogger, <a class="reference internal" href="generated/dcase_util.utils.setu
 <tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.ui.FancyStringifier.title.html#dcase_util.ui.FancyStringifier.title" title="dcase_util.ui.FancyStringifier.title"><code class="xref py py-obj docutils literal"><span class="pre">FancyStringifier.title</span></code></a>(text)</td>
 <td>Title</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.ui.FancyStringifier.section_header.html#dcase_util.ui.FancyStringifier.section_header" title="dcase_util.ui.FancyStringifier.section_header"><code class="xref py py-obj docutils literal"><span class="pre">FancyStringifier.section_header</span></code></a>(text)</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.ui.FancyStringifier.section_header.html#dcase_util.ui.FancyStringifier.section_header" title="dcase_util.ui.FancyStringifier.section_header"><code class="xref py py-obj docutils literal"><span class="pre">FancyStringifier.section_header</span></code></a>(text[,&nbsp;indent])</td>
 <td>Section header</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.ui.FancyStringifier.sub_header.html#dcase_util.ui.FancyStringifier.sub_header" title="dcase_util.ui.FancyStringifier.sub_header"><code class="xref py py-obj docutils literal"><span class="pre">FancyStringifier.sub_header</span></code></a>([text,&nbsp;indent])</td>
@@ -1588,7 +1588,7 @@ FancyLogger, <a class="reference internal" href="generated/dcase_util.utils.setu
 <td>Data table</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.ui.FancyStringifier.row.html#dcase_util.ui.FancyStringifier.row" title="dcase_util.ui.FancyStringifier.row"><code class="xref py py-obj docutils literal"><span class="pre">FancyStringifier.row</span></code></a>(*args,&nbsp;**kwargs)</td>
-<td></td>
+<td>Table row</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.ui.FancyStringifier.class_name.html#dcase_util.ui.FancyStringifier.class_name" title="dcase_util.ui.FancyStringifier.class_name"><code class="xref py py-obj docutils literal"><span class="pre">FancyStringifier.class_name</span></code></a>(class_name)</td>
 <td>Class name</td>

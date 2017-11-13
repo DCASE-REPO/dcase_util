@@ -497,7 +497,7 @@
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ProbabilityContainer.load.html">dcase_util.containers.ProbabilityContainer.load</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ProbabilityContainer.save.html">dcase_util.containers.ProbabilityContainer.save</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ProbabilityContainer.append.html">dcase_util.containers.ProbabilityContainer.append</a></li>
-<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ProbabilityContainer.file_list.html">dcase_util.containers.ProbabilityContainer.file_list</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ProbabilityContainer.unique_files.html">dcase_util.containers.ProbabilityContainer.unique_files</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ProbabilityContainer.unique_labels.html">dcase_util.containers.ProbabilityContainer.unique_labels</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ProbabilityContainer.filter.html">dcase_util.containers.ProbabilityContainer.filter</a></li>
 </ul>
@@ -1305,7 +1305,7 @@
 <h1>dcase_util.datasets.Dataset<a class="headerlink" href="#dcase-util-datasets-dataset" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="dcase_util.datasets.Dataset">
-<em class="property">class </em><code class="descclassname">dcase_util.datasets.</code><code class="descname">Dataset</code><span class="sig-paren">(</span><em>name='dataset'</em>, <em>storage_name='dataset'</em>, <em>data_path=None</em>, <em>show_progress_in_console=True</em>, <em>log_system_progress=True</em>, <em>use_ascii_progress_bar=True</em>, <em>dataset_group='base class'</em>, <em>dataset_meta=None</em>, <em>evaluation_setup_folder='evaluation_setup'</em>, <em>meta_filename='meta.txt'</em>, <em>error_meta_filename='error.txt'</em>, <em>filelisthash_filename='filelist.python.hash'</em>, <em>filelisthash_exclude_dirs=None</em>, <em>crossvalidation_folds=None</em>, <em>package_list=None</em>, <em>included_content_types=None</em>, <em>audio_paths=None</em>, <em>default_audio_extension='wav'</em>, <em>reference_data_present=True</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/datasets/datasets.html#Dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.datasets.Dataset" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">dcase_util.datasets.</code><code class="descname">Dataset</code><span class="sig-paren">(</span><em>name='dataset'</em>, <em>storage_name='dataset'</em>, <em>data_path=None</em>, <em>local_path=None</em>, <em>show_progress_in_console=True</em>, <em>log_system_progress=True</em>, <em>use_ascii_progress_bar=True</em>, <em>dataset_group='base class'</em>, <em>dataset_meta=None</em>, <em>evaluation_setup_folder='evaluation_setup'</em>, <em>meta_filename='meta.txt'</em>, <em>error_meta_filename='error.txt'</em>, <em>filelisthash_filename='filelist.python.hash'</em>, <em>filelisthash_exclude_dirs=None</em>, <em>crossvalidation_folds=None</em>, <em>package_list=None</em>, <em>included_content_types=None</em>, <em>audio_paths=None</em>, <em>default_audio_extension='wav'</em>, <em>reference_data_present=True</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/datasets/datasets.html#Dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.datasets.Dataset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Dataset base class</p>
 <p>The specific dataset classes are inherited from this class, and only needed methods are reimplemented.</p>
 <p>Constructor</p>
@@ -1325,6 +1325,10 @@
 <blockquote>
 <div><p>Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), &#8216;dcase_util_datasets&#8217;)
 is used.</p>
+</div></blockquote>
+<p><strong>local_path</strong> : str</p>
+<blockquote>
+<div><p>Direct storage path setup for the dataset. If None, data_path and storage_name are used to create one.</p>
 </div></blockquote>
 <p><strong>show_progress_in_console</strong> : bool</p>
 <blockquote>
@@ -1397,7 +1401,7 @@ is used.</p>
 </table>
 <dl class="method">
 <dt id="dcase_util.datasets.Dataset.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>name='dataset'</em>, <em>storage_name='dataset'</em>, <em>data_path=None</em>, <em>show_progress_in_console=True</em>, <em>log_system_progress=True</em>, <em>use_ascii_progress_bar=True</em>, <em>dataset_group='base class'</em>, <em>dataset_meta=None</em>, <em>evaluation_setup_folder='evaluation_setup'</em>, <em>meta_filename='meta.txt'</em>, <em>error_meta_filename='error.txt'</em>, <em>filelisthash_filename='filelist.python.hash'</em>, <em>filelisthash_exclude_dirs=None</em>, <em>crossvalidation_folds=None</em>, <em>package_list=None</em>, <em>included_content_types=None</em>, <em>audio_paths=None</em>, <em>default_audio_extension='wav'</em>, <em>reference_data_present=True</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/datasets/datasets.html#Dataset.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.datasets.Dataset.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>name='dataset'</em>, <em>storage_name='dataset'</em>, <em>data_path=None</em>, <em>local_path=None</em>, <em>show_progress_in_console=True</em>, <em>log_system_progress=True</em>, <em>use_ascii_progress_bar=True</em>, <em>dataset_group='base class'</em>, <em>dataset_meta=None</em>, <em>evaluation_setup_folder='evaluation_setup'</em>, <em>meta_filename='meta.txt'</em>, <em>error_meta_filename='error.txt'</em>, <em>filelisthash_filename='filelist.python.hash'</em>, <em>filelisthash_exclude_dirs=None</em>, <em>crossvalidation_folds=None</em>, <em>package_list=None</em>, <em>included_content_types=None</em>, <em>audio_paths=None</em>, <em>default_audio_extension='wav'</em>, <em>reference_data_present=True</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/datasets/datasets.html#Dataset.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.datasets.Dataset.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Constructor</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -1415,6 +1419,10 @@ is used.</p>
 <blockquote>
 <div><p>Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), &#8216;dcase_util_datasets&#8217;)
 is used.</p>
+</div></blockquote>
+<p><strong>local_path</strong> : str</p>
+<blockquote>
+<div><p>Direct storage path setup for the dataset. If None, data_path and storage_name are used to create one.</p>
 </div></blockquote>
 <p><strong>show_progress_in_console</strong> : bool</p>
 <blockquote>

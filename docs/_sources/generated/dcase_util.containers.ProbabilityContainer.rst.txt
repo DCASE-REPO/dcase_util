@@ -49,8 +49,8 @@ dcase_util.containers.ProbabilityContainer
 
    .. autosummary::
    
-      ~ProbabilityContainer.file_list
       ~ProbabilityContainer.logger
+      ~ProbabilityContainer.unique_files
       ~ProbabilityContainer.unique_labels
       ~ProbabilityContainer.valid_formats
    
