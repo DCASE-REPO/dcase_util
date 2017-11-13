@@ -163,6 +163,7 @@ class Dataset(object):
                  name='dataset',
                  storage_name='dataset',
                  data_path=None,
+                 local_path=None,
 
                  show_progress_in_console=True,
                  log_system_progress=True,
@@ -196,6 +197,9 @@ class Dataset(object):
         data_path : str
             Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), 'dcase_util_datasets')
             is used.
+
+        local_path : str
+            Direct storage path setup for the dataset. If None, data_path and storage_name are used to create one.
 
         show_progress_in_console : bool
             Show progress in console.
@@ -270,7 +274,11 @@ class Dataset(object):
         if data_path is None:
             data_path = os.path.join(tempfile.gettempdir(), 'dcase_util_datasets')
 
-        self.local_path = os.path.join(data_path, self.storage_name)
+        if local_path is None:
+            self.local_path = os.path.join(data_path, self.storage_name)
+
+        else:
+            self.local_path = local_path
 
         # Evaluation setup folder
         self.evaluation_setup_folder = evaluation_setup_folder
