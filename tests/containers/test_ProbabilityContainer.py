@@ -64,11 +64,13 @@ def test_container():
             },
         ]
     )
+
     nose.tools.eq_(item_list.unique_labels, ['cat', 'dog'])
-    nose.tools.eq_(item_list.file_list, ['file1.wav', 'file2.wav'])
+    nose.tools.eq_(item_list.unique_files, ['file1.wav', 'file2.wav'])
     nose.tools.eq_(len(item_list.filter(label='dog')), 2)
     nose.tools.eq_(len(item_list.filter(filename='file1.wav')), 2)
     nose.tools.eq_(len(item_list.filter(file_list=['file1.wav', 'file2.wav'])), 4)
+    nose.tools.eq_(len(item_list.filter(filename='file1.wav', label='cat')), 1)
 
     item_list1 = ProbabilityContainer(
         [
@@ -101,7 +103,7 @@ def test_container():
 
     item_list = item_list1 + item_list2
     nose.tools.eq_(item_list.unique_labels, ['cat', 'dog'])
-    nose.tools.eq_(item_list.file_list, ['file1.wav', 'file2.wav'])
+    nose.tools.eq_(item_list.unique_files, ['file1.wav', 'file2.wav'])
     nose.tools.eq_(len(item_list.filter(label='dog')), 2)
     nose.tools.eq_(len(item_list.filter(filename='file1.wav')), 2)
     nose.tools.eq_(len(item_list.filter(file_list=['file1.wav', 'file2.wav'])), 4)
