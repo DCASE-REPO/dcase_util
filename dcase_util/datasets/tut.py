@@ -281,21 +281,21 @@ class TUTAcousticScenes_2017_EvaluationSet(AcousticSceneDataset):
                 'content_type': 'documentation',
                 'remote_file': source_url + 'TUT-acoustic-scenes-2017-evaluation.doc.zip',
                 'remote_bytes': 53687,
-                'remote_md5': '47bbdc0614b468d2bfadbc49e561a320',
+                'remote_md5': '53709a07416ea3b617c02fcf67dbeb9c',
                 'filename': 'TUT-acoustic-scenes-2017-evaluation.doc.zip'
             },
             {
                 'content_type': 'meta',
                 'remote_file': source_url + 'TUT-acoustic-scenes-2017-evaluation.meta.zip',
                 'remote_bytes': 4473,
-                'remote_md5': 'e006cfec14a49dd79a6ab8f8d5b1c5e6',
+                'remote_md5': '200eee9493e8044403e1326e3d05cfde',
                 'filename': 'TUT-acoustic-scenes-2017-evaluation.meta.zip'
             },
             {
                 'content_type': 'audio',
                 'remote_file': source_url + 'TUT-acoustic-scenes-2017-evaluation.audio.1.zip',
                 'remote_bytes': 1071856687,
-                'remote_md5': '5d97dea8461baec8027ae4a0c2b18d4b',
+                'remote_md5': '3d6dda4445871e9544e0fefe7d14c7d9',
                 'filename': 'TUT-acoustic-scenes-2017-evaluation.audio.1.zip'
             },
             {
