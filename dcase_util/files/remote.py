@@ -121,11 +121,12 @@ class RemoteFile(DictContainer):
         output += ui.data(indent=4, field='Exists', value='Yes' if self.local_exists() else 'No') + '\n'
         output += ui.data(indent=4, field='Size', value=self.local_size_string()) + '\n'
 
-        output += ui.line(field='Remote') + '\n'
-        output += ui.data(indent=4, field='remote_file', value=self.remote_file) + '\n'
-        output += ui.data(indent=4, field='remote_md5', value=self.remote_md5) + '\n'
-        output += ui.data(indent=4, field='Exists', value='Yes' if self.remote_exists() else 'No') + '\n'
-        output += ui.data(indent=4, field='Size', value=self.remote_size_string()) + '\n'
+        if self._remote_file is not None:
+            output += ui.line(field='Remote') + '\n'
+            output += ui.data(indent=4, field='remote_file', value=self.remote_file) + '\n'
+            output += ui.data(indent=4, field='remote_md5', value=self.remote_md5) + '\n'
+            output += ui.data(indent=4, field='Exists', value='Yes' if self.remote_exists() else 'No') + '\n'
+            output += ui.data(indent=4, field='Size', value=self.remote_size_string()) + '\n'
 
         return output
 
