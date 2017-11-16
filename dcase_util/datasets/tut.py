@@ -1455,7 +1455,7 @@ class TUTSoundEvents_2017_EvaluationSet(SoundEventDataset):
     """
 
     def __init__(self,
-                 storage_name='TUT-acoustic-scenes-2017-evaluation',
+                 storage_name='TUT-sound-events-2017-evaluation',
                  data_path=None,
                  included_content_types=None,
                  **kwargs):
@@ -1500,21 +1500,21 @@ class TUTSoundEvents_2017_EvaluationSet(SoundEventDataset):
                 'content_type': 'documentation',
                 'remote_file': source_url + 'TUT-sound-events-2017-evaluation.doc.zip',
                 'remote_bytes': 54606,
-                'remote_md5': '9d4378427b50e830efcdcbac95335448',
+                'remote_md5': '8bbf41671949edee15d6cdc3f9e726c9',
                 'filename': 'TUT-sound-events-2017-evaluation.doc.zip'
             },
             {
                 'content_type': 'meta',
                 'remote_file': source_url + 'TUT-sound-events-2017-evaluation.meta.zip',
                 'remote_bytes': 762,
-                'remote_md5': 'e5e343c25909d14df282eebcf301a672',
+                'remote_md5': 'a951598abaea87296ca409e30fb0b379',
                 'filename': 'TUT-sound-events-2017-evaluation.meta.zip'
             },
             {
                 'content_type': 'audio',
                 'remote_file': source_url + 'TUT-sound-events-2017-evaluation.audio.zip',
                 'remote_bytes': 388173790,
-                'remote_md5': '857f8d3f56e0e8ac55fe082e5b792007',
+                'remote_md5': '1d3aa81896be0f142130ca9ca7a2b871',
                 'filename': 'TUT-sound-events-2017-evaluation.audio.zip'
             }
         ]
