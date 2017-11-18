@@ -14,6 +14,7 @@ class Serializer(object):
         logger = logging.getLogger(__name__)
         if not logger.handlers:
             setup_logging()
+
         return logger
 
     @classmethod
@@ -37,6 +38,7 @@ class Serializer(object):
                 name=cls.__class__.__name__,
                 filename=filename
             )
+
             cls.logger().exception(message)
             raise IOError(message)
 
@@ -79,8 +81,10 @@ class Serializer(object):
                 else:
                     cls.logger().error(str(exc.problem_mark) + '\n  ' + str(exc.problem))
                     cls.logger().error('  Please correct data and retry.')
+
             else:
                 cls.logger().error("Something went wrong while parsing yaml file [{file}]".format(file=filename))
+
             return
 
     @classmethod
@@ -108,7 +112,10 @@ class Serializer(object):
                 import pickle
 
             except ImportError:
-                message = '{name}: Unable to import pickle module.'.format(name=cls.__class__.__name__)
+                message = '{name}: Unable to import pickle module.'.format(
+                    name=cls.__class__.__name__
+                )
+
                 cls.logger().exception(message)
                 raise ImportError(message)
 
@@ -139,7 +146,10 @@ class Serializer(object):
                 import json
 
             except ImportError:
-                message = '{name}: Unable to import json module.'.format(name=cls.__class__.__name__)
+                message = '{name}: Unable to import json module.'.format(
+                    name=cls.__class__.__name__
+                )
+
                 cls.logger().exception(message)
                 raise ImportError(message)
 
@@ -166,7 +176,10 @@ class Serializer(object):
             import msgpack
 
         except ImportError:
-            message = '{name}: Unable to import msgpack module.'.format(name=cls.__class__.__name__)
+            message = '{name}: Unable to import msgpack module.'.format(
+                name=cls.__class__.__name__
+            )
+
             cls.logger().exception(message)
             raise ImportError(message)
 
@@ -193,7 +206,10 @@ class Serializer(object):
             import marshal
 
         except ImportError:
-            message = '{name}: Unable to import marshal module.'.format(name=cls.__class__.__name__)
+            message = '{name}: Unable to import marshal module.'.format(
+                name=cls.__class__.__name__
+            )
+
             cls.logger().exception(message)
             raise ImportError(message)
 
@@ -221,7 +237,10 @@ class Serializer(object):
             import yaml
 
         except ImportError:
-            message = '{name}: Unable to import yaml module.'.format(name=cls.__class__.__name__)
+            message = '{name}: Unable to import yaml module.'.format(
+                name=cls.__class__.__name__
+            )
+
             cls.logger().exception(message)
             raise ImportError(message)
 
@@ -254,7 +273,10 @@ class Serializer(object):
                 import pickle
 
             except ImportError:
-                message = '{name}: Unable to import pickle module.'.format(name=cls.__class__.__name__)
+                message = '{name}: Unable to import pickle module.'.format(
+                    name=cls.__class__.__name__
+                )
+
                 cls.logger().exception(message)
                 raise ImportError(message)
 
@@ -286,7 +308,10 @@ class Serializer(object):
                 import json
 
             except ImportError:
-                message = '{name}: Unable to import json module.'.format(name=cls.__class__.__name__)
+                message = '{name}: Unable to import json module.'.format(
+                    name=cls.__class__.__name__
+                )
+
                 cls.logger().exception(message)
                 raise ImportError(message)
 
@@ -314,7 +339,10 @@ class Serializer(object):
             import msgpack
 
         except ImportError:
-            message = '{name}: Unable to import msgpack module.'.format(name=cls.__class__.__name__)
+            message = '{name}: Unable to import msgpack module.'.format(
+                name=cls.__class__.__name__
+            )
+
             cls.logger().exception(message)
             raise ImportError(message)
 
@@ -342,7 +370,10 @@ class Serializer(object):
             import marshal
 
         except ImportError:
-            message = '{name}: Unable to import marshal module.'.format(name=cls.__class__.__name__)
+            message = '{name}: Unable to import marshal module.'.format(
+                name=cls.__class__.__name__
+            )
+
             cls.logger().exception(message)
             raise ImportError(message)
 
