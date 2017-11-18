@@ -166,8 +166,13 @@ class File(FileMixin):
                 with open(self.filename, "w") as text_file:
                     for line_id in data:
                         text_file.write(data[line_id])
+
             else:
-                message = '{name}: Unknown format [{format}]'.format(name=self.__class__.__name__, format=self.filename)
+                message = '{name}: Unknown format [{format}]'.format(
+                    name=self.__class__.__name__,
+                    format=self.filename
+                )
+
                 self.logger.exception(message)
                 raise IOError(message)
 
