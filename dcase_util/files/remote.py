@@ -142,6 +142,7 @@ class RemoteFile(DictContainer):
 
         if self.local_exists() and self._local_md5 is None:
             self._local_md5 = get_file_hash(filename=self.filename)
+
         return self._local_md5
 
     @property
@@ -207,6 +208,7 @@ class RemoteFile(DictContainer):
                 name=self.__class__.__name__,
                 url=value
             )
+
             self.logger.exception(message)
             raise ValueError(message)
 
@@ -317,6 +319,7 @@ class RemoteFile(DictContainer):
 
         if 'Last-Modified' in resp.headers:
             self.remote_modified = time.mktime(time.strptime(resp.headers['Last-Modified'], '%a, %d %b %Y %H:%M:%S %Z'))
+
         elif 'Date' in resp.headers:
             self.remote_modified = time.mktime(time.strptime(resp.headers['Date'], '%a, %d %b %Y %H:%M:%S %Z'))
 
@@ -333,6 +336,7 @@ class RemoteFile(DictContainer):
 
         if self.remote_status in [200, 301, 302]:
             return True
+
         else:
             return False
 
@@ -364,12 +368,14 @@ class RemoteFile(DictContainer):
             # Remote md5 hash available use md5 hashes to check content
             if self.local_md5 == self.remote_md5:
                 return False
+
             else:
                 return True
         else:
             # Use file modification time and size to see if local and remote are the same.
             if self.local_modified > self.remote_modified and self.local_bytes == self.remote_bytes:
                 return False
+
             else:
                 return True
 
@@ -412,6 +418,7 @@ class RemoteFile(DictContainer):
                         """
                         if tsize is not None:
                             t.total = tsize
+
                         t.update((b - last_b[0]) * bsize)
                         last_b[0] = b
 
@@ -440,6 +447,7 @@ class RemoteFile(DictContainer):
                 if self.remote_md5 is not None:
                     if tmp_md5 == self.remote_md5:
                         file_valid = True
+
                     else:
                         message = '{name}: Download failed [{filename}] [md5 mismatch]'.format(
                             name=self.__class__.__name__,
