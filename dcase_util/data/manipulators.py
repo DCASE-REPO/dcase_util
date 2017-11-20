@@ -5,6 +5,7 @@ from __future__ import print_function, absolute_import
 from six import iteritems
 import numpy
 import scipy
+import copy
 
 from dcase_util.containers import DataContainer, ObjectContainer
 from dcase_util.ui import FancyStringifier
@@ -573,12 +574,12 @@ class Sequencer(ObjectContainer):
         """
 
         from dcase_util.containers import DataContainer, DataMatrix3DContainer
+        # Make copy of the data to prevent modifications to the original data
+        data = copy.deepcopy(data)
 
         if isinstance(data, DataContainer):
-
             # Not the most efficient way as numpy stride_tricks would produce
             # faster code, however, opted for cleaner presentation this time.
-            data_length = data.length
             processed_data = []
 
             if self.shift_border == 'shift':
@@ -591,15 +592,13 @@ class Sequencer(ObjectContainer):
                     # Roll data
                     data.data = numpy.roll(
                         data.data,
-                        shift=self.shift,
+                        shift=-self.shift,
                         axis=data.time_axis
                     )
 
             else:
-                message = '{name}: Unknown type for sequence border handling when doing temporal shifting [{shift_border}].'.format(
-                    name=self.__class__.__name__,
-                    shift_border=self.shift_border,
-                )
+                message = '{name}: Unknown type for sequence border handling when doing temporal shifting ' \
+                          '[{shift_border}].'.format(name=self.__class__.__name__, shift_border=self.shift_border)
 
                 self.logger.exception(message)
                 raise IOError(message)
@@ -608,12 +607,13 @@ class Sequencer(ObjectContainer):
                 if len(segment_indexes) == 0:
                     # Have at least one segment
                     segment_indexes = numpy.array([0])
+
             else:
                 # Remove segments which are not full
-                segment_indexes = segment_indexes[(segment_indexes+self.hop_length_frames-1) < data.length]
+                segment_indexes = segment_indexes[(segment_indexes+self.frames-1) < data.length]
 
             for segment_start_frame in segment_indexes:
-                segment_end_frame = segment_start_frame + self.hop_length_frames
+                segment_end_frame = segment_start_frame + self.frames
 
                 frame_ids = numpy.array(range(segment_start_frame, segment_end_frame))
 
