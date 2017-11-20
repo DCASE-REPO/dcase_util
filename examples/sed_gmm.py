@@ -374,7 +374,7 @@ if param.get_path('flow.testing'):
                     for event in event_segments:
                         current_results.append(
                             {
-                                'filename': db.absolute_to_relative(audio_filename),
+                                'filename': db.absolute_to_relative_path(audio_filename),
                                 'onset': event[0],
                                 'offset': event[1],
                                 'event_label': event_label
@@ -407,26 +407,26 @@ if param.get_path('flow.evaluation'):
         fold_results_filename = os.path.join(param.get_path('path.results'), 'res_fold_{fold:d}.txt'.format(fold=fold))
         reference = db.eval(fold=fold)
         for item_id, item in enumerate(reference):
-            item.filename = db.absolute_to_relative(item.filename)
+            item.filename = db.absolute_to_relative_path(item.filename)
             reference[item_id]['file'] = item.filename
             reference[item_id]['event_onset'] = item.onset
             reference[item_id]['event_offset'] = item.offset
 
         estimated = dcase_util.containers.MetaDataContainer(filename=fold_results_filename).load()
         for item_id, item in enumerate(estimated):
-            item.filename = db.absolute_to_relative(item.filename)
+            item.filename = db.absolute_to_relative_path(item.filename)
             estimated[item_id]['file'] = item.filename
             estimated[item_id]['event_onset'] = item.onset
             estimated[item_id]['event_offset'] = item.offset
 
         for file_id, audio_filename in enumerate(db.test_files(fold=fold)):
             current_estimated = dcase_util.containers.MetaDataContainer()
-            for result_item in estimated.filter(filename=db.absolute_to_relative(audio_filename)):
+            for result_item in estimated.filter(filename=db.absolute_to_relative_path(audio_filename)):
                 if result_item.event_label:
                     current_estimated.append(result_item)
 
             current_reference = dcase_util.containers.MetaDataContainer()
-            for meta_item in reference.filter(filename=db.absolute_to_relative(audio_filename)):
+            for meta_item in reference.filter(filename=db.absolute_to_relative_path(audio_filename)):
                 if meta_item.event_label:
                     current_reference.append(meta_item)
 

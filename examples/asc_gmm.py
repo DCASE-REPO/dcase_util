@@ -307,7 +307,7 @@ if param.get_path('flow.testing'):
                 # Store result into results container
                 res.append(
                     {
-                        'filename': item.filename,
+                        'filename': db.absolute_to_relative_path(item.filename),
                         'scene_label': estimated_scene_label
                     }
                 )
@@ -319,33 +319,40 @@ if param.get_path('flow.testing'):
 # Evaluation
 if param.get_path('flow.evaluation'):
     log.section_header('Evaluation')
-    all_res = []
-    overall = []
     class_wise_results = numpy.zeros((len(db.folds()), len(db.scene_labels())))
+
     for fold in db.folds():
         fold_results_filename = os.path.join(param.get_path('path.results'), 'res_fold_{fold:d}.txt'.format(fold=fold))
-        reference_scene_list = db.eval(fold=fold)
+        reference_scene_list = db.eval(
+            fold=fold,
+            absolute_paths=False
+        )
+
         for item_id, item in enumerate(reference_scene_list):
             reference_scene_list[item_id]['file'] = item.filename
 
-        estimated_scene_list = dcase_util.containers.MetaDataContainer(filename=fold_results_filename).load()
+        estimated_scene_list = dcase_util.containers.MetaDataContainer(
+            filename=fold_results_filename
+        ).load()
+
         for item_id, item in enumerate(estimated_scene_list):
             estimated_scene_list[item_id]['file'] = item.filename
 
-        evaluator = sed_eval.scene.SceneClassificationMetrics(scene_labels=db.scene_labels())
+        evaluator = sed_eval.scene.SceneClassificationMetrics(
+            scene_labels=db.scene_labels()
+        )
+
         evaluator.evaluate(
             reference_scene_list=reference_scene_list,
             estimated_scene_list=estimated_scene_list
         )
 
         results = dcase_util.containers.DictContainer(evaluator.results())
-        all_res.append(results)
-        overall.append(results.get_path('overall.accuracy')*100)
-        class_wise_accuracy = []
 
         for scene_label_id, scene_label in enumerate(db.scene_labels()):
-            class_wise_accuracy.append(results.get_path(['class_wise', scene_label, 'accuracy', 'accuracy']))
-            class_wise_results[fold-1, scene_label_id] = results.get_path(['class_wise', scene_label, 'accuracy', 'accuracy'])
+            class_wise_results[fold-1, scene_label_id] = results.get_path(
+                ['class_wise', scene_label, 'accuracy', 'accuracy']
+            )
 
     # Form results table
     cell_data = class_wise_results
