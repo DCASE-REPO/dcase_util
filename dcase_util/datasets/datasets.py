@@ -10,6 +10,7 @@ import sys
 import random
 import numpy
 import tempfile
+import copy
 from tqdm import tqdm
 
 from dcase_util.containers import DictContainer, ListDictContainer, TextContainer, MetaDataContainer
@@ -395,6 +396,7 @@ class Dataset(object):
         logger = logging.getLogger(__name__)
         if not logger.handlers:
             setup_logging()
+
         return logger
 
     def load(self):
@@ -405,7 +407,9 @@ class Dataset(object):
     def load_meta(self):
         """Load meta data into the container."""
         # Initialize meta container
-        self.meta_container = MetaDataContainer(filename=os.path.join(self.local_path, self.meta_filename))
+        self.meta_container = MetaDataContainer(
+            filename=os.path.join(self.local_path, self.meta_filename)
+        )
 
         # Load from disk only if file exists
         if self.meta_container.exists():
@@ -446,9 +450,20 @@ class Dataset(object):
         # Load cross validation folds
         for fold in self.folds():
             # Get filenames
-            train_filename = self.evaluation_setup_filename(setup_part='train', fold=fold)
-            test_filename = self.evaluation_setup_filename(setup_part='test', fold=fold)
-            evaluate_filename = self.evaluation_setup_filename(setup_part='evaluate', fold=fold)
+            train_filename = self.evaluation_setup_filename(
+                setup_part='train',
+                fold=fold
+            )
+
+            test_filename = self.evaluation_setup_filename(
+                setup_part='test',
+                fold=fold
+            )
+
+            evaluate_filename = self.evaluation_setup_filename(
+                setup_part='evaluate',
+                fold=fold
+            )
 
             if os.path.isfile(train_filename):
                 # Training data for fold exists, load and process it
@@ -505,6 +520,7 @@ class Dataset(object):
 
         if i < len(self.meta_container):
             return self.meta_container[i]
+
         else:
             return None
 
@@ -556,19 +572,22 @@ class Dataset(object):
     def show(self):
         """Print dataset information."""
         DictContainer(self.dataset_meta).show()
-        self.meta_container.show(show_data=False, show_stats=True)
+        self.meta_container.show(
+            show_data=False,
+            show_stats=True
+        )
 
     def log(self):
         """Log dataset information."""
         DictContainer(self.dataset_meta).log()
-        self.meta_container.log(show_data=False, show_stats=True)
+        self.meta_container.log(
+            show_data=False,
+            show_stats=True
+        )
 
     @property
     def audio_files(self):
         """Get all audio files in the dataset
-
-        Parameters
-        ----------
 
         Returns
         -------
@@ -587,15 +606,13 @@ class Dataset(object):
                         if file_extension[1:] in self.audio_extensions:
                             if os.path.abspath(os.path.join(path, f)) not in self.files:
                                 self.files.append(os.path.abspath(os.path.join(path, f)))
+
             self.files.sort()
         return self.files
 
     @property
     def audio_file_count(self):
         """Get number of audio files in dataset
-
-        Parameters
-        ----------
 
         Returns
         -------
@@ -625,6 +642,7 @@ class Dataset(object):
         if self.meta_container.empty():
             if self.meta_container.exists():
                 self.meta_container.load()
+
             else:
                 message = '{name}: Meta file not found [{filename}]'.format(
                     name=self.__class__.__name__,
@@ -634,7 +652,7 @@ class Dataset(object):
                 self.logger.exception(message)
                 raise IOError(message)
 
-        return self.meta_container
+        return copy.deepcopy(self.meta_container)
 
     @property
     def meta_count(self):
@@ -669,13 +687,17 @@ class Dataset(object):
             self.error_meta_data = MetaDataContainer(filename=self.error_meta_file)
             if self.error_meta_data.exists():
                 self.error_meta_data.load()
+
             else:
-                message = '{name}: Error meta file not found [{filename}]'.format(name=self.__class__.__name__,
-                                                                                  filename=self.error_meta_file)
+                message = '{name}: Error meta file not found [{filename}]'.format(
+                    name=self.__class__.__name__,
+                    filename=self.error_meta_file
+                )
+
                 self.logger.exception(message)
                 raise IOError(message)
 
-        return self.error_meta_data
+        return copy.deepcopy(self.error_meta_data)
 
     @property
     def error_meta_count(self):
@@ -792,12 +814,14 @@ class Dataset(object):
         # Create the dataset path if does not exist
         Path().makedirs(path=self.local_path)
 
-        item_progress = tqdm(self.package_list,
-                             desc="{0: <25s}".format('Download packages'),
-                             file=sys.stdout,
-                             leave=False,
-                             disable=self.disable_progress_bar,
-                             ascii=self.use_ascii_progress_bar)
+        item_progress = tqdm(
+            self.package_list,
+            desc="{0: <25s}".format('Download packages'),
+            file=sys.stdout,
+            leave=False,
+            disable=self.disable_progress_bar,
+            ascii=self.use_ascii_progress_bar
+        )
 
         for item in item_progress:
             remote_file = RemoteFile(**item)
@@ -820,15 +844,16 @@ class Dataset(object):
         -------
         self
 
-
         """
 
-        item_progress = tqdm(self.package_list,
-                             desc="{0: <25s}".format('Extract packages'),
-                             file=sys.stdout,
-                             leave=False,
-                             disable=self.disable_progress_bar,
-                             ascii=self.use_ascii_progress_bar)
+        item_progress = tqdm(
+            self.package_list,
+            desc="{0: <25s}".format('Extract packages'),
+            file=sys.stdout,
+            leave=False,
+            disable=self.disable_progress_bar,
+            ascii=self.use_ascii_progress_bar
+        )
 
         for item_id, item in enumerate(item_progress):
             if File().is_package(filename=item['filename']):
@@ -901,12 +926,18 @@ class Dataset(object):
             Meta data item
 
         absolute_path : bool
-            Convert file paths to be absolute
+            Path format for the returned meta item, if True path is absolute, False path is relative to
+            the dataset root.
 
         """
 
         if absolute_path:
+            # Make sure filename has absolute path
             item.filename = self.relative_to_absolute_path(item.filename)
+
+        else:
+            # Make sure filename has relative path
+            item.filename = self.absolute_to_relative_path(item.filename)
 
     def evaluation_setup_filename(self, setup_part='train', fold=None, scene_label=None, file_extension='txt'):
         """Evaluation setup filename generation.
@@ -918,6 +949,7 @@ class Dataset(object):
 
         fold : int
             Fold number
+
         scene_label : str
             Scene label
 
@@ -966,13 +998,17 @@ class Dataset(object):
 
         return os.path.join(self.evaluation_setup_path, '_'.join(parts) + '.' + file_extension)
 
-    def train(self, fold=None, **kwargs):
+    def train(self, fold=None, absolute_paths=True, **kwargs):
         """List of training items.
 
         Parameters
         ----------
         fold : int [scalar]
             Fold id, if None all meta data is returned.
+
+        absolute_paths : bool
+            Path format for the returned meta items, if True paths are absolute, False paths are relative to
+            the dataset root.
 
         Returns
         -------
@@ -984,9 +1020,19 @@ class Dataset(object):
         if fold is None or fold == 0:
             fold = 'all_data'
 
-        return self.crossvalidation_data['train'][fold]
+        data = copy.deepcopy(self.crossvalidation_data['train'][fold])
 
-    def test(self, fold=None, **kwargs):
+        # Go through items and make sure path are in correct form.
+        for item in data:
+            if absolute_paths:
+                item.filename = self.relative_to_absolute_path(item.filename)
+
+            else:
+                item.filename = self.absolute_to_relative_path(item.filename)
+
+        return data
+
+    def test(self, fold=None, absolute_paths=True, **kwargs):
         """List of testing items.
 
         Parameters
@@ -994,6 +1040,10 @@ class Dataset(object):
         fold : int
             Fold id, if None all meta data is returned.
 
+        absolute_paths : bool
+            Path format for the returned meta items, if True paths are absolute, False paths are relative to
+            the dataset root.
+
         Returns
         -------
         MetaDataContainer
@@ -1004,9 +1054,19 @@ class Dataset(object):
         if fold is None or fold == 0:
             fold = 'all_data'
 
-        return self.crossvalidation_data['test'][fold]
+        data = copy.deepcopy(self.crossvalidation_data['test'][fold])
 
-    def eval(self, fold=None, **kwargs):
+        # Go through items and make sure path are in correct form.
+        for item in data:
+            if absolute_paths:
+                item.filename = self.relative_to_absolute_path(item.filename)
+
+            else:
+                item.filename = self.absolute_to_relative_path(item.filename)
+
+        return data
+
+    def eval(self, fold=None, absolute_paths=True, **kwargs):
         """List of evaluation items.
 
         Parameters
@@ -1014,6 +1074,10 @@ class Dataset(object):
         fold : int
             Fold id, if None all meta data is returned.
 
+        absolute_paths : bool
+            Path format for the returned meta items, if True paths are absolute, False paths are relative to
+            the dataset root.
+
         Returns
         -------
         MetaDataContainer
@@ -1024,15 +1088,29 @@ class Dataset(object):
         if fold is None or fold == 0:
             fold = 'all_data'
 
-        return self.crossvalidation_data['evaluate'][fold]
+        data = copy.deepcopy(self.crossvalidation_data['evaluate'][fold])
 
-    def train_files(self, fold=None, **kwargs):
+        # Go through items and make sure path are in correct form.
+        for item in data:
+            if absolute_paths:
+                item.filename = self.relative_to_absolute_path(item.filename)
+
+            else:
+                item.filename = self.absolute_to_relative_path(item.filename)
+
+        return data
+
+    def train_files(self, fold=None, absolute_paths=True, **kwargs):
         """List of training files.
 
         Parameters
         ----------
         fold : int
             Fold id, if None all meta data is returned.
+
+        absolute_paths : bool
+            Path format for the returned meta items, if True paths are absolute, False paths are relative to
+            the dataset root.
 
         Returns
         -------
@@ -1041,9 +1119,9 @@ class Dataset(object):
 
         """
 
-        return self.train(fold=fold).unique_files
+        return self.train(fold=fold, absolute_paths=absolute_paths).unique_files
 
-    def test_files(self, fold=None, **kwargs):
+    def test_files(self, fold=None, absolute_paths=True, **kwargs):
         """List of testing files.
 
         Parameters
@@ -1051,6 +1129,10 @@ class Dataset(object):
         fold : int
             Fold id, if None all meta data is returned.
 
+        absolute_paths : bool
+            Path format for the returned meta items, if True paths are absolute, False paths are relative to
+            the dataset root.
+
         Returns
         -------
         list of str
@@ -1058,9 +1140,9 @@ class Dataset(object):
 
         """
 
-        return self.test(fold=fold).unique_files
+        return self.test(fold=fold, absolute_paths=absolute_paths).unique_files
 
-    def eval_files(self, fold=None, **kwargs):
+    def eval_files(self, fold=None, absolute_paths=True, **kwargs):
         """List of evaluation files.
 
         Parameters
@@ -1068,6 +1150,10 @@ class Dataset(object):
         fold : int
             Fold id, if None all meta data is returned.
 
+        absolute_paths : bool
+            Path format for the returned meta items, if True paths are absolute, False paths are relative to
+            the dataset root.
+
         Returns
         -------
         list of str
@@ -1075,7 +1161,7 @@ class Dataset(object):
 
         """
 
-        return self.eval(fold=fold).unique_files
+        return self.eval(fold=fold, absolute_paths=absolute_paths).unique_files
 
     def validation_split(self,
                          fold=None, split_type='balanced', validation_amount=None,
@@ -1275,7 +1361,7 @@ class Dataset(object):
         if not file_meta:
             # Try with absolute filename
             file_meta = self.meta_container.filter(
-                filename=self.absolute_to_relative(filename)
+                filename=self.absolute_to_relative_path(filename)
             )
 
         if not file_meta:
@@ -1300,11 +1386,13 @@ class Dataset(object):
             List containing all error meta data related to given file.
 
         """
-        error_meta = self.error_meta.filter(filename=filename)
+        error_meta = self.error_meta.filter(
+            filename=filename
+        )
 
         if not error_meta:
             error_meta = self.error_meta.filter(
-                filename=self.absolute_to_relative(filename)
+                filename=self.absolute_to_relative_path(filename)
             )
 
         if not error_meta:
@@ -1328,6 +1416,7 @@ class Dataset(object):
             Matrix containing acoustic features
 
         """
+
         pass
 
     def relative_to_absolute_path(self, path):
@@ -1347,7 +1436,7 @@ class Dataset(object):
 
         return os.path.abspath(os.path.expanduser(os.path.join(self.local_path, path)))
 
-    def absolute_to_relative(self, path):
+    def absolute_to_relative_path(self, path):
         """Converts absolute path into relative path.
 
         Parameters
@@ -1415,8 +1504,8 @@ class Dataset(object):
         total_size = 0
         for dir_path, dir_names, filenames in os.walk(self.local_path):
             for f in filenames:
-                fp = os.path.join(dir_path, f)
-                total_size += os.path.getsize(fp)
+                filename = os.path.join(dir_path, f)
+                total_size += os.path.getsize(filename)
 
         return get_byte_string(total_size, show_bytes=False)
 
@@ -1721,13 +1810,14 @@ class SoundEventDataset(Dataset):
 
         if scene_label is not None:
             labels = self.meta_container.filter(scene_label=scene_label).unique_event_labels
+
         else:
             labels = self.meta_container.unique_event_labels
 
         labels.sort()
         return labels
 
-    def train(self, fold=None, scene_label=None, event_label=None, **kwargs):
+    def train(self, fold=None, absolute_paths=True, scene_label=None, event_label=None, **kwargs):
         """List of training items.
 
         Parameters
@@ -1735,8 +1825,13 @@ class SoundEventDataset(Dataset):
         fold : int
             Fold id, if None all meta data is returned.
 
+        absolute_paths : bool
+            Path format for the returned meta items, if True paths are absolute, False paths are relative to
+            the dataset root.
+
         scene_label : str
             Scene label
+
         event_label : str
             Event label
 
@@ -1746,20 +1841,32 @@ class SoundEventDataset(Dataset):
             List containing all meta data assigned to training set for given fold.
 
         """
+
         if fold is None or fold == 0:
             fold = 'all_data'
 
-        data = self.crossvalidation_data['train'][fold]
+        data = copy.deepcopy(self.crossvalidation_data['train'][fold])
+
+        # Go through items and make sure path are in correct form.
+        for item in data:
+            if absolute_paths:
+                item.filename = self.relative_to_absolute_path(item.filename)
+            else:
+                item.filename = self.absolute_to_relative_path(item.filename)
 
         if scene_label:
-            data = data.filter(scene_label=scene_label)
+            data = data.filter(
+                scene_label=scene_label
+            )
 
         if event_label:
-            data = data.filter(event_label=event_label)
+            data = data.filter(
+                event_label=event_label
+            )
 
         return data
 
-    def test(self, fold=None, scene_label=None, event_label=None, **kwargs):
+    def test(self, fold=None, absolute_paths=True, scene_label=None, event_label=None, **kwargs):
         """List of testing items.
 
         Parameters
@@ -1767,6 +1874,10 @@ class SoundEventDataset(Dataset):
         fold : int
             Fold id, if None all meta data is returned.
 
+        absolute_paths : bool
+            Path format for the returned meta items, if True paths are absolute, False paths are relative to
+            the dataset root.
+
         scene_label : str
             Scene label
 
@@ -1783,17 +1894,28 @@ class SoundEventDataset(Dataset):
         if fold is None or fold == 0:
             fold = 'all_data'
 
-        data = self.crossvalidation_data['test'][fold]
+        data = copy.deepcopy(self.crossvalidation_data['test'][fold])
+
+        # Go through items and make sure path are in correct form.
+        for item in data:
+            if absolute_paths:
+                item.filename = self.relative_to_absolute_path(item.filename)
+            else:
+                item.filename = self.absolute_to_relative_path(item.filename)
 
         if scene_label:
-            data = data.filter(scene_label=scene_label)
+            data = data.filter(
+                scene_label=scene_label
+            )
 
         if event_label:
-            data = data.filter(event_label=event_label)
+            data = data.filter(
+                event_label=event_label
+            )
 
         return data
 
-    def eval(self, fold=None, scene_label=None, event_label=None, **kwargs):
+    def eval(self, fold=None, absolute_paths=True, scene_label=None, event_label=None, **kwargs):
         """List of evaluation items.
 
         Parameters
@@ -1801,6 +1923,10 @@ class SoundEventDataset(Dataset):
         fold : int
             Fold id, if None all meta data is returned.
 
+        absolute_paths : bool
+            Path format for the returned meta items, if True paths are absolute, False paths are relative to
+            the dataset root.
+
         scene_label : str
             Scene label
 
@@ -1817,23 +1943,38 @@ class SoundEventDataset(Dataset):
         if fold is None or fold == 0:
             fold = 'all_data'
 
-        data = self.crossvalidation_data['evaluate'][fold]
+        data = copy.deepcopy(self.crossvalidation_data['evaluate'][fold])
+
+        # Go through items and make sure path are in correct form.
+        for item in data:
+            if absolute_paths:
+                item.filename = self.relative_to_absolute_path(item.filename)
+            else:
+                item.filename = self.absolute_to_relative_path(item.filename)
 
         if scene_label:
-            data = data.filter(scene_label=scene_label)
+            data = data.filter(
+                scene_label=scene_label
+            )
 
         if event_label:
-            data = data.filter(event_label=event_label)
+            data = data.filter(
+                event_label=event_label
+            )
 
         return data
 
-    def train_files(self, fold=None, scene_label=None, event_label=None, **kwargs):
+    def train_files(self, fold=None, absolute_paths=True, scene_label=None, event_label=None, **kwargs):
         """List of training files.
 
         Parameters
         ----------
         fold : int
             Fold id, if None all meta data is returned.
+
+        absolute_paths : bool
+            Path format for the returned meta items, if True paths are absolute, False paths are relative to
+            the dataset root.
 
         scene_label : str
             Scene label
@@ -1850,17 +1991,22 @@ class SoundEventDataset(Dataset):
 
         return self.train(
             fold=fold,
+            absolute_paths=absolute_paths,
             scene_label=scene_label,
             event_label=event_label
         ).unique_files
 
-    def test_files(self, fold=None, scene_label=None, event_label=None, **kwargs):
+    def test_files(self, fold=None, absolute_paths=True, scene_label=None, event_label=None, **kwargs):
         """List of testing files.
 
         Parameters
         ----------
         fold : int
             Fold id, if None all meta data is returned.
+
+        absolute_paths : bool
+            Path format for the returned meta items, if True paths are absolute, False paths are relative to
+            the dataset root.
 
         scene_label : str
             Scene label
@@ -1877,17 +2023,22 @@ class SoundEventDataset(Dataset):
 
         return self.test(
             fold=fold,
+            absolute_paths=absolute_paths,
             scene_label=scene_label,
             event_label=event_label
         ).unique_files
 
-    def eval_files(self, fold=None, scene_label=None, event_label=None, **kwargs):
+    def eval_files(self, fold=None, absolute_paths=True, scene_label=None, event_label=None, **kwargs):
         """List of evaluation files.
 
         Parameters
         ----------
         fold : int
             Fold id, if None all meta data is returned.
+
+        absolute_paths : bool
+            Path format for the returned meta items, if True paths are absolute, False paths are relative to
+            the dataset root.
 
         scene_label : str
             Scene label
@@ -1904,6 +2055,7 @@ class SoundEventDataset(Dataset):
 
         return self.eval(
             fold=fold,
+            absolute_paths=absolute_paths,
             scene_label=scene_label,
             event_label=event_label
         ).unique_files
@@ -1938,7 +2090,10 @@ class SoundEventDataset(Dataset):
         """
 
         random.seed(seed)
-        training_meta = self.train(fold=fold, scene_label=scene_label)
+        training_meta = self.train(
+            fold=fold,
+            scene_label=scene_label
+        )
 
         if scene_label:
             scene_labels = [scene_label]
@@ -1956,9 +2111,16 @@ class SoundEventDataset(Dataset):
             logger.sub_header('Validation set for fold [{fold}] / random'.format(fold=fold), indent=2)
             for scene_id, scene_label in enumerate(scene_labels):
                 all_stats = training_meta.filter(scene_label=scene_label).event_stat_counts()
-                validation_stats = training_meta.filter(scene_label=scene_label, file_list=validation_files).event_stat_counts()
+                validation_stats = training_meta.filter(
+                    scene_label=scene_label,
+                    file_list=validation_files
+                ).event_stat_counts()
+
                 training_files = sorted(list(set(self.train(fold=fold).unique_files) - set(validation_files)))
-                training_stats = training_meta.filter(scene_label=scene_label, file_list=training_files).event_stat_counts()
+                training_stats = training_meta.filter(
+                    scene_label=scene_label,
+                    file_list=training_files
+                ).event_stat_counts()
 
                 cell_data = numpy.zeros((len(list(all_stats.keys())) + 1, 4))
                 for event_id, event_label in enumerate(list(all_stats.keys())):
@@ -2026,7 +2188,10 @@ class SoundEventDataset(Dataset):
         from sklearn.metrics import mean_absolute_error
 
         random.seed(seed)
-        training_meta = self.train(fold=fold, scene_label=scene_label)
+        training_meta = self.train(
+            fold=fold,
+            scene_label=scene_label
+        )
 
         if scene_label:
             scene_labels = [scene_label]
@@ -2168,12 +2333,14 @@ class SoundEventDataset(Dataset):
                 validation_set_event_amounts = []
                 training_set_event_amounts = []
 
-                iteration_progress = tqdm(range(0, iterations),
-                                          desc="{0: <25s}".format('Generate validation split candidates'),
-                                          file=sys.stdout,
-                                          leave=False,
-                                          disable=self.disable_progress_bar,
-                                          ascii=self.use_ascii_progress_bar)
+                iteration_progress = tqdm(
+                    range(0, iterations),
+                    desc="{0: <25s}".format('Generate validation split candidates'),
+                    file=sys.stdout,
+                    leave=False,
+                    disable=self.disable_progress_bar,
+                    ascii=self.use_ascii_progress_bar
+                )
 
                 for i in iteration_progress:
                     item_ids = list(range(0, len(data[scene_label])))
@@ -2241,9 +2408,16 @@ class SoundEventDataset(Dataset):
             logger.sub_header('Validation set for fold [{fold}] / balanced'.format(fold=fold), indent=2)
             for scene_id, scene_label in enumerate(scene_labels):
                 all_stats = training_meta.filter(scene_label=scene_label).event_stat_counts()
-                validation_stats = training_meta.filter(scene_label=scene_label, file_list=validation_files).event_stat_counts()
+                validation_stats = training_meta.filter(
+                    scene_label=scene_label,
+                    file_list=validation_files
+                ).event_stat_counts()
+
                 training_files = sorted(list(set(self.train(fold=fold).unique_files) - set(validation_files)))
-                training_stats = training_meta.filter(scene_label=scene_label, file_list=training_files).event_stat_counts()
+                training_stats = training_meta.filter(
+                    scene_label=scene_label,
+                    file_list=training_files
+                ).event_stat_counts()
 
                 cell_data = numpy.zeros((len(list(all_stats.keys())) + 1, 4))
                 for event_id, event_label in enumerate(list(all_stats.keys())):
@@ -2353,9 +2527,16 @@ class AudioTaggingDataset(Dataset):
             logger.sub_header('Validation set for fold [{fold}] / random'.format(fold=fold), indent=2)
             for scene_id, scene_label in enumerate(scene_labels):
                 all_stats = training_meta.filter(scene_label=scene_label).tag_stat_counts()
-                validation_stats = training_meta.filter(scene_label=scene_label, file_list=validation_files).tag_stat_counts()
+                validation_stats = training_meta.filter(
+                    scene_label=scene_label,
+                    file_list=validation_files
+                ).tag_stat_counts()
+
                 training_files = sorted(list(set(self.train(fold=fold).unique_files) - set(validation_files)))
-                training_stats = training_meta.filter(scene_label=scene_label, file_list=training_files).tag_stat_counts()
+                training_stats = training_meta.filter(
+                    scene_label=scene_label,
+                    file_list=training_files
+                ).tag_stat_counts()
 
                 cell_data = numpy.zeros((len(list(all_stats.keys())) + 1, 4))
                 for event_id, event_label in enumerate(list(all_stats.keys())):
@@ -2471,7 +2652,6 @@ class AudioTaggingDataset(Dataset):
                 )
 
                 for i in iteration_progress:
-
                     identifiers = list(data[scene_label].keys())
                     random.shuffle(identifiers, random.random)
 
@@ -2558,12 +2738,14 @@ class AudioTaggingDataset(Dataset):
                 validation_set_tag_amounts = []
                 training_set_tag_amounts = []
 
-                iteration_progress = tqdm(range(0, iterations),
-                                          desc="{0: <25s}".format('Generate validation split candidates'),
-                                          file=sys.stdout,
-                                          leave=False,
-                                          disable=self.disable_progress_bar,
-                                          ascii=self.use_ascii_progress_bar)
+                iteration_progress = tqdm(
+                    range(0, iterations),
+                    desc="{0: <25s}".format('Generate validation split candidates'),
+                    file=sys.stdout,
+                    leave=False,
+                    disable=self.disable_progress_bar,
+                    ascii=self.use_ascii_progress_bar
+                )
 
                 for i in iteration_progress:
                     items_id = list(range(0, len(data[scene_label])))
@@ -2632,9 +2814,16 @@ class AudioTaggingDataset(Dataset):
             logger.sub_header('Validation set for fold [{fold}] / balanced'.format(fold=fold), indent=2)
             for scene_id, scene_label in enumerate(scene_labels):
                 all_stats = training_meta.filter(scene_label=scene_label).tag_stat_counts()
-                validation_stats = training_meta.filter(scene_label=scene_label, file_list=validation_files).tag_stat_counts()
+                validation_stats = training_meta.filter(
+                    scene_label=scene_label,
+                    file_list=validation_files
+                ).tag_stat_counts()
+
                 training_files = sorted(list(set(self.train(fold=fold).unique_files) - set(validation_files)))
-                training_stats = training_meta.filter(scene_label=scene_label, file_list=training_files).tag_stat_counts()
+                training_stats = training_meta.filter(
+                    scene_label=scene_label,
+                    file_list=training_files
+                ).tag_stat_counts()
 
                 cell_data = numpy.zeros((len(list(all_stats.keys())) + 1, 4))
                 for tag_id, tag_label in enumerate(list(all_stats.keys())):

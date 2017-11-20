@@ -187,7 +187,7 @@ class TUTAcousticScenes_2017_DevelopmentSet(AcousticSceneDataset):
         if absolute_path:
             item.filename = self.relative_to_absolute_path(item.filename)
         else:
-            item.filename = self.absolute_to_relative(item.filename)
+            item.filename = self.absolute_to_relative_path(item.filename)
 
         raw_path, raw_filename = os.path.split(item.filename)
         item.identifier = raw_filename.split('_')[0]
@@ -342,6 +342,8 @@ class TUTAcousticScenes_2017_EvaluationSet(AcousticSceneDataset):
 
         if absolute_path:
             item.filename = self.relative_to_absolute_path(item.filename)
+        else:
+            item.filename = self.absolute_to_relative_path(item.filename)
 
         if filename_map and item.filename in filename_map:
             filename_mapped = filename_map.map(item.filename)
@@ -1416,6 +1418,8 @@ class TUTSoundEvents_2017_DevelopmentSet(SoundEventDataset):
 
         if absolute_path:
             item.filename = self.relative_to_absolute_path(item.filename)
+        else:
+            item.filename = self.absolute_to_relative_path(item.filename)
 
         raw_path, raw_filename = os.path.split(item.filename)
         item.identifier = raw_filename.split('_')[0]
@@ -1541,6 +1545,8 @@ class TUTSoundEvents_2017_EvaluationSet(SoundEventDataset):
 
         if absolute_path:
             item.filename = self.relative_to_absolute_path(item.filename)
+        else:
+            item.filename = self.absolute_to_relative_path(item.filename)
 
         raw_path, raw_filename = os.path.split(item.filename)
         item.identifier = os.path.splitext(raw_filename)[0]
@@ -1783,6 +1789,8 @@ class TUTAcousticScenes_2016_DevelopmentSet(AcousticSceneDataset):
 
         if absolute_path:
             item.filename = self.relative_to_absolute_path(item.filename)
+        else:
+            item.filename = self.absolute_to_relative_path(item.filename)
 
         raw_path, raw_filename = os.path.split(item.filename)
         item.identifier = raw_filename.split('_')[0]
@@ -1891,6 +1899,8 @@ class TUTAcousticScenes_2016_EvaluationSet(AcousticSceneDataset):
 
         if absolute_path:
             item.filename = self.relative_to_absolute_path(item.filename)
+        else:
+            item.filename = self.absolute_to_relative_path(item.filename)
 
         if item.filename_original is not None:
             raw_path, raw_filename = os.path.split(item.filename_original)
@@ -2021,6 +2031,8 @@ class TUTSoundEvents_2016_DevelopmentSet(SoundEventDataset):
 
         if absolute_path:
             item.filename = self.relative_to_absolute_path(item.filename)
+        else:
+            item.filename = self.absolute_to_relative_path(item.filename)
 
         raw_path, raw_filename = os.path.split(item.filename)
         item.identifier = os.path.splitext(raw_filename)[0]
@@ -2351,7 +2363,7 @@ class TUT_SED_Synthetic_2016(SoundEventDataset):
 
         """
 
-        filename_ = self.absolute_to_relative(filename).replace('audio/', 'features/')
+        filename_ = self.absolute_to_relative_path(filename).replace('audio/', 'features/')
         filename_ = os.path.splitext(filename_)[0] + '.cpickle'
         if os.path.isfile(os.path.join(self.local_path, filename_)):
             feature_data = pickle.load(open(os.path.join(self.local_path, filename_), "rb"))

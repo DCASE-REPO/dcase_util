@@ -86,7 +86,7 @@ class DCASE2013_Scenes_DevelopmentSet(AcousticSceneDataset):
 
             for filename in self.audio_files:
                 raw_path, raw_filename = os.path.split(filename)
-                relative_path = self.absolute_to_relative(raw_path)
+                relative_path = self.absolute_to_relative_path(raw_path)
 
                 meta_data.append(
                     MetaDataItem(
@@ -143,7 +143,7 @@ class DCASE2013_Scenes_DevelopmentSet(AcousticSceneDataset):
                 # Test
                 test_meta = MetaDataContainer(filename=test_filename)
                 for filename in test_files:
-                    test_meta.append(MetaDataItem({'filename': self.absolute_to_relative(filename)}))
+                    test_meta.append(MetaDataItem({'filename': self.absolute_to_relative_path(filename)}))
                 test_meta.save()
 
                 # Evaluate

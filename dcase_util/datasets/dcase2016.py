@@ -132,6 +132,8 @@ class CHiMEHome_DomesticAudioTag_DevelopmentSet(AudioTaggingDataset):
 
         if absolute_path:
             item.filename = self.relative_to_absolute_path(item.filename)
+        else:
+            item.filename = self.absolute_to_relative_path(item.filename)
 
         name = os.path.split(item.filename)[1]
         segment_name = name[0:name.find('_chunk')]
@@ -262,7 +264,9 @@ class CHiMEHome_DomesticAudioTag_DevelopmentSet(AudioTaggingDataset):
 
                 train_meta = MetaDataContainer(filename=train_filename)
                 for filename in train_files:
-                    train_meta.append(self.file_meta(filename)[0])
+                    item = self.file_meta(filename)[0]
+                    self.process_meta_item(item, absolute_path=False)
+                    train_meta.append(item)
 
                 train_meta.save()
 
@@ -274,7 +278,8 @@ class CHiMEHome_DomesticAudioTag_DevelopmentSet(AudioTaggingDataset):
 
                 test_meta = MetaDataContainer(filename=test_filename)
                 for filename in test_files:
-                    test_meta.append(MetaDataItem({'filename': self.absolute_to_relative(filename)}))
+                    item = MetaDataItem({'filename': self.absolute_to_relative_path(filename)})
+                    test_meta.append(item)
 
                 test_meta.save()
 
@@ -286,7 +291,9 @@ class CHiMEHome_DomesticAudioTag_DevelopmentSet(AudioTaggingDataset):
 
                 eval_meta = MetaDataContainer(filename=eval_filename)
                 for filename in test_files:
-                    eval_meta.append(self.file_meta(filename)[0])
+                    item = self.file_meta(filename)[0]
+                    self.process_meta_item(item, absolute_path=False)
+                    eval_meta.append(item)
 
                 eval_meta.save()
 
@@ -471,7 +478,7 @@ class CHiMEHome_DomesticAudioTag_EvaluationSet(CHiMEHome_DomesticAudioTag_Develo
 
             test_meta = MetaDataContainer(filename=test_filename)
             for filename in self.test_files():
-                test_meta.append(MetaDataItem({'filename': self.absolute_to_relative(filename)}))
+                test_meta.append(MetaDataItem({'filename': self.absolute_to_relative_path(filename)}))
 
             test_meta.save()
 

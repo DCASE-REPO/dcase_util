@@ -91,7 +91,7 @@ Usage examples:
     Dataset.file_features
 
     Dataset.relative_to_absolute_path
-    Dataset.absolute_to_relative
+    Dataset.absolute_to_relative_path
 
     Dataset.dataset_bytes
     Dataset.dataset_size_string
