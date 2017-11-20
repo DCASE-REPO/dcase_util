@@ -356,7 +356,7 @@ if param.get_path('flow.testing'):
                 for tag_id, tag_label in enumerate(db.tags()):
                     current_results.append(
                         {
-                            'filename': db.absolute_to_relative(audio_filename),
+                            'filename': db.absolute_to_relative_path(audio_filename),
                             'label': tag_label,
                             'probability': probabilities[tag_id]
                         }
@@ -370,30 +370,6 @@ if param.get_path('flow.testing'):
     log.foot()
 
 
-def eer(y_score, y_true):
-    from sklearn import metrics
-    fpr, tpr, thresholds = metrics.roc_curve(y_true, y_score, drop_intermediate=True)
-
-    eps = 1E-6
-    Points = [(0, 0)] + zip(fpr, tpr)
-    for i, point in enumerate(Points):
-        if point[0] + eps >= 1 - point[1]:
-            break
-
-    P1 = Points[i - 1]
-    P2 = Points[i]
-
-    # Interpolate between P1 and P2
-    if abs(P2[0] - P1[0]) < eps:
-        EER = P1[0]
-    else:
-        m = (P2[1] - P1[1]) / (P2[0] - P1[0])
-        o = P1[1] - m * P1[0]
-        EER = (1 - o) / (1 + m)
-
-    return EER
-
-
 # Evaluation
 if param.get_path('flow.evaluation'):
     log.section_header('Evaluation')
@@ -403,37 +379,21 @@ if param.get_path('flow.evaluation'):
 
         reference = db.eval(fold=fold)
         for item_id, item in enumerate(reference):
-            item.filename = db.absolute_to_relative(item.filename)
-            reference[item_id]['file'] = item.filename
+            item.filename = db.absolute_to_relative_path(item.filename)
 
         estimated = dcase_util.containers.ProbabilityContainer(filename=fold_results_filename).load()
         for item_id, item in enumerate(estimated):
-            item.filename = db.absolute_to_relative(item.filename)
-            estimated[item_id]['file'] = item.filename
+            item.filename = db.absolute_to_relative_path(item.filename)
 
+        evaluator = sed_eval.audio_tag.AudioTaggingMetrics(tags=db.tags())
+        evaluator.evaluate(
+            reference_tag_list=reference,
+            estimated_tag_probabilities=estimated
+        )
+
+        results = dcase_util.containers.DictContainer(evaluator.results())
         for tag_id, tag_label in enumerate(db.tags()):
-            y_true = {}
-            y_score = {}
-
-            for result_item in estimated:
-                if result_item.label == tag_label:
-                    if tag_label in reference.filter(filename=result_item.filename)[0].tags:
-                        true_binary = 1
-
-                    else:
-                        true_binary = 0
-
-                    y_true[result_item.filename] = true_binary
-                    y_score[result_item.filename] = float(result_item.probability)
-
-            if y_true:
-                class_wise_eer[fold-1, tag_id] = eer(
-                    y_score=list(y_score.values()),
-                    y_true=list(y_true.values())
-                )
-
-            else:
-                class_wise_eer[fold-1, tag_id] = None
+            class_wise_eer[fold - 1, tag_id] = results['class_wise'][tag_label]['eer']['eer']
 
     cell_data = class_wise_eer
     tag_mean_accuracy = numpy.nanmean(cell_data, axis=0).reshape((1, -1))
@@ -443,7 +403,7 @@ if param.get_path('flow.evaluation'):
 
     tag_list = db.tags()
     tag_list.extend(['Average'])
-    cell_data = [tag_list] + (cell_data).tolist()
+    cell_data = [tag_list] + cell_data.tolist()
 
     column_headers = ['Tag']
     for fold in db.folds():
