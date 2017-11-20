@@ -21,7 +21,6 @@ requirements = [
     'ujson>=1.35',
     'scipy>=0.19.1',
     'colorama>=0.3.7',
-    'titlecase>=0.12.0',
     'python-magic>=0.4.13',
 ]
 
