@@ -32,6 +32,13 @@ The latest stable release is available on PyPI, and you can install with pip:
 Changelog
 =========
 
+#### 0.1.7 / 2017-11-22
+
+* Fix data sequencing when overlapping sequencing is used. 
+* Dataset class API modifications (e.g. copy returned metadata prevent accidental manipulation, uniform method names)
+* Fix datasets CHiMEHome_DomesticAudioTag_DevelopmentSet, TUTAcousticScenes_2017_EvaluationSet, and TUTSoundEvents_2017_EvaluationSet
+* Add intersection method for MetaDataContainer 
+
 #### 0.1.6 / 2017-11-14
 
 * Fixing audio reading when target sampling rate is not set
