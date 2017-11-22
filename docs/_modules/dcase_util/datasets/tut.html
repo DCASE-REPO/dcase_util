@@ -448,6 +448,8 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.MetaDataContainer.event_stat_counts.html">dcase_util.containers.MetaDataContainer.event_stat_counts</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.MetaDataContainer.tag_stat_counts.html">dcase_util.containers.MetaDataContainer.tag_stat_counts</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.MetaDataContainer.to_event_roll.html">dcase_util.containers.MetaDataContainer.to_event_roll</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.MetaDataContainer.intersection.html">dcase_util.containers.MetaDataContainer.intersection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.MetaDataContainer.intersection_report.html">dcase_util.containers.MetaDataContainer.intersection_report</a></li>
 </ul>
 </li>
 </ul>
@@ -710,7 +712,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.Dataset.file_error_meta.html">dcase_util.datasets.Dataset.file_error_meta</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.Dataset.file_features.html">dcase_util.datasets.Dataset.file_features</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.Dataset.relative_to_absolute_path.html">dcase_util.datasets.Dataset.relative_to_absolute_path</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.Dataset.absolute_to_relative.html">dcase_util.datasets.Dataset.absolute_to_relative</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.Dataset.absolute_to_relative_path.html">dcase_util.datasets.Dataset.absolute_to_relative_path</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.Dataset.dataset_bytes.html">dcase_util.datasets.Dataset.dataset_bytes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.Dataset.dataset_size_string.html">dcase_util.datasets.Dataset.dataset_size_string</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.Dataset.dataset_size_on_disk.html">dcase_util.datasets.Dataset.dataset_size_on_disk</a></li>
@@ -1249,6 +1251,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-1-7">v0.1.7</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-1-6">v0.1.6</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-1-5">v0.1.5</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-1-4">v0.1.4</a></li>
@@ -1353,9 +1356,9 @@
 <span class="sd">            Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), &#39;dcase_util_datasets&#39;)</span>
 <span class="sd">            is used.</span>
 
-<span class="sd">        included_content_types : list of str</span>
+<span class="sd">        included_content_types : list of str or str</span>
 <span class="sd">            Indicates what content type should be processed. One or multiple from [&#39;all&#39;, &#39;audio&#39;, &#39;meta&#39;, &#39;code&#39;,</span>
-<span class="sd">            &#39;documentation&#39;]. If None given, [&#39;all&#39;] is used.</span>
+<span class="sd">            &#39;documentation&#39;]. If None given, [&#39;all&#39;] is used. Parameter can be also comma separated string.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -1489,8 +1492,9 @@
 
         <span class="k">if</span> <span class="n">absolute_path</span><span class="p">:</span>
             <span class="n">item</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relative_to_absolute_path</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">item</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">absolute_to_relative</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+            <span class="n">item</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">absolute_to_relative_path</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
 
         <span class="n">raw_path</span><span class="p">,</span> <span class="n">raw_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
         <span class="n">item</span><span class="o">.</span><span class="n">identifier</span> <span class="o">=</span> <span class="n">raw_filename</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
@@ -1520,7 +1524,11 @@
                 <span class="c1"># Process, make sure each file is included only once.</span>
                 <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">fold_data</span><span class="p">:</span>
                     <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">filename</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">meta_data</span><span class="p">:</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">process_meta_item</span><span class="p">(</span><span class="n">item</span><span class="o">=</span><span class="n">item</span><span class="p">,</span> <span class="n">absolute_path</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">process_meta_item</span><span class="p">(</span>
+                            <span class="n">item</span><span class="o">=</span><span class="n">item</span><span class="p">,</span>
+                            <span class="n">absolute_path</span><span class="o">=</span><span class="kc">False</span>
+                        <span class="p">)</span>
+
                         <span class="n">meta_data</span><span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">filename</span><span class="p">]</span> <span class="o">=</span> <span class="n">item</span>
             <span class="c1"># Save meta</span>
             <span class="n">MetaDataContainer</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">meta_data</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">meta_file</span><span class="p">)</span>
@@ -1556,9 +1564,9 @@
 <span class="sd">            Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), &#39;dcase_util_datasets&#39;)</span>
 <span class="sd">            is used.</span>
 
-<span class="sd">        included_content_types : list of str</span>
+<span class="sd">        included_content_types : list of str or str</span>
 <span class="sd">            Indicates what content type should be processed. One or multiple from [&#39;all&#39;, &#39;audio&#39;, &#39;meta&#39;, &#39;code&#39;,</span>
-<span class="sd">            &#39;documentation&#39;]. If None given, [&#39;all&#39;] is used.</span>
+<span class="sd">            &#39;documentation&#39;]. If None given, [&#39;all&#39;] is used. Parameter can be also comma separated string.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -1584,21 +1592,21 @@
                 <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;documentation&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="s1">&#39;TUT-acoustic-scenes-2017-evaluation.doc.zip&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">53687</span><span class="p">,</span>
-                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;47bbdc0614b468d2bfadbc49e561a320&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;53709a07416ea3b617c02fcf67dbeb9c&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="s1">&#39;TUT-acoustic-scenes-2017-evaluation.doc.zip&#39;</span>
             <span class="p">},</span>
             <span class="p">{</span>
                 <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;meta&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="s1">&#39;TUT-acoustic-scenes-2017-evaluation.meta.zip&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">4473</span><span class="p">,</span>
-                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;e006cfec14a49dd79a6ab8f8d5b1c5e6&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;200eee9493e8044403e1326e3d05cfde&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="s1">&#39;TUT-acoustic-scenes-2017-evaluation.meta.zip&#39;</span>
             <span class="p">},</span>
             <span class="p">{</span>
                 <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;audio&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="s1">&#39;TUT-acoustic-scenes-2017-evaluation.audio.1.zip&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1071856687</span><span class="p">,</span>
-                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;5d97dea8461baec8027ae4a0c2b18d4b&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;3d6dda4445871e9544e0fefe7d14c7d9&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="s1">&#39;TUT-acoustic-scenes-2017-evaluation.audio.1.zip&#39;</span>
             <span class="p">},</span>
             <span class="p">{</span>
@@ -1646,6 +1654,9 @@
         <span class="k">if</span> <span class="n">absolute_path</span><span class="p">:</span>
             <span class="n">item</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relative_to_absolute_path</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
 
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">item</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">absolute_to_relative_path</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+
         <span class="k">if</span> <span class="n">filename_map</span> <span class="ow">and</span> <span class="n">item</span><span class="o">.</span><span class="n">filename</span> <span class="ow">in</span> <span class="n">filename_map</span><span class="p">:</span>
             <span class="n">filename_mapped</span> <span class="o">=</span> <span class="n">filename_map</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
             <span class="n">item</span><span class="o">.</span><span class="n">identifier</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">filename_mapped</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
@@ -1677,7 +1688,12 @@
 
                 <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
                     <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">filename</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">meta_data</span><span class="p">:</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">process_meta_item</span><span class="p">(</span><span class="n">item</span><span class="o">=</span><span class="n">item</span><span class="p">,</span> <span class="n">absolute_path</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">filename_map</span><span class="o">=</span><span class="n">filename_map</span><span class="p">)</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">process_meta_item</span><span class="p">(</span>
+                            <span class="n">item</span><span class="o">=</span><span class="n">item</span><span class="p">,</span>
+                            <span class="n">absolute_path</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                            <span class="n">filename_map</span><span class="o">=</span><span class="n">filename_map</span>
+                        <span class="p">)</span>
+
                         <span class="n">meta_data</span><span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">filename</span><span class="p">]</span> <span class="o">=</span> <span class="n">item</span>
 
                 <span class="c1"># Save meta</span>
@@ -1716,9 +1732,9 @@
 <span class="sd">            Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), &#39;dcase_util_datasets&#39;)</span>
 <span class="sd">            is used.</span>
 
-<span class="sd">        included_content_types : list of str</span>
+<span class="sd">        included_content_types : list of str or str</span>
 <span class="sd">            Indicates what content type should be processed. One or multiple from [&#39;all&#39;, &#39;audio&#39;, &#39;meta&#39;, &#39;code&#39;,</span>
-<span class="sd">            &#39;documentation&#39;]. If None given, [&#39;all&#39;] is used.</span>
+<span class="sd">            &#39;documentation&#39;]. If None given, [&#39;all&#39;] is used. Parameter can be also comma separated string.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -2352,9 +2368,9 @@
 <span class="sd">            Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), &#39;dcase_util_datasets&#39;)</span>
 <span class="sd">            is used.</span>
 
-<span class="sd">        included_content_types : list of str</span>
+<span class="sd">        included_content_types : list of str or str</span>
 <span class="sd">            Indicates what content type should be processed. One or multiple from [&#39;all&#39;, &#39;audio&#39;, &#39;meta&#39;, &#39;code&#39;,</span>
-<span class="sd">            &#39;documentation&#39;]. If None given, [&#39;all&#39;] is used.</span>
+<span class="sd">            &#39;documentation&#39;]. If None given, [&#39;all&#39;] is used. Parameter can be also comma separated string.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -2648,9 +2664,9 @@
 <span class="sd">            Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), &#39;dcase_util_datasets&#39;)</span>
 <span class="sd">            is used.</span>
 
-<span class="sd">        included_content_types : list of str</span>
+<span class="sd">        included_content_types : list of str or str</span>
 <span class="sd">            Indicates what content type should be processed. One or multiple from [&#39;all&#39;, &#39;audio&#39;, &#39;meta&#39;, &#39;code&#39;,</span>
-<span class="sd">            &#39;documentation&#39;]. If None given, [&#39;all&#39;] is used.</span>
+<span class="sd">            &#39;documentation&#39;]. If None given, [&#39;all&#39;] is used. Parameter can be also comma separated string.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -2720,6 +2736,9 @@
         <span class="k">if</span> <span class="n">absolute_path</span><span class="p">:</span>
             <span class="n">item</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relative_to_absolute_path</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
 
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">item</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">absolute_to_relative_path</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+
         <span class="n">raw_path</span><span class="p">,</span> <span class="n">raw_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
         <span class="n">item</span><span class="o">.</span><span class="n">identifier</span> <span class="o">=</span> <span class="n">raw_filename</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 
@@ -2738,7 +2757,11 @@
             <span class="k">for</span> <span class="n">annotation_filename</span> <span class="ow">in</span> <span class="n">annotation_files</span><span class="p">:</span>
                 <span class="n">data</span> <span class="o">=</span> <span class="n">MetaDataContainer</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">annotation_filename</span><span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
                 <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">process_meta_item</span><span class="p">(</span><span class="n">item</span><span class="o">=</span><span class="n">item</span><span class="p">,</span> <span class="n">absolute_path</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">process_meta_item</span><span class="p">(</span>
+                        <span class="n">item</span><span class="o">=</span><span class="n">item</span><span class="p">,</span>
+                        <span class="n">absolute_path</span><span class="o">=</span><span class="kc">False</span>
+                    <span class="p">)</span>
+
                 <span class="n">meta_data</span> <span class="o">+=</span> <span class="n">data</span>
 
             <span class="c1"># Save meta</span>
@@ -2758,7 +2781,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="TUTSoundEvents_2017_EvaluationSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TUTSoundEvents_2017_EvaluationSet.html#dcase_util.datasets.TUTSoundEvents_2017_EvaluationSet.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-                 <span class="n">storage_name</span><span class="o">=</span><span class="s1">&#39;TUT-acoustic-scenes-2017-evaluation&#39;</span><span class="p">,</span>
+                 <span class="n">storage_name</span><span class="o">=</span><span class="s1">&#39;TUT-sound-events-2017-evaluation&#39;</span><span class="p">,</span>
                  <span class="n">data_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">included_content_types</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -2775,9 +2798,9 @@
 <span class="sd">            Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), &#39;dcase_util_datasets&#39;)</span>
 <span class="sd">            is used.</span>
 
-<span class="sd">        included_content_types : list of str</span>
+<span class="sd">        included_content_types : list of str or str</span>
 <span class="sd">            Indicates what content type should be processed. One or multiple from [&#39;all&#39;, &#39;audio&#39;, &#39;meta&#39;, &#39;code&#39;,</span>
-<span class="sd">            &#39;documentation&#39;]. If None given, [&#39;all&#39;] is used.</span>
+<span class="sd">            &#39;documentation&#39;]. If None given, [&#39;all&#39;] is used. Parameter can be also comma separated string.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -2803,21 +2826,21 @@
                 <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;documentation&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="s1">&#39;TUT-sound-events-2017-evaluation.doc.zip&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">54606</span><span class="p">,</span>
-                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;9d4378427b50e830efcdcbac95335448&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;8bbf41671949edee15d6cdc3f9e726c9&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="s1">&#39;TUT-sound-events-2017-evaluation.doc.zip&#39;</span>
             <span class="p">},</span>
             <span class="p">{</span>
                 <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;meta&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="s1">&#39;TUT-sound-events-2017-evaluation.meta.zip&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">762</span><span class="p">,</span>
-                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;e5e343c25909d14df282eebcf301a672&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;a951598abaea87296ca409e30fb0b379&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="s1">&#39;TUT-sound-events-2017-evaluation.meta.zip&#39;</span>
             <span class="p">},</span>
             <span class="p">{</span>
                 <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;audio&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="s1">&#39;TUT-sound-events-2017-evaluation.audio.zip&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">388173790</span><span class="p">,</span>
-                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;857f8d3f56e0e8ac55fe082e5b792007&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;1d3aa81896be0f142130ca9ca7a2b871&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="s1">&#39;TUT-sound-events-2017-evaluation.audio.zip&#39;</span>
             <span class="p">}</span>
         <span class="p">]</span>
@@ -2845,6 +2868,9 @@
         <span class="k">if</span> <span class="n">absolute_path</span><span class="p">:</span>
             <span class="n">item</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relative_to_absolute_path</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
 
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">item</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">absolute_to_relative_path</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+
         <span class="n">raw_path</span><span class="p">,</span> <span class="n">raw_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
         <span class="n">item</span><span class="o">.</span><span class="n">identifier</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">raw_filename</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
         <span class="n">item</span><span class="o">.</span><span class="n">source_label</span> <span class="o">=</span> <span class="s1">&#39;mixture&#39;</span>
@@ -2870,7 +2896,11 @@
                 <span class="n">meta_data</span> <span class="o">=</span> <span class="n">MetaDataContainer</span><span class="p">()</span>
                 <span class="n">eval_file</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
                 <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">eval_file</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">process_meta_item</span><span class="p">(</span><span class="n">item</span><span class="o">=</span><span class="n">item</span><span class="p">,</span> <span class="n">absolute_path</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">process_meta_item</span><span class="p">(</span>
+                        <span class="n">item</span><span class="o">=</span><span class="n">item</span><span class="p">,</span>
+                        <span class="n">absolute_path</span><span class="o">=</span><span class="kc">False</span>
+                    <span class="p">)</span>
+
                 <span class="n">meta_data</span> <span class="o">+=</span> <span class="n">eval_file</span>
 
                 <span class="c1"># Save meta</span>
@@ -2888,7 +2918,11 @@
                 <span class="k">for</span> <span class="n">annotation_filename</span> <span class="ow">in</span> <span class="n">annotation_files</span><span class="p">:</span>
                     <span class="n">data</span> <span class="o">=</span> <span class="n">MetaDataContainer</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">annotation_filename</span><span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
                     <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">process_meta_item</span><span class="p">(</span><span class="n">item</span><span class="o">=</span><span class="n">item</span><span class="p">,</span> <span class="n">absolute_path</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">process_meta_item</span><span class="p">(</span>
+                            <span class="n">item</span><span class="o">=</span><span class="n">item</span><span class="p">,</span>
+                            <span class="n">absolute_path</span><span class="o">=</span><span class="kc">False</span>
+                        <span class="p">)</span>
+
                     <span class="n">meta_data</span> <span class="o">+=</span> <span class="n">data</span>
 
                 <span class="c1"># Save meta</span>
@@ -2930,9 +2964,9 @@
 <span class="sd">            Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), &#39;dcase_util_datasets&#39;)</span>
 <span class="sd">            is used.</span>
 
-<span class="sd">        included_content_types : list of str</span>
+<span class="sd">        included_content_types : list of str or str</span>
 <span class="sd">            Indicates what content type should be processed. One or multiple from [&#39;all&#39;, &#39;audio&#39;, &#39;meta&#39;, &#39;code&#39;,</span>
-<span class="sd">            &#39;documentation&#39;]. If None given, [&#39;all&#39;] is used.</span>
+<span class="sd">            &#39;documentation&#39;]. If None given, [&#39;all&#39;] is used. Parameter can be also comma separated string.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -3061,7 +3095,11 @@
 
                 <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">fold_data</span><span class="p">:</span>
                     <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">filename</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">meta_data</span><span class="p">:</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">process_meta_item</span><span class="p">(</span><span class="n">item</span><span class="o">=</span><span class="n">item</span><span class="p">,</span> <span class="n">absolute_path</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">process_meta_item</span><span class="p">(</span>
+                            <span class="n">item</span><span class="o">=</span><span class="n">item</span><span class="p">,</span>
+                            <span class="n">absolute_path</span><span class="o">=</span><span class="kc">False</span>
+                        <span class="p">)</span>
+
                         <span class="n">meta_data</span><span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">filename</span><span class="p">]</span> <span class="o">=</span> <span class="n">item</span>
 
             <span class="c1"># Save meta</span>
@@ -3086,6 +3124,8 @@
 
         <span class="k">if</span> <span class="n">absolute_path</span><span class="p">:</span>
             <span class="n">item</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relative_to_absolute_path</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">item</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">absolute_to_relative_path</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
 
         <span class="n">raw_path</span><span class="p">,</span> <span class="n">raw_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
         <span class="n">item</span><span class="o">.</span><span class="n">identifier</span> <span class="o">=</span> <span class="n">raw_filename</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span></div>
@@ -3116,9 +3156,9 @@
 <span class="sd">            Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), &#39;dcase_util_datasets&#39;)</span>
 <span class="sd">            is used.</span>
 
-<span class="sd">        included_content_types : list of str</span>
+<span class="sd">        included_content_types : list of str or str</span>
 <span class="sd">            Indicates what content type should be processed. One or multiple from [&#39;all&#39;, &#39;audio&#39;, &#39;meta&#39;, &#39;code&#39;,</span>
-<span class="sd">            &#39;documentation&#39;]. If None given, [&#39;all&#39;] is used.</span>
+<span class="sd">            &#39;documentation&#39;]. If None given, [&#39;all&#39;] is used. Parameter can be also comma separated string.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -3195,6 +3235,9 @@
         <span class="k">if</span> <span class="n">absolute_path</span><span class="p">:</span>
             <span class="n">item</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relative_to_absolute_path</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
 
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">item</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">absolute_to_relative_path</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+
         <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">filename_original</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">raw_path</span><span class="p">,</span> <span class="n">raw_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">filename_original</span><span class="p">)</span>
             <span class="n">item</span><span class="o">.</span><span class="n">identifier</span> <span class="o">=</span> <span class="n">raw_filename</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
@@ -3220,7 +3263,11 @@
                 <span class="n">meta_data</span> <span class="o">=</span> <span class="p">{}</span>
                 <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">eval_data</span><span class="p">:</span>
                     <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">filename</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">meta_data</span><span class="p">:</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">process_meta_item</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">absolute_path</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">process_meta_item</span><span class="p">(</span>
+                            <span class="n">item</span><span class="o">=</span><span class="n">item</span><span class="p">,</span>
+                            <span class="n">absolute_path</span><span class="o">=</span><span class="kc">False</span>
+                        <span class="p">)</span>
+
                         <span class="n">meta_data</span><span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">filename</span><span class="p">]</span> <span class="o">=</span> <span class="n">item</span>
 
                 <span class="c1"># Save meta</span>
@@ -3257,9 +3304,9 @@
 <span class="sd">            Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), &#39;dcase_util_datasets&#39;)</span>
 <span class="sd">            is used.</span>
 
-<span class="sd">        included_content_types : list of str</span>
+<span class="sd">        included_content_types : list of str or str</span>
 <span class="sd">            Indicates what content type should be processed. One or multiple from [&#39;all&#39;, &#39;audio&#39;, &#39;meta&#39;, &#39;code&#39;,</span>
-<span class="sd">            &#39;documentation&#39;]. If None given, [&#39;all&#39;] is used.</span>
+<span class="sd">            &#39;documentation&#39;]. If None given, [&#39;all&#39;] is used. Parameter can be also comma separated string.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -3325,6 +3372,9 @@
         <span class="k">if</span> <span class="n">absolute_path</span><span class="p">:</span>
             <span class="n">item</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relative_to_absolute_path</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
 
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">item</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">absolute_to_relative_path</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+
         <span class="n">raw_path</span><span class="p">,</span> <span class="n">raw_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
         <span class="n">item</span><span class="o">.</span><span class="n">identifier</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">raw_filename</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
         <span class="n">item</span><span class="o">.</span><span class="n">source_label</span> <span class="o">=</span> <span class="s1">&#39;mixture&#39;</span>
@@ -3351,7 +3401,11 @@
                     <span class="n">item</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="n">audio_filename</span>
                     <span class="n">item</span><span class="o">.</span><span class="n">scene_label</span> <span class="o">=</span> <span class="n">scene_label</span>
 
-                    <span class="bp">self</span><span class="o">.</span><span class="n">process_meta_item</span><span class="p">(</span><span class="n">item</span><span class="o">=</span><span class="n">item</span><span class="p">,</span> <span class="n">absolute_path</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">process_meta_item</span><span class="p">(</span>
+                        <span class="n">item</span><span class="o">=</span><span class="n">item</span><span class="p">,</span>
+                        <span class="n">absolute_path</span><span class="o">=</span><span class="kc">False</span>
+                    <span class="p">)</span>
+
                 <span class="n">meta_data</span> <span class="o">+=</span> <span class="n">data</span>
 
             <span class="c1"># Save meta</span>
@@ -3387,9 +3441,9 @@
 <span class="sd">            Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), &#39;dcase_util_datasets&#39;)</span>
 <span class="sd">            is used.</span>
 
-<span class="sd">        included_content_types : list of str</span>
+<span class="sd">        included_content_types : list of str or str</span>
 <span class="sd">            Indicates what content type should be processed. One or multiple from [&#39;all&#39;, &#39;audio&#39;, &#39;meta&#39;, &#39;code&#39;,</span>
-<span class="sd">            &#39;documentation&#39;]. If None given, [&#39;all&#39;] is used.</span>
+<span class="sd">            &#39;documentation&#39;]. If None given, [&#39;all&#39;] is used. Parameter can be also comma separated string.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -3466,7 +3520,11 @@
                     <span class="n">item</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="n">audio_filename</span>
                     <span class="n">item</span><span class="o">.</span><span class="n">scene_label</span> <span class="o">=</span> <span class="n">scene_label</span>
 
-                    <span class="bp">self</span><span class="o">.</span><span class="n">process_meta_item</span><span class="p">(</span><span class="n">item</span><span class="o">=</span><span class="n">item</span><span class="p">,</span> <span class="n">absolute_path</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">process_meta_item</span><span class="p">(</span>
+                        <span class="n">item</span><span class="o">=</span><span class="n">item</span><span class="p">,</span>
+                        <span class="n">absolute_path</span><span class="o">=</span><span class="kc">False</span>
+                    <span class="p">)</span>
+
                 <span class="n">meta_data</span> <span class="o">+=</span> <span class="n">data</span>
 
             <span class="c1"># Save meta</span>
@@ -3505,9 +3563,9 @@
 <span class="sd">            Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), &#39;dcase_util_datasets&#39;)</span>
 <span class="sd">            is used.</span>
 
-<span class="sd">        included_content_types : list of str</span>
+<span class="sd">        included_content_types : list of str or str</span>
 <span class="sd">            Indicates what content type should be processed. One or multiple from [&#39;all&#39;, &#39;audio&#39;, &#39;meta&#39;, &#39;code&#39;,</span>
-<span class="sd">            &#39;documentation&#39;]. If None given, [&#39;all&#39;] is used.</span>
+<span class="sd">            &#39;documentation&#39;]. If None given, [&#39;all&#39;] is used. Parameter can be also comma separated string.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -3600,7 +3658,10 @@
                     <span class="n">item</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="n">audio_filename</span>
                     <span class="n">item</span><span class="o">.</span><span class="n">scene_label</span> <span class="o">=</span> <span class="s1">&#39;synthetic&#39;</span>
                     <span class="n">item</span><span class="o">.</span><span class="n">source_label</span> <span class="o">=</span> <span class="s1">&#39;m&#39;</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">process_meta_item</span><span class="p">(</span><span class="n">item</span><span class="o">=</span><span class="n">item</span><span class="p">,</span> <span class="n">absolute_path</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">process_meta_item</span><span class="p">(</span>
+                        <span class="n">item</span><span class="o">=</span><span class="n">item</span><span class="p">,</span>
+                        <span class="n">absolute_path</span><span class="o">=</span><span class="kc">False</span>
+                    <span class="p">)</span>
 
                 <span class="n">meta_data</span> <span class="o">+=</span> <span class="n">data</span>
 
@@ -3622,10 +3683,13 @@
 
         <span class="k">if</span> <span class="n">setup_part</span> <span class="o">==</span> <span class="s1">&#39;train&#39;</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">evaluation_setup_path</span><span class="p">,</span> <span class="s1">&#39;train+validate&#39;</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="n">file_extension</span><span class="p">)</span>
+
         <span class="k">elif</span> <span class="n">setup_part</span> <span class="o">==</span> <span class="s1">&#39;test&#39;</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">evaluation_setup_path</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="n">file_extension</span><span class="p">)</span>
+
         <span class="k">elif</span> <span class="n">setup_part</span> <span class="o">==</span> <span class="s1">&#39;validate&#39;</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">evaluation_setup_path</span><span class="p">,</span> <span class="s1">&#39;validate&#39;</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="n">file_extension</span><span class="p">)</span>
+
         <span class="k">elif</span> <span class="n">setup_part</span> <span class="o">==</span> <span class="s1">&#39;evaluate&#39;</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">evaluation_setup_path</span><span class="p">,</span> <span class="s1">&#39;evaluate&#39;</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="n">file_extension</span><span class="p">)</span>
 
@@ -3654,11 +3718,12 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="n">filename_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">absolute_to_relative</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;audio/&#39;</span><span class="p">,</span> <span class="s1">&#39;features/&#39;</span><span class="p">)</span>
+        <span class="n">filename_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">absolute_to_relative_path</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;audio/&#39;</span><span class="p">,</span> <span class="s1">&#39;features/&#39;</span><span class="p">)</span>
         <span class="n">filename_</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">filename_</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;.cpickle&#39;</span>
         <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">local_path</span><span class="p">,</span> <span class="n">filename_</span><span class="p">)):</span>
             <span class="n">feature_data</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">local_path</span><span class="p">,</span> <span class="n">filename_</span><span class="p">),</span> <span class="s2">&quot;rb&quot;</span><span class="p">))</span>
             <span class="k">return</span> <span class="n">feature_data</span><span class="p">[</span><span class="s1">&#39;feat&#39;</span><span class="p">]</span>
+
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">None</span></div>
 </pre></div>

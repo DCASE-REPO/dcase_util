@@ -3,6 +3,14 @@
 Release notes
 =============
 
+v0.1.7
+------
+
+- Fix data sequencing when overlapping sequencing is used.
+- Dataset class API modifications (e.g. copy returned metadata prevent accidental manipulation, uniform method names)
+- Fix datasets CHiMEHome_DomesticAudioTag_DevelopmentSet, TUTAcousticScenes_2017_EvaluationSet, and TUTSoundEvents_2017_EvaluationSet
+- Add intersection method for MetaDataContainer
+
 v0.1.6
 ------
 

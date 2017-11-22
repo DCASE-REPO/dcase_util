@@ -1,0 +1,6 @@
+dcase_util.containers.MetaDataContainer.intersection
+====================================================
+
+.. currentmodule:: dcase_util.containers
+
+.. automethod:: MetaDataContainer.intersection

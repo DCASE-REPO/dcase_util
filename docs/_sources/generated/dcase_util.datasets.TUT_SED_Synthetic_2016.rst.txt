@@ -14,7 +14,7 @@ dcase_util.datasets.TUT_SED_Synthetic_2016
    .. autosummary::
    
       ~TUT_SED_Synthetic_2016.__init__
-      ~TUT_SED_Synthetic_2016.absolute_to_relative
+      ~TUT_SED_Synthetic_2016.absolute_to_relative_path
       ~TUT_SED_Synthetic_2016.check_filelist
       ~TUT_SED_Synthetic_2016.dataset_bytes
       ~TUT_SED_Synthetic_2016.dataset_size_on_disk

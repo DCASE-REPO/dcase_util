@@ -32,6 +32,8 @@ dcase_util.processors.MetadataReadingProcessor
       ~MetadataReadingProcessor.get_string
       ~MetadataReadingProcessor.index
       ~MetadataReadingProcessor.insert
+      ~MetadataReadingProcessor.intersection
+      ~MetadataReadingProcessor.intersection_report
       ~MetadataReadingProcessor.is_package
       ~MetadataReadingProcessor.load
       ~MetadataReadingProcessor.log

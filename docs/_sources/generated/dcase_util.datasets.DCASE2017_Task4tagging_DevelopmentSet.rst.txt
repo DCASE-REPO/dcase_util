@@ -14,7 +14,7 @@ dcase_util.datasets.DCASE2017_Task4tagging_DevelopmentSet
    .. autosummary::
    
       ~DCASE2017_Task4tagging_DevelopmentSet.__init__
-      ~DCASE2017_Task4tagging_DevelopmentSet.absolute_to_relative
+      ~DCASE2017_Task4tagging_DevelopmentSet.absolute_to_relative_path
       ~DCASE2017_Task4tagging_DevelopmentSet.check_filelist
       ~DCASE2017_Task4tagging_DevelopmentSet.dataset_bytes
       ~DCASE2017_Task4tagging_DevelopmentSet.dataset_size_on_disk

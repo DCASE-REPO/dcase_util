@@ -14,7 +14,7 @@ dcase_util.datasets.CHiMEHome_DomesticAudioTag_DevelopmentSet
    .. autosummary::
    
       ~CHiMEHome_DomesticAudioTag_DevelopmentSet.__init__
-      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.absolute_to_relative
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.absolute_to_relative_path
       ~CHiMEHome_DomesticAudioTag_DevelopmentSet.check_filelist
       ~CHiMEHome_DomesticAudioTag_DevelopmentSet.dataset_bytes
       ~CHiMEHome_DomesticAudioTag_DevelopmentSet.dataset_size_on_disk

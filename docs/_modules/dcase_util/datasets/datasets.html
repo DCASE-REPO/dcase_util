@@ -448,6 +448,8 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.MetaDataContainer.event_stat_counts.html">dcase_util.containers.MetaDataContainer.event_stat_counts</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.MetaDataContainer.tag_stat_counts.html">dcase_util.containers.MetaDataContainer.tag_stat_counts</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.MetaDataContainer.to_event_roll.html">dcase_util.containers.MetaDataContainer.to_event_roll</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.MetaDataContainer.intersection.html">dcase_util.containers.MetaDataContainer.intersection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.MetaDataContainer.intersection_report.html">dcase_util.containers.MetaDataContainer.intersection_report</a></li>
 </ul>
 </li>
 </ul>
@@ -710,7 +712,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.Dataset.file_error_meta.html">dcase_util.datasets.Dataset.file_error_meta</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.Dataset.file_features.html">dcase_util.datasets.Dataset.file_features</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.Dataset.relative_to_absolute_path.html">dcase_util.datasets.Dataset.relative_to_absolute_path</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.Dataset.absolute_to_relative.html">dcase_util.datasets.Dataset.absolute_to_relative</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.Dataset.absolute_to_relative_path.html">dcase_util.datasets.Dataset.absolute_to_relative_path</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.Dataset.dataset_bytes.html">dcase_util.datasets.Dataset.dataset_bytes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.Dataset.dataset_size_string.html">dcase_util.datasets.Dataset.dataset_size_string</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.Dataset.dataset_size_on_disk.html">dcase_util.datasets.Dataset.dataset_size_on_disk</a></li>
@@ -1249,6 +1251,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-1-7">v0.1.7</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-1-6">v0.1.6</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-1-5">v0.1.5</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-1-4">v0.1.4</a></li>
@@ -1313,6 +1316,7 @@
 <span class="kn">import</span> <span class="nn">random</span>
 <span class="kn">import</span> <span class="nn">numpy</span>
 <span class="kn">import</span> <span class="nn">tempfile</span>
+<span class="kn">import</span> <span class="nn">copy</span>
 <span class="kn">from</span> <span class="nn">tqdm</span> <span class="k">import</span> <span class="n">tqdm</span>
 
 <span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="k">import</span> <span class="n">DictContainer</span><span class="p">,</span> <span class="n">ListDictContainer</span><span class="p">,</span> <span class="n">TextContainer</span><span class="p">,</span> <span class="n">MetaDataContainer</span>
@@ -1540,9 +1544,9 @@
 <span class="sd">        package_list : list of dict</span>
 <span class="sd">            Package list, remote files associated to the dataset.</span>
 
-<span class="sd">        included_content_types : list of str</span>
+<span class="sd">        included_content_types : list of str or str</span>
 <span class="sd">            Indicates what content type should be processed. One or multiple from [&#39;all&#39;, &#39;audio&#39;, &#39;meta&#39;, &#39;code&#39;,</span>
-<span class="sd">            &#39;documentation&#39;]. If None given, [&#39;all&#39;] is used.</span>
+<span class="sd">            &#39;documentation&#39;]. If None given, [&#39;all&#39;] is used. Parameter can be also comma separated string.</span>
 
 <span class="sd">        audio_paths : list of str</span>
 <span class="sd">            List of paths to include audio material associated to the dataset. If None given, [&#39;audio&#39;] is used.</span>
@@ -1634,6 +1638,10 @@
         <span class="k">if</span> <span class="n">included_content_types</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">included_content_types</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;all&#39;</span><span class="p">]</span>
 
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">included_content_types</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="c1"># Split string to list if given</span>
+            <span class="n">included_content_types</span> <span class="o">=</span> <span class="n">included_content_types</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">included_content_types</span> <span class="o">=</span> <span class="n">included_content_types</span>
 
         <span class="c1"># Inject all included content types, there might be packages containing multiple content types.</span>
@@ -1698,6 +1706,7 @@
         <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">logger</span><span class="o">.</span><span class="n">handlers</span><span class="p">:</span>
             <span class="n">setup_logging</span><span class="p">()</span>
+
         <span class="k">return</span> <span class="n">logger</span>
 
 <div class="viewcode-block" id="Dataset.load"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.load.html#dcase_util.datasets.Dataset.load">[docs]</a>    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1708,7 +1717,9 @@
 <div class="viewcode-block" id="Dataset.load_meta"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.load_meta.html#dcase_util.datasets.Dataset.load_meta">[docs]</a>    <span class="k">def</span> <span class="nf">load_meta</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Load meta data into the container.&quot;&quot;&quot;</span>
         <span class="c1"># Initialize meta container</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">meta_container</span> <span class="o">=</span> <span class="n">MetaDataContainer</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">local_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta_filename</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">meta_container</span> <span class="o">=</span> <span class="n">MetaDataContainer</span><span class="p">(</span>
+            <span class="n">filename</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">local_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta_filename</span><span class="p">)</span>
+        <span class="p">)</span>
 
         <span class="c1"># Load from disk only if file exists</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta_container</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
@@ -1749,9 +1760,20 @@
         <span class="c1"># Load cross validation folds</span>
         <span class="k">for</span> <span class="n">fold</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">folds</span><span class="p">():</span>
             <span class="c1"># Get filenames</span>
-            <span class="n">train_filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">evaluation_setup_filename</span><span class="p">(</span><span class="n">setup_part</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="n">fold</span><span class="o">=</span><span class="n">fold</span><span class="p">)</span>
-            <span class="n">test_filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">evaluation_setup_filename</span><span class="p">(</span><span class="n">setup_part</span><span class="o">=</span><span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="n">fold</span><span class="o">=</span><span class="n">fold</span><span class="p">)</span>
-            <span class="n">evaluate_filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">evaluation_setup_filename</span><span class="p">(</span><span class="n">setup_part</span><span class="o">=</span><span class="s1">&#39;evaluate&#39;</span><span class="p">,</span> <span class="n">fold</span><span class="o">=</span><span class="n">fold</span><span class="p">)</span>
+            <span class="n">train_filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">evaluation_setup_filename</span><span class="p">(</span>
+                <span class="n">setup_part</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">,</span>
+                <span class="n">fold</span><span class="o">=</span><span class="n">fold</span>
+            <span class="p">)</span>
+
+            <span class="n">test_filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">evaluation_setup_filename</span><span class="p">(</span>
+                <span class="n">setup_part</span><span class="o">=</span><span class="s1">&#39;test&#39;</span><span class="p">,</span>
+                <span class="n">fold</span><span class="o">=</span><span class="n">fold</span>
+            <span class="p">)</span>
+
+            <span class="n">evaluate_filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">evaluation_setup_filename</span><span class="p">(</span>
+                <span class="n">setup_part</span><span class="o">=</span><span class="s1">&#39;evaluate&#39;</span><span class="p">,</span>
+                <span class="n">fold</span><span class="o">=</span><span class="n">fold</span>
+            <span class="p">)</span>
 
             <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">train_filename</span><span class="p">):</span>
                 <span class="c1"># Training data for fold exists, load and process it</span>
@@ -1808,6 +1830,7 @@
 
         <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">meta_container</span><span class="p">):</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta_container</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">None</span>
 
@@ -1859,19 +1882,22 @@
 <div class="viewcode-block" id="Dataset.show"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.show.html#dcase_util.datasets.Dataset.show">[docs]</a>    <span class="k">def</span> <span class="nf">show</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Print dataset information.&quot;&quot;&quot;</span>
         <span class="n">DictContainer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset_meta</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">meta_container</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">show_data</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">show_stats</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">meta_container</span><span class="o">.</span><span class="n">show</span><span class="p">(</span>
+            <span class="n">show_data</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">show_stats</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">)</span></div>
 
 <div class="viewcode-block" id="Dataset.log"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.log.html#dcase_util.datasets.Dataset.log">[docs]</a>    <span class="k">def</span> <span class="nf">log</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Log dataset information.&quot;&quot;&quot;</span>
         <span class="n">DictContainer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset_meta</span><span class="p">)</span><span class="o">.</span><span class="n">log</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">meta_container</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">show_data</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">show_stats</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">meta_container</span><span class="o">.</span><span class="n">log</span><span class="p">(</span>
+            <span class="n">show_data</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">show_stats</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">)</span></div>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">audio_files</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get all audio files in the dataset</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -1890,15 +1916,13 @@
                         <span class="k">if</span> <span class="n">file_extension</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">audio_extensions</span><span class="p">:</span>
                             <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">f</span><span class="p">))</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">files</span><span class="p">:</span>
                                 <span class="bp">self</span><span class="o">.</span><span class="n">files</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">f</span><span class="p">)))</span>
+
             <span class="bp">self</span><span class="o">.</span><span class="n">files</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">files</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">audio_file_count</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get number of audio files in dataset</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -1928,6 +1952,7 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta_container</span><span class="o">.</span><span class="n">empty</span><span class="p">():</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta_container</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">meta_container</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Meta file not found [</span><span class="si">{filename}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
                     <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
@@ -1937,7 +1962,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
                 <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta_container</span>
+        <span class="k">return</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">meta_container</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">meta_count</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1972,13 +1997,17 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">error_meta_data</span> <span class="o">=</span> <span class="n">MetaDataContainer</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">error_meta_file</span><span class="p">)</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">error_meta_data</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">error_meta_data</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Error meta file not found [</span><span class="si">{filename}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
-                                                                                  <span class="n">filename</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">error_meta_file</span><span class="p">)</span>
+                <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Error meta file not found [</span><span class="si">{filename}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                    <span class="n">filename</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">error_meta_file</span>
+                <span class="p">)</span>
+
                 <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
                 <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">error_meta_data</span>
+        <span class="k">return</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">error_meta_data</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">error_meta_count</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -2095,12 +2124,14 @@
         <span class="c1"># Create the dataset path if does not exist</span>
         <span class="n">Path</span><span class="p">()</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">local_path</span><span class="p">)</span>
 
-        <span class="n">item_progress</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">package_list</span><span class="p">,</span>
-                             <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{0: &lt;25s}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;Download packages&#39;</span><span class="p">),</span>
-                             <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span>
-                             <span class="n">leave</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                             <span class="n">disable</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">disable_progress_bar</span><span class="p">,</span>
-                             <span class="n">ascii</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">use_ascii_progress_bar</span><span class="p">)</span>
+        <span class="n">item_progress</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">package_list</span><span class="p">,</span>
+            <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{0: &lt;25s}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;Download packages&#39;</span><span class="p">),</span>
+            <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span>
+            <span class="n">leave</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">disable</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">disable_progress_bar</span><span class="p">,</span>
+            <span class="n">ascii</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">use_ascii_progress_bar</span>
+        <span class="p">)</span>
 
         <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">item_progress</span><span class="p">:</span>
             <span class="n">remote_file</span> <span class="o">=</span> <span class="n">RemoteFile</span><span class="p">(</span><span class="o">**</span><span class="n">item</span><span class="p">)</span>
@@ -2123,15 +2154,16 @@
 <span class="sd">        -------</span>
 <span class="sd">        self</span>
 
-
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="n">item_progress</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">package_list</span><span class="p">,</span>
-                             <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{0: &lt;25s}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;Extract packages&#39;</span><span class="p">),</span>
-                             <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span>
-                             <span class="n">leave</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                             <span class="n">disable</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">disable_progress_bar</span><span class="p">,</span>
-                             <span class="n">ascii</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">use_ascii_progress_bar</span><span class="p">)</span>
+        <span class="n">item_progress</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">package_list</span><span class="p">,</span>
+            <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{0: &lt;25s}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;Extract packages&#39;</span><span class="p">),</span>
+            <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span>
+            <span class="n">leave</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">disable</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">disable_progress_bar</span><span class="p">,</span>
+            <span class="n">ascii</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">use_ascii_progress_bar</span>
+        <span class="p">)</span>
 
         <span class="k">for</span> <span class="n">item_id</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">item_progress</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">File</span><span class="p">()</span><span class="o">.</span><span class="n">is_package</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;filename&#39;</span><span class="p">]):</span>
@@ -2204,12 +2236,18 @@
 <span class="sd">            Meta data item</span>
 
 <span class="sd">        absolute_path : bool</span>
-<span class="sd">            Convert file paths to be absolute</span>
+<span class="sd">            Path format for the returned meta item, if True path is absolute, False path is relative to</span>
+<span class="sd">            the dataset root.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="n">absolute_path</span><span class="p">:</span>
-            <span class="n">item</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relative_to_absolute_path</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span></div>
+            <span class="c1"># Make sure filename has absolute path</span>
+            <span class="n">item</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relative_to_absolute_path</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Make sure filename has relative path</span>
+            <span class="n">item</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">absolute_to_relative_path</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Dataset.evaluation_setup_filename"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.evaluation_setup_filename.html#dcase_util.datasets.Dataset.evaluation_setup_filename">[docs]</a>    <span class="k">def</span> <span class="nf">evaluation_setup_filename</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">setup_part</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="n">fold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">scene_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">file_extension</span><span class="o">=</span><span class="s1">&#39;txt&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Evaluation setup filename generation.</span>
@@ -2221,6 +2259,7 @@
 
 <span class="sd">        fold : int</span>
 <span class="sd">            Fold number</span>
+
 <span class="sd">        scene_label : str</span>
 <span class="sd">            Scene label</span>
 
@@ -2269,13 +2308,17 @@
 
         <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">evaluation_setup_path</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">parts</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="n">file_extension</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Dataset.train"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.train.html#dcase_util.datasets.Dataset.train">[docs]</a>    <span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Dataset.train"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.train.html#dcase_util.datasets.Dataset.train">[docs]</a>    <span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">absolute_paths</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;List of training items.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        fold : int [scalar]</span>
 <span class="sd">            Fold id, if None all meta data is returned.</span>
+
+<span class="sd">        absolute_paths : bool</span>
+<span class="sd">            Path format for the returned meta items, if True paths are absolute, False paths are relative to</span>
+<span class="sd">            the dataset root.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -2287,9 +2330,19 @@
         <span class="k">if</span> <span class="n">fold</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">fold</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">fold</span> <span class="o">=</span> <span class="s1">&#39;all_data&#39;</span>
 
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">crossvalidation_data</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">][</span><span class="n">fold</span><span class="p">]</span></div>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">crossvalidation_data</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">][</span><span class="n">fold</span><span class="p">])</span>
 
-<div class="viewcode-block" id="Dataset.test"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.test.html#dcase_util.datasets.Dataset.test">[docs]</a>    <span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="c1"># Go through items and make sure path are in correct form.</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">absolute_paths</span><span class="p">:</span>
+                <span class="n">item</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relative_to_absolute_path</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">item</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">absolute_to_relative_path</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">data</span></div>
+
+<div class="viewcode-block" id="Dataset.test"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.test.html#dcase_util.datasets.Dataset.test">[docs]</a>    <span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">absolute_paths</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;List of testing items.</span>
 
 <span class="sd">        Parameters</span>
@@ -2297,6 +2350,10 @@
 <span class="sd">        fold : int</span>
 <span class="sd">            Fold id, if None all meta data is returned.</span>
 
+<span class="sd">        absolute_paths : bool</span>
+<span class="sd">            Path format for the returned meta items, if True paths are absolute, False paths are relative to</span>
+<span class="sd">            the dataset root.</span>
+
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        MetaDataContainer</span>
@@ -2307,9 +2364,19 @@
         <span class="k">if</span> <span class="n">fold</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">fold</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">fold</span> <span class="o">=</span> <span class="s1">&#39;all_data&#39;</span>
 
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">crossvalidation_data</span><span class="p">[</span><span class="s1">&#39;test&#39;</span><span class="p">][</span><span class="n">fold</span><span class="p">]</span></div>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">crossvalidation_data</span><span class="p">[</span><span class="s1">&#39;test&#39;</span><span class="p">][</span><span class="n">fold</span><span class="p">])</span>
 
-<div class="viewcode-block" id="Dataset.eval"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.eval.html#dcase_util.datasets.Dataset.eval">[docs]</a>    <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="c1"># Go through items and make sure path are in correct form.</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">absolute_paths</span><span class="p">:</span>
+                <span class="n">item</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relative_to_absolute_path</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">item</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">absolute_to_relative_path</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">data</span></div>
+
+<div class="viewcode-block" id="Dataset.eval"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.eval.html#dcase_util.datasets.Dataset.eval">[docs]</a>    <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">absolute_paths</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;List of evaluation items.</span>
 
 <span class="sd">        Parameters</span>
@@ -2317,6 +2384,10 @@
 <span class="sd">        fold : int</span>
 <span class="sd">            Fold id, if None all meta data is returned.</span>
 
+<span class="sd">        absolute_paths : bool</span>
+<span class="sd">            Path format for the returned meta items, if True paths are absolute, False paths are relative to</span>
+<span class="sd">            the dataset root.</span>
+
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        MetaDataContainer</span>
@@ -2327,15 +2398,29 @@
         <span class="k">if</span> <span class="n">fold</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">fold</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">fold</span> <span class="o">=</span> <span class="s1">&#39;all_data&#39;</span>
 
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">crossvalidation_data</span><span class="p">[</span><span class="s1">&#39;evaluate&#39;</span><span class="p">][</span><span class="n">fold</span><span class="p">]</span></div>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">crossvalidation_data</span><span class="p">[</span><span class="s1">&#39;evaluate&#39;</span><span class="p">][</span><span class="n">fold</span><span class="p">])</span>
 
-<div class="viewcode-block" id="Dataset.train_files"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.train_files.html#dcase_util.datasets.Dataset.train_files">[docs]</a>    <span class="k">def</span> <span class="nf">train_files</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="c1"># Go through items and make sure path are in correct form.</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">absolute_paths</span><span class="p">:</span>
+                <span class="n">item</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relative_to_absolute_path</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">item</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">absolute_to_relative_path</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">data</span></div>
+
+<div class="viewcode-block" id="Dataset.train_files"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.train_files.html#dcase_util.datasets.Dataset.train_files">[docs]</a>    <span class="k">def</span> <span class="nf">train_files</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">absolute_paths</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;List of training files.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        fold : int</span>
 <span class="sd">            Fold id, if None all meta data is returned.</span>
+
+<span class="sd">        absolute_paths : bool</span>
+<span class="sd">            Path format for the returned meta items, if True paths are absolute, False paths are relative to</span>
+<span class="sd">            the dataset root.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -2344,9 +2429,9 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">fold</span><span class="o">=</span><span class="n">fold</span><span class="p">)</span><span class="o">.</span><span class="n">unique_files</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">fold</span><span class="o">=</span><span class="n">fold</span><span class="p">,</span> <span class="n">absolute_paths</span><span class="o">=</span><span class="n">absolute_paths</span><span class="p">)</span><span class="o">.</span><span class="n">unique_files</span></div>
 
-<div class="viewcode-block" id="Dataset.test_files"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.test_files.html#dcase_util.datasets.Dataset.test_files">[docs]</a>    <span class="k">def</span> <span class="nf">test_files</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Dataset.test_files"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.test_files.html#dcase_util.datasets.Dataset.test_files">[docs]</a>    <span class="k">def</span> <span class="nf">test_files</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">absolute_paths</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;List of testing files.</span>
 
 <span class="sd">        Parameters</span>
@@ -2354,6 +2439,10 @@
 <span class="sd">        fold : int</span>
 <span class="sd">            Fold id, if None all meta data is returned.</span>
 
+<span class="sd">        absolute_paths : bool</span>
+<span class="sd">            Path format for the returned meta items, if True paths are absolute, False paths are relative to</span>
+<span class="sd">            the dataset root.</span>
+
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        list of str</span>
@@ -2361,9 +2450,9 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="n">fold</span><span class="o">=</span><span class="n">fold</span><span class="p">)</span><span class="o">.</span><span class="n">unique_files</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="n">fold</span><span class="o">=</span><span class="n">fold</span><span class="p">,</span> <span class="n">absolute_paths</span><span class="o">=</span><span class="n">absolute_paths</span><span class="p">)</span><span class="o">.</span><span class="n">unique_files</span></div>
 
-<div class="viewcode-block" id="Dataset.eval_files"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.eval_files.html#dcase_util.datasets.Dataset.eval_files">[docs]</a>    <span class="k">def</span> <span class="nf">eval_files</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Dataset.eval_files"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.eval_files.html#dcase_util.datasets.Dataset.eval_files">[docs]</a>    <span class="k">def</span> <span class="nf">eval_files</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">absolute_paths</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;List of evaluation files.</span>
 
 <span class="sd">        Parameters</span>
@@ -2371,6 +2460,10 @@
 <span class="sd">        fold : int</span>
 <span class="sd">            Fold id, if None all meta data is returned.</span>
 
+<span class="sd">        absolute_paths : bool</span>
+<span class="sd">            Path format for the returned meta items, if True paths are absolute, False paths are relative to</span>
+<span class="sd">            the dataset root.</span>
+
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        list of str</span>
@@ -2378,7 +2471,7 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">fold</span><span class="o">=</span><span class="n">fold</span><span class="p">)</span><span class="o">.</span><span class="n">unique_files</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">fold</span><span class="o">=</span><span class="n">fold</span><span class="p">,</span> <span class="n">absolute_paths</span><span class="o">=</span><span class="n">absolute_paths</span><span class="p">)</span><span class="o">.</span><span class="n">unique_files</span></div>
 
 <div class="viewcode-block" id="Dataset.validation_split"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.validation_split.html#dcase_util.datasets.Dataset.validation_split">[docs]</a>    <span class="k">def</span> <span class="nf">validation_split</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                          <span class="n">fold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">split_type</span><span class="o">=</span><span class="s1">&#39;balanced&#39;</span><span class="p">,</span> <span class="n">validation_amount</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -2578,7 +2671,7 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="n">file_meta</span><span class="p">:</span>
             <span class="c1"># Try with absolute filename</span>
             <span class="n">file_meta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta_container</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
-                <span class="n">filename</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">absolute_to_relative</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+                <span class="n">filename</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">absolute_to_relative_path</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
             <span class="p">)</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">file_meta</span><span class="p">:</span>
@@ -2603,11 +2696,13 @@
 <span class="sd">            List containing all error meta data related to given file.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">error_meta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">error_meta</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">)</span>
+        <span class="n">error_meta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">error_meta</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+            <span class="n">filename</span><span class="o">=</span><span class="n">filename</span>
+        <span class="p">)</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">error_meta</span><span class="p">:</span>
             <span class="n">error_meta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">error_meta</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
-                <span class="n">filename</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">absolute_to_relative</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+                <span class="n">filename</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">absolute_to_relative_path</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
             <span class="p">)</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">error_meta</span><span class="p">:</span>
@@ -2631,6 +2726,7 @@
 <span class="sd">            Matrix containing acoustic features</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
+
         <span class="k">pass</span></div>
 
 <div class="viewcode-block" id="Dataset.relative_to_absolute_path"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.relative_to_absolute_path.html#dcase_util.datasets.Dataset.relative_to_absolute_path">[docs]</a>    <span class="k">def</span> <span class="nf">relative_to_absolute_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
@@ -2650,7 +2746,7 @@
 
         <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">local_path</span><span class="p">,</span> <span class="n">path</span><span class="p">)))</span></div>
 
-<div class="viewcode-block" id="Dataset.absolute_to_relative"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.absolute_to_relative.html#dcase_util.datasets.Dataset.absolute_to_relative">[docs]</a>    <span class="k">def</span> <span class="nf">absolute_to_relative</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+<div class="viewcode-block" id="Dataset.absolute_to_relative_path"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.absolute_to_relative_path.html#dcase_util.datasets.Dataset.absolute_to_relative_path">[docs]</a>    <span class="k">def</span> <span class="nf">absolute_to_relative_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Converts absolute path into relative path.</span>
 
 <span class="sd">        Parameters</span>
@@ -2718,8 +2814,8 @@
         <span class="n">total_size</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">for</span> <span class="n">dir_path</span><span class="p">,</span> <span class="n">dir_names</span><span class="p">,</span> <span class="n">filenames</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">local_path</span><span class="p">):</span>
             <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">:</span>
-                <span class="n">fp</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dir_path</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
-                <span class="n">total_size</span> <span class="o">+=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="n">fp</span><span class="p">)</span>
+                <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dir_path</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+                <span class="n">total_size</span> <span class="o">+=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">get_byte_string</span><span class="p">(</span><span class="n">total_size</span><span class="p">,</span> <span class="n">show_bytes</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
 
@@ -3024,13 +3120,14 @@
 
         <span class="k">if</span> <span class="n">scene_label</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">labels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta_container</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">scene_label</span><span class="o">=</span><span class="n">scene_label</span><span class="p">)</span><span class="o">.</span><span class="n">unique_event_labels</span>
+
         <span class="k">else</span><span class="p">:</span>
             <span class="n">labels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta_container</span><span class="o">.</span><span class="n">unique_event_labels</span>
 
         <span class="n">labels</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">labels</span></div>
 
-<div class="viewcode-block" id="SoundEventDataset.train"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.SoundEventDataset.train.html#dcase_util.datasets.SoundEventDataset.train">[docs]</a>    <span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">scene_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">event_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="SoundEventDataset.train"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.SoundEventDataset.train.html#dcase_util.datasets.SoundEventDataset.train">[docs]</a>    <span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">absolute_paths</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">scene_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">event_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;List of training items.</span>
 
 <span class="sd">        Parameters</span>
@@ -3038,8 +3135,13 @@
 <span class="sd">        fold : int</span>
 <span class="sd">            Fold id, if None all meta data is returned.</span>
 
+<span class="sd">        absolute_paths : bool</span>
+<span class="sd">            Path format for the returned meta items, if True paths are absolute, False paths are relative to</span>
+<span class="sd">            the dataset root.</span>
+
 <span class="sd">        scene_label : str</span>
 <span class="sd">            Scene label</span>
+
 <span class="sd">        event_label : str</span>
 <span class="sd">            Event label</span>
 
@@ -3049,20 +3151,32 @@
 <span class="sd">            List containing all meta data assigned to training set for given fold.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
+
         <span class="k">if</span> <span class="n">fold</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">fold</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">fold</span> <span class="o">=</span> <span class="s1">&#39;all_data&#39;</span>
 
-        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">crossvalidation_data</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">][</span><span class="n">fold</span><span class="p">]</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">crossvalidation_data</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">][</span><span class="n">fold</span><span class="p">])</span>
+
+        <span class="c1"># Go through items and make sure path are in correct form.</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">absolute_paths</span><span class="p">:</span>
+                <span class="n">item</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relative_to_absolute_path</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">item</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">absolute_to_relative_path</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">scene_label</span><span class="p">:</span>
-            <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">scene_label</span><span class="o">=</span><span class="n">scene_label</span><span class="p">)</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+                <span class="n">scene_label</span><span class="o">=</span><span class="n">scene_label</span>
+            <span class="p">)</span>
 
         <span class="k">if</span> <span class="n">event_label</span><span class="p">:</span>
-            <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">event_label</span><span class="o">=</span><span class="n">event_label</span><span class="p">)</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+                <span class="n">event_label</span><span class="o">=</span><span class="n">event_label</span>
+            <span class="p">)</span>
 
         <span class="k">return</span> <span class="n">data</span></div>
 
-<div class="viewcode-block" id="SoundEventDataset.test"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.SoundEventDataset.test.html#dcase_util.datasets.SoundEventDataset.test">[docs]</a>    <span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">scene_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">event_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="SoundEventDataset.test"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.SoundEventDataset.test.html#dcase_util.datasets.SoundEventDataset.test">[docs]</a>    <span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">absolute_paths</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">scene_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">event_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;List of testing items.</span>
 
 <span class="sd">        Parameters</span>
@@ -3070,6 +3184,10 @@
 <span class="sd">        fold : int</span>
 <span class="sd">            Fold id, if None all meta data is returned.</span>
 
+<span class="sd">        absolute_paths : bool</span>
+<span class="sd">            Path format for the returned meta items, if True paths are absolute, False paths are relative to</span>
+<span class="sd">            the dataset root.</span>
+
 <span class="sd">        scene_label : str</span>
 <span class="sd">            Scene label</span>
 
@@ -3086,17 +3204,28 @@
         <span class="k">if</span> <span class="n">fold</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">fold</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">fold</span> <span class="o">=</span> <span class="s1">&#39;all_data&#39;</span>
 
-        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">crossvalidation_data</span><span class="p">[</span><span class="s1">&#39;test&#39;</span><span class="p">][</span><span class="n">fold</span><span class="p">]</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">crossvalidation_data</span><span class="p">[</span><span class="s1">&#39;test&#39;</span><span class="p">][</span><span class="n">fold</span><span class="p">])</span>
+
+        <span class="c1"># Go through items and make sure path are in correct form.</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">absolute_paths</span><span class="p">:</span>
+                <span class="n">item</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relative_to_absolute_path</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">item</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">absolute_to_relative_path</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">scene_label</span><span class="p">:</span>
-            <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">scene_label</span><span class="o">=</span><span class="n">scene_label</span><span class="p">)</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+                <span class="n">scene_label</span><span class="o">=</span><span class="n">scene_label</span>
+            <span class="p">)</span>
 
         <span class="k">if</span> <span class="n">event_label</span><span class="p">:</span>
-            <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">event_label</span><span class="o">=</span><span class="n">event_label</span><span class="p">)</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+                <span class="n">event_label</span><span class="o">=</span><span class="n">event_label</span>
+            <span class="p">)</span>
 
         <span class="k">return</span> <span class="n">data</span></div>
 
-    <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">scene_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">event_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">absolute_paths</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">scene_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">event_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;List of evaluation items.</span>
 
 <span class="sd">        Parameters</span>
@@ -3104,6 +3233,10 @@
 <span class="sd">        fold : int</span>
 <span class="sd">            Fold id, if None all meta data is returned.</span>
 
+<span class="sd">        absolute_paths : bool</span>
+<span class="sd">            Path format for the returned meta items, if True paths are absolute, False paths are relative to</span>
+<span class="sd">            the dataset root.</span>
+
 <span class="sd">        scene_label : str</span>
 <span class="sd">            Scene label</span>
 
@@ -3120,23 +3253,38 @@
         <span class="k">if</span> <span class="n">fold</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">fold</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">fold</span> <span class="o">=</span> <span class="s1">&#39;all_data&#39;</span>
 
-        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">crossvalidation_data</span><span class="p">[</span><span class="s1">&#39;evaluate&#39;</span><span class="p">][</span><span class="n">fold</span><span class="p">]</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">crossvalidation_data</span><span class="p">[</span><span class="s1">&#39;evaluate&#39;</span><span class="p">][</span><span class="n">fold</span><span class="p">])</span>
+
+        <span class="c1"># Go through items and make sure path are in correct form.</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">absolute_paths</span><span class="p">:</span>
+                <span class="n">item</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relative_to_absolute_path</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">item</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">absolute_to_relative_path</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">scene_label</span><span class="p">:</span>
-            <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">scene_label</span><span class="o">=</span><span class="n">scene_label</span><span class="p">)</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+                <span class="n">scene_label</span><span class="o">=</span><span class="n">scene_label</span>
+            <span class="p">)</span>
 
         <span class="k">if</span> <span class="n">event_label</span><span class="p">:</span>
-            <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">event_label</span><span class="o">=</span><span class="n">event_label</span><span class="p">)</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+                <span class="n">event_label</span><span class="o">=</span><span class="n">event_label</span>
+            <span class="p">)</span>
 
         <span class="k">return</span> <span class="n">data</span>
 
-    <span class="k">def</span> <span class="nf">train_files</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">scene_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">event_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">train_files</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">absolute_paths</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">scene_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">event_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;List of training files.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        fold : int</span>
 <span class="sd">            Fold id, if None all meta data is returned.</span>
+
+<span class="sd">        absolute_paths : bool</span>
+<span class="sd">            Path format for the returned meta items, if True paths are absolute, False paths are relative to</span>
+<span class="sd">            the dataset root.</span>
 
 <span class="sd">        scene_label : str</span>
 <span class="sd">            Scene label</span>
@@ -3153,17 +3301,22 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">train</span><span class="p">(</span>
             <span class="n">fold</span><span class="o">=</span><span class="n">fold</span><span class="p">,</span>
+            <span class="n">absolute_paths</span><span class="o">=</span><span class="n">absolute_paths</span><span class="p">,</span>
             <span class="n">scene_label</span><span class="o">=</span><span class="n">scene_label</span><span class="p">,</span>
             <span class="n">event_label</span><span class="o">=</span><span class="n">event_label</span>
         <span class="p">)</span><span class="o">.</span><span class="n">unique_files</span>
 
-    <span class="k">def</span> <span class="nf">test_files</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">scene_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">event_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">test_files</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">absolute_paths</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">scene_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">event_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;List of testing files.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        fold : int</span>
 <span class="sd">            Fold id, if None all meta data is returned.</span>
+
+<span class="sd">        absolute_paths : bool</span>
+<span class="sd">            Path format for the returned meta items, if True paths are absolute, False paths are relative to</span>
+<span class="sd">            the dataset root.</span>
 
 <span class="sd">        scene_label : str</span>
 <span class="sd">            Scene label</span>
@@ -3180,17 +3333,22 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">test</span><span class="p">(</span>
             <span class="n">fold</span><span class="o">=</span><span class="n">fold</span><span class="p">,</span>
+            <span class="n">absolute_paths</span><span class="o">=</span><span class="n">absolute_paths</span><span class="p">,</span>
             <span class="n">scene_label</span><span class="o">=</span><span class="n">scene_label</span><span class="p">,</span>
             <span class="n">event_label</span><span class="o">=</span><span class="n">event_label</span>
         <span class="p">)</span><span class="o">.</span><span class="n">unique_files</span>
 
-    <span class="k">def</span> <span class="nf">eval_files</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">scene_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">event_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">eval_files</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">absolute_paths</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">scene_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">event_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;List of evaluation files.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        fold : int</span>
 <span class="sd">            Fold id, if None all meta data is returned.</span>
+
+<span class="sd">        absolute_paths : bool</span>
+<span class="sd">            Path format for the returned meta items, if True paths are absolute, False paths are relative to</span>
+<span class="sd">            the dataset root.</span>
 
 <span class="sd">        scene_label : str</span>
 <span class="sd">            Scene label</span>
@@ -3207,6 +3365,7 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span>
             <span class="n">fold</span><span class="o">=</span><span class="n">fold</span><span class="p">,</span>
+            <span class="n">absolute_paths</span><span class="o">=</span><span class="n">absolute_paths</span><span class="p">,</span>
             <span class="n">scene_label</span><span class="o">=</span><span class="n">scene_label</span><span class="p">,</span>
             <span class="n">event_label</span><span class="o">=</span><span class="n">event_label</span>
         <span class="p">)</span><span class="o">.</span><span class="n">unique_files</span>
@@ -3241,7 +3400,10 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
-        <span class="n">training_meta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">fold</span><span class="o">=</span><span class="n">fold</span><span class="p">,</span> <span class="n">scene_label</span><span class="o">=</span><span class="n">scene_label</span><span class="p">)</span>
+        <span class="n">training_meta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">train</span><span class="p">(</span>
+            <span class="n">fold</span><span class="o">=</span><span class="n">fold</span><span class="p">,</span>
+            <span class="n">scene_label</span><span class="o">=</span><span class="n">scene_label</span>
+        <span class="p">)</span>
 
         <span class="k">if</span> <span class="n">scene_label</span><span class="p">:</span>
             <span class="n">scene_labels</span> <span class="o">=</span> <span class="p">[</span><span class="n">scene_label</span><span class="p">]</span>
@@ -3259,9 +3421,16 @@
             <span class="n">logger</span><span class="o">.</span><span class="n">sub_header</span><span class="p">(</span><span class="s1">&#39;Validation set for fold [</span><span class="si">{fold}</span><span class="s1">] / random&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">fold</span><span class="o">=</span><span class="n">fold</span><span class="p">),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">scene_id</span><span class="p">,</span> <span class="n">scene_label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">scene_labels</span><span class="p">):</span>
                 <span class="n">all_stats</span> <span class="o">=</span> <span class="n">training_meta</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">scene_label</span><span class="o">=</span><span class="n">scene_label</span><span class="p">)</span><span class="o">.</span><span class="n">event_stat_counts</span><span class="p">()</span>
-                <span class="n">validation_stats</span> <span class="o">=</span> <span class="n">training_meta</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">scene_label</span><span class="o">=</span><span class="n">scene_label</span><span class="p">,</span> <span class="n">file_list</span><span class="o">=</span><span class="n">validation_files</span><span class="p">)</span><span class="o">.</span><span class="n">event_stat_counts</span><span class="p">()</span>
+                <span class="n">validation_stats</span> <span class="o">=</span> <span class="n">training_meta</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+                    <span class="n">scene_label</span><span class="o">=</span><span class="n">scene_label</span><span class="p">,</span>
+                    <span class="n">file_list</span><span class="o">=</span><span class="n">validation_files</span>
+                <span class="p">)</span><span class="o">.</span><span class="n">event_stat_counts</span><span class="p">()</span>
+
                 <span class="n">training_files</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">fold</span><span class="o">=</span><span class="n">fold</span><span class="p">)</span><span class="o">.</span><span class="n">unique_files</span><span class="p">)</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">validation_files</span><span class="p">)))</span>
-                <span class="n">training_stats</span> <span class="o">=</span> <span class="n">training_meta</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">scene_label</span><span class="o">=</span><span class="n">scene_label</span><span class="p">,</span> <span class="n">file_list</span><span class="o">=</span><span class="n">training_files</span><span class="p">)</span><span class="o">.</span><span class="n">event_stat_counts</span><span class="p">()</span>
+                <span class="n">training_stats</span> <span class="o">=</span> <span class="n">training_meta</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+                    <span class="n">scene_label</span><span class="o">=</span><span class="n">scene_label</span><span class="p">,</span>
+                    <span class="n">file_list</span><span class="o">=</span><span class="n">training_files</span>
+                <span class="p">)</span><span class="o">.</span><span class="n">event_stat_counts</span><span class="p">()</span>
 
                 <span class="n">cell_data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">all_stats</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
                 <span class="k">for</span> <span class="n">event_id</span><span class="p">,</span> <span class="n">event_label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">all_stats</span><span class="o">.</span><span class="n">keys</span><span class="p">())):</span>
@@ -3329,7 +3498,10 @@
         <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="k">import</span> <span class="n">mean_absolute_error</span>
 
         <span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
-        <span class="n">training_meta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">fold</span><span class="o">=</span><span class="n">fold</span><span class="p">,</span> <span class="n">scene_label</span><span class="o">=</span><span class="n">scene_label</span><span class="p">)</span>
+        <span class="n">training_meta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">train</span><span class="p">(</span>
+            <span class="n">fold</span><span class="o">=</span><span class="n">fold</span><span class="p">,</span>
+            <span class="n">scene_label</span><span class="o">=</span><span class="n">scene_label</span>
+        <span class="p">)</span>
 
         <span class="k">if</span> <span class="n">scene_label</span><span class="p">:</span>
             <span class="n">scene_labels</span> <span class="o">=</span> <span class="p">[</span><span class="n">scene_label</span><span class="p">]</span>
@@ -3471,12 +3643,14 @@
                 <span class="n">validation_set_event_amounts</span> <span class="o">=</span> <span class="p">[]</span>
                 <span class="n">training_set_event_amounts</span> <span class="o">=</span> <span class="p">[]</span>
 
-                <span class="n">iteration_progress</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">iterations</span><span class="p">),</span>
-                                          <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{0: &lt;25s}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;Generate validation split candidates&#39;</span><span class="p">),</span>
-                                          <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span>
-                                          <span class="n">leave</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                                          <span class="n">disable</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">disable_progress_bar</span><span class="p">,</span>
-                                          <span class="n">ascii</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">use_ascii_progress_bar</span><span class="p">)</span>
+                <span class="n">iteration_progress</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span>
+                    <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">iterations</span><span class="p">),</span>
+                    <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{0: &lt;25s}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;Generate validation split candidates&#39;</span><span class="p">),</span>
+                    <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span>
+                    <span class="n">leave</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                    <span class="n">disable</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">disable_progress_bar</span><span class="p">,</span>
+                    <span class="n">ascii</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">use_ascii_progress_bar</span>
+                <span class="p">)</span>
 
                 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">iteration_progress</span><span class="p">:</span>
                     <span class="n">item_ids</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">scene_label</span><span class="p">])))</span>
@@ -3544,9 +3718,16 @@
             <span class="n">logger</span><span class="o">.</span><span class="n">sub_header</span><span class="p">(</span><span class="s1">&#39;Validation set for fold [</span><span class="si">{fold}</span><span class="s1">] / balanced&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">fold</span><span class="o">=</span><span class="n">fold</span><span class="p">),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">scene_id</span><span class="p">,</span> <span class="n">scene_label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">scene_labels</span><span class="p">):</span>
                 <span class="n">all_stats</span> <span class="o">=</span> <span class="n">training_meta</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">scene_label</span><span class="o">=</span><span class="n">scene_label</span><span class="p">)</span><span class="o">.</span><span class="n">event_stat_counts</span><span class="p">()</span>
-                <span class="n">validation_stats</span> <span class="o">=</span> <span class="n">training_meta</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">scene_label</span><span class="o">=</span><span class="n">scene_label</span><span class="p">,</span> <span class="n">file_list</span><span class="o">=</span><span class="n">validation_files</span><span class="p">)</span><span class="o">.</span><span class="n">event_stat_counts</span><span class="p">()</span>
+                <span class="n">validation_stats</span> <span class="o">=</span> <span class="n">training_meta</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+                    <span class="n">scene_label</span><span class="o">=</span><span class="n">scene_label</span><span class="p">,</span>
+                    <span class="n">file_list</span><span class="o">=</span><span class="n">validation_files</span>
+                <span class="p">)</span><span class="o">.</span><span class="n">event_stat_counts</span><span class="p">()</span>
+
                 <span class="n">training_files</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">fold</span><span class="o">=</span><span class="n">fold</span><span class="p">)</span><span class="o">.</span><span class="n">unique_files</span><span class="p">)</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">validation_files</span><span class="p">)))</span>
-                <span class="n">training_stats</span> <span class="o">=</span> <span class="n">training_meta</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">scene_label</span><span class="o">=</span><span class="n">scene_label</span><span class="p">,</span> <span class="n">file_list</span><span class="o">=</span><span class="n">training_files</span><span class="p">)</span><span class="o">.</span><span class="n">event_stat_counts</span><span class="p">()</span>
+                <span class="n">training_stats</span> <span class="o">=</span> <span class="n">training_meta</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+                    <span class="n">scene_label</span><span class="o">=</span><span class="n">scene_label</span><span class="p">,</span>
+                    <span class="n">file_list</span><span class="o">=</span><span class="n">training_files</span>
+                <span class="p">)</span><span class="o">.</span><span class="n">event_stat_counts</span><span class="p">()</span>
 
                 <span class="n">cell_data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">all_stats</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
                 <span class="k">for</span> <span class="n">event_id</span><span class="p">,</span> <span class="n">event_label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">all_stats</span><span class="o">.</span><span class="n">keys</span><span class="p">())):</span>
@@ -3656,9 +3837,16 @@
             <span class="n">logger</span><span class="o">.</span><span class="n">sub_header</span><span class="p">(</span><span class="s1">&#39;Validation set for fold [</span><span class="si">{fold}</span><span class="s1">] / random&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">fold</span><span class="o">=</span><span class="n">fold</span><span class="p">),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">scene_id</span><span class="p">,</span> <span class="n">scene_label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">scene_labels</span><span class="p">):</span>
                 <span class="n">all_stats</span> <span class="o">=</span> <span class="n">training_meta</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">scene_label</span><span class="o">=</span><span class="n">scene_label</span><span class="p">)</span><span class="o">.</span><span class="n">tag_stat_counts</span><span class="p">()</span>
-                <span class="n">validation_stats</span> <span class="o">=</span> <span class="n">training_meta</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">scene_label</span><span class="o">=</span><span class="n">scene_label</span><span class="p">,</span> <span class="n">file_list</span><span class="o">=</span><span class="n">validation_files</span><span class="p">)</span><span class="o">.</span><span class="n">tag_stat_counts</span><span class="p">()</span>
+                <span class="n">validation_stats</span> <span class="o">=</span> <span class="n">training_meta</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+                    <span class="n">scene_label</span><span class="o">=</span><span class="n">scene_label</span><span class="p">,</span>
+                    <span class="n">file_list</span><span class="o">=</span><span class="n">validation_files</span>
+                <span class="p">)</span><span class="o">.</span><span class="n">tag_stat_counts</span><span class="p">()</span>
+
                 <span class="n">training_files</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">fold</span><span class="o">=</span><span class="n">fold</span><span class="p">)</span><span class="o">.</span><span class="n">unique_files</span><span class="p">)</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">validation_files</span><span class="p">)))</span>
-                <span class="n">training_stats</span> <span class="o">=</span> <span class="n">training_meta</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">scene_label</span><span class="o">=</span><span class="n">scene_label</span><span class="p">,</span> <span class="n">file_list</span><span class="o">=</span><span class="n">training_files</span><span class="p">)</span><span class="o">.</span><span class="n">tag_stat_counts</span><span class="p">()</span>
+                <span class="n">training_stats</span> <span class="o">=</span> <span class="n">training_meta</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+                    <span class="n">scene_label</span><span class="o">=</span><span class="n">scene_label</span><span class="p">,</span>
+                    <span class="n">file_list</span><span class="o">=</span><span class="n">training_files</span>
+                <span class="p">)</span><span class="o">.</span><span class="n">tag_stat_counts</span><span class="p">()</span>
 
                 <span class="n">cell_data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">all_stats</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
                 <span class="k">for</span> <span class="n">event_id</span><span class="p">,</span> <span class="n">event_label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">all_stats</span><span class="o">.</span><span class="n">keys</span><span class="p">())):</span>
@@ -3774,7 +3962,6 @@
                 <span class="p">)</span>
 
                 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">iteration_progress</span><span class="p">:</span>
-
                     <span class="n">identifiers</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">scene_label</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
                     <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">identifiers</span><span class="p">,</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">)</span>
 
@@ -3861,12 +4048,14 @@
                 <span class="n">validation_set_tag_amounts</span> <span class="o">=</span> <span class="p">[]</span>
                 <span class="n">training_set_tag_amounts</span> <span class="o">=</span> <span class="p">[]</span>
 
-                <span class="n">iteration_progress</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">iterations</span><span class="p">),</span>
-                                          <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{0: &lt;25s}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;Generate validation split candidates&#39;</span><span class="p">),</span>
-                                          <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span>
-                                          <span class="n">leave</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                                          <span class="n">disable</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">disable_progress_bar</span><span class="p">,</span>
-                                          <span class="n">ascii</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">use_ascii_progress_bar</span><span class="p">)</span>
+                <span class="n">iteration_progress</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span>
+                    <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">iterations</span><span class="p">),</span>
+                    <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{0: &lt;25s}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;Generate validation split candidates&#39;</span><span class="p">),</span>
+                    <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span>
+                    <span class="n">leave</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                    <span class="n">disable</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">disable_progress_bar</span><span class="p">,</span>
+                    <span class="n">ascii</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">use_ascii_progress_bar</span>
+                <span class="p">)</span>
 
                 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">iteration_progress</span><span class="p">:</span>
                     <span class="n">items_id</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">scene_label</span><span class="p">])))</span>
@@ -3935,9 +4124,16 @@
             <span class="n">logger</span><span class="o">.</span><span class="n">sub_header</span><span class="p">(</span><span class="s1">&#39;Validation set for fold [</span><span class="si">{fold}</span><span class="s1">] / balanced&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">fold</span><span class="o">=</span><span class="n">fold</span><span class="p">),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">scene_id</span><span class="p">,</span> <span class="n">scene_label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">scene_labels</span><span class="p">):</span>
                 <span class="n">all_stats</span> <span class="o">=</span> <span class="n">training_meta</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">scene_label</span><span class="o">=</span><span class="n">scene_label</span><span class="p">)</span><span class="o">.</span><span class="n">tag_stat_counts</span><span class="p">()</span>
-                <span class="n">validation_stats</span> <span class="o">=</span> <span class="n">training_meta</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">scene_label</span><span class="o">=</span><span class="n">scene_label</span><span class="p">,</span> <span class="n">file_list</span><span class="o">=</span><span class="n">validation_files</span><span class="p">)</span><span class="o">.</span><span class="n">tag_stat_counts</span><span class="p">()</span>
+                <span class="n">validation_stats</span> <span class="o">=</span> <span class="n">training_meta</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+                    <span class="n">scene_label</span><span class="o">=</span><span class="n">scene_label</span><span class="p">,</span>
+                    <span class="n">file_list</span><span class="o">=</span><span class="n">validation_files</span>
+                <span class="p">)</span><span class="o">.</span><span class="n">tag_stat_counts</span><span class="p">()</span>
+
                 <span class="n">training_files</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">fold</span><span class="o">=</span><span class="n">fold</span><span class="p">)</span><span class="o">.</span><span class="n">unique_files</span><span class="p">)</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">validation_files</span><span class="p">)))</span>
-                <span class="n">training_stats</span> <span class="o">=</span> <span class="n">training_meta</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">scene_label</span><span class="o">=</span><span class="n">scene_label</span><span class="p">,</span> <span class="n">file_list</span><span class="o">=</span><span class="n">training_files</span><span class="p">)</span><span class="o">.</span><span class="n">tag_stat_counts</span><span class="p">()</span>
+                <span class="n">training_stats</span> <span class="o">=</span> <span class="n">training_meta</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+                    <span class="n">scene_label</span><span class="o">=</span><span class="n">scene_label</span><span class="p">,</span>
+                    <span class="n">file_list</span><span class="o">=</span><span class="n">training_files</span>
+                <span class="p">)</span><span class="o">.</span><span class="n">tag_stat_counts</span><span class="p">()</span>
 
                 <span class="n">cell_data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">all_stats</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
                 <span class="k">for</span> <span class="n">tag_id</span><span class="p">,</span> <span class="n">tag_label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">all_stats</span><span class="o">.</span><span class="n">keys</span><span class="p">())):</span>

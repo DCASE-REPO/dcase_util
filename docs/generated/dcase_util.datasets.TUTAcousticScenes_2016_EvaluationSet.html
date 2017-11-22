@@ -712,7 +712,7 @@
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.file_error_meta.html">dcase_util.datasets.Dataset.file_error_meta</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.file_features.html">dcase_util.datasets.Dataset.file_features</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.relative_to_absolute_path.html">dcase_util.datasets.Dataset.relative_to_absolute_path</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.absolute_to_relative.html">dcase_util.datasets.Dataset.absolute_to_relative</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.absolute_to_relative_path.html">dcase_util.datasets.Dataset.absolute_to_relative_path</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.dataset_bytes.html">dcase_util.datasets.Dataset.dataset_bytes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.dataset_size_string.html">dcase_util.datasets.Dataset.dataset_size_string</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.dataset_size_on_disk.html">dcase_util.datasets.Dataset.dataset_size_on_disk</a></li>
@@ -1251,6 +1251,8 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-1-7">v0.1.7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-1-6">v0.1.6</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-1-5">v0.1.5</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-1-4">v0.1.4</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-1-0">v0.1.0</a></li>
@@ -1322,10 +1324,10 @@
 <div><p>Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), &#8216;dcase_util_datasets&#8217;)
 is used.</p>
 </div></blockquote>
-<p><strong>included_content_types</strong> : list of str</p>
+<p><strong>included_content_types</strong> : list of str or str</p>
 <blockquote class="last">
 <div><p>Indicates what content type should be processed. One or multiple from [&#8216;all&#8217;, &#8216;audio&#8217;, &#8216;meta&#8217;, &#8216;code&#8217;,
-&#8216;documentation&#8217;]. If None given, [&#8216;all&#8217;] is used.</p>
+&#8216;documentation&#8217;]. If None given, [&#8216;all&#8217;] is used. Parameter can be also comma separated string.</p>
 </div></blockquote>
 </td>
 </tr>
@@ -1348,10 +1350,10 @@ is used.</p>
 <div><p>Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), &#8216;dcase_util_datasets&#8217;)
 is used.</p>
 </div></blockquote>
-<p><strong>included_content_types</strong> : list of str</p>
+<p><strong>included_content_types</strong> : list of str or str</p>
 <blockquote class="last">
 <div><p>Indicates what content type should be processed. One or multiple from [&#8216;all&#8217;, &#8216;audio&#8217;, &#8216;meta&#8217;, &#8216;code&#8217;,
-&#8216;documentation&#8217;]. If None given, [&#8216;all&#8217;] is used.</p>
+&#8216;documentation&#8217;]. If None given, [&#8216;all&#8217;] is used. Parameter can be also comma separated string.</p>
 </div></blockquote>
 </td>
 </tr>
@@ -1369,7 +1371,7 @@ is used.</p>
 <tr class="row-odd"><td><a class="reference internal" href="#dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet.__init__" title="dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet.__init__"><code class="xref py py-obj docutils literal"><span class="pre">__init__</span></code></a>([storage_name,&nbsp;data_path,&nbsp;...])</td>
 <td>Constructor</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">absolute_to_relative</span></code>(path)</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">absolute_to_relative_path</span></code>(path)</td>
 <td>Converts absolute path into relative path.</td>
 </tr>
 <tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">check_filelist</span></code>()</td>
@@ -1387,10 +1389,10 @@ is used.</p>
 <tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">download_packages</span></code>()</td>
 <td>Download dataset packages over the internet to the local path</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">eval</span></code>([fold])</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">eval</span></code>([fold,&nbsp;absolute_paths])</td>
 <td>List of evaluation items.</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">eval_files</span></code>([fold])</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">eval_files</span></code>([fold,&nbsp;absolute_paths])</td>
 <td>List of evaluation files.</td>
 </tr>
 <tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">evaluation_setup_filename</span></code>([setup_part,&nbsp;...])</td>
@@ -1456,16 +1458,16 @@ is used.</p>
 <tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">tags</span></code>()</td>
 <td>List of unique audio tags in the meta data.</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">test</span></code>([fold])</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">test</span></code>([fold,&nbsp;absolute_paths])</td>
 <td>List of testing items.</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">test_files</span></code>([fold])</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">test_files</span></code>([fold,&nbsp;absolute_paths])</td>
 <td>List of testing files.</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">train</span></code>([fold])</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">train</span></code>([fold,&nbsp;absolute_paths])</td>
 <td>List of training items.</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">train_files</span></code>([fold])</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">train_files</span></code>([fold,&nbsp;absolute_paths])</td>
 <td>List of training files.</td>
 </tr>
 <tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">validation_files_balanced</span></code>([fold,&nbsp;...])</td>

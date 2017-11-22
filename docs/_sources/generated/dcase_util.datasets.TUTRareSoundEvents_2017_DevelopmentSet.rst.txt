@@ -14,7 +14,7 @@ dcase_util.datasets.TUTRareSoundEvents_2017_DevelopmentSet
    .. autosummary::
    
       ~TUTRareSoundEvents_2017_DevelopmentSet.__init__
-      ~TUTRareSoundEvents_2017_DevelopmentSet.absolute_to_relative
+      ~TUTRareSoundEvents_2017_DevelopmentSet.absolute_to_relative_path
       ~TUTRareSoundEvents_2017_DevelopmentSet.check_filelist
       ~TUTRareSoundEvents_2017_DevelopmentSet.dataset_bytes
       ~TUTRareSoundEvents_2017_DevelopmentSet.dataset_size_on_disk

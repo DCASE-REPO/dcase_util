@@ -449,6 +449,8 @@
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.MetaDataContainer.event_stat_counts.html">dcase_util.containers.MetaDataContainer.event_stat_counts</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.MetaDataContainer.tag_stat_counts.html">dcase_util.containers.MetaDataContainer.tag_stat_counts</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.MetaDataContainer.to_event_roll.html">dcase_util.containers.MetaDataContainer.to_event_roll</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.MetaDataContainer.intersection.html">dcase_util.containers.MetaDataContainer.intersection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.MetaDataContainer.intersection_report.html">dcase_util.containers.MetaDataContainer.intersection_report</a></li>
 </ul>
 </li>
 </ul>
@@ -711,7 +713,7 @@
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.Dataset.file_error_meta.html">dcase_util.datasets.Dataset.file_error_meta</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.Dataset.file_features.html">dcase_util.datasets.Dataset.file_features</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.Dataset.relative_to_absolute_path.html">dcase_util.datasets.Dataset.relative_to_absolute_path</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.Dataset.absolute_to_relative.html">dcase_util.datasets.Dataset.absolute_to_relative</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.Dataset.absolute_to_relative_path.html">dcase_util.datasets.Dataset.absolute_to_relative_path</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.Dataset.dataset_bytes.html">dcase_util.datasets.Dataset.dataset_bytes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.Dataset.dataset_size_string.html">dcase_util.datasets.Dataset.dataset_size_string</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.Dataset.dataset_size_on_disk.html">dcase_util.datasets.Dataset.dataset_size_on_disk</a></li>
@@ -1250,6 +1252,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#v0-1-7">v0.1.7</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#v0-1-6">v0.1.6</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#v0-1-5">v0.1.5</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#v0-1-4">v0.1.4</a></li>
@@ -1301,6 +1304,15 @@
             
   <div class="section" id="release-notes">
 <span id="changelog"></span><h1>Release notes<a class="headerlink" href="#release-notes" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="v0-1-7">
+<h2>v0.1.7<a class="headerlink" href="#v0-1-7" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Fix data sequencing when overlapping sequencing is used.</li>
+<li>Dataset class API modifications (e.g. copy returned metadata prevent accidental manipulation, uniform method names)</li>
+<li>Fix datasets CHiMEHome_DomesticAudioTag_DevelopmentSet, TUTAcousticScenes_2017_EvaluationSet, and TUTSoundEvents_2017_EvaluationSet</li>
+<li>Add intersection method for MetaDataContainer</li>
+</ul>
+</div>
 <div class="section" id="v0-1-6">
 <h2>v0.1.6<a class="headerlink" href="#v0-1-6" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">

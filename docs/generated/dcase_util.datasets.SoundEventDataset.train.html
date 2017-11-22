@@ -712,7 +712,7 @@
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.file_error_meta.html">dcase_util.datasets.Dataset.file_error_meta</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.file_features.html">dcase_util.datasets.Dataset.file_features</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.relative_to_absolute_path.html">dcase_util.datasets.Dataset.relative_to_absolute_path</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.absolute_to_relative.html">dcase_util.datasets.Dataset.absolute_to_relative</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.absolute_to_relative_path.html">dcase_util.datasets.Dataset.absolute_to_relative_path</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.dataset_bytes.html">dcase_util.datasets.Dataset.dataset_bytes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.dataset_size_string.html">dcase_util.datasets.Dataset.dataset_size_string</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.dataset_size_on_disk.html">dcase_util.datasets.Dataset.dataset_size_on_disk</a></li>
@@ -1251,6 +1251,8 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-1-7">v0.1.7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-1-6">v0.1.6</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-1-5">v0.1.5</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-1-4">v0.1.4</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-1-0">v0.1.0</a></li>
@@ -1305,7 +1307,7 @@
 <h1>dcase_util.datasets.SoundEventDataset.train<a class="headerlink" href="#dcase-util-datasets-soundeventdataset-train" title="Permalink to this headline">¶</a></h1>
 <dl class="method">
 <dt id="dcase_util.datasets.SoundEventDataset.train">
-<code class="descclassname">SoundEventDataset.</code><code class="descname">train</code><span class="sig-paren">(</span><em>fold=None</em>, <em>scene_label=None</em>, <em>event_label=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/datasets/datasets.html#SoundEventDataset.train"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.datasets.SoundEventDataset.train" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">SoundEventDataset.</code><code class="descname">train</code><span class="sig-paren">(</span><em>fold=None</em>, <em>absolute_paths=True</em>, <em>scene_label=None</em>, <em>event_label=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/datasets/datasets.html#SoundEventDataset.train"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.datasets.SoundEventDataset.train" title="Permalink to this definition">¶</a></dt>
 <dd><p>List of training items.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -1314,6 +1316,11 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>fold</strong> : int</p>
 <blockquote>
 <div><p>Fold id, if None all meta data is returned.</p>
+</div></blockquote>
+<p><strong>absolute_paths</strong> : bool</p>
+<blockquote>
+<div><p>Path format for the returned meta items, if True paths are absolute, False paths are relative to
+the dataset root.</p>
 </div></blockquote>
 <p><strong>scene_label</strong> : str</p>
 <blockquote>

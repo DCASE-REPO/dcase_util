@@ -14,7 +14,7 @@ dcase_util.datasets.TUTSoundEvents_2016_DevelopmentSet
    .. autosummary::
    
       ~TUTSoundEvents_2016_DevelopmentSet.__init__
-      ~TUTSoundEvents_2016_DevelopmentSet.absolute_to_relative
+      ~TUTSoundEvents_2016_DevelopmentSet.absolute_to_relative_path
       ~TUTSoundEvents_2016_DevelopmentSet.check_filelist
       ~TUTSoundEvents_2016_DevelopmentSet.dataset_bytes
       ~TUTSoundEvents_2016_DevelopmentSet.dataset_size_on_disk

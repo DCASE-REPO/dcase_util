@@ -31,6 +31,8 @@ dcase_util.containers.MetaDataContainer
       ~MetaDataContainer.get_string
       ~MetaDataContainer.index
       ~MetaDataContainer.insert
+      ~MetaDataContainer.intersection
+      ~MetaDataContainer.intersection_report
       ~MetaDataContainer.is_package
       ~MetaDataContainer.load
       ~MetaDataContainer.log

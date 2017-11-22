@@ -448,6 +448,8 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.MetaDataContainer.event_stat_counts.html">dcase_util.containers.MetaDataContainer.event_stat_counts</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.MetaDataContainer.tag_stat_counts.html">dcase_util.containers.MetaDataContainer.tag_stat_counts</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.MetaDataContainer.to_event_roll.html">dcase_util.containers.MetaDataContainer.to_event_roll</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.MetaDataContainer.intersection.html">dcase_util.containers.MetaDataContainer.intersection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.MetaDataContainer.intersection_report.html">dcase_util.containers.MetaDataContainer.intersection_report</a></li>
 </ul>
 </li>
 </ul>
@@ -710,7 +712,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.Dataset.file_error_meta.html">dcase_util.datasets.Dataset.file_error_meta</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.Dataset.file_features.html">dcase_util.datasets.Dataset.file_features</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.Dataset.relative_to_absolute_path.html">dcase_util.datasets.Dataset.relative_to_absolute_path</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.Dataset.absolute_to_relative.html">dcase_util.datasets.Dataset.absolute_to_relative</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.Dataset.absolute_to_relative_path.html">dcase_util.datasets.Dataset.absolute_to_relative_path</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.Dataset.dataset_bytes.html">dcase_util.datasets.Dataset.dataset_bytes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.Dataset.dataset_size_string.html">dcase_util.datasets.Dataset.dataset_size_string</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.Dataset.dataset_size_on_disk.html">dcase_util.datasets.Dataset.dataset_size_on_disk</a></li>
@@ -1249,6 +1251,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-1-7">v0.1.7</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-1-6">v0.1.6</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-1-5">v0.1.5</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-1-4">v0.1.4</a></li>
@@ -1308,6 +1311,7 @@
 <span class="kn">from</span> <span class="nn">six</span> <span class="k">import</span> <span class="n">iteritems</span>
 <span class="kn">import</span> <span class="nn">numpy</span>
 <span class="kn">import</span> <span class="nn">scipy</span>
+<span class="kn">import</span> <span class="nn">copy</span>
 
 <span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="k">import</span> <span class="n">DataContainer</span><span class="p">,</span> <span class="n">ObjectContainer</span>
 <span class="kn">from</span> <span class="nn">dcase_util.ui</span> <span class="k">import</span> <span class="n">FancyStringifier</span>
@@ -1876,12 +1880,12 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="k">import</span> <span class="n">DataContainer</span><span class="p">,</span> <span class="n">DataMatrix3DContainer</span>
+        <span class="c1"># Make copy of the data to prevent modifications to the original data</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">DataContainer</span><span class="p">):</span>
-
             <span class="c1"># Not the most efficient way as numpy stride_tricks would produce</span>
             <span class="c1"># faster code, however, opted for cleaner presentation this time.</span>
-            <span class="n">data_length</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">length</span>
             <span class="n">processed_data</span> <span class="o">=</span> <span class="p">[]</span>
 
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">shift_border</span> <span class="o">==</span> <span class="s1">&#39;shift&#39;</span><span class="p">:</span>
@@ -1894,15 +1898,13 @@
                     <span class="c1"># Roll data</span>
                     <span class="n">data</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span>
                         <span class="n">data</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
-                        <span class="n">shift</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">shift</span><span class="p">,</span>
+                        <span class="n">shift</span><span class="o">=-</span><span class="bp">self</span><span class="o">.</span><span class="n">shift</span><span class="p">,</span>
                         <span class="n">axis</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">time_axis</span>
                     <span class="p">)</span>
 
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Unknown type for sequence border handling when doing temporal shifting [</span><span class="si">{shift_border}</span><span class="s1">].&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                    <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
-                    <span class="n">shift_border</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">shift_border</span><span class="p">,</span>
-                <span class="p">)</span>
+                <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Unknown type for sequence border handling when doing temporal shifting &#39;</span> \
+                          <span class="s1">&#39;[</span><span class="si">{shift_border}</span><span class="s1">].&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">shift_border</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">shift_border</span><span class="p">)</span>
 
                 <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
                 <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
@@ -1911,12 +1913,13 @@
                 <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">segment_indexes</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
                     <span class="c1"># Have at least one segment</span>
                     <span class="n">segment_indexes</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">])</span>
+
             <span class="k">else</span><span class="p">:</span>
                 <span class="c1"># Remove segments which are not full</span>
-                <span class="n">segment_indexes</span> <span class="o">=</span> <span class="n">segment_indexes</span><span class="p">[(</span><span class="n">segment_indexes</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">hop_length_frames</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">data</span><span class="o">.</span><span class="n">length</span><span class="p">]</span>
+                <span class="n">segment_indexes</span> <span class="o">=</span> <span class="n">segment_indexes</span><span class="p">[(</span><span class="n">segment_indexes</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">data</span><span class="o">.</span><span class="n">length</span><span class="p">]</span>
 
             <span class="k">for</span> <span class="n">segment_start_frame</span> <span class="ow">in</span> <span class="n">segment_indexes</span><span class="p">:</span>
-                <span class="n">segment_end_frame</span> <span class="o">=</span> <span class="n">segment_start_frame</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">hop_length_frames</span>
+                <span class="n">segment_end_frame</span> <span class="o">=</span> <span class="n">segment_start_frame</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">frames</span>
 
                 <span class="n">frame_ids</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">segment_start_frame</span><span class="p">,</span> <span class="n">segment_end_frame</span><span class="p">))</span>
 

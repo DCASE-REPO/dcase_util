@@ -14,7 +14,7 @@ dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet
    .. autosummary::
    
       ~TUTAcousticScenes_2016_DevelopmentSet.__init__
-      ~TUTAcousticScenes_2016_DevelopmentSet.absolute_to_relative
+      ~TUTAcousticScenes_2016_DevelopmentSet.absolute_to_relative_path
       ~TUTAcousticScenes_2016_DevelopmentSet.check_filelist
       ~TUTAcousticScenes_2016_DevelopmentSet.dataset_bytes
       ~TUTAcousticScenes_2016_DevelopmentSet.dataset_size_on_disk

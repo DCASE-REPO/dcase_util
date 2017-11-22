@@ -448,6 +448,8 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.MetaDataContainer.event_stat_counts.html">dcase_util.containers.MetaDataContainer.event_stat_counts</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.MetaDataContainer.tag_stat_counts.html">dcase_util.containers.MetaDataContainer.tag_stat_counts</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.MetaDataContainer.to_event_roll.html">dcase_util.containers.MetaDataContainer.to_event_roll</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.MetaDataContainer.intersection.html">dcase_util.containers.MetaDataContainer.intersection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.MetaDataContainer.intersection_report.html">dcase_util.containers.MetaDataContainer.intersection_report</a></li>
 </ul>
 </li>
 </ul>
@@ -710,7 +712,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.Dataset.file_error_meta.html">dcase_util.datasets.Dataset.file_error_meta</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.Dataset.file_features.html">dcase_util.datasets.Dataset.file_features</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.Dataset.relative_to_absolute_path.html">dcase_util.datasets.Dataset.relative_to_absolute_path</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.Dataset.absolute_to_relative.html">dcase_util.datasets.Dataset.absolute_to_relative</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.Dataset.absolute_to_relative_path.html">dcase_util.datasets.Dataset.absolute_to_relative_path</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.Dataset.dataset_bytes.html">dcase_util.datasets.Dataset.dataset_bytes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.Dataset.dataset_size_string.html">dcase_util.datasets.Dataset.dataset_size_string</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.Dataset.dataset_size_on_disk.html">dcase_util.datasets.Dataset.dataset_size_on_disk</a></li>
@@ -1249,6 +1251,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-1-7">v0.1.7</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-1-6">v0.1.6</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-1-5">v0.1.5</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-1-4">v0.1.4</a></li>
@@ -3001,8 +3004,68 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Meta data contains items for multiple files.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></div></div>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></div>
 
+<div class="viewcode-block" id="MetaDataContainer.intersection"><a class="viewcode-back" href="../../../generated/dcase_util.containers.MetaDataContainer.intersection.html#dcase_util.containers.MetaDataContainer.intersection">[docs]</a>    <span class="k">def</span> <span class="nf">intersection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">second_metadata</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Intersection of two meta containers</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+
+<span class="sd">        second_metadata : MetaDataContainer</span>
+<span class="sd">            Second meta data container</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        MetaDataContainer</span>
+<span class="sd">            Container with intersecting items</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Get unique IDs for current meta data container</span>
+        <span class="n">id1</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">item1</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+            <span class="n">id1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item1</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+
+        <span class="c1"># Get unique IDs for second meta data container</span>
+        <span class="n">id2</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">item2</span> <span class="ow">in</span> <span class="n">second_metadata</span><span class="p">:</span>
+            <span class="n">id2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item2</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+
+        <span class="c1"># Find intersection of IDs</span>
+        <span class="n">id_intersect</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">id1</span><span class="p">)</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">id2</span><span class="p">)))</span>
+
+        <span class="c1"># Collect intersecting items</span>
+        <span class="n">intersection</span> <span class="o">=</span> <span class="n">MetaDataContainer</span><span class="p">()</span>
+        <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">id_intersect</span><span class="p">:</span>
+            <span class="n">intersection</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="p">[</span><span class="n">id1</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="nb">id</span><span class="p">)])</span>
+
+        <span class="k">return</span> <span class="n">intersection</span></div>
+
+<div class="viewcode-block" id="MetaDataContainer.intersection_report"><a class="viewcode-back" href="../../../generated/dcase_util.containers.MetaDataContainer.intersection_report.html#dcase_util.containers.MetaDataContainer.intersection_report">[docs]</a>    <span class="k">def</span> <span class="nf">intersection_report</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">second_metadata</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Intersection report for two meta containers</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+
+<span class="sd">        second_metadata : MetaDataContainer</span>
+<span class="sd">            Second meta data container</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dict</span>
+<span class="sd">            Dict with intersection data [&#39;items&#39;, &#39;files&#39;, &#39;identifiers&#39;, &#39;scene_labels&#39;, &#39;event_labels&#39; ,&#39;tags&#39;]</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s1">&#39;items&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">second_metadata</span><span class="o">=</span><span class="n">second_metadata</span><span class="p">),</span>
+            <span class="s1">&#39;files&#39;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">unique_files</span><span class="p">)</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">second_metadata</span><span class="o">.</span><span class="n">unique_files</span><span class="p">))),</span>
+            <span class="s1">&#39;identifiers&#39;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">unique_identifiers</span><span class="p">)</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">second_metadata</span><span class="o">.</span><span class="n">unique_identifiers</span><span class="p">))),</span>
+            <span class="s1">&#39;scene_labels&#39;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">unique_scene_labels</span><span class="p">)</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">second_metadata</span><span class="o">.</span><span class="n">unique_scene_labels</span><span class="p">))),</span>
+            <span class="s1">&#39;event_labels&#39;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">unique_event_labels</span><span class="p">)</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">second_metadata</span><span class="o">.</span><span class="n">unique_event_labels</span><span class="p">))),</span>
+            <span class="s1">&#39;tags&#39;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">unique_tags</span><span class="p">)</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">second_metadata</span><span class="o">.</span><span class="n">unique_tags</span><span class="p">)))</span>
+        <span class="p">}</span></div></div>
 </pre></div>
 
            </div>
