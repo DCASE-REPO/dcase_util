@@ -379,3 +379,20 @@ def test_unique_scene_labels():
 
 def test_max_event_offset():
     nose.tools.eq_(MetaDataContainer(content).max_offset, 10)
+
+
+def test_intersection():
+    data1 = MetaDataContainer(content)
+
+    data2 = MetaDataContainer([
+        {
+            'filename': 'audio_001.wav',
+            'scene_label': 'office',
+            'event_label': 'speech',
+            'onset': 1.0,
+            'offset': 10.0,
+        }
+    ])
+    intersection = data1.intersection(data2)
+    nose.tools.eq_(len(intersection), 1)
+    nose.tools.eq_(intersection[0].filename, 'audio_001.wav')

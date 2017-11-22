@@ -1700,3 +1700,63 @@ class MetaDataContainer(ListDictContainer):
             self.logger.exception(message)
             raise ValueError(message)
 
+    def intersection(self, second_metadata):
+        """Intersection of two meta containers
+
+        Parameters
+        ----------
+
+        second_metadata : MetaDataContainer
+            Second meta data container
+
+        Returns
+        -------
+        MetaDataContainer
+            Container with intersecting items
+
+        """
+
+        # Get unique IDs for current meta data container
+        id1 = []
+        for item1 in self:
+            id1.append(item1.id)
+
+        # Get unique IDs for second meta data container
+        id2 = []
+        for item2 in second_metadata:
+            id2.append(item2.id)
+
+        # Find intersection of IDs
+        id_intersect = list(set(id1).intersection(set(id2)))
+
+        # Collect intersecting items
+        intersection = MetaDataContainer()
+        for id in id_intersect:
+            intersection.append(self[id1.index(id)])
+
+        return intersection
+
+    def intersection_report(self, second_metadata):
+        """Intersection report for two meta containers
+
+        Parameters
+        ----------
+
+        second_metadata : MetaDataContainer
+            Second meta data container
+
+        Returns
+        -------
+        dict
+            Dict with intersection data ['items', 'files', 'identifiers', 'scene_labels', 'event_labels' ,'tags']
+
+        """
+
+        return {
+            'items': self.intersection(second_metadata=second_metadata),
+            'files': list(set(self.unique_files).intersection(set(second_metadata.unique_files))),
+            'identifiers': list(set(self.unique_identifiers).intersection(set(second_metadata.unique_identifiers))),
+            'scene_labels': list(set(self.unique_scene_labels).intersection(set(second_metadata.unique_scene_labels))),
+            'event_labels': list(set(self.unique_event_labels).intersection(set(second_metadata.unique_event_labels))),
+            'tags': list(set(self.unique_tags).intersection(set(second_metadata.unique_tags)))
+        }
