@@ -796,6 +796,8 @@ MetaDataContainer
     MetaDataContainer.event_stat_counts
     MetaDataContainer.tag_stat_counts
     MetaDataContainer.to_event_roll
+    MetaDataContainer.intersection
+    MetaDataContainer.intersection_report
 
 Parameter containers
 ::::::::::::::::::::
