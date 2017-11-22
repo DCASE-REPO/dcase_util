@@ -50,9 +50,9 @@ class TUTAcousticScenes_2017_DevelopmentSet(AcousticSceneDataset):
             Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), 'dcase_util_datasets')
             is used.
 
-        included_content_types : list of str
+        included_content_types : list of str or str
             Indicates what content type should be processed. One or multiple from ['all', 'audio', 'meta', 'code',
-            'documentation']. If None given, ['all'] is used.
+            'documentation']. If None given, ['all'] is used. Parameter can be also comma separated string.
 
         """
 
@@ -186,6 +186,7 @@ class TUTAcousticScenes_2017_DevelopmentSet(AcousticSceneDataset):
 
         if absolute_path:
             item.filename = self.relative_to_absolute_path(item.filename)
+
         else:
             item.filename = self.absolute_to_relative_path(item.filename)
 
@@ -217,7 +218,11 @@ class TUTAcousticScenes_2017_DevelopmentSet(AcousticSceneDataset):
                 # Process, make sure each file is included only once.
                 for item in fold_data:
                     if item.filename not in meta_data:
-                        self.process_meta_item(item=item, absolute_path=False)
+                        self.process_meta_item(
+                            item=item,
+                            absolute_path=False
+                        )
+
                         meta_data[item.filename] = item
             # Save meta
             MetaDataContainer(list(meta_data.values())).save(filename=self.meta_file)
@@ -253,9 +258,9 @@ class TUTAcousticScenes_2017_EvaluationSet(AcousticSceneDataset):
             Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), 'dcase_util_datasets')
             is used.
 
-        included_content_types : list of str
+        included_content_types : list of str or str
             Indicates what content type should be processed. One or multiple from ['all', 'audio', 'meta', 'code',
-            'documentation']. If None given, ['all'] is used.
+            'documentation']. If None given, ['all'] is used. Parameter can be also comma separated string.
 
         """
 
@@ -342,6 +347,7 @@ class TUTAcousticScenes_2017_EvaluationSet(AcousticSceneDataset):
 
         if absolute_path:
             item.filename = self.relative_to_absolute_path(item.filename)
+
         else:
             item.filename = self.absolute_to_relative_path(item.filename)
 
@@ -376,7 +382,12 @@ class TUTAcousticScenes_2017_EvaluationSet(AcousticSceneDataset):
 
                 for item in data:
                     if item.filename not in meta_data:
-                        self.process_meta_item(item=item, absolute_path=False, filename_map=filename_map)
+                        self.process_meta_item(
+                            item=item,
+                            absolute_path=False,
+                            filename_map=filename_map
+                        )
+
                         meta_data[item.filename] = item
 
                 # Save meta
@@ -415,9 +426,9 @@ class TUTRareSoundEvents_2017_DevelopmentSet(SyntheticSoundEventDataset):
             Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), 'dcase_util_datasets')
             is used.
 
-        included_content_types : list of str
+        included_content_types : list of str or str
             Indicates what content type should be processed. One or multiple from ['all', 'audio', 'meta', 'code',
-            'documentation']. If None given, ['all'] is used.
+            'documentation']. If None given, ['all'] is used. Parameter can be also comma separated string.
 
         """
 
@@ -1051,9 +1062,9 @@ class TUTRareSoundEvents_2017_EvaluationSet(SyntheticSoundEventDataset):
             Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), 'dcase_util_datasets')
             is used.
 
-        included_content_types : list of str
+        included_content_types : list of str or str
             Indicates what content type should be processed. One or multiple from ['all', 'audio', 'meta', 'code',
-            'documentation']. If None given, ['all'] is used.
+            'documentation']. If None given, ['all'] is used. Parameter can be also comma separated string.
 
         """
 
@@ -1347,9 +1358,9 @@ class TUTSoundEvents_2017_DevelopmentSet(SoundEventDataset):
             Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), 'dcase_util_datasets')
             is used.
 
-        included_content_types : list of str
+        included_content_types : list of str or str
             Indicates what content type should be processed. One or multiple from ['all', 'audio', 'meta', 'code',
-            'documentation']. If None given, ['all'] is used.
+            'documentation']. If None given, ['all'] is used. Parameter can be also comma separated string.
 
         """
 
@@ -1418,6 +1429,7 @@ class TUTSoundEvents_2017_DevelopmentSet(SoundEventDataset):
 
         if absolute_path:
             item.filename = self.relative_to_absolute_path(item.filename)
+
         else:
             item.filename = self.absolute_to_relative_path(item.filename)
 
@@ -1439,7 +1451,11 @@ class TUTSoundEvents_2017_DevelopmentSet(SoundEventDataset):
             for annotation_filename in annotation_files:
                 data = MetaDataContainer(filename=annotation_filename).load()
                 for item in data:
-                    self.process_meta_item(item=item, absolute_path=False)
+                    self.process_meta_item(
+                        item=item,
+                        absolute_path=False
+                    )
+
                 meta_data += data
 
             # Save meta
@@ -1476,9 +1492,9 @@ class TUTSoundEvents_2017_EvaluationSet(SoundEventDataset):
             Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), 'dcase_util_datasets')
             is used.
 
-        included_content_types : list of str
+        included_content_types : list of str or str
             Indicates what content type should be processed. One or multiple from ['all', 'audio', 'meta', 'code',
-            'documentation']. If None given, ['all'] is used.
+            'documentation']. If None given, ['all'] is used. Parameter can be also comma separated string.
 
         """
 
@@ -1545,6 +1561,7 @@ class TUTSoundEvents_2017_EvaluationSet(SoundEventDataset):
 
         if absolute_path:
             item.filename = self.relative_to_absolute_path(item.filename)
+
         else:
             item.filename = self.absolute_to_relative_path(item.filename)
 
@@ -1573,7 +1590,11 @@ class TUTSoundEvents_2017_EvaluationSet(SoundEventDataset):
                 meta_data = MetaDataContainer()
                 eval_file.load()
                 for item in eval_file:
-                    self.process_meta_item(item=item, absolute_path=False)
+                    self.process_meta_item(
+                        item=item,
+                        absolute_path=False
+                    )
+
                 meta_data += eval_file
 
                 # Save meta
@@ -1591,7 +1612,11 @@ class TUTSoundEvents_2017_EvaluationSet(SoundEventDataset):
                 for annotation_filename in annotation_files:
                     data = MetaDataContainer(filename=annotation_filename).load()
                     for item in data:
-                        self.process_meta_item(item=item, absolute_path=False)
+                        self.process_meta_item(
+                            item=item,
+                            absolute_path=False
+                        )
+
                     meta_data += data
 
                 # Save meta
@@ -1633,9 +1658,9 @@ class TUTAcousticScenes_2016_DevelopmentSet(AcousticSceneDataset):
             Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), 'dcase_util_datasets')
             is used.
 
-        included_content_types : list of str
+        included_content_types : list of str or str
             Indicates what content type should be processed. One or multiple from ['all', 'audio', 'meta', 'code',
-            'documentation']. If None given, ['all'] is used.
+            'documentation']. If None given, ['all'] is used. Parameter can be also comma separated string.
 
         """
 
@@ -1764,7 +1789,11 @@ class TUTAcousticScenes_2016_DevelopmentSet(AcousticSceneDataset):
 
                 for item in fold_data:
                     if item.filename not in meta_data:
-                        self.process_meta_item(item=item, absolute_path=False)
+                        self.process_meta_item(
+                            item=item,
+                            absolute_path=False
+                        )
+
                         meta_data[item.filename] = item
 
             # Save meta
@@ -1821,9 +1850,9 @@ class TUTAcousticScenes_2016_EvaluationSet(AcousticSceneDataset):
             Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), 'dcase_util_datasets')
             is used.
 
-        included_content_types : list of str
+        included_content_types : list of str or str
             Indicates what content type should be processed. One or multiple from ['all', 'audio', 'meta', 'code',
-            'documentation']. If None given, ['all'] is used.
+            'documentation']. If None given, ['all'] is used. Parameter can be also comma separated string.
 
         """
 
@@ -1899,6 +1928,7 @@ class TUTAcousticScenes_2016_EvaluationSet(AcousticSceneDataset):
 
         if absolute_path:
             item.filename = self.relative_to_absolute_path(item.filename)
+
         else:
             item.filename = self.absolute_to_relative_path(item.filename)
 
@@ -1927,7 +1957,11 @@ class TUTAcousticScenes_2016_EvaluationSet(AcousticSceneDataset):
                 meta_data = {}
                 for item in eval_data:
                     if item.filename not in meta_data:
-                        self.process_meta_item(item, absolute_path=False)
+                        self.process_meta_item(
+                            item=item,
+                            absolute_path=False
+                        )
+
                         meta_data[item.filename] = item
 
                 # Save meta
@@ -1964,9 +1998,9 @@ class TUTSoundEvents_2016_DevelopmentSet(SoundEventDataset):
             Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), 'dcase_util_datasets')
             is used.
 
-        included_content_types : list of str
+        included_content_types : list of str or str
             Indicates what content type should be processed. One or multiple from ['all', 'audio', 'meta', 'code',
-            'documentation']. If None given, ['all'] is used.
+            'documentation']. If None given, ['all'] is used. Parameter can be also comma separated string.
 
         """
 
@@ -2031,6 +2065,7 @@ class TUTSoundEvents_2016_DevelopmentSet(SoundEventDataset):
 
         if absolute_path:
             item.filename = self.relative_to_absolute_path(item.filename)
+
         else:
             item.filename = self.absolute_to_relative_path(item.filename)
 
@@ -2060,7 +2095,11 @@ class TUTSoundEvents_2016_DevelopmentSet(SoundEventDataset):
                     item.filename = audio_filename
                     item.scene_label = scene_label
 
-                    self.process_meta_item(item=item, absolute_path=False)
+                    self.process_meta_item(
+                        item=item,
+                        absolute_path=False
+                    )
+
                 meta_data += data
 
             # Save meta
@@ -2096,9 +2135,9 @@ class TUTSoundEvents_2016_EvaluationSet(SoundEventDataset):
             Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), 'dcase_util_datasets')
             is used.
 
-        included_content_types : list of str
+        included_content_types : list of str or str
             Indicates what content type should be processed. One or multiple from ['all', 'audio', 'meta', 'code',
-            'documentation']. If None given, ['all'] is used.
+            'documentation']. If None given, ['all'] is used. Parameter can be also comma separated string.
 
         """
 
@@ -2175,7 +2214,11 @@ class TUTSoundEvents_2016_EvaluationSet(SoundEventDataset):
                     item.filename = audio_filename
                     item.scene_label = scene_label
 
-                    self.process_meta_item(item=item, absolute_path=False)
+                    self.process_meta_item(
+                        item=item,
+                        absolute_path=False
+                    )
+
                 meta_data += data
 
             # Save meta
@@ -2214,9 +2257,9 @@ class TUT_SED_Synthetic_2016(SoundEventDataset):
             Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), 'dcase_util_datasets')
             is used.
 
-        included_content_types : list of str
+        included_content_types : list of str or str
             Indicates what content type should be processed. One or multiple from ['all', 'audio', 'meta', 'code',
-            'documentation']. If None given, ['all'] is used.
+            'documentation']. If None given, ['all'] is used. Parameter can be also comma separated string.
 
         """
 
@@ -2309,7 +2352,10 @@ class TUT_SED_Synthetic_2016(SoundEventDataset):
                     item.filename = audio_filename
                     item.scene_label = 'synthetic'
                     item.source_label = 'm'
-                    self.process_meta_item(item=item, absolute_path=False)
+                    self.process_meta_item(
+                        item=item,
+                        absolute_path=False
+                    )
 
                 meta_data += data
 
@@ -2331,10 +2377,13 @@ class TUT_SED_Synthetic_2016(SoundEventDataset):
 
         if setup_part == 'train':
             return os.path.join(self.evaluation_setup_path, 'train+validate' + '.' + file_extension)
+
         elif setup_part == 'test':
             return os.path.join(self.evaluation_setup_path, 'test' + '.' + file_extension)
+
         elif setup_part == 'validate':
             return os.path.join(self.evaluation_setup_path, 'validate' + '.' + file_extension)
+
         elif setup_part == 'evaluate':
             return os.path.join(self.evaluation_setup_path, 'evaluate' + '.' + file_extension)
 
@@ -2368,5 +2417,6 @@ class TUT_SED_Synthetic_2016(SoundEventDataset):
         if os.path.isfile(os.path.join(self.local_path, filename_)):
             feature_data = pickle.load(open(os.path.join(self.local_path, filename_), "rb"))
             return feature_data['feat']
+
         else:
             return None

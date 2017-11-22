@@ -38,9 +38,9 @@ class DCASE2013_Scenes_DevelopmentSet(AcousticSceneDataset):
             Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), 'dcase_util_datasets')
             is used.
 
-        included_content_types : list of str
+        included_content_types : list of str or str
             Indicates what content type should be processed. One or multiple from ['all', 'audio', 'meta', 'code',
-            'documentation']. If None given, ['all'] is used.
+            'documentation']. If None given, ['all'] is used. Parameter can be also comma separated string.
 
         """
 

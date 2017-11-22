@@ -238,9 +238,9 @@ class Dataset(object):
         package_list : list of dict
             Package list, remote files associated to the dataset.
 
-        included_content_types : list of str
+        included_content_types : list of str or str
             Indicates what content type should be processed. One or multiple from ['all', 'audio', 'meta', 'code',
-            'documentation']. If None given, ['all'] is used.
+            'documentation']. If None given, ['all'] is used. Parameter can be also comma separated string.
 
         audio_paths : list of str
             List of paths to include audio material associated to the dataset. If None given, ['audio'] is used.
@@ -331,6 +331,10 @@ class Dataset(object):
         # large and time consuming audio material downloading. Leave to "all" to include all content types.
         if included_content_types is None:
             included_content_types = ['all']
+
+        if isinstance(included_content_types, str):
+            # Split string to list if given
+            included_content_types = included_content_types.split(',')
 
         self.included_content_types = included_content_types
 
