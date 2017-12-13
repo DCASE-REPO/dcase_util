@@ -372,7 +372,7 @@ class FancyStringifier(object):
                     elif all(isinstance(x, float) for x in row_data):
                         data_type = 'float2'
 
-                    elif all(isinstance(x, str) for x in row_data):
+                    elif all(isinstance(x, basestring) for x in row_data):
                         data_type = 'str20'
 
                     else:
@@ -429,7 +429,7 @@ class FancyStringifier(object):
                     elif isinstance(cell_value, float):
                         data_type = 'float2'
 
-                    elif isinstance(cell_value, str):
+                    elif isinstance(cell_value, basestring):
                         data_type = 'str10'
 
                     else:
@@ -534,7 +534,7 @@ class FancyStringifier(object):
             if isinstance(column_data, int):
                 line_string += cell.format(str(column_data))
 
-            elif isinstance(column_data, str):
+            elif isinstance(column_data, basestring):
                 if len(column_data) > column_width and column_data != '-':
                     column_data = column_data[0:(column_width-2)] + '..'
 
@@ -617,7 +617,7 @@ class FancyLogger(object):
 
         """
 
-        if isinstance(data, str):
+        if isinstance(data, basestring):
             lines = data.split('\n')
 
         elif isinstance(data, list):
@@ -1061,7 +1061,7 @@ class FancyPrinter(FancyLogger):
 
         """
 
-        if isinstance(data, str):
+        if isinstance(data, basestring):
             lines = data.split('\n')
 
         elif isinstance(data, list):
