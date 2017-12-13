@@ -1094,6 +1094,7 @@ class AudioContainer(ContainerMixin, FileMixin):
 
         if plot_type == 'wave':
             self.plot_wave()
+
         elif plot_type == 'spec':
             self.plot_spec()
 
@@ -1127,11 +1128,30 @@ class AudioContainer(ContainerMixin, FileMixin):
         import matplotlib.pyplot as plt
         from librosa.display import waveplot
         plt.figure()
-        for channel_id, channel_data in enumerate(self.get_focused()):
-            plt.subplot(self.channels, 1, channel_id + 1)
+
+        if self.channels > 1:
+            for channel_id, channel_data in enumerate(self.get_focused()):
+                plt.subplot(self.channels, 1, channel_id + 1)
+
+                waveplot(
+                    y=channel_data.ravel(),
+                    sr=self.fs,
+                    x_axis=x_axis,
+                    max_points=max_points,
+                    offset=offset,
+                    color=color,
+                    alpha=alpha
+                )
+
+                plt.ylabel('Channel {channel:d}'.format(channel=channel_id))
+                if channel_id == 0:
+                    if self.filename:
+                        plt.title(self.filename)
+        else:
+            plt.subplot(1, 1, 1)
 
             waveplot(
-                y=channel_data.ravel(),
+                y=self.get_focused().ravel(),
                 sr=self.fs,
                 x_axis=x_axis,
                 max_points=max_points,
@@ -1140,11 +1160,9 @@ class AudioContainer(ContainerMixin, FileMixin):
                 alpha=alpha
             )
 
-            plt.ylabel('Channel {channel:d}'.format(channel=channel_id))
-            if channel_id == 0:
-                if self.filename:
-                    plt.title(self.filename)
-
+            plt.ylabel('Channel {channel:d}'.format(channel=1))
+            if self.filename:
+                plt.title(self.filename)
         plt.show()
 
         return self
@@ -1174,13 +1192,68 @@ class AudioContainer(ContainerMixin, FileMixin):
         import matplotlib.pyplot as plt
 
         plt.figure()
-        for channel_id, channel_data in enumerate(self.get_focused()):
-            plt.subplot(self.channels, 1, channel_id+1)
+
+        if self.channels > 1:
+            for channel_id, channel_data in enumerate(self.get_focused()):
+                plt.subplot(self.channels, 1, channel_id+1)
+
+                if spec_type in ['linear', 'log']:
+                    D = librosa.logamplitude(numpy.abs(librosa.stft(channel_data.ravel())) ** 2, ref_power=numpy.max)
+                elif spec_type.startswith('cqt'):
+                    D = librosa.amplitude_to_db(librosa.cqt(channel_data.ravel(), sr=self.fs), ref=numpy.max)
+
+                if spec_type == 'linear':
+                    specshow(
+                        data=D,
+                        sr=self.fs,
+                        y_axis='linear',
+                        x_axis='time',
+                        hop_length=hop_length,
+                        cmap=cmap
+                    )
+
+                elif spec_type == 'log':
+                    specshow(
+                        data=D,
+                        sr=self.fs,
+                        y_axis='log',
+                        x_axis='time',
+                        hop_length=hop_length,
+                        cmap=cmap
+                    )
+
+                elif spec_type == 'cqt_hz' or 'cqt':
+                    specshow(
+                        data=D,
+                        sr=self.fs,
+                        y_axis='cqt_hz',
+                        x_axis='time',
+                        hop_length=hop_length,
+                        cmap=cmap
+                    )
+
+                elif spec_type == 'cqt_note':
+                    specshow(
+                        data=D,
+                        sr=self.fs,
+                        y_axis='cqt_note',
+                        x_axis='time',
+                        hop_length=hop_length,
+                        cmap=cmap
+                    )
+
+                plt.colorbar(format='%+2.0f dB')
+                plt.ylabel('Channel {channel:d}'.format(channel=channel_id))
+                if channel_id == 0 and self.filename:
+                    plt.title(self.filename)
+        else:
+            channel_id = 0
+            plt.subplot(self.channels, 1, channel_id + 1)
 
             if spec_type in ['linear', 'log']:
-                D = librosa.logamplitude(numpy.abs(librosa.stft(channel_data.ravel())) ** 2, ref_power=numpy.max)
+                D = librosa.logamplitude(numpy.abs(librosa.stft(self.get_focused().ravel())) ** 2, ref_power=numpy.max)
             elif spec_type.startswith('cqt'):
-                D = librosa.amplitude_to_db(librosa.cqt(channel_data.ravel(), sr=self.fs), ref=numpy.max)
+                D = librosa.amplitude_to_db(librosa.cqt(self.get_focused().ravel(), sr=self.fs), ref=numpy.max)
 
             if spec_type == 'linear':
                 specshow(
