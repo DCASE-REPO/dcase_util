@@ -154,7 +154,7 @@ class ObjectContainer(ContainerMixin, FileMixin):
 class DictContainer(dict, ContainerMixin, FileMixin):
     """Dictionary container class inherited from standard dict class."""
     valid_formats = [FileFormat.YAML, FileFormat.JSON, FileFormat.CPICKLE, FileFormat.MARSHAL, FileFormat.MSGPACK,
-                     FileFormat.TXT, FileFormat.CSV]  #: Valid file formats
+                     FileFormat.TXT, FileFormat.CSV, FileFormat.META]  #: Valid file formats
 
     def __init__(self, *args, **kwargs):
         # Run ContainerMixin init
@@ -463,7 +463,7 @@ class DictContainer(dict, ContainerMixin, FileMixin):
             from dcase_util.files import Serializer
             dict.clear(self)
 
-            if self.format == FileFormat.YAML:
+            if self.format == FileFormat.YAML or self.format == FileFormat.META:
                 data = Serializer.load_yaml(filename=self.filename)
                 dict.update(self, data)
 
@@ -499,6 +499,7 @@ class DictContainer(dict, ContainerMixin, FileMixin):
                 message = '{name}: Unknown format [{format}]'.format(name=self.__class__.__name__, format=self.filename)
                 self.logger.exception(message)
                 raise IOError(message)
+
         else:
             message = '{name}: File does not exists [{file}]'.format(name=self.__class__.__name__, file=self.filename)
             self.logger.exception(message)
@@ -651,64 +652,68 @@ class DictContainer(dict, ContainerMixin, FileMixin):
 
         """
 
-        output = ''
+        output = u''
         indent = 2
         header_width = 35 - depth*indent
 
         for k, v in sorted(d.items(), key=lambda x: x[0]):
             k = str(k)
             if isinstance(v, dict):
-                output += "".ljust(depth * indent) + k + '\n'
+                output += u''.ljust(depth * indent) + k + '\n'
                 output += self._walk_and_show(v, depth + 1)
             else:
                 if isinstance(v, numpy.ndarray):
                     # Numpy array or matrix
                     shape = v.shape
                     if len(shape) == 1:
-                        output += "".ljust(depth * indent)
-                        output += k.ljust(header_width) + " : " + "array (%d)" % (v.shape[0]) + '\n'
+                        output += u''.ljust(depth * indent)
+                        output += k.ljust(header_width) + ' : ' + "array (%d)" % (v.shape[0]) + '\n'
 
                     elif len(shape) == 2:
-                        output += "".ljust(depth * indent)
-                        output += k.ljust(header_width) + " : " + "matrix (%d,%d)" % (v.shape[0], v.shape[1]) + '\n'
+                        output += u''.ljust(depth * indent)
+                        output += k.ljust(header_width) + ' : ' + "matrix (%d,%d)" % (v.shape[0], v.shape[1]) + '\n'
 
                     elif len(shape) == 3:
-                        output += "".ljust(depth * indent)
-                        output += k.ljust(header_width) + " : " + "matrix (%d,%d,%d)" % (v.shape[0], v.shape[1], v.shape[2]) + '\n'
+                        output += u''.ljust(depth * indent)
+                        output += k.ljust(header_width) + ' : ' + "matrix (%d,%d,%d)" % (v.shape[0], v.shape[1], v.shape[2]) + '\n'
 
                     elif len(shape) == 4:
-                        output += "".ljust(depth * indent)
-                        output += k.ljust(header_width) + " : " + "matrix (%d,%d,%d,%d)" % (v.shape[0], v.shape[1], v.shape[2], v.shape[3]) + '\n'
+                        output += u''.ljust(depth * indent)
+                        output += k.ljust(header_width) + ' : ' + "matrix (%d,%d,%d,%d)" % (v.shape[0], v.shape[1], v.shape[2], v.shape[3]) + '\n'
 
                 elif isinstance(v, list) and len(v) and isinstance(v[0], str):
-                    output += "".ljust(depth * indent) + k.ljust(header_width) + " : " + "list (%d)\n" % len(v)
+                    output += u''.ljust(depth * indent) + k.ljust(header_width) + ' : ' + "list (%d)\n" % len(v)
 
                     for item_id, item in enumerate(v):
-                        output += "".ljust((depth + 1) * indent)
-                        output += ("["+str(item_id)+"]").ljust(header_width-indent) + " : " + str(item) + '\n'
+                        output += u''.ljust((depth + 1) * indent)
+                        output += ('[' + str(item_id) + ']').ljust(header_width-indent) + ' : ' + str(item) + '\n'
 
                 elif isinstance(v, list) and len(v) and isinstance(v[0], numpy.ndarray):
                     # List of arrays
-                    output += "".ljust(depth * indent) + k.ljust(header_width) + " : " + "list (%d)\n" % len(v)
+                    output += u''.ljust(depth * indent) + k.ljust(header_width) + ' : ' + "list (%d)\n" % len(v)
                     for item_id, item in enumerate(v):
                         if len(item.shape) == 1:
-                            output += "".ljust((depth+1) * indent)
-                            output += ("["+str(item_id)+"]").ljust(header_width-indent) + " : " + "array (%d)" % (item.shape[0]) + '\n'
+                            output += u''.ljust((depth+1) * indent)
+                            output += ('[' + str(item_id) + ']').ljust(header_width-indent) + ' : ' + "array (%d)" % (item.shape[0]) + '\n'
 
                         elif len(item.shape) == 2:
-                            output += "".ljust((depth+1) * indent)
-                            output += ("["+str(item_id)+"]").ljust(header_width-indent) + " : " + "matrix (%d,%d)" % (item.shape[0], item.shape[1]) + '\n'
+                            output += u''.ljust((depth+1) * indent)
+                            output += ('[' + str(item_id) + ']').ljust(header_width-indent) + ' : ' + "matrix (%d,%d)" % (item.shape[0], item.shape[1]) + '\n'
 
                 elif isinstance(v, list) and len(v) and isinstance(v[0], dict):
-                    output += "".ljust(depth * indent)
-                    output += k.ljust(header_width) + " : " + "list (%d)\n" % len(v)
+                    output += u''.ljust(depth * indent)
+                    output += k.ljust(header_width) + ' : ' + "list (%d)\n" % len(v)
 
                     for item_id, item in enumerate(v):
-                        output += "".ljust((depth + 1) * indent) + "["+str(item_id)+"]" + '\n'
+                        output += u''.ljust((depth + 1) * indent) + '[' + str(item_id) + ']' + '\n'
                         output += self._walk_and_show(item, depth + 2)
 
                 else:
-                    output += "".ljust(depth * indent) + k.ljust(header_width) + " : " + str(v) + '\n'
+                    if isinstance(v, unicode):
+                        output += u''.ljust(depth * indent) + k.ljust(header_width) + ' : ' + v + '\n'
+
+                    else:
+                        output += u''.ljust(depth * indent) + k.ljust(header_width) + ' : ' + str(v) + '\n'
 
         return output
 
