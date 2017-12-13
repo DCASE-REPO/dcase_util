@@ -70,7 +70,7 @@ class ContainerMixin(object):
 
         """
 
-        self.ui.line(str(self), level=level)
+        self.ui.line(self.__str__(), level=level)
 
 
 class FileMixin(object):
