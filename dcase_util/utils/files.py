@@ -579,6 +579,7 @@ class FileFormat(object):
     TXT = 'TXT'  #: TXT file
     CSV = 'CSV'  #: Comma-separated values (CSV) file
     ANN = 'ANN'  #: Annotation file
+    META = 'META' #: Annotation file
 
     WAV = 'WAV'  #: Audio file, Waveform Audio File Format (WAVE) file
     FLAC = 'FLAC'  #: Audio file, Free Lossless Audio Codec (FLAC) file
@@ -663,6 +664,9 @@ class FileFormat(object):
 
         elif extension == '.ann':
             return cls.ANN
+
+        elif extension == '.meta':
+            return cls.META
 
         elif extension == '.wav':
             return cls.WAV
