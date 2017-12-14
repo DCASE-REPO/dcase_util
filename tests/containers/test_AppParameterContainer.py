@@ -97,7 +97,7 @@ def test_container():
         },
     )
     param.process()
-    nose.tools.eq_(param['_hash'], '8567d124f54a5c97a5c6e8538b0bad67')
+    nose.tools.eq_(param['_hash'], '74501e81cabe55b4f05f001b502e5e3d')
     nose.tools.eq_(param['feature_extraction']['_hash'], '7e5e46979cd59e83662703686acd8b82')
 
     nose.tools.eq_(param['feature_extraction']['stacking_formula'][0]['label'], 'mel')
