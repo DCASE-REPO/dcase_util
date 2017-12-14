@@ -164,7 +164,7 @@ class DictContainer(dict, ContainerMixin, FileMixin):
         # Run FileMixin init
         FileMixin.__init__(self, *args, **kwargs)
 
-        super(DictContainer, self).__init__(*args, **kwargs)
+        super(DictContainer, self).__init__(*args)
 
         self.non_hashable_fields = [
             '_hash',
