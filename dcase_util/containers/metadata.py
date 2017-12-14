@@ -25,7 +25,7 @@ class MetaDataItem(dict):
 
         dict.__init__(self, *args)
 
-        # Compatibility with old field names
+        # Compatibility with old field names used in DCASE baseline system implementations 2016 and 2017
         if 'file' in self and 'filename' not in self:
             self['filename'] = self['file']
 
@@ -35,7 +35,9 @@ class MetaDataItem(dict):
         if 'event_offset' in self and 'offset' not in self:
             self['offset'] = self['event_offset']
 
-        # Process fields
+        # Process meta data fields
+
+        # File target for the meta data item
         if 'filename' in self:
             # Keep file paths in unix format even under Windows
             self['filename'] = posix_path(self['filename'])
@@ -44,6 +46,7 @@ class MetaDataItem(dict):
             # Keep file paths in unix format even under Windows
             self['filename_original'] = posix_path(self['filename_original'])
 
+        # Meta data item timestamps: onset and offset
         if 'onset' in self:
             self['onset'] = float(self['onset'])
 
@@ -55,11 +58,13 @@ class MetaDataItem(dict):
             if self['event_label'].lower() == 'none':
                 self['event_label'] = None
 
+        # Acoustic scene label assigned to the meta data item
         if 'scene_label' in self and self.scene_label:
             self['scene_label'] = self['scene_label'].strip()
             if self['scene_label'].lower() == 'none':
                 self['scene_label'] = None
 
+        # Tag labels
         if 'tags' in self and self.tags:
             if isinstance(self['tags'], str):
                 self['tags'] = self['tags'].strip()
@@ -660,6 +665,7 @@ class MetaDataContainer(ListDictContainer):
                 labels.append(item.event_label)
 
         labels.sort()
+
         return labels
 
     @property
