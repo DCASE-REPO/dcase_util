@@ -779,6 +779,7 @@ MetaDataContainer
     MetaDataContainer.event_count
     MetaDataContainer.scene_label_count
     MetaDataContainer.event_label_count
+    MetaDataContainer.identifier_count
     MetaDataContainer.tag_count
     MetaDataContainer.unique_files
     MetaDataContainer.unique_event_labels
@@ -798,6 +799,7 @@ MetaDataContainer
     MetaDataContainer.to_event_roll
     MetaDataContainer.intersection
     MetaDataContainer.intersection_report
+    MetaDataContainer.difference
 
 Parameter containers
 ::::::::::::::::::::
