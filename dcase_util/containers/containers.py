@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function, absolute_import
 from six import iteritems
-from builtins import str
+from builtins import str as text
 
 import os
 import numpy
@@ -658,10 +658,11 @@ class DictContainer(dict, ContainerMixin, FileMixin):
         header_width = 35 - depth*indent
 
         for k, v in sorted(d.items(), key=lambda x: x[0]):
-            k = str(k)
+            k = text(k)
             if isinstance(v, dict):
                 output += u''.ljust(depth * indent) + k + '\n'
                 output += self._walk_and_show(v, depth + 1)
+
             else:
                 if isinstance(v, numpy.ndarray):
                     # Numpy array or matrix
@@ -687,7 +688,7 @@ class DictContainer(dict, ContainerMixin, FileMixin):
 
                     for item_id, item in enumerate(v):
                         output += u''.ljust((depth + 1) * indent)
-                        output += ('[' + str(item_id) + ']').ljust(header_width-indent) + ' : ' + str(item) + '\n'
+                        output += ('[' + text(item_id) + ']').ljust(header_width-indent) + ' : ' + text(item) + '\n'
 
                 elif isinstance(v, list) and len(v) and isinstance(v[0], numpy.ndarray):
                     # List of arrays
@@ -695,22 +696,22 @@ class DictContainer(dict, ContainerMixin, FileMixin):
                     for item_id, item in enumerate(v):
                         if len(item.shape) == 1:
                             output += u''.ljust((depth+1) * indent)
-                            output += ('[' + str(item_id) + ']').ljust(header_width-indent) + ' : ' + "array (%d)" % (item.shape[0]) + '\n'
+                            output += ('[' + text(item_id) + ']').ljust(header_width-indent) + ' : ' + "array (%d)" % (item.shape[0]) + '\n'
 
                         elif len(item.shape) == 2:
                             output += u''.ljust((depth+1) * indent)
-                            output += ('[' + str(item_id) + ']').ljust(header_width-indent) + ' : ' + "matrix (%d,%d)" % (item.shape[0], item.shape[1]) + '\n'
+                            output += ('[' + text(item_id) + ']').ljust(header_width-indent) + ' : ' + "matrix (%d,%d)" % (item.shape[0], item.shape[1]) + '\n'
 
                 elif isinstance(v, list) and len(v) and isinstance(v[0], dict):
                     output += u''.ljust(depth * indent)
                     output += k.ljust(header_width) + ' : ' + "list (%d)\n" % len(v)
 
                     for item_id, item in enumerate(v):
-                        output += u''.ljust((depth + 1) * indent) + '[' + str(item_id) + ']' + '\n'
+                        output += u''.ljust((depth + 1) * indent) + '[' + text(item_id) + ']' + '\n'
                         output += self._walk_and_show(item, depth + 2)
 
                 else:
-                    output += u''.ljust(depth * indent) + k.ljust(header_width) + ' : ' + str(v) + '\n'
+                    output += u''.ljust(depth * indent) + k.ljust(header_width) + ' : ' + text(v) + '\n'
 
         return output
 

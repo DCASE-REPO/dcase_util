@@ -3,7 +3,7 @@
 
 
 from __future__ import print_function, absolute_import
-from past.builtins import basestring
+import six
 import logging
 import numpy
 from dcase_util.utils import setup_logging, is_float, is_int
@@ -373,7 +373,7 @@ class FancyStringifier(object):
                     elif all(isinstance(x, float) for x in row_data):
                         data_type = 'float2'
 
-                    elif all(isinstance(x, basestring) for x in row_data):
+                    elif all(isinstance(x, six.string_types) for x in row_data):
                         data_type = 'str20'
 
                     else:
@@ -430,7 +430,7 @@ class FancyStringifier(object):
                     elif isinstance(cell_value, float):
                         data_type = 'float2'
 
-                    elif isinstance(cell_value, basestring):
+                    elif isinstance(cell_value, six.string_types):
                         data_type = 'str10'
 
                     else:
@@ -535,7 +535,7 @@ class FancyStringifier(object):
             if isinstance(column_data, int):
                 line_string += cell.format(str(column_data))
 
-            elif isinstance(column_data, basestring):
+            elif isinstance(column_data, six.string_types):
                 if len(column_data) > column_width and column_data != '-':
                     column_data = column_data[0:(column_width-2)] + '..'
 
@@ -618,7 +618,7 @@ class FancyLogger(object):
 
         """
 
-        if isinstance(data, basestring):
+        if isinstance(data, six.string_types):
             lines = data.split('\n')
 
         elif isinstance(data, list):
@@ -1062,7 +1062,7 @@ class FancyPrinter(FancyLogger):
 
         """
 
-        if isinstance(data, basestring):
+        if isinstance(data, six.string_types):
             lines = data.split('\n')
 
         elif isinstance(data, list):
