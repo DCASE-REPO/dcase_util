@@ -566,7 +566,6 @@ class AudioContainer(ContainerMixin, FileMixin):
                 else:
                     # Target sampling frequency defined, possibly re-sample signal.
                     if fs != source_fs:
-                        import librosa
                         self._data = librosa.core.resample(
                             self._data,
                             source_fs,
@@ -578,8 +577,6 @@ class AudioContainer(ContainerMixin, FileMixin):
                     self.fs = fs
 
             elif self.format in [FileFormat.FLAC, FileFormat.M4A, FileFormat.WEBM]:
-                import librosa
-
                 # Handle segment start and stop
                 if start is not None and stop is not None:
                     offset = start
