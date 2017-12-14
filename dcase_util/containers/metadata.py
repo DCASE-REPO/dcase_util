@@ -1290,7 +1290,13 @@ class MetaDataContainer(ListDictContainer):
 
         return string_data
 
-    def filter(self, filename=None, file_list=None, scene_label=None, event_label=None, tag=None, identifier=None):
+    def filter(self,
+               filename=None, file_list=None,
+               scene_label=None, scene_list=None,
+               event_label=None, event_list=None,
+               tag=None, tag_list=None,
+               identifier=None, identifier_list=None
+               ):
         """Filter content
 
         Parameters
@@ -1304,20 +1310,35 @@ class MetaDataContainer(ListDictContainer):
         scene_label : str, optional
             Scene label to be matched
 
+        scene_list : list of str, optional
+            List of scene labels to be matched
+
         event_label : str, optional
             Event label to be matched
+
+        event_list : list of str, optional
+            List of event labels to be matched
 
         tag : str, optional
             Tag to be matched
 
+        tag_list : list of str, optional
+            List of tags to be matched
+
         identifier : str, optional
             Identifier to be matched
+
+        identifier_list : list of str, optional
+            List of identifiers to be matched
 
         Returns
         -------
         MetaDataContainer
 
         """
+
+        if tag_list:
+            tag_list = set(tag_list)
 
         data = []
         for item in self:
@@ -1340,8 +1361,20 @@ class MetaDataContainer(ListDictContainer):
                 else:
                     matched.append(False)
 
+            if scene_list:
+                if item.scene_label in scene_list:
+                    matched.append(True)
+                else:
+                    matched.append(False)
+
             if event_label:
                 if item.event_label == event_label:
+                    matched.append(True)
+                else:
+                    matched.append(False)
+
+            if event_list:
+                if item.event_label in event_list:
                     matched.append(True)
                 else:
                     matched.append(False)
@@ -1352,8 +1385,20 @@ class MetaDataContainer(ListDictContainer):
                 else:
                     matched.append(False)
 
+            if tag_list:
+                if item.tags and tag_list.intersection(item.tags):
+                    matched.append(True)
+                else:
+                    matched.append(False)
+
             if identifier:
                 if item.identifier == identifier:
+                    matched.append(True)
+                else:
+                    matched.append(False)
+
+            if identifier_list:
+                if item.identifier in identifier_list:
                     matched.append(True)
                 else:
                     matched.append(False)

@@ -15,6 +15,7 @@ content = [
             'event_label': 'speech',
             'onset': 1.0,
             'offset': 10.0,
+            'identifier': 'A001'
         },
         {
             'filename': 'audio_001.wav',
@@ -22,6 +23,7 @@ content = [
             'event_label': 'mouse clicking',
             'onset': 3.0,
             'offset': 5.0,
+            'identifier': 'A001'
         },
         {
             'filename': 'audio_001.wav',
@@ -29,6 +31,7 @@ content = [
             'event_label': 'printer',
             'onset': 7.0,
             'offset': 9.0,
+            'identifier': 'A001'
         },
         {
             'filename': 'audio_002.wav',
@@ -36,6 +39,7 @@ content = [
             'event_label': 'speech',
             'onset': 1.0,
             'offset': 9.0,
+            'identifier': 'A002'
         },
         {
             'filename': 'audio_002.wav',
@@ -43,6 +47,7 @@ content = [
             'event_label': 'printer',
             'onset': 5.0,
             'offset': 7.0,
+            'identifier': 'A002'
         },
     ]
 
@@ -77,6 +82,24 @@ content2 = [
         },
     ]
 
+content3 = [
+        {
+            'filename': 'audio_001.wav',
+            'tags': 'tag1,tag2',
+        },
+        {
+            'filename': 'audio_002.wav',
+            'tags': 'tag2',
+        },
+        {
+            'filename': 'audio_003.wav',
+            'tags': 'tag2,tag3',
+        },
+        {
+            'filename': 'audio_004.wav',
+            'tags': 'tag1,tag3',
+        },
+    ]
 
 def test_formats():
     delimiters = [',', ';', '\t']
@@ -194,6 +217,9 @@ def test_filter():
     nose.tools.eq_(meta[1].onset, 3.0)
     nose.tools.eq_(meta[1].offset, 5.0)
 
+    meta = MetaDataContainer(content).filter(scene_list=['meeting'])
+    nose.tools.eq_(len(meta), 2)
+
     # Test filter by event_label
     meta = MetaDataContainer(content).filter(event_label='speech')
 
@@ -210,6 +236,15 @@ def test_filter():
     nose.tools.eq_(meta[1].onset, 1.0)
     nose.tools.eq_(meta[1].offset, 9.0)
 
+    meta = MetaDataContainer(content).filter(event_list=['speech', 'printer'])
+    nose.tools.eq_(len(meta), 4)
+
+    # Test filter by tags
+    meta = MetaDataContainer(content3).filter(tag='tag1')
+    nose.tools.eq_(len(meta), 2)
+
+    meta = MetaDataContainer(content3).filter(tag_list=['tag1', 'tag3'])
+    nose.tools.eq_(len(meta), 3)
 
 def test_filter_time_segment():
     # Case 1
@@ -391,6 +426,7 @@ def test_intersection():
             'event_label': 'speech',
             'onset': 1.0,
             'offset': 10.0,
+            'identifier': 'A001'
         }
     ])
     intersection = data1.intersection(data2)
