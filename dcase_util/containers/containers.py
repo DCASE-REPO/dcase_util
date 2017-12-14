@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function, absolute_import
 from six import iteritems
+from builtins import str
 
 import os
 import numpy
@@ -709,11 +710,7 @@ class DictContainer(dict, ContainerMixin, FileMixin):
                         output += self._walk_and_show(item, depth + 2)
 
                 else:
-                    if isinstance(v, unicode):
-                        output += u''.ljust(depth * indent) + k.ljust(header_width) + ' : ' + v + '\n'
-
-                    else:
-                        output += u''.ljust(depth * indent) + k.ljust(header_width) + ' : ' + str(v) + '\n'
+                    output += u''.ljust(depth * indent) + k.ljust(header_width) + ' : ' + str(v) + '\n'
 
         return output
 
