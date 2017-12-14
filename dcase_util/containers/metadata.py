@@ -1240,16 +1240,17 @@ class MetaDataContainer(ListDictContainer):
             if 'scenes' in stats and 'scene_label_list' in stats['scenes'] and stats['scenes']['scene_label_list']:
                 string_data += ui.line('Scene statistics', indent=2) + '\n'
 
-                cell_data = [[], []]
+                cell_data = [[], [], []]
 
                 for scene_id, scene_label in enumerate(stats['scenes']['scene_label_list']):
                     cell_data[0].append(scene_label)
                     cell_data[1].append(int(stats['scenes']['count'][scene_id]))
+                    cell_data[2].append(int(stats['scenes']['identifiers'][scene_id]))
 
                 string_data += ui.table(
                     cell_data=cell_data,
-                    column_headers=['Scene label', 'Count'],
-                    column_types=['str20', 'int'],
+                    column_headers=['Scene label', 'Count', 'Identifiers'],
+                    column_types=['str20', 'int', 'int'],
                     indent=8
                 )
                 string_data += '\n'
@@ -1617,11 +1618,11 @@ class MetaDataContainer(ListDictContainer):
             tag_list = self.unique_tags
 
         scene_counts = numpy.zeros(len(scene_label_list))
-
+        scene_unique_identifiers = numpy.zeros(len(scene_label_list))
         for scene_id, scene_label in enumerate(scene_label_list):
-            for item in self:
-                if item.scene_label and item.scene_label == scene_label:
-                    scene_counts[scene_id] += 1
+            scene_data = self.filter(scene_label=scene_label)
+            scene_counts[scene_id] = len(scene_data)
+            scene_unique_identifiers[scene_id] = len(scene_data.unique_identifiers)
 
         event_lengths = numpy.zeros(len(event_label_list))
         event_counts = numpy.zeros(len(event_label_list))
@@ -1640,18 +1641,19 @@ class MetaDataContainer(ListDictContainer):
 
         return {
             'scenes': {
-                'count': scene_counts,
                 'scene_label_list': scene_label_list,
+                'count': scene_counts,
+                'identifiers': scene_unique_identifiers
             },
             'events': {
+                'event_label_list': event_label_list,
                 'length': event_lengths,
                 'count': event_counts,
-                'avg_length': event_lengths/event_counts,
-                'event_label_list': event_label_list
+                'avg_length': event_lengths/event_counts
             },
             'tags': {
-                'count': tag_counts,
                 'tag_list': tag_list,
+                'count': tag_counts
             }
         }
 
