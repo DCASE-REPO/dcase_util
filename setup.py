@@ -22,6 +22,7 @@ requirements = [
     'scipy>=0.19.1',
     'colorama>=0.3.7',
     'python-magic>=0.4.13',
+    'future>=0.16.0'
 ]
 
 try:
