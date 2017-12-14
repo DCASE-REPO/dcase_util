@@ -3,6 +3,7 @@
 
 
 from __future__ import print_function, absolute_import
+from past.builtins import basestring
 import logging
 import numpy
 from dcase_util.utils import setup_logging, is_float, is_int
