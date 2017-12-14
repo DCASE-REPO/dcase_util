@@ -265,15 +265,19 @@ class FileMixin(object):
                 if hasattr(dialect, '_delimiter'):
                     if dialect._delimiter in valid_delimiters:
                         delimiter = dialect._delimiter
+
                 elif hasattr(dialect, 'delimiter'):
                     if dialect.delimiter in valid_delimiters:
                         delimiter = dialect.delimiter
+
                 else:
                     # Fall back to default
                     delimiter = '\t'
+
             except csv.Error:
                 # Fall back to default
                 delimiter = '\t'
+
         return delimiter
 
     def is_package(self, filename=None):
