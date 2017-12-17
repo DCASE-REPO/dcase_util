@@ -834,6 +834,13 @@ class MetaDataContainer(ListDictContainer):
 
         """
 
+        def validate(row_format, valid_formats):
+            for valid_format in valid_formats:
+                if row_format == valid_format:
+                    return True
+
+            return False
+
         if filename:
             self.filename = filename
             self.detect_file_format()
@@ -861,10 +868,23 @@ class MetaDataContainer(ListDictContainer):
                                     # Translate decimal comma into decimal point
                                     row[item_id] = float(row[item_id].replace(',', '.'))
 
-                                elif row_format[item_id] in [FieldValidator.AUDIOFILE, FieldValidator.STRING, FieldValidator.ALPHA1, FieldValidator.ALPHA2, FieldValidator.LIST]:
+                                elif row_format[item_id] in [FieldValidator.AUDIOFILE,
+                                                             FieldValidator.DATAFILE,
+                                                             FieldValidator.STRING,
+                                                             FieldValidator.ALPHA1,
+                                                             FieldValidator.ALPHA2,
+                                                             FieldValidator.LIST]:
                                     row[item_id] = row[item_id].strip()
+                            if validate(row_format=row_format,
+                                        valid_formats=[
+                                            [FieldValidator.AUDIOFILE],
+                                            [FieldValidator.DATAFILE],
+                                            [FieldValidator.AUDIOFILE,
+                                             FieldValidator.EMPTY],
+                                            [FieldValidator.DATAFILE,
+                                             FieldValidator.EMPTY]
+                                        ]):
 
-                            if row_format == [FieldValidator.AUDIOFILE] or row_format == [FieldValidator.AUDIOFILE, FieldValidator.EMPTY]:
                                 # Format: [file]
                                 data.append(
                                     self.item_class({
@@ -872,8 +892,12 @@ class MetaDataContainer(ListDictContainer):
                                     })
                                 )
 
-                            elif row_format == [FieldValidator.NUMBER,
-                                                FieldValidator.NUMBER]:
+                            elif validate(row_format=row_format,
+                                          valid_formats=[
+                                              [FieldValidator.NUMBER,
+                                               FieldValidator.NUMBER]
+                                          ]):
+
                                 # Format: [onset offset]
                                 data.append(
                                     self.item_class({
@@ -882,8 +906,14 @@ class MetaDataContainer(ListDictContainer):
                                     })
                                 )
 
-                            elif row_format == [FieldValidator.AUDIOFILE,
-                                                FieldValidator.STRING]:
+                            elif validate(row_format=row_format,
+                                          valid_formats=[
+                                              [FieldValidator.AUDIOFILE,
+                                               FieldValidator.STRING],
+                                              [FieldValidator.DATAFILE,
+                                               FieldValidator.STRING],
+                                          ]):
+
                                 # Format: [file scene_label]
                                 data.append(
                                     self.item_class({
@@ -892,9 +922,16 @@ class MetaDataContainer(ListDictContainer):
                                     })
                                 )
 
-                            elif row_format == [FieldValidator.AUDIOFILE,
-                                                FieldValidator.STRING,
-                                                FieldValidator.AUDIOFILE]:
+                            elif validate(row_format=row_format,
+                                          valid_formats=[
+                                              [FieldValidator.AUDIOFILE,
+                                               FieldValidator.STRING,
+                                               FieldValidator.AUDIOFILE],
+                                              [FieldValidator.DATAFILE,
+                                               FieldValidator.STRING,
+                                               FieldValidator.DATAFILE],
+                                          ]):
+
                                 # Format: [file scene_label file], filename mapping included
                                 data.append(
                                     self.item_class({
@@ -904,9 +941,16 @@ class MetaDataContainer(ListDictContainer):
                                     })
                                 )
 
-                            elif row_format == [FieldValidator.AUDIOFILE,
-                                                FieldValidator.STRING,
-                                                FieldValidator.STRING]:
+                            elif validate(row_format=row_format,
+                                          valid_formats=[
+                                              [FieldValidator.AUDIOFILE,
+                                               FieldValidator.STRING,
+                                               FieldValidator.STRING],
+                                              [FieldValidator.DATAFILE,
+                                               FieldValidator.STRING,
+                                               FieldValidator.STRING],
+                                          ]):
+
                                 # Format: [file scene_label identifier]
                                 data.append(
                                     self.item_class({
@@ -916,9 +960,13 @@ class MetaDataContainer(ListDictContainer):
                                     })
                                 )
 
-                            elif row_format == [FieldValidator.NUMBER,
-                                                FieldValidator.NUMBER,
-                                                FieldValidator.STRING]:
+                            elif validate(row_format=row_format,
+                                          valid_formats=[
+                                              [FieldValidator.NUMBER,
+                                               FieldValidator.NUMBER,
+                                               FieldValidator.STRING]
+                                          ]):
+
                                 # Format: [onset offset event_label]
                                 data.append(
                                     self.item_class({
@@ -928,10 +976,22 @@ class MetaDataContainer(ListDictContainer):
                                     })
                                 )
 
-                            elif row_format == [FieldValidator.AUDIOFILE,
-                                                FieldValidator.NUMBER,
-                                                FieldValidator.NUMBER,
-                                                FieldValidator.STRING]:
+                            elif validate(row_format=row_format,
+                                          valid_formats=[
+                                              [FieldValidator.STRING,
+                                               FieldValidator.NUMBER,
+                                               FieldValidator.NUMBER,
+                                               FieldValidator.STRING],
+                                              [FieldValidator.AUDIOFILE,
+                                               FieldValidator.NUMBER,
+                                               FieldValidator.NUMBER,
+                                               FieldValidator.STRING],
+                                              [FieldValidator.DATAFILE,
+                                               FieldValidator.NUMBER,
+                                               FieldValidator.NUMBER,
+                                               FieldValidator.STRING]
+                                          ]):
+
                                 # Format: [file onset offset event_label]
                                 data.append(
                                     self.item_class({
@@ -942,25 +1002,18 @@ class MetaDataContainer(ListDictContainer):
                                     })
                                 )
 
-                            elif row_format == [FieldValidator.STRING,
-                                                FieldValidator.NUMBER,
-                                                FieldValidator.NUMBER,
-                                                FieldValidator.STRING]:
-                                # Format: [file onset offset event_label]
-                                data.append(
-                                    self.item_class({
-                                        'filename': row[0],
-                                        'onset': row[1],
-                                        'offset': row[2],
-                                        'event_label': row[3]
-                                    })
-                                )
+                            elif validate(row_format=row_format,
+                                          valid_formats=[
+                                              [FieldValidator.AUDIOFILE,
+                                               FieldValidator.STRING,
+                                               FieldValidator.NUMBER,
+                                               FieldValidator.NUMBER],
+                                              [FieldValidator.DATAFILE,
+                                               FieldValidator.STRING,
+                                               FieldValidator.NUMBER,
+                                               FieldValidator.NUMBER]
+                                          ]):
 
-
-                            elif row_format == [FieldValidator.AUDIOFILE,
-                                                FieldValidator.STRING,
-                                                FieldValidator.NUMBER,
-                                                FieldValidator.NUMBER]:
                                 # Format: [file scene_label onset offset]
                                 data.append(
                                     self.item_class({
@@ -971,11 +1024,20 @@ class MetaDataContainer(ListDictContainer):
                                     })
                                 )
 
-                            elif row_format == [FieldValidator.AUDIOFILE,
-                                                FieldValidator.NUMBER,
-                                                FieldValidator.NUMBER,
-                                                FieldValidator.STRING,
-                                                FieldValidator.STRING]:
+                            elif validate(row_format=row_format,
+                                          valid_formats=[
+                                              [FieldValidator.AUDIOFILE,
+                                               FieldValidator.NUMBER,
+                                               FieldValidator.NUMBER,
+                                               FieldValidator.STRING,
+                                               FieldValidator.STRING],
+                                              [FieldValidator.DATAFILE,
+                                               FieldValidator.NUMBER,
+                                               FieldValidator.NUMBER,
+                                               FieldValidator.STRING,
+                                               FieldValidator.STRING]
+                                          ]):
+
                                 # Format: [file onset offset event_label identifier]
                                 data.append(
                                     self.item_class({
@@ -987,10 +1049,18 @@ class MetaDataContainer(ListDictContainer):
                                     })
                                 )
 
-                            elif row_format == [FieldValidator.AUDIOFILE,
-                                                FieldValidator.STRING,
-                                                FieldValidator.NUMBER,
-                                                FieldValidator.NUMBER]:
+                            elif validate(row_format=row_format,
+                                          valid_formats=[
+                                              [FieldValidator.AUDIOFILE,
+                                               FieldValidator.STRING,
+                                               FieldValidator.NUMBER,
+                                               FieldValidator.NUMBER],
+                                              [FieldValidator.DATAFILE,
+                                               FieldValidator.STRING,
+                                               FieldValidator.NUMBER,
+                                               FieldValidator.NUMBER]
+                                          ]):
+
                                 # Format: [file scene_label onset offset]
                                 data.append(
                                     self.item_class({
@@ -1001,11 +1071,20 @@ class MetaDataContainer(ListDictContainer):
                                     })
                                 )
 
-                            elif row_format == [FieldValidator.AUDIOFILE,
-                                                FieldValidator.STRING,
-                                                FieldValidator.NUMBER,
-                                                FieldValidator.NUMBER,
-                                                FieldValidator.STRING]:
+                            elif validate(row_format=row_format,
+                                          valid_formats=[
+                                              [FieldValidator.AUDIOFILE,
+                                               FieldValidator.STRING,
+                                               FieldValidator.NUMBER,
+                                               FieldValidator.NUMBER,
+                                               FieldValidator.STRING],
+                                              [FieldValidator.DATAFILE,
+                                               FieldValidator.STRING,
+                                               FieldValidator.NUMBER,
+                                               FieldValidator.NUMBER,
+                                               FieldValidator.STRING]
+                                          ]):
+
                                 # Format: [file scene_label onset offset event_label]
                                 data.append(
                                     self.item_class({
@@ -1017,12 +1096,22 @@ class MetaDataContainer(ListDictContainer):
                                     })
                                 )
 
-                            elif row_format == [FieldValidator.AUDIOFILE,
-                                                FieldValidator.STRING,
-                                                FieldValidator.NUMBER,
-                                                FieldValidator.NUMBER,
-                                                FieldValidator.STRING,
-                                                FieldValidator.ALPHA1]:
+                            elif validate(row_format=row_format,
+                                          valid_formats=[
+                                              [FieldValidator.AUDIOFILE,
+                                               FieldValidator.STRING,
+                                               FieldValidator.NUMBER,
+                                               FieldValidator.NUMBER,
+                                               FieldValidator.STRING,
+                                               FieldValidator.ALPHA1],
+                                              [FieldValidator.DATAFILE,
+                                               FieldValidator.STRING,
+                                               FieldValidator.NUMBER,
+                                               FieldValidator.NUMBER,
+                                               FieldValidator.STRING,
+                                               FieldValidator.ALPHA1]
+                                          ]):
+
                                 # Format: [file scene_label onset offset event_label source_label]
                                 data.append(
                                     self.item_class({
@@ -1035,12 +1124,22 @@ class MetaDataContainer(ListDictContainer):
                                     })
                                 )
 
-                            elif row_format == [FieldValidator.AUDIOFILE,
-                                                FieldValidator.STRING,
-                                                FieldValidator.NUMBER,
-                                                FieldValidator.NUMBER,
-                                                FieldValidator.STRING,
-                                                FieldValidator.STRING]:
+                            elif validate(row_format=row_format,
+                                          valid_formats=[
+                                              [FieldValidator.AUDIOFILE,
+                                               FieldValidator.STRING,
+                                               FieldValidator.NUMBER,
+                                               FieldValidator.NUMBER,
+                                               FieldValidator.STRING,
+                                               FieldValidator.STRING],
+                                              [FieldValidator.DATAFILE,
+                                               FieldValidator.STRING,
+                                               FieldValidator.NUMBER,
+                                               FieldValidator.NUMBER,
+                                               FieldValidator.STRING,
+                                               FieldValidator.STRING]
+                                          ]):
+
                                 # Format: [file scene_label onset offset event_label source_label]
                                 data.append(
                                     self.item_class({
@@ -1053,13 +1152,24 @@ class MetaDataContainer(ListDictContainer):
                                     })
                                 )
 
-                            elif row_format == [FieldValidator.AUDIOFILE,
-                                                FieldValidator.STRING,
-                                                FieldValidator.NUMBER,
-                                                FieldValidator.NUMBER,
-                                                FieldValidator.STRING,
-                                                FieldValidator.ALPHA1,
-                                                FieldValidator.STRING]:
+                            elif validate(row_format=row_format,
+                                          valid_formats=[
+                                              [FieldValidator.AUDIOFILE,
+                                               FieldValidator.STRING,
+                                               FieldValidator.NUMBER,
+                                               FieldValidator.NUMBER,
+                                               FieldValidator.STRING,
+                                               FieldValidator.ALPHA1,
+                                               FieldValidator.STRING],
+                                              [FieldValidator.DATAFILE,
+                                               FieldValidator.STRING,
+                                               FieldValidator.NUMBER,
+                                               FieldValidator.NUMBER,
+                                               FieldValidator.STRING,
+                                               FieldValidator.ALPHA1,
+                                               FieldValidator.STRING]
+                                          ]):
+
                                 # Format: [file scene_label onset offset event_label source_label identifier]
                                 data.append(
                                     self.item_class({
@@ -1073,13 +1183,24 @@ class MetaDataContainer(ListDictContainer):
                                     })
                                 )
 
-                            elif row_format == [FieldValidator.AUDIOFILE,
-                                                FieldValidator.STRING,
-                                                FieldValidator.NUMBER,
-                                                FieldValidator.NUMBER,
-                                                FieldValidator.STRING,
-                                                FieldValidator.STRING,
-                                                FieldValidator.STRING]:
+                            elif validate(row_format=row_format,
+                                          valid_formats=[
+                                              [FieldValidator.AUDIOFILE,
+                                               FieldValidator.STRING,
+                                               FieldValidator.NUMBER,
+                                               FieldValidator.NUMBER,
+                                               FieldValidator.STRING,
+                                               FieldValidator.STRING,
+                                               FieldValidator.STRING],
+                                              [FieldValidator.DATAFILE,
+                                               FieldValidator.STRING,
+                                               FieldValidator.NUMBER,
+                                               FieldValidator.NUMBER,
+                                               FieldValidator.STRING,
+                                               FieldValidator.STRING,
+                                               FieldValidator.STRING]
+                                          ]):
+
                                 # Format: [file scene_label onset offset event_label source_label identifier]
                                 data.append(
                                     self.item_class({
@@ -1093,9 +1214,16 @@ class MetaDataContainer(ListDictContainer):
                                     })
                                 )
 
-                            elif row_format == [FieldValidator.AUDIOFILE,
-                                                FieldValidator.STRING,
-                                                FieldValidator.LIST]:
+                            elif validate(row_format=row_format,
+                                          valid_formats=[
+                                              [FieldValidator.AUDIOFILE,
+                                               FieldValidator.STRING,
+                                               FieldValidator.LIST],
+                                              [FieldValidator.DATAFILE,
+                                               FieldValidator.STRING,
+                                               FieldValidator.LIST]
+                                          ]):
+
                                 # Format: [file scene_label tags]
                                 data.append(
                                     self.item_class({
@@ -1105,10 +1233,18 @@ class MetaDataContainer(ListDictContainer):
                                     })
                                 )
 
-                            elif row_format == [FieldValidator.AUDIOFILE,
-                                                FieldValidator.STRING,
-                                                FieldValidator.LIST,
-                                                FieldValidator.STRING]:
+                            elif validate(row_format=row_format,
+                                          valid_formats=[
+                                              [FieldValidator.AUDIOFILE,
+                                               FieldValidator.STRING,
+                                               FieldValidator.LIST,
+                                               FieldValidator.STRING],
+                                              [FieldValidator.DATAFILE,
+                                               FieldValidator.STRING,
+                                               FieldValidator.LIST,
+                                               FieldValidator.STRING]
+                                          ]):
+
                                 # Format: [file scene_label tags identifier]
                                 data.append(
                                     self.item_class({
@@ -1119,9 +1255,16 @@ class MetaDataContainer(ListDictContainer):
                                     })
                                 )
 
-                            elif row_format == [FieldValidator.AUDIOFILE,
-                                                FieldValidator.LIST,
-                                                FieldValidator.STRING]:
+                            elif validate(row_format=row_format,
+                                          valid_formats=[
+                                              [FieldValidator.AUDIOFILE,
+                                               FieldValidator.LIST,
+                                               FieldValidator.STRING],
+                                              [FieldValidator.DATAFILE,
+                                               FieldValidator.LIST,
+                                               FieldValidator.STRING]
+                                          ]):
+
                                 # Format: [file tags]
                                 data.append(
                                     self.item_class({
@@ -1131,11 +1274,20 @@ class MetaDataContainer(ListDictContainer):
                                     })
                                 )
 
-                            elif row_format == [FieldValidator.AUDIOFILE,
-                                                FieldValidator.STRING,
-                                                FieldValidator.NUMBER,
-                                                FieldValidator.NUMBER,
-                                                FieldValidator.LIST]:
+                            elif validate(row_format=row_format,
+                                          valid_formats=[
+                                              [FieldValidator.AUDIOFILE,
+                                               FieldValidator.STRING,
+                                               FieldValidator.NUMBER,
+                                               FieldValidator.NUMBER,
+                                               FieldValidator.LIST],
+                                              [FieldValidator.DATAFILE,
+                                               FieldValidator.STRING,
+                                               FieldValidator.NUMBER,
+                                               FieldValidator.NUMBER,
+                                               FieldValidator.LIST]
+                                          ]):
+
                                 # Format: [file scene_label onset offset tags]
                                 data.append(
                                     self.item_class({

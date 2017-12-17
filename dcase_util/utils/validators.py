@@ -12,7 +12,9 @@ class FieldValidator(object):
     STRING = 'STRING'
     ALPHA1 = 'ALPHA1'
     ALPHA2 = 'ALPHA2'
+    FILE   = 'FILE'
     AUDIOFILE = 'AUDIOFILE'
+    DATAFILE = 'DATAFILE'
     LIST = 'LIST'
     EMPTY = 'EMPTY'
 
@@ -24,6 +26,10 @@ class FieldValidator(object):
         FileFormat.AIFF,
         FileFormat.OGG,
         FileFormat.RAW
+    ]
+
+    data_file_extensions = [
+        FileFormat.CPICKLE
     ]
 
     @classmethod
@@ -45,6 +51,9 @@ class FieldValidator(object):
 
         if cls.is_audiofile(field):
             return cls.AUDIOFILE
+
+        elif cls.is_datafile(field):
+            return cls.DATAFILE
 
         elif cls.is_number(field):
             return cls.NUMBER
@@ -134,6 +143,32 @@ class FieldValidator(object):
 
         else:
             return False
+
+    @classmethod
+    def is_datafile(cls, field):
+        """Test for data file field
+
+        Parameters
+        ----------
+        field : str
+
+        Returns
+        -------
+        bool
+
+        """
+
+        detected_format = FileFormat.detect(
+            filename=field,
+            use_content_for_unknown=False
+        )
+
+        if detected_format in cls.data_file_extensions:
+            return True
+
+        else:
+            return False
+
 
     @classmethod
     def is_list(cls, field):
