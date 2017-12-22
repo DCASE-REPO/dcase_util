@@ -25,6 +25,114 @@ data = numpy.array(
     ]
 ).T
 
+def test_aggregate():
+    data_target = numpy.array(
+        [
+            [0.5, 0.5],
+            [1.5, 1.5],
+            [2.5, 2.5],
+            [3.5, 3.5],
+            [4.5, 4.5],
+            [5.5, 5.5],
+            [6.5, 6.5],
+            [7.5, 7.5],
+            [8.5, 8.5],
+            [9.5, 9.5],
+        ]
+    ).T
+
+    container = FeatureContainer(
+        data=data
+    )
+
+    agg = Aggregator(
+        win_length_frames=2,
+        hop_length_frames=1,
+        recipe=['mean'],
+        center=False,
+        padding=False,
+    )
+    agg.aggregate(data=container)
+
+    numpy.testing.assert_array_equal(data_target, container.data)
+
+    data_target = numpy.array(
+        [
+            [5.0, 5.0]
+        ]
+    ).T
+    container = FeatureContainer(
+        data=data
+    )
+    agg = Aggregator(
+        win_length_frames=11,
+        hop_length_frames=11,
+        recipe=['mean'],
+        center=False,
+        padding=False,
+    )
+    agg.aggregate(data=container)
+    numpy.testing.assert_array_equal(data_target, container.data)
+
+
+    data_target = numpy.array(
+        [
+            [1.5, 1.5],
+            [5.5, 5.5],
+        ]
+    ).T
+    container = FeatureContainer(
+        data=data
+    )
+    agg = Aggregator(
+        win_length_frames=4,
+        hop_length_frames=4,
+        recipe=['mean'],
+        center=False,
+        padding=False,
+    )
+    agg.aggregate(data=container)
+    numpy.testing.assert_array_equal(data_target, container.data)
+
+    data_target = numpy.array(
+        [
+            [3.5, 3.5],
+            [7.5, 7.5],
+        ]
+    ).T
+    container = FeatureContainer(
+        data=data
+    )
+    agg = Aggregator(
+        win_length_frames=4,
+        hop_length_frames=4,
+        recipe=['mean'],
+        center=True,
+        padding=False,
+    )
+    agg.aggregate(data=container)
+    numpy.testing.assert_array_equal(data_target, container.data)
+
+    data_target = numpy.array(
+        [
+            [0.25, 0.25],
+            [3.5, 3.5],
+            [7.5, 7.5],
+        ]
+    ).T
+    container = FeatureContainer(
+        data=data
+    )
+    agg = Aggregator(
+        win_length_frames=4,
+        hop_length_frames=4,
+        recipe=['mean'],
+        center=True,
+        padding=True,
+    )
+    agg.aggregate(data=container)
+    numpy.testing.assert_array_equal(data_target, container.data)
+
 
 def test_aggregate_flatten():
     data_target = numpy.array(
@@ -253,4 +361,3 @@ def test_log():
             recipe=['flatten'],
             filename='Aggregator.cpickle'
         ).log()
-

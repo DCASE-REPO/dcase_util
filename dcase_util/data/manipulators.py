@@ -327,7 +327,7 @@ class Aggregator(ObjectContainer):
     """Data aggregator"""
     valid_method = ['mean', 'std', 'cov', 'kurtosis', 'skew', 'flatten']
 
-    def __init__(self, win_length_frames=10, hop_length_frames=1, recipe=None, **kwargs):
+    def __init__(self, win_length_frames=10, hop_length_frames=1, recipe=None, center=True, padding=True, **kwargs):
         """Constructor
 
         Parameters
@@ -341,6 +341,12 @@ class Aggregator(ObjectContainer):
         hop_length_frames : int
             Hop length in feature frames
 
+        center : bool
+            Centering of the window
+
+        padding : bool
+            Padding of the first window with the first frame and last window with last frame to have equal length data in the windows.
+
         """
 
         # Run super init to call init of mixins too
@@ -348,6 +354,8 @@ class Aggregator(ObjectContainer):
 
         self.win_length_frames = win_length_frames
         self.hop_length_frames = hop_length_frames
+        self.center = center
+        self.padding = padding
 
         if isinstance(recipe, dict):
             self.recipe = [d['label'] for d in recipe]
@@ -408,44 +416,58 @@ class Aggregator(ObjectContainer):
             # Not the most efficient way as numpy stride_tricks would produce
             # faster code, however, opted for cleaner presentation this time.
             for frame in range(0, data.data.shape[data.time_axis], self.hop_length_frames):
-                # Get start and end of the window, keep frame at the middle (approximately)
-                start_frame = int(frame - numpy.floor(self.win_length_frames/2.0))
-                end_frame = int(frame + numpy.ceil(self.win_length_frames / 2.0))
+                # Get start and end of the window
+                if self.center:
+                    # Keep frame at the middle (approximately)
+                    start_frame = int(frame - numpy.floor(self.win_length_frames / 2.0))
+                    end_frame = int(frame + numpy.ceil(self.win_length_frames / 2.0))
+                else:
+                    start_frame = frame
+                    end_frame = frame + self.win_length_frames
 
                 frame_ids = numpy.array(range(start_frame, end_frame))
-                # If start of feature matrix, pad with first frame
-                frame_ids[frame_ids < 0] = 0
 
-                # If end of the feature matrix, pad with last frame
-                frame_ids[frame_ids > data.data.shape[data.time_axis] - 1] = data.data.shape[data.time_axis] - 1
+                valid_frame = True
+                if self.padding:
+                    # If start of feature matrix, pad with first frame
+                    frame_ids[frame_ids < 0] = 0
 
-                current_frame = data.get_frames(frame_ids=frame_ids)
+                    # If end of the feature matrix, pad with last frame
+                    frame_ids[frame_ids > data.data.shape[data.time_axis] - 1] = data.data.shape[data.time_axis] - 1
 
-                aggregated_frame = []
+                else:
+                    # Mark non-full windows invalid
+                    if numpy.any(frame_ids < 0) or numpy.any( frame_ids > data.data.shape[data.time_axis] - 1):
+                        valid_frame = False
 
-                if 'mean' in self.recipe:
-                    aggregated_frame.append(current_frame.mean(axis=data.time_axis))
+                if valid_frame:
+                    current_frame = data.get_frames(frame_ids=frame_ids)
 
-                if 'std' in self.recipe:
-                    aggregated_frame.append(current_frame.std(axis=data.time_axis))
+                    aggregated_frame = []
 
-                if 'cov' in self.recipe:
-                    aggregated_frame.append(numpy.cov(current_frame).flatten())
+                    if 'mean' in self.recipe:
+                        aggregated_frame.append(current_frame.mean(axis=data.time_axis))
 
-                if 'kurtosis' in self.recipe:
-                    aggregated_frame.append(scipy.stats.kurtosis(current_frame, axis=data.time_axis))
+                    if 'std' in self.recipe:
+                        aggregated_frame.append(current_frame.std(axis=data.time_axis))
 
-                if 'skew' in self.recipe:
-                    aggregated_frame.append(scipy.stats.skew(current_frame, axis=data.time_axis))
+                    if 'cov' in self.recipe:
+                        aggregated_frame.append(numpy.cov(current_frame).flatten())
 
-                if 'flatten' in self.recipe:
-                    if data.time_axis == 0:
-                        aggregated_frame.append(current_frame.flatten())
-                    elif data.time_axis == 1:
-                        aggregated_frame.append(current_frame.T.flatten().T)
+                    if 'kurtosis' in self.recipe:
+                        aggregated_frame.append(scipy.stats.kurtosis(current_frame, axis=data.time_axis))
 
-                if aggregated_frame:
-                    aggregated_features.append(numpy.concatenate(aggregated_frame))
+                    if 'skew' in self.recipe:
+                        aggregated_frame.append(scipy.stats.skew(current_frame, axis=data.time_axis))
+
+                    if 'flatten' in self.recipe:
+                        if data.time_axis == 0:
+                            aggregated_frame.append(current_frame.flatten())
+                        elif data.time_axis == 1:
+                            aggregated_frame.append(current_frame.T.flatten().T)
+
+                    if aggregated_frame:
+                        aggregated_features.append(numpy.concatenate(aggregated_frame))
 
             # Update data
             data.data = numpy.vstack(aggregated_features).T
