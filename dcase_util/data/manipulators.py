@@ -409,6 +409,8 @@ class Aggregator(ObjectContainer):
         """
 
         from dcase_util.containers import DataContainer
+        # Make copy of the data to prevent modifications to the original data
+        data = copy.deepcopy(data)
 
         if isinstance(data, DataContainer):
             aggregated_features = []
