@@ -1035,7 +1035,7 @@ class ListDictContainer(ListContainer):
                 return element
         return None
 
-    def load(self, filename=None, fields=None):
+    def load(self, filename=None, fields=None, csv_header=None):
         """Load file
 
         Parameters
@@ -1047,10 +1047,16 @@ class ListDictContainer(ListContainer):
         fields : list of str, optional
             List of column names
 
+        csv_header : bool, optional
+            Read field names from first line (header). Only used for CSV formatted files.
+
         Raises
         ------
         IOError:
             File does not exists or has unknown file format
+
+        ValueError:
+            No fields or csv_header set for CSV formatted file.
 
         Returns
         -------
@@ -1067,14 +1073,25 @@ class ListDictContainer(ListContainer):
             from dcase_util.files import Serializer
 
             if self.format == FileFormat.CSV:
+                if fields is None and csv_header is None:
+                    message = '{name}: Parameters fields or csv_header has to be set for CSV files.'.format(
+                        name=self.__class__.__name__
+                    )
+                    self.logger.exception(message)
+                    raise ValueError(message)
+
                 data = []
                 delimiter = self.delimiter()
                 with open(self.filename, 'r') as f:
                     csv_reader = csv.reader(f, delimiter=delimiter)
+                    if csv_header:
+                        fields = next(csv_reader)
+
                     for row in csv_reader:
                         for cell_id, cell_data in enumerate(row):
                             if is_int(cell_data):
                                 row[cell_id] = int(cell_data)
+
                             elif is_float(cell_data):
                                 row[cell_id] = float(cell_data)
 
@@ -1110,7 +1127,7 @@ class ListDictContainer(ListContainer):
 
         return self
 
-    def save(self, filename=None, fields=None, delimiter=','):
+    def save(self, filename=None, fields=None, delimiter=',', csv_header=None):
         """Save file
 
         Parameters
@@ -1124,6 +1141,9 @@ class ListDictContainer(ListContainer):
 
         delimiter : str
             Delimiter to be used when saving data
+
+        csv_header : bool
+            In case of CSV formatted file, first line will contain field names. Names are taken from fields parameter.
 
         Raises
         ------
@@ -1166,6 +1186,9 @@ class ListDictContainer(ListContainer):
 
                 with open(self.filename, 'w') as csv_file:
                     csv_writer = csv.writer(csv_file, delimiter=delimiter)
+                    if csv_header:
+                        csv_writer.writerow(fields)
+
                     for item in self:
                         item_values = []
                         for field in fields:
