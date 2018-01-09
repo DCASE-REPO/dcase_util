@@ -55,6 +55,7 @@ class AudioContainer(ContainerMixin, FileMixin):
         self.data_synced_with_file = False
 
         self.fs = fs
+        self.filetype_info = None
 
         # Filename
         if self.filename:
@@ -79,6 +80,7 @@ class AudioContainer(ContainerMixin, FileMixin):
             '_data': self._data,
             'data_synced_with_file': self.data_synced_with_file,
             'fs': self.fs,
+            'filetype_info': self.filetype_info,
             'filename': self.filename,
             '_focus_start': self._focus_start,
             '_focus_stop': self._focus_stop,
@@ -96,6 +98,7 @@ class AudioContainer(ContainerMixin, FileMixin):
         self._data = d['_data']
         self.data_synced_with_file = d['data_synced_with_file']
         self.fs = d['fs']
+        self.filetype_info = d['filetype_info']
         self.filename = d['filename']
         self._focus_start = None
         self._focus_stop = None
@@ -110,11 +113,16 @@ class AudioContainer(ContainerMixin, FileMixin):
         output += ui.class_name(self.__class__.__name__) + '\n'
         if self.filename:
             output += ui.data(field='Filename', value=self.filename) + '\n'
+            if self.filetype_info.values:
+                output += ui.data(field='Format', value=self.format + ' (' + ', '.join(self.filetype_info.values()) + ')') + '\n'
+            else:
+                output += ui.data(field='Format', value=self.format) + '\n'
+
             output += ui.data(field='Synced', value='Yes' if self.data_synced_with_file else 'No') + '\n'
 
-        output += ui.data(field='Sampling rate', value=str(self.fs)) + '\n'
+        output += ui.data(field='Sampling rate', value=str(self.fs), unit='hz') + '\n'
 
-        output += ui.data(indent=4, field='Channels', value=str(self.channels)) + '\n'
+        output += ui.data(field='Channels', value=str(self.channels)) + '\n'
 
         output += ui.line(field='Duration') + '\n'
         output += ui.data(indent=4, field='Seconds', value=self.duration_sec, unit='sec') + '\n'
@@ -534,6 +542,11 @@ class AudioContainer(ContainerMixin, FileMixin):
 
             if self.format == FileFormat.WAV:
                 info = soundfile.info(file=self.filename)
+
+                self.filetype_info = {
+                    'subtype': info.subtype,
+                    'subtype_info': info.subtype_info
+                }
 
                 # Handle segment start and stop
                 if start is not None and stop is not None:
@@ -986,20 +999,24 @@ class AudioContainer(ContainerMixin, FileMixin):
         if start is not None or stop is not None or duration is not None:
             # Sample based setting
             if start is not None and stop is not None:
+                self.reset_focus()
                 self.focus_start_samples = start
                 self.focus_stop_samples = stop
 
             elif start is not None and duration is not None:
+                self.reset_focus()
                 self.focus_start_samples = start
                 self.focus_stop_samples = start + duration
 
         elif start_seconds is not None or stop_seconds is not None or duration_seconds is not None:
             # Time based setting
             if start_seconds is not None and stop_seconds is not None:
+                self.reset_focus()
                 self.focus_start_samples = self._time_to_sample(time=start_seconds)
                 self.focus_stop_samples = self._time_to_sample(time=stop_seconds)
 
             elif start_seconds is not None and duration_seconds is not None:
+                self.reset_focus()
                 self.focus_start_samples = self._time_to_sample(time=start_seconds)
                 self.focus_stop_samples = self._time_to_sample(time=start_seconds + duration_seconds)
 
