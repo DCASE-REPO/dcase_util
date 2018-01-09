@@ -6,7 +6,6 @@ from six import iteritems
 import os
 import sys
 import hashlib
-import json
 import copy
 import numpy
 import itertools
