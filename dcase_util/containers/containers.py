@@ -11,6 +11,7 @@ import csv
 import json
 import hashlib
 import collections
+import types
 
 from dcase_util.containers import ContainerMixin, FileMixin
 from dcase_util.ui import FancyStringifier
@@ -748,6 +749,7 @@ class DictContainer(dict, ContainerMixin, FileMixin):
                 return {
                     'enable': False,
                 }
+
             else:
                 if isinstance(data, dict):
                     for key in list(data.keys()):
@@ -768,6 +770,9 @@ class DictContainer(dict, ContainerMixin, FileMixin):
                             else:
                                 # Proceed recursively
                                 data[key] = self._clean_for_hashing(value)
+
+                        elif isinstance(value, (type, types.ObjectType)) and hasattr(value, 'get_config'):
+                            data[key] = value.get_config()
 
                     return data
 
