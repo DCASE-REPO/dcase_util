@@ -3,6 +3,7 @@
 
 from __future__ import print_function, absolute_import
 from six import iteritems
+import six
 
 import os
 import locale
@@ -238,61 +239,64 @@ class VectorRecipeParser(object):
 
         """
 
-        data = []
-        labels = recipe.split(self.delimiters['block'])
-        for label in labels:
-            label = label.strip()
-            if label:
-                detail_parts = label.split(self.delimiters['detail'])
-                label = detail_parts[0].strip()
+        if isinstance(recipe, six.string_types):
+            data = []
+            labels = recipe.split(self.delimiters['block'])
+            for label in labels:
+                label = label.strip()
+                if label:
+                    detail_parts = label.split(self.delimiters['detail'])
+                    label = detail_parts[0].strip()
 
-                # Default values, used when only extractor is defined e.g. [extractor (string)]; [extractor (string)]
-                vector_index_structure = {
-                    'stream': self.default_stream,
-                    'selection': False,
-                    'full': True,
-                }
+                    # Default values, used when only extractor is defined e.g. [extractor (string)]; [extractor (string)]
+                    vector_index_structure = {
+                        'stream': self.default_stream,
+                        'selection': False,
+                        'full': True,
+                    }
 
-                # Inspect recipe further
-                if len(detail_parts) == 2:
-                    main_index_parts = detail_parts[1].split(self.delimiters['dimension'])
-                    vector_indexing_string = detail_parts[1]
+                    # Inspect recipe further
+                    if len(detail_parts) == 2:
+                        main_index_parts = detail_parts[1].split(self.delimiters['dimension'])
+                        vector_indexing_string = detail_parts[1]
 
-                    if len(main_index_parts) > 1:
-                        # Channel has been defined,
-                        # e.g. [extractor (string)]=[channel (int)]:[start index (int)]-[end index (int)]
-                        vector_index_structure['stream'] = int(main_index_parts[0])
-                        vector_indexing_string = main_index_parts[1]
+                        if len(main_index_parts) > 1:
+                            # Channel has been defined,
+                            # e.g. [extractor (string)]=[channel (int)]:[start index (int)]-[end index (int)]
+                            vector_index_structure['stream'] = int(main_index_parts[0])
+                            vector_indexing_string = main_index_parts[1]
 
-                    vector_indexing = vector_indexing_string.split(self.delimiters['segment'])
-                    if len(vector_indexing) > 1:
-                        vector_index_structure['start'] = int(vector_indexing[0].strip())
-                        vector_index_structure['stop'] = int(vector_indexing[1].strip()) + 1
-                        vector_index_structure['full'] = False
-                        vector_index_structure['selection'] = False
-                    else:
-                        vector_indexing = vector_indexing_string.split(self.delimiters['vector'])
+                        vector_indexing = vector_indexing_string.split(self.delimiters['segment'])
                         if len(vector_indexing) > 1:
-                            a = list(map(int, vector_indexing))
+                            vector_index_structure['start'] = int(vector_indexing[0].strip())
+                            vector_index_structure['stop'] = int(vector_indexing[1].strip()) + 1
                             vector_index_structure['full'] = False
-                            vector_index_structure['selection'] = True
-                            vector_index_structure['vector'] = a
-                        else:
-                            vector_index_structure['stream'] = int(vector_indexing[0])
-                            vector_index_structure['full'] = True
                             vector_index_structure['selection'] = False
+                        else:
+                            vector_indexing = vector_indexing_string.split(self.delimiters['vector'])
+                            if len(vector_indexing) > 1:
+                                a = list(map(int, vector_indexing))
+                                vector_index_structure['full'] = False
+                                vector_index_structure['selection'] = True
+                                vector_index_structure['vector'] = a
+                            else:
+                                vector_index_structure['stream'] = int(vector_indexing[0])
+                                vector_index_structure['full'] = True
+                                vector_index_structure['selection'] = False
 
-                    current_data = {
-                        'label': label,
-                        'vector-index': vector_index_structure,
-                    }
-                else:
-                    current_data = {
-                        'label': label,
-                    }
+                        current_data = {
+                            'label': label,
+                            'vector-index': vector_index_structure,
+                        }
+                    else:
+                        current_data = {
+                            'label': label,
+                        }
 
-                data.append(current_data)
+                    data.append(current_data)
 
-        from dcase_util.containers import ListDictContainer
-        return ListDictContainer(data)
+            from dcase_util.containers import ListDictContainer
+            return ListDictContainer(data)
 
+        else:
+            return recipe
