@@ -257,7 +257,12 @@ class DictContainer(dict, ContainerMixin, FileMixin):
 
             elif fields[0] in data and len(fields) == 1:
                 # We reached to the node
-                return data[fields[0]]
+                if isinstance(data[fields[0]], dict):
+                    # Return DictContainer in case of dict
+                    return DictContainer(data[fields[0]])
+
+                else:
+                    return data[fields[0]]
 
             else:
                 return default
@@ -734,6 +739,7 @@ class DictContainer(dict, ContainerMixin, FileMixin):
 
         if non_hashable_fields is None and hasattr(self, 'non_hashable_fields'):
             non_hashable_fields = self.non_hashable_fields
+
         elif non_hashable_fields is None:
             non_hashable_fields = []
 
@@ -770,6 +776,39 @@ class DictContainer(dict, ContainerMixin, FileMixin):
 
         else:
             return data
+
+    def filter(self, data=None, excluded_key_prefix='_'):
+        """Filter nested dict
+
+        Parameters
+        ----------
+        data : dict, optional
+            Dict for filter is done, if None given self is used.
+
+        excluded_key_prefix : str
+            Key prefix to be excluded
+
+        Returns
+        -------
+        DictContainer
+
+        """
+
+        if data is None:
+            data = copy.deepcopy(self)
+
+        for key in list(data.keys()):
+            if isinstance(data[key], dict):
+                data[key] = self.filter(
+                    data=data[key],
+                    excluded_key_prefix=excluded_key_prefix
+                )
+
+            else:
+                if excluded_key_prefix and key.startswith(excluded_key_prefix):
+                    del data[key]
+
+        return data
 
 
 class ListContainer(list, ContainerMixin, FileMixin):
