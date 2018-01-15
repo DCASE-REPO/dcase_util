@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from __future__ import print_function, absolute_import
+import six
 import copy
 import numpy
 import os
@@ -38,11 +39,11 @@ class MetaDataItem(dict):
         # Process meta data fields
 
         # File target for the meta data item
-        if 'filename' in self:
+        if 'filename' in self and isinstance(self['filename'], six.string_types):
             # Keep file paths in unix format even under Windows
             self['filename'] = posix_path(self['filename'])
 
-        if 'filename_original' in self:
+        if 'filename_original' in self and isinstance(self['filename_original'], six.string_types):
             # Keep file paths in unix format even under Windows
             self['filename_original'] = posix_path(self['filename_original'])
 
