@@ -29,7 +29,8 @@ class FieldValidator(object):
     ]
 
     data_file_extensions = [
-        FileFormat.CPICKLE
+        FileFormat.CPICKLE,
+        FileFormat.NUMPY,
     ]
 
     @classmethod
