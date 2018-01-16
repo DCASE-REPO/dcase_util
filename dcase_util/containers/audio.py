@@ -113,7 +113,7 @@ class AudioContainer(ContainerMixin, FileMixin):
         output += ui.class_name(self.__class__.__name__) + '\n'
         if self.filename:
             output += ui.data(field='Filename', value=self.filename) + '\n'
-            if self.filetype_info.values:
+            if self.filetype_info and self.filetype_info.values:
                 output += ui.data(field='Format', value=self.format + ' (' + ', '.join(self.filetype_info.values()) + ')') + '\n'
             else:
                 output += ui.data(field='Format', value=self.format) + '\n'
