@@ -771,7 +771,7 @@ class DictContainer(dict, ContainerMixin, FileMixin):
                                 # Proceed recursively
                                 data[key] = self._clean_for_hashing(value)
 
-                        elif isinstance(value, (type, types.ObjectType)) and hasattr(value, 'get_config'):
+                        elif hasattr(value, 'get_config'):
                             data[key] = value.get_config()
 
                     return data
