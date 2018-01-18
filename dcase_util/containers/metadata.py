@@ -9,7 +9,7 @@ import os
 import csv
 import logging
 from dcase_util.containers import ListDictContainer
-from dcase_util.utils import posix_path, get_parameter_hash, FieldValidator, setup_logging, FileFormat
+from dcase_util.utils import posix_path, get_parameter_hash, FieldValidator, setup_logging, is_float, is_int, FileFormat
 from dcase_util.ui import FancyStringifier
 
 
@@ -745,6 +745,29 @@ class MetaDataContainer(ListDictContainer):
                 max_offset = item.offset
         return max_offset
 
+    def update(self, data):
+        """Replace content with given list
+
+        Parameters
+        ----------
+        data : list
+            New content
+
+        Returns
+        -------
+        self
+
+        """
+
+        list.__init__(self, data)
+
+        # Convert all items in the list to MetaDataItems
+        for item_id in range(0, len(self)):
+            if not isinstance(self[item_id], self.item_class):
+                self[item_id] = self.item_class(self[item_id])
+
+        return self
+
     def log(self, level='info', show_data=False, show_stats=True):
         """Log container content
 
@@ -799,7 +822,7 @@ class MetaDataContainer(ListDictContainer):
 
         self.show(show_data=True, show_stats=True)
 
-    def load(self, filename=None, decimal='point'):
+    def load(self, filename=None, fields=None, csv_header=None, file_format=None, delimiter=None, decimal='point'):
         """Load event list from delimited text file (csv-formatted)
 
         Preferred delimiter is tab, however, other delimiters are supported automatically
@@ -825,6 +848,18 @@ class MetaDataContainer(ListDictContainer):
         filename : str
             Path to the event list in text format (csv). If none given, one given for class constructor is used.
 
+        fields : list of str, optional
+            List of column names. Used only for CSV formatted files.
+
+        csv_header : bool, optional
+            Read field names from first line (header). Used only for CSV formatted files.
+
+        file_format : FileFormat, optional
+            Forced file format, use this when there is a miss-match between file extension and file format.
+
+        delimiter : str, optional
+            Forced data delimiter for csv format. If None given, automatic delimiter sniffer used. Use this when sniffer does not work.
+
         decimal : str
             Decimal 'point' or 'comma'
 
@@ -844,11 +879,15 @@ class MetaDataContainer(ListDictContainer):
 
         if filename:
             self.filename = filename
-            self.detect_file_format()
-            self.validate_format()
+            if not file_format:
+                self.detect_file_format()
+                self.validate_format()
+
+        if file_format and FileFormat.validate_label(label=file_format):
+            self.format = file_format
 
         if self.exists():
-            if self.format in [FileFormat.CSV, FileFormat.TXT, FileFormat.ANN]:
+            if self.format in [FileFormat.TXT, FileFormat.ANN]:
                 if decimal == 'comma':
                     delimiter = self.delimiter(exclude_delimiters=[','])
 
@@ -1311,9 +1350,44 @@ class MetaDataContainer(ListDictContainer):
 
                 self.update(data=data)
 
+            elif self.format == FileFormat.CSV:
+                if fields is None and csv_header is None:
+                    message = '{name}: Parameters fields or csv_header has to be set for CSV files.'.format(
+                        name=self.__class__.__name__
+                    )
+                    self.logger.exception(message)
+                    raise ValueError(message)
+
+                if not delimiter:
+                    if decimal == 'comma':
+                        delimiter = self.delimiter(exclude_delimiters=[','])
+
+                    else:
+                        delimiter = self.delimiter()
+
+                data = []
+                with open(self.filename, 'r') as f:
+                    csv_reader = csv.reader(f, delimiter=delimiter)
+                    if csv_header:
+                        fields = next(csv_reader)
+
+                    for row in csv_reader:
+                        for cell_id, cell_data in enumerate(row):
+                            if is_int(cell_data):
+                                row[cell_id] = int(cell_data)
+
+                            elif is_float(cell_data):
+                                row[cell_id] = float(cell_data)
+
+                        data.append(dict(zip(fields, row)))
+
+                self.update(data=data)
+
             elif self.format == FileFormat.CPICKLE:
                 from dcase_util.files import Serializer
-                list.__init__(self, Serializer.load_cpickle(filename=self.filename))
+                self.update(
+                    data=Serializer.load_cpickle(filename=self.filename)
+                )
 
             else:
                 message = '{name}: Unknown format [{format}]'.format(name=self.__class__.__name__, format=self.filename)
@@ -1330,7 +1404,7 @@ class MetaDataContainer(ListDictContainer):
 
         return self
 
-    def save(self, filename=None, delimiter='\t', **kwargs):
+    def save(self, filename=None, fields=None, csv_header=None, file_format=None, delimiter='\t',  **kwargs):
         """Save content to csv file
 
         Parameters
@@ -1338,8 +1412,17 @@ class MetaDataContainer(ListDictContainer):
         filename : str
             Filename. If none given, one given for class constructor is used.
 
+        fields : list of str
+            Fields in correct order, if none given all field in alphabetical order will be outputted. Used only for CSV formatted files.
+
+        csv_header : bool
+            In case of CSV formatted file, first line will contain field names. Names are taken from fields parameter.
+
+        file_format : FileFormat, optional
+            Forced file format, use this when there is a miss-match between file extension and file format.
+
         delimiter : str
-            Delimiter to be used
+            Delimiter to be used when saving data.
 
         Returns
         -------
@@ -1349,10 +1432,14 @@ class MetaDataContainer(ListDictContainer):
 
         if filename:
             self.filename = filename
-            self.detect_file_format()
-            self.validate_format()
+            if not file_format:
+                self.detect_file_format()
+                self.validate_format()
 
-        if self.format in [FileFormat.CSV, FileFormat.TXT, FileFormat.ANN]:
+        if file_format and FileFormat.validate_label(label=file_format):
+            self.format = file_format
+
+        if self.format in [FileFormat.TXT, FileFormat.ANN]:
             f = open(self.filename, 'wt')
             try:
                 writer = csv.writer(f, delimiter=delimiter)
@@ -1361,6 +1448,24 @@ class MetaDataContainer(ListDictContainer):
 
             finally:
                 f.close()
+
+        elif self.format == FileFormat.CSV:
+            if fields is None:
+                fields = set()
+                for item in self:
+                    fields.update(list(item.keys()))
+                fields = sorted(list(fields))
+
+            with open(self.filename, 'w') as csv_file:
+                csv_writer = csv.writer(csv_file, delimiter=delimiter)
+                if csv_header:
+                    csv_writer.writerow(fields)
+
+                for item in self:
+                    item_values = []
+                    for field in fields:
+                        item_values.append(item[field])
+                    csv_writer.writerow(item_values)
 
         elif self.format == FileFormat.CPICKLE:
             from dcase_util.files import Serializer
