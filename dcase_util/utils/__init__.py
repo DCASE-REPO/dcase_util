@@ -98,6 +98,7 @@ FileFormat
     FileFormat.detect
     FileFormat.detect_based_on_filename
     FileFormat.detect_based_on_content
+    FileFormat.validate_label
 
 Hash
 ::::

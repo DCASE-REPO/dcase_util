@@ -949,6 +949,7 @@ class FileFormat(object):
         ----------
         filename : str
             Path to the file
+
         use_content_for_unknown : bool
             Use content to get the format if file exists.
             Default value "True"
@@ -971,3 +972,20 @@ class FileFormat(object):
                     return result2
 
         return result1
+
+    @classmethod
+    def validate_label(cls, label):
+        """Validate file format label against labels known by this class
+
+        Parameters
+        ----------
+        label : str
+            file format label
+
+        Returns
+        -------
+        bool
+
+        """
+
+        return label in list(cls.__dict__.keys())
