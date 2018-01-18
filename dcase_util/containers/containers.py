@@ -1079,7 +1079,7 @@ class ListDictContainer(ListContainer):
                 return element
         return None
 
-    def load(self, filename=None, fields=None, csv_header=None):
+    def load(self, filename=None, fields=None, csv_header=None, file_format=None, delimiter=None):
         """Load file
 
         Parameters
@@ -1092,7 +1092,13 @@ class ListDictContainer(ListContainer):
             List of column names
 
         csv_header : bool, optional
-            Read field names from first line (header). Only used for CSV formatted files.
+            Read field names from first line (header). Used only for CSV formatted files.
+
+        file_format : FileFormat, optional
+            Forced file format, use this when there is a miss-match between file extension and file format.
+
+        delimiter : str, optional
+            Forced data delimiter for csv format. If None given, automatic delimiter sniffer used. Use this when sniffer does not work.
 
         Raises
         ------
@@ -1110,8 +1116,12 @@ class ListDictContainer(ListContainer):
 
         if filename:
             self.filename = filename
-            self.detect_file_format()
-            self.validate_format()
+            if not file_format:
+                self.detect_file_format()
+                self.validate_format()
+
+        if file_format and FileFormat.validate_label(label=file_format):
+            self.format = file_format
 
         if self.exists():
             from dcase_util.files import Serializer
@@ -1125,7 +1135,10 @@ class ListDictContainer(ListContainer):
                     raise ValueError(message)
 
                 data = []
-                delimiter = self.delimiter()
+
+                if not delimiter:
+                    delimiter = self.delimiter()
+
                 with open(self.filename, 'r') as f:
                     csv_reader = csv.reader(f, delimiter=delimiter)
                     if csv_header:
@@ -1171,7 +1184,7 @@ class ListDictContainer(ListContainer):
 
         return self
 
-    def save(self, filename=None, fields=None, delimiter=',', csv_header=None):
+    def save(self, filename=None, fields=None, csv_header=None, file_format=None, delimiter=','):
         """Save file
 
         Parameters
@@ -1183,11 +1196,14 @@ class ListDictContainer(ListContainer):
         fields : list of str
             Fields in correct order, if none given all field in alphabetical order will be outputted
 
-        delimiter : str
-            Delimiter to be used when saving data
-
         csv_header : bool
             In case of CSV formatted file, first line will contain field names. Names are taken from fields parameter.
+
+        file_format : FileFormat, optional
+            Forced file format, use this when there is a miss-match between file extension and file format.
+
+        delimiter : str
+            Delimiter to be used when saving data
 
         Raises
         ------
@@ -1202,8 +1218,12 @@ class ListDictContainer(ListContainer):
 
         if filename:
             self.filename = filename
-            self.detect_file_format()
-            self.validate_format()
+            if not file_format:
+                self.detect_file_format()
+                self.validate_format()
+
+        if file_format and FileFormat.validate_label(label=file_format):
+            self.format = file_format
 
         if self.filename is None or self.filename == '':
             message = '{name}: Filename is empty [{filename}]'.format(
@@ -1226,7 +1246,10 @@ class ListDictContainer(ListContainer):
 
             elif self.format == FileFormat.CSV:
                 if fields is None:
-                    fields = sorted(list(self[0].keys()))
+                    fields = set()
+                    for item in self:
+                        fields.update(list(item.keys()))
+                    fields = sorted(list(fields))
 
                 with open(self.filename, 'w') as csv_file:
                     csv_writer = csv.writer(csv_file, delimiter=delimiter)
