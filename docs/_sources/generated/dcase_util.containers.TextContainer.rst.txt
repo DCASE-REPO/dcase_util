@@ -15,6 +15,8 @@ dcase_util.containers.TextContainer
    
       ~TextContainer.__init__
       ~TextContainer.append
+      ~TextContainer.clear
+      ~TextContainer.copy
       ~TextContainer.count
       ~TextContainer.delimiter
       ~TextContainer.detect_file_format

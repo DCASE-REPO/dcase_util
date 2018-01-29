@@ -16,9 +16,12 @@ dcase_util.containers.MetaDataContainer
       ~MetaDataContainer.__init__
       ~MetaDataContainer.add_time
       ~MetaDataContainer.append
+      ~MetaDataContainer.clear
+      ~MetaDataContainer.copy
       ~MetaDataContainer.count
       ~MetaDataContainer.delimiter
       ~MetaDataContainer.detect_file_format
+      ~MetaDataContainer.difference
       ~MetaDataContainer.empty
       ~MetaDataContainer.event_stat_counts
       ~MetaDataContainer.exists
@@ -65,6 +68,7 @@ dcase_util.containers.MetaDataContainer
       ~MetaDataContainer.event_count
       ~MetaDataContainer.event_label_count
       ~MetaDataContainer.file_count
+      ~MetaDataContainer.identifier_count
       ~MetaDataContainer.logger
       ~MetaDataContainer.max_offset
       ~MetaDataContainer.scene_label_count

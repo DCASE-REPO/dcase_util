@@ -15,6 +15,7 @@ dcase_util.utils.FieldValidator
    
       ~FieldValidator.is_alpha
       ~FieldValidator.is_audiofile
+      ~FieldValidator.is_datafile
       ~FieldValidator.is_empty
       ~FieldValidator.is_list
       ~FieldValidator.is_number
@@ -31,10 +32,13 @@ dcase_util.utils.FieldValidator
       ~FieldValidator.ALPHA1
       ~FieldValidator.ALPHA2
       ~FieldValidator.AUDIOFILE
+      ~FieldValidator.DATAFILE
       ~FieldValidator.EMPTY
+      ~FieldValidator.FILE
       ~FieldValidator.LIST
       ~FieldValidator.NUMBER
       ~FieldValidator.STRING
       ~FieldValidator.audio_file_extensions
+      ~FieldValidator.data_file_extensions
    
    

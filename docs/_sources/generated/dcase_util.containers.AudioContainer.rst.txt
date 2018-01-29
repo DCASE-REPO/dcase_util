@@ -17,6 +17,7 @@ dcase_util.containers.AudioContainer
       ~AudioContainer.delimiter
       ~AudioContainer.detect_file_format
       ~AudioContainer.exists
+      ~AudioContainer.frames
       ~AudioContainer.freeze
       ~AudioContainer.get_file_information
       ~AudioContainer.get_focused

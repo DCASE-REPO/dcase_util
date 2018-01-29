@@ -17,6 +17,8 @@ dcase_util.processors.ProcessingChain
       ~ProcessingChain.append
       ~ProcessingChain.call_method
       ~ProcessingChain.chain_string
+      ~ProcessingChain.clear
+      ~ProcessingChain.copy
       ~ProcessingChain.count
       ~ProcessingChain.delimiter
       ~ProcessingChain.detect_file_format

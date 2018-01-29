@@ -20,6 +20,7 @@ dcase_util.containers.RepositoryContainer
       ~RepositoryContainer.detect_file_format
       ~RepositoryContainer.empty
       ~RepositoryContainer.exists
+      ~RepositoryContainer.filter
       ~RepositoryContainer.fromkeys
       ~RepositoryContainer.get
       ~RepositoryContainer.get_dump_content
@@ -28,12 +29,8 @@ dcase_util.containers.RepositoryContainer
       ~RepositoryContainer.get_hash_for_path
       ~RepositoryContainer.get_leaf_path_list
       ~RepositoryContainer.get_path
-      ~RepositoryContainer.has_key
       ~RepositoryContainer.is_package
       ~RepositoryContainer.items
-      ~RepositoryContainer.iteritems
-      ~RepositoryContainer.iterkeys
-      ~RepositoryContainer.itervalues
       ~RepositoryContainer.keys
       ~RepositoryContainer.load
       ~RepositoryContainer.log
@@ -47,9 +44,6 @@ dcase_util.containers.RepositoryContainer
       ~RepositoryContainer.update
       ~RepositoryContainer.validate_format
       ~RepositoryContainer.values
-      ~RepositoryContainer.viewitems
-      ~RepositoryContainer.viewkeys
-      ~RepositoryContainer.viewvalues
    
    
 

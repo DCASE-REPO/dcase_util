@@ -20,6 +20,7 @@ dcase_util.processors.ProcessingChainItem
       ~ProcessingChainItem.detect_file_format
       ~ProcessingChainItem.empty
       ~ProcessingChainItem.exists
+      ~ProcessingChainItem.filter
       ~ProcessingChainItem.fromkeys
       ~ProcessingChainItem.get
       ~ProcessingChainItem.get_dump_content
@@ -28,12 +29,8 @@ dcase_util.processors.ProcessingChainItem
       ~ProcessingChainItem.get_hash_for_path
       ~ProcessingChainItem.get_leaf_path_list
       ~ProcessingChainItem.get_path
-      ~ProcessingChainItem.has_key
       ~ProcessingChainItem.is_package
       ~ProcessingChainItem.items
-      ~ProcessingChainItem.iteritems
-      ~ProcessingChainItem.iterkeys
-      ~ProcessingChainItem.itervalues
       ~ProcessingChainItem.keys
       ~ProcessingChainItem.load
       ~ProcessingChainItem.log
@@ -47,9 +44,6 @@ dcase_util.processors.ProcessingChainItem
       ~ProcessingChainItem.update
       ~ProcessingChainItem.validate_format
       ~ProcessingChainItem.values
-      ~ProcessingChainItem.viewitems
-      ~ProcessingChainItem.viewkeys
-      ~ProcessingChainItem.viewvalues
    
    
 

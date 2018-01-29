@@ -15,6 +15,8 @@
   
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
   
+  
+  
 
   
 
@@ -49,6 +51,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -85,7 +88,10 @@
           
             
             
-                <ul>
+              
+            
+            
+              <ul>
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation instructions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../installation.html#pypi">PyPI</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation.html#source">Source</a></li>
@@ -367,6 +373,7 @@
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AudioContainer.set_focus.html">dcase_util.containers.AudioContainer.set_focus</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AudioContainer.get_focused.html">dcase_util.containers.AudioContainer.get_focused</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AudioContainer.freeze.html">dcase_util.containers.AudioContainer.freeze</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AudioContainer.frames.html">dcase_util.containers.AudioContainer.frames</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AudioContainer.normalize.html">dcase_util.containers.AudioContainer.normalize</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AudioContainer.resample.html">dcase_util.containers.AudioContainer.resample</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AudioContainer.mixdown.html">dcase_util.containers.AudioContainer.mixdown</a></li>
@@ -433,6 +440,7 @@
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.event_count.html">dcase_util.containers.MetaDataContainer.event_count</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.scene_label_count.html">dcase_util.containers.MetaDataContainer.scene_label_count</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.event_label_count.html">dcase_util.containers.MetaDataContainer.event_label_count</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.identifier_count.html">dcase_util.containers.MetaDataContainer.identifier_count</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.tag_count.html">dcase_util.containers.MetaDataContainer.tag_count</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.unique_files.html">dcase_util.containers.MetaDataContainer.unique_files</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.unique_event_labels.html">dcase_util.containers.MetaDataContainer.unique_event_labels</a></li>
@@ -450,6 +458,9 @@
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.event_stat_counts.html">dcase_util.containers.MetaDataContainer.event_stat_counts</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.tag_stat_counts.html">dcase_util.containers.MetaDataContainer.tag_stat_counts</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.to_event_roll.html">dcase_util.containers.MetaDataContainer.to_event_roll</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.intersection.html">dcase_util.containers.MetaDataContainer.intersection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.intersection_report.html">dcase_util.containers.MetaDataContainer.intersection_report</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.difference.html">dcase_util.containers.MetaDataContainer.difference</a></li>
 </ul>
 </li>
 </ul>
@@ -913,6 +924,10 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../keras.html#utils">Utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.keras.setup_keras.html">dcase_util.keras.setup_keras</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../processors.html">Processors</a><ul class="current">
@@ -1156,6 +1171,7 @@
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.utils.FileFormat.detect.html">dcase_util.utils.FileFormat.detect</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.utils.FileFormat.detect_based_on_filename.html">dcase_util.utils.FileFormat.detect_based_on_filename</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.utils.FileFormat.detect_based_on_content.html">dcase_util.utils.FileFormat.detect_based_on_content</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.utils.FileFormat.validate_label.html">dcase_util.utils.FileFormat.validate_label</a></li>
 </ul>
 </li>
 </ul>
@@ -1271,8 +1287,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../index.html">DCASE Utilities</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DCASE Utilities</a>
+        
       </nav>
 
 
@@ -1281,23 +1299,40 @@
         <div class="rst-content">
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="../index.html">Docs</a> &raquo;</li>
-      
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
           <li><a href="../processors.html">Processors</a> &raquo;</li>
-      
-    <li>dcase_util.processors.MetadataReadingProcessor</li>
+        
+      <li>dcase_util.processors.MetadataReadingProcessor</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
+            
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -1322,7 +1357,7 @@
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#dcase_util.processors.MetadataReadingProcessor.__init__" title="dcase_util.processors.MetadataReadingProcessor.__init__"><code class="xref py py-obj docutils literal"><span class="pre">__init__</span></code></a>(*args,&nbsp;**kwargs)</td>
+<tr class="row-odd"><td><a class="reference internal" href="#dcase_util.processors.MetadataReadingProcessor.__init__" title="dcase_util.processors.MetadataReadingProcessor.__init__"><code class="xref py py-obj docutils literal"><span class="pre">__init__</span></code></a>(\*args,&nbsp;\*\*kwargs)</td>
 <td>Constructor</td>
 </tr>
 <tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">add_time</span></code>(time)</td>
@@ -1330,6 +1365,12 @@
 </tr>
 <tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">append</span></code>(item)</td>
 <td>Append item to the meta data list</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">clear</span></code>(()&nbsp;-&gt;&nbsp;None&nbsp;&#8211;&nbsp;remove&nbsp;all&nbsp;items&nbsp;from&nbsp;L)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">copy</span></code>(()&nbsp;-&gt;&nbsp;list&nbsp;&#8211;&nbsp;a&nbsp;shallow&nbsp;copy&nbsp;of&nbsp;L)</td>
+<td></td>
 </tr>
 <tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">count</span></code>(...)</td>
 <td></td>
@@ -1340,115 +1381,118 @@
 <tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">detect_file_format</span></code>([filename])</td>
 <td>Detect file format from extension</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">empty</span></code>()</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">difference</span></code>(second_metadata)</td>
+<td>Difference of two meta containers</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">empty</span></code>()</td>
 <td>Check if file is empty</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">event_stat_counts</span></code>()</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">event_stat_counts</span></code>()</td>
 <td>Event count statistics</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">exists</span></code>()</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">exists</span></code>()</td>
 <td>Checks that file exists</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">extend</span></code></td>
-<td>L.extend(iterable) &#8211; extend list by appending elements from the iterable</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">extend</span></code>(...)</td>
+<td></td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">filter</span></code>([filename,&nbsp;file_list,&nbsp;scene_label,&nbsp;...])</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">filter</span></code>([filename,&nbsp;file_list,&nbsp;scene_label,&nbsp;...])</td>
 <td>Filter content</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">filter_time_segment</span></code>([start,&nbsp;stop,&nbsp;duration,&nbsp;...])</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">filter_time_segment</span></code>([start,&nbsp;stop,&nbsp;duration,&nbsp;...])</td>
 <td>Filter time segment</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">get_dump_content</span></code>(data)</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">get_dump_content</span></code>(data)</td>
 <td>Clean internal content for saving</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">get_field</span></code>(field_name[,&nbsp;skip_items_wihtout_field])</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">get_field</span></code>(field_name[,&nbsp;skip_items_wihtout_field])</td>
 <td>Get all data from field.</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">get_file_information</span></code>()</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">get_file_information</span></code>()</td>
 <td>Get file information, filename</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">get_processing_chain_item</span></code>()</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">get_processing_chain_item</span></code>()</td>
 <td>Get processing chain item with current Processor data.</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">get_string</span></code>([show_data,&nbsp;show_stats])</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">get_string</span></code>([show_data,&nbsp;show_stats])</td>
 <td>Get content in string format</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">index</span></code>((value,&nbsp;[start,&nbsp;...)</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">index</span></code>((value,&nbsp;[start,&nbsp;...)</td>
 <td>Raises ValueError if the value is not present.</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">insert</span></code></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">insert</span></code></td>
 <td>L.insert(index, object) &#8211; insert object before index</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">intersection</span></code>(second_metadata)</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">intersection</span></code>(second_metadata)</td>
 <td>Intersection of two meta containers</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">intersection_report</span></code>(second_metadata)</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">intersection_report</span></code>(second_metadata)</td>
 <td>Intersection report for two meta containers</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">is_package</span></code>([filename])</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">is_package</span></code>([filename])</td>
 <td>Determine if the file is compressed package.</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">load</span></code>([filename,&nbsp;decimal])</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">load</span></code>([filename,&nbsp;fields,&nbsp;csv_header,&nbsp;...])</td>
 <td>Load event list from delimited text file (csv-formatted)</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">log</span></code>([level,&nbsp;show_data,&nbsp;show_stats])</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">log</span></code>([level,&nbsp;show_data,&nbsp;show_stats])</td>
 <td>Log container content</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">log_all</span></code>([level])</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">log_all</span></code>([level])</td>
 <td>Log container content with all meta data items.</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">pop</span></code>(...)</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">pop</span></code>(...)</td>
 <td>Raises IndexError if list is empty or index is out of range.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="dcase_util.processors.MetadataReadingProcessor.process.html#dcase_util.processors.MetadataReadingProcessor.process" title="dcase_util.processors.MetadataReadingProcessor.process"><code class="xref py py-obj docutils literal"><span class="pre">process</span></code></a>([data,&nbsp;filename,&nbsp;focus_filename,&nbsp;...])</td>
+<tr class="row-even"><td><a class="reference internal" href="dcase_util.processors.MetadataReadingProcessor.process.html#dcase_util.processors.MetadataReadingProcessor.process" title="dcase_util.processors.MetadataReadingProcessor.process"><code class="xref py py-obj docutils literal"><span class="pre">process</span></code></a>([data,&nbsp;filename,&nbsp;focus_filename,&nbsp;...])</td>
 <td>Meta data reading.</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">process_events</span></code>([minimum_event_length,&nbsp;...])</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">process_events</span></code>([minimum_event_length,&nbsp;...])</td>
 <td>Process event content</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">push_processing_chain_item</span></code>(processor_name[,&nbsp;...])</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">push_processing_chain_item</span></code>(processor_name[,&nbsp;...])</td>
 <td>Push processing chain item</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">remove</span></code></td>
-<td>L.remove(value) &#8211; remove first occurrence of value.</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">remove</span></code>(...)</td>
+<td>Raises ValueError if the value is not present.</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">remove_field</span></code>(field_name)</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">remove_field</span></code>(field_name)</td>
 <td>Remove field from data items</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">reverse</span></code></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">reverse</span></code></td>
 <td>L.reverse() &#8211; reverse <em>IN PLACE</em></td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">save</span></code>([filename,&nbsp;delimiter])</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">save</span></code>([filename,&nbsp;fields,&nbsp;csv_header,&nbsp;...])</td>
 <td>Save content to csv file</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">scene_stat_counts</span></code>()</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">scene_stat_counts</span></code>()</td>
 <td>Scene count statistics</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">search</span></code>(key,&nbsp;value)</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">search</span></code>(key,&nbsp;value)</td>
 <td>Search in the list of dictionaries</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">show</span></code>([show_data,&nbsp;show_stats])</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">show</span></code>([show_data,&nbsp;show_stats])</td>
 <td>Print container content</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">show_all</span></code>()</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">show_all</span></code>()</td>
 <td>Print container content with all meta data items.</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">sort</span></code></td>
-<td>L.sort(cmp=None, key=None, reverse=False) &#8211; stable sort <em>IN PLACE</em>;</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">sort</span></code>((key=None[,&nbsp;reverse])</td>
+<td></td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">stats</span></code>([event_label_list,&nbsp;scene_label_list,&nbsp;...])</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">stats</span></code>([event_label_list,&nbsp;scene_label_list,&nbsp;...])</td>
 <td>Statistics of the container content</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">tag_stat_counts</span></code>()</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">tag_stat_counts</span></code>()</td>
 <td>Tag count statistics</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">to_event_roll</span></code>([label_list,&nbsp;time_resolution,&nbsp;...])</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">to_event_roll</span></code>([label_list,&nbsp;time_resolution,&nbsp;...])</td>
 <td>Event roll</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">update</span></code>(data)</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">update</span></code>(data)</td>
 <td>Replace content with given list</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">validate_format</span></code>()</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">validate_format</span></code>()</td>
 <td>Validate file format</td>
 </tr>
 </tbody>
@@ -1469,40 +1513,43 @@
 <tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">file_count</span></code></td>
 <td>Number of files</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">input_type</span></code></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">identifier_count</span></code></td>
+<td>Number of unique identifiers</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">input_type</span></code></td>
 <td>Input data type</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">logger</span></code></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">logger</span></code></td>
 <td>Logger instance</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">max_offset</span></code></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">max_offset</span></code></td>
 <td>Find the offset (end-time) of last event</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">output_type</span></code></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">output_type</span></code></td>
 <td>Output data type</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">scene_label_count</span></code></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">scene_label_count</span></code></td>
 <td>Number of unique scene labels</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">tag_count</span></code></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">tag_count</span></code></td>
 <td>Number of unique tags</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">unique_event_labels</span></code></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">unique_event_labels</span></code></td>
 <td>Unique event labels</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">unique_files</span></code></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">unique_files</span></code></td>
 <td>Unique files</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">unique_identifiers</span></code></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">unique_identifiers</span></code></td>
 <td>Unique identifiers</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">unique_scene_labels</span></code></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">unique_scene_labels</span></code></td>
 <td>Unique scene labels</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">unique_tags</span></code></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">unique_tags</span></code></td>
 <td>Unique tags</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">valid_formats</span></code></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">valid_formats</span></code></td>
 <td></td>
 </tr>
 </tbody>
@@ -1513,15 +1560,18 @@
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="dcase_util.processors.MetadataReadingProcessor.process.html" class="btn btn-neutral float-right" title="dcase_util.processors.MetadataReadingProcessor.process" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="dcase_util.processors.MetadataReadingProcessor.process.html" class="btn btn-neutral float-right" title="dcase_util.processors.MetadataReadingProcessor.process" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="dcase_util.processors.SpectralCentroidExtractorProcessor.process.html" class="btn btn-neutral" title="dcase_util.processors.SpectralCentroidExtractorProcessor.process" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="dcase_util.processors.SpectralCentroidExtractorProcessor.process.html" class="btn btn-neutral" title="dcase_util.processors.SpectralCentroidExtractorProcessor.process" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -1554,7 +1604,8 @@
             VERSION:'1.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../_static/jquery.js"></script>

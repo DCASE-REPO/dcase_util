@@ -16,6 +16,7 @@ dcase_util.utils.FileFormat
       ~FileFormat.detect
       ~FileFormat.detect_based_on_content
       ~FileFormat.detect_based_on_filename
+      ~FileFormat.validate_label
    
    
 
@@ -42,6 +43,7 @@ dcase_util.utils.FileFormat
       ~FileFormat.JSON
       ~FileFormat.M4A
       ~FileFormat.MARSHAL
+      ~FileFormat.META
       ~FileFormat.MKA
       ~FileFormat.MKV
       ~FileFormat.MOV
@@ -49,6 +51,7 @@ dcase_util.utils.FileFormat
       ~FileFormat.MP4
       ~FileFormat.MPG
       ~FileFormat.MSGPACK
+      ~FileFormat.NUMPY
       ~FileFormat.OGG
       ~FileFormat.PDF
       ~FileFormat.PNG

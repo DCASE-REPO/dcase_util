@@ -22,6 +22,7 @@ dcase_util.files.RemotePackage
       ~RemotePackage.empty
       ~RemotePackage.exists
       ~RemotePackage.extract
+      ~RemotePackage.filter
       ~RemotePackage.fromkeys
       ~RemotePackage.get
       ~RemotePackage.get_dump_content
@@ -30,13 +31,9 @@ dcase_util.files.RemotePackage
       ~RemotePackage.get_hash_for_path
       ~RemotePackage.get_leaf_path_list
       ~RemotePackage.get_path
-      ~RemotePackage.has_key
       ~RemotePackage.is_content_type
       ~RemotePackage.is_package
       ~RemotePackage.items
-      ~RemotePackage.iteritems
-      ~RemotePackage.iterkeys
-      ~RemotePackage.itervalues
       ~RemotePackage.keys
       ~RemotePackage.load
       ~RemotePackage.local_changed
@@ -56,9 +53,6 @@ dcase_util.files.RemotePackage
       ~RemotePackage.update
       ~RemotePackage.validate_format
       ~RemotePackage.values
-      ~RemotePackage.viewitems
-      ~RemotePackage.viewkeys
-      ~RemotePackage.viewvalues
    
    
 

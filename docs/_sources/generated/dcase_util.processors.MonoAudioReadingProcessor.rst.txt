@@ -17,6 +17,7 @@ dcase_util.processors.MonoAudioReadingProcessor
       ~MonoAudioReadingProcessor.delimiter
       ~MonoAudioReadingProcessor.detect_file_format
       ~MonoAudioReadingProcessor.exists
+      ~MonoAudioReadingProcessor.frames
       ~MonoAudioReadingProcessor.freeze
       ~MonoAudioReadingProcessor.get_file_information
       ~MonoAudioReadingProcessor.get_focused

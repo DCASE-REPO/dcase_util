@@ -20,6 +20,7 @@ dcase_util.containers.FeatureRepository
       ~FeatureRepository.detect_file_format
       ~FeatureRepository.empty
       ~FeatureRepository.exists
+      ~FeatureRepository.filter
       ~FeatureRepository.fromkeys
       ~FeatureRepository.get
       ~FeatureRepository.get_container
@@ -29,12 +30,8 @@ dcase_util.containers.FeatureRepository
       ~FeatureRepository.get_hash_for_path
       ~FeatureRepository.get_leaf_path_list
       ~FeatureRepository.get_path
-      ~FeatureRepository.has_key
       ~FeatureRepository.is_package
       ~FeatureRepository.items
-      ~FeatureRepository.iteritems
-      ~FeatureRepository.iterkeys
-      ~FeatureRepository.itervalues
       ~FeatureRepository.keys
       ~FeatureRepository.load
       ~FeatureRepository.log
@@ -52,9 +49,6 @@ dcase_util.containers.FeatureRepository
       ~FeatureRepository.update
       ~FeatureRepository.validate_format
       ~FeatureRepository.values
-      ~FeatureRepository.viewitems
-      ~FeatureRepository.viewkeys
-      ~FeatureRepository.viewvalues
    
    
 

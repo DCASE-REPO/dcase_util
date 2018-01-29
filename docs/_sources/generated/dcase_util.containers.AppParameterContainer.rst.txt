@@ -20,6 +20,7 @@ dcase_util.containers.AppParameterContainer
       ~AppParameterContainer.detect_file_format
       ~AppParameterContainer.empty
       ~AppParameterContainer.exists
+      ~AppParameterContainer.filter
       ~AppParameterContainer.fromkeys
       ~AppParameterContainer.get
       ~AppParameterContainer.get_dump_content
@@ -29,12 +30,8 @@ dcase_util.containers.AppParameterContainer
       ~AppParameterContainer.get_leaf_path_list
       ~AppParameterContainer.get_path
       ~AppParameterContainer.get_path_translated
-      ~AppParameterContainer.has_key
       ~AppParameterContainer.is_package
       ~AppParameterContainer.items
-      ~AppParameterContainer.iteritems
-      ~AppParameterContainer.iterkeys
-      ~AppParameterContainer.itervalues
       ~AppParameterContainer.keys
       ~AppParameterContainer.load
       ~AppParameterContainer.log
@@ -52,9 +49,6 @@ dcase_util.containers.AppParameterContainer
       ~AppParameterContainer.update
       ~AppParameterContainer.validate_format
       ~AppParameterContainer.values
-      ~AppParameterContainer.viewitems
-      ~AppParameterContainer.viewkeys
-      ~AppParameterContainer.viewvalues
    
    
 

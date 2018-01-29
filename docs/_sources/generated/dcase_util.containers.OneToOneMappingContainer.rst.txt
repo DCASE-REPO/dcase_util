@@ -20,6 +20,7 @@ dcase_util.containers.OneToOneMappingContainer
       ~OneToOneMappingContainer.detect_file_format
       ~OneToOneMappingContainer.empty
       ~OneToOneMappingContainer.exists
+      ~OneToOneMappingContainer.filter
       ~OneToOneMappingContainer.fromkeys
       ~OneToOneMappingContainer.get
       ~OneToOneMappingContainer.get_dump_content
@@ -28,12 +29,8 @@ dcase_util.containers.OneToOneMappingContainer
       ~OneToOneMappingContainer.get_hash_for_path
       ~OneToOneMappingContainer.get_leaf_path_list
       ~OneToOneMappingContainer.get_path
-      ~OneToOneMappingContainer.has_key
       ~OneToOneMappingContainer.is_package
       ~OneToOneMappingContainer.items
-      ~OneToOneMappingContainer.iteritems
-      ~OneToOneMappingContainer.iterkeys
-      ~OneToOneMappingContainer.itervalues
       ~OneToOneMappingContainer.keys
       ~OneToOneMappingContainer.load
       ~OneToOneMappingContainer.log
@@ -48,9 +45,6 @@ dcase_util.containers.OneToOneMappingContainer
       ~OneToOneMappingContainer.update
       ~OneToOneMappingContainer.validate_format
       ~OneToOneMappingContainer.values
-      ~OneToOneMappingContainer.viewitems
-      ~OneToOneMappingContainer.viewkeys
-      ~OneToOneMappingContainer.viewvalues
    
    
 

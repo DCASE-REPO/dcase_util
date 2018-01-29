@@ -17,6 +17,7 @@ dcase_util.processors.AudioReadingProcessor
       ~AudioReadingProcessor.delimiter
       ~AudioReadingProcessor.detect_file_format
       ~AudioReadingProcessor.exists
+      ~AudioReadingProcessor.frames
       ~AudioReadingProcessor.freeze
       ~AudioReadingProcessor.get_file_information
       ~AudioReadingProcessor.get_focused

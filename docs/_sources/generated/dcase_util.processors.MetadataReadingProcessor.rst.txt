@@ -16,9 +16,12 @@ dcase_util.processors.MetadataReadingProcessor
       ~MetadataReadingProcessor.__init__
       ~MetadataReadingProcessor.add_time
       ~MetadataReadingProcessor.append
+      ~MetadataReadingProcessor.clear
+      ~MetadataReadingProcessor.copy
       ~MetadataReadingProcessor.count
       ~MetadataReadingProcessor.delimiter
       ~MetadataReadingProcessor.detect_file_format
+      ~MetadataReadingProcessor.difference
       ~MetadataReadingProcessor.empty
       ~MetadataReadingProcessor.event_stat_counts
       ~MetadataReadingProcessor.exists
@@ -68,6 +71,7 @@ dcase_util.processors.MetadataReadingProcessor
       ~MetadataReadingProcessor.event_count
       ~MetadataReadingProcessor.event_label_count
       ~MetadataReadingProcessor.file_count
+      ~MetadataReadingProcessor.identifier_count
       ~MetadataReadingProcessor.input_type
       ~MetadataReadingProcessor.logger
       ~MetadataReadingProcessor.max_offset

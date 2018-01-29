@@ -20,6 +20,7 @@ dcase_util.containers.DataRepository
       ~DataRepository.detect_file_format
       ~DataRepository.empty
       ~DataRepository.exists
+      ~DataRepository.filter
       ~DataRepository.fromkeys
       ~DataRepository.get
       ~DataRepository.get_container
@@ -29,12 +30,8 @@ dcase_util.containers.DataRepository
       ~DataRepository.get_hash_for_path
       ~DataRepository.get_leaf_path_list
       ~DataRepository.get_path
-      ~DataRepository.has_key
       ~DataRepository.is_package
       ~DataRepository.items
-      ~DataRepository.iteritems
-      ~DataRepository.iterkeys
-      ~DataRepository.itervalues
       ~DataRepository.keys
       ~DataRepository.load
       ~DataRepository.log
@@ -52,9 +49,6 @@ dcase_util.containers.DataRepository
       ~DataRepository.update
       ~DataRepository.validate_format
       ~DataRepository.values
-      ~DataRepository.viewitems
-      ~DataRepository.viewkeys
-      ~DataRepository.viewvalues
    
    
 
