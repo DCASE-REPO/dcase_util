@@ -33,6 +33,16 @@ The latest stable release is available on PyPI, and you can install with pip:
 Changelog
 =========
 
+#### 0.1.8 / 2018-01-29
+
+* Add new formats for MetaDataContainer (cpickle, csv)
+* Fix unicode string support when printing container information
+* Fixing data contamination through data references while manipulating data
+* Add forced file formats when reading and saving containers
+* Add keras setup function
+* Add frame splitting method into AudioContainer
+* Some minor bug fixes.
+
 #### 0.1.7 / 2017-11-22
 
 * Fix data sequencing when overlapping sequencing is used. 

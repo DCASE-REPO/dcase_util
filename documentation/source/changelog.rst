@@ -3,6 +3,17 @@
 Release notes
 =============
 
+v0.1.8
+------
+
+- Add new formats for MetaDataContainer (cpickle, csv)
+- Fix unicode string support when printing container information
+- Fixing data contamination through data references while manipulating data
+- Add forced file formats when reading and saving containers
+- Add keras setup function
+- Add frame splitting method into AudioContainer
+- Some minor bug fixes.
+
 v0.1.7
 ------
 
