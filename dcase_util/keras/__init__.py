@@ -10,8 +10,7 @@ Utilities to be used with Keras deep learning library.
 Model
 :::::
 
-
-*dcase_util.keras.* *
+*dcase_util.keras.model.* *
 
 .. autosummary::
     :toctree: generated/
@@ -183,9 +182,20 @@ BaseCallback
 
     BaseCallback
 
+Utils
+:::::
+
+*dcase_util.keras.utils.* *
+
+.. autosummary::
+    :toctree: generated/
+
+    setup_keras
+
 """
 
 from .model import *
 from .callbacks import *
+from .utils import *
 
 __all__ = [_ for _ in dir() if not _.startswith('_')]
