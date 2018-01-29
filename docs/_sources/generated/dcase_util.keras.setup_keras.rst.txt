@@ -1,0 +1,6 @@
+dcase_util.keras.setup_keras
+============================
+
+.. currentmodule:: dcase_util.keras
+
+.. autodata:: setup_keras

@@ -1,0 +1,6 @@
+dcase_util.containers.MetaDataContainer.difference
+==================================================
+
+.. currentmodule:: dcase_util.containers
+
+.. automethod:: MetaDataContainer.difference

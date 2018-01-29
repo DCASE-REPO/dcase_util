@@ -1,0 +1,6 @@
+dcase_util.utils.FileFormat.validate_label
+==========================================
+
+.. currentmodule:: dcase_util.utils
+
+.. automethod:: FileFormat.validate_label
