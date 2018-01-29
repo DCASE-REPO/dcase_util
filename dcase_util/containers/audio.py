@@ -1091,6 +1091,51 @@ class AudioContainer(ContainerMixin, FileMixin):
 
         return self
 
+    def frames(self,
+               frame_length=None, hop_length=None,
+               frame_length_seconds=None, hop_length_seconds=None):
+        """Slice audio into overlapping frames.
+
+        frame_length : int, optional
+            Frame length in samples
+
+        hop_length : int, optional
+            Frame hop length in samples
+
+        frame_length_seconds : float, optional
+            Frame length in seconds, converted into samples based on sampling rate.
+
+        hop_length_seconds: float, optional
+            Frame hop length in seconds, converted into samples based on sampling rate.
+
+        Returns
+        -------
+        numpy.ndarray
+
+        """
+
+        if not frame_length and frame_length_seconds:
+            frame_length = int(self.fs * frame_length_seconds)
+
+        if not hop_length and hop_length_seconds:
+            hop_length = int(self.fs * hop_length_seconds)
+
+        if not frame_length:
+            message = '{name}: Specify frame_length parameter for frame splitting.'.format(name=self.__class__.__name__)
+            self.logger.exception(message)
+            raise ValueError(message)
+
+        if not hop_length:
+            message = '{name}: Specify hop_length parameter for frame splitting.'.format(name=self.__class__.__name__)
+            self.logger.exception(message)
+            raise ValueError(message)
+
+        return librosa.util.frame(
+            y=self.get_focused(),
+            frame_length=frame_length,
+            hop_length=hop_length
+        )
+
     def plot(self, plot_type='wave'):
         """Visualize audio data
 
@@ -1347,3 +1392,4 @@ class AudioContainer(ContainerMixin, FileMixin):
         """
 
         return sample / float(self.fs)
+

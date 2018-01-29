@@ -682,6 +682,7 @@ Visualizations examples:
     AudioContainer.set_focus
     AudioContainer.get_focused
     AudioContainer.freeze
+    AudioContainer.frames
     AudioContainer.normalize
     AudioContainer.resample
     AudioContainer.mixdown
