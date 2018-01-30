@@ -494,7 +494,7 @@ class DictContainer(dict, ContainerMixin, FileMixin):
             elif self.format == FileFormat.CSV:
                 data = {}
                 delimiter = self.delimiter()
-                with open(self.filename, 'rb') as f:
+                with open(self.filename, 'r') as f:
                     csv_reader = csv.reader(f, delimiter=delimiter)
                     for row in csv_reader:
                         if len(row) == 2:
