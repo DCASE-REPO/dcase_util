@@ -8,6 +8,8 @@ import os
 import argparse
 import itertools
 import platform
+import logging
+from dcase_util.utils import setup_logging
 
 
 def argument_file_exists(filename):
@@ -91,6 +93,14 @@ class Path(object):
 
         self.path = path
         self.path = self.posix()
+
+    @property
+    def logger(self):
+        """Logger instance"""
+        logger = logging.getLogger(__name__)
+        if not logger.handlers:
+            setup_logging()
+        return logger
 
     def posix(self, path=None):
         """Converts path to POSIX format
@@ -366,6 +376,10 @@ class Path(object):
             for value in paths:
                 self.makedirs(value)
 
+        else:
+            message = '{name}: Unknown data type for paths.'.format(name=self.__class__.__name__)
+            self.logger.exception(message)
+            raise ValueError(message)
 
 class ApplicationPaths(Path):
     """Utility class for application paths, paths are automatically generated based on parameters through parameter hash."""
