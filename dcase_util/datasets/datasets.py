@@ -801,6 +801,35 @@ class Dataset(object):
 
         return len(self.tags())
 
+    def debug_packages(self):
+        """Debug remote packages associated to the dataset.
+        Use this to check remote file size and md5 hash when developing dataset class.
+
+        Returns
+        -------
+        self
+
+        """
+
+        log = FancyLogger()
+        log.sub_header('Debug packages')
+        log.row('package', 'remote_md5', 'remote_bytes', widths=[70, 36, 15])
+        log.row('-', '-', '-')
+        for item in self.package_list:
+            remote_file = RemoteFile(**item)
+            if self.included_content_types is None or remote_file.is_content_type(
+                    content_type=self.included_content_types
+            ):
+                remote_file.remote_info()
+
+                log.row(
+                    os.path.split(item['remote_file'])[-1],
+                    remote_file.remote_md5 if item['remote_md5'] != remote_file.remote_md5 else 'OK',
+                    remote_file.remote_bytes if item['remote_bytes'] != remote_file.remote_bytes else 'OK'
+                )
+
+        return self
+
     def download_packages(self):
         """Download dataset packages over the internet to the local path
 

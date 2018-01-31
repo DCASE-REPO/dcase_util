@@ -38,6 +38,7 @@ Usage examples:
     Dataset.initialize
     Dataset.download_packages
     Dataset.extract_packages
+    Dataset.debug_packages
     Dataset.prepare
     Dataset.process_meta_item
 
