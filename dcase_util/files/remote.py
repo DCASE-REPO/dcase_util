@@ -300,7 +300,7 @@ class RemoteFile(DictContainer):
                 if 'Content-Encoding' not in resp.headers or resp.headers['Content-Encoding'] != 'gzip':
                     self.remote_bytes = int(resp.headers['Content-Length'])
 
-            if 'Content-MD5' in resp.headers and self.remote_md5 is None:
+            if 'Content-MD5' in resp.headers:
                 self.remote_md5 = resp.headers['Content-MD5']
 
         elif resp.status_code in [301, 302] and 'Location' in resp.headers:
@@ -314,7 +314,7 @@ class RemoteFile(DictContainer):
                     if 'Content-Encoding' not in resp.headers or resp.headers['Content-Encoding'] != 'gzip':
                         self.remote_bytes = int(resp.headers['Content-Length'])
 
-                if 'Content-MD5' in resp.headers and self.remote_md5 is None:
+                if 'Content-MD5' in resp.headers:
                     self.remote_md5 = resp.headers['Content-MD5']
 
         if 'Last-Modified' in resp.headers:
