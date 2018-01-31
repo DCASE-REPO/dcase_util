@@ -451,7 +451,7 @@ class TUTRareSoundEvents_2017_DevelopmentSet(SyntheticSoundEventDataset):
         }
         kwargs['crossvalidation_folds'] = 1
 
-        source_url = 'http://www.cs.tut.fi/sgn/arg/dcase2017/data/TUT-rare-sound-events-2017-development/'
+        source_url = 'https://zenodo.org/record/401395/files/'
         kwargs['package_list'] = [
             {
                 'content_type': 'documentation',
@@ -748,11 +748,18 @@ class TUTRareSoundEvents_2017_DevelopmentSet(SyntheticSoundEventDataset):
                     )
 
                     if os.path.isfile(event_list_filename):
-                        current_meta = MetaDataContainer(filename=event_list_filename).load()
+                        current_meta = MetaDataContainer(
+                            filename=event_list_filename
+                        ).load(
+                            fields=['filename', 'onset', 'offset', 'event_label']
+                        )
+
                         for item in current_meta:
                             item.filename = os.path.join(mixture_path, item.filename)
                             item.scene_label = scene_label
+
                         meta_data += current_meta
+
             # Save meta
             meta_data.save(filename=self.meta_file)
 
@@ -828,7 +835,11 @@ class TUTRareSoundEvents_2017_DevelopmentSet(SyntheticSoundEventDataset):
                     mixture_meta_path_train,
                     'event_list_' + subset_map['train'] + '_' + class_label + '.csv'
                 )
-                current_meta = MetaDataContainer(filename=event_list_filename).load()
+                current_meta = MetaDataContainer(
+                    filename=event_list_filename
+                ).load(
+                    fields=['filename', 'onset', 'offset', 'event_label']
+                )
                 for item in current_meta:
                     item.filename = os.path.join(mixture_path_train, item.filename)
                     item.scene_label = scene_label
@@ -842,7 +853,11 @@ class TUTRareSoundEvents_2017_DevelopmentSet(SyntheticSoundEventDataset):
                     mixture_meta_path_test,
                     'event_list_' + subset_map['test'] + '_' + class_label + '.csv'
                 )
-                current_meta = MetaDataContainer(filename=event_list_filename).load()
+                current_meta = MetaDataContainer(
+                    filename=event_list_filename
+                ).load(
+                    fields=['filename', 'onset', 'offset', 'event_label']
+                )
                 current_meta_ = MetaDataContainer()
                 for item in current_meta:
                     item.filename = os.path.join(mixture_path_test, item.filename)
@@ -861,7 +876,11 @@ class TUTRareSoundEvents_2017_DevelopmentSet(SyntheticSoundEventDataset):
                     mixture_meta_path_test,
                     'event_list_' + subset_map['test'] + '_' + class_label + '.csv'
                 )
-                current_meta = MetaDataContainer(filename=event_list_filename).load()
+                current_meta = MetaDataContainer(
+                    filename=event_list_filename
+                ).load(
+                    fields=['filename', 'onset', 'offset', 'event_label']
+                )
                 for item in current_meta:
                     item.filename = os.path.join(mixture_path_test, item.filename)
                     item.scene_label = scene_label
@@ -1071,7 +1090,7 @@ class TUTRareSoundEvents_2017_EvaluationSet(SyntheticSoundEventDataset):
         kwargs['included_content_types'] = included_content_types
         kwargs['data_path'] = data_path
         kwargs['storage_name'] = storage_name
-        kwargs['reference_data_present'] = False
+        kwargs['reference_data_present'] = True
         kwargs['dataset_group'] = 'event'
         kwargs['dataset_meta'] = {
             'authors': 'Aleksandr Diment, Annamaria Mesaros, Toni Heittola, and Tuomas Virtanen',
@@ -1084,42 +1103,63 @@ class TUTRareSoundEvents_2017_EvaluationSet(SyntheticSoundEventDataset):
         }
         kwargs['crossvalidation_folds'] = None
 
-        source_url = 'http://www.cs.tut.fi/sgn/arg/dcase2017/data/TUT-rare-sound-events-2017-evaluation/'
+        source_url = 'https://zenodo.org/record/1160455/files/'
         kwargs['package_list'] = [
             {
-                'content_type': 'audio',
-                'remote_file': source_url + 'TUT-rare-sound-events-2017-evaluation.1.zip',
-                'remote_bytes': 1072283898,
-                'remote_md5': '9db7740e57813cf9dcc7fc5e75bf3845',
-                'filename': 'TUT-rare-sound-events-2017-evaluation.1.zip'
+                'content_type': 'documentation',
+                'remote_file': source_url + 'TUT-rare-sound-events-2017-evaluation.doc.zip',
+                'remote_bytes': 11701,
+                'remote_md5': '36db98a94ce871c6bdc5bd5238383114',
+                'filename': 'TUT-rare-sound-events-2017-evaluation.doc.zip'
+            },
+            {
+                'content_type': 'documentation',
+                'remote_file': source_url + 'LICENSE.txt',
+                'remote_bytes': 0,
+                'remote_md5': '0707857098fc74d17beb824416fb74b1',
+                'filename': 'LICENSE.txt'
+            },
+            {
+                'content_type': 'documentation',
+                'remote_file': source_url + 'FREESOUNDCREDITS.txt',
+                'remote_bytes': 0,
+                'remote_md5': '3ecea52bdb0eadd6e1af52a21f735d6d',
+                'filename': 'FREESOUNDCREDITS.txt'
+            },
+            {
+                'content_type': ['audio', 'meta'],
+                'remote_file': source_url + 'TUT-rare-sound-events-2017-evaluation.mixture_data.1.zip',
+                'remote_bytes': 1071143794,
+                'remote_md5': 'db4aecd5175dead27ceb2692e7f28bb1',
+                'filename': 'TUT-rare-sound-events-2017-evaluation.mixture_data.1.zip'
             },
             {
                 'content_type': 'audio',
-                'remote_file': source_url + 'TUT-rare-sound-events-2017-evaluation.2.zip',
-                'remote_bytes': 1070947558,
-                'remote_md5': '080fcbff19c39cbca410853f8438b5d8',
-                'filename': 'TUT-rare-sound-events-2017-evaluation.2.zip'
+                'remote_file': source_url + 'TUT-rare-sound-events-2017-evaluation.mixture_data.2.zip',
+                'remote_bytes': 1071773516,
+                'remote_md5': 'e97d5842c46805cdb94e6d4017870cde',
+                'filename': 'TUT-rare-sound-events-2017-evaluation.mixture_data.2.zip'
             },
             {
                 'content_type': 'audio',
-                'remote_file': source_url + 'TUT-rare-sound-events-2017-evaluation.3.zip',
-                'remote_bytes': 1072470355,
-                'remote_md5': '7a58cd495b0326381d8faecfa8b2ef9c',
-                'filename': 'TUT-rare-sound-events-2017-evaluation.3.zip'
+                'remote_file': source_url + 'TUT-rare-sound-events-2017-evaluation.mixture_data.3.zip',
+                'remote_bytes': 1073505512,
+                'remote_md5': '1fe20c762cecd26979e2c5303c8e9f48',
+                'filename': 'TUT-rare-sound-events-2017-evaluation.mixture_data.3.zip'
             },
             {
                 'content_type': 'audio',
-                'remote_file': source_url + 'TUT-rare-sound-events-2017-evaluation.4.zip',
-                'remote_bytes': 1073265283,
-                'remote_md5': 'f8bb2e729d54b08305e601096dfacc01',
-                'filename': 'TUT-rare-sound-events-2017-evaluation.4.zip'
+                'remote_file': source_url + 'TUT-rare-sound-events-2017-evaluation.mixture_data.4.zip',
+                'remote_bytes': 1071132551,
+                'remote_md5': '5042cd00aed9af6b37a253e24f88554f',
+                'filename': 'TUT-rare-sound-events-2017-evaluation.mixture_data.4.zip'
             },
             {
                 'content_type': 'audio',
-                'remote_file': source_url + 'TUT-rare-sound-events-2017-evaluation.5.zip',
-                'remote_bytes': 306612051,
-                'remote_md5': 'e08c30e98161b0104ad381c0f68838a8',
-                'filename': 'TUT-rare-sound-events-2017-evaluation.5.zip'
+                'remote_file': source_url + 'TUT-rare-sound-events-2017-evaluation.mixture_data.5.zip',
+                'remote_bytes': 308314939,
+                'remote_md5': '72180597ed5bfaa73491755f74b84738',
+                'filename': 'TUT-rare-sound-events-2017-evaluation.mixture_data.5.zip'
             }
         ]
         kwargs['audio_paths'] = ['audio']
@@ -1157,46 +1197,166 @@ class TUTRareSoundEvents_2017_EvaluationSet(SyntheticSoundEventDataset):
         """
 
         scene_label = 'synthetic'
-
+        subset_map = {'test': 'evaltest'}
+        param_hash = 'bbb81504db15a03680a0044474633b67'
         # Make sure evaluation_setup directory exists
         Path().makedirs(path=os.path.join(self.local_path, self.evaluation_setup_folder))
 
         if not self.meta_container.exists() and self.reference_data_present:
-            message = '{name}: Meta file not found [{filename}]'.format(
+            # Collect meta data
+            meta_data = MetaDataContainer()
+            for class_label in self.event_labels():
+                for subset_label, subset_name_on_disk in iteritems(subset_map):
+                    subset_name_on_disk = subset_map[subset_label]
+
+                    mixture_path = os.path.join(
+                        'data',
+                        'mixture_data',
+                        subset_name_on_disk,
+                        param_hash,
+                        'audio'
+                    )
+
+                    mixture_meta_path = os.path.join(
+                        self.local_path,
+                        'data',
+                        'mixture_data',
+                        subset_name_on_disk,
+                        param_hash,
+                        'meta'
+                    )
+
+                    event_list_filename = os.path.join(
+                        mixture_meta_path,
+                        'event_list_' + subset_name_on_disk + '_' + class_label + '.csv'
+                    )
+
+                    if os.path.isfile(event_list_filename):
+                        current_meta = MetaDataContainer(
+                            filename=event_list_filename
+                        ).load(
+                            fields=['filename', 'onset', 'offset', 'event_label']
+                        )
+
+                        for item in current_meta:
+                            item.filename = os.path.join(mixture_path, item.filename)
+                            item.scene_label = scene_label
+
+                        meta_data += current_meta
+
+            # Save meta
+            meta_data.save(filename=self.meta_file)
+
+
+        test_filename = self.evaluation_setup_filename(
+            setup_part='test',
+            fold=None,
+            file_extension='txt'
+        )
+
+        evaluate_filename = self.evaluation_setup_filename(
+            setup_part='evaluate',
+            fold=None,
+            file_extension='txt'
+        )
+
+        # Check that evaluation setup exists
+        evaluation_setup_exists = True
+        if not os.path.isfile(test_filename) or not os.path.isfile(evaluate_filename):
+            evaluation_setup_exists = False
+
+        if not evaluation_setup_exists:
+            # Get parameter hash
+            mixture_meta_path_test = os.path.join(
+                self.local_path,
+                'data',
+                'mixture_data',
+                subset_map['test'],
+                param_hash,
+                'meta'
+            )
+            mixture_path_test = os.path.join(
+                'data',
+                'mixture_data',
+                subset_map['test'],
+                param_hash,
+                'audio'
+            )
+
+            test_meta = MetaDataContainer()
+            for class_label in self.event_labels():
+                event_list_filename = os.path.join(
+                    mixture_meta_path_test,
+                    'event_list_' + subset_map['test'] + '_' + class_label + '.csv'
+                )
+                current_meta = MetaDataContainer(
+                    filename=event_list_filename
+                ).load(
+                    fields=['filename', 'onset', 'offset', 'event_label']
+                )
+                current_meta_ = MetaDataContainer()
+                for item in current_meta:
+                    item.filename = os.path.join(mixture_path_test, item.filename)
+                    current_meta_.append(MetaDataItem(
+                        {
+                            'filename': item.filename,
+                            'scene_label': scene_label
+                        }
+                    ))
+                test_meta += current_meta_
+            test_meta.save(filename=test_filename)
+
+            eval_meta = MetaDataContainer()
+            for class_label in self.event_labels():
+                event_list_filename = os.path.join(
+                    mixture_meta_path_test,
+                    'event_list_' + subset_map['test'] + '_' + class_label + '.csv'
+                )
+                current_meta = MetaDataContainer(
+                    filename=event_list_filename
+                ).load(
+                    fields=['filename', 'onset', 'offset', 'event_label']
+                )
+                for item in current_meta:
+                    item.filename = os.path.join(mixture_path_test, item.filename)
+                    item.scene_label = scene_label
+
+                eval_meta += current_meta
+            eval_meta.save(filename=evaluate_filename)
+
+            # Load meta and cross validation
+            self.load()
+
+        return self
+
+    def evaluation_setup_filename(self, setup_part='train', fold=None, scene_label=None, file_extension='txt'):
+        parts = []
+
+        if setup_part == 'test' or setup_part == 'evaluate':
+            subset_label = 'test'
+        else:
+            subset_label = 'train'
+
+        if setup_part == 'train':
+            parts.append('train')
+
+        elif setup_part == 'test':
+            parts.append('test')
+
+        elif setup_part == 'evaluate':
+            parts.append('evaluate')
+
+        else:
+            message = '{name}: Unknown setup_part [{setup_part}]'.format(
                 name=self.__class__.__name__,
-                filename=self.meta_container.filename
+                setup_part=setup_part
             )
 
             self.logger.exception(message)
-            raise IOError(message)
+            raise ValueError(message)
 
-        if not self.reference_data_present:
-            test_filename = self.evaluation_setup_filename(
-                setup_part='test',
-                file_extension='txt',
-                scene_label=scene_label
-            )
+        return os.path.join(self.evaluation_setup_path, '_'.join(parts) + '.' + file_extension)
 
-            if not os.path.isfile(test_filename):
-                files = Path().file_list(
-                    path=os.path.join(self.local_path, 'audio'),
-                    extensions=self.default_audio_extension
-                )
-                test_meta = MetaDataContainer()
-                for audio_filename in files:
-                    item = MetaDataItem(
-                        {
-                            'filename': os.path.join('audio', os.path.split(audio_filename)[1]),
-                            'scene_label': scene_label
-                        }
-                    )
-                    test_meta.append(item)
-
-                test_meta.save(filename=test_filename)
-
-                # Load meta and cross validation
-                self.load()
-        return self
 
     def train(self, fold=None, scene_label=None, event_label=None, filename_contains=None, **kwargs):
         """List of training items.
