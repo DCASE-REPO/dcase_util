@@ -30,6 +30,10 @@ class BinaryMatrixEncoder(BinaryMatrix2DContainer):
 
         super(BinaryMatrixEncoder, self).__init__(**kwargs)
 
+        if not self.time_resolution:
+            message = '{name}: No time resolution set.'.format(name=self.__class__.__name__)
+            self.logger.exception(message)
+            raise ValueError(message)
 
 class OneHotEncoder(BinaryMatrixEncoder):
     """One hot encoder class"""
@@ -57,6 +61,11 @@ class OneHotEncoder(BinaryMatrixEncoder):
 
         if self.length_frames is None and length_seconds is not None:
             self.length_frames = self._length_to_frames(length_seconds)
+
+        if not self.label_list:
+            message = '{name}: No label_list set.'.format(name=self.__class__.__name__)
+            self.logger.exception(message)
+            raise ValueError(message)
 
     def __str__(self):
         ui = FancyStringifier()
@@ -158,6 +167,11 @@ class ManyHotEncoder(BinaryMatrixEncoder):
 
         if self.length_frames is None and length_seconds is not None:
             self.length_frames = self._length_to_frames(length_seconds)
+
+        if not self.label_list:
+            message = '{name}: No label_list set.'.format(name=self.__class__.__name__)
+            self.logger.exception(message)
+            raise ValueError(message)
 
     def __str__(self):
         ui = FancyStringifier()
@@ -261,6 +275,11 @@ class EventRollEncoder(BinaryMatrixEncoder):
         super(EventRollEncoder, self).__init__(**kwargs)
 
         self.label = label
+
+        if not self.label_list:
+            message = '{name}: No label_list set.'.format(name=self.__class__.__name__)
+            self.logger.exception(message)
+            raise ValueError(message)
 
     def __str__(self):
         ui = FancyStringifier()
