@@ -320,6 +320,29 @@ class SpectralFeatureExtractor(FeatureExtractor):
             self.logger.exception(message)
             raise ValueError(message)
 
+    def extract(self, y):
+        """Extract features for the audio signal.
+
+        Parameters
+        ----------
+        y : AudioContainer or numpy.ndarray [shape=(n,)]
+            Audio signal
+
+        Returns
+        -------
+        numpy.ndarray [shape=(n_fft, t)]
+            spectrum
+        """
+
+        return self.get_spectrogram(
+            y=y,
+            n_fft=self.n_fft,
+            win_length_samples=self.win_length_samples,
+            hop_length_samples=self.hop_length_samples,
+            spectrogram_type=self.spectrogram_type,
+            center=True,
+            window=self.window
+        )
 
 class MelExtractor(SpectralFeatureExtractor):
     """Feature extractor class to extract mel band energy features"""
