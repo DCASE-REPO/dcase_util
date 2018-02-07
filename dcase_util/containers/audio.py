@@ -1071,7 +1071,7 @@ class AudioContainer(ContainerMixin, FileMixin):
         if self.focus_channel is not None and is_int(self.focus_channel) and 0 <= self.focus_channel < self.channels:
             return focused_data[self.focus_channel, :]
 
-        elif self.focus_channel == 'mixdown':
+        elif self.focus_channel == 'mixdown' and self.channels > 1:
             return numpy.mean(focused_data, axis=self.channel_axis)
 
         else:
