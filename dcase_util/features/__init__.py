@@ -25,6 +25,7 @@ SpectralFeatureExtractor
     :toctree: generated/
 
     SpectralFeatureExtractor
+    SpectralFeatureExtractor.extract
     SpectralFeatureExtractor.get_window_function
     SpectralFeatureExtractor.get_spectrogram
 
