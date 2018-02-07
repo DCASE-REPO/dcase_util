@@ -1004,7 +1004,10 @@ class MetaDataContainer(ListDictContainer):
                                           valid_formats=[
                                               [FieldValidator.NUMBER,
                                                FieldValidator.NUMBER,
-                                               FieldValidator.STRING]
+                                               FieldValidator.STRING],
+                                              [FieldValidator.NUMBER,
+                                               FieldValidator.NUMBER,
+                                               FieldValidator.ALPHA2],
                                           ]):
 
                                 # Format: [onset offset event_label]
