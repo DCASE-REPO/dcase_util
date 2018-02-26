@@ -1079,7 +1079,7 @@ class ListDictContainer(ListContainer):
                 return element
         return None
 
-    def load(self, filename=None, fields=None, csv_header=None, file_format=None, delimiter=None):
+    def load(self, filename=None, fields=None, csv_header=None, file_format=None, delimiter=None, convert_numeric_fields=True):
         """Load file
 
         Parameters
@@ -1099,6 +1099,10 @@ class ListDictContainer(ListContainer):
 
         delimiter : str, optional
             Forced data delimiter for csv format. If None given, automatic delimiter sniffer used. Use this when sniffer does not work.
+
+        convert_numeric_fields : bool, optional
+            Convert int and float fields to correct type.
+            Default value True
 
         Raises
         ------
@@ -1145,12 +1149,13 @@ class ListDictContainer(ListContainer):
                         fields = next(csv_reader)
 
                     for row in csv_reader:
-                        for cell_id, cell_data in enumerate(row):
-                            if is_int(cell_data):
-                                row[cell_id] = int(cell_data)
+                        if convert_numeric_fields:
+                            for cell_id, cell_data in enumerate(row):
+                                if is_int(cell_data):
+                                    row[cell_id] = int(cell_data)
 
-                            elif is_float(cell_data):
-                                row[cell_id] = float(cell_data)
+                                elif is_float(cell_data):
+                                    row[cell_id] = float(cell_data)
 
                         data.append(dict(zip(fields, row)))
 
