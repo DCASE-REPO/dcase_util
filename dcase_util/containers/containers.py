@@ -1285,7 +1285,7 @@ class ListDictContainer(ListContainer):
 
         return self
 
-    def get_field(self, field_name, skip_items_wihtout_field=True):
+    def get_field(self, field_name, skip_items_without_field=True):
         """Get all data from field.
 
         Parameters
@@ -1293,7 +1293,7 @@ class ListDictContainer(ListContainer):
         field_name : str
             Dict key for the search
 
-        skip_items_wihtout_field : bool
+        skip_items_without_field : bool
             Skip items without field, if true None inserted to the output.
 
         Returns
@@ -1307,7 +1307,7 @@ class ListDictContainer(ListContainer):
             if field_name in item:
                 data.append(item[field_name])
 
-            elif not skip_items_wihtout_field:
+            elif not skip_items_without_field:
                 data.append(None)
 
         return data
