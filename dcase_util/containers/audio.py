@@ -21,7 +21,7 @@ class AudioContainer(ContainerMixin, FileMixin):
     """Audio container class."""
     valid_formats = [FileFormat.WAV, FileFormat.FLAC,
                      FileFormat.M4A, FileFormat.WEBM,
-                     FileFormat.MP3]  #: Valid file formats
+                     FileFormat.MP3, FileFormat.MP4]  #: Valid file formats
 
     def __init__(self,
                  data=None, fs=44100,
@@ -589,7 +589,7 @@ class AudioContainer(ContainerMixin, FileMixin):
                     # Store sampling frequency
                     self.fs = fs
 
-            elif self.format in [FileFormat.FLAC, FileFormat.M4A, FileFormat.WEBM]:
+            elif self.format in [FileFormat.FLAC, FileFormat.M4A, FileFormat.MP4, FileFormat.WEBM]:
                 # Handle segment start and stop
                 if start is not None and stop is not None:
                     offset = start
