@@ -48,7 +48,10 @@ class ProcessingChain(ListDictContainer):
         if len(self):
             for item_id, item in enumerate(self):
                 if not isinstance(item, ProcessingChainItem):
-                    current_processor = self.processor_class_reference(processor_name=item['processor_name'])
+                    current_processor = self.processor_class_reference(
+                        processor_name=item['processor_name']
+                    )
+
                     item.update(
                         {
                             'input_type': current_processor.input_type,
@@ -60,7 +63,10 @@ class ProcessingChain(ListDictContainer):
                     if item_id > 0:
                         # Check connection from second item in the chain,
                         # check connecting data type to between current and previous item.
-                        self._check_connection(item1=self[item_id-1], item2=item)
+                        self._check_connection(
+                            item1=self[item_id-1],
+                            item2=item
+                        )
 
                     # Store processing chain item
                     self[item_id] = ProcessingChainItem(item)
@@ -82,7 +88,10 @@ class ProcessingChain(ListDictContainer):
         if len(self):
             for item_id, item in enumerate(self):
                 if isinstance(item, ProcessingChainItem):
-                    current_processor = self.processor_class_reference(processor_name=item['processor_name'])
+                    current_processor = self.processor_class_reference(
+                        processor_name=item['processor_name']
+                    )
+
                     output += ui.row(
                         item_id,
                         item['processor_name'],
@@ -90,6 +99,7 @@ class ProcessingChain(ListDictContainer):
                         current_processor.output_type,
                         item.get('init_parameters')
                     ) + '\n'
+
         else:
             output += ui.row('Empty', widths=[95])
 
@@ -114,7 +124,7 @@ class ProcessingChain(ListDictContainer):
         """
 
         ui = FancyLogger()
-        ui.line(self.chain_string(), level=level)
+        ui.line(data=self.chain_string(), level=level)
 
     def _check_item(self, item):
         """Check validity of processing chain item.
@@ -177,10 +187,14 @@ class ProcessingChain(ListDictContainer):
         """
 
         # Get processor class reference to item1
-        item1_processor = self.processor_class_reference(processor_name=item1['processor_name'])
+        item1_processor = self.processor_class_reference(
+            processor_name=item1['processor_name']
+        )
 
         # Get processor class reference to item2
-        item2_processor = self.processor_class_reference(processor_name=item2['processor_name'])
+        item2_processor = self.processor_class_reference(
+            processor_name=item2['processor_name']
+        )
 
         # Make sure connecting types are same.
         if item1_processor.output_type != item2_processor.input_type:
@@ -242,10 +256,14 @@ class ProcessingChain(ListDictContainer):
         """
 
         if input_type is None:
-            input_type = self.processor_class_reference(processor_name=processor_name).input_type
+            input_type = self.processor_class_reference(
+                processor_name=processor_name
+            ).input_type
 
         if output_type is None:
-            output_type = self.processor_class_reference(processor_name=processor_name).output_type
+            output_type = self.processor_class_reference(
+                processor_name=processor_name
+            ).output_type
 
         # Create item
         item = ProcessingChainItem({
@@ -338,7 +356,10 @@ class ProcessingChain(ListDictContainer):
 
         for step_id, step in enumerate(self):
             if step is not None and 'processor_name' in step:
-                processor = self.processor_class(processor_name=step['processor_name'], **step['init_parameters'])
+                processor = self.processor_class(
+                    processor_name=step['processor_name'],
+                    **step.get('init_parameters', {})
+                )
 
                 if step_id == 0 and data is None:
                     # Inject data for the first item in the chain
@@ -354,7 +375,10 @@ class ProcessingChain(ListDictContainer):
                 if hasattr(processor, 'process'):
                     process_parameters = step.get('process_parameters', {})
                     process_parameters.update(kwargs)
-                    data = processor.process(data=data, **process_parameters)
+                    data = processor.process(
+                        data=data,
+                        **process_parameters
+                    )
 
         return data
 
