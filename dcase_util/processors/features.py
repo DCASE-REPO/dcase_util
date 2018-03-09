@@ -4,10 +4,128 @@
 from __future__ import print_function, absolute_import
 from six import iteritems
 import copy
+from dcase_util.containers import FeatureContainer
 from dcase_util.features import MelExtractor, MfccStaticExtractor, MfccDeltaExtractor, \
     MfccAccelerationExtractor, ZeroCrossingRateExtractor, RMSEnergyExtractor, SpectralCentroidExtractor
 from dcase_util.processors import ProcessorMixin, ProcessingChainItemType, ProcessingChain
 from dcase_util.utils import get_class_inheritors
+
+
+class FeatureReadingProcessor(ProcessorMixin, FeatureContainer):
+    input_type = ProcessingChainItemType.NONE  #: Input data type
+    output_type = ProcessingChainItemType.DATA_CONTAINER  #: Output data type
+
+    def __init__(self, *args, **kwargs):
+        """Constructor"""
+
+        # Run ProcessorMixin init
+        ProcessorMixin.__init__(self, *args, **kwargs)
+
+        # Run FeatureContainer init
+        FeatureContainer.__init__(self, **kwargs)
+
+        # Run super init to call init of mixins too
+        super(FeatureReadingProcessor, self).__init__(*args, **kwargs)
+
+    def process(self,
+                data=None, filename=None,
+                focus_start=None, focus_stop=None, focus_duration=None,
+                focus_start_seconds=None, focus_stop_seconds=None, focus_duration_seconds=None,
+                **kwargs):
+        """Meta data reading.
+
+        Parameters
+        ----------
+        data : FeatureContainer
+            Input feature data
+
+        filename : str
+            Filename of the feature container to load.
+
+        focus_start : int, optional
+            Segment start, frame index of focus segment start
+
+        focus_stop : int, optional
+            Segment end, Frame index of focus segment stop
+
+        focus_duration : int, optional
+            Segment duration, Frame count of focus segment
+
+        focus_start_seconds : float > 0.0
+            Segment start, seconds
+
+        focus_stop_seconds : float > 0.0
+            Segment end, seconds
+
+        focus_duration_seconds : float
+            Segment duration, seconds
+
+        Returns
+        -------
+        self
+
+        """
+
+        if data is None and self.input_type == ProcessingChainItemType.NONE:
+            chain_item = self.get_processing_chain_item()
+
+            if filename:
+                self.load(filename=filename)
+
+                if 'process_parameters' not in chain_item:
+                    chain_item['process_parameters'] = {}
+
+                chain_item['process_parameters']['filename'] = filename
+
+            if focus_start is not None and focus_duration is not None:
+
+                # Set focus segment and channel
+                self.set_focus(
+                    start=focus_start,
+                    duration=focus_duration
+                )
+                chain_item['process_parameters']['focus_start'] = focus_start
+                chain_item['process_parameters']['focus_duration'] = focus_duration
+
+            elif focus_start is not None and focus_stop is not None:
+                # Set focus segment and channel
+                self.set_focus(
+                    start=focus_start,
+                    stop=focus_stop
+                )
+                chain_item['process_parameters']['focus_start'] = focus_start
+                chain_item['process_parameters']['focus_stop'] = focus_stop
+
+            elif focus_start_seconds is not None and focus_duration_seconds is not None:
+
+                # Set focus segment and channel
+                self.set_focus(
+                    start_seconds=focus_start_seconds,
+                    duration_seconds=focus_duration_seconds
+                )
+                chain_item['process_parameters']['focus_start_seconds'] = focus_start_seconds
+                chain_item['process_parameters']['focus_duration_seconds'] = focus_duration_seconds
+
+            elif focus_start_seconds is not None and focus_stop_seconds is not None:
+                # Set focus segment and channel
+                self.set_focus(
+                    start_seconds=focus_start_seconds,
+                    stop_seconds=focus_stop_seconds
+                )
+                chain_item['process_parameters']['focus_start_seconds'] = focus_start_seconds
+                chain_item['process_parameters']['focus_stop_seconds'] = focus_stop_seconds
+
+            self.push_processing_chain_item(**chain_item)
+
+            return self
+
+        else:
+            message = '{name}: Wrong input data type, type required [{input_type}].'.format(
+                name=self.__class__.__name__,
+                input_type=self.input_type)
+
+            self.logger.exception(message)
+            raise ValueError(message)
 
 
 class RepositoryFeatureExtractorProcessor(ProcessorMixin):
@@ -189,6 +307,7 @@ class FeatureExtractorProcessor(ProcessorMixin):
             if hasattr(data, 'processing_chain'):
                 data.processing_chain.push_processor(**processing_chain_item)
                 processing_chain = data.processing_chain
+
             else:
                 processing_chain = ProcessingChain().push_processor(**processing_chain_item)
 

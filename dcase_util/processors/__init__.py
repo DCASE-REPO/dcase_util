@@ -160,6 +160,17 @@ EventRollEncodingProcessor
 Features
 ::::::::
 
+FeatureReadingProcessor
+-----------------------
+
+*dcase_util.processors.FeatureReadingProcessor*
+
+.. autosummary::
+    :toctree: generated/
+
+    FeatureReadingProcessor
+    FeatureReadingProcessor.process
+
 RepositoryFeatureExtractorProcessor
 -----------------------------------
 
