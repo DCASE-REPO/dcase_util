@@ -357,6 +357,9 @@ class Aggregator(ObjectContainer):
         self.center = center
         self.padding = padding
 
+        if recipe is None and kwargs.get('aggregation_recipe', None) is not None:
+            recipe = kwargs.get('aggregation_recipe', None)
+
         if isinstance(recipe, dict):
             self.recipe = [d['label'] for d in recipe]
 
