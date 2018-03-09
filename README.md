@@ -33,6 +33,15 @@ The latest stable release is available on PyPI, and you can install with pip:
 Changelog
 =========
 
+#### master
+
+* Update TUTRareSoundEvents_2017_DevelopmentSet and TUTRareSoundEvents_2017_EvaluationSet datasets
+* Add extract method to SpectralFeatureExtractor
+* Add automatic conversion of numeric fields when loading CSV data to ListDictContainer
+* Add filter and get_field_unique methods to ListDictContainer
+* Add MP4 to valid audio formats for AudioContainer
+* Add more appropriate error messages
+
 #### 0.1.8 / 2018-01-29
 
 * Add new formats for MetaDataContainer (cpickle, csv)
