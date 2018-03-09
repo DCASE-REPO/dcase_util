@@ -32,6 +32,9 @@ class AggregationProcessor(Aggregator, ProcessorMixin):
 
         """
 
+        if recipe is None and kwargs.get('aggregation_recipe', None) is not None:
+            recipe = kwargs.get('aggregation_recipe', None)
+
         kwargs.update(
             {
                 'win_length_frames': win_length_frames,
@@ -162,7 +165,7 @@ class NormalizationProcessor(Normalizer, ProcessorMixin):
     input_type = ProcessingChainItemType.DATA_CONTAINER  #: Input data type
     output_type = ProcessingChainItemType.DATA_CONTAINER  #: Output data type
 
-    def __init__(self, n=None, s1=None, s2=None, mean=None, std=None, **kwargs):
+    def __init__(self, n=None, s1=None, s2=None, mean=None, std=None, normalizer=None, filename=None, **kwargs):
         """__init__ method.
 
         Parameters
@@ -183,16 +186,31 @@ class NormalizationProcessor(Normalizer, ProcessorMixin):
             Standard deviation of the data
 
         """
+        if filename is not None:
+            normalizer = Normalizer().load(filename=filename)
 
-        kwargs.update(
-            {
-                'n': n,
-                's1': s1,
-                's2': s2,
-                'mean': mean,
-                'std': std
-            }
-        )
+        if isinstance(normalizer, Normalizer):
+            # Valid Normalizer class given
+            kwargs.update(
+                {
+                    'n': normalizer.n,
+                    's1': normalizer.s1,
+                    's2': normalizer.s2,
+                    'mean': normalizer._mean,
+                    'std': normalizer._std
+                }
+            )
+
+        else:
+            kwargs.update(
+                {
+                    'n': n,
+                    's1': s1,
+                    's2': s2,
+                    'mean': mean,
+                    'std': std
+                }
+            )
 
         # Run ProcessorMixin init
         ProcessorMixin.__init__(self, **kwargs)
