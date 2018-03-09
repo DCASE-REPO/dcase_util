@@ -1079,7 +1079,7 @@ class ListDictContainer(ListContainer):
                 return element
         return None
 
-    def load(self, filename=None, fields=None, csv_header=None, file_format=None, delimiter=None, convert_numeric_fields=True):
+    def load(self, filename=None, fields=None, csv_header=True, file_format=None, delimiter=None, convert_numeric_fields=True):
         """Load file
 
         Parameters
@@ -1093,6 +1093,7 @@ class ListDictContainer(ListContainer):
 
         csv_header : bool, optional
             Read field names from first line (header). Used only for CSV formatted files.
+            Default value True
 
         file_format : FileFormat, optional
             Forced file format, use this when there is a miss-match between file extension and file format.
@@ -1189,7 +1190,7 @@ class ListDictContainer(ListContainer):
 
         return self
 
-    def save(self, filename=None, fields=None, csv_header=None, file_format=None, delimiter=','):
+    def save(self, filename=None, fields=None, csv_header=True, file_format=None, delimiter=','):
         """Save file
 
         Parameters
@@ -1203,6 +1204,7 @@ class ListDictContainer(ListContainer):
 
         csv_header : bool
             In case of CSV formatted file, first line will contain field names. Names are taken from fields parameter.
+            Default value True
 
         file_format : FileFormat, optional
             Forced file format, use this when there is a miss-match between file extension and file format.
@@ -1312,6 +1314,24 @@ class ListDictContainer(ListContainer):
 
         return data
 
+    def get_field_unique(self, field_name):
+        """Get unique data from field.
+
+        Parameters
+        ----------
+        field_name : str
+            Dict key for the search
+
+        Returns
+        -------
+        list
+
+        """
+
+        all_values = self.get_field(field_name=field_name)
+
+        return sorted(list(set(all_values)))
+
     def remove_field(self, field_name):
         """Remove field from data items
 
@@ -1332,6 +1352,59 @@ class ListDictContainer(ListContainer):
 
         return self
 
+    def filter(self, case_insensitive_fields=True, **kwargs):
+        """Filter content based on field values.
+
+        Parameters
+        ----------
+        kwargs
+            Use filtered field name and parameter name, and target value for the field as parameter value. Underscore is parameter name is replace with whitespace when matching with field names.
+
+        case_insensitive_fields : bool
+            Use case insensitive fields for filtering
+
+        Returns
+        -------
+        ListDictContainer
+
+        """
+
+        filter_fields = {}
+        for field in kwargs:
+            if case_insensitive_fields:
+                filter_fields[field.lower()] = kwargs[field]
+            else:
+                filter_fields[field] = kwargs[field]
+
+        data = []
+
+        for item in self:
+            matched = []
+            item_field_list = list(item.keys())
+            item_field_map = {}
+            for field in item_field_list:
+                if case_insensitive_fields:
+                    item_field_map[field.lower()] = field
+                else:
+                    item_field_map[field] = field
+
+            for condition_field in filter_fields:
+                condition_field_alternative = condition_field.replace('_', ' ')
+                if condition_field in item_field_map:
+                    if item[item_field_map[condition_field]] == filter_fields[condition_field]:
+                        matched.append(True)
+                    else:
+                        matched.append(False)
+                elif condition_field_alternative in item_field_map:
+                    if item[item_field_map[condition_field_alternative]] == filter_fields[condition_field]:
+                        matched.append(True)
+                    else:
+                        matched.append(False)
+
+            if all(matched):
+                data.append(copy.deepcopy(item))
+
+        return ListDictContainer(data)
 
 class RepositoryContainer(DictContainer):
     """Container class for repository, inherited from DictContainer."""
