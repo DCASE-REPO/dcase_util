@@ -797,7 +797,7 @@ class DataMatrix2DContainer(DataContainer):
         plt.colorbar()
 
         # Add filename to first subplot
-        if self.filename:
+        if hasattr(self, 'filename') and self.filename:
             plt.title(self.filename)
 
         plt.tight_layout()
