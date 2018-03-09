@@ -381,6 +381,7 @@ class Path(object):
             self.logger.exception(message)
             raise ValueError(message)
 
+
 class ApplicationPaths(Path):
     """Utility class for application paths, paths are automatically generated based on parameters through parameter hash."""
     def __init__(self, parameter_container=None):
