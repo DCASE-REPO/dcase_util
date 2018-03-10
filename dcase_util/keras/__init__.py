@@ -191,6 +191,7 @@ Utils
     :toctree: generated/
 
     setup_keras
+    create_optimizer
 
 """
 
