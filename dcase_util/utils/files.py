@@ -87,7 +87,7 @@ class Path(object):
         ----------
         path : str
             Path, if none given one given to class constructor is used.
-            Default value "None"
+            Default value None
 
         """
 
@@ -109,7 +109,7 @@ class Path(object):
         ----------
         path : str
             Path, if none given one given to class constructor is used.
-            Default value "None"
+            Default value None
 
         Returns
         -------
@@ -122,6 +122,7 @@ class Path(object):
 
         if path is not None:
             return os.path.normpath(path).replace('\\', '/')
+
         else:
             return None
 
@@ -132,7 +133,7 @@ class Path(object):
         ----------
         path : str
             Path, if none given one given to class constructor is used.
-            Default value "None"
+            Default value None
 
         Returns
         -------
@@ -154,25 +155,31 @@ class Path(object):
         ----------
         path : str
             Path, if none given one given to class constructor is used.
-            Default value "None"
+            Default value None
+
         recursive : bool
             Do recursive search to sub-directories
-            Default value "True"
+            Default value True
+
         extensions : str or list
             List valid file extensions or comma-separated string.
-            Default value "None"
+            Default value None
+
         case_sensitive : bool
             Use case sensitive file extension matching.
-            Default value "False"
+            Default value False
+
         absolute_paths : bool
             Return absolute paths instead of relative ones.
-            Default value "False"
+            Default value False
+
         offset : int
             Offset of files to be included.
-            Default value "0"
+            Default value 0
+
         limit : int
             Amount of files to be included.
-            Default value "None"
+            Default value None
 
         Returns
         -------
@@ -244,7 +251,7 @@ class Path(object):
         ----------
         path : str
             Path, if none given one given to class constructor is used.
-            Default value "None"
+            Default value None
 
         Returns
         -------
@@ -264,7 +271,7 @@ class Path(object):
         ----------
         path : str
             Path, if none given one given to class constructor is used.
-            Default value "None"
+            Default value None
 
         Returns
         -------
@@ -288,7 +295,7 @@ class Path(object):
         ----------
         path : str
             Path, if none given one given to class constructor is used.
-            Default value "None"
+            Default value None
 
         Returns
         -------
@@ -312,10 +319,11 @@ class Path(object):
         ----------
         path : str
             Path, if none given one given to class constructor is used.
-            Default value "None"
+            Default value None
+
         show_bytes : bool
             Show exact byte count
-            Default value "False"
+            Default value False
 
         Returns
         -------
@@ -334,7 +342,7 @@ class Path(object):
         ----------
         path : str
             Path, if none given one given to class constructor is used.
-            Default value "None"
+            Default value None
 
         Returns
         -------
@@ -381,6 +389,55 @@ class Path(object):
             self.logger.exception(message)
             raise ValueError(message)
 
+    def modify(self, path=None, path_base=None, filename_extension=None, filename_prefix=None, filename_postfix=None):
+        """Modify path
+        Parameters
+        ----------
+        path : str
+            Path, if none given one given to class constructor is used.
+            Default value None
+        path_base : str
+            Replacement path base, e.g. path base for "/test/audio/audio.wav" is "/test/audio".
+            Default value None
+
+        filename_extension : str
+            Replacement file extension
+            Default value None
+
+        filename_prefix : str
+            Prefix to be added to the filename body
+            Default value None
+
+        filename_postfix : str
+            Postfix to be added to the filename body
+            Default value None
+
+        Returns
+        -------
+        str
+
+        """
+
+        if path is None:
+            path = self.path
+
+        current_path_base, current_last_level_path = os.path.split(path)
+        current_filename_base, current_extension = os.path.splitext(current_last_level_path)
+
+        if path_base:
+            current_path_base = path_base
+
+        if filename_extension:
+            current_extension = filename_extension
+
+        if filename_prefix:
+            current_filename_base = filename_prefix + current_filename_base
+
+        if filename_postfix:
+            current_filename_base = current_filename_base + filename_postfix
+
+        return os.path.join(current_path_base, current_filename_base+current_extension)
+
 
 class ApplicationPaths(Path):
     """Utility class for application paths, paths are automatically generated based on parameters through parameter hash."""
@@ -391,7 +448,7 @@ class ApplicationPaths(Path):
         ----------
         parameter_container : ParameterContainer
             Application parameter container
-            Default value "None"
+            Default value None
 
         """
 
@@ -404,6 +461,7 @@ class ApplicationPaths(Path):
         ----------
         path_base : str
             Path base, this is used as base of all paths
+
         structure : dict
             Dictionary where key is path name, and value is list of parameter paths
 
@@ -459,6 +517,7 @@ class ApplicationPaths(Path):
         ----------
         prefix : str
             Prefix
+
         param_hash : str
             Parameter hash
 
@@ -482,8 +541,10 @@ class ApplicationPaths(Path):
         ----------
         path_base : str
             Base path
+
         structure : dict
             Dictionary where key is path name, and value is list of parameter paths
+
         parameter_filename : str
             Default value "parameters.yaml"
 
@@ -966,8 +1027,8 @@ class FileFormat(object):
             Path to the file
 
         use_content_for_unknown : bool
-            Use content to get the format if file exists.
-            Default value "True"
+            Use file content to detect the file format if file exists.
+            Default value True
 
         Returns
         -------
