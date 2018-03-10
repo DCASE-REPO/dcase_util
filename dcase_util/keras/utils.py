@@ -27,7 +27,7 @@ def setup_keras(seed=None, profile=None,
         Randomization seed. If none given, no seed is set.
 
     profile : str, optional
-        Profile name ['deterministic'], will override other parameters with profile parameters.
+        Profile name ['deterministic', 'cuda0_fast'], will override other parameters with profile parameters.
 
     backend : str
         Keras backend ['theano', 'tensorflow']
@@ -84,6 +84,15 @@ def setup_keras(seed=None, profile=None,
             theano_OpenMP = False
             theano_deterministic = True
 
+        elif profile == 'cuda0_fast':
+            device = 'cuda0'
+            BLAS_thread_count = 8
+            BLAS_MKL_CNR = True
+            nvcc_fastmath = True
+            theano_optimizer = 'fast_run'
+            theano_OpenMP = True
+            theano_deterministic = True
+
         else:
             message = 'Invalid Keras setup profile [{profile}].'.format(
                 profile=profile
@@ -136,7 +145,6 @@ def setup_keras(seed=None, profile=None,
         blas_libraries = ['']
 
     blas_extra_info = []
-
 
     # Select Keras backend
     os.environ["KERAS_BACKEND"] = backend
@@ -227,7 +235,6 @@ def setup_keras(seed=None, profile=None,
             else:
                 flags.append('openmp=False')
 
-
         if theano_deterministic is not None:
             if theano_deterministic:
                 flags.append('deterministic=more')
@@ -277,3 +284,47 @@ def setup_keras(seed=None, profile=None,
 
     if verbose:
         ui.foot()
+
+
+def create_optimizer(class_name, config=None):
+    """Create Keras optimizer
+
+    Parameters
+    ----------
+
+    class_name : str
+        Keras optimizer class name under keras.optimizers.*
+
+    config : dict, optional
+        Parameters
+
+    Returns
+    -------
+    Keras optimizer
+
+    """
+
+    def logger():
+        logger_instance = logging.getLogger(__name__)
+        if not logger_instance.handlers:
+            setup_logging()
+        return logger_instance
+
+    if config is None:
+        config = {}
+
+    # Get optimizer class
+    try:
+        optimizer_class = getattr(
+            importlib.import_module("keras.optimizers"),
+            class_name
+        )
+
+    except AttributeError:
+        message = 'Invalid Keras optimizer type [{type}].'.format(
+            type=class_name
+        )
+        logger().exception(message)
+        raise AttributeError(message)
+
+    return optimizer_class(**dict(config))
