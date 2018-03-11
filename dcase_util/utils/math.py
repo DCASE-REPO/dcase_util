@@ -100,6 +100,7 @@ class SimpleMathStringEvaluator(object):
 
         class EvalComparisonOp(object):
             """Class to evaluate comparison expressions"""
+
             def __init__(self, tokens):
                 self.value = tokens[0]
                 self.operator_map = {
