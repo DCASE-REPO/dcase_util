@@ -35,6 +35,7 @@ class BinaryMatrixEncoder(BinaryMatrix2DContainer):
             self.logger.exception(message)
             raise ValueError(message)
 
+
 class OneHotEncoder(BinaryMatrixEncoder):
     """One hot encoder class"""
     def __init__(self, label_list=None, time_resolution=None, length_frames=None, length_seconds=None, **kwargs):
