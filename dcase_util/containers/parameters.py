@@ -776,6 +776,8 @@ class DCASEAppParameterContainer(AppParameterContainer):
             'FEATURE_NORMALIZER_PARAMETERS': 'feature_normalizer_parameters',
             'FEATURE_AGGREGATOR': 'feature_aggregator',
             'FEATURE_AGGREGATOR_PARAMETERS': 'feature_aggregator_parameters',
+            'FEATURE_SEQUENCER': 'feature_sequencer',
+            'FEATURE_SEQUENCER_PARAMETERS': 'feature_sequencer_parameters',
             'LEARNER': 'learner',
             'LEARNER_METHOD_PARAMETERS': 'learner_method_parameters',
             'RECOGNIZER': 'recognizer',
@@ -795,6 +797,8 @@ class DCASEAppParameterContainer(AppParameterContainer):
             'FEATURE_NORMALIZER_PARAMETERS',
             'FEATURE_AGGREGATOR',
             'FEATURE_AGGREGATOR_PARAMETERS',
+            'FEATURE_SEQUENCER',
+            'FEATURE_SEQUENCER_PARAMETERS',
             'LEARNER',
             'RECOGNIZER',
             'LEARNER_METHOD_PARAMETERS',
@@ -814,6 +818,7 @@ class DCASEAppParameterContainer(AppParameterContainer):
                 'FEATURE_STACKER',
                 'FEATURE_NORMALIZER',
                 'FEATURE_AGGREGATOR',
+                'FEATURE_SEQUENCER',
                 'LEARNER'
             ],
             'RECOGNIZER': [
@@ -821,6 +826,7 @@ class DCASEAppParameterContainer(AppParameterContainer):
                 'FEATURE_STACKER',
                 'FEATURE_NORMALIZER',
                 'FEATURE_AGGREGATOR',
+                'FEATURE_SEQUENCER',
                 'LEARNER',
                 'RECOGNIZER'
             ],
