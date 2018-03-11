@@ -11,6 +11,7 @@ import random
 import numpy
 import tempfile
 import copy
+import importlib
 from tqdm import tqdm
 
 from dcase_util.containers import DictContainer, ListDictContainer, TextContainer, MetaDataContainer
@@ -138,19 +139,23 @@ def dataset_factory(dataset_class_name, **kwargs):
     """
 
     try:
-        return eval(dataset_class_name)(**kwargs)
+        dataset_class = getattr(
+            importlib.import_module("dcase_util.datasets"),
+            dataset_class_name
+        )
 
-    except NameError:
-        message = '{name}: No valid dataset given [{dataset_class_name}]'.format(
-            name='dataset_factory',
-            dataset_class_name=dataset_class_name
+    except AttributeError:
+        message = 'Invalid Dataset class given [{class_name}].'.format(
+            class_name=dataset_class_name
         )
         logger = logging.getLogger(__name__)
         if not logger.handlers:
             setup_logging()
 
         logger.exception(message)
-        raise NameError(message)
+        raise AttributeError(message)
+
+    return dataset_class(**dict(kwargs))
 
 
 class Dataset(object):
