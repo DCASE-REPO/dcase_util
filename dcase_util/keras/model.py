@@ -85,7 +85,8 @@ def create_sequential_model(model_parameter_list, input_shape=None, output_shape
         'kernel_size',
         'pool_size',
         'dims',
-        'target_shape'
+        'target_shape',
+        'strides'
     ]
 
     # Get constants for model
@@ -289,11 +290,14 @@ def model_summary_string(keras_model):
     )
 
     output += ui.line('') + '\n'
-    output += ui.line('Parameters') + '\n'
-    output += ui.data(indent=4, field='Trainable', value=trainable_count) + '\n'
-    output += ui.data(indent=4, field='Non-Trainable', value=non_trainable_count) + '\n'
-    output += ui.data(indent=4, field='Total', value=trainable_count + non_trainable_count) + '\n'
+    output += ui.line('Parameters', indent=4,) + '\n'
+    output += ui.data(indent=6, field='Trainable', value=trainable_count) + '\n'
+    output += ui.data(indent=6, field='Non-Trainable', value=non_trainable_count) + '\n'
+    output += ui.data(indent=6, field='Total', value=trainable_count + non_trainable_count) + '\n'
     output += ui.line('') + '\n'
+
+    output += ui.data(indent=4, field='Input shape', value=keras_model.input_shape) + '\n'
+    output += ui.data(indent=4, field='Output shape', value=keras_model.output_shape) + '\n'
 
     return output
 
