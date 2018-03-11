@@ -115,25 +115,30 @@ def create_sequential_model(model_parameter_list, input_shape=None, output_shape
         math_eval = SimpleMathStringEvaluator()
 
         if isinstance(value, str):
-            # String field
-            if value in constants_dict:
-                return constants_dict[value]
-
-            elif len(value.split()) > 1:
-                sub_fields = value.split()
+            sub_fields = value.split()
+            if len(sub_fields) > 1:
+                # Inject constants to math formula
                 for subfield_id, subfield in enumerate(sub_fields):
                     if subfield in constants_dict:
                         sub_fields[subfield_id] = str(constants_dict[subfield])
-
-                return math_eval.eval(''.join(sub_fields))
+                value = ''.join(sub_fields)
 
             else:
-                return value
+                # Inject constants
+                if value in constants_dict:
+                    value = str(constants_dict[value])
+
+            return math_eval.eval(value)
 
         elif isinstance(value, list):
             processed_value_list = []
             for item_id, item in enumerate(value):
-                processed_value_list.append(process_field(value=item, constants_dict=constants_dict))
+                processed_value_list.append(
+                    process_field(
+                        value=item,
+                        constants_dict=constants_dict
+                    )
+                )
 
             return processed_value_list
 
