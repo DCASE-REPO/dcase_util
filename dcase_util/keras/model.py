@@ -249,6 +249,8 @@ def model_summary_string(keras_model, mode='keras'):
         layer_name_map = {
             'BatchNormalization': 'BatchNorm',
         }
+        import keras
+        from distutils.version import LooseVersion
         import keras.backend as keras_backend
 
         output += ui.row(
@@ -260,14 +262,25 @@ def model_summary_string(keras_model, mode='keras'):
 
         for layer in keras_model.layers:
             connections = []
-            for node_index, node in enumerate(layer._inbound_nodes):
-                for i in range(len(node.inbound_layers)):
-                    inbound_layer = node.inbound_layers[i].name
-                    inbound_node_index = node.node_indices[i]
-                    inbound_tensor_index = node.tensor_indices[i]
-                    connections.append(
-                        inbound_layer + '[' + str(inbound_node_index) + '][' + str(inbound_tensor_index) + ']'
-                    )
+            if LooseVersion(keras.__version__) >= LooseVersion('2.1.3'):
+                for node_index, node in enumerate(layer._inbound_nodes):
+                    for i in range(len(node.inbound_layers)):
+                        inbound_layer = node.inbound_layers[i].name
+                        inbound_node_index = node.node_indices[i]
+                        inbound_tensor_index = node.tensor_indices[i]
+                        connections.append(
+                            inbound_layer + '[' + str(inbound_node_index) + '][' + str(inbound_tensor_index) + ']'
+                        )
+
+            else:
+                for node_index, node in enumerate(layer.inbound_nodes):
+                    for i in range(len(node.inbound_layers)):
+                        inbound_layer = node.inbound_layers[i].name
+                        inbound_node_index = node.node_indices[i]
+                        inbound_tensor_index = node.tensor_indices[i]
+                        connections.append(
+                            inbound_layer + '[' + str(inbound_node_index) + '][' + str(inbound_tensor_index) + ']'
+                        )
 
             config = DictContainer(layer.get_config())
             layer_name = layer.__class__.__name__
