@@ -248,7 +248,7 @@ class DictContainer(dict, ContainerMixin, FileMixin):
             return sub_list
 
         else:
-            if fields[0] in data and len(fields) > 1:
+            if len(fields) > 1 and fields[0] in data:
                 # Go deeper
                 return self.get_path(
                     data=data[fields[0]],
@@ -256,7 +256,7 @@ class DictContainer(dict, ContainerMixin, FileMixin):
                     default=default
                 )
 
-            elif fields[0] in data and len(fields) == 1:
+            elif len(fields) == 1 and fields[0] in data:
                 # We reached to the node
                 if isinstance(data[fields[0]], dict):
                     # Return DictContainer in case of dict
