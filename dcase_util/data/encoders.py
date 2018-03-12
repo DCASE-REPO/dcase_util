@@ -38,7 +38,7 @@ class BinaryMatrixEncoder(BinaryMatrix2DContainer):
 
 class OneHotEncoder(BinaryMatrixEncoder):
     """One hot encoder class"""
-    def __init__(self, label_list=None, time_resolution=None, length_frames=None, length_seconds=None, **kwargs):
+    def __init__(self, label_list=None, time_resolution=1.0, length_frames=1, length_seconds=None, **kwargs):
         """Constructor
 
         Parameters
@@ -48,6 +48,12 @@ class OneHotEncoder(BinaryMatrixEncoder):
 
         time_resolution : float
             Time resolution
+
+        length_frames : int
+            length of binary matrix in frames
+
+        length_seconds : float
+            length of binary matrix in seconds
 
         """
 
