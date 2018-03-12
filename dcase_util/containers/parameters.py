@@ -676,6 +676,7 @@ class AppParameterContainer(ParameterContainer):
                             app_paths[self.field_labels['BASE']],
                             app_paths[field]
                         )
+
                     else:
                         path_base = os.path.join(
                             self.app_base,
@@ -683,7 +684,9 @@ class AppParameterContainer(ParameterContainer):
                         )
 
                     # Generate full path with parameter hashes
-                    path = ApplicationPaths(parameter_container=self).generate(
+                    path = ApplicationPaths(
+                        parameter_container=self
+                    ).generate(
                         path_base=path_base,
                         structure=structure
                     )
@@ -705,7 +708,9 @@ class AppParameterContainer(ParameterContainer):
 
                     # Create parameter hints
                     if create_parameter_hints:
-                        ApplicationPaths(parameter_container=self).save_parameters_to_path(
+                        ApplicationPaths(
+                            parameter_container=self
+                        ).save_parameters_to_path(
                             path_base=path_base,
                             structure=structure,
                             parameter_filename=self.application_directory_parameter_filename
