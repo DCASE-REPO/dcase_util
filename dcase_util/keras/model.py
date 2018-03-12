@@ -222,13 +222,17 @@ def create_sequential_model(model_parameter_list, input_shape=None, output_shape
     return keras_model
 
 
-def model_summary_string(keras_model):
-    """Model summary in a string, similar to Keras model summary function.
+def model_summary_string(keras_model, mode='keras'):
+    """Model summary in a formatted string, similar to Keras model summary function.
 
     Parameters
     ----------
     keras_model : keras model
         Keras model
+
+    mode : str
+        Summary mode ['extended', 'keras']. In case 'keras', standard Keras summary is returned.
+        Default value keras
 
     Returns
     -------
@@ -238,67 +242,77 @@ def model_summary_string(keras_model):
     """
 
     ui = FancyStringifier()
-    layer_name_map = {
-        'BatchNormalization': 'BatchNorm',
-    }
-    import keras.backend as keras_backend
-
     output = ''
     output += ui.line('Model summary') + '\n'
-    output += ui.row(
-        'Layer type', 'Output', 'Param', 'Name', 'Connected to', 'Activ.', 'Init',
-        widths=[15, 20, 10, 20, 25, 10, 10],
-        indent=4
-    ) + '\n'
-    output += ui.row('-', '-', '-', '-', '-', '-', '-') + '\n'
 
-    for layer in keras_model.layers:
-        connections = []
-        for node_index, node in enumerate(layer.inbound_nodes):
-            for i in range(len(node.inbound_layers)):
-                inbound_layer = node.inbound_layers[i].name
-                inbound_node_index = node.node_indices[i]
-                inbound_tensor_index = node.tensor_indices[i]
-                connections.append(inbound_layer + '[' + str(inbound_node_index) +
-                                   '][' + str(inbound_tensor_index) + ']')
-
-        config = DictContainer(layer.get_config())
-        layer_name = layer.__class__.__name__
-        if layer_name in layer_name_map:
-            layer_name = layer_name_map[layer_name]
-
-        if config.get_path('kernel_initializer.class_name') == 'VarianceScaling':
-            init = str(config.get_path('kernel_initializer.config.distribution', '---'))
-
-        elif config.get_path('kernel_initializer.class_name') == 'RandomUniform':
-            init = 'uniform'
-
-        else:
-            init = '---'
+    if mode == 'extended':
+        layer_name_map = {
+            'BatchNormalization': 'BatchNorm',
+        }
+        import keras.backend as keras_backend
 
         output += ui.row(
-            layer_name,
-            str(layer.output_shape),
-            str(layer.count_params()),
-            str(layer.name),
-            str(connections[0]) if len(connections) > 0 else '---',
-            str(config.get('activation', '---')),
-            init
+            'Layer type', 'Output', 'Param', 'Name', 'Connected to', 'Activ.', 'Init',
+            widths=[15, 25, 10, 20, 25, 10, 10],
+            indent=4
         ) + '\n'
+        output += ui.row('-', '-', '-', '-', '-', '-', '-') + '\n'
 
-    trainable_count = int(
-        numpy.sum([keras_backend.count_params(p) for p in set(keras_model.trainable_weights)])
-    )
+        for layer in keras_model.layers:
+            connections = []
+            for node_index, node in enumerate(layer._inbound_nodes):
+                for i in range(len(node.inbound_layers)):
+                    inbound_layer = node.inbound_layers[i].name
+                    inbound_node_index = node.node_indices[i]
+                    inbound_tensor_index = node.tensor_indices[i]
+                    connections.append(
+                        inbound_layer + '[' + str(inbound_node_index) + '][' + str(inbound_tensor_index) + ']'
+                    )
 
-    non_trainable_count = int(
-        numpy.sum([keras_backend.count_params(p) for p in set(keras_model.non_trainable_weights)])
-    )
+            config = DictContainer(layer.get_config())
+            layer_name = layer.__class__.__name__
+            if layer_name in layer_name_map:
+                layer_name = layer_name_map[layer_name]
 
-    output += ui.line('') + '\n'
-    output += ui.line('Parameters', indent=4,) + '\n'
-    output += ui.data(indent=6, field='Trainable', value=trainable_count) + '\n'
-    output += ui.data(indent=6, field='Non-Trainable', value=non_trainable_count) + '\n'
-    output += ui.data(indent=6, field='Total', value=trainable_count + non_trainable_count) + '\n'
+            if config.get_path('kernel_initializer.class_name') == 'VarianceScaling':
+                init = str(config.get_path('kernel_initializer.config.distribution', '---'))
+
+            elif config.get_path('kernel_initializer.class_name') == 'RandomUniform':
+                init = 'uniform'
+
+            else:
+                init = '---'
+
+            output += ui.row(
+                layer_name,
+                str(layer.output_shape),
+                str(layer.count_params()),
+                str(layer.name),
+                str(connections[0]) if len(connections) > 0 else '---',
+                str(config.get('activation', '---')),
+                init
+            ) + '\n'
+
+        trainable_count = int(
+            numpy.sum([keras_backend.count_params(p) for p in set(keras_model.trainable_weights)])
+        )
+
+        non_trainable_count = int(
+            numpy.sum([keras_backend.count_params(p) for p in set(keras_model.non_trainable_weights)])
+        )
+
+        output += ui.line('') + '\n'
+        output += ui.line('Parameters', indent=4,) + '\n'
+        output += ui.data(indent=6, field='Total', value=trainable_count + non_trainable_count) + '\n'
+        output += ui.data(indent=6, field='Trainable', value=trainable_count) + '\n'
+        output += ui.data(indent=6, field='Non-Trainable', value=non_trainable_count) + '\n'
+
+    else:
+        output_buffer = []
+        keras_model.summary(print_fn=output_buffer.append)
+        for line in output_buffer:
+            output += ui.line(line, indent=4) + '\n'
+
     output += ui.line('') + '\n'
 
     output += ui.data(indent=4, field='Input shape', value=keras_model.input_shape) + '\n'
