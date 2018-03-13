@@ -42,6 +42,14 @@ class ProcessingChain(ListDictContainer):
     ]  #: Valid output data types
 
     def __init__(self, *args, **kwargs):
+
+        if len(args) > 0 and args[0] and (not isinstance(args[0], list) or not isinstance(args[0][0], dict)):
+            message = '{name}: ProcessingChain should be initialized with list of dicts.'.format(
+                name=self.__class__.__name__,
+            )
+            self.logger.exception(message)
+            raise ValueError(message)
+
         super(ProcessingChain, self).__init__(*args, **kwargs)
 
         # Make sure items are ProcessingChainItems and that their parameters are valid.
