@@ -464,12 +464,12 @@ class RepositoryMaskingProcessor(Masker, ProcessorMixin):
 
 
 class OneHotEncodingProcessor(OneHotEncoder, ProcessorMixin):
-    """Event roll encoding processor"""
+    """One hot encoding processor"""
     input_type = ProcessingChainItemType.METADATA  #: Input data type
     output_type = ProcessingChainItemType.DATA_CONTAINER  #: Output data type
 
-    def __init__(self, label_list=None, focus_field='scene_label', time_resolution=None,
-                 length_frames=None, length_seconds=None,
+    def __init__(self, label_list=None, focus_field='scene_label', time_resolution=1.0,
+                 length_frames=1, length_seconds=None,
                  **kwargs):
         """Constructor
 
@@ -509,13 +509,16 @@ class OneHotEncodingProcessor(OneHotEncoder, ProcessorMixin):
 
         self.focus_field = focus_field
 
-    def process(self, data=None, focus_field=None, length_frames=None, length_seconds=None, **kwargs):
+    def process(self, data=None, label=None, focus_field=None, length_frames=None, length_seconds=None, **kwargs):
         """Encode metadata
 
         Parameters
         ----------
         data : MetaDataContainer
-            Meta data to encode.
+            Meta data to encode. Give data in either through meta data container or directly with label parameter.
+
+        label : str
+            Class label to be hot
 
         focus_field : str
             Field from the meta data item to be used in encoding. If None, one given as parameter for class
@@ -532,54 +535,14 @@ class OneHotEncodingProcessor(OneHotEncoder, ProcessorMixin):
         BinaryMatrixContainer
 
         """
+        if data is None and label is None:
+            message = '{name}: Give data or label parameter.'.format(name=self.__class__.__name__)
+            self.logger.exception(message)
+            raise ValueError(message)
 
         from dcase_util.containers import MetaDataContainer
 
-        if focus_field is None:
-            focus_field = self.focus_field
-
-        if isinstance(data, MetaDataContainer):
-            chain_item = self.get_processing_chain_item()
-
-            if length_frames is None and length_seconds is not None:
-                length_frames = self._length_to_frames(length_seconds)
-
-            if length_frames is None:
-                length_frames = self.length_frames
-
-            if 'process_parameters' not in chain_item:
-                chain_item['process_parameters'] = {}
-
-            chain_item['process_parameters']['focus_field'] = focus_field
-            chain_item['process_parameters']['length_frames'] = length_frames
-
-            if len(data) > 0:
-                label = data[0].get(focus_field)
-
-            self.encode(
-                label=label,
-                length_frames=length_frames
-            )
-
-            processing_chain_item = self.get_processing_chain_item()
-
-            if hasattr(data, 'processing_chain'):
-                data.processing_chain.push_processor(**processing_chain_item)
-                processing_chain = data.processing_chain
-            else:
-                processing_chain = ProcessingChain().push_processor(**processing_chain_item)
-
-            from dcase_util.containers import BinaryMatrix2DContainer
-            container = BinaryMatrix2DContainer(
-                data=self.data,
-                label_list=self.label_list,
-                time_resolution=self.time_resolution,
-                processing_chain=processing_chain
-            )
-
-            return container
-
-        else:
+        if data is not None and not isinstance(data, MetaDataContainer):
             message = '{name}: Wrong input data type, type required [{input_type}].'.format(
                 name=self.__class__.__name__,
                 input_type=self.input_type)
@@ -587,9 +550,52 @@ class OneHotEncodingProcessor(OneHotEncoder, ProcessorMixin):
             self.logger.exception(message)
             raise ValueError(message)
 
+        if data is not None and len(data) > 0 and label is None:
+            label = data[0].get(focus_field)
+
+        if focus_field is None:
+            focus_field = self.focus_field
+
+        chain_item = self.get_processing_chain_item()
+
+        if length_frames is None and length_seconds is not None:
+            length_frames = self._length_to_frames(length_seconds)
+
+        if length_frames is None:
+            length_frames = self.length_frames
+
+        if 'process_parameters' not in chain_item:
+            chain_item['process_parameters'] = {}
+
+        chain_item['process_parameters']['focus_field'] = focus_field
+        chain_item['process_parameters']['length_frames'] = length_frames
+
+        self.encode(
+            label=label,
+            length_frames=length_frames
+        )
+
+        processing_chain_item = self.get_processing_chain_item()
+
+        if hasattr(data, 'processing_chain'):
+            data.processing_chain.push_processor(**processing_chain_item)
+            processing_chain = data.processing_chain
+        else:
+            processing_chain = ProcessingChain().push_processor(**processing_chain_item)
+
+        from dcase_util.containers import BinaryMatrix2DContainer
+        container = BinaryMatrix2DContainer(
+            data=self.data,
+            label_list=self.label_list,
+            time_resolution=self.time_resolution,
+            processing_chain=processing_chain
+        )
+
+        return container
+
 
 class ManyHotEncodingProcessor(ManyHotEncoder, ProcessorMixin):
-    """Event roll encoding processor"""
+    """Many hot encoding processor"""
     input_type = ProcessingChainItemType.METADATA  #: Input data type
     output_type = ProcessingChainItemType.DATA_CONTAINER  #: Output data type
 
