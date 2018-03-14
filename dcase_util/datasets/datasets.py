@@ -862,11 +862,13 @@ class Dataset(object):
         )
 
         for item in item_progress:
-            remote_file = RemoteFile(**item)
-            if self.included_content_types is None or remote_file.is_content_type(
-                    content_type=self.included_content_types
-            ):
-                remote_file.download()
+            if 'remote_file' in item:
+                # Download if remote file is set
+                remote_file = RemoteFile(**item)
+                if self.included_content_types is None or remote_file.is_content_type(
+                        content_type=self.included_content_types
+                ):
+                    remote_file.download()
 
         return self
 
