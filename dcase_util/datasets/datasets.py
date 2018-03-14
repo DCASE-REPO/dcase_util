@@ -1597,6 +1597,7 @@ class Dataset(object):
 
 
 class AcousticSceneDataset(Dataset):
+    """Acoustic scene dataset baseclass """
     def __init__(self, *args, **kwargs):
         super(AcousticSceneDataset, self).__init__(*args, **kwargs)
 
@@ -1734,6 +1735,7 @@ class AcousticSceneDataset(Dataset):
 
 
 class SoundEventDataset(Dataset):
+    """Sound event dataset baseclass"""
     def __init__(self, *args, **kwargs):
         super(SoundEventDataset, self).__init__(*args, **kwargs)
 
@@ -2489,6 +2491,7 @@ class SoundEventDataset(Dataset):
 
 
 class SyntheticSoundEventDataset(SoundEventDataset):
+    """Synthetic sound event dataset baseclass"""
     def __init__(self, *args, **kwargs):
         super(SyntheticSoundEventDataset, self).__init__(*args, **kwargs)
 
@@ -2520,6 +2523,7 @@ class SyntheticSoundEventDataset(SoundEventDataset):
 
 
 class AudioTaggingDataset(Dataset):
+    """Audio tag dataset baseclass"""
     def __init__(self, *args, **kwargs):
         super(AudioTaggingDataset, self).__init__(*args, **kwargs)
 
