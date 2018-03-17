@@ -87,7 +87,7 @@ class SequencingProcessor(Sequencer, ProcessorMixin):
     input_type = ProcessingChainItemType.DATA_CONTAINER  #: Input data type
     output_type = ProcessingChainItemType.DATA_CONTAINER  #: Output data type
 
-    def __init__(self, frames=10, hop_length_frames=None, padding=False, shift_step=0,
+    def __init__(self, frames=10, hop_length_frames=None, padding=None, shift_step=0,
                  shift_border='roll', shift_max=None, **kwargs):
         """__init__ method.
 
