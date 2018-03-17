@@ -1406,6 +1406,7 @@ class ListDictContainer(ListContainer):
 
         return ListDictContainer(data)
 
+
 class RepositoryContainer(DictContainer):
     """Container class for repository, inherited from DictContainer."""
     valid_formats = [FileFormat.CPICKLE]  #: Valid file formats
