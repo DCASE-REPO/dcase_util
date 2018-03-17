@@ -494,7 +494,7 @@ class Aggregator(ObjectContainer):
 class Sequencer(ObjectContainer):
     """Data sequencer"""
 
-    def __init__(self, frames=10, hop_length_frames=None, padding=False, shift_step=0,
+    def __init__(self, frames=10, hop_length_frames=None, padding=None, shift_step=0,
                  shift_border='roll', shift_max=None, **kwargs):
         """__init__ method.
 
@@ -502,21 +502,27 @@ class Sequencer(ObjectContainer):
         ----------
         frames : int
             Sequence length
+            Default value 10
 
         hop_length_frames : int
             Hop value of when forming the sequence, if None then hop length equals to frames (non-overlapping hopping).
+            Default value None
 
-        padding: bool
-            Replicate data when sequence is not full
+        padding: str
+            How data is treated at the boundaries [None, 'zero', 'repeat']
+            Default value None
 
         shift_step : int
             Sequence start temporal shifting amount, is added once method increase_shifting is called
+            Default value 0
 
-        shift_border : string, {'roll', 'shift'}
+        shift_border : string, ['roll', 'shift']
             Sequence border handling when doing temporal shifting.
+            Default value roll
 
         shift_max : int
             Maximum value for temporal shift
+            Default value None
 
         """
 
@@ -531,7 +537,17 @@ class Sequencer(ObjectContainer):
         else:
             self.hop_length_frames = hop_length_frames
 
-        self.padding = padding
+        if padding in [None, False, 'zero', 'repeat']:
+            self.padding = padding
+
+        else:
+            message = '{name}: Unknown padding mode [{padding_mode}]'.format(
+                name=self.__class__.__name__,
+                padding_mode=padding
+            )
+            self.logger.exception(message)
+            raise ValueError(message)
+
         self.shift = 0
 
         self.shift_step = shift_step
@@ -644,14 +660,38 @@ class Sequencer(ObjectContainer):
 
                 frame_ids = numpy.array(range(segment_start_frame, segment_end_frame))
 
-                if self.padding:
+                if self.padding == 'repeat':
+                    # Handle boundaries by repeating vectors
+
                     # If start of matrix, pad with first frame
                     frame_ids[frame_ids < 0] = 0
 
                     # If end of the matrix, pad with last frame
                     frame_ids[frame_ids > data.length - 1] = data.length - 1
 
-                processed_data.append(data.get_frames(frame_ids=frame_ids))
+                    # Append the segment
+                    processed_data.append(
+                        data.get_frames(
+                            frame_ids=frame_ids
+                        )
+                    )
+
+                elif self.padding == 'zero':
+                    # Handle boundaries by inserting zero vectors
+
+                    # Initilize current segment with zero content
+                    current_segment = numpy.zeros((data.vector_length, self.frames))
+
+                    # Copy data into correct position within the segment
+                    current_segment[:, numpy.where(numpy.logical_and(frame_ids > 0, frame_ids < data.length -1))[0]] = data.get_frames(
+                        frame_ids=frame_ids[numpy.where(numpy.logical_and(frame_ids > 0, frame_ids < data.length -1))[0]]
+                    )
+
+                    # Append the segment
+                    processed_data.append(current_segment)
+
+                else:
+                    processed_data.append(data.get_frames(frame_ids=frame_ids))
 
             if len(processed_data) == 0:
                 message = '{name}: Cannot create valid segment, adjust segment length and hop size, or use ' \
