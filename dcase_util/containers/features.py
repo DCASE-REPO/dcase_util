@@ -46,23 +46,26 @@ class FeatureRepository(DataRepository):
 
     valid_formats = [FileFormat.CPICKLE]  #: Valid file formats
 
-    def __init__(self, filename_dict=None, default_stream_id=0, processing_chain=None, **kwargs):
+    def __init__(self, filename=None, default_stream_id=0, processing_chain=None, **kwargs):
         """Constructor
 
         Parameters
         ----------
-        filename_dict: dict
-            Dict of file paths, feature extraction method label as key, and filename as value.
-            If given, features are loaded in the initialization stage.
+        filename: str or dict
+            Either one filename (str) or multiple filenames in a dictionary. Dictionary based parameter is used to construct the repository from separate FeatureContainers, two formats for the dictionary is supported: 1) label as key, and filename as value, and 2) two-level dictionary label as key1, stream as key2 and filename as value.
 
-        default_stream_id : int
+        default_stream_id : str or int
+            Default stream id used when accessing data
+            Default value 0
 
         processing_chain : ProcessingChain
-
+            Processing chain to be included into repository
+            Default value None
 
         """
+
         kwargs.update({
-            'filename_dict': filename_dict,
+            'filename': filename,
             'default_stream_id': default_stream_id,
             'processing_chain': processing_chain
         })
