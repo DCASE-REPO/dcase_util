@@ -535,6 +535,7 @@ class OneHotEncodingProcessor(OneHotEncoder, ProcessorMixin):
         BinaryMatrixContainer
 
         """
+
         if data is None and label is None:
             message = '{name}: Give data or label parameter.'.format(name=self.__class__.__name__)
             self.logger.exception(message)
@@ -550,11 +551,11 @@ class OneHotEncodingProcessor(OneHotEncoder, ProcessorMixin):
             self.logger.exception(message)
             raise ValueError(message)
 
-        if data is not None and len(data) > 0 and label is None:
-            label = data[0].get(focus_field)
-
         if focus_field is None:
             focus_field = self.focus_field
+
+        if data is not None and len(data) > 0 and label is None:
+            label = data[0].get(focus_field)
 
         chain_item = self.get_processing_chain_item()
 

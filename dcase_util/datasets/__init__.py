@@ -165,6 +165,7 @@ from .datasets import *
 from .dcase2013 import *
 from .dcase2016 import *
 from .dcase2017 import *
+from .dcase2018 import *
 from .tut import *
 
 __all__ = [_ for _ in dir() if not _.startswith('_')]
