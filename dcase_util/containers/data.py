@@ -7,6 +7,8 @@ from six import iteritems
 import numpy
 import copy
 import os
+import glob
+from past.builtins import basestring
 
 from dcase_util.containers import ObjectContainer, RepositoryContainer
 from dcase_util.ui import FancyStringifier
@@ -113,6 +115,45 @@ class DataContainer(ObjectContainer):
 
         self.focus_start = d['_focus_start']
         self.focus_stop = d['_focus_stop']
+
+    def __add__(self, other):
+        new = copy.deepcopy(self)
+        if isinstance(other, DataContainer):
+            new.data += other.data
+
+        elif isinstance(other, numpy.ndarray):
+            new.data += other
+
+        return new
+
+    def __iadd__(self, other):
+        if isinstance(other, DataContainer):
+            self.data += other.data
+
+        elif isinstance(other, numpy.ndarray):
+            self.data += other
+
+        return self
+
+    def __sub__(self, other):
+        new = copy.deepcopy(self)
+        if isinstance(other, DataContainer):
+            new.data -= other.data
+
+        elif isinstance(other, numpy.ndarray):
+            new.data -= other
+
+        return new
+
+    def __isub__(self, other):
+        if isinstance(other, DataContainer):
+            self.data -= other.data
+
+        elif isinstance(other, numpy.ndarray):
+            self.data -= other
+
+        return self
+
 
     @property
     def data(self):
@@ -862,13 +903,57 @@ class DataMatrix3DContainer(DataMatrix2DContainer):
 
         return output
 
-    def plot(self):
-        # TODO
-        message = '{name}: plot-method not yet implemented.'.format(
-            name=self.__class__.__name__
-        )
-        self.logger.exception(message)
-        raise AssertionError(message)
+    def plot(self, show_color_bar=False):
+        data = self.get_focused()
+
+        if data.shape[self.sequence_axis] < 10:
+            from librosa.display import specshow
+            import matplotlib.pyplot as plt
+            plt.figure()
+
+            for sequence_id in range(data.shape[self.sequence_axis]):
+                plt.subplot(data.shape[self.sequence_axis], 1, sequence_id + 1)
+                current_data = data[:,:,sequence_id]
+                if self.time_axis == 0:
+                    # Make sure time is on x-axis
+                    current_data = current_data.T
+
+                # Plot data matrix
+                if self.time_resolution:
+                    sr = int(1.0 / float(self.time_resolution))
+                    x_axis = 'time'
+                else:
+                    sr = 1.0
+                    x_axis = None
+
+                specshow(
+                    current_data,
+                    x_axis=x_axis,
+                    sr=sr,
+                    hop_length=1
+                )
+
+                plt.ylabel(str(sequence_id))
+
+                if show_color_bar:
+                    # Add color bar
+                    plt.colorbar()
+
+            # Add filename to first subplot
+            if hasattr(self, 'filename') and self.filename:
+                plt.title(self.filename)
+
+            plt.tight_layout()
+            plt.show()
+
+
+        else:
+            # TODO
+            message = '{name}: Matrix is too deep, plot-method not yet implemented.'.format(
+                name=self.__class__.__name__
+            )
+            self.logger.exception(message)
+            raise AssertionError(message)
 
 
 class BinaryMatrix2DContainer(DataMatrix2DContainer):
@@ -1063,12 +1148,12 @@ class DataRepository(RepositoryContainer):
 
     valid_formats = [FileFormat.CPICKLE]  #: Valid file formats
 
-    def __init__(self, data=None, filename_dict=None, default_stream_id=0, processing_chain=None, **kwargs):
+    def __init__(self, data=None, filename=None, default_stream_id=0, processing_chain=None, **kwargs):
         """Constructor
 
         Parameters
         ----------
-        filename_dict: dict
+        filename: str or dict
             Dict of file paths, feature extraction method label as key, and filename as value.
             If given, repository is loaded in the initialization stage.
 
@@ -1080,7 +1165,7 @@ class DataRepository(RepositoryContainer):
 
         super(DataRepository, self).__init__(**kwargs)
 
-        self.filename_dict = filename_dict
+        #self.filename_dict = filename_dict
         self.default_stream_id = default_stream_id
 
         from dcase_util.processors import ProcessingChain
@@ -1100,8 +1185,8 @@ class DataRepository(RepositoryContainer):
         output = ''
         output += ui.class_name(self.__class__.__name__) + '\n'
 
-        if self.filename_dict:
-            output += FancyStringifier().data(field='filename_dict', value=self.filename_dict) + '\n'
+        if self.filename:
+            output += FancyStringifier().data(field='filename', value=self.filename) + '\n'
 
         output += ui.line(field='Repository info') + '\n'
         output += ui.data(indent=4, field='Item class', value=self.item_class.__name__) + '\n'
@@ -1150,14 +1235,14 @@ class DataRepository(RepositoryContainer):
         else:
             return None
 
-    def load(self, filename_dict=None):
+    def load(self, filename=None, collect_from_containers=True):
         """Load file list
 
         Parameters
         ----------
-        filename_dict : dict
-            Dict of file paths, label as key, and filename as value or two-level dictionary label as key,
-            stream as key and filename as value.
+        filename : str or dict
+            Either one filename (str) or multiple filenames in a dictionary. Dictionary based parameter is used to construct the repository from separate FeatureContainers, two formats for the dictionary is supported: 1) label as key, and filename as value, and 2) two-level dictionary label as key1, stream as key2 and filename as value. If None given, parameter given to class initializer is used instead.
+            Default value None
 
         Returns
         -------
@@ -1165,15 +1250,40 @@ class DataRepository(RepositoryContainer):
 
         """
 
-        if filename_dict is not None:
-            self.filename_dict = filename_dict
+        if filename:
+            self.filename = filename
 
-        if self.filename_dict is not None:
-            if filelist_exists(self.filename_dict):
+        if isinstance(self.filename, basestring):
+            # String filename given use load method from parent class
+            if os.path.exists(self.filename):
+                # If file exist load it
+                self.detect_file_format()
+                self.validate_format()
+
+                super(DataRepository, self).load(filename=self.filename)
+
+            if collect_from_containers:
+                # Collect data to the repository from separate containers
+                filename_base, file_extension = os.path.splitext(self.filename)
+                containers = glob.glob(filename_base + '.*-*' + file_extension)
+                for filename in containers:
+                    filename_base, file_extension = os.path.splitext(filename)
+                    label, stream_id = os.path.splitext(filename)[0].split('.')[-1].split('-')
+                    if label not in self:
+                        self[label] = {}
+
+                    self[label][int(stream_id)] = self.item_class().load(filename=filename)
+
+            return self
+
+        elif isinstance(self.filename, dict):
+            sorted(self.filename)
+
+            # Dictionary based filename given
+            if filelist_exists(self.filename):
                 dict.clear(self)
-                sorted(self.filename_dict)
 
-                for label, data in iteritems(self.filename_dict):
+                for label, data in iteritems(self.filename):
                     self[label] = {}
                     if not label.startswith('_'):
                         # Skip labels starting with '_', those are just for extra info
@@ -1189,7 +1299,7 @@ class DataRepository(RepositoryContainer):
 
             else:
                 # All filenames did not exists, find which ones is missing and raise error.
-                for label, data in iteritems(self.filename_dict):
+                for label, data in iteritems(self.filename):
                     if isinstance(data, str) and not os.path.isfile(data):
                         message = '{name}: Repository cannot be loaded, file does not exists for method [{method}], file [{filename}]'.format(
                             name=self.__class__.__name__,
@@ -1212,11 +1322,76 @@ class DataRepository(RepositoryContainer):
                                 raise IOError(message)
 
         else:
-            message = '{name}: Repository cannot be loaded, no filename_dict set.'.format(
+            message = '{name}: Repository cannot be loaded, no filename set.'.format(
                 name=self.__class__.__name__
             )
             self.logger.exception(message)
             raise IOError(message)
+
+    def save(self, filename=None, split_into_containers=False):
+        """Save file
+
+        Parameters
+        ----------
+        filename : str or dict
+            File path
+            Default value filename given to class constructor
+
+        split_into_containers : bool
+            Split data from repository separate containers and save them individually.
+            Default value False
+
+        Raises
+        ------
+        ImportError:
+            Error if file format specific module cannot be imported
+
+        IOError:
+            File has unknown file format
+
+        Returns
+        -------
+        self
+
+        """
+
+        if filename:
+            self.filename = filename
+
+        if split_into_containers and isinstance(self.filename, basestring):
+            # Automatic filename generation for saving data into separate containers
+            filename_base, file_extension = os.path.splitext(self.filename)
+            filename_dictionary = {}
+            for label in self.labels:
+                if label not in filename_dictionary:
+                    filename_dictionary[label] = {}
+
+                for stream_id in self.stream_ids(label=label):
+                    if stream_id not in filename_dictionary[label]:
+                        filename_dictionary[label][stream_id] = filename_base + '.' + label + '-' + str(stream_id) + file_extension
+            self.filename = filename_dictionary
+
+        if isinstance(self.filename, basestring):
+            # Single output file as target
+            self.detect_file_format()
+            self.validate_format()
+
+            # String filename given use load method from parent class
+            super(DataRepository, self).save(filename=self.filename)
+            return self
+
+        elif isinstance(self.filename, dict):
+            # Custom naming and splitting into separate containers
+            sorted(self.filename)
+
+            # Dictionary of filenames given, save each data container in the repository separately
+            for label in self.labels:
+                if label in self.filename:
+                    for stream_id in self.stream_ids(label=label):
+                        if stream_id in self.filename[label]:
+                            current_container = self.get_container(label=label, stream_id=stream_id)
+                            current_container.save(filename=self.filename[label][stream_id])
+            return self
 
     def get_container(self, label, stream_id=None):
         """Get container from repository
