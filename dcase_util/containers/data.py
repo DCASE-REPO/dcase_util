@@ -1154,18 +1154,20 @@ class DataRepository(RepositoryContainer):
         Parameters
         ----------
         filename: str or dict
-            Dict of file paths, feature extraction method label as key, and filename as value.
-            If given, repository is loaded in the initialization stage.
+            Either one filename (str) or multiple filenames in a dictionary. Dictionary based parameter is used to construct the repository from separate FeatureContainers, two formats for the dictionary is supported: 1) label as key, and filename as value, and 2) two-level dictionary label as key1, stream as key2 and filename as value.
 
         default_stream_id : str or int
+            Default stream id used when accessing data
+            Default value 0
 
         processing_chain : ProcessingChain
+            Processing chain to be included into repository
+            Default value None
 
         """
 
         super(DataRepository, self).__init__(**kwargs)
 
-        #self.filename_dict = filename_dict
         self.default_stream_id = default_stream_id
 
         from dcase_util.processors import ProcessingChain
