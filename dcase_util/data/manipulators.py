@@ -494,8 +494,11 @@ class Aggregator(ObjectContainer):
 class Sequencer(ObjectContainer):
     """Data sequencer"""
 
-    def __init__(self, frames=10, hop_length_frames=None, padding=None, shift_step=0,
-                 shift_border='roll', shift_max=None, **kwargs):
+    def __init__(self, frames=10, hop_length_frames=None, padding=None,
+                 shift=0,
+                 shift_border='roll',
+                 required_data_amount_per_segment=0.9,
+                 **kwargs):
         """__init__ method.
 
         Parameters
@@ -512,17 +515,18 @@ class Sequencer(ObjectContainer):
             How data is treated at the boundaries [None, 'zero', 'repeat']
             Default value None
 
-        shift_step : int
-            Sequence start temporal shifting amount, is added once method increase_shifting is called
+        shift : int
+            Sequencing grid shift.
             Default value 0
 
         shift_border : string, ['roll', 'shift']
             Sequence border handling when doing temporal shifting.
             Default value roll
 
-        shift_max : int
-            Maximum value for temporal shift
-            Default value None
+        required_data_amount_per_segment : float [0,1]
+            Percentage of valid data items per segment there need to be for valid segment. Use this parameter to
+            filter out part of the non-full segments.
+            Default value 0.9
 
         """
 
@@ -537,6 +541,7 @@ class Sequencer(ObjectContainer):
         else:
             self.hop_length_frames = hop_length_frames
 
+        # Padding
         if padding in [None, False, 'zero', 'repeat']:
             self.padding = padding
 
@@ -548,9 +553,8 @@ class Sequencer(ObjectContainer):
             self.logger.exception(message)
             raise ValueError(message)
 
-        self.shift = 0
-
-        self.shift_step = shift_step
+        # Shifting
+        self.shift = shift
 
         if shift_border in ['roll', 'shift']:
             self.shift_border = shift_border
@@ -563,7 +567,7 @@ class Sequencer(ObjectContainer):
             self.logger.exception(message)
             raise ValueError(message)
 
-        self.shift_max = shift_max
+        self.required_data_amount_per_segment = required_data_amount_per_segment
 
     def __str__(self):
         ui = FancyStringifier()
@@ -572,12 +576,10 @@ class Sequencer(ObjectContainer):
         output += ui.data(field='frames', value=self.frames) + '\n'
         output += ui.data(field='hop_length_frames', value=self.hop_length_frames) + '\n'
         output += ui.data(field='padding', value=self.padding) + '\n'
-
+        output += ui.data(field='required_data_amount_per_segment', value=self.required_data_amount_per_segment) + '\n'
         output += ui.line(field='Shifting') + '\n'
         output += ui.data(indent=4, field='shift', value=self.shift) + '\n'
-        output += ui.data(indent=4, field='shift_step', value=self.shift_step) + '\n'
         output += ui.data(indent=4, field='shift_border', value=self.shift_border) + '\n'
-        output += ui.data(indent=4, field='shift_max', value=self.shift_max) + '\n'
 
         return output
 
@@ -588,9 +590,8 @@ class Sequencer(ObjectContainer):
             'hop_length_frames': self.hop_length_frames,
             'padding': self.padding,
             'shift': self.shift,
-            'shift_step': self.shift_step,
             'shift_border': self.shift_border,
-            'shift_max': self.shift_max,
+            'required_data_amount_per_segment': self.required_data_amount_per_segment,
         }
 
     def __setstate__(self, d):
@@ -598,17 +599,21 @@ class Sequencer(ObjectContainer):
         self.hop_length_frames = d['hop_length_frames']
         self.padding = d['padding']
         self.shift = d['shift']
-        self.shift_step = d['shift_step']
         self.shift_border = d['shift_border']
-        self.shift_max = d['shift_max']
+        self.required_data_amount_per_segment = d['required_data_amount_per_segment']
 
-    def sequence(self, data=None, **kwargs):
-        """Make sequences
+    def sequence(self, data, shift=None, **kwargs):
+        """Convert 2D data matrix into sequence of specified length 2D matrices
 
         Parameters
         ----------
-        data : DataContainer
+        data : DataContainer or numpy.ndarray
             Data
+
+        shift : int
+            Sequencing grid shift in frames. If none given, one given for class initializer is used.
+            Value is kept inside data size. Parameter value is stored as new class stored value.
+            Default value None
 
         Returns
         -------
@@ -616,11 +621,21 @@ class Sequencer(ObjectContainer):
 
         """
 
-        from dcase_util.containers import DataContainer, DataMatrix3DContainer
+        if shift:
+            self.shift = shift
+
+        from dcase_util.containers import DataContainer, DataMatrix2DContainer, DataMatrix3DContainer
         # Make copy of the data to prevent modifications to the original data
         data = copy.deepcopy(data)
 
+        if isinstance(data, numpy.ndarray):
+            if len(data.shape) == 2:
+                data = DataMatrix2DContainer(data)
+
         if isinstance(data, DataContainer):
+            # Make sure shift index is withing data
+            self.shift = self.shift % data.length
+
             # Not the most efficient way as numpy stride_tricks would produce
             # faster code, however, opted for cleaner presentation this time.
             processed_data = []
@@ -631,7 +646,7 @@ class Sequencer(ObjectContainer):
             elif self.shift_border == 'roll':
                 segment_indexes = numpy.arange(0, data.length, self.hop_length_frames)
 
-                if self.shift:
+                if self.shift != 0:
                     # Roll data
                     data.data = numpy.roll(
                         data.data,
@@ -641,10 +656,13 @@ class Sequencer(ObjectContainer):
 
             else:
                 message = '{name}: Unknown type for sequence border handling when doing temporal shifting ' \
-                          '[{shift_border}].'.format(name=self.__class__.__name__, shift_border=self.shift_border)
+                          '[{shift_border}].'.format(
+                    name=self.__class__.__name__,
+                    shift_border=self.shift_border
+                )
 
                 self.logger.exception(message)
-                raise IOError(message)
+                raise ValueError(message)
 
             if self.padding:
                 if len(segment_indexes) == 0:
@@ -660,38 +678,44 @@ class Sequencer(ObjectContainer):
 
                 frame_ids = numpy.array(range(segment_start_frame, segment_end_frame))
 
-                if self.padding == 'repeat':
-                    # Handle boundaries by repeating vectors
+                valid_frames = numpy.where(numpy.logical_and(frame_ids >= 0, frame_ids < data.length))[0]
 
-                    # If start of matrix, pad with first frame
-                    frame_ids[frame_ids < 0] = 0
+                if len(valid_frames) / float(self.frames) > self.required_data_amount_per_segment:
+                    # Process segment only if it has minimum about of valid frames
 
-                    # If end of the matrix, pad with last frame
-                    frame_ids[frame_ids > data.length - 1] = data.length - 1
+                    if self.padding == 'repeat':
+                        # Handle boundaries with repeated boundary vectors
 
-                    # Append the segment
-                    processed_data.append(
-                        data.get_frames(
-                            frame_ids=frame_ids
+                        # If start of matrix, pad with first frame
+                        frame_ids[frame_ids < 0] = 0
+
+                        # If end of the matrix, pad with last frame
+                        frame_ids[frame_ids > data.length - 1] = data.length - 1
+
+                        # Append the segment
+                        processed_data.append(
+                            data.get_frames(
+                                frame_ids=frame_ids
+                            )
                         )
-                    )
 
-                elif self.padding == 'zero':
-                    # Handle boundaries by inserting zero vectors
+                    elif self.padding == 'zero':
+                        # Handle boundaries with zero padding
 
-                    # Initilize current segment with zero content
-                    current_segment = numpy.zeros((data.vector_length, self.frames))
+                        # Initialize current segment with zero content
+                        current_segment = numpy.zeros((data.vector_length, self.frames))
 
-                    # Copy data into correct position within the segment
-                    current_segment[:, numpy.where(numpy.logical_and(frame_ids > 0, frame_ids < data.length -1))[0]] = data.get_frames(
-                        frame_ids=frame_ids[numpy.where(numpy.logical_and(frame_ids > 0, frame_ids < data.length -1))[0]]
-                    )
+                        # Copy data into correct position within the segment
+                        current_segment[:, valid_frames] = data.get_frames(
+                            frame_ids=frame_ids[valid_frames]
+                        )
 
-                    # Append the segment
-                    processed_data.append(current_segment)
+                        # Append the segment
+                        processed_data.append(current_segment)
 
-                else:
-                    processed_data.append(data.get_frames(frame_ids=frame_ids))
+                    else:
+                        # Append the segment
+                        processed_data.append(data.get_frames(frame_ids=frame_ids))
 
             if len(processed_data) == 0:
                 message = '{name}: Cannot create valid segment, adjust segment length and hop size, or use ' \
@@ -719,7 +743,6 @@ class Sequencer(ObjectContainer):
         Parameters
         ----------
         shift_step : int
-            Optional value, if none given shift_step parameter given for init is used.
 
         Returns
         -------
@@ -727,12 +750,8 @@ class Sequencer(ObjectContainer):
 
         """
 
-        if shift_step is None:
-            shift_step = self.shift_step
-        self.shift += shift_step
-
-        if self.shift_max and self.shift > self.shift_max:
-            self.shift = 0
+        if shift_step:
+            self.shift += shift_step
 
         return self
 
