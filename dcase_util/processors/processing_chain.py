@@ -42,6 +42,9 @@ class ProcessingChain(ListDictContainer):
     ]  #: Valid output data types
 
     def __init__(self, *args, **kwargs):
+        """__init__ method.
+
+        """
 
         if len(args) > 0 and args[0] and (not isinstance(args[0], list) or not isinstance(args[0][0], dict)):
             message = '{name}: ProcessingChain should be initialized with list of dicts.'.format(
@@ -91,7 +94,7 @@ class ProcessingChain(ListDictContainer):
         output = ''
 
         ui = FancyStringifier()
-        output += ui.row('ID', 'Processor', 'INPUT', 'OUTPUT', 'INIT', widths=[5, 55, 10, 10, 15]) + '\n'
+        output += ui.row('ID', 'Processor', 'INPUT', 'OUTPUT', 'INIT', widths=[5, 52, 18, 18, 30]) + '\n'
         output += ui.row('-', '-', '-', '-', '-') + '\n'
         if len(self):
             for item_id, item in enumerate(self):
@@ -236,7 +239,8 @@ class ProcessingChain(ListDictContainer):
 
         return False
 
-    def push_processor(self, processor_name, init_parameters=None, process_parameters=None,
+    def push_processor(self, processor_name,
+                       init_parameters=None, process_parameters=None, preprocessing_callbacks=None,
                        input_type=None, output_type=None):
         """Push processor item to the chain.
 
@@ -250,6 +254,8 @@ class ProcessingChain(ListDictContainer):
 
         process_parameters : dict
             Parameters for the process method
+
+        preprocessing_callbacks : list of dicts
 
         input_type : ProcessingChainItemType
             Input data type of the processor
@@ -278,6 +284,7 @@ class ProcessingChain(ListDictContainer):
             'processor_name': processor_name,
             'init_parameters': init_parameters,
             'process_parameters': process_parameters,
+            'preprocessing_callbacks': preprocessing_callbacks,
             'input_type': input_type,
             'output_type': output_type,
         })
@@ -363,7 +370,10 @@ class ProcessingChain(ListDictContainer):
         """
 
         for step_id, step in enumerate(self):
+            # Loop through steps in the processing chain
+
             if step is not None and 'processor_name' in step:
+                # Initialize processor class with init_parameters
                 processor = self.processor_class(
                     processor_name=step['processor_name'],
                     **step.get('init_parameters', {})
@@ -380,7 +390,18 @@ class ProcessingChain(ListDictContainer):
                         from dcase_util.containers import DataRepository
                         data = DataRepository(**kwargs).load()
 
+                if 'preprocessing_callbacks' in step and isinstance(step['preprocessing_callbacks'], list):
+                    # Handle preprocessing callbacks assigned to current processor
+
+                    for method in step['preprocessing_callbacks']:
+                        if isinstance(method, dict):
+                            method_name = method.get('method_name')
+                            method_parameters = method.get('parameters')
+                            if hasattr(processor, method_name):
+                                getattr(processor, method_name)(**method_parameters)
+
                 if hasattr(processor, 'process'):
+                    # Call process method of the processor if it exists
                     process_parameters = step.get('process_parameters', {})
                     process_parameters.update(kwargs)
                     data = processor.process(
@@ -390,26 +411,3 @@ class ProcessingChain(ListDictContainer):
 
         return data
 
-    def call_method(self, method_name, parameters=None):
-        """Call class method in the processing chain items
-
-        Processing chain is gone through and given method is
-        called to processing items having such method.
-
-        Parameters
-        ----------
-        method_name : str
-            Method name to call
-
-        parameters : dict
-            Parameters for the method
-
-        """
-
-        parameters = parameters or {}
-
-        for item in self:
-            if hasattr(item, method_name):
-                getattr(item, method_name)(**parameters)
-
-        return self

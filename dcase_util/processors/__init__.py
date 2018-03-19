@@ -34,7 +34,6 @@ ProcessingChain
     ProcessingChain.log_chain
     ProcessingChain.push_processor
     ProcessingChain.process
-    ProcessingChain.call_method
     ProcessingChain.processor_exists
     ProcessingChain.processor_class_reference
     ProcessingChain.processor_class
