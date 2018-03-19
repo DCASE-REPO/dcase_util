@@ -906,7 +906,7 @@ class DataMatrix3DContainer(DataMatrix2DContainer):
     def plot(self, show_color_bar=False):
         data = self.get_focused()
 
-        if data.shape[self.sequence_axis] < 10:
+        if data.shape[self.sequence_axis] < 20:
             from librosa.display import specshow
             import matplotlib.pyplot as plt
             plt.figure()
