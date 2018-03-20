@@ -373,7 +373,11 @@ class Aggregator(ObjectContainer):
                 self.recipe = recipe
 
         else:
-            self.recipe = None
+            message = '{name}: No valid recipe set'.format(
+                name=self.__class__.__name__
+            )
+            self.logger.exception(message)
+            raise ValueError(message)
 
     def __str__(self):
         ui = FancyStringifier()
@@ -737,7 +741,7 @@ class Sequencer(ObjectContainer):
             self.logger.exception(message)
             raise ValueError(message)
 
-    def increase_shifting(self, shift_step=None):
+    def increase_shifting(self, shift_step=1):
         """Increase temporal shifting
 
         Parameters
