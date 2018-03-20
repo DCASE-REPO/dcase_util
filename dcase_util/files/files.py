@@ -187,7 +187,7 @@ class FileLock(ObjectContainer):
     """Simple file-based locking class.
 
     Usual solution for file locking is to use `fcntl` module. This class provides a bit more flexible solution
-    as it does not require file to be open to get a lock. This locking system should also work also
+    as it does not require file to be open to get a lock. This locking system should also work
     with NFS mounts (also prior v3).
 
     """
