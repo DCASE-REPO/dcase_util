@@ -222,7 +222,7 @@ class Normalizer(ObjectContainer):
 
         return self
 
-    def normalize(self, data):
+    def normalize(self, data, **kwargs):
         """Normalize feature matrix with internal statistics of the class
 
         Parameters
@@ -814,7 +814,7 @@ class Stacker(ObjectContainer):
         self.recipe = d['recipe']
         self.hop = d['hop']
 
-    def stack(self, repository):
+    def stack(self, repository, **kwargs):
         """Vector creation based on recipe
 
         Parameters
