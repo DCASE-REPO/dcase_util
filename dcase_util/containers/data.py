@@ -154,7 +154,6 @@ class DataContainer(ObjectContainer):
 
         return self
 
-
     @property
     def data(self):
         """Data matrix
@@ -1483,26 +1482,50 @@ class DataRepository(RepositoryContainer):
         None
 
         """
-        
+
         from librosa.display import specshow
         import matplotlib.pyplot as plt
 
-        rows = len(list(self.keys()))
+        rows_count = 0
+        for label_id, label in enumerate(self.labels):
+            if rows_count < len(self.stream_ids(label)):
+                rows_count = len(self.stream_ids(label))
 
         labels = list(self.keys())
         labels.sort()
 
-        plt.subplots(rows, 1)
+        plt.figure()
         for label_id, label in enumerate(self.labels):
             for stream_id in self.stream_ids(label):
-                plt.subplot(rows, 1, label_id+1)
-                current_container = self.get_container(label=label, stream_id=stream_id)
+                index = 1+(label_id + stream_id * len(self.labels))
+
+                plt.subplot(
+                    rows_count,
+                    len(self.labels),
+                    index
+                )
+
+                current_container = self.get_container(
+                    label=label,
+                    stream_id=stream_id
+                )
+
                 # Plot feature matrix
-                specshow(current_container.data,
-                         x_axis='time',
-                         sr=int(1 / float(current_container.time_resolution)),
-                         hop_length=1
-                         )
+                ax = specshow(
+                    data=current_container.data,
+                    x_axis='time',
+                    sr=int(1 / float(current_container.time_resolution)),
+                    hop_length=1
+                )
+                if stream_id+1 != len(self.stream_ids(label)):
+                    ax.tick_params(
+                        axis='x',
+                        which='both',
+                        bottom='off',
+                        top='off',
+                        labelbottom='off'
+                    )
+                    plt.xlabel('')
 
                 plt.ylabel('['+str(label)+']['+str(stream_id)+']')
 
