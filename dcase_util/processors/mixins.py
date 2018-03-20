@@ -51,7 +51,13 @@ class ProcessorMixin(object):
             Data to be processed.
 
         """
+
         pass
+
+    def processing_chain_item_exists(self):
+        return self.processing_chain.chain_item_exists(
+            processor_name='dcase_util.processors.'+self.__class__.__name__
+        )
 
     def get_processing_chain_item(self):
         """Get processing chain item with current Processor data.
@@ -62,11 +68,21 @@ class ProcessorMixin(object):
 
         """
 
+        if self.processing_chain:
+            # Processing chain is already created, try finding item from the chain
+            item = self.processing_chain.chain_item(
+                processor_name='dcase_util.processors.'+self.__class__.__name__
+            )
+
+            if item:
+                return item
+
         init_parameters = self.__getstate__()
 
         # Remove some fields
         if 'processing_chain' in init_parameters:
             del init_parameters['processing_chain']
+
         if '_data' in init_parameters:
             del init_parameters['_data']
 
@@ -84,7 +100,7 @@ class ProcessorMixin(object):
         })
 
     def push_processing_chain_item(self,
-                                   processor_name, init_parameters=None, process_parameters=None,
+                                   processor_name, init_parameters=None, process_parameters=None, preprocessing_callbacks=None,
                                    input_type=None, output_type=None):
         """Push processing chain item
 
@@ -115,6 +131,7 @@ class ProcessorMixin(object):
             processor_name=processor_name,
             init_parameters=init_parameters,
             process_parameters=process_parameters,
+            preprocessing_callbacks=preprocessing_callbacks,
             input_type=input_type,
             output_type=output_type
         )

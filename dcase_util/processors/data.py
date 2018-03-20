@@ -62,16 +62,35 @@ class AggregationProcessor(Aggregator, ProcessorMixin):
         DataContainer
 
         """
+
         from dcase_util.containers import ContainerMixin
 
         if isinstance(data, ContainerMixin):
-            data = self.aggregate(data=data, **kwargs)
+            if hasattr(data, 'processing_chain') and data.processing_chain.chain_item_exists(processor_name='dcase_util.processors.'+self.__class__.__name__):
+                # Current processor is already in the processing chain, reuse that
+                processing_chain_item = data.processing_chain.chain_item(
+                    processor_name='dcase_util.processors.'+self.__class__.__name__
+                )
 
-            # Update processing chain
-            if hasattr(data, 'processing_chain') and hasattr(data.processing_chain, 'push_processor'):
-                data.processing_chain.push_processor(**self.get_processing_chain_item())
+            else:
+                # Create a new processing chain item based on current processor class
+                processing_chain_item = self.get_processing_chain_item()
 
-            return data
+            # Update current processing parameters into chain item
+            processing_chain_item.update({
+                'process_parameters': kwargs
+            })
+
+            # Do processing
+            container = self.aggregate(
+                data=data,
+                **kwargs
+            )
+
+            # Push / Update chain item
+            container.processing_chain.push_processor(**processing_chain_item)
+
+            return container
 
         else:
             message = '{name}: Wrong input data type, type required [{input_type}].'.format(
@@ -146,8 +165,29 @@ class SequencingProcessor(Sequencer, ProcessorMixin):
         from dcase_util.containers import ContainerMixin
 
         if isinstance(data, ContainerMixin):
-            container = self.sequence(data=data, **kwargs)
-            container.processing_chain.push_processor(**self.get_processing_chain_item())
+            if hasattr(data, 'processing_chain') and data.processing_chain.chain_item_exists(processor_name='dcase_util.processors.'+self.__class__.__name__):
+                # Current processor is already in the processing chain, get that
+                processing_chain_item = data.processing_chain.chain_item(
+                    processor_name='dcase_util.processors.'+self.__class__.__name__
+                )
+
+            else:
+                # Create a new processing chain item based on current processor class
+                processing_chain_item = self.get_processing_chain_item()
+
+            # Update current processing parameters into chain item
+            processing_chain_item.update({
+                'process_parameters': kwargs
+            })
+
+            # Do processing
+            container = self.sequence(
+                data=data,
+                **kwargs
+            )
+
+            # Push / Update chain item
+            container.processing_chain.push_processor(**processing_chain_item)
 
             return container
 
@@ -236,7 +276,31 @@ class NormalizationProcessor(Normalizer, ProcessorMixin):
         from dcase_util.containers import ContainerMixin
 
         if isinstance(data, ContainerMixin):
-            return self.normalize(data=data)
+            if hasattr(data, 'processing_chain') and data.processing_chain.chain_item_exists(processor_name='dcase_util.processors.'+self.__class__.__name__):
+                # Current processor is already in the processing chain, get that
+                processing_chain_item = data.processing_chain.chain_item(
+                    processor_name='dcase_util.processors.'+self.__class__.__name__
+                )
+
+            else:
+                # Create a new processing chain item based on current processor class
+                processing_chain_item = self.get_processing_chain_item()
+
+            # Update current processing parameters into chain item
+            processing_chain_item.update({
+                'process_parameters': kwargs
+            })
+
+            # Do processing
+            container = self.normalize(
+                data=data,
+                **kwargs
+            )
+
+            # Push / Update chain item
+            container.processing_chain.push_processor(**processing_chain_item)
+
+            return container
 
         else:
             message = '{name}: Wrong input data type, type required [{input_type}].'.format(
@@ -303,6 +367,16 @@ class RepositoryNormalizationProcessor(DataContainer, ProcessorMixin):
         from dcase_util.containers import RepositoryContainer
 
         if isinstance(data, RepositoryContainer):
+            if hasattr(data, 'processing_chain') and data.processing_chain.chain_item_exists(processor_name='dcase_util.processors.'+self.__class__.__name__):
+                # Current processor is already in the processing chain, get that
+                processing_chain_item = data.processing_chain.chain_item(
+                    processor_name='dcase_util.processors.'+self.__class__.__name__
+                )
+
+            else:
+                # Create a new processing chain item based on current processor class
+                processing_chain_item = self.get_processing_chain_item()
+
             for label, parameters in iteritems(self.parameters):
                 if label in data:
                     # Label exists in data repository
@@ -331,7 +405,8 @@ class RepositoryNormalizationProcessor(DataContainer, ProcessorMixin):
                         # Most likely we have normalization statistics per stream
                         pass
 
-            data.processing_chain.push_processor(**self.get_processing_chain_item())
+            data.processing_chain.push_processor(**processing_chain_item)
+
             return data
 
         else:
@@ -391,10 +466,30 @@ class StackingProcessor(Stacker, ProcessorMixin):
         from dcase_util.containers import RepositoryContainer
 
         if isinstance(data, RepositoryContainer):
-            container = self.stack(repository=data)
+            if hasattr(data, 'processing_chain') and data.processing_chain.chain_item_exists(processor_name='dcase_util.processors.'+self.__class__.__name__):
+                # Current processor is already in the processing chain, get that
+                processing_chain_item = data.processing_chain.chain_item(
+                    processor_name='dcase_util.processors.'+self.__class__.__name__
+                )
 
+            else:
+                # Create a new processing chain item based on current processor class
+                processing_chain_item = self.get_processing_chain_item()
+
+            # Update current processing parameters into chain item
+            processing_chain_item.update({
+                'process_parameters': kwargs
+            })
+
+            # Do processing
+            container = self.stack(
+                repository=data,
+                **kwargs
+            )
+
+            # Push / Update chain item
             container.processing_chain.push_processor(
-                **self.get_processing_chain_item()
+                **processing_chain_item
             )
 
             return container
@@ -443,14 +538,22 @@ class RepositoryMaskingProcessor(Masker, ProcessorMixin):
         from dcase_util.containers import RepositoryContainer
 
         if isinstance(data, RepositoryContainer):
+            if hasattr(data, 'processing_chain') and data.processing_chain.chain_item_exists(processor_name='dcase_util.processors.'+self.__class__.__name__):
+                # Current processor is already in the processing chain, get that
+                processing_chain_item = data.processing_chain.chain_item(
+                    processor_name='dcase_util.processors.'+self.__class__.__name__
+                )
+
+            else:
+                # Create a new processing chain item based on current processor class
+                processing_chain_item = self.get_processing_chain_item()
+
             container = self.mask(
                 data=data,
                 mask_events=mask_events
             )
 
-            container.processing_chain.push_processor(
-                **self.get_processing_chain_item()
-            )
+            container.processing_chain.push_processor(**processing_chain_item)
 
             return container
 
@@ -557,7 +660,15 @@ class OneHotEncodingProcessor(OneHotEncoder, ProcessorMixin):
         if data is not None and len(data) > 0 and label is None:
             label = data[0].get(focus_field)
 
-        chain_item = self.get_processing_chain_item()
+        if hasattr(data, 'processing_chain') and data.processing_chain.chain_item_exists(processor_name='dcase_util.processors.'+self.__class__.__name__):
+            # Current processor is already in the processing chain, get that
+            processing_chain_item = data.processing_chain.chain_item(
+                processor_name='dcase_util.processors.'+self.__class__.__name__
+            )
+
+        else:
+            # Create a new processing chain item based on current processor class
+            processing_chain_item = self.get_processing_chain_item()
 
         if length_frames is None and length_seconds is not None:
             length_frames = self._length_to_frames(length_seconds)
@@ -565,22 +676,21 @@ class OneHotEncodingProcessor(OneHotEncoder, ProcessorMixin):
         if length_frames is None:
             length_frames = self.length_frames
 
-        if 'process_parameters' not in chain_item:
-            chain_item['process_parameters'] = {}
+        if 'process_parameters' not in processing_chain_item:
+            processing_chain_item['process_parameters'] = {}
 
-        chain_item['process_parameters']['focus_field'] = focus_field
-        chain_item['process_parameters']['length_frames'] = length_frames
+        processing_chain_item['process_parameters']['focus_field'] = focus_field
+        processing_chain_item['process_parameters']['length_frames'] = length_frames
 
         self.encode(
             label=label,
             length_frames=length_frames
         )
 
-        processing_chain_item = self.get_processing_chain_item()
-
         if hasattr(data, 'processing_chain'):
             data.processing_chain.push_processor(**processing_chain_item)
             processing_chain = data.processing_chain
+
         else:
             processing_chain = ProcessingChain().push_processor(**processing_chain_item)
 
@@ -671,7 +781,16 @@ class ManyHotEncodingProcessor(ManyHotEncoder, ProcessorMixin):
             focus_field = self.focus_field
 
         if isinstance(data, MetaDataContainer):
-            chain_item = self.get_processing_chain_item()
+            if hasattr(data, 'processing_chain') and data.processing_chain.chain_item_exists(
+                    processor_name='dcase_util.processors.' + self.__class__.__name__):
+                # Current processor is already in the processing chain, get that
+                processing_chain_item = data.processing_chain.chain_item(
+                    processor_name='dcase_util.processors.' + self.__class__.__name__
+                )
+
+            else:
+                # Create a new processing chain item based on current processor class
+                processing_chain_item = self.get_processing_chain_item()
 
             if length_frames is None and length_seconds is not None:
                 length_frames = self._length_to_frames(length_seconds)
@@ -684,22 +803,21 @@ class ManyHotEncodingProcessor(ManyHotEncoder, ProcessorMixin):
                 if isinstance(label_list, str):
                     label_list = [label_list]
 
-            if 'process_parameters' not in chain_item:
-                chain_item['process_parameters'] = {}
+            if 'process_parameters' not in processing_chain_item:
+                processing_chain_item['process_parameters'] = {}
 
-            chain_item['process_parameters']['focus_field'] = focus_field
-            chain_item['process_parameters']['length_frames'] = length_frames
+            processing_chain_item['process_parameters']['focus_field'] = focus_field
+            processing_chain_item['process_parameters']['length_frames'] = length_frames
 
             self.encode(
                 label_list=label_list,
                 length_frames=length_frames
             )
 
-            processing_chain_item = self.get_processing_chain_item()
-
             if hasattr(data, 'processing_chain'):
                 data.processing_chain.push_processor(**processing_chain_item)
                 processing_chain = data.processing_chain
+
             else:
                 processing_chain = ProcessingChain().push_processor(**processing_chain_item)
 
@@ -774,13 +892,27 @@ class EventRollEncodingProcessor(EventRollEncoder, ProcessorMixin):
         from dcase_util.containers import MetaDataContainer
 
         if isinstance(data, MetaDataContainer):
-            self.encode(metadata_container=data)
+            if hasattr(data, 'processing_chain') and data.processing_chain.chain_item_exists(
+                    processor_name='dcase_util.processors.' + self.__class__.__name__):
+                # Current processor is already in the processing chain, get that
+                processing_chain_item = data.processing_chain.chain_item(
+                    processor_name='dcase_util.processors.' + self.__class__.__name__
+                )
 
-            processing_chain_item = self.get_processing_chain_item()
+            else:
+                # Create a new processing chain item based on current processor class
+                processing_chain_item = self.get_processing_chain_item()
+
+            processing_chain_item.update({
+                'process_parameters': kwargs
+            })
+
+            self.encode(metadata_container=data)
 
             if hasattr(data, 'processing_chain'):
                 data.processing_chain.push_processor(**processing_chain_item)
                 processing_chain = data.processing_chain
+
             else:
                 processing_chain = ProcessingChain().push_processor(**processing_chain_item)
 

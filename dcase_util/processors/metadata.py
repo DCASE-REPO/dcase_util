@@ -59,20 +59,20 @@ class MetadataReadingProcessor(ProcessorMixin, MetaDataContainer):
         """
 
         if data is None and self.input_type == ProcessingChainItemType.NONE:
-            chain_item = self.get_processing_chain_item()
+            processing_chain_item = self.get_processing_chain_item()
 
             if filename:
                 self.load(filename=filename)
 
-                if 'process_parameters' not in chain_item:
-                    chain_item['process_parameters'] = {}
+                if 'process_parameters' not in processing_chain_item:
+                    processing_chain_item['process_parameters'] = {}
 
-                chain_item['process_parameters']['filename'] = filename
+                processing_chain_item['process_parameters']['filename'] = filename
 
             if focus_filename is not None:
                 filtered = self.filter(filename=focus_filename)
                 self.update(filtered)
-                chain_item['process_parameters']['focus_filename'] = focus_filename
+                processing_chain_item['process_parameters']['focus_filename'] = focus_filename
 
             if focus_start_seconds is not None and focus_duration_seconds is not None:
                 filtered = self.filter_time_segment(
@@ -82,8 +82,8 @@ class MetadataReadingProcessor(ProcessorMixin, MetaDataContainer):
                     trim=trim
                 )
                 self.update(filtered)
-                chain_item['process_parameters']['focus_start_seconds'] = focus_start_seconds
-                chain_item['process_parameters']['focus_duration_seconds'] = focus_duration_seconds
+                processing_chain_item['process_parameters']['focus_start_seconds'] = focus_start_seconds
+                processing_chain_item['process_parameters']['focus_duration_seconds'] = focus_duration_seconds
 
             elif focus_start_seconds is not None and focus_stop_seconds is not None:
                 filtered = self.filter_time_segment(
@@ -93,10 +93,10 @@ class MetadataReadingProcessor(ProcessorMixin, MetaDataContainer):
                     trim=trim
                 )
                 self.update(filtered)
-                chain_item['process_parameters']['focus_start_seconds'] = focus_start_seconds
-                chain_item['process_parameters']['focus_stop_seconds'] = focus_stop_seconds
+                processing_chain_item['process_parameters']['focus_start_seconds'] = focus_start_seconds
+                processing_chain_item['process_parameters']['focus_stop_seconds'] = focus_stop_seconds
 
-            self.push_processing_chain_item(**chain_item)
+            self.push_processing_chain_item(**processing_chain_item)
 
             return self
 

@@ -118,15 +118,15 @@ class AudioReadingProcessor(ProcessorMixin, AudioContainer):
         """
 
         if data is None and self.input_type == ProcessingChainItemType.NONE:
-            chain_item = self.get_processing_chain_item()
+            processing_chain_item = self.get_processing_chain_item()
 
             if filename:
                 self.load(filename=filename, mono=self.mono, fs=self.fs)
 
-                if 'process_parameters' not in chain_item:
-                    chain_item['process_parameters'] = {}
+                if 'process_parameters' not in processing_chain_item:
+                    processing_chain_item['process_parameters'] = {}
 
-                chain_item['process_parameters']['filename'] = filename
+                processing_chain_item['process_parameters']['filename'] = filename
 
             # Set focus segment and channel
             self.set_focus(
@@ -138,17 +138,18 @@ class AudioReadingProcessor(ProcessorMixin, AudioContainer):
                 duration_seconds=focus_duration_seconds,
                 channel=focus_channel
             )
-            chain_item['process_parameters']['focus_start_samples'] = focus_start_samples
-            chain_item['process_parameters']['focus_stop_samples'] = focus_stop_samples
-            chain_item['process_parameters']['focus_duration_samples'] = focus_duration_samples
 
-            chain_item['process_parameters']['focus_start_seconds'] = focus_start_seconds
-            chain_item['process_parameters']['focus_stop_seconds'] = focus_stop_seconds
-            chain_item['process_parameters']['focus_duration_seconds'] = focus_duration_seconds
+            processing_chain_item['process_parameters']['focus_start_samples'] = focus_start_samples
+            processing_chain_item['process_parameters']['focus_stop_samples'] = focus_stop_samples
+            processing_chain_item['process_parameters']['focus_duration_samples'] = focus_duration_samples
 
-            chain_item['process_parameters']['focus_channel'] = focus_channel
+            processing_chain_item['process_parameters']['focus_start_seconds'] = focus_start_seconds
+            processing_chain_item['process_parameters']['focus_stop_seconds'] = focus_stop_seconds
+            processing_chain_item['process_parameters']['focus_duration_seconds'] = focus_duration_seconds
 
-            self.push_processing_chain_item(**chain_item)
+            processing_chain_item['process_parameters']['focus_channel'] = focus_channel
+
+            self.push_processing_chain_item(**processing_chain_item)
 
             return self
 

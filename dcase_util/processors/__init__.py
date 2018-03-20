@@ -37,6 +37,8 @@ ProcessingChain
     ProcessingChain.processor_exists
     ProcessingChain.processor_class_reference
     ProcessingChain.processor_class
+    ProcessingChain.chain_item_exists
+    ProcessingChain.chain_item
 
 Audio
 :::::
