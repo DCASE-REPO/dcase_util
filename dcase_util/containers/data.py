@@ -889,6 +889,18 @@ class DataMatrix3DContainer(DataMatrix2DContainer):
         self.time_axis = 1
         self.sequence_axis = 2
 
+    def __getstate__(self):
+        d = super(DataMatrix3DContainer, self).__getstate__()
+        d.update({
+            'sequence_axis': self.sequence_axis
+        })
+
+        return d
+
+    def __setstate__(self, d):
+        super(DataMatrix3DContainer, self).__setstate__(d)
+        self.sequence_axis = d['sequence_axis']
+
     def __str__(self):
         ui = FancyStringifier()
 
