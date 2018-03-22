@@ -822,7 +822,7 @@ class MetaDataContainer(ListDictContainer):
 
         self.show(show_data=True, show_stats=True)
 
-    def load(self, filename=None, fields=None, csv_header=None, file_format=None, delimiter=None, decimal='point'):
+    def load(self, filename=None, fields=None, csv_header=True, file_format=None, delimiter=None, decimal='point'):
         """Load event list from delimited text file (csv-formatted)
 
         Preferred delimiter is tab, however, other delimiters are supported automatically
@@ -847,21 +847,27 @@ class MetaDataContainer(ListDictContainer):
         ----------
         filename : str
             Path to the event list in text format (csv). If none given, one given for class constructor is used.
+            Default value None
 
         fields : list of str, optional
             List of column names. Used only for CSV formatted files.
+            Default value None
 
         csv_header : bool, optional
             Read field names from first line (header). Used only for CSV formatted files.
+            Default value True
 
         file_format : FileFormat, optional
             Forced file format, use this when there is a miss-match between file extension and file format.
+            Default value None
 
         delimiter : str, optional
             Forced data delimiter for csv format. If None given, automatic delimiter sniffer used. Use this when sniffer does not work.
+            Default value None
 
         decimal : str
             Decimal 'point' or 'comma'
+            Default value 'point'
 
         Returns
         -------
@@ -1407,25 +1413,30 @@ class MetaDataContainer(ListDictContainer):
 
         return self
 
-    def save(self, filename=None, fields=None, csv_header=None, file_format=None, delimiter='\t',  **kwargs):
+    def save(self, filename=None, fields=None, csv_header=True, file_format=None, delimiter='\t',  **kwargs):
         """Save content to csv file
 
         Parameters
         ----------
         filename : str
             Filename. If none given, one given for class constructor is used.
+            Default value None
 
         fields : list of str
             Fields in correct order, if none given all field in alphabetical order will be outputted. Used only for CSV formatted files.
+            Default value None
 
         csv_header : bool
             In case of CSV formatted file, first line will contain field names. Names are taken from fields parameter.
+            Default value True
 
         file_format : FileFormat, optional
             Forced file format, use this when there is a miss-match between file extension and file format.
+            Default value None
 
         delimiter : str
             Delimiter to be used when saving data.
+            Default value \t
 
         Returns
         -------
@@ -1467,7 +1478,12 @@ class MetaDataContainer(ListDictContainer):
                 for item in self:
                     item_values = []
                     for field in fields:
-                        item_values.append(item[field])
+                        value = item[field]
+                        if isinstance(value, list):
+                            value = ";".join(value)+";"
+
+                        item_values.append(value)
+
                     csv_writer.writerow(item_values)
 
         elif self.format == FileFormat.CPICKLE:
