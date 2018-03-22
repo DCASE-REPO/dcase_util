@@ -1147,7 +1147,9 @@ class ListDictContainer(ListContainer):
                 with open(self.filename, 'r') as f:
                     csv_reader = csv.reader(f, delimiter=delimiter)
                     if csv_header:
-                        fields = next(csv_reader)
+                        csv_fields = next(csv_reader)
+                        if fields is None:
+                            fields = csv_fields
 
                     for row in csv_reader:
                         if convert_numeric_fields:
