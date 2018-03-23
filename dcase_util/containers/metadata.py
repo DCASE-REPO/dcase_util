@@ -921,6 +921,7 @@ class MetaDataContainer(ListDictContainer):
                                                              FieldValidator.ALPHA2,
                                                              FieldValidator.LIST]:
                                     row[item_id] = row[item_id].strip()
+
                             if validate(row_format=row_format,
                                         valid_formats=[
                                             [FieldValidator.AUDIOFILE],
@@ -1307,6 +1308,22 @@ class MetaDataContainer(ListDictContainer):
                             elif validate(row_format=row_format,
                                           valid_formats=[
                                               [FieldValidator.AUDIOFILE,
+                                               FieldValidator.LIST],
+                                              [FieldValidator.DATAFILE,
+                                               FieldValidator.LIST]
+                                          ]):
+
+                                # Format: [file tags]
+                                data.append(
+                                    self.item_class({
+                                        'filename': row[0],
+                                        'tags': row[2]
+                                    })
+                                )
+
+                            elif validate(row_format=row_format,
+                                          valid_formats=[
+                                              [FieldValidator.AUDIOFILE,
                                                FieldValidator.LIST,
                                                FieldValidator.STRING],
                                               [FieldValidator.DATAFILE,
@@ -1314,7 +1331,7 @@ class MetaDataContainer(ListDictContainer):
                                                FieldValidator.STRING]
                                           ]):
 
-                                # Format: [file tags]
+                                # Format: [file tags identifier]
                                 data.append(
                                     self.item_class({
                                         'filename': row[0],
