@@ -254,14 +254,22 @@ class AppParameterContainer(ParameterContainer):
                 if section in self.field_labels:
                     self.non_hashable_sections[section_id] = self.field_labels[section]
 
+            if self.field_labels['SET-LIST'] in self:
+                for set_id, set_defined_parameters in enumerate(self[self.field_labels['SET-LIST']]):
+                    # Get default parameters
+                    set_params = DictContainer(copy.deepcopy(self[self.field_labels['DEFAULT-PARAMETERS']]))
+                    set_params.merge(override=set_defined_parameters)
+                    self.process_set(
+                        parameters=set_params,
+                        create_paths=create_paths,
+                        create_parameter_hints=create_parameter_hints
+                    )
+
+                    self[self.field_labels['SET-LIST']][set_id] = set_params
+
             if (self.field_labels['DEFAULT-PARAMETERS'] in self and
                self.field_labels['SET-LIST'] in self and
                self.field_labels['ACTIVE-SET'] in self):
-                # Process active-set, set-list, default structured parameters
-
-                # Get default parameters
-                default_params = copy.deepcopy(self[self.field_labels['DEFAULT-PARAMETERS']])
-
                 # Active set ID
                 active_set_id = self[self.field_labels['ACTIVE-SET']]
 
@@ -279,117 +287,21 @@ class AppParameterContainer(ParameterContainer):
                     self.logger.exception(message)
                     raise ValueError(message)
 
-                # Empty current content
-                dict.clear(self)
-
-                # Insert default parameters
-                dict.update(self, default_params)
-                self[self.field_labels['ACTIVE-SET']] = active_set_id
-
-                # Merge override active parameter set on top of default parameters
                 self.merge(override=active_set)
 
             elif self.field_labels['DEFAULT-PARAMETERS'] in self:
                 # Only default parameter set is given, make it only one.
-                default_params = copy.deepcopy(self[self.field_labels['DEFAULT-PARAMETERS']])
-                dict.clear(self)
-                dict.update(self, default_params)
-
-            # Get processing order for sections
-            section_list = []
-            for section in self.section_process_order + list(set(list(self.keys())) - set(self.section_process_order)):
-                if section in self:
-                    section_list.append(section)
-
-            # Parameter processing starts
-
-            # Convert all main level sections to DictContainers
-            self._convert_main_level_to_containers()
-
-            # Prepare paths
-            self._prepare_paths()
-
-            # 1. Process parameters
-            for section in section_list:
-                # Reverse translated section name
-                section_name = self.section_labels.flipped.map(section)
-
-                # Get processing function
-                field_process_func = getattr(self, '_process_{}'.format(section_name), None)
-
-                if field_process_func is not None:
-                    # Call processing function if it exists
-                    field_process_func()
-
-                # Call processing function to method section related to the current section
-                section_method_parameters = section + '_' + self.field_labels['METHOD_PARAMETERS']
-
-                if section in self and isinstance(self[section], dict) and section_method_parameters in self:
-                    if self.field_labels['LABEL'] in self[section] or self.field_labels['RECIPE'] in self[section]:
-                        field_process_parameters_func = getattr(
-                            self,
-                            '_process_{SECTION_NAME}_METHOD_PARAMETERS'.format(SECTION_NAME=section_name),
-                            None
-                        )
-
-                        if field_process_parameters_func is not None:
-                            field_process_parameters_func()
-
-            # 2. Add parameter hash to methods
-            self._add_hash_to_method_parameters()
-
-            # 3. Parse recipes
-            recipe_paths = self.get_leaf_path_list(target_field_endswith=self.field_labels['RECIPE'])
-            for recipe_path in recipe_paths:
-                self.set_path(
-                    path=recipe_path,
-                    new_value=VectorRecipeParser().parse(recipe=self.get_path(path=recipe_path))
+                self.merge(
+                    override=copy.deepcopy(self[self.field_labels['DEFAULT-PARAMETERS']])
                 )
 
-            # 4. Process methods
-            for section in section_list:
-                self._process_method_parameters(section=section)
-
-            # 5. Inject dependencies
-            for section in section_list:
-                section_name = self.section_labels.flipped.map(section)
-                if section_name:
-                    # Apply only named sections
-                    if self.get_path_translated(path=[section, 'PARAMETERS']):
-                        for key, item in iteritems(self.get_path_translated(path=[section, 'PARAMETERS'])):
-
-                            if self.method_dependencies.get_path([section_name, key]):
-                                dependency_path = self._translated_path(
-                                    self.method_dependencies.get_path([section_name, key]).split('.')
-                                )
-
-                                if len(dependency_path) == 1:
-                                    section_method_parameters = section + '_' + self.field_labels['METHOD_PARAMETERS']
-
-                                    item[self.field_labels['DEPENDENCY_PARAMETERS']] = copy.deepcopy(
-                                        self.get_path([section_method_parameters] + dependency_path[1:])
-                                    )
-
-                                    item[self.field_labels['DEPENDENCY_LABEL']] = dependency_path[-1]
-
-                                elif len(dependency_path) == 2:
-                                    section_method_parameters = dependency_path[0] + '_' + self.field_labels['METHOD_PARAMETERS']
-
-                                    item[self.field_labels['DEPENDENCY_PARAMETERS']] = copy.deepcopy(
-                                        self.get_path([section_method_parameters] + dependency_path[1:])
-                                    )
-
-                                    item[self.field_labels['DEPENDENCY_LABEL']] = dependency_path[-1]
-
-            # 6. Add hash
-            self._add_hash_to_main_parameters()
-            self._add_main_hash()
-
-            # 7. Post process paths
-            self._process_application_paths(
-                create_paths=create_paths,
-                create_parameter_hints=create_parameter_hints
-            )
+            else:
+                # No sets used
+                self.process_set(
+                    parameters=self,
+                    create_paths=create_paths,
+                    create_parameter_hints=create_parameter_hints
+                )
 
             self.processed = True
 
@@ -398,7 +310,126 @@ class AppParameterContainer(ParameterContainer):
 
         return self
 
-    def get_path_translated(self, path):
+    def process_set(self, parameters, create_paths=True, create_parameter_hints=True):
+        # Get processing order for sections
+        section_list = []
+        for section in self.section_process_order + list(set(list(parameters.keys())) - set(self.section_process_order)):
+            if section in parameters:
+                section_list.append(section)
+
+        # Convert all main level sections to DictContainers
+        self._convert_main_level_to_containers(
+            parameters=parameters
+        )
+
+        # Prepare paths
+        self._prepare_paths(
+            parameters=parameters
+        )
+
+        # 1. Process parameters
+        for section in section_list:
+            # Reverse translated section name
+            section_name = self.section_labels.flipped.map(section)
+
+            # Get processing function
+            field_process_func = getattr(
+                self,
+                '_process_{SECTION_NAME}'.format(SECTION_NAME=section_name),
+                None
+            )
+
+            if field_process_func is not None:
+                # Call processing function if it exists
+                field_process_func(
+                    parameters=parameters
+                )
+
+            # Call processing function to method section related to the current section
+            section_method_parameters = section + '_' + self.field_labels['METHOD_PARAMETERS']
+
+            if section in parameters and isinstance(parameters[section],
+                                                    dict) and section_method_parameters in parameters:
+                if self.field_labels['LABEL'] in parameters[section] or self.field_labels['RECIPE'] in parameters[section]:
+                    field_process_parameters_func = getattr(
+                        self,
+                        '_process_{SECTION_NAME}_METHOD_PARAMETERS'.format(SECTION_NAME=section_name),
+                        None
+                    )
+
+                    if field_process_parameters_func is not None:
+                        field_process_parameters_func(parameters=parameters)
+
+        # 2. Add parameter hash to methods
+        self._add_hash_to_method_parameters(
+            parameters=parameters
+        )
+
+        # 3. Parse recipes
+        recipe_paths = parameters.get_leaf_path_list(target_field_endswith=self.field_labels['RECIPE'])
+        for recipe_path in recipe_paths:
+            parameters.set_path(
+                path=recipe_path,
+                new_value=VectorRecipeParser().parse(
+                    recipe=parameters.get_path(path=recipe_path)
+                )
+            )
+
+        # 4. Process methods
+        for section in section_list:
+            self._process_method_parameters(
+                parameters=parameters,
+                section=section
+            )
+
+        # 5. Inject dependencies
+        for section in section_list:
+            section_name = self.section_labels.flipped.map(section)
+            if section_name:
+                # Apply only named sections
+                if self.get_path_translated(parameters=parameters, path=[section, 'PARAMETERS']):
+                    for key, item in iteritems(self.get_path_translated(parameters=parameters, path=[section, 'PARAMETERS'])):
+
+                        if self.method_dependencies.get_path([section_name, key]):
+                            dependency_path = self._translated_path(
+                                self.method_dependencies.get_path([section_name, key]).split('.')
+                            )
+
+                            if len(dependency_path) == 1:
+                                section_method_parameters = section + '_' + self.field_labels['METHOD_PARAMETERS']
+
+                                item[self.field_labels['DEPENDENCY_PARAMETERS']] = copy.deepcopy(
+                                    parameters.get_path([section_method_parameters] + dependency_path[1:])
+                                )
+
+                                item[self.field_labels['DEPENDENCY_LABEL']] = dependency_path[-1]
+
+                            elif len(dependency_path) == 2:
+                                section_method_parameters = dependency_path[0] + '_' + self.field_labels[
+                                    'METHOD_PARAMETERS']
+
+                                item[self.field_labels['DEPENDENCY_PARAMETERS']] = copy.deepcopy(
+                                    parameters.get_path([section_method_parameters] + dependency_path[1:])
+                                )
+
+                                item[self.field_labels['DEPENDENCY_LABEL']] = dependency_path[-1]
+
+        # 6. Add hash
+        self._add_hash_to_main_parameters(
+            parameters=parameters
+        )
+        self._add_main_hash(
+            parameters=parameters
+        )
+
+        # 7. Post process paths
+        self._process_application_paths(
+            parameters=parameters,
+            create_paths=create_paths,
+            create_parameter_hints=create_parameter_hints
+        )
+
+    def get_path_translated(self, path, parameters=None):
         """Get data with path, path can contain string constants which will be translated.
 
         Parameters
@@ -406,15 +437,24 @@ class AppParameterContainer(ParameterContainer):
         path : list of str
             Path parts
 
+        parameters : dict
+            Parameter dictionary. If none given self is used.
+            Default value None
+
         Returns
         -------
         dict
 
         """
 
-        return self.get_path(path=self._translated_path(path))
+        if parameters is None:
+            parameters = self
 
-    def set_path_translated(self, path, new_value):
+        return parameters.get_path(
+            path=self._translated_path(path)
+        )
+
+    def set_path_translated(self, path, new_value, parameters=None):
         """Set data with path, path can contain string constants which will be translated.
 
         Parameters
@@ -425,13 +465,23 @@ class AppParameterContainer(ParameterContainer):
         new_value : various
             Value to be set
 
+        parameters : dict
+            Parameter dictionary. If none given self is used.
+            Default value None
+
         Returns
         -------
         None
 
         """
 
-        return self.set_path(path=self._translated_path(path), new_value=new_value)
+        if parameters is None:
+            parameters = self
+
+        return parameters.set_path(
+            path=self._translated_path(path),
+            new_value=new_value
+        )
 
     def override(self, override):
         """Override container content recursively.
@@ -492,7 +542,7 @@ class AppParameterContainer(ParameterContainer):
 
         return self
 
-    def _process_method_parameters(self, section):
+    def _process_method_parameters(self, parameters, section):
         """Process methods and recipes in the section
 
         Processing rules for fields:
@@ -503,6 +553,9 @@ class AppParameterContainer(ParameterContainer):
 
         Parameters
         ----------
+        parameters : dict
+            Parameter dictionary
+
         section : str
             Section name
 
@@ -517,32 +570,42 @@ class AppParameterContainer(ParameterContainer):
 
         """
 
-        if section in self and self[section] and isinstance(self[section], dict):
+        if section in parameters and parameters[section] and isinstance(parameters[section], dict):
             # Inject method parameters
             section_method_parameters = section + '_' + self.field_labels['METHOD_PARAMETERS']
-            if self.field_labels['LABEL'] in self[section]:
-                if (section_method_parameters in self and
-                   self[section][self.field_labels['LABEL']] in self[section_method_parameters]):
-
-                    self[section][self.field_labels['PARAMETERS']] = copy.deepcopy(
-                        self[section_method_parameters][self[section][self.field_labels['LABEL']]]
+            if self.field_labels['LABEL'] in parameters[section]:
+                if (section_method_parameters in parameters and parameters[section][self.field_labels['LABEL']] in parameters[section_method_parameters]):
+                    self.set_path_translated(
+                        parameters=parameters,
+                        path=[section, 'PARAMETERS'],
+                        new_value=copy.deepcopy(
+                            self.get_path_translated(
+                                parameters=parameters,
+                                path=[section_method_parameters, parameters[section][self.field_labels['LABEL']]]
+                            )
+                        )
                     )
 
                 else:
                     message = '{name}: Invalid method for parameter field, {field}->method={method}'.format(
                         name=self.__class__.__name__,
                         field=section,
-                        method=self[section][self.field_labels['LABEL']]
+                        method=parameters[section][self.field_labels['LABEL']]
                     )
 
                     self.logger.exception(message)
                     raise ValueError(message)
 
             # Inject parameters based on recipes
-            if self.field_labels['RECIPE'] in self[section]:
-                self.set_path_translated(path=[section, 'PARAMETERS'], new_value={})
+            if self.field_labels['RECIPE'] in parameters[section]:
+                # Remove current parameters
+                self.set_path_translated(
+                    parameters=parameters,
+                    path=[section, 'PARAMETERS'],
+                    new_value={}
+                )
 
-                for item in self.get_path_translated(path=[section, 'RECIPE']):
+                for item in self.get_path_translated(parameters=parameters, path=[section, 'RECIPE']):
 
                     if self.field_labels['LABEL'] in item:
                         label = item[self.field_labels['LABEL']]
@@ -550,12 +613,16 @@ class AppParameterContainer(ParameterContainer):
                     elif 'label' in item:
                         label = item['label']
 
-                    parameters = self.get_path_translated(path=[section_method_parameters, label])
+                    method_parameters = self.get_path_translated(
+                        parameters=parameters,
+                        path=[section_method_parameters, label]
+                    )
 
                     if parameters:
                         self.set_path_translated(
+                            parameters=parameters,
                             path=[section, 'PARAMETERS', label],
-                            new_value=parameters
+                            new_value=method_parameters
                         )
 
                     else:
@@ -598,33 +665,48 @@ class AppParameterContainer(ParameterContainer):
 
         return translated_path
 
-    def _prepare_paths(self):
-        """Prepare paths"""
-        if self.section_labels['PATH'] in self:
+    def _prepare_paths(self, parameters):
+        """Prepare paths
+
+        Parameters
+        ----------
+        parameters : dict
+            Parameter dictionary
+
+        """
+
+        if self.section_labels['PATH'] in parameters:
             if platform.system() == 'Windows':
                 # Translate separators if in Windows
-                for path_key, path in iteritems(self.get_path_translated(path=['PATH'])):
+                for path_key, path in iteritems(self.get_path_translated(parameters=parameters, path=['PATH'])):
                     if isinstance(path, str):
-                        self.set_path_translated(path=['PATH', path_key], new_value=Path(path).posix_to_nt())
+                        self.set_path_translated(
+                            parameters=parameters,
+                            path=['PATH', path_key],
+                            new_value=Path(path).posix_to_nt()
+                        )
 
                     elif isinstance(path, dict):
-                        for path_key_sub, path_sub in iteritems(self.get_path_translated(path=['PATH', path_key])):
+                        for path_key_sub, path_sub in iteritems(self.get_path_translated(parameters=parameters, path=['PATH', path_key])):
                             if isinstance(path_sub, str):
                                 self.set_path_translated(
+                                    parameters=parameters,
                                     path=['PATH', path_key, path_key_sub],
-                                    new_value=Path(path_sub).posix_to_nt())
+                                    new_value=Path(path_sub).posix_to_nt()
+                                )
 
             # Translate paths to be absolute
-            if self.get_path_translated(path=['PATH', 'APPLICATION_PATHS']):
+            if self.get_path_translated(parameters=parameters, path=['PATH', 'APPLICATION_PATHS']):
                 # Container has application paths
 
-                if self.get_path_translated(path=['PATH', 'APPLICATION_PATHS', 'BASE']):
+                if self.get_path_translated(parameters=parameters, path=['PATH', 'APPLICATION_PATHS', 'BASE']):
                     # Container has application base path
-                    base_path = self.get_path_translated(path=['PATH', 'APPLICATION_PATHS', 'BASE'])
+                    base_path = self.get_path_translated(parameters=parameters, path=['PATH', 'APPLICATION_PATHS', 'BASE'])
 
                     if not os.path.isabs(base_path):
                         base_path = os.path.join(self.app_base, base_path)
                         self.set_path_translated(
+                            parameters=parameters,
                             path=['PATH', 'APPLICATION_PATHS', 'BASE'],
                             new_value=base_path
                         )
@@ -633,41 +715,68 @@ class AppParameterContainer(ParameterContainer):
                     base_path = self.app_base
 
                 # Extend rest of the application paths
-                for path_key, path in iteritems(self.get_path_translated(path=['PATH', 'APPLICATION_PATHS'])):
+                for path_key, path in iteritems(self.get_path_translated(parameters=parameters, path=['PATH', 'APPLICATION_PATHS'])):
                     if path_key is not self.field_labels['BASE'] and not os.path.isabs(path):
                         path = os.path.join(base_path, path)
                         self.set_path_translated(
+                            parameters=parameters,
                             path=['PATH', 'APPLICATION_PATHS', path_key],
                             new_value=path
                         )
 
-            if self.get_path_translated(path=['PATH', 'EXTERNAL_PATHS']):
+            if self.get_path_translated(parameters=parameters, path=['PATH', 'EXTERNAL_PATHS']):
                 # Container has external paths
-                for path_key, path in iteritems(self.get_path_translated(path=['PATH', 'EXTERNAL_PATHS'])):
+                for path_key, path in iteritems(self.get_path_translated(parameters=parameters, path=['PATH', 'EXTERNAL_PATHS'])):
                     if not os.path.isabs(path):
                         path = os.path.join(self.app_base, path)
                         self.set_path_translated(
+                            parameters=parameters,
                             path=['PATH', 'EXTERNAL_PATHS', path_key],
                             new_value=path
                         )
 
-    def _process_application_paths(self, create_paths=True, create_parameter_hints=True):
-        """Process application paths"""
+    def _process_application_paths(self, parameters, create_paths=True, create_parameter_hints=True):
+        """Process application paths
+
+        Parameters
+        ----------
+        parameters : dict
+            Parameter dictionary
+
+        create_paths : bool
+            Create paths
+            Default value True
+
+        create_parameter_hints : bool
+            Create parameters files to all data folders
+            Default value True
+
+        """
+
         # Make sure extended paths exists before saving parameters in them
         if create_paths:
             # Create paths
-            paths = self.get_path_translated(path=['PATH'])
+            paths = self.get_path_translated(
+                parameters=parameters,
+                path=['PATH']
+            )
+
             if paths:
                 for path_key, path in iteritems(paths):
                     if isinstance(path, str):
                         Path().create(path)
+
                     elif isinstance(path, dict):
-                        for path_key_sub, path_sub in iteritems(self.get_path_translated(path=['PATH', path_key])):
+                        for path_key_sub, path_sub in iteritems(self.get_path_translated(parameters=parameters, path=['PATH', path_key])):
                             if isinstance(path_sub, str):
                                 Path().create(path_sub)
 
         # Check path_structure
-        app_paths = self.get_path_translated(path=['PATH', 'APPLICATION_PATHS'])
+        app_paths = self.get_path_translated(
+            parameters=parameters,
+            path=['PATH', 'APPLICATION_PATHS']
+        )
+
         if app_paths:
             for field, structure in iteritems(self.path_structure):
                 if field in app_paths:
@@ -685,7 +794,7 @@ class AppParameterContainer(ParameterContainer):
 
                     # Generate full path with parameter hashes
                     path = ApplicationPaths(
-                        parameter_container=self
+                        parameter_container=parameters
                     ).generate(
                         path_base=path_base,
                         structure=structure
@@ -709,7 +818,7 @@ class AppParameterContainer(ParameterContainer):
                     # Create parameter hints
                     if create_parameter_hints:
                         ApplicationPaths(
-                            parameter_container=self
+                            parameter_container=parameters
                         ).save_parameters_to_path(
                             path_base=path_base,
                             structure=structure,
@@ -718,33 +827,67 @@ class AppParameterContainer(ParameterContainer):
 
                     # Update path in the container
                     self.set_path_translated(
+                        parameters=parameters,
                         path=['PATH', 'APPLICATION_PATHS', field],
                         new_value=path
                     )
 
-    def _add_hash_to_main_parameters(self):
-        """Add has to the main sections."""
-        for field, params in iteritems(self):
-            if isinstance(params, dict):
-                if field not in self.non_hashable_sections and self[field]:
-                    self[field]['_hash'] = self.get_hash(data=self[field])
+    def _add_hash_to_main_parameters(self, parameters):
+        """Add has to the main sections.
 
-    def _add_hash_to_method_parameters(self):
-        """Add has to the method parameter sections."""
-        for field in self:
+        Parameters
+        ----------
+        parameters : dict
+            Parameter dictionary
+
+        """
+
+        for field, params in iteritems(parameters):
+            if isinstance(params, dict):
+                if field not in self.non_hashable_sections and parameters[field]:
+                    parameters[field]['_hash'] = self.get_hash(
+                        data=parameters[field]
+                    )
+
+    def _add_hash_to_method_parameters(self, parameters):
+        """Add has to the method parameter sections.
+
+        Parameters
+        ----------
+        parameters : dict
+            Parameter dictionary
+
+        """
+
+        for field in parameters:
             if field.endswith('_method_parameters'):
-                for key, params in iteritems(self[field]):
+                for key, params in iteritems(parameters[field]):
                     if params and isinstance(params, dict):
-                        params['_hash'] = self.get_hash(data=params)
+                        params['_hash'] = self.get_hash(
+                            data=params
+                        )
 
-    def _add_main_hash(self):
-        """Add main level hash."""
+    def _add_main_hash(self, parameters):
+        """Add main level hash.
+
+        Parameters
+        ----------
+        parameters : dict
+            Parameter dictionary
+
+        """
+
         data = {}
-        for field, params in iteritems(self):
+        for field, params in iteritems(parameters):
             if isinstance(params, dict):
-                if field not in self.non_hashable_sections and self[field]:
-                    data[field] = self.get_hash(data=self[field])
-        self['_hash'] = self.get_hash(data=data)
+                if field not in self.non_hashable_sections and parameters[field]:
+                    data[field] = self.get_hash(
+                        data=parameters[field]
+                    )
+
+        parameters['_hash'] = self.get_hash(
+            data=data
+        )
 
     def _after_load(self, to_return=None):
         """Method triggered after parameters have been loaded."""
@@ -756,13 +899,54 @@ class AppParameterContainer(ParameterContainer):
             if field.endswith('_method_parameters'):
                 del self[field]
 
-    def _convert_main_level_to_containers(self):
-        """Convert main level sections to DictContainers."""
-        for key, item in iteritems(self):
+    def _convert_main_level_to_containers(self, parameters):
+        """Convert main level sections to DictContainers.
+
+        Parameters
+        ----------
+        parameters : dict
+            Parameter dictionary
+
+        """
+
+        for key, item in iteritems(parameters):
             if isinstance(item, dict) and self.field_labels['PARAMETERS'] in item:
                 item[self.field_labels['PARAMETERS']] = DictContainer(item[self.field_labels['PARAMETERS']])
+
             if isinstance(item, dict):
-                self[key] = DictContainer(item)
+                parameters[key] = DictContainer(item)
+
+    def update_parameter_set(self, set_id):
+        """Update active parameter set
+
+        set_id : str
+            Set id used in set list
+        Raises
+        ------
+        ValueError:
+            No valid set id given
+
+        Returns
+        -------
+        self
+
+        """
+
+        active_set = ListDictContainer(self[self.field_labels['SET-LIST']]).search(
+            key=self.field_labels['SET-ID'],
+            value=set_id
+        )
+
+        if not active_set:
+            message = '{name}: No valid set given [{set_name}]'.format(
+                name=self.__class__.__name__,
+                set_name=set_id
+            )
+
+            self.logger.exception(message)
+            raise ValueError(message)
+
+        self.merge(override=active_set)
 
 
 class DCASEAppParameterContainer(AppParameterContainer):
@@ -854,246 +1038,425 @@ class DCASEAppParameterContainer(AppParameterContainer):
 
         self.reset(**kwargs)
 
-    def _process_LOGGING(self):
+    def _process_LOGGING(self, parameters):
         """Process LOGGING section."""
 
-        handlers = self.get_path_translated(path=['LOGGING', 'parameters', 'handlers'])
+        handlers = self.get_path_translated(
+            parameters=parameters,
+            path=['LOGGING', 'parameters', 'handlers']
+        )
+
         if handlers:
             for handler_name, handler_data in iteritems(handlers):
                 if 'filename' in handler_data:
-                    if self.get_path(path=self.section_labels['PATH'] + '.'+self.section_labels['EXTERNAL_PATHS'] + '.logs'):
+                    if parameters.get_path(path=self.section_labels['PATH'] + '.'+self.section_labels['EXTERNAL_PATHS'] + '.logs'):
                         handler_data['filename'] = os.path.join(
-                            self.get_path_translated(path=['PATH', 'EXTERNAL_PATHS', 'logs']),
+                            self.get_path_translated(
+                                parameters=parameters,
+                                path=['PATH', 'EXTERNAL_PATHS', 'logs']
+                            ),
                             handler_data['filename']
                         )
 
-                    elif self.get_path(
-                            path=self.section_labels['PATH'] + '.'+self.section_labels['APPLICATION_PATHS'] + '.logs'):
+                    elif parameters.get_path(path=self.section_labels['PATH'] + '.'+self.section_labels['APPLICATION_PATHS'] + '.logs'):
                         handler_data['filename'] = os.path.join(
-                            self.get_path_translated(path=['PATH', 'APPLICATION_PATHS', 'logs']),
+                            self.get_path_translated(
+                                parameters=parameters,
+                                path=['PATH', 'APPLICATION_PATHS', 'logs']
+                            ),
                             handler_data['filename']
                         )
 
-    def _process_FEATURE_EXTRACTOR(self):
+    def _process_FEATURE_EXTRACTOR(self, parameters):
         """Process FEATURE_EXTRACTION section."""
 
-        if not self.get_path_translated(path=['FEATURE_EXTRACTOR', 'RECIPE']) and self.get_path_translated(path=['FEATURE_STACKER', 'STACKING_RECIPE']):
+        if not self.get_path_translated(parameters=parameters, path=['FEATURE_EXTRACTOR', 'RECIPE']) and self.get_path_translated(parameters=parameters, path=['FEATURE_STACKER', 'STACKING_RECIPE']):
             self.set_path_translated(
+                parameters=parameters,
                 path=['FEATURE_EXTRACTOR', 'RECIPE'],
-                new_value=self.get_path_translated(path=['FEATURE_STACKER', 'STACKING_RECIPE']))
+                new_value=self.get_path_translated(
+                    parameters=parameters,
+                    path=['FEATURE_STACKER', 'STACKING_RECIPE']
+                )
+            )
 
         # Calculate window length in samples
-        if self.get_path_translated(path=['FEATURE_EXTRACTOR', 'win_length_seconds']) and self.get_path_translated(path=['FEATURE_EXTRACTOR', 'fs']):
+        if self.get_path_translated(parameters=parameters, path=['FEATURE_EXTRACTOR', 'win_length_seconds']) and self.get_path_translated(parameters=parameters, path=['FEATURE_EXTRACTOR', 'fs']):
+            win_length_seconds = self.get_path_translated(
+                parameters=parameters,
+                path=['FEATURE_EXTRACTOR', 'win_length_seconds']
+            )
+
+            fs = self.get_path_translated(
+                parameters=parameters,
+                path=['FEATURE_EXTRACTOR', 'fs']
+            )
+
             self.set_path_translated(
+                parameters=parameters,
                 path=['FEATURE_EXTRACTOR', 'win_length_samples'],
-                new_value=int(self.get_path_translated(path=['FEATURE_EXTRACTOR', 'win_length_seconds']) * self.get_path_translated(path=['FEATURE_EXTRACTOR', 'fs']))
+                new_value=int(win_length_seconds * fs)
             )
 
         # Calculate hop length in samples
-        if self.get_path_translated(path=['FEATURE_EXTRACTOR', 'hop_length_seconds']) and self.get_path_translated(path=['FEATURE_EXTRACTOR', 'fs']):
-            self.set_path_translated(
-                path=['FEATURE_EXTRACTOR', 'hop_length_samples'],
-                new_value=int(self.get_path_translated(path=['FEATURE_EXTRACTOR', 'hop_length_seconds']) * self.get_path_translated(path=['FEATURE_EXTRACTOR', 'fs']))
+        if self.get_path_translated(parameters=parameters, path=['FEATURE_EXTRACTOR', 'hop_length_seconds']) and self.get_path_translated(parameters=parameters, path=['FEATURE_EXTRACTOR', 'fs']):
+            hop_length_seconds = self.get_path_translated(
+                parameters=parameters,
+                path=['FEATURE_EXTRACTOR', 'hop_length_seconds']
             )
 
-    def _process_FEATURE_NORMALIZER(self):
+            fs = self.get_path_translated(
+                parameters=parameters,
+                path=['FEATURE_EXTRACTOR', 'fs']
+            )
+
+            self.set_path_translated(
+                parameters=parameters,
+                path=['FEATURE_EXTRACTOR', 'hop_length_samples'],
+                new_value=int(hop_length_seconds * fs)
+            )
+
+    def _process_FEATURE_NORMALIZER(self, parameters):
         """Process FEATURE_NORMALIZER section."""
 
-        if self.get_path_translated(path=['GENERAL', 'scene_handling']):
+        if self.get_path_translated(parameters=parameters, path=['GENERAL', 'scene_handling']):
             self.set_path_translated(
+                parameters=parameters,
                 path=['FEATURE_NORMALIZER', 'scene_handling'],
-                new_value=self.get_path_translated(path=['GENERAL', 'scene_handling'])
+                new_value=self.get_path_translated(
+                    parameters=parameters,
+                    path=['GENERAL', 'scene_handling']
+                )
             )
 
-        if self.get_path_translated(path=['GENERAL', 'active_scenes']):
+        if self.get_path_translated(parameters=parameters, path=['GENERAL', 'active_scenes']):
             self.set_path_translated(
+                parameters=parameters,
                 path=['FEATURE_NORMALIZER', 'active_scenes'],
-                new_value=self.get_path_translated(path=['GENERAL', 'active_scenes'])
+                new_value=self.get_path_translated(
+                    parameters=parameters,
+                    path=['GENERAL', 'active_scenes']
+                )
             )
 
-        if self.get_path_translated(path=['GENERAL', 'event_handling']):
+        if self.get_path_translated(parameters=parameters, path=['GENERAL', 'event_handling']):
             self.set_path_translated(
+                parameters=parameters,
                 path=['FEATURE_NORMALIZER', 'event_handling'],
-                new_value=self.get_path_translated(path=['GENERAL', 'event_handling'])
+                new_value=self.get_path_translated(
+                    parameters=parameters,
+                    path=['GENERAL', 'event_handling']
+                )
             )
 
-        if self.get_path_translated(path=['GENERAL', 'active_events']):
+        if self.get_path_translated(parameters=parameters, path=['GENERAL', 'active_events']):
             self.set_path_translated(
+                parameters=parameters,
                 path=['FEATURE_NORMALIZER', 'active_events'],
-                new_value=self.get_path_translated(path=['GENERAL', 'active_events'])
+                new_value=self.get_path_translated(
+                    parameters=parameters,
+                    path=['GENERAL', 'active_events']
+                )
             )
 
-    def _process_FEATURE_EXTRACTOR_METHOD_PARAMETERS(self):
+    def _process_FEATURE_EXTRACTOR_METHOD_PARAMETERS(self, parameters):
         """Process FEATURE_EXTRACTOR_METHOD_PARAMETERS section."""
 
         method_parameter_field = self.section_labels['FEATURE_EXTRACTOR'] + '_' + self.field_labels['METHOD_PARAMETERS']
-        if method_parameter_field in self:
+        if method_parameter_field in parameters:
             # Change None feature parameter sections into empty dicts
-            for method in list(self[method_parameter_field].keys()):
-                if self[method_parameter_field][method] is None:
-                    self[method_parameter_field][method] = {}
+            for method in list(parameters[method_parameter_field].keys()):
+                if parameters[method_parameter_field][method] is None:
+                    parameters[method_parameter_field][method] = {}
 
-            for method, data in iteritems(self[method_parameter_field]):
+            for method, data in iteritems(parameters[method_parameter_field]):
                 data['method'] = method
 
                 # Copy general parameters
-                if self.get_path_translated(path=['FEATURE_EXTRACTOR', 'fs']):
-                    data['fs'] = self.get_path_translated(path=['FEATURE_EXTRACTOR', 'fs'])
+                if self.get_path_translated(parameters=parameters, path=['FEATURE_EXTRACTOR', 'fs']):
+                    data['fs'] = self.get_path_translated(
+                        parameters=parameters,
+                        path=['FEATURE_EXTRACTOR', 'fs']
+                    )
 
-                if self.get_path_translated(path=['FEATURE_EXTRACTOR', 'win_length_seconds']):
-                    data['win_length_seconds'] = self.get_path_translated(path=['FEATURE_EXTRACTOR', 'win_length_seconds'])
-                if self.get_path_translated(path=['FEATURE_EXTRACTOR', 'win_length_samples']):
-                    data['win_length_samples'] = self.get_path_translated(path=['FEATURE_EXTRACTOR', 'win_length_samples'])
+                if self.get_path_translated(parameters=parameters, path=['FEATURE_EXTRACTOR', 'win_length_seconds']):
+                    data['win_length_seconds'] = self.get_path_translated(
+                        parameters=parameters,
+                        path=['FEATURE_EXTRACTOR', 'win_length_seconds']
+                    )
 
-                if self.get_path_translated(path=['FEATURE_EXTRACTOR', 'hop_length_seconds']):
-                    data['hop_length_seconds'] = self.get_path_translated(path=['FEATURE_EXTRACTOR', 'hop_length_seconds'])
-                if self.get_path_translated(path=['FEATURE_EXTRACTOR', 'hop_length_samples']):
-                    data['hop_length_samples'] = self.get_path_translated(path=['FEATURE_EXTRACTOR', 'hop_length_samples'])
+                if self.get_path_translated(parameters=parameters, path=['FEATURE_EXTRACTOR', 'win_length_samples']):
+                    data['win_length_samples'] = self.get_path_translated(
+                        parameters=parameters,
+                        path=['FEATURE_EXTRACTOR', 'win_length_samples']
+                    )
 
-    def _process_FEATURE_AGGREGATOR(self):
+                if self.get_path_translated(parameters=parameters, path=['FEATURE_EXTRACTOR', 'hop_length_seconds']):
+                    data['hop_length_seconds'] = self.get_path_translated(
+                        parameters=parameters,
+                        path=['FEATURE_EXTRACTOR', 'hop_length_seconds']
+                    )
+
+                if self.get_path_translated(parameters=parameters, path=['FEATURE_EXTRACTOR', 'hop_length_samples']):
+                    data['hop_length_samples'] = self.get_path_translated(
+                        parameters=parameters,
+                        path=['FEATURE_EXTRACTOR', 'hop_length_samples']
+                    )
+
+    def _process_FEATURE_AGGREGATOR(self, parameters):
         """Process FEATURE_AGGREGATOR section."""
 
-        if self.get_path_translated(path=['FEATURE_AGGREGATOR', 'win_length_seconds']) and self.get_path_translated(path=['FEATURE_EXTRACTOR', 'win_length_seconds']):
+        if self.get_path_translated(parameters=parameters, path=['FEATURE_AGGREGATOR', 'win_length_seconds']) and self.get_path_translated(parameters=parameters, path=['FEATURE_EXTRACTOR', 'win_length_seconds']):
+            win_length_seconds_aggregator = self.get_path_translated(
+                parameters=parameters,
+                path=['FEATURE_AGGREGATOR', 'win_length_seconds']
+            )
+
+            win_length_seconds_feature_extraction = self.get_path_translated(
+                parameters=parameters,
+                path=['FEATURE_EXTRACTOR', 'win_length_seconds']
+            )
+
             self.set_path_translated(
+                parameters=parameters,
                 path=['FEATURE_AGGREGATOR', 'win_length_frames'],
-                new_value=int(numpy.ceil(self.get_path_translated(path=['FEATURE_AGGREGATOR', 'win_length_seconds']) / float(self.get_path_translated(path=['FEATURE_EXTRACTOR', 'win_length_seconds']))))
+                new_value=int(numpy.ceil(win_length_seconds_aggregator / float(win_length_seconds_feature_extraction)))
             )
 
-        if self.get_path_translated(path=['FEATURE_AGGREGATOR', 'hop_length_seconds']) and self.get_path_translated(path=['FEATURE_EXTRACTOR', 'win_length_seconds']):
+        if self.get_path_translated(parameters=parameters, path=['FEATURE_AGGREGATOR', 'hop_length_seconds']) and self.get_path_translated(parameters=parameters, path=['FEATURE_EXTRACTOR', 'win_length_seconds']):
+            hop_length_seconds_aggregator = self.get_path_translated(
+                parameters=parameters,
+                path=['FEATURE_AGGREGATOR', 'hop_length_seconds']
+            )
+
+            win_length_seconds_feature_extraction = self.get_path_translated(
+                parameters=parameters,
+                path=['FEATURE_EXTRACTOR', 'win_length_seconds']
+            )
+
             self.set_path_translated(
+                parameters=parameters,
                 path=['FEATURE_AGGREGATOR', 'hop_length_frames'],
-                new_value=int(numpy.ceil(self.get_path_translated(path=['FEATURE_AGGREGATOR', 'hop_length_seconds']) / float(self.get_path_translated(path=['FEATURE_EXTRACTOR', 'win_length_seconds']))))
+                new_value=int(numpy.ceil(hop_length_seconds_aggregator / float(win_length_seconds_feature_extraction)))
             )
 
-    def _process_LEARNER(self):
+    def _process_LEARNER(self, parameters):
         """Process LEARNER section."""
 
         # Process window length and hop length
-        win_length_seconds = self.get_path_translated(path=['FEATURE_EXTRACTOR', 'win_length_seconds'])
-        hop_length_seconds = self.get_path_translated(path=['FEATURE_EXTRACTOR', 'hop_length_seconds'])
+        win_length_seconds = self.get_path_translated(
+            parameters=parameters,
+            path=['FEATURE_EXTRACTOR', 'win_length_seconds']
+        )
+        hop_length_seconds = self.get_path_translated(
+            parameters=parameters,
+            path=['FEATURE_EXTRACTOR', 'hop_length_seconds']
+        )
 
-        if self.get_path_translated(path=['FEATURE_AGGREGATOR', 'enable']):
-            win_length_seconds = self.get_path_translated(path=['FEATURE_AGGREGATOR', 'win_length_seconds'])
-            hop_length_seconds = self.get_path_translated(path=['FEATURE_AGGREGATOR', 'hop_length_seconds'])
+        if self.get_path_translated(parameters=parameters, path=['FEATURE_AGGREGATOR', 'enable']):
+            win_length_seconds = self.get_path_translated(
+                parameters=parameters,
+                path=['FEATURE_AGGREGATOR', 'win_length_seconds']
+            )
+
+            hop_length_seconds = self.get_path_translated(
+                parameters=parameters,
+                path=['FEATURE_AGGREGATOR', 'hop_length_seconds']
+            )
 
         if win_length_seconds:
             self.set_path_translated(
+                parameters=parameters,
                 path=['LEARNER', 'win_length_seconds'],
                 new_value=float(win_length_seconds)
             )
 
         if hop_length_seconds:
             self.set_path_translated(
+                parameters=parameters,
                 path=['LEARNER', 'hop_length_seconds'],
                 new_value=float(hop_length_seconds)
             )
 
         # Process specifiers
-        if self.get_path_translated(path=['GENERAL', 'scene_handling']):
+        if self.get_path_translated(parameters=parameters, path=['GENERAL', 'scene_handling']):
             self.set_path_translated(
+                parameters=parameters,
                 path=['LEARNER', 'scene_handling'],
-                new_value=self.get_path_translated(path=['GENERAL', 'scene_handling'])
+                new_value=self.get_path_translated(
+                    parameters=parameters,
+                    path=['GENERAL', 'scene_handling']
+                )
             )
 
-        if self.get_path_translated(path=['GENERAL', 'active_scenes']):
+        if self.get_path_translated(parameters=parameters, path=['GENERAL', 'active_scenes']):
             self.set_path_translated(
+                parameters=parameters,
                 path=['LEARNER', 'active_scenes'],
-                new_value=self.get_path_translated(path=['GENERAL', 'active_scenes'])
+                new_value=self.get_path_translated(
+                    parameters=parameters,
+                    path=['GENERAL', 'active_scenes']
+                )
             )
 
-        if self.get_path_translated(path=['GENERAL', 'event_handling']):
+        if self.get_path_translated(parameters=parameters, path=['GENERAL', 'event_handling']):
             self.set_path_translated(
+                parameters=parameters,
                 path=['LEARNER', 'event_handling'],
-                new_value=self.get_path_translated(path=['GENERAL', 'event_handling'])
+                new_value=self.get_path_translated(
+                    parameters=parameters,
+                    path=['GENERAL', 'event_handling']
+                )
             )
 
-        if self.get_path_translated(path=['GENERAL', 'active_events']):
+        if self.get_path_translated(parameters=parameters, path=['GENERAL', 'active_events']):
             self.set_path_translated(
+                parameters=parameters,
                 path=['LEARNER', 'active_events'],
-                new_value=self.get_path_translated(path=['GENERAL', 'active_events'])
+                new_value=self.get_path_translated(
+                    parameters=parameters,
+                    path=['GENERAL', 'active_events']
+                )
             )
 
-    def _process_LEARNER_METHOD_PARAMETERS(self):
+    def _process_LEARNER_METHOD_PARAMETERS(self, parameters):
         """Process LEARNER_METHOD_PARAMETERS section."""
 
         method_parameter_field = self.section_labels['LEARNER'] + '_' + self.field_labels['METHOD_PARAMETERS']
 
-        if method_parameter_field in self:
-            for method, data in iteritems(self[method_parameter_field]):
+        if method_parameter_field in parameters:
+            for method, data in iteritems(parameters[method_parameter_field]):
                 data = DictContainer(data)
                 if data.get_path('training.epoch_processing.enable') and not data.get_path('training.epoch_processing.recognizer'):
-                    data['training']['epoch_processing']['recognizer'] = self.get_path_translated(path=['RECOGNIZER'])
+                    data['training']['epoch_processing']['recognizer'] = self.get_path_translated(
+                        parameters=parameters,
+                        path=['RECOGNIZER']
+                    )
 
-    def _process_RECOGNIZER(self):
+    def _process_RECOGNIZER(self, parameters):
         """Process RECOGNIZER section."""
 
         # Process specifiers
-        if self.get_path_translated(path=['GENERAL', 'scene_handling']):
+        if self.get_path_translated(parameters=parameters, path=['GENERAL', 'scene_handling']):
             self.set_path_translated(
+                parameters=parameters,
                 path=['RECOGNIZER', 'scene_handling'],
-                new_value=self.get_path_translated(path=['GENERAL', 'scene_handling'])
+                new_value=self.get_path_translated(
+                    parameters=parameters,
+                    path=['GENERAL', 'scene_handling']
+                )
             )
 
-        if self.get_path_translated(path=['GENERAL', 'active_scenes']):
+        if self.get_path_translated(parameters=parameters, path=['GENERAL', 'active_scenes']):
             self.set_path_translated(
+                parameters=parameters,
                 path=['RECOGNIZER', 'active_scenes'],
-                new_value=self.get_path_translated(path=['GENERAL', 'active_scenes'])
+                new_value=self.get_path_translated(
+                    parameters=parameters,
+                    path=['GENERAL', 'active_scenes']
+                )
             )
 
-        if self.get_path_translated(path=['GENERAL', 'event_handling']):
+        if self.get_path_translated(parameters=parameters, path=['GENERAL', 'event_handling']):
             self.set_path_translated(
+                parameters=parameters,
                 path=['RECOGNIZER', 'event_handling'],
-                new_value=self.get_path_translated(path=['GENERAL', 'event_handling'])
+                new_value=self.get_path_translated(
+                    parameters=parameters,
+                    path=['GENERAL', 'event_handling']
+                )
             )
 
-        if self.get_path_translated(path=['GENERAL', 'active_events']):
+        if self.get_path_translated(parameters=parameters, path=['GENERAL', 'active_events']):
             self.set_path_translated(
+                parameters=parameters,
                 path=['RECOGNIZER', 'active_events'],
-                new_value=self.get_path_translated(path=['GENERAL', 'active_events'])
+                new_value=self.get_path_translated(
+                    parameters=parameters,
+                    path=['GENERAL', 'active_events']
+                )
             )
 
         # Inject frame accumulation parameters
-        if (self.get_path_translated(path=['RECOGNIZER', 'frame_accumulation', 'enable']) and
-                self.get_path_translated(path=['RECOGNIZER', 'frame_accumulation', 'window_length_seconds'])):
+        if (self.get_path_translated(parameters=parameters, path=['RECOGNIZER', 'frame_accumulation', 'enable']) and
+                self.get_path_translated(parameters=parameters, path=['RECOGNIZER', 'frame_accumulation', 'window_length_seconds'])):
+
+            window_length_seconds = self.get_path_translated(
+                parameters=parameters,
+                path=['RECOGNIZER', 'frame_accumulation', 'window_length_seconds']
+            )
+
+            hop_length_seconds = self.get_path_translated(
+                parameters=parameters,
+                path=['LEARNER', 'hop_length_seconds']
+            )
+
             self.set_path_translated(
+                parameters=parameters,
                 path=['RECOGNIZER', 'frame_accumulation', 'window_length_frames'],
-                new_value=int(self.get_path_translated(path=['RECOGNIZER', 'frame_accumulation', 'window_length_seconds']) / float(self.get_path_translated(path=['LEARNER', 'hop_length_seconds'])))
+                new_value=int(window_length_seconds / float(hop_length_seconds))
             )
 
         # Inject event activity processing parameters
-        if self.get_path_translated(path=['RECOGNIZER', 'event_activity_processing', 'enable']) and self.get_path_translated(path=['RECOGNIZER', 'event_activity_processing', 'window_length_seconds']):
-
-            self.set_path_translated(
-                path=['RECOGNIZER', 'event_activity_processing', 'window_length_frames'],
-                new_value=int(self.get_path_translated(path=['RECOGNIZER', 'event_activity_processing', 'window_length_seconds']) / float(self.get_path_translated(path=['LEARNER', 'hop_length_seconds'])))
+        if self.get_path_translated(parameters=parameters, path=['RECOGNIZER', 'event_activity_processing', 'enable']) and self.get_path_translated(parameters=parameters, path=['RECOGNIZER', 'event_activity_processing', 'window_length_seconds']):
+            window_length_seconds = self.get_path_translated(
+                parameters=parameters,
+                path=['RECOGNIZER', 'event_activity_processing', 'window_length_seconds']
             )
 
-    def _process_EVALUATOR(self):
+            hop_length_seconds = self.get_path_translated(
+                parameters=parameters,
+                path=['LEARNER', 'hop_length_seconds']
+            )
+
+            self.set_path_translated(
+                parameters=parameters,
+                path=['RECOGNIZER', 'event_activity_processing', 'window_length_frames'],
+                new_value=int(window_length_seconds / float(hop_length_seconds))
+            )
+
+    def _process_EVALUATOR(self, parameters):
         """Process EVALUATOR section."""
 
         # Process specifiers
-        if self.get_path_translated(path=['GENERAL', 'scene_handling']):
+        if self.get_path_translated(parameters=parameters, path=['GENERAL', 'scene_handling']):
             self.set_path_translated(
+                parameters=parameters,
                 path=['EVALUATOR', 'scene_handling'],
-                new_value=self.get_path_translated(path=['GENERAL', 'scene_handling'])
+                new_value=self.get_path_translated(
+                    parameters=parameters,
+                    path=['GENERAL', 'scene_handling']
+                )
             )
 
-        if self.get_path_translated(path=['GENERAL', 'active_scenes']):
+        if self.get_path_translated(parameters=parameters, path=['GENERAL', 'active_scenes']):
             self.set_path_translated(
+                parameters=parameters,
                 path=['EVALUATOR', 'active_scenes'],
-                new_value=self.get_path_translated(path=['GENERAL', 'active_scenes'])
+                new_value=self.get_path_translated(
+                    parameters=parameters,
+                    path=['GENERAL', 'active_scenes']
+                )
             )
 
-        if self.get_path_translated(path=['GENERAL', 'event_handling']):
+        if self.get_path_translated(parameters=parameters, path=['GENERAL', 'event_handling']):
             self.set_path_translated(
+                parameters=parameters,
                 path=['EVALUATOR', 'event_handling'],
-                new_value=self.get_path_translated(path=['GENERAL', 'event_handling'])
+                new_value=self.get_path_translated(
+                    parameters=parameters,
+                    path=['GENERAL', 'event_handling']
+                )
             )
 
-        if self.get_path_translated(path=['GENERAL', 'active_events']):
+        if self.get_path_translated(parameters=parameters, path=['GENERAL', 'active_events']):
             self.set_path_translated(
+                parameters=parameters,
                 path=['EVALUATOR', 'active_events'],
-                new_value=self.get_path_translated(path=['GENERAL', 'active_events'])
+                new_value=self.get_path_translated(
+                    parameters=parameters,
+                    path=['GENERAL', 'active_events']
+                )
             )
 
 
