@@ -20,6 +20,7 @@ from dcase_util.utils import FileFormat, is_int
 class AudioContainer(ContainerMixin, FileMixin):
     """Audio container class."""
     valid_formats = [FileFormat.WAV, FileFormat.FLAC,
+                     FileFormat.OGG,
                      FileFormat.M4A, FileFormat.WEBM,
                      FileFormat.MP3, FileFormat.MP4]  #: Valid file formats
 
@@ -621,7 +622,7 @@ class AudioContainer(ContainerMixin, FileMixin):
                     # Store sampling frequency
                     self.fs = fs
 
-            elif self.format in [FileFormat.FLAC, FileFormat.M4A, FileFormat.MP4, FileFormat.WEBM]:
+            elif self.format in [FileFormat.FLAC, FileFormat.OGG, FileFormat.MP3, FileFormat.M4A, FileFormat.MP4, FileFormat.WEBM]:
                 # Handle segment start and stop
                 if start is not None and stop is not None:
                     offset = start
@@ -675,16 +676,21 @@ class AudioContainer(ContainerMixin, FileMixin):
 
         return self
 
-    def save(self, filename=None, bit_depth=16):
+    def save(self, filename=None, bit_depth=16, bit_rate=None):
         """Save audio
 
         Parameters
         ----------
         filename : str, optional
             File path, if None given filename parameter given to class constructor is used.
+            Default value None
 
         bit_depth : int, optional
             Bit depth for audio
+            Default value 16
+
+        bit_rate : int, optional
+            Bit rate for compressed audio formats
 
         Raises
         ------
@@ -719,42 +725,151 @@ class AudioContainer(ContainerMixin, FileMixin):
 
         if self.format == FileFormat.WAV:
             if bit_depth == 16:
-                soundfile.write(file=self.filename,
-                                data=self._data.T,
-                                samplerate=self.fs,
-                                subtype='PCM_16')
+                subtype = 'PCM_16'
 
             elif bit_depth == 24:
-                soundfile.write(file=self.filename,
-                                data=self._data.T,
-                                samplerate=self.fs,
-                                subtype='PCM_24')
+                subtype = 'PCM_24'
 
             elif bit_depth == 32:
-                soundfile.write(file=self.filename,
-                                data=self._data.T,
-                                samplerate=self.fs,
-                                subtype='PCM_32')
-
-            elif bit_depth is None:
-                soundfile.write(file=self.filename,
-                                data=self._data.T,
-                                samplerate=self.fs)
+                subtype = 'PCM_32'
 
             else:
-                message = '{name}: Unexpected bit depth [{bitdepth}]'.format(name=self.__class__.__name__,
-                                                                             bitdepth=bit_depth)
+                message = '{name}: Unexpected bit depth [{bitdepth}]'.format(
+                    name=self.__class__.__name__,
+                    bitdepth=bit_depth
+                )
+
                 self.logger.exception(message)
                 raise IOError(message)
 
+            soundfile.write(
+                file=self.filename,
+                data=self._data.T,
+                samplerate=self.fs,
+                subtype=subtype
+            )
+
         elif self.format == FileFormat.FLAC:
-            soundfile.write(file=self.filename,
-                            data=self._data.T,
-                            samplerate=self.fs)
+            if bit_depth == 16:
+                subtype = 'PCM_16'
+
+            elif bit_depth == 24:
+                subtype = 'PCM_24'
+
+            elif bit_depth == 32:
+                subtype = 'PCM_32'
+
+            else:
+                message = '{name}: Unexpected bit depth [{bitdepth}]'.format(
+                    name=self.__class__.__name__,
+                    bitdepth=bit_depth
+                )
+
+                self.logger.exception(message)
+                raise IOError(message)
+
+            soundfile.write(
+                file=self.filename,
+                data=self._data.T,
+                samplerate=self.fs,
+                format='flac',
+                subtype=subtype
+            )
+
+        elif self.format == FileFormat.OGG:
+            soundfile.write(
+                file=self.filename,
+                data=self._data.T,
+                samplerate=self.fs,
+                format='OGG',
+                subtype='VORBIS'
+            )
+
+        elif self.format == FileFormat.MP3:
+            # Notice: Saving with MP3 format results in slightly longer signal than original.
+            # Difference is due to padding in the compression algorithm, and is usually around 200 - 1000 samples.
+            import subprocess
+            import platform
+
+            if platform.system() == 'Windows':
+                FFMPEG_BIN = "ffmpeg.exe"
+
+            else:
+                FFMPEG_BIN = "ffmpeg"
+
+            if bit_rate not in [8, 16, 24, 32, 40, 48, 64, 80, 96, 112, 128, 160, 192, 224, 256, 320]:
+                message = '{name}: Unsupported bit rate [{bitrate}]'.format(
+                    name=self.__class__.__name__,
+                    bitrate=bit_rate
+                )
+
+                self.logger.exception(message)
+                raise IOError(message)
+
+            command = [
+                FFMPEG_BIN,
+                '-y',                                               # enable overwrite file
+                '-f', 's16le',                                      # input format
+                '-acodec', 'pcm_s16le',                             # input bit depth
+                '-r', str(self.fs),                                 # sampling rate
+                '-ac', str(self.channels),                          # amount of channels
+                '-i', '-',                                          # input from pipe
+                '-vn',                                              # no video input
+                '-acodec', 'libmp3lame',                            # output audio codec
+                '-b:a', "{bitrate:d}k".format(bitrate=bit_rate),    # bit rate
+                self.filename                                       # output filename
+            ]
+
+            popen_parameters = {
+                'stdin': subprocess.PIPE,
+                'stdout': subprocess.PIPE,
+                'stderr': subprocess.PIPE
+            }
+
+            pipe = subprocess.Popen(
+                command,
+                **popen_parameters
+            )
+
+            # Convert signal data from float [-1,1] to signed 16-bit
+            audio_signal = numpy.asarray(self.data).T
+            signal_max_value = 2 ** (16 - 1)
+            audio_signal = (audio_signal * signal_max_value).clip(
+                -signal_max_value,
+                signal_max_value - 1
+            ).astype('int16')
+
+            try:
+                try:
+                    pipe.stdin.write(
+                        audio_signal.tobytes()
+                    )
+
+                except NameError:
+                    pipe.stdin.write(
+                        audio_signal.tostring()
+                    )
+
+            except IOError as error:
+                pipe_error = pipe.stderr.read()
+                error = str(error)
+                error += "\n\nFFMPEG encountered the following error {filename}:".format(filename=self.filename)
+                error += "\n\n" + str(pipe_error)
+
+                raise IOError(error)
+
+            pipe.stdin.close()
+            if pipe.stderr is not None:
+                pipe.stderr.close()
+
+            pipe.wait()
 
         else:
-            message = '{name}: Unknown format for saving [{format}]'.format(name=self.__class__.__name__,
-                                                                            format=self.filename)
+            message = '{name}: Unknown format for saving [{format}]'.format(
+                name=self.__class__.__name__,
+                format=self.filename
+            )
+
             self.logger.exception(message)
             raise IOError(message)
 
