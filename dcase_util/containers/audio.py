@@ -171,11 +171,43 @@ class AudioContainer(ContainerMixin, FileMixin):
         return self.loaded
 
     def __getitem__(self, i):
-        """
-        Get ith sample of first channel
-        """
+        """Get ith sample, in case of multiple channels array is across channels is returned"""
 
-        return self._data[0][i]
+        if not isinstance(i, int):
+            raise TypeError("Index should be integer")
+
+        if i < 0 or i > self.length:
+            raise KeyError(i)
+
+        if len(self._data.shape) == 1:
+            return self._data[i]
+
+        elif len(self._data.shape) > 1:
+            return self._data[:, i]
+
+        else:
+            return None
+
+    def __setitem__(self, i, value):
+        """Set ith sample"""
+
+        if not isinstance(i, int):
+            raise TypeError("Index should be integer")
+
+        if i < 0 or i > self.length:
+            raise KeyError(i)
+
+        if len(self._data.shape) == 1:
+            self._data[i] = value
+
+        elif len(self._data.shape) > 1:
+            self._data[:, i] = value
+
+    def __iter__(self):
+        return iter(self._data)
+
+    def __len__(self):
+        return self.length
 
     @property
     def data(self):
@@ -1093,7 +1125,8 @@ class AudioContainer(ContainerMixin, FileMixin):
 
     def frames(self,
                frame_length=None, hop_length=None,
-               frame_length_seconds=None, hop_length_seconds=None):
+               frame_length_seconds=None, hop_length_seconds=None,
+               skip_segments=None):
         """Slice audio into overlapping frames.
 
         frame_length : int, optional
