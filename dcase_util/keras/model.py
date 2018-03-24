@@ -182,7 +182,7 @@ def create_sequential_model(model_parameter_list, input_shape=None, output_shape
 
         # Convert lists into tuples
         for field in tuple_fields:
-            if field in layer_setup['config']:
+            if field in layer_setup['config'] and isinstance(layer_setup['config'][field], list):
                 layer_setup['config'][field] = tuple(layer_setup['config'][field])
 
         # Inject input shape for Input layer if not given
