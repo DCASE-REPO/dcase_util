@@ -1101,12 +1101,14 @@ class BinaryMatrix2DContainer(DataMatrix2DContainer):
             # Features
             ax1 = plt.subplot(2, 1, 1)
             ax1.yaxis.set_label_position("right")
-            specshow(binary_matrix,
-                     x_axis='time',
-                     sr=int(1 / float(self.time_resolution)),
-                     hop_length=1,
-                     cmap=plt.cm.gray_r
-                     )
+            specshow(
+                binary_matrix,
+                x_axis='time',
+                sr=int(1 / float(self.time_resolution)),
+                hop_length=1,
+                cmap=plt.cm.gray_r
+            )
+
             y_ticks = numpy.arange(0, len(self.label_list)) + 0.5
             ax1.set_yticks(y_ticks)
             ax1.set_yticklabels(self.label_list)
@@ -1116,11 +1118,13 @@ class BinaryMatrix2DContainer(DataMatrix2DContainer):
             # Binary matrix
             ax2 = plt.subplot(2, 1, 2)
             ax2.yaxis.set_label_position("right")
-            specshow(data_container.data,
-                     x_axis='time',
-                     sr=int(1 / float(data_container.hop_length_seconds)),
-                     hop_length=1
-                     )
+            specshow(
+                data_container.data,
+                x_axis='time',
+                sr=int(1 / float(data_container.hop_length_seconds)),
+                hop_length=1
+            )
+
             plt.ylabel('Data')
 
         elif binary_matrix is not None and data_container is None:
@@ -1128,12 +1132,14 @@ class BinaryMatrix2DContainer(DataMatrix2DContainer):
             ax = plt.subplot(1, 1, 1)
             # Binary matrix
             ax.yaxis.set_label_position("right")
-            specshow(binary_matrix,
-                     x_axis='time',
-                     sr=int(1 / float(self.time_resolution)),
-                     hop_length=1,
-                     cmap=plt.cm.gray_r
-                     )
+            specshow(
+                binary_matrix,
+                x_axis='time',
+                sr=int(1 / float(self.time_resolution)),
+                hop_length=1,
+                cmap=plt.cm.gray_r
+            )
+
             y_ticks = numpy.arange(0, len(self.label_list)) + 0.5
             ax.set_yticks(y_ticks)
             ax.set_yticklabels(self.label_list)
