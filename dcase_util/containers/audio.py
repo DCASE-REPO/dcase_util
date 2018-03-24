@@ -1305,7 +1305,7 @@ class AudioContainer(ContainerMixin, FileMixin):
         elif plot_type == 'spec':
             self.plot_spec()
 
-    def plot_wave(self, x_axis='time', max_points=50000.0, offset=0.0, color='#333333', alpha=1.0):
+    def plot_wave(self, x_axis='time', max_points=50000.0, offset=0.0, color='#333333', alpha=1.0, show_filename=True, plot=True):
         """Visualize audio data as waveform.
 
         Parameters
@@ -1313,18 +1313,31 @@ class AudioContainer(ContainerMixin, FileMixin):
 
         x_axis : str
             X-axis type
+            Default value 'time'
 
         max_points : float
             Maximum number of time-points to plot (see `librosa.display.waveplot`).
+            Default value 50000
 
         offset : float
             Horizontal offset (in time) to start the waveform plot (see `librosa.display.waveplot`).
+            Default value 0.0
 
         color : str
             Waveform fill color in hex-code.
+            Default value '#333333'
 
         alpha : float
             Alpha of the waveform fill color.
+            Default value 1.0
+
+        show_filename : bool
+            Show filename as figure title
+            Default value True
+
+        plot : bool
+            If true, figure is shown automatically. Set to False if collecting multiple plots into same figure outside this method.
+            Default value True
 
         Returns
         -------
@@ -1334,16 +1347,22 @@ class AudioContainer(ContainerMixin, FileMixin):
 
         import matplotlib.pyplot as plt
         from librosa.display import waveplot
-        plt.figure()
+        if plot:
+            plt.figure()
 
         if self.channels > 1:
+            # Plotting for multi-channel audio
             for channel_id, channel_data in enumerate(self.get_focused()):
                 plt.subplot(self.channels, 1, channel_id + 1)
+                if channel_id + 1 != self.channels:
+                    current_x_axis = None
+                else:
+                    current_x_axis = x_axis
 
                 waveplot(
                     y=channel_data.ravel(),
                     sr=self.fs,
-                    x_axis=x_axis,
+                    x_axis=current_x_axis,
                     max_points=max_points,
                     offset=offset,
                     color=color,
@@ -1351,12 +1370,15 @@ class AudioContainer(ContainerMixin, FileMixin):
                 )
 
                 plt.ylabel('Channel {channel:d}'.format(channel=channel_id))
-                if channel_id == 0:
+                if channel_id == 0 and show_filename:
                     if self.filename:
                         plt.title(self.filename)
-        else:
-            plt.subplot(1, 1, 1)
 
+                if channel_id+1 != self.channels:
+                    plt.xlabel('')
+
+        else:
+            # Plotting for single channel audio
             waveplot(
                 y=self.get_focused().ravel(),
                 sr=self.fs,
@@ -1367,14 +1389,17 @@ class AudioContainer(ContainerMixin, FileMixin):
                 alpha=alpha
             )
 
-            plt.ylabel('Channel {channel:d}'.format(channel=1))
-            if self.filename:
+            plt.ylabel('Channel {channel:d}'.format(channel=0))
+
+            if self.filename and show_filename:
                 plt.title(self.filename)
-        plt.show()
+
+        if plot:
+            plt.show()
 
         return self
 
-    def plot_spec(self, spec_type='log', hop_length=512, cmap='magma'):
+    def plot_spec(self, spec_type='log', hop_length=512, cmap='magma', show_filename=True, show_colorbar=True, plot=True):
         """Visualize audio data as spectrogram.
 
         Parameters
@@ -1382,12 +1407,27 @@ class AudioContainer(ContainerMixin, FileMixin):
 
         spec_type : str
             Spectrogram type, use 'linear', 'log', 'cqt', 'cqt_hz', and 'cqt_note'.
+            Default value 'log'
 
         hop_length : float
             Hop length, also used to determine time scale in x-axis (see `librosa.display.specshow`).
+            Default value 512
 
         cmap : float
             Color map (see `librosa.display.specshow`).
+            Default value 'magma'
+
+        show_filename : bool
+            Show filename as figure title
+            Default value True
+
+        show_colorbar : bool
+            Show color bar next to plot
+            Default value True
+
+        plot : bool
+            If true, figure is shown automatically. Set to False if collecting multiple plots into same figure outside this method.
+            Default value True
 
         Returns
         -------
@@ -1398,16 +1438,18 @@ class AudioContainer(ContainerMixin, FileMixin):
         from librosa.display import specshow
         import matplotlib.pyplot as plt
 
-        plt.figure()
+        if plot:
+            plt.figure()
 
         if self.channels > 1:
             for channel_id, channel_data in enumerate(self.get_focused()):
                 plt.subplot(self.channels, 1, channel_id+1)
 
                 if spec_type in ['linear', 'log']:
-                    D = librosa.logamplitude(numpy.abs(librosa.stft(channel_data.ravel())) ** 2, ref_power=numpy.max)
+                    D = librosa.core.amplitude_to_db(numpy.abs(librosa.stft(channel_data.ravel())) ** 2, ref=numpy.max)
+
                 elif spec_type.startswith('cqt'):
-                    D = librosa.amplitude_to_db(librosa.cqt(channel_data.ravel(), sr=self.fs), ref=numpy.max)
+                    D = librosa.core.amplitude_to_db(librosa.cqt(channel_data.ravel(), sr=self.fs), ref=numpy.max)
 
                 if spec_type == 'linear':
                     specshow(
@@ -1449,18 +1491,21 @@ class AudioContainer(ContainerMixin, FileMixin):
                         cmap=cmap
                     )
 
-                plt.colorbar(format='%+2.0f dB')
+                if show_colorbar:
+                    plt.colorbar(format='%+2.0f dB')
+
                 plt.ylabel('Channel {channel:d}'.format(channel=channel_id))
                 if channel_id == 0 and self.filename:
                     plt.title(self.filename)
+
         else:
             channel_id = 0
-            plt.subplot(self.channels, 1, channel_id + 1)
 
             if spec_type in ['linear', 'log']:
-                D = librosa.logamplitude(numpy.abs(librosa.stft(self.get_focused().ravel())) ** 2, ref_power=numpy.max)
+                D = librosa.core.amplitude_to_db(numpy.abs(librosa.stft(self.get_focused().ravel())) ** 2, ref=numpy.max)
+
             elif spec_type.startswith('cqt'):
-                D = librosa.amplitude_to_db(librosa.cqt(self.get_focused().ravel(), sr=self.fs), ref=numpy.max)
+                D = librosa.core.amplitude_to_db(librosa.cqt(self.get_focused().ravel(), sr=self.fs), ref=numpy.max)
 
             if spec_type == 'linear':
                 specshow(
@@ -1502,12 +1547,15 @@ class AudioContainer(ContainerMixin, FileMixin):
                     cmap=cmap
                 )
 
-            plt.colorbar(format='%+2.0f dB')
+            if show_colorbar:
+                plt.colorbar(format='%+2.0f dB')
+
             plt.ylabel('Channel {channel:d}'.format(channel=channel_id))
-            if channel_id == 0 and self.filename:
+            if show_filename and channel_id == 0:
                 plt.title(self.filename)
 
-        plt.show()
+        if plot:
+            plt.show()
 
     def _time_to_sample(self, time):
         """Time to sample index.
