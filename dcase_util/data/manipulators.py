@@ -498,9 +498,9 @@ class Aggregator(ObjectContainer):
 class Sequencer(ObjectContainer):
     """Data sequencer"""
 
-    def __init__(self, frames=10, hop_length_frames=None, padding=None,
-                 shift=0,
-                 shift_border='roll',
+    def __init__(self, frames=10, hop_length_frames=None,
+                 padding=None,
+                 shift_border='roll', shift=0,
                  required_data_amount_per_segment=0.9,
                  **kwargs):
         """__init__ method.
@@ -519,13 +519,13 @@ class Sequencer(ObjectContainer):
             How data is treated at the boundaries [None, 'zero', 'repeat']
             Default value None
 
-        shift : int
-            Sequencing grid shift.
-            Default value 0
-
         shift_border : string, ['roll', 'shift']
             Sequence border handling when doing temporal shifting.
             Default value roll
+
+        shift : int
+            Sequencing grid shift.
+            Default value 0
 
         required_data_amount_per_segment : float [0,1]
             Percentage of valid data items per segment there need to be for valid segment. Use this parameter to
