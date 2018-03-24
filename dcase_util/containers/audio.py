@@ -1108,8 +1108,7 @@ class AudioContainer(ContainerMixin, FileMixin):
     def set_focus(self,
                   start=None, stop=None, duration=None,
                   start_seconds=None, stop_seconds=None, duration_seconds=None,
-                  channel=None
-                  ):
+                  channel=None):
         """Set focus segment
 
         Parameters
@@ -1240,21 +1239,30 @@ class AudioContainer(ContainerMixin, FileMixin):
 
     def frames(self,
                frame_length=None, hop_length=None,
-               frame_length_seconds=None, hop_length_seconds=None,
-               skip_segments=None):
+               frame_length_seconds=None, hop_length_seconds=None):
         """Slice audio into overlapping frames.
 
         frame_length : int, optional
-            Frame length in samples
+            Frame length in samples. Set either frame_length or frame_length_seconds.
+            Default value None
 
         hop_length : int, optional
-            Frame hop length in samples
+            Frame hop length in samples. Set either hop_length or hop_length_seconds.
+            Default value None
 
         frame_length_seconds : float, optional
             Frame length in seconds, converted into samples based on sampling rate.
+            Default value None
 
         hop_length_seconds: float, optional
             Frame hop length in seconds, converted into samples based on sampling rate.
+            Default value None
+
+        Raises
+        ------
+        ValueError:
+            No frame_length and no frame_length_seconds given.
+            No hop_length and no hop_length_seconds given.
 
         Returns
         -------
@@ -1269,22 +1277,141 @@ class AudioContainer(ContainerMixin, FileMixin):
             hop_length = int(self.fs * hop_length_seconds)
 
         if not frame_length:
-            message = '{name}: Specify frame_length parameter for frame splitting.'.format(name=self.__class__.__name__)
+            message = '{name}: Specify frame_length parameter for frame splitting.'.format(
+                name=self.__class__.__name__
+            )
             self.logger.exception(message)
             raise ValueError(message)
 
         if not hop_length:
-            message = '{name}: Specify hop_length parameter for frame splitting.'.format(name=self.__class__.__name__)
+            message = '{name}: Specify hop_length parameter for frame splitting.'.format(
+                name=self.__class__.__name__
+            )
             self.logger.exception(message)
             raise ValueError(message)
 
-        return librosa.util.frame(
-            y=self.get_focused(),
-            frame_length=frame_length,
-            hop_length=hop_length
-        )
+        if self.channels == 1:
+            return librosa.util.frame(
+                y=self.get_focused(),
+                frame_length=frame_length,
+                hop_length=hop_length
+            )
 
-    def plot(self, plot_type='wave'):
+        else:
+            data = []
+            for channel_id, channel_data in enumerate(self.get_focused()):
+                data.append(
+                    librosa.util.frame(
+                        y=channel_data,
+                        frame_length=frame_length,
+                        hop_length=hop_length
+                    )
+                )
+            return numpy.array(data)
+
+    def segments(self,
+                 segment_length=None, segment_length_seconds=None,
+                 segments=None,
+                 skip_segments=None):
+        """Slice audio into segments.
+
+        segment_length : int, optional
+            Segment length in samples. Set either segment_length or segment_length_seconds. Used to produce
+            consecutive non-overlapping segments.
+            Default value None
+
+        segment_length_seconds : float, optional
+            Segment length in seconds, converted into samples based on sampling rate. Used to produce consecutive
+            non-overlapping segments.
+            Set either segment_length or segment_length_seconds.
+            Default value None
+
+        segments : list of dict or MetaDataContainer, optional
+            List of time segments (onset and offset). If none given, segment length is used to produce consecutive
+            non-overlapping segments.
+            Default value None
+
+        skip_segments : list of dict or MetaDataContainer, optional
+            List of time segments (onset and offset) to be skipped when creating segments.
+            Only used when segment_length or segment_length_seconds are given and segments are generated
+            within this method.
+            Default value None
+
+        Raises
+        ------
+        ValueError:
+            No segments and no segment_length given.
+
+        Returns
+        -------
+        numpy.ndarray, MetaDataContainer
+
+        """
+        from dcase_util.containers import MetaDataContainer
+
+        if not segment_length and segment_length_seconds:
+            # Get segment_length from segment_length_seconds
+            segment_length = int(self.fs * segment_length_seconds)
+
+        if segments is None and segment_length is not None:
+            if skip_segments is not None:
+                # Make sure skip segments is MetaDataContainer
+                skip_segments = MetaDataContainer(skip_segments)
+
+            # No segments given, get segments based on segment_length
+            segment_start = 0
+            segments = MetaDataContainer()
+            while True:
+                # Segment stop
+                segment_stop = segment_start + segment_length
+                if skip_segments is not None:
+                    # Go through skip segments and adjust segment start and stop to avoid segments
+                    for item in skip_segments:
+                        if item.active_within_segment(start=segment_start/float(self.fs), stop=segment_stop/float(self.fs)):
+                            # Adjust segment start to avoid current skip segment
+                            segment_start = int(self.fs * item.offset)
+                            # Adjust segment stop accordingly
+                            segment_stop = segment_start + segment_length
+
+                if segment_stop < self.length:
+                    # Valid segment found, store it
+                    segments.append(
+                        {
+                            'onset': segment_start/float(self.fs),
+                            'offset': segment_stop/float(self.fs),
+                        }
+                    )
+
+                # Set next segment start
+                segment_start = segment_stop
+
+                # Stop loop if segment_start is out of signal
+                if segment_start > self.length:
+                    break
+
+        elif segments is not None:
+            # Make sure segments is MetadataContainer
+            segments = MetaDataContainer(segments)
+
+        else:
+            message = '{name}: Specify segments parameter or segment_length for segment creation.'.format(
+                name=self.__class__.__name__
+            )
+            self.logger.exception(message)
+            raise ValueError(message)
+
+        # Get audio segments
+        data = []
+        for segment in segments:
+            segment_start_samples = int(self.fs * segment.onset)
+            segment_stop_samples = int(self.fs * segment.offset)
+            data.append(
+                self._data[:, segment_start_samples:segment_stop_samples]
+            )
+
+        return numpy.array(data), segments
+
+    def plot(self, plot_type='wave', **kwargs):
         """Visualize audio data
 
         Parameters
@@ -1300,10 +1427,10 @@ class AudioContainer(ContainerMixin, FileMixin):
         """
 
         if plot_type == 'wave':
-            self.plot_wave()
+            self.plot_wave(**kwargs)
 
         elif plot_type == 'spec':
-            self.plot_spec()
+            self.plot_spec(**kwargs)
 
     def plot_wave(self, x_axis='time', max_points=50000.0, offset=0.0, color='#333333', alpha=1.0, show_filename=True, plot=True):
         """Visualize audio data as waveform.
