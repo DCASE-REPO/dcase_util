@@ -27,6 +27,7 @@ class MetadataReadingProcessor(ProcessorMixin, MetaDataContainer):
                 data=None, filename=None,
                 focus_filename=None, focus_start_seconds=None, focus_stop_seconds=None, focus_duration_seconds=None,
                 zero_time=None, trim=None,
+                store_processing_chain=False,
                 **kwargs):
         """Meta data reading.
 
@@ -56,23 +57,19 @@ class MetadataReadingProcessor(ProcessorMixin, MetaDataContainer):
         trim : bool
             Trim event onsets and offset according to segment start and stop times.
 
+        store_processing_chain : bool
+            Store processing chain to data container returned
+            Default value False
+
         """
 
         if data is None and self.input_type == ProcessingChainItemType.NONE:
-            processing_chain_item = self.get_processing_chain_item()
-
             if filename:
                 self.load(filename=filename)
-
-                if 'process_parameters' not in processing_chain_item:
-                    processing_chain_item['process_parameters'] = {}
-
-                processing_chain_item['process_parameters']['filename'] = filename
 
             if focus_filename is not None:
                 filtered = self.filter(filename=focus_filename)
                 self.update(filtered)
-                processing_chain_item['process_parameters']['focus_filename'] = focus_filename
 
             if focus_start_seconds is not None and focus_duration_seconds is not None:
                 filtered = self.filter_time_segment(
@@ -82,8 +79,6 @@ class MetadataReadingProcessor(ProcessorMixin, MetaDataContainer):
                     trim=trim
                 )
                 self.update(filtered)
-                processing_chain_item['process_parameters']['focus_start_seconds'] = focus_start_seconds
-                processing_chain_item['process_parameters']['focus_duration_seconds'] = focus_duration_seconds
 
             elif focus_start_seconds is not None and focus_stop_seconds is not None:
                 filtered = self.filter_time_segment(
@@ -93,10 +88,22 @@ class MetadataReadingProcessor(ProcessorMixin, MetaDataContainer):
                     trim=trim
                 )
                 self.update(filtered)
+
+            if store_processing_chain:
+                processing_chain_item = self.get_processing_chain_item()
+
+                if 'process_parameters' not in processing_chain_item:
+                    processing_chain_item['process_parameters'] = {}
+
+                processing_chain_item['process_parameters']['filename'] = filename
+                processing_chain_item['process_parameters']['focus_filename'] = focus_filename
+                processing_chain_item['process_parameters']['focus_start_seconds'] = focus_start_seconds
+                processing_chain_item['process_parameters']['focus_duration_seconds'] = focus_duration_seconds
                 processing_chain_item['process_parameters']['focus_start_seconds'] = focus_start_seconds
                 processing_chain_item['process_parameters']['focus_stop_seconds'] = focus_stop_seconds
 
-            self.push_processing_chain_item(**processing_chain_item)
+                # Push chain item into processing chain stored in the container
+                self.push_processing_chain_item(**processing_chain_item)
 
             return self
 

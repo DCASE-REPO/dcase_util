@@ -42,13 +42,17 @@ class ProcessorMixin(object):
             setup_logging()
         return logger
 
-    def process(self, data=None, **kwargs):
+    def process(self, data=None, store_processing_chain=False, **kwargs):
         """Process data
 
         Parameters
         ----------
         data :
             Data to be processed.
+
+        store_processing_chain : bool
+            Store processing chain to data container returned
+            Default value False
 
         """
 

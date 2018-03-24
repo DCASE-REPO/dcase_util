@@ -78,6 +78,7 @@ class AudioReadingProcessor(ProcessorMixin, AudioContainer):
                 focus_start_samples=None, focus_stop_samples=None, focus_duration_samples=None,
                 focus_start_seconds=None, focus_stop_seconds=None, focus_duration_seconds=None,
                 focus_channel=None,
+                store_processing_chain=False,
                 **kwargs):
         """Audio reading
 
@@ -111,6 +112,10 @@ class AudioReadingProcessor(ProcessorMixin, AudioContainer):
             single channel are 'L', 'R', 'left', and 'right' or 0, 1, and to get mixed down version
             of all channels 'mixdown'.
 
+        store_processing_chain : bool
+            Store processing chain to data container returned
+            Default value False
+
         Returns
         -------
         AudioContainer
@@ -118,15 +123,8 @@ class AudioReadingProcessor(ProcessorMixin, AudioContainer):
         """
 
         if data is None and self.input_type == ProcessingChainItemType.NONE:
-            processing_chain_item = self.get_processing_chain_item()
-
             if filename:
                 self.load(filename=filename, mono=self.mono, fs=self.fs)
-
-                if 'process_parameters' not in processing_chain_item:
-                    processing_chain_item['process_parameters'] = {}
-
-                processing_chain_item['process_parameters']['filename'] = filename
 
             # Set focus segment and channel
             self.set_focus(
@@ -139,17 +137,26 @@ class AudioReadingProcessor(ProcessorMixin, AudioContainer):
                 channel=focus_channel
             )
 
-            processing_chain_item['process_parameters']['focus_start_samples'] = focus_start_samples
-            processing_chain_item['process_parameters']['focus_stop_samples'] = focus_stop_samples
-            processing_chain_item['process_parameters']['focus_duration_samples'] = focus_duration_samples
+            if store_processing_chain:
+                processing_chain_item = self.get_processing_chain_item()
 
-            processing_chain_item['process_parameters']['focus_start_seconds'] = focus_start_seconds
-            processing_chain_item['process_parameters']['focus_stop_seconds'] = focus_stop_seconds
-            processing_chain_item['process_parameters']['focus_duration_seconds'] = focus_duration_seconds
+                if 'process_parameters' not in processing_chain_item:
+                    processing_chain_item['process_parameters'] = {}
 
-            processing_chain_item['process_parameters']['focus_channel'] = focus_channel
+                processing_chain_item['process_parameters']['filename'] = filename
 
-            self.push_processing_chain_item(**processing_chain_item)
+                processing_chain_item['process_parameters']['focus_start_samples'] = focus_start_samples
+                processing_chain_item['process_parameters']['focus_stop_samples'] = focus_stop_samples
+                processing_chain_item['process_parameters']['focus_duration_samples'] = focus_duration_samples
+
+                processing_chain_item['process_parameters']['focus_start_seconds'] = focus_start_seconds
+                processing_chain_item['process_parameters']['focus_stop_seconds'] = focus_stop_seconds
+                processing_chain_item['process_parameters']['focus_duration_seconds'] = focus_duration_seconds
+
+                processing_chain_item['process_parameters']['focus_channel'] = focus_channel
+
+                # Push chain item into processing chain stored in the container
+                self.push_processing_chain_item(**processing_chain_item)
 
             return self
 

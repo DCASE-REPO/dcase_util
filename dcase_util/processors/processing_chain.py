@@ -428,13 +428,17 @@ class ProcessingChain(ListDictContainer):
             self.logger.exception(message)
             raise ValueError(message)
 
-    def process(self, data=None, **kwargs):
+    def process(self, data=None, store_processing_chain=False, **kwargs):
         """Process the data with processing chain
 
         Parameters
         ----------
         data : DataContainer
             Data
+
+        store_processing_chain : bool
+            Store processing chain to data container returned
+            Default value False
 
         Returns
         -------
@@ -460,7 +464,7 @@ class ProcessingChain(ListDictContainer):
                         data = DataRepository(**kwargs).load()
 
                 if 'preprocessing_callbacks' in step and isinstance(step['preprocessing_callbacks'], list):
-                    # Handle preprocessing callbacks assigned to current processor
+                    # Handle pre-processing callbacks assigned to current processor
 
                     for method in step['preprocessing_callbacks']:
                         if isinstance(method, dict):
@@ -481,6 +485,7 @@ class ProcessingChain(ListDictContainer):
                     # Do actual processing
                     data = step.processor_class.process(
                         data=data,
+                        store_processing_chain=store_processing_chain,
                         **process_parameters
                     )
 

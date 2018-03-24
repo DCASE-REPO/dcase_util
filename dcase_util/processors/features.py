@@ -31,6 +31,7 @@ class FeatureReadingProcessor(ProcessorMixin, FeatureContainer):
                 data=None, filename=None,
                 focus_start=None, focus_stop=None, focus_duration=None,
                 focus_start_seconds=None, focus_stop_seconds=None, focus_duration_seconds=None,
+                store_processing_chain=False,
                 **kwargs):
         """Meta data reading.
 
@@ -60,6 +61,10 @@ class FeatureReadingProcessor(ProcessorMixin, FeatureContainer):
         focus_duration_seconds : float
             Segment duration, seconds
 
+        store_processing_chain : bool
+            Store processing chain to data container returned
+            Default value False
+
         Returns
         -------
         self
@@ -67,15 +72,9 @@ class FeatureReadingProcessor(ProcessorMixin, FeatureContainer):
         """
 
         if data is None and self.input_type == ProcessingChainItemType.NONE:
-            processing_chain_item = self.get_processing_chain_item()
 
             if filename:
                 self.load(filename=filename)
-
-                if 'process_parameters' not in processing_chain_item:
-                    processing_chain_item['process_parameters'] = {}
-
-                processing_chain_item['process_parameters']['filename'] = filename
 
             if focus_start is not None and focus_duration is not None:
 
@@ -84,8 +83,6 @@ class FeatureReadingProcessor(ProcessorMixin, FeatureContainer):
                     start=focus_start,
                     duration=focus_duration
                 )
-                processing_chain_item['process_parameters']['focus_start'] = focus_start
-                processing_chain_item['process_parameters']['focus_duration'] = focus_duration
 
             elif focus_start is not None and focus_stop is not None:
                 # Set focus segment and channel
@@ -93,8 +90,6 @@ class FeatureReadingProcessor(ProcessorMixin, FeatureContainer):
                     start=focus_start,
                     stop=focus_stop
                 )
-                processing_chain_item['process_parameters']['focus_start'] = focus_start
-                processing_chain_item['process_parameters']['focus_stop'] = focus_stop
 
             elif focus_start_seconds is not None and focus_duration_seconds is not None:
 
@@ -103,8 +98,6 @@ class FeatureReadingProcessor(ProcessorMixin, FeatureContainer):
                     start_seconds=focus_start_seconds,
                     duration_seconds=focus_duration_seconds
                 )
-                processing_chain_item['process_parameters']['focus_start_seconds'] = focus_start_seconds
-                processing_chain_item['process_parameters']['focus_duration_seconds'] = focus_duration_seconds
 
             elif focus_start_seconds is not None and focus_stop_seconds is not None:
                 # Set focus segment and channel
@@ -112,11 +105,25 @@ class FeatureReadingProcessor(ProcessorMixin, FeatureContainer):
                     start_seconds=focus_start_seconds,
                     stop_seconds=focus_stop_seconds
                 )
+
+            if store_processing_chain:
+                processing_chain_item = self.get_processing_chain_item()
+
+                if 'process_parameters' not in processing_chain_item:
+                    processing_chain_item['process_parameters'] = {}
+
+                processing_chain_item['process_parameters']['filename'] = filename
+                processing_chain_item['process_parameters']['focus_start'] = focus_start
+                processing_chain_item['process_parameters']['focus_duration'] = focus_duration
+                processing_chain_item['process_parameters']['focus_start'] = focus_start
+                processing_chain_item['process_parameters']['focus_stop'] = focus_stop
+                processing_chain_item['process_parameters']['focus_start_seconds'] = focus_start_seconds
+                processing_chain_item['process_parameters']['focus_duration_seconds'] = focus_duration_seconds
                 processing_chain_item['process_parameters']['focus_start_seconds'] = focus_start_seconds
                 processing_chain_item['process_parameters']['focus_stop_seconds'] = focus_stop_seconds
 
-            if not self.processing_chain_item_exists():
-                self.push_processing_chain_item(**processing_chain_item)
+                if not self.processing_chain_item_exists():
+                    self.push_processing_chain_item(**processing_chain_item)
 
             return self
 
@@ -176,13 +183,17 @@ class RepositoryFeatureExtractorProcessor(ProcessorMixin):
         for processor in get_class_inheritors(FeatureExtractorProcessor):
             self.label_to_class[processor.label] = processor
 
-    def process(self, data=None, **kwargs):
+    def process(self, data=None, store_processing_chain=False, **kwargs):
         """Extract features
 
         Parameters
         ----------
         data : AudioContainer
             Audio data to extract features
+
+        store_processing_chain : bool
+            Store processing chain to data container returned
+            Default value False
 
         Returns
         -------
@@ -193,27 +204,33 @@ class RepositoryFeatureExtractorProcessor(ProcessorMixin):
         from dcase_util.containers import FeatureRepository, AudioContainer
 
         if isinstance(data, AudioContainer):
-            if hasattr(data, 'processing_chain') and data.processing_chain.chain_item_exists(processor_name='dcase_util.processors.'+self.__class__.__name__):
-                # Current processor is already in the processing chain, get that
-                processing_chain_item = data.processing_chain.chain_item(
-                    processor_name='dcase_util.processors.'+self.__class__.__name__
-                )
+            if store_processing_chain:
+                if hasattr(data, 'processing_chain') and data.processing_chain.chain_item_exists(
+                        processor_name='dcase_util.processors.' + self.__class__.__name__):
+                    # Current processor is already in the processing chain, get that
+                    processing_chain_item = data.processing_chain.chain_item(
+                        processor_name='dcase_util.processors.' + self.__class__.__name__
+                    )
+
+                else:
+                    # Create a new processing chain item
+                    processing_chain_item = self.get_processing_chain_item()
+
+                # Update current processing parameters into chain item
+                processing_chain_item.update({
+                    'process_parameters': kwargs
+                })
+
+                # Create processing chain to be stored in the container, and push chain item into it
+                if hasattr(data, 'processing_chain'):
+                    data.processing_chain.push_processor(**processing_chain_item)
+                    processing_chain = data.processing_chain
+
+                else:
+                    processing_chain = ProcessingChain().push_processor(**processing_chain_item)
 
             else:
-                # Create a new processing chain item
-                processing_chain_item = self.get_processing_chain_item()
-
-            # Update current processing parameters into chain item
-            processing_chain_item.update({
-                'process_parameters': kwargs
-            })
-
-            if hasattr(data, 'processing_chain'):
-                data.processing_chain.push_processor(**processing_chain_item)
-                processing_chain = data.processing_chain
-
-            else:
-                processing_chain = ProcessingChain().push_processor(**processing_chain_item)
+                processing_chain = None
 
             # Create repository container
             repository = FeatureRepository(
@@ -297,13 +314,17 @@ class FeatureExtractorProcessor(ProcessorMixin):
         # Run super init to call init of mixins too
         super(FeatureExtractorProcessor, self).__init__(*args, **kwargs)
 
-    def process(self, data=None, **kwargs):
+    def process(self, data=None, store_processing_chain=False, **kwargs):
         """Extract features
 
         Parameters
         ----------
         data : AudioContainer
             Audio data to extract features
+
+        store_processing_chain : bool
+            Store processing chain to data container returned
+            Default value False
 
         Returns
         -------
@@ -314,26 +335,31 @@ class FeatureExtractorProcessor(ProcessorMixin):
         from dcase_util.containers import FeatureContainer, AudioContainer
 
         if isinstance(data, AudioContainer):
-            if hasattr(data, 'processing_chain') and data.processing_chain.chain_item_exists(processor_name='dcase_util.processors.'+self.__class__.__name__):
-                # Current processor is already in the processing chain, get that
-                processing_chain_item = data.processing_chain.chain_item(
-                    processor_name='dcase_util.processors.' + self.__class__.__name__
-                )
+            if store_processing_chain:
+                if hasattr(data, 'processing_chain') and data.processing_chain.chain_item_exists(
+                        processor_name='dcase_util.processors.' + self.__class__.__name__):
+                    # Current processor is already in the processing chain, get that
+                    processing_chain_item = data.processing_chain.chain_item(
+                        processor_name='dcase_util.processors.' + self.__class__.__name__
+                    )
+
+                else:
+                    # Create a new processing chain item
+                    processing_chain_item = self.get_processing_chain_item()
+
+                processing_chain_item.update({
+                    'process_parameters': kwargs
+                })
+
+                if hasattr(data, 'processing_chain'):
+                    data.processing_chain.push_processor(**processing_chain_item)
+                    processing_chain = data.processing_chain
+
+                else:
+                    processing_chain = ProcessingChain().push_processor(**processing_chain_item)
 
             else:
-                # Create a new processing chain item
-                processing_chain_item = self.get_processing_chain_item()
-
-            processing_chain_item.update({
-                'process_parameters': kwargs
-            })
-
-            if hasattr(data, 'processing_chain'):
-                data.processing_chain.push_processor(**processing_chain_item)
-                processing_chain = data.processing_chain
-
-            else:
-                processing_chain = ProcessingChain().push_processor(**processing_chain_item)
+                processing_chain = None
 
             return FeatureContainer(
                 data=self.extract(y=data.get_focused()),
