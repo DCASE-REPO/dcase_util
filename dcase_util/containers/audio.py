@@ -1344,7 +1344,7 @@ class AudioContainer(ContainerMixin, FileMixin):
 
         Returns
         -------
-        numpy.ndarray, MetaDataContainer
+        list, MetaDataContainer
 
         """
         from dcase_util.containers import MetaDataContainer
@@ -1409,7 +1409,7 @@ class AudioContainer(ContainerMixin, FileMixin):
                 self._data[:, segment_start_samples:segment_stop_samples]
             )
 
-        return numpy.array(data), segments
+        return data, segments
 
     def plot(self, plot_type='wave', **kwargs):
         """Visualize audio data
