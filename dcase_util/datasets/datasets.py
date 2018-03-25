@@ -904,7 +904,9 @@ class Dataset(object):
                         content_type=self.included_content_types
                 ):
                     if remote_package.local_exists():
-                        remote_package.extract()
+                        remote_package.extract(
+                            omit_first_level=True
+                        )
 
                     else:
                         # Local file not present
