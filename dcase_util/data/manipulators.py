@@ -987,6 +987,7 @@ class Selector(ObjectContainer):
 
         return data
 
+
 class Masker(ObjectContainer):
     """Data masker"""
 
