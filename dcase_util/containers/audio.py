@@ -113,58 +113,143 @@ class AudioContainer(ContainerMixin, FileMixin):
         ui = FancyStringifier()
         output += ui.class_name(self.__class__.__name__) + '\n'
         if self.filename:
-            output += ui.data(field='Filename', value=self.filename) + '\n'
+            output += ui.data(
+                field='Filename',
+                value=self.filename
+            ) + '\n'
+
             if self.filetype_info and self.filetype_info.values:
-                output += ui.data(field='Format', value=self.format + ' (' + ', '.join(self.filetype_info.values()) + ')') + '\n'
+                output += ui.data(
+                    field='Format',
+                    value=self.format + ' (' + ', '.join(self.filetype_info.values()) + ')'
+                ) + '\n'
+
             else:
                 output += ui.data(field='Format', value=self.format) + '\n'
 
-            output += ui.data(field='Synced', value='Yes' if self.data_synced_with_file else 'No') + '\n'
+            output += ui.data(
+                field='Synced',
+                value='Yes' if self.data_synced_with_file else 'No'
+            ) + '\n'
 
-        output += ui.data(field='Sampling rate', value=str(self.fs), unit='hz') + '\n'
+        output += ui.data(
+            field='Sampling rate',
+            value=str(self.fs), unit='hz'
+        ) + '\n'
 
-        output += ui.data(field='Channels', value=str(self.channels)) + '\n'
+        output += ui.data(
+            field='Channels',
+            value=str(self.channels)
+        ) + '\n'
 
         output += ui.line(field='Duration') + '\n'
-        output += ui.data(indent=4, field='Seconds', value=self.duration_sec, unit='sec') + '\n'
-        output += ui.data(indent=4, field='Milliseconds', value=self.duration_ms, unit='ms') + '\n'
-        output += ui.data(indent=4, field='Samples', value=self.duration_samples, unit='samples') + '\n'
+        output += ui.data(
+            indent=4,
+            field='Seconds',
+            value=self.duration_sec,
+            unit='sec'
+        ) + '\n'
+
+        output += ui.data(
+            indent=4,
+            field='Milliseconds',
+            value=self.duration_ms,
+            unit='ms'
+        ) + '\n'
+
+        output += ui.data(
+            indent=4,
+            field='Samples',
+            value=self.duration_samples,
+            unit='samples'
+        ) + '\n'
 
         if self._focus_channel is not None or self._focus_start is not None or self._focus_stop is not None:
             output += ui.line(field='Focus segment') + '\n'
             if self.focus_channel is not None:
                 if self.channels == 2:
                     if self._focus_channel == 0:
-                        output += ui.data(indent=4,
-                                          field='Channel',
-                                          value='{channel} [{label}]'.format(channel=self._focus_channel,
-                                                                             label='Left Channel')) + '\n'
+                        output += ui.data(
+                            indent=4,
+                            field='Channel',
+                            value='{channel} [{label}]'.format(
+                                channel=self._focus_channel,
+                                label='Left Channel'
+                            )
+                        ) + '\n'
 
                     elif self._focus_channel == 1:
-                        output += ui.data(indent=4,
-                                          field='Channel',
-                                          value='{channel} [{label}]'.format(channel=self._focus_channel,
-                                                                             label='Right Channel')) + '\n'
+                        output += ui.data(
+                            indent=4,
+                            field='Channel',
+                            value='{channel} [{label}]'.format(
+                                channel=self._focus_channel,
+                                label='Right Channel'
+                            )
+                        ) + '\n'
 
                 else:
-                    output += ui.data(indent=4, field='Channel', value=self._focus_channel) + '\n'
+                    output += ui.data(
+                        indent=4,
+                        field='Channel',
+                        value=self._focus_channel
+                    ) + '\n'
 
-            output += ui.line(indent=4, field='Duration') + '\n'
-            output += ui.data(indent=6, field='Seconds',
-                              value=self.focus_stop_seconds - self.focus_start_seconds,
-                              unit='sec') + '\n'
+            output += ui.line(
+                indent=4,
+                field='Duration'
+            ) + '\n'
 
-            output += ui.data(indent=6, field='Samples',
-                              value=self.focus_stop_samples - self.focus_start_samples,
-                              unit='sec') + '\n'
+            output += ui.data(
+                indent=6,
+                field='Seconds',
+                value=self.focus_stop_seconds - self.focus_start_seconds,
+                unit='sec'
+            ) + '\n'
 
-            output += ui.line(indent=4, field='Start point') + '\n'
-            output += ui.data(indent=6, field='Seconds', value=self.focus_start_seconds, unit='sec') + '\n'
-            output += ui.data(indent=6, field='Samples', value=self.focus_start_samples, unit='samples') + '\n'
+            output += ui.data(
+                indent=6,
+                field='Samples',
+                value=self.focus_stop_samples - self.focus_start_samples,
+                unit='sec'
+            ) + '\n'
 
-            output += ui.line(indent=4, field='Stop point') + '\n'
-            output += ui.data(indent=6, field='Seconds', value=self.focus_stop_seconds, unit='sec') + '\n'
-            output += ui.data(indent=6, field='Samples', value=self.focus_stop_samples, unit='samples') + '\n'
+            output += ui.line(
+                indent=4,
+                field='Start point'
+            ) + '\n'
+
+            output += ui.data(
+                indent=6,
+                field='Seconds',
+                value=self.focus_start_seconds,
+                unit='sec') + '\n'
+
+            output += ui.data(
+                indent=6,
+                field='Samples',
+                value=self.focus_start_samples,
+                unit='samples'
+            ) + '\n'
+
+            output += ui.line(
+                indent=4,
+                field='Stop point'
+            ) + '\n'
+
+            output += ui.data(
+                indent=6,
+                field='Seconds',
+                value=self.focus_stop_seconds,
+                unit='sec'
+            ) + '\n'
+
+            output += ui.data(
+                indent=6,
+                field='Samples',
+                value=self.focus_stop_samples,
+                unit='samples'
+            ) + '\n'
 
         return output
 
@@ -622,7 +707,9 @@ class AudioContainer(ContainerMixin, FileMixin):
                     # Store sampling frequency
                     self.fs = fs
 
-            elif self.format in [FileFormat.FLAC, FileFormat.OGG, FileFormat.MP3, FileFormat.M4A, FileFormat.MP4, FileFormat.WEBM]:
+            elif self.format in [FileFormat.FLAC, FileFormat.OGG,
+                                 FileFormat.MP3,
+                                 FileFormat.M4A, FileFormat.MP4, FileFormat.WEBM]:
                 # Handle segment start and stop
                 if start is not None and stop is not None:
                     offset = start
@@ -792,10 +879,10 @@ class AudioContainer(ContainerMixin, FileMixin):
             import platform
 
             if platform.system() == 'Windows':
-                FFMPEG_BIN = "ffmpeg.exe"
+                ffmpeg_binary = "ffmpeg.exe"
 
             else:
-                FFMPEG_BIN = "ffmpeg"
+                ffmpeg_binary = "ffmpeg"
 
             if bit_rate not in [8, 16, 24, 32, 40, 48, 64, 80, 96, 112, 128, 160, 192, 224, 256, 320]:
                 message = '{name}: Unsupported bit rate [{bitrate}]'.format(
@@ -807,7 +894,7 @@ class AudioContainer(ContainerMixin, FileMixin):
                 raise IOError(message)
 
             command = [
-                FFMPEG_BIN,
+                ffmpeg_binary,
                 '-y',                                               # enable overwrite file
                 '-f', 's16le',                                      # input format
                 '-acodec', 'pcm_s16le',                             # input bit depth
@@ -1367,7 +1454,10 @@ class AudioContainer(ContainerMixin, FileMixin):
                 if skip_segments is not None:
                     # Go through skip segments and adjust segment start and stop to avoid segments
                     for item in skip_segments:
-                        if item.active_within_segment(start=segment_start/float(self.fs), stop=segment_stop/float(self.fs)):
+                        if item.active_within_segment(
+                                start=segment_start/float(self.fs),
+                                stop=segment_stop/float(self.fs)
+                        ):
                             # Adjust segment start to avoid current skip segment
                             segment_start = int(self.fs * item.offset)
                             # Adjust segment stop accordingly
@@ -1432,7 +1522,8 @@ class AudioContainer(ContainerMixin, FileMixin):
         elif plot_type == 'spec':
             self.plot_spec(**kwargs)
 
-    def plot_wave(self, x_axis='time', max_points=50000.0, offset=0.0, color='#333333', alpha=1.0, show_filename=True, plot=True):
+    def plot_wave(self, x_axis='time', max_points=50000.0, offset=0.0, color='#333333', alpha=1.0,
+                  show_filename=True, plot=True):
         """Visualize audio data as waveform.
 
         Parameters
@@ -1463,7 +1554,8 @@ class AudioContainer(ContainerMixin, FileMixin):
             Default value True
 
         plot : bool
-            If true, figure is shown automatically. Set to False if collecting multiple plots into same figure outside this method.
+            If true, figure is shown automatically. Set to False if collecting multiple plots into same figure
+            outside this method.
             Default value True
 
         Returns
@@ -1526,7 +1618,8 @@ class AudioContainer(ContainerMixin, FileMixin):
 
         return self
 
-    def plot_spec(self, spec_type='log', hop_length=512, cmap='magma', show_filename=True, show_colorbar=True, plot=True):
+    def plot_spec(self, spec_type='log', hop_length=512, cmap='magma',
+                  show_filename=True, show_colorbar=True, plot=True):
         """Visualize audio data as spectrogram.
 
         Parameters
@@ -1553,7 +1646,8 @@ class AudioContainer(ContainerMixin, FileMixin):
             Default value True
 
         plot : bool
-            If true, figure is shown automatically. Set to False if collecting multiple plots into same figure outside this method.
+            If true, figure is shown automatically. Set to False if collecting multiple plots into same
+            figure outside this method.
             Default value True
 
         Returns
@@ -1629,10 +1723,16 @@ class AudioContainer(ContainerMixin, FileMixin):
             channel_id = 0
 
             if spec_type in ['linear', 'log']:
-                D = librosa.core.amplitude_to_db(numpy.abs(librosa.stft(self.get_focused().ravel())) ** 2, ref=numpy.max)
+                D = librosa.core.amplitude_to_db(
+                    numpy.abs(librosa.stft(self.get_focused().ravel())) ** 2,
+                    ref=numpy.max
+                )
 
             elif spec_type.startswith('cqt'):
-                D = librosa.core.amplitude_to_db(librosa.cqt(self.get_focused().ravel(), sr=self.fs), ref=numpy.max)
+                D = librosa.core.amplitude_to_db(
+                    librosa.cqt(self.get_focused().ravel(), sr=self.fs),
+                    ref=numpy.max
+                )
 
             if spec_type == 'linear':
                 specshow(
