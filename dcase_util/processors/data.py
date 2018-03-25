@@ -50,7 +50,7 @@ class AggregationProcessor(Aggregator, ProcessorMixin):
         super(AggregationProcessor, self).__init__(**kwargs)
 
     def process(self, data=None, store_processing_chain=False, **kwargs):
-        """Process features
+        """Process
 
         Parameters
         ----------
@@ -70,7 +70,7 @@ class AggregationProcessor(Aggregator, ProcessorMixin):
         from dcase_util.containers import ContainerMixin
 
         if isinstance(data, ContainerMixin):
-           # Do processing
+            # Do processing
             container = self.aggregate(
                 data=data,
                 **kwargs
