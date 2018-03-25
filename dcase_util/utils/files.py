@@ -359,19 +359,23 @@ class Path(object):
             except OSError as exception:
                 pass
 
-    def create(self, paths):
+    def create(self, paths=None):
         """Create given paths.
 
         Parameters
         ----------
         paths : str, dict or list or str
-            Paths
+            Paths. If None given, path given to initializer is used instead.
+            Default value None
 
         Returns
         -------
         nothing
 
         """
+
+        if paths is None:
+            paths = self.path
 
         if isinstance(paths, str):
             self.makedirs(paths)
