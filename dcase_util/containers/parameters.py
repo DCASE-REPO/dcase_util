@@ -74,8 +74,10 @@ class AppParameterContainer(ParameterContainer):
             'PARAMETERS': 'parameters',
             'LABEL': 'method',
             'RECIPE': 'recipe',
+            'CHAIN': 'chain',
             'STACKING_RECIPE': 'stacking_recipe',
             'BASE': 'base',
+            'ENABLE': 'enable',
             'METHOD_PARAMETERS': 'method_parameters',
             'DEPENDENCY_PARAMETERS': 'dependency_parameters',
             'DEPENDENCY_LABEL': 'dependency_method',
@@ -460,6 +462,8 @@ class AppParameterContainer(ParameterContainer):
             create_parameter_hints=create_parameter_hints
         )
 
+        return self
+
     def get_path_translated(self, path, parameters=None):
         """Get data with path, path can contain string constants which will be translated.
 
@@ -649,7 +653,7 @@ class AppParameterContainer(ParameterContainer):
                         path=[section_method_parameters, label]
                     )
 
-                    if parameters:
+                    if method_parameters:
                         self.set_path_translated(
                             parameters=parameters,
                             path=[section, 'PARAMETERS', label],
