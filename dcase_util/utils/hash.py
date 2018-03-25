@@ -23,6 +23,7 @@ def get_parameter_hash(params):
 
     md5 = hashlib.md5()
     md5.update(str(json.dumps(params, sort_keys=True)).encode('utf-8'))
+
     return md5.hexdigest()
 
 
@@ -45,5 +46,5 @@ def get_file_hash(filename):
     with open(filename, "rb") as f:
         for chunk in iter(lambda: f.read(4096), b""):
             md5.update(chunk)
-    return md5.hexdigest()
 
+    return md5.hexdigest()
