@@ -41,6 +41,7 @@ class ContainerMixin(object):
     @property
     def logger(self):
         """Logger instance"""
+
         logger = logging.getLogger(__name__)
         if not logger.handlers:
             setup_logging()
@@ -54,6 +55,7 @@ class ContainerMixin(object):
         Nothing
 
         """
+
         print(self)
 
     def log(self, level='info'):
@@ -327,6 +329,7 @@ class PackageMixin(object):
         logger = logging.getLogger(__name__)
         if not logger.handlers:
             setup_logging()
+
         return logger
 
     @property
@@ -341,6 +344,7 @@ class PackageMixin(object):
 
         if 'package_password' in self:
             return self['package_password']
+
         else:
             return None
 
