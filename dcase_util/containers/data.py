@@ -952,6 +952,35 @@ class DataMatrix2DContainer(DataContainer):
 
         """
 
+        axis_list = [time_axis, data_axis]
+        axis_set = set(axis_list)
+        if len(axis_list) != len(axis_set):
+            message = '{name}: Give unique axis indexes [{axis_list}].'.format(
+                name=self.__class__.__name__,
+                axis_list=axis_list
+            )
+
+            self.logger.exception(message)
+            raise ValueError(message)
+
+        if time_axis > 1:
+            message = '{name}: Given time_axis too large [{time_axis}].'.format(
+                name=self.__class__.__name__,
+                time_axis=time_axis
+            )
+
+            self.logger.exception(message)
+            raise ValueError(message)
+
+        if data_axis > 1:
+            message = '{name}: Given data_axis too large [{data_axis}].'.format(
+                name=self.__class__.__name__,
+                data_axis=data_axis
+            )
+
+            self.logger.exception(message)
+            raise ValueError(message)
+
         # Get axis map
         axis_map = OneToOneMappingContainer({
             'time_axis': self.time_axis,
@@ -1152,11 +1181,43 @@ class DataMatrix3DContainer(DataMatrix2DContainer):
 
         """
 
-        # Set time and data axis through parent class
-        super(DataMatrix3DContainer, self).change_axis(
-            time_axis=time_axis,
-            data_axis=data_axis
-        )
+        axis_list = [time_axis, data_axis, sequence_axis]
+        axis_set = set(axis_list)
+        if len(axis_list) != len(axis_set):
+            message = '{name}: Give unique axis indexes [{axis_list}].'.format(
+                name=self.__class__.__name__,
+                axis_list=axis_list
+            )
+
+            self.logger.exception(message)
+            raise ValueError(message)
+
+        if time_axis > 2:
+            message = '{name}: Given time_axis too large [{time_axis}].'.format(
+                name=self.__class__.__name__,
+                time_axis=time_axis
+            )
+
+            self.logger.exception(message)
+            raise ValueError(message)
+
+        if data_axis > 2:
+            message = '{name}: Given data_axis too large [{data_axis}].'.format(
+                name=self.__class__.__name__,
+                data_axis=data_axis
+            )
+
+            self.logger.exception(message)
+            raise ValueError(message)
+
+        if sequence_axis > 2:
+            message = '{name}: Given sequence_axis too large [{sequence_axis}].'.format(
+                name=self.__class__.__name__,
+                sequence_axis=sequence_axis
+            )
+
+            self.logger.exception(message)
+            raise ValueError(message)
 
         # Get axis map
         axis_map = OneToOneMappingContainer({
@@ -1164,6 +1225,47 @@ class DataMatrix3DContainer(DataMatrix2DContainer):
             'data_axis': self.data_axis,
             'sequence_axis': self.sequence_axis,
         })
+        if time_axis is not None and time_axis != self.time_axis:
+            # Modify time axis
+
+            # Get axis names
+            target_axis = axis_map.flipped.map(time_axis)
+            source_axis = axis_map.flipped.map(self.time_axis)
+
+            # Modify data
+            self.data = numpy.swapaxes(
+                a=self.data,
+                axis1=self.time_axis,
+                axis2=time_axis
+            )
+
+            # Store new axes
+            axis_map[target_axis] = self.time_axis
+            axis_map[source_axis] = time_axis
+
+            setattr(self, str(target_axis), self.time_axis)
+            setattr(self, str(source_axis), time_axis)
+
+        if data_axis is not None and data_axis != self.data_axis:
+            # Modify data axis
+
+            # Get axis names
+            target_axis = axis_map.flipped.map(data_axis)
+            source_axis = axis_map.flipped.map(self.data_axis)
+
+            # Modify data
+            self.data = numpy.swapaxes(
+                a=self.data,
+                axis1=self.data_axis,
+                axis2=data_axis
+            )
+
+            # Store new axes
+            axis_map[target_axis] = self.data_axis
+            axis_map[source_axis] = data_axis
+
+            setattr(self, str(target_axis), self.data_axis)
+            setattr(self, str(source_axis), data_axis)
 
         if sequence_axis is not None and sequence_axis != self.sequence_axis:
             # Modify sequence axis
@@ -1263,7 +1365,7 @@ class DataMatrix3DContainer(DataMatrix2DContainer):
                 name=self.__class__.__name__
             )
             self.logger.exception(message)
-            raise AssertionError(message)
+            raise NotImplementedError(message)
 
 
 class BinaryMatrix2DContainer(DataMatrix2DContainer):
