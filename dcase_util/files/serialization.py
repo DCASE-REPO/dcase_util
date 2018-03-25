@@ -72,7 +72,7 @@ class Serializer(object):
                 return yaml.load(infile)
 
         except yaml.YAMLError as exc:
-            cls.logger.error("Error while parsing YAML file [{file}]".format(file=filename))
+            cls.logger().error("Error while parsing YAML file [{file}]".format(file=filename))
             if hasattr(exc, 'problem_mark'):
                 if exc.context is not None:
                     cls.logger().error(str(exc.problem_mark) + '\n  ' + str(exc.problem) + ' ' + str(exc.context))
