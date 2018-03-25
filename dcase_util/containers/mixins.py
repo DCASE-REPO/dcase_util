@@ -12,7 +12,7 @@ import csv
 import zipfile
 import tarfile
 from tqdm import tqdm
-from dcase_util.utils import setup_logging, FileFormat
+from dcase_util.utils import setup_logging, FileFormat, Path
 from dcase_util.ui import FancyLogger
 
 
@@ -352,16 +352,22 @@ class PackageMixin(object):
     def package_password(self, value):
         self['package_password'] = value
 
-    def extract(self, overwrite=False, omit_first_level=True):
-        """Extract the package
+    def extract(self, target_path=None, overwrite=False, omit_first_level=False):
+        """Extract the package. Supports Zip and Tar packages.
 
         Parameters
         ----------
+        target_path : str
+            Path to extract the package content. If none given, package is extracted in the same path than package.
+            Default value None
+
         overwrite : bool
             Overwrite existing files.
+            Default value False
 
         omit_first_level : bool
             Omit first directory level.
+            Default value True
 
         Returns
         -------
@@ -369,7 +375,10 @@ class PackageMixin(object):
 
         """
 
-        local_path = os.path.split(self.filename)[0]
+        if target_path is None:
+            target_path = os.path.split(self.filename)[0]
+
+        Path(target_path).create()
 
         if self.format == FileFormat.ZIP:
             with zipfile.ZipFile(self.filename, "r") as z:
@@ -378,6 +387,7 @@ class PackageMixin(object):
                     for name in z.namelist():
                         if not name.endswith('/'):
                             parts.append(name.split('/')[:-1])
+
                     prefix = os.path.commonprefix(parts) or ''
 
                     if prefix:
@@ -392,12 +402,14 @@ class PackageMixin(object):
                 # Start extraction
                 members = z.infolist()
                 file_count = 1
-                progress = tqdm(members,
-                                desc="{0: <25s}".format('Extract'),
-                                file=sys.stdout,
-                                leave=False,
-                                disable=self.disable_progress_bar,
-                                ascii=self.use_ascii_progress_bar)
+                progress = tqdm(
+                    members,
+                    desc="{0: <25s}".format('Extract'),
+                    file=sys.stdout,
+                    leave=False,
+                    disable=self.disable_progress_bar,
+                    ascii=self.use_ascii_progress_bar
+                )
 
                 for i, member in enumerate(progress):
                     if self.disable_progress_bar:
@@ -411,18 +423,28 @@ class PackageMixin(object):
                     if not omit_first_level or len(member.filename) > offset:
                         if omit_first_level:
                             member.filename = member.filename[offset:]
+
                         progress.set_description("{0: >35s}".format(member.filename.split('/')[-1]))
                         progress.update()
-                        if not os.path.isfile(os.path.join(local_path, member.filename)) or overwrite:
+
+                        if not os.path.isfile(os.path.join(target_path, member.filename)) or overwrite:
                             try:
                                 if hasattr(self, 'package_password') and self.package_password:
-                                    z.extract(member=member, path=local_path, pwd=self.package_password)
+                                    z.extract(
+                                        member=member,
+                                        path=target_path,
+                                        pwd=self.package_password
+                                    )
+
                                 else:
-                                    z.extract(member=member, path=local_path)
+                                    z.extract(
+                                        member=member,
+                                        path=target_path
+                                    )
 
                             except KeyboardInterrupt:
                                 # Delete latest file, since most likely it was not extracted fully
-                                os.remove(os.path.join(local_path, member.filename))
+                                os.remove(os.path.join(target_path, member.filename))
 
                                 # Quit
                                 sys.exit()
@@ -431,12 +453,14 @@ class PackageMixin(object):
 
         elif self.format == FileFormat.TAR:
             tar = tarfile.open(self.filename, "r:gz")
-            progress = tqdm(tar,
-                            desc="{0: <25s}".format('Extract'),
-                            file=sys.stdout,
-                            leave=False,
-                            disable=self.disable_progress_bar,
-                            ascii=self.use_ascii_progress_bar)
+            progress = tqdm(
+                tar,
+                desc="{0: <25s}".format('Extract'),
+                file=sys.stdout,
+                leave=False,
+                disable=self.disable_progress_bar,
+                ascii=self.use_ascii_progress_bar
+            )
 
             for i, tar_info in enumerate(progress):
                 if self.disable_progress_bar:
@@ -447,8 +471,9 @@ class PackageMixin(object):
                         file=tar_info.name)
                     )
 
-                if not os.path.isfile(os.path.join(local_path, tar_info.name)) or overwrite:
-                    tar.extract(tar_info, local_path)
+                if not os.path.isfile(os.path.join(target_path, tar_info.name)) or overwrite:
+                    tar.extract(tar_info, target_path)
+
                 tar.members = []
             tar.close()
 
