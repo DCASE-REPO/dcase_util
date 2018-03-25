@@ -182,6 +182,22 @@ BaseCallback
 
     BaseCallback
 
+Generators
+::::::::::
+
+KerasDataSequence
+-----------------
+
+*dcase_util.keras.get_keras_data_sequence*
+
+KerasDataSequence class should be accessed through getter method to avoid importing Keras when importing dcase_util.
+This mechanics allows user to decide when importing the Keras, and set random seeds before this.
+
+.. autosummary::
+    :toctree: generated/
+
+    get_keras_data_sequence_class
+
 Utils
 :::::
 
@@ -197,6 +213,7 @@ Utils
 
 from .model import *
 from .callbacks import *
+from .generators import *
 from .utils import *
 
 __all__ = [_ for _ in dir() if not _.startswith('_')]
