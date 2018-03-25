@@ -241,9 +241,6 @@ class Normalizer(ObjectContainer):
         if isinstance(data, DataContainer):
             data.data = (data.data - self.mean) / self.std
 
-            if hasattr(self, 'get_processing_chain_item'):
-                data.processing_chain.push_processor(**self.get_processing_chain_item())
-
             return data
 
         elif isinstance(data, numpy.ndarray):
