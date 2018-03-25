@@ -479,3 +479,183 @@ class PackageMixin(object):
 
         return self
 
+    def compress(self, filename=None, path=None, file_list=None, size_limit=None, overwrite=False):
+        """Compress the package. Supports Zip and Tar packages.
+
+        Parameters
+        ----------
+        file_list : list of dict
+
+        size_limit : int
+            Default value None
+
+        overwrite : bool
+            Overwrite existing package.
+            Default value False
+
+        Returns
+        -------
+        self
+
+        """
+
+        if filename is not None:
+            self.filename = filename
+            self.detect_file_format()
+            self.validate_format()
+
+        if path is not None and file_list is None:
+            files = Path(path=path).file_list(recursive=True)
+            file_list = []
+            for file in files:
+                file_list.append(
+                    {
+                        'source': file,
+                        'target': os.path.relpath(file)
+                    }
+                )
+
+        if size_limit is None:
+            package = None
+
+            if self.format == FileFormat.ZIP:
+                package = zipfile.ZipFile(
+                    file=self.filename,
+                    mode='w'
+                )
+
+            elif self.format == FileFormat.TAR:
+                package = tarfile.open(
+                    name=self.filename,
+                    mode='w:gz'
+                )
+
+            size_uncompressed = 0
+            for item in file_list:
+                if os.path.exists(item['source']):
+                    if self.format == FileFormat.ZIP:
+                        package.write(
+                            filename=item['source'],
+                            arcname=os.path.relpath(item['target']),
+                            compress_type=zipfile.ZIP_DEFLATED
+                        )
+                        file_info = package.getinfo(os.path.relpath(item['target']))
+                        size_uncompressed += file_info.file_size
+
+                    elif self.format == FileFormat.TAR:
+                        package.add(
+                            name=item['source'],
+                            arcname=os.path.relpath(item['target'])
+                        )
+                        file_info = package.gettarinfo(
+                            name=item['source'],
+                            arcname=os.path.relpath(item['target'])
+                        )
+                        size_uncompressed += file_info.size
+
+                else:
+                    package.close()
+                    message = '{name}: Non-existing file [{filename}] detected while compressing a package [{package}]'.format(
+                        name=self.__class__.__name__,
+                        filename=item['source'],
+                        package=self.filename
+                    )
+                    if self.logger:
+                        self.logger.exception(message)
+
+                    raise IOError(message)
+
+            package.close()
+
+        else:
+            base, extension = os.path.splitext(self.filename)
+            filename_template = base + '.{package_id}' + extension
+
+            # Initialize package
+            package_id = 1
+
+            size_uncompressed = 0
+            if self.format == FileFormat.ZIP:
+                package = zipfile.ZipFile(
+                    file=filename_template.format(package_id=package_id),
+                    mode='w'
+                )
+
+            elif self.format == FileFormat.TAR:
+                package = tarfile.open(
+                    name=filename_template.format(package_id=package_id),
+                    mode='w:gz'
+                )
+
+            progress = tqdm(
+                file_list,
+                desc="{0: <25s}".format('Compress'),
+                file=sys.stdout,
+                leave=False,
+                disable=self.disable_progress_bar,
+                ascii=self.use_ascii_progress_bar
+            )
+
+            for item_id, item in enumerate(progress):
+                if self.disable_progress_bar:
+                    self.logger.info('  {title:<15s} [{item_id:d}/{total:d}] {file:<30s}'.format(
+                        title='Compress ',
+                        item_id=item_id,
+                        total=len(progress),
+                        file=item['source'])
+                    )
+
+                if os.path.exists(item['source']):
+                    current_size_uncompressed = os.path.getsize(item['source'])
+                    if size_uncompressed + current_size_uncompressed > size_limit:
+                        # Size limit met, close current package and open a new one.
+                        package.close()
+
+                        package_id += 1
+                        if self.format == FileFormat.ZIP:
+                            package = zipfile.ZipFile(
+                                file=filename_template.format(package_id=package_id),
+                                mode='w'
+                            )
+
+                        elif self.format == FileFormat.TAR:
+                            package = tarfile.open(
+                                name=filename_template.format(package_id=package_id),
+                                mode='w:gz'
+                            )
+
+                        size_uncompressed = 0
+                    if self.format == FileFormat.ZIP:
+                        package.write(
+                            filename=item['source'],
+                            arcname=os.path.relpath(item['target']),
+                            compress_type=zipfile.ZIP_DEFLATED
+                        )
+
+                        file_info = package.getinfo(os.path.relpath(item['target']))
+                        size_uncompressed += file_info.file_size
+
+                    elif self.format == FileFormat.TAR:
+                        package.add(
+                            name=item['source'],
+                            arcname=os.path.relpath(item['target'])
+                        )
+                        file_info = package.gettarinfo(
+                            name=item['source'],
+                            arcname=os.path.relpath(item['target'])
+                        )
+                        size_uncompressed += file_info.size
+
+                else:
+                    package.close()
+                    message = '{name}: Non-existing file [{filename}] detected while compressing a package [{package}]'.format(
+                        name=self.__class__.__name__,
+                        filename=item['source'],
+                        package=filename_template.format(package_id=package_id)
+                    )
+                    if self.logger:
+                        self.logger.exception(message)
+
+                    raise IOError(message)
+
+            package.close()
