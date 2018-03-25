@@ -25,16 +25,28 @@ class DataContainer(ObjectContainer):
         Parameters
         ----------
         filename : str, optional
+            File path
+            Default value None
 
-        data : list, optional
+        data : numpy.ndarray, optional
+            Data to initialize the container
+            Default value None
 
         stats : dict, optional
+            Statistics of the data
+            Default value None
 
-        metadata : dict, optional
+        metadata : dict or MetadataContainer, optional
+            MetadataContainer
+            Default value None
 
         time_resolution : float, optional
+            Time resolution
+            Default value None
 
         processing_chain : ProcessingChain, optional
+            Processing chain.
+            Default value None
 
         """
 
@@ -224,42 +236,121 @@ class DataContainer(ObjectContainer):
         output = super(DataContainer, self).__str__()
 
         output += ui.line(field='Data') + '\n'
-        output += ui.data(indent=4, field='data', value=self.data) + '\n'
+        output += ui.data(
+            indent=4,
+            field='data',
+            value=self.data
+        ) + '\n'
 
-        output += ui.line(indent=4, field='Dimensions') + '\n'
-        output += ui.data(indent=6, field='time_axis', value=self.time_axis) + '\n'
+        output += ui.line(
+            indent=4,
+            field='Dimensions'
+        ) + '\n'
+        output += ui.data(
+            indent=6,
+            field='time_axis',
+            value=self.time_axis
+        ) + '\n'
 
-        output += ui.line(indent=4, field='Timing information') + '\n'
-        output += ui.data(indent=6, field='time_resolution', value=self.time_resolution, unit="sec") + '\n'
+        output += ui.line(
+            indent=4,
+            field='Timing information'
+        ) + '\n'
+
+        output += ui.data(
+            indent=6,
+            field='time_resolution',
+            value=self.time_resolution,
+            unit="sec"
+        ) + '\n'
 
         output += ui.line(field='Meta') + '\n'
-        output += ui.data(indent=4, field='stats', value='Calculated' if self._stats is not None else '-') + '\n'
-        output += ui.data(indent=4, field='metadata', value=self.metadata if self.metadata else '-') + '\n'
-        output += ui.data(indent=4, field='processing_chain', value=self.processing_chain if self.processing_chain else '-') + '\n'
+        output += ui.data(
+            indent=4,
+            field='stats',
+            value='Calculated' if self._stats is not None else '-'
+        ) + '\n'
+
+        output += ui.data(
+            indent=4,
+            field='metadata',
+            value=self.metadata if self.metadata else '-'
+        ) + '\n'
+
+        output += ui.data(
+            indent=4,
+            field='processing_chain',
+            value=self.processing_chain if self.processing_chain else '-'
+        ) + '\n'
 
         output += ui.line(field='Duration') + '\n'
-        output += ui.data(indent=4, field='Frames', value=self.length) + '\n'
+        output += ui.data(
+            indent=4,
+            field='Frames',
+            value=self.length
+        ) + '\n'
 
         if self.time_resolution:
-            output += ui.data(indent=4, field='Seconds', value=self._frame_to_time(frame_id=self.length), unit='sec') + '\n'
+            output += ui.data(
+                indent=4,
+                field='Seconds',
+                value=self._frame_to_time(frame_id=self.length),
+                unit='sec'
+            ) + '\n'
 
         if self._focus_start is not None and self._focus_stop is not None:
             output += ui.line(field='Focus segment') + '\n'
-            output += ui.line(indent=4, field='Duration') + '\n'
-            output += ui.data(indent=6, field='Index', value=self._focus_stop - self._focus_start) + '\n'
-            if self.time_resolution:
-                output += ui.data(indent=6, field='Seconds', value=self._frame_to_time(
-                    frame_id=self._focus_stop - self._focus_start), unit='sec') + '\n'
+            output += ui.line(
+                indent=4,
+                field='Duration'
+            ) + '\n'
 
-            output += ui.line(indent=4, field='Start') + '\n'
-            output += ui.data(indent=6, field='Index', value=self._focus_start) + '\n'
+            output += ui.data(
+                indent=6,
+                field='Index',
+                value=self._focus_stop - self._focus_start
+            ) + '\n'
+
             if self.time_resolution:
-                output += ui.data(indent=6, field='Seconds', value=self._frame_to_time(frame_id=self._focus_start), unit='sec') + '\n'
+                output += ui.data(
+                    indent=6, field='Seconds',
+                    value=self._frame_to_time(frame_id=self._focus_stop - self._focus_start),
+                    unit='sec'
+                ) + '\n'
+
+            output += ui.line(
+                indent=4,
+                field='Start'
+            ) + '\n'
+
+            output += ui.data(
+                indent=6,
+                field='Index',
+                value=self._focus_start
+            ) + '\n'
+
+            if self.time_resolution:
+                output += ui.data(
+                    indent=6,
+                    field='Seconds',
+                    value=self._frame_to_time(frame_id=self._focus_start),
+                    unit='sec'
+                ) + '\n'
 
             output += ui.line(indent=4, field='Stop') + '\n'
-            output += ui.data(indent=6, field='Index', value=self._focus_stop) + '\n'
+            output += ui.data(
+                indent=6,
+                field='Index',
+                value=self._focus_stop
+            ) + '\n'
+
             if self.time_resolution:
-                output += ui.data(indent=6, field='Seconds', value=self._frame_to_time(frame_id=self._focus_stop), unit='sec') + '\n'
+                output += ui.data(
+                    indent=6,
+                    field='Seconds',
+                    value=self._frame_to_time(frame_id=self._focus_stop),
+                    unit='sec'
+                ) + '\n'
 
         return output
 
@@ -393,6 +484,7 @@ class DataContainer(ObjectContainer):
 
         rounding_direction : str, optional
             Rounding direction, one of ['ceil', 'floor', None]
+            Default value None
 
         Returns
         -------
@@ -408,6 +500,9 @@ class DataContainer(ObjectContainer):
 
         elif rounding_direction == 'floor':
             frame = int(numpy.floor(time / float(self.time_resolution)))
+
+        else:
+            frame = int(time / float(self.time_resolution))
 
         # Handle negative index and index outside matrix
         if frame < 0:
@@ -442,25 +537,32 @@ class DataContainer(ObjectContainer):
         Parameters
         ----------
         start : int, optional
-            Frame index of focus segment start
+            Frame index of focus segment start.
+            Default value None
 
         stop : int, optional
-            Frame index of focus segment stop
+            Frame index of focus segment stop.
+            Default value None
 
         duration : int, optional
-            Frame count of focus segment
+            Frame count of focus segment.
+            Default value None
+
 
         start_seconds : float, optional
             Time stamp (in seconds) of focus segment start, will be converted to frame index based on
-            time resolution of the data matrix
+            time resolution of the data matrix.
+            Default value None
 
         stop_seconds : float, optional
             Time stamp (in seconds) of focus segment stop, will be converted to frame index based on
-            time resolution of the data matrix
+            time resolution of the data matrix.
+            Default value None
 
         duration_seconds : float, optional
             Duration (in seconds) of focus segment, will be converted to frame index based on
-            time resolution of the data matrix
+            time resolution of the data matrix.
+            Default value None
 
         Returns
         -------
@@ -545,9 +647,11 @@ class DataContainer(ObjectContainer):
         ----------
         frame_ids : list of int, optional
             Frame ids of frames to be included.
+            Default value None
 
         frame_hop : int, optional
             Frame hopping factor, with one every frame is included.
+            Default value 1
 
         Returns
         -------
@@ -587,22 +691,35 @@ class DataContainer(ObjectContainer):
 class DataArrayContainer(DataContainer):
     """Array data container class, inherited from DataContainer."""
     valid_formats = [FileFormat.CPICKLE]  #: Valid file formats
+
     def __init__(self, data=None, stats=None, metadata=None, time_resolution=None, processing_chain=None, **kwargs):
         """Constructor
 
         Parameters
         ----------
         filename : str, optional
+            File path
+            Default value None
 
-        data : list, optional
+        data : numpy.ndarray, optional
+            Data to initialize the container
+            Default value None
 
         stats : dict, optional
+            Statistics of the data
+            Default value None
 
-        metadata : dict, optional
+        metadata : dict or MetadataContainer, optional
+            MetadataContainer
+            Default value None
 
-        time_resolution : float
+        time_resolution : float, optional
+            Time resolution
+            Default value None
 
-        processing_chain : ProcessingChain
+        processing_chain : ProcessingChain, optional
+            Processing chain.
+            Default value None
 
         """
 
@@ -631,20 +748,33 @@ class DataMatrix2DContainer(DataContainer):
         Parameters
         ----------
         filename : str, optional
+            File path
+            Default value None
 
-        data : list, optional
+        data : numpy.ndarray, optional
+            Data to initialize the container
+            Default value None
 
         stats : dict, optional
+            Statistics of the data
+            Default value None
 
-        metadata : dict, optional
+        metadata : dict or MetadataContainer, optional
+            MetadataContainer
+            Default value None
 
-        time_resolution : float
+        time_resolution : float, optional
+            Time resolution
+            Default value None
 
-        processing_chain : ProcessingChain
+        processing_chain : ProcessingChain, optional
+            Processing chain.
+            Default value None
 
         """
+
         if data is None:
-            # Initialize with 2-matrix
+            # Initialize with 2D-matrix
             data = numpy.ndarray((0, 0))
 
         kwargs.update({
@@ -755,12 +885,15 @@ class DataMatrix2DContainer(DataContainer):
         ----------
         frame_ids : list of int, optional
             Frame ids of frames to be included.
+            Default value None
 
         vector_ids : list of int, optional
             Data ids of frame's data vector to be included.
+            Default value None
 
         frame_hop : int, optional
             Frame hopping factor, with one every frame is included.
+            Default value 1
 
         Returns
         -------
@@ -854,20 +987,33 @@ class DataMatrix3DContainer(DataMatrix2DContainer):
         Parameters
         ----------
         filename : str, optional
+            File path
+            Default value None
 
-        data : list, optional
+        data : numpy.ndarray, optional
+            Data to initialize the container
+            Default value None
 
         stats : dict, optional
+            Statistics of the data
+            Default value None
 
-        metadata : dict, optional
+        metadata : dict or MetadataContainer, optional
+            MetadataContainer
+            Default value None
 
         time_resolution : float, optional
+            Time resolution
+            Default value None
 
         processing_chain : ProcessingChain, optional
+            Processing chain.
+            Default value None
 
         """
 
         if data is None:
+            # Initialize with 3D-matrix
             data = numpy.ndarray((0, 0, 0))
 
         kwargs.update({
@@ -924,7 +1070,7 @@ class DataMatrix3DContainer(DataMatrix2DContainer):
 
             for sequence_id in range(data.shape[self.sequence_axis]):
                 plt.subplot(data.shape[self.sequence_axis], 1, sequence_id + 1)
-                current_data = data[:,:,sequence_id]
+                current_data = data[:, :, sequence_id]
                 if self.time_axis == 0:
                     # Make sure time is on x-axis
                     current_data = current_data.T
@@ -957,9 +1103,8 @@ class DataMatrix3DContainer(DataMatrix2DContainer):
             plt.tight_layout()
             plt.show()
 
-
         else:
-            # TODO
+            # TODO find method visualize deep matrices.
             message = '{name}: Matrix is too deep, plot-method not yet implemented.'.format(
                 name=self.__class__.__name__
             )
@@ -1086,7 +1231,6 @@ class BinaryMatrix2DContainer(DataMatrix2DContainer):
         """
 
         import matplotlib.pyplot as plt
-        import librosa
         from librosa.display import specshow
 
         if binary_matrix is None:
@@ -1171,7 +1315,10 @@ class DataRepository(RepositoryContainer):
         Parameters
         ----------
         filename: str or dict
-            Either one filename (str) or multiple filenames in a dictionary. Dictionary based parameter is used to construct the repository from separate FeatureContainers, two formats for the dictionary is supported: 1) label as key, and filename as value, and 2) two-level dictionary label as key1, stream as key2 and filename as value.
+            Either one filename (str) or multiple filenames in a dictionary. Dictionary based parameter is used to
+            construct the repository from separate FeatureContainers, two formats for the dictionary is supported:
+            1) label as key, and filename as value, and 2) two-level dictionary label as key1, stream as
+            key2 and filename as value.
 
         default_stream_id : str or int
             Default stream id used when accessing data
@@ -1182,6 +1329,8 @@ class DataRepository(RepositoryContainer):
             Default value None
 
         """
+
+        kwargs['filename'] = filename
 
         super(DataRepository, self).__init__(**kwargs)
 
@@ -1205,19 +1354,39 @@ class DataRepository(RepositoryContainer):
         output += ui.class_name(self.__class__.__name__) + '\n'
 
         if self.filename:
-            output += FancyStringifier().data(field='filename', value=self.filename) + '\n'
+            output += ui.data(
+                field='filename',
+                value=self.filename
+            ) + '\n'
 
         output += ui.line(field='Repository info') + '\n'
-        output += ui.data(indent=4, field='Item class', value=self.item_class.__name__) + '\n'
-        output += ui.data(indent=4, field='Item count', value=len(self)) + '\n'
-        output += ui.data(indent=4, field='Labels', value=list(self.keys())) + '\n'
+        output += ui.data(
+            indent=4,
+            field='Item class',
+            value=self.item_class.__name__
+        ) + '\n'
+
+        output += ui.data(
+            indent=4,
+            field='Item count',
+            value=len(self)
+        ) + '\n'
+
+        output += ui.data(
+            indent=4,
+            field='Labels',
+            value=list(self.keys())
+        ) + '\n'
 
         output += ui.line(field='Content') + '\n'
         for label, label_data in iteritems(self):
-            print(label_data)
             if label_data:
                 for stream_id, stream_data in iteritems(label_data):
-                    output += ui.data(indent=4, field='['+str(label)+']' + '[' + str(stream_id) + ']', value=stream_data) + '\n'
+                    output += ui.data(
+                        indent=4,
+                        field='['+str(label)+']' + '[' + str(stream_id) + ']',
+                        value=stream_data
+                    ) + '\n'
 
         output += '\n'
 
@@ -1260,8 +1429,15 @@ class DataRepository(RepositoryContainer):
         Parameters
         ----------
         filename : str or dict
-            Either one filename (str) or multiple filenames in a dictionary. Dictionary based parameter is used to construct the repository from separate FeatureContainers, two formats for the dictionary is supported: 1) label as key, and filename as value, and 2) two-level dictionary label as key1, stream as key2 and filename as value. If None given, parameter given to class initializer is used instead.
+            Either one filename (str) or multiple filenames in a dictionary. Dictionary based parameter is used to
+            construct the repository from separate FeatureContainers, two formats for the dictionary is supported: 1)
+            label as key, and filename as value, and 2) two-level dictionary label as key1, stream as key2 and
+            filename as value. If None given, parameter given to class initializer is used instead.
             Default value None
+
+        collect_from_containers : bool
+            Collect data to the repository from separate containers.
+            Default value True
 
         Returns
         -------
@@ -1286,7 +1462,6 @@ class DataRepository(RepositoryContainer):
                 filename_base, file_extension = os.path.splitext(self.filename)
                 containers = glob.glob(filename_base + '.*-*' + file_extension)
                 for filename in containers:
-                    filename_base, file_extension = os.path.splitext(filename)
                     label, stream_id = os.path.splitext(filename)[0].split('.')[-1].split('-')
                     if label not in self:
                         self[label] = {}
@@ -1388,6 +1563,7 @@ class DataRepository(RepositoryContainer):
                 for stream_id in self.stream_ids(label=label):
                     if stream_id not in filename_dictionary[label]:
                         filename_dictionary[label][stream_id] = filename_base + '.' + label + '-' + str(stream_id) + file_extension
+
             self.filename = filename_dictionary
 
         if isinstance(self.filename, basestring):
