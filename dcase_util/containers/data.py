@@ -10,7 +10,7 @@ import os
 import glob
 from past.builtins import basestring
 
-from dcase_util.containers import ObjectContainer, RepositoryContainer
+from dcase_util.containers import ObjectContainer, RepositoryContainer, OneToOneMappingContainer
 from dcase_util.ui import FancyStringifier
 from dcase_util.utils import FileFormat, filelist_exists
 
@@ -933,6 +933,75 @@ class DataMatrix2DContainer(DataContainer):
             else:
                 return data[::frame_hop]
 
+    def change_axis(self, time_axis=None, data_axis=None):
+        """Set axis
+
+        Parameters
+        ----------
+        time_axis : int, optional
+            New data axis for time. Current axis and new axis are swapped.
+            Default value None
+
+        data_axis : int, optional
+            New data axis for data. Current axis and new axis are swapped.
+            Default value None
+
+        Returns
+        -------
+        self
+
+        """
+
+        # Get axis map
+        axis_map = OneToOneMappingContainer({
+            'time_axis': self.time_axis,
+            'data_axis': self.data_axis
+        })
+
+        if time_axis is not None and time_axis != self.time_axis:
+            # Modify time axis
+
+            # Get axis names
+            target_axis = axis_map.flipped.map(time_axis)
+            source_axis = axis_map.flipped.map(self.time_axis)
+
+            # Modify data
+            self.data = numpy.swapaxes(
+                a=self.data,
+                axis1=self.time_axis,
+                axis2=time_axis
+            )
+
+            # Store new axes
+            axis_map[target_axis] = self.time_axis
+            axis_map[source_axis] = time_axis
+
+            setattr(self, str(target_axis), self.time_axis)
+            setattr(self, str(source_axis), time_axis)
+
+        if data_axis is not None and data_axis != self.data_axis:
+            # Modify data axis
+
+            # Get axis names
+            target_axis = axis_map.flipped.map(data_axis)
+            source_axis = axis_map.flipped.map(self.data_axis)
+
+            # Modify data
+            self.data = numpy.swapaxes(
+                a=self.data,
+                axis1=self.data_axis,
+                axis2=data_axis
+            )
+
+            # Store new axes
+            axis_map[target_axis] = self.data_axis
+            axis_map[source_axis] = data_axis
+
+            setattr(self, str(target_axis), self.data_axis)
+            setattr(self, str(source_axis), data_axis)
+
+        return self
+
     def plot(self):
         """Visualize data matrix.
 
@@ -1060,13 +1129,97 @@ class DataMatrix3DContainer(DataMatrix2DContainer):
 
         return output
 
-    def plot(self, show_color_bar=False):
+    def change_axis(self, time_axis=None, data_axis=None, sequence_axis=None):
+        """Set axis
+
+        Parameters
+        ----------
+        time_axis : int, optional
+            New data axis for time. Current axis and new axis are swapped.
+            Default value None
+
+        data_axis : int, optional
+            New data axis for data. Current axis and new axis are swapped.
+            Default value None
+
+        sequence_axis : int, optional
+            New data axis for data sequence. Current axis and new axis are swapped.
+            Default value None
+
+        Returns
+        -------
+        self
+
+        """
+
+        # Set time and data axis through parent class
+        super(DataMatrix3DContainer, self).change_axis(
+            time_axis=time_axis,
+            data_axis=data_axis
+        )
+
+        # Get axis map
+        axis_map = OneToOneMappingContainer({
+            'time_axis': self.time_axis,
+            'data_axis': self.data_axis,
+            'sequence_axis': self.sequence_axis,
+        })
+
+        if sequence_axis is not None and sequence_axis != self.sequence_axis:
+            # Modify sequence axis
+
+            # Get axis names
+            target_axis = axis_map.flipped.map(sequence_axis)
+            source_axis = axis_map.flipped.map(self.sequence_axis)
+
+            # Modify data
+            self.data = numpy.swapaxes(
+                a=self.data,
+                axis1=self.sequence_axis,
+                axis2=sequence_axis
+            )
+
+            # Store new axes
+            axis_map[target_axis] = self.sequence_axis
+            axis_map[source_axis] = sequence_axis
+
+            setattr(self, str(target_axis), self.sequence_axis)
+            setattr(self, str(source_axis), sequence_axis)
+
+        return self
+
+    def plot(self, show_color_bar=False, show_filename=True, plot=True):
+        """Plot data
+
+        Parameters
+        ----------
+
+        show_color_bar : bool
+            Show color bar next to plot.
+            Default value False
+
+        show_filename : bool
+            Show filename as figure title
+            Default value True
+
+        plot : bool
+            If true, figure is shown automatically. Set to False if collecting multiple plots into same figure
+            outside this method.
+            Default value True
+
+        Returns
+        -------
+        self
+
+        """
+
         data = self.get_focused()
 
         if data.shape[self.sequence_axis] < 20:
             from librosa.display import specshow
             import matplotlib.pyplot as plt
-            plt.figure()
+            if plot:
+                plt.figure()
 
             for sequence_id in range(data.shape[self.sequence_axis]):
                 plt.subplot(data.shape[self.sequence_axis], 1, sequence_id + 1)
@@ -1097,11 +1250,12 @@ class DataMatrix3DContainer(DataMatrix2DContainer):
                     plt.colorbar()
 
             # Add filename to first subplot
-            if hasattr(self, 'filename') and self.filename:
+            if show_filename and hasattr(self, 'filename') and self.filename:
                 plt.title(self.filename)
 
-            plt.tight_layout()
-            plt.show()
+            if plot:
+                plt.tight_layout()
+                plt.show()
 
         else:
             # TODO find method visualize deep matrices.
