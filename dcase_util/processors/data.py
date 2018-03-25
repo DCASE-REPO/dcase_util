@@ -1003,3 +1003,117 @@ class EventRollEncodingProcessor(EventRollEncoder, ProcessorMixin):
             self.logger.exception(message)
             raise ValueError(message)
 
+
+class DataShapingProcessor(ProcessorMixin):
+    """Data shaping processor"""
+    input_type = ProcessingChainItemType.DATA_CONTAINER  #: Input data type
+    output_type = ProcessingChainItemType.DATA_CONTAINER  #: Output data type
+
+    def __init__(self, axis_list=None, time_axis=None, data_axis=None, sequence_axis=None, **kwargs):
+        """Constructor
+
+        Parameters
+        ----------
+        axis_list : list
+            List of axis names in order. Use this parameter or set by time_axis, data_axis, and sequence_axis.
+            Default value None
+
+        time_axis : int, optional
+            New data axis for time. Current axis and new axis are swapped.
+            Default value None
+
+        data_axis : int, optional
+            New data axis for data. Current axis and new axis are swapped.
+            Default value None
+
+        sequence_axis : int, optional
+            New data axis for data sequence. Current axis and new axis are swapped.
+            Default value None
+
+        """
+
+        if axis_list is not None:
+            if isinstance(axis_list, list):
+                for axis_id, item in enumerate(axis_list):
+                    if 'time' in item:
+                        self.time_axis = axis_id
+                    elif 'data' in item:
+                        self.data_axis = axis_id
+                    elif 'sequence' in item:
+                        self.sequence_axis = axis_id
+
+            else:
+                message = '{name}: Wrong type for axis_list, list required.'.format(
+                    name=self.__class__.__name__
+                )
+
+                self.logger.exception(message)
+                raise ValueError(message)
+
+        else:
+            self.time_axis = time_axis
+            self.data_axis = data_axis
+            self.sequence_axis = sequence_axis
+
+        # Run ProcessorMixin init
+        ProcessorMixin.__init__(self, **kwargs)
+
+        # Run super init to call init of mixins too
+        super(DataShapingProcessor, self).__init__(**kwargs)
+
+    def process(self, data=None, store_processing_chain=False, **kwargs):
+        """Process data
+
+        Parameters
+        ----------
+        data : DataContainer
+            Data to be reshaped
+
+        Returns
+        -------
+        DataContainer
+
+        """
+
+        from dcase_util.containers import DataContainer
+
+        if isinstance(data, DataContainer):
+            # Do processing
+
+            data.change_axis(
+                time_axis=self.time_axis,
+                data_axis=self.data_axis,
+                sequence_axis=self.sequence_axis
+            )
+
+            if store_processing_chain:
+                # Get processing chain item
+                if hasattr(data, 'processing_chain') and data.processing_chain.chain_item_exists(
+                        processor_name='dcase_util.processors.' + self.__class__.__name__):
+                    # Current processor is already in the processing chain, reuse that
+                    processing_chain_item = data.processing_chain.chain_item(
+                        processor_name='dcase_util.processors.' + self.__class__.__name__
+                    )
+
+                else:
+                    # Create a new processing chain item based on current processor class
+                    processing_chain_item = self.get_processing_chain_item()
+
+                # Update current processing parameters into chain item
+                processing_chain_item.update({
+                    'process_parameters': kwargs
+                })
+
+                # Push chain item into processing chain stored in the container
+                data.processing_chain.push_processor(**processing_chain_item)
+
+            return data
+
+        else:
+            message = '{name}: Wrong input data type, type required [{input_type}].'.format(
+                name=self.__class__.__name__,
+                input_type=self.input_type
+            )
+
+            self.logger.exception(message)
+            raise ValueError(message)

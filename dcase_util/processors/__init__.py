@@ -158,6 +158,17 @@ EventRollEncodingProcessor
     EventRollEncodingProcessor
     EventRollEncodingProcessor.process
 
+DataShapingProcessor
+--------------------
+
+*dcase_util.processors.DataShapingProcessor*
+
+.. autosummary::
+    :toctree: generated/
+
+    DataShapingProcessor
+    DataShapingProcessor.process
+
 Features
 ::::::::
 
