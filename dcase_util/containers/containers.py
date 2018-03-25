@@ -1359,11 +1359,13 @@ class ListDictContainer(ListContainer):
 
         Parameters
         ----------
-        kwargs
-            Use filtered field name and parameter name, and target value for the field as parameter value. Underscore is parameter name is replace with whitespace when matching with field names.
-
         case_insensitive_fields : bool
             Use case insensitive fields for filtering
+            Default value True
+
+        kwargs
+            Use filtered field name and parameter name, and target value for the field as parameter value.
+            Underscore is parameter name is replace with whitespace when matching with field names.
 
         Returns
         -------
