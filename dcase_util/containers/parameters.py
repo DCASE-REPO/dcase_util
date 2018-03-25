@@ -1002,6 +1002,8 @@ class DCASEAppParameterContainer(AppParameterContainer):
             'FEATURE_AGGREGATOR_PARAMETERS': 'feature_aggregator_parameters',
             'FEATURE_SEQUENCER': 'feature_sequencer',
             'FEATURE_SEQUENCER_PARAMETERS': 'feature_sequencer_parameters',
+            'DATA_PROCESSING_CHAIN': 'data_processing_chain',
+            'META_PROCESSING_CHAIN': 'meta_processing_chain',
             'LEARNER': 'learner',
             'LEARNER_METHOD_PARAMETERS': 'learner_method_parameters',
             'RECOGNIZER': 'recognizer',
@@ -1023,6 +1025,8 @@ class DCASEAppParameterContainer(AppParameterContainer):
             'FEATURE_AGGREGATOR_PARAMETERS',
             'FEATURE_SEQUENCER',
             'FEATURE_SEQUENCER_PARAMETERS',
+            'DATA_PROCESSING_CHAIN',
+            'META_PROCESSING_CHAIN',
             'LEARNER',
             'RECOGNIZER',
             'LEARNER_METHOD_PARAMETERS',
@@ -1274,6 +1278,74 @@ class DCASEAppParameterContainer(AppParameterContainer):
                 path=['FEATURE_AGGREGATOR', 'hop_length_frames'],
                 new_value=int(numpy.ceil(hop_length_seconds_aggregator / float(win_length_seconds_feature_extraction)))
             )
+
+    def _process_DATA_PROCESSING_CHAIN(self, parameters):
+        """Process DATA_PROCESSING_CHAIN section"""
+
+        enabled_items = []
+        for item_id, item in enumerate(self.get_path_translated(parameters=parameters, path=['DATA_PROCESSING_CHAIN', 'CHAIN'])):
+            if 'FeatureReadingProcessor' in item['processor_name']:
+                dependency_parameters = dict(self.get_path_translated(
+                    parameters=parameters,
+                    path=['FEATURE_EXTRACTOR']
+                ))
+
+                section_method_parameters = self.section_labels['FEATURE_EXTRACTOR'] + '_' + self.field_labels['METHOD_PARAMETERS']
+                if self.field_labels['LABEL'] in dependency_parameters:
+                    if section_method_parameters in parameters and dependency_parameters[self.field_labels['LABEL']] in parameters[section_method_parameters]:
+                        dependency_parameters[self.field_labels['PARAMETERS']] = copy.deepcopy(
+                            dict(
+                                self.get_path_translated(
+                                    parameters=parameters,
+                                    path=[section_method_parameters, dependency_parameters[self.field_labels['LABEL']]]
+                                )
+                            )
+                        )
+
+                # Inject parameters based on recipes
+                if self.field_labels['RECIPE'] in dependency_parameters:
+                    # Remove current parameters
+                    dependency_parameters[self.field_labels['PARAMETERS']] = {}
+                    dependency_parameters[self.field_labels['RECIPE']] = VectorRecipeParser().parse(
+                        recipe=str(dependency_parameters[self.field_labels['RECIPE']])
+                    )
+
+                    for dep_item in dependency_parameters[self.field_labels['RECIPE']]:
+                        if self.field_labels['LABEL'] in dep_item:
+                            label = dep_item[self.field_labels['LABEL']]
+
+                        elif 'label' in dep_item:
+                            label = dep_item['label']
+
+                        method_parameters = dict(
+                            self.get_path_translated(
+                                parameters=parameters,
+                                path=[section_method_parameters, label]
+                            )
+                        )
+
+                        if method_parameters:
+                            dependency_parameters[self.field_labels['PARAMETERS']][label] = method_parameters
+
+                # Inject feature extraction parameters to get correct hash value
+                item[self.field_labels['DEPENDENCY_PARAMETERS']] = dependency_parameters
+
+            init_parameters = item.get('init_parameters', {})
+            if self.field_labels['ENABLE'] in init_parameters and init_parameters[self.field_labels['ENABLE']]:
+                enabled_items.append(item)
+
+            elif self.field_labels['ENABLE'] not in init_parameters:
+                enabled_items.append(item)
+
+        self.set_path_translated(
+            parameters=parameters,
+            path=['DATA_PROCESSING_CHAIN', 'CHAIN'],
+            new_value=enabled_items
+        )
+
+    def _process_META_PROCESSING_CHAIN(self, parameters):
+        """Process META_PROCESSING_CHAIN section"""
+        pass
 
     def _process_LEARNER(self, parameters):
         """Process LEARNER section."""
