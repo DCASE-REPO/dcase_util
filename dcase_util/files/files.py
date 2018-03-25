@@ -5,9 +5,11 @@ from __future__ import print_function, absolute_import
 import os
 import csv
 import time
+import zipfile
+import tarfile
 
-from dcase_util.containers import FileMixin, ObjectContainer
-from dcase_util.utils import FileFormat
+from dcase_util.containers import FileMixin, ObjectContainer, PackageMixin
+from dcase_util.utils import get_byte_string, get_file_hash, FileFormat
 from dcase_util.ui import FancyStringifier
 
 
@@ -327,5 +329,104 @@ class FileLock(ObjectContainer):
 
             except OSError as exception:
                 pass
+
+        return self
+
+
+class Package(ObjectContainer, PackageMixin):
+    """Generic package class"""
+    valid_formats = [FileFormat.ZIP, FileFormat.TAR]
+
+    def __init__(self, *args, **kwargs):
+        # Run ContainerMixin init
+        PackageMixin.__init__(self, *args, **kwargs)
+
+        self._file_info = None
+        self._size_compressed = None
+        self._size_uncompressed = None
+
+        super(Package, self).__init__(*args, **kwargs)
+
+    def __str__(self):
+        ui = FancyStringifier()
+
+        output = ''
+        output += FancyStringifier().class_name(self.__class__.__name__) + '\n'
+
+        if hasattr(self, 'filename') and self.filename:
+            output += FancyStringifier().data(field='filename', value=self.filename) + '\n'
+
+        if self._file_info is None:
+            self.get_info()
+
+        output += ui.line('Size', indent=2) + '\n'
+
+        output += FancyStringifier().data(
+            field='Uncompressed',
+            value=get_byte_string(self._size_uncompressed),
+            indent=4
+        ) + '\n'
+
+        if self.format == FileFormat.ZIP:
+            output += FancyStringifier().data(
+                field='Compressed',
+                value=get_byte_string(self._size_compressed),
+                indent=4
+            ) + '\n'
+
+            output += FancyStringifier().data(
+                field='Ratio',
+                value=self._size_compressed/float(self._size_uncompressed) * 100,
+                unit='%',
+                indent=4
+            ) + '\n'
+
+        output += ui.line('Files', indent=2) + '\n'
+        output += FancyStringifier().data(
+            field='Count',
+            value=len(self._file_info),
+            indent=4
+        ) + '\n'
+
+        return output
+
+    def get_info(self):
+        """Get package info
+
+        Returns
+        -------
+        self
+        """
+
+        if self.format == FileFormat.ZIP:
+            zip = zipfile.ZipFile(
+                file=self.filename,
+                mode='r'
+            )
+            self._file_info = zip.infolist()
+            zip.close()
+
+            self._size_compressed = 0
+            self._size_uncompressed = 0
+
+            # Go through files and accumulate uncompressed and compressed file sizes
+            for file_info in self._file_info:
+                self._size_compressed += file_info.compress_size
+                self._size_uncompressed += file_info.file_size
+
+        elif self.format == FileFormat.TAR:
+            tar = tarfile.open(
+                name=self.filename,
+                mode='r:gz'
+            )
+            self._file_info = tar.getmembers()
+            tar.close()
+
+            self._size_uncompressed = 0
+            # Only uncompressed file size is available
+            for file_info in self._file_info:
+                self._size_uncompressed += file_info.size
+
+            self._size_compressed = None
 
         return self

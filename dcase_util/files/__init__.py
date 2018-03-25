@@ -27,6 +27,23 @@ Generic file class.
     File.delimiter
     File.is_package
 
+Package
+-------
+
+*dcase_util.files.Package*
+
+Generic package class.
+
+.. autosummary::
+    :toctree: generated/
+
+    Package
+    Package.extract
+    Package.compress
+    Package.detect_file_format
+    Package.validate_format
+    Package.exists
+
 FileLock
 --------
 
