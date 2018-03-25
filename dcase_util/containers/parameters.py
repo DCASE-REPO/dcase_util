@@ -29,12 +29,15 @@ class AppParameterContainer(ParameterContainer):
         ----------
         data : dict
             Dictionary to initialize container
+            Default value None
 
         app_base : str
             Absolute path to the project root
+            Default value None
 
         section_process_order : list, optional
             Parameter section processing order. Given dict is used to override internal default list.
+            Default value 'parameters.yaml'
 
         path_structure : dict of lists, optional
             Defines how paths are created, section hash is used to create unique folder names. Given dict is used to
@@ -132,6 +135,7 @@ class AppParameterContainer(ParameterContainer):
         # Application base path
         if app_base is not None:
             self.app_base = app_base
+
         else:
             self.app_base = os.path.abspath(os.path.dirname(sys.argv[0]))
             if os.path.split(self.app_base)[1] == 'src':
@@ -150,8 +154,12 @@ class AppParameterContainer(ParameterContainer):
         # Reset container and inject parameters
         self.reset(**kwargs)
 
-    def reset(self, field_labels=None, section_labels=None, section_process_order=None, path_structure=None,
-              method_dependencies=None, non_hashable_fields=None, non_hashable_sections=None, **kwargs):
+    def reset(self,
+              field_labels=None,
+              section_labels=None, section_process_order=None,
+              path_structure=None,
+              method_dependencies=None,
+              non_hashable_fields=None, non_hashable_sections=None, **kwargs):
 
         # Mark container non-processed, allow processing only once
         self.processed = False
@@ -223,9 +231,11 @@ class AppParameterContainer(ParameterContainer):
         ----------
         create_paths : bool
             Create paths
+            Default value True
 
         create_parameter_hints : bool
             Create parameters files to all data folders
+            Default value True
 
         Raises
         ------
@@ -311,6 +321,27 @@ class AppParameterContainer(ParameterContainer):
         return self
 
     def process_set(self, parameters, create_paths=True, create_parameter_hints=True):
+        """Process parameter set
+
+        Parameters
+        ----------
+        parameters : dict
+            Dictionary to process
+
+        create_paths : bool
+            Create paths
+            Default value True
+
+        create_parameter_hints : bool
+            Create parameters files to all data folders
+            Default value True
+
+        Returns
+        -------
+        self
+
+        """
+
         # Get processing order for sections
         section_list = []
         for section in self.section_process_order + list(set(list(parameters.keys())) - set(self.section_process_order)):
