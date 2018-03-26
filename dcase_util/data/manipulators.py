@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from __future__ import print_function, absolute_import
+import six
 from six import iteritems
 import numpy
 import scipy
@@ -9,7 +10,7 @@ import copy
 
 from dcase_util.containers import DataContainer, ObjectContainer
 from dcase_util.ui import FancyStringifier
-
+from dcase_util.utils import VectorRecipeParser
 
 class Normalizer(ObjectContainer):
     """Data normalizer to accumulate data statistics"""
@@ -333,10 +334,10 @@ class Aggregator(ObjectContainer):
             Aggregation recipe, supported methods [mean, std, cov, kurtosis, skew, flatten].
 
         win_length_frames : int
-            Window length in feature frames
+            Window length in data frames
 
         hop_length_frames : int
-            Hop length in feature frames
+            Hop length in data frames
 
         center : bool
             Centering of the window
@@ -368,6 +369,10 @@ class Aggregator(ObjectContainer):
 
             else:
                 self.recipe = recipe
+
+        elif isinstance(recipe, six.string_types):
+            recipe = VectorRecipeParser().parse(recipe=recipe)
+            self.recipe = [d['label'] for d in recipe]
 
         else:
             message = '{name}: No valid recipe set'.format(
@@ -417,7 +422,7 @@ class Aggregator(ObjectContainer):
         data = copy.deepcopy(data)
 
         if isinstance(data, DataContainer):
-            aggregated_features = []
+            aggregated_data = []
 
             # Not the most efficient way as numpy stride_tricks would produce
             # faster code, however, opted for cleaner presentation this time.
@@ -435,10 +440,10 @@ class Aggregator(ObjectContainer):
 
                 valid_frame = True
                 if self.padding:
-                    # If start of feature matrix, pad with first frame
+                    # If start of data matrix, pad with first frame
                     frame_ids[frame_ids < 0] = 0
 
-                    # If end of the feature matrix, pad with last frame
+                    # If end of the data matrix, pad with last frame
                     frame_ids[frame_ids > data.data.shape[data.time_axis] - 1] = data.data.shape[data.time_axis] - 1
 
                 else:
@@ -473,10 +478,18 @@ class Aggregator(ObjectContainer):
                             aggregated_frame.append(current_frame.T.flatten().T)
 
                     if aggregated_frame:
-                        aggregated_features.append(numpy.concatenate(aggregated_frame))
+                        aggregated_data.append(numpy.concatenate(aggregated_frame))
 
-            # Update data
-            data.data = numpy.vstack(aggregated_features).T
+            if aggregated_data:
+                # Update data
+                data.data = numpy.vstack(aggregated_data).T
+
+            else:
+                message = '{name}: No aggregated data, check your aggregation recipe.'.format(
+                    name=self.__class__.__name__,
+                )
+                self.logger.exception(message)
+                raise ValueError(message)
 
             # Update meta data
             if hasattr(data, 'hop_length_seconds') and data.hop_length_seconds is not None:
@@ -825,7 +838,7 @@ class Stacker(ObjectContainer):
 
         """
 
-        # Check that all feature matrices have same amount of frames
+        # Check that all data matrices have same amount of frames
         frame_count = []
         time_resolution = []
         for recipe_part in self.recipe:
@@ -947,7 +960,7 @@ class Selector(ObjectContainer):
         return self
 
     def select(self, data, selection_events=None):
-        """Selecting feature repository with given events 
+        """Selecting feature repository with given events
 
         Parameters
         ----------
