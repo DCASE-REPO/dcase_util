@@ -17,7 +17,8 @@ def get_keras_data_sequence_class():
     from keras.utils import Sequence
 
     class KerasDataSequence(Sequence, ContainerMixin):
-        def __init__(self, item_list=None, batch_size=64, buffer_size=None,
+        def __init__(self, item_list=None, batch_size=64,
+                     buffer_size=None,
                      data_processing_chain=None, meta_processing_chain=None,
                      data_processing_chain_callback_on_epoch_end=None, meta_processing_chain_callback_on_epoch_end=None,
                      transformer_callbacks=None,
@@ -98,6 +99,9 @@ def get_keras_data_sequence_class():
             self.buffer_size = buffer_size
             self.data_refresh_on_epoch = refresh_buffer_on_epoch
 
+            if data_format is None:
+                data_format = 'channels_last'
+
             self.data_format = data_format
             if self.data_format not in ['channels_first', 'channels_last']:
                 message = '{name}: Unknown data_format [{data_format}].'.format(
@@ -107,8 +111,11 @@ def get_keras_data_sequence_class():
                 self.logger.exception(message)
                 raise NotImplementedError(message)
 
+            if target_format is None:
+                target_format = 'single_target_per_sequence'
+
             self.target_format = target_format
-            if self.target_format not in ['single_target_per_sequence']:
+            if self.target_format not in ['same', 'single_target_per_sequence']:
                 message = '{name}: Unknown target_format [{target_format}].'.format(
                     name=self.__class__.__name__,
                     target_format=self.target_format
@@ -181,11 +188,12 @@ def get_keras_data_sequence_class():
                 value=shape[axis['data_axis']]
             ) + '\n'
 
-            output += ui.data(
-                indent=4,
-                field='Sequence',
-                value=shape[axis['sequence_axis']]
-            ) + '\n'
+            if 'sequence_axis' in axis:
+                output += ui.data(
+                    indent=4,
+                    field='Sequence',
+                    value=shape[axis['sequence_axis']]
+                ) + '\n'
 
             output += ui.data(
                 indent=4,
@@ -246,25 +254,42 @@ def get_keras_data_sequence_class():
                         for i in range(0, data.shape[data.sequence_axis]):
                             batch_buffer_meta.append(meta.data[:, 0])
 
-            # Prepare data, stack along sequence_axis
-            if data.sequence_axis == 0:
-                batch_buffer_data = numpy.vstack(batch_buffer_data)
+                    elif self.target_format == 'same':
+                        # Collect single target per sequence
+                        batch_buffer_meta.append(numpy.repeat(a=meta.data, repeats=data.length, axis=1))
 
-            elif data.sequence_axis == 1:
-                batch_buffer_data = numpy.hstack(batch_buffer_data)
+            if len(data.shape) == 2:
+                # Prepare 2D data, stack along time_axis
+                if data.time_axis == 0:
+                    batch_buffer_data = numpy.vstack(batch_buffer_data)
 
-            elif data.sequence_axis == 2:
-                batch_buffer_data = numpy.dstack(batch_buffer_data)
+                elif data.time_axis == 1:
+                    batch_buffer_data = numpy.hstack(batch_buffer_data)
 
-            # Add channel dimension to the data
-            if self.data_format == 'channels_first':
-                batch_buffer_data = numpy.expand_dims(batch_buffer_data, 1)
+            elif len(data.shape) == 3:
+                # Prepare 3D data, stack along sequence_axis
+                if data.sequence_axis == 0:
+                    batch_buffer_data = numpy.vstack(batch_buffer_data)
 
-            elif self.data_format == 'channels_last':
-                batch_buffer_data = numpy.expand_dims(batch_buffer_data, 3)
+                elif data.sequence_axis == 1:
+                    batch_buffer_data = numpy.hstack(batch_buffer_data)
 
-            # Prepare meta
-            batch_buffer_meta = numpy.vstack(batch_buffer_meta)
+                elif data.sequence_axis == 2:
+                    batch_buffer_data = numpy.dstack(batch_buffer_data)
+
+                # Add channel dimension to the data
+                if self.data_format == 'channels_first':
+                    batch_buffer_data = numpy.expand_dims(batch_buffer_data, 1)
+
+                elif self.data_format == 'channels_last':
+                    batch_buffer_data = numpy.expand_dims(batch_buffer_data, 3)
+
+            if self.target_format == 'single_target_per_sequence':
+                # Prepare meta
+                batch_buffer_meta = numpy.vstack(batch_buffer_meta)
+
+            elif self.target_format == 'same':
+                batch_buffer_meta = numpy.hstack(batch_buffer_meta).T
 
             return batch_buffer_data, batch_buffer_meta
 
@@ -285,11 +310,13 @@ def get_keras_data_sequence_class():
                 )[0]
 
                 self._data_shape = data.shape
+
                 self._data_axis = {
                     'time_axis': data.time_axis,
-                    'data_axis': data.data_axis,
-                    'sequence_axis': data.sequence_axis,
+                    'data_axis': data.data_axis
                 }
+                if hasattr(data,'sequence_axis'):
+                    self._data_axis['sequence_axis']= data.sequence_axis
 
             return self._data_shape
 
@@ -304,9 +331,10 @@ def get_keras_data_sequence_class():
                 self._data_shape = data.shape
                 self._data_axis = {
                     'time_axis': data.time_axis,
-                    'data_axis': data.data_axis,
-                    'sequence_axis': data.sequence_axis,
+                    'data_axis': data.data_axis
                 }
+                if hasattr(data, 'sequence_axis'):
+                    self._data_axis['sequence_axis'] = data.sequence_axis
 
             return self._data_axis
 
@@ -314,11 +342,15 @@ def get_keras_data_sequence_class():
         def data_size(self):
             shape = self.data_shape
             axis = self.data_axis
-            return {
+            size = {
                 'time': shape[axis['time_axis']],
                 'data': shape[axis['data_axis']],
-                'sequence': shape[axis['sequence_axis']]
             }
+
+            if 'sequence_axis' in axis:
+                size['sequence'] = shape[axis['sequence_axis']]
+
+            return size
 
         def process_item(self, item):
             if self.data_buffer is not None:
