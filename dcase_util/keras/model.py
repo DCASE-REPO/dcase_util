@@ -64,12 +64,15 @@ def create_sequential_model(model_parameter_list, input_shape=None, output_shape
 
     input_shape : int
         Size of the input layer
+        Default value None
 
     output_shape : int
         Size of the output layer
+        Default value None
 
     constants : dict or DictContainer
         Constants used in the model_parameter definitions.
+        Default value None
 
     Returns
     -------
