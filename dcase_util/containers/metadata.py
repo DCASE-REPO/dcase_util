@@ -1317,7 +1317,7 @@ class MetaDataContainer(ListDictContainer):
                                 data.append(
                                     self.item_class({
                                         'filename': row[0],
-                                        'tags': row[2]
+                                        'tags': row[1]
                                     })
                                 )
 
