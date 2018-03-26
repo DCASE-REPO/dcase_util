@@ -52,6 +52,10 @@ class AudioContainer(ContainerMixin, FileMixin):
         self.time_axis = 1
 
         # Audio data
+        if data is None:
+            # Initialize with array
+            data = numpy.ndarray((0, ))
+
         self._data = data
         self.data_synced_with_file = False
 
@@ -1329,6 +1333,8 @@ class AudioContainer(ContainerMixin, FileMixin):
                frame_length_seconds=None, hop_length_seconds=None):
         """Slice audio into overlapping frames.
 
+        Parameters
+        ----------
         frame_length : int, optional
             Frame length in samples. Set either frame_length or frame_length_seconds.
             Default value None
@@ -1402,6 +1408,8 @@ class AudioContainer(ContainerMixin, FileMixin):
                  skip_segments=None):
         """Slice audio into segments.
 
+        Parameters
+        ----------
         segment_length : int, optional
             Segment length in samples. Set either segment_length or segment_length_seconds. Used to produce
             consecutive non-overlapping segments.
@@ -1495,11 +1503,52 @@ class AudioContainer(ContainerMixin, FileMixin):
         for segment in segments:
             segment_start_samples = int(self.fs * segment.onset)
             segment_stop_samples = int(self.fs * segment.offset)
-            data.append(
-                self._data[:, segment_start_samples:segment_stop_samples]
-            )
+            if self.channels > 1:
+                data.append(
+                    self._data[:, segment_start_samples:segment_stop_samples]
+                )
+
+            else:
+                data.append(
+                    self._data[segment_start_samples:segment_stop_samples]
+                )
 
         return data, segments
+
+    def pad(self, type='silence', length=None, length_seconds=None):
+        """Generate signal
+
+        Parameters
+        ----------
+        type : str
+            Default value 'silence'
+
+        length : int, optional
+            Default value None
+
+        length_seconds : float, optional
+            Default value None
+
+        Returns
+        -------
+        list, MetaDataContainer
+
+        """
+
+        if not length and length_seconds is not None:
+            # Get length from length_seconds
+            length = int(self.fs * length_seconds)
+
+        if self.length < length:
+            if type=='silence':
+                if len(self.data.shape) == 1:
+                    self._data = numpy.pad(
+                        array=self._data,
+                        pad_width=(0,length-self.length),
+                        mode='constant'
+                    )
+
+        return self
 
     def plot(self, plot_type='wave', **kwargs):
         """Visualize audio data
