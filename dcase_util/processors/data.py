@@ -1075,16 +1075,22 @@ class DataShapingProcessor(ProcessorMixin):
 
         """
 
-        from dcase_util.containers import DataContainer
+        from dcase_util.containers import DataContainer, DataMatrix2DContainer, DataMatrix3DContainer
 
         if isinstance(data, DataContainer):
             # Do processing
+            if isinstance(data, DataMatrix2DContainer):
+                data.change_axis(
+                    time_axis=self.time_axis,
+                    data_axis=self.data_axis
+                )
 
-            data.change_axis(
-                time_axis=self.time_axis,
-                data_axis=self.data_axis,
-                sequence_axis=self.sequence_axis
-            )
+            elif isinstance(data, DataMatrix3DContainer):
+                data.change_axis(
+                    time_axis=self.time_axis,
+                    data_axis=self.data_axis,
+                    sequence_axis=self.sequence_axis
+                )
 
             if store_processing_chain:
                 # Get processing chain item
