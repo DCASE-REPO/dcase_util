@@ -304,6 +304,7 @@ DecisionEncoder
     DecisionEncoder.load
     DecisionEncoder.save
     DecisionEncoder.majority_vote
+    DecisionEncoder.many_hot
     DecisionEncoder.find_contiguous_regions
     DecisionEncoder.process_activity
 
