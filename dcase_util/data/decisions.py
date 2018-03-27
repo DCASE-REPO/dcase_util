@@ -51,6 +51,42 @@ class DecisionEncoder(ObjectContainer):
         counts = numpy.bincount(frame_decisions)
         return self.label_list[numpy.argmax(counts)]
 
+    def many_hot(self, frame_decisions, frame_axis=0):
+        """Many hot encoder
+
+        Parameters
+        ----------
+        frame_decisions : numpy.ndarray [shape=(d,t) or (t,d)]
+            Frame decisions
+
+        frame_axis : int
+            Axis index for frames in the matrix
+
+        Returns
+        -------
+        list
+
+        """
+
+        encoded = []
+        for frame_id in range(0, frame_decisions.shape[frame_axis]):
+            # Get decisions for current frame
+            if frame_axis == 0:
+                current_frame = frame_decisions[frame_id, :]
+
+            elif frame_axis == 1:
+                current_frame = frame_decisions[:, frame_id].T
+
+            # Encode current frame decisions
+            current_frame_encoded = []
+            for label_id in numpy.where(current_frame == 1)[0]:
+                current_frame_encoded.append(self.label_list[label_id])
+
+            # Store
+            encoded.append(current_frame_encoded)
+
+        return encoded
+
     def find_contiguous_regions(self, activity_array):
         """Find contiguous regions from bool valued numpy.array.
         Transforms boolean values for each frame into pairs of onsets and offsets.
