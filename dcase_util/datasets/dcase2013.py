@@ -14,7 +14,7 @@ from dcase_util.utils import Path
 
 class DCASE2013_Scenes_DevelopmentSet(AcousticSceneDataset):
     #
-    """TUT Acoustic scenes 2013 development dataset
+    """DCASE2013 Acoustic scenes 2013 development dataset
 
     This dataset was used in DCASE2013 - Task 1, Acoustic scene classification
 
@@ -33,14 +33,16 @@ class DCASE2013_Scenes_DevelopmentSet(AcousticSceneDataset):
 
         storage_name : str
             Name to be used when storing dataset on disk
-
+            Default value 'DCASE2013-acoustic-scenes-development'
         data_path : str
             Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), 'dcase_util_datasets')
             is used.
+            Default value None
 
         included_content_types : list of str or str
             Indicates what content type should be processed. One or multiple from ['all', 'audio', 'meta', 'code',
             'documentation']. If None given, ['all'] is used. Parameter can be also comma separated string.
+            Default value None
 
         """
 
@@ -96,13 +98,24 @@ class DCASE2013_Scenes_DevelopmentSet(AcousticSceneDataset):
                         }
                     )
                 )
-            meta_data.save(filename=self.meta_file)
+
+            meta_data.save(
+                filename=self.meta_file
+            )
+
             self.load_meta()
 
         all_folds_found = True
         for fold in self.folds():
-            train_filename = self.evaluation_setup_filename(setup_part='train', fold=fold)
-            test_filename = self.evaluation_setup_filename(setup_part='test', fold=fold)
+            train_filename = self.evaluation_setup_filename(
+                setup_part='train',
+                fold=fold
+            )
+
+            test_filename = self.evaluation_setup_filename(
+                setup_part='test',
+                fold=fold
+            )
 
             if not os.path.isfile(train_filename):
                 all_folds_found = False
@@ -111,7 +124,9 @@ class DCASE2013_Scenes_DevelopmentSet(AcousticSceneDataset):
                 all_folds_found = False
 
         if not all_folds_found:
-            Path().makedirs(path=self.evaluation_setup_path)
+            Path().makedirs(
+                path=self.evaluation_setup_path
+            )
 
             classes = []
             files = []
@@ -122,34 +137,71 @@ class DCASE2013_Scenes_DevelopmentSet(AcousticSceneDataset):
             files = numpy.array(files)
 
             from sklearn.model_selection import StratifiedShuffleSplit
-            sss = StratifiedShuffleSplit(n_splits=self.crossvalidation_folds, test_size=0.3, random_state=0)
+            sss = StratifiedShuffleSplit(
+                n_splits=self.crossvalidation_folds,
+                test_size=0.3,
+                random_state=0
+            )
 
             fold = 1
             for train_index, test_index in sss.split(X=numpy.zeros(len(classes)), y=classes):
                 train_files = files[train_index]
                 test_files = files[test_index]
-                train_filename = self.evaluation_setup_filename(setup_part='train', fold=fold)
-                test_filename = self.evaluation_setup_filename(setup_part='test', fold=fold)
-                eval_filename = self.evaluation_setup_filename(setup_part='evaluate', fold=fold)
+                train_filename = self.evaluation_setup_filename(
+                    setup_part='train',
+                    fold=fold
+                )
+
+                test_filename = self.evaluation_setup_filename(
+                    setup_part='test',
+                    fold=fold
+                )
+
+                eval_filename = self.evaluation_setup_filename(
+                    setup_part='evaluate',
+                    fold=fold
+                )
 
                 # Create meta containers and save them
 
                 # Train
-                train_meta = MetaDataContainer(filename=train_filename)
+                train_meta = MetaDataContainer(
+                    filename=train_filename
+                )
+
                 for filename in train_files:
-                    train_meta += self.meta_container.filter(filename=filename)
+                    train_meta += self.meta_container.filter(
+                        filename=filename
+                    )
+
                 train_meta.save()
 
                 # Test
-                test_meta = MetaDataContainer(filename=test_filename)
+                test_meta = MetaDataContainer(
+                    filename=test_filename
+                )
+
                 for filename in test_files:
-                    test_meta.append(MetaDataItem({'filename': self.absolute_to_relative_path(filename)}))
+                    test_meta.append(
+                        MetaDataItem(
+                            {
+                                'filename': self.absolute_to_relative_path(filename)
+                             }
+                        )
+                    )
+
                 test_meta.save()
 
                 # Evaluate
-                eval_meta = MetaDataContainer(filename=eval_filename)
+                eval_meta = MetaDataContainer(
+                    filename=eval_filename
+                )
+
                 for filename in test_files:
-                    eval_meta += self.meta_container.filter(filename=filename)
+                    eval_meta += self.meta_container.filter(
+                        filename=filename
+                    )
+
                 eval_meta.save()
 
                 fold += 1
