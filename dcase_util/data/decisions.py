@@ -52,7 +52,7 @@ class DecisionEncoder(ObjectContainer):
         return self.label_list[numpy.argmax(counts)]
 
     def many_hot(self, frame_decisions, frame_axis=0):
-        """Many hot encoder
+        """Many hot decoder
 
         Parameters
         ----------
