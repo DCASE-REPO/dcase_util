@@ -981,7 +981,11 @@ class AppParameterContainer(ParameterContainer):
             self.logger.exception(message)
             raise ValueError(message)
 
+        # Update parameters
         self.merge(override=active_set)
+
+        # Set new active set
+        self[self.field_labels['ACTIVE-SET']] = set_id
 
 
 class DCASEAppParameterContainer(AppParameterContainer):
