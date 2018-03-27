@@ -19,7 +19,7 @@ class DecisionEncoder(ObjectContainer):
         ----------
         label_list : list or str
             Label list
-            Default value "None"
+            Default value None
 
         """
         super(DecisionEncoder, self).__init__(**kwargs)
@@ -36,6 +36,7 @@ class DecisionEncoder(ObjectContainer):
 
         frame_axis : int
             Axis index for frames in the matrix
+            Default value 0
 
         Returns
         -------
@@ -51,7 +52,7 @@ class DecisionEncoder(ObjectContainer):
         counts = numpy.bincount(frame_decisions)
         return self.label_list[numpy.argmax(counts)]
 
-    def many_hot(self, frame_decisions, frame_axis=0):
+    def many_hot(self, frame_decisions, frame_axis=0, label_list=None):
         """Many hot decoder
 
         Parameters
@@ -61,12 +62,33 @@ class DecisionEncoder(ObjectContainer):
 
         frame_axis : int
             Axis index for frames in the matrix
+            Default value 0
+
+        label_list : list or str
+            Label list, if None given one for class initializer is used.
+            Default value None
+
+        Raises
+        ------
+        ValueError
+            No label list given as method parameter or class initializer parameter
 
         Returns
         -------
         list
 
         """
+
+        if label_list is None:
+            label_list = self.label_list
+
+        if label_list is None:
+            message = '{name}: No label_list parameter given to method or class initializer.'.format(
+                name=self.__class__.__name__
+            )
+
+            self.logger.exception(message)
+            raise ValueError(message)
 
         encoded = []
         for frame_id in range(0, frame_decisions.shape[frame_axis]):
@@ -80,7 +102,7 @@ class DecisionEncoder(ObjectContainer):
             # Encode current frame decisions
             current_frame_encoded = []
             for label_id in numpy.where(current_frame == 1)[0]:
-                current_frame_encoded.append(self.label_list[label_id])
+                current_frame_encoded.append(label_list[label_id])
 
             # Store
             encoded.append(current_frame_encoded)
@@ -131,8 +153,10 @@ class DecisionEncoder(ObjectContainer):
         window_length : int
             Window length in analysis frame amount
 
-        operator : str ('median_filtering')
+        operator : str
             Operator to be used
+            Default value 'median_filtering'
+
         Raises
         ------
         AssertionError
