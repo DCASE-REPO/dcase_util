@@ -53,6 +53,7 @@ class FancyStringifier(object):
 
         indent : int
             Amount of indention used for the line
+            Default value 0
 
         Returns
         -------
@@ -73,6 +74,7 @@ class FancyStringifier(object):
 
         indent : int
             Amount of indention used for the line
+            Default value 0
 
         Returns
         -------
@@ -90,15 +92,19 @@ class FancyStringifier(object):
         ----------
         text : str, optional
             Footer text
+            Default value 'DONE'
 
         time : str, optional
             Elapsed time as string
+            Default value None
 
         item_count : int, optional
             Item count
+            Default value None
 
         indent : int
             Amount of indention used for the line
+            Default value 2
 
         Returns
         -------
@@ -124,9 +130,11 @@ class FancyStringifier(object):
         ----------
         field : str
             Data field name
+            Default value None
 
         indent : int
             Amount of indention used for the line
+            Default value 2
 
         Returns
         -------
@@ -150,6 +158,7 @@ class FancyStringifier(object):
         data_type : str
             Data type in format [type label][length], e.g. for floats with 4 decimals use 'float4',
             strings with fixed length 10 use 'str10'. For automatic value formatting use 'auto'.
+            Default value 'auto'
 
         Returns
         -------
@@ -234,21 +243,26 @@ class FancyStringifier(object):
         ----------
         field : str
             Data field name
+            Default value None
 
         value : str, bool, int, float, list or dict
             Data value
+            Default value None
 
         unit : str
             Data value unit
+            Default value None
 
         indent : int
             Amount of indention used for the line
+            Default value 2
 
         Returns
         -------
         str
 
         """
+
         mid = 35
         mid_point = str(mid - indent)
         line = '{field:<' + mid_point + '} : {value} {unit}'
@@ -296,9 +310,11 @@ class FancyStringifier(object):
         ----------
         length : int
             Length of separator
+            Default value 40
 
         indent : int
             Amount of indention used for the line
+            Default value 0
 
         Returns
         -------
@@ -317,22 +333,28 @@ class FancyStringifier(object):
         cell_data : list of list
             Cell data in format [ [cell(col1,row1), cell(col1,row2), cell(col1,row3)],
             [cell(col2,row1), cell(col2,row2), cell(col2,row3)] ]
+            Default value None
 
         column_headers : list of str
             Column headers in list, if None given column numbers are used
+            Default value None
 
         column_types : list of str
             Column data types, if None given type is determined automatically.
             Possible values: ['int', 'float1', 'float2', 'float3', 'float4', 'str10', 'str20']]
+            Default value None
 
         column_separators : list of int
             Column ids where to place separation lines. Line is placed on the right of the indicated column.
+            Default value None
 
         row_separators : list of int
             Row ids where to place separation lines. Line is place after indicated row.
+            Default value None
 
         indent : int
             Amount of indention used for the line
+            Default value 0
 
         Returns
         -------
