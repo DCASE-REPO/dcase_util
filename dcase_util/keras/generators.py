@@ -279,7 +279,7 @@ def get_keras_data_sequence_class():
 
                 # Add channel dimension to the data
                 if self.data_format == 'channels_first':
-                    batch_buffer_data = numpy.expand_dims(batch_buffer_data, 1)
+                    batch_buffer_data = numpy.expand_dims(batch_buffer_data, 0)
 
                 elif self.data_format == 'channels_last':
                     batch_buffer_data = numpy.expand_dims(batch_buffer_data, 3)
