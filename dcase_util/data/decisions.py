@@ -142,7 +142,7 @@ class DecisionEncoder(ObjectContainer):
         # Reshape the result into two columns
         return change_indices.reshape((-1, 2))
 
-    def process_activity(self, activity_matrix, window_length, operator="median_filtering"):
+    def process_activity(self, activity_matrix, window_length, operator="median_filtering", time_axis=1):
         """Process activity array (binary)
 
         Parameters
@@ -156,6 +156,10 @@ class DecisionEncoder(ObjectContainer):
         operator : str
             Operator to be used
             Default value 'median_filtering'
+
+        time_axis : int
+            Time axis
+            Default value 1
 
         Raises
         ------
@@ -176,13 +180,30 @@ class DecisionEncoder(ObjectContainer):
             )
 
             self.logger.exception(message)
-            raise AssertionError(message)
+            raise ValueError(message)
+
+        if time_axis > 1:
+            message = '{name}: Unknown time_axis [{time_axis}].'.format(
+                name=self.__class__.__name__,
+                time_axis=time_axis
+            )
+
+            self.logger.exception(message)
+            raise ValueError(message)
+
 
         if operator == 'median_filtering':
-            for row_id in range(0,activity_matrix.shape[0]):
-                activity_matrix[row_id, :] = scipy.signal.medfilt(
-                    volume=activity_matrix[row_id, :],
-                    kernel_size=window_length
-                )
+            for row_id in range(0,activity_matrix.shape[time_axis]):
+                if time_axis == 0:
+                    activity_matrix[:, row_id] = scipy.signal.medfilt(
+                        volume=activity_matrix[:, row_id],
+                        kernel_size=window_length
+                    )
+
+                elif time_axis == 1:
+                    activity_matrix[row_id, :] = scipy.signal.medfilt(
+                        volume=activity_matrix[row_id, :],
+                        kernel_size=window_length
+                    )
 
         return activity_matrix
