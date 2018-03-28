@@ -191,18 +191,28 @@ class DecisionEncoder(ObjectContainer):
             self.logger.exception(message)
             raise ValueError(message)
 
+        # Get class axis
+        if time_axis == 0:
+            class_axis = 1
+
+        else:
+            class_axis = 0
+
+        # Get a copy of the activity_matrix to prevent data contamination
+        activity_matrix = copy.deepcopy(activity_matrix)
 
         if operator == 'median_filtering':
-            for row_id in range(0,activity_matrix.shape[time_axis]):
+            for class_id in range(0, activity_matrix.shape[class_axis]):
+                # Loop along classes axis, and apply filtering
                 if time_axis == 0:
-                    activity_matrix[:, row_id] = scipy.signal.medfilt(
-                        volume=activity_matrix[:, row_id],
+                    activity_matrix[:, class_id] = scipy.signal.medfilt(
+                        volume=activity_matrix[:, class_id],
                         kernel_size=window_length
                     )
 
                 elif time_axis == 1:
-                    activity_matrix[row_id, :] = scipy.signal.medfilt(
-                        volume=activity_matrix[row_id, :],
+                    activity_matrix[class_id, :] = scipy.signal.medfilt(
+                        volume=activity_matrix[class_id, :],
                         kernel_size=window_length
                     )
 
