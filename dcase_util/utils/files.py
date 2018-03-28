@@ -653,6 +653,7 @@ class FileFormat(object):
     YAML = 'YAML'  #: YAML file
     CPICKLE = 'CPICKLE'  #: pickled Python object
     NUMPY = 'NPY'  #: Numpy data object
+    NUMPYZ = 'NPZ'  #: Numpy zip data object
     XML = 'XML'  #: Extensible Markup Language (XML) file
     JSON = 'JSON'  #: JavaScript Object Notation (JSON) file
     MARSHAL = 'MARSHAL'  #: Marshal Data Migration Model File
@@ -733,6 +734,9 @@ class FileFormat(object):
 
         elif extension == '.npy':
             return cls.NUMPY
+
+        elif extension == '.npz':
+            return cls.NUMPYZ
 
         elif extension == '.marshal':
             return cls.MARSHAL
