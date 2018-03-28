@@ -987,6 +987,8 @@ class AppParameterContainer(ParameterContainer):
         # Set new active set
         self[self.field_labels['ACTIVE-SET']] = set_id
 
+        return self
+
 
 class DCASEAppParameterContainer(AppParameterContainer):
     """Parameter container class for DCASE application parameter files, inherited from AppParameterContainer."""
