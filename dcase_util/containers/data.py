@@ -360,7 +360,9 @@ class DataContainer(ObjectContainer):
     def __len__(self):
         return self.length
 
-    def push_processing_chain_item(self, processor_name, init_parameters=None, process_parameters=None):
+    def push_processing_chain_item(self, processor_name, init_parameters=None, process_parameters=None,
+                                   preprocessing_callbacks=None,
+                                   input_type=None, output_type=None):
         """Push processing chain item
 
         Parameters
@@ -370,9 +372,19 @@ class DataContainer(ObjectContainer):
 
         init_parameters : dict, optional
             Initialization parameters for the processors
+            Default value None
 
         process_parameters : dict, optional
             Parameters for the process method of the Processor
+            Default value None
+
+        input_type : ProcessingChainItemType
+            Input data type
+            Default value None
+
+        output_type : ProcessingChainItemType
+            Output data type
+            Default value None
 
         Returns
         -------
@@ -383,7 +395,10 @@ class DataContainer(ObjectContainer):
         self.processing_chain.push_processor(
             processor_name=processor_name,
             init_parameters=init_parameters,
-            process_parameters=process_parameters
+            process_parameters=process_parameters,
+            preprocessing_callbacks=preprocessing_callbacks,
+            input_type=input_type,
+            output_type=output_type,
         )
 
         return self
