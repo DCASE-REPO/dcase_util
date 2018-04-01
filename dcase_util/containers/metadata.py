@@ -923,6 +923,7 @@ class MetaDataContainer(ListDictContainer):
                                                              FieldValidator.ALPHA1,
                                                              FieldValidator.ALPHA2,
                                                              FieldValidator.LIST]:
+
                                     row[item_id] = row[item_id].strip()
 
                             if validate(row_format=row_format,
