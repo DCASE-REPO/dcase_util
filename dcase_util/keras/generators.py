@@ -256,7 +256,13 @@ def get_keras_data_sequence_class():
 
                     elif self.target_format == 'same':
                         # Collect single target per sequence
-                        batch_buffer_meta.append(numpy.repeat(a=meta.data, repeats=data.length, axis=1))
+                        batch_buffer_meta.append(
+                            numpy.repeat(
+                                a=meta.data,
+                                repeats=data.length,
+                                axis=1
+                            )
+                        )
 
             if len(data.shape) == 2:
                 # Prepare 2D data, stack along time_axis
@@ -279,13 +285,19 @@ def get_keras_data_sequence_class():
 
                 # Add channel dimension to the data
                 if self.data_format == 'channels_first':
-                    batch_buffer_data = numpy.expand_dims(batch_buffer_data, 0)
+                    batch_buffer_data = numpy.expand_dims(
+                        batch_buffer_data,
+                        axis=0
+                    )
 
                 elif self.data_format == 'channels_last':
-                    batch_buffer_data = numpy.expand_dims(batch_buffer_data, 3)
+                    batch_buffer_data = numpy.expand_dims(
+                        batch_buffer_data,
+                        axis=3
+                    )
 
+            # Prepare meta
             if self.target_format == 'single_target_per_sequence':
-                # Prepare meta
                 batch_buffer_meta = numpy.vstack(batch_buffer_meta)
 
             elif self.target_format == 'same':
