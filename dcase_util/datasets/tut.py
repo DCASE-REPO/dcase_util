@@ -45,14 +45,17 @@ class TUTAcousticScenes_2017_DevelopmentSet(AcousticSceneDataset):
 
         storage_name : str
             Name to be used when storing dataset on disk
+            Default value 'TUT-acoustic-scenes-2017-development'
 
         data_path : str
             Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), 'dcase_util_datasets')
             is used.
+            Default value None
 
         included_content_types : list of str or str
             Indicates what content type should be processed. One or multiple from ['all', 'audio', 'meta', 'code',
             'documentation']. If None given, ['all'] is used. Parameter can be also comma separated string.
+            Default value None
 
         """
 
@@ -181,6 +184,7 @@ class TUTAcousticScenes_2017_DevelopmentSet(AcousticSceneDataset):
 
         absolute_path : bool
             Convert file paths to be absolute
+            Default value True
 
         """
 
@@ -253,14 +257,17 @@ class TUTAcousticScenes_2017_EvaluationSet(AcousticSceneDataset):
 
         storage_name : str
             Name to be used when storing dataset on disk
+            Default value 'TUT-acoustic-scenes-2017-evaluation'
 
         data_path : str
             Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), 'dcase_util_datasets')
             is used.
+            Default value None
 
         included_content_types : list of str or str
             Indicates what content type should be processed. One or multiple from ['all', 'audio', 'meta', 'code',
             'documentation']. If None given, ['all'] is used. Parameter can be also comma separated string.
+            Default value None
 
         """
 
@@ -339,9 +346,11 @@ class TUTAcousticScenes_2017_EvaluationSet(AcousticSceneDataset):
 
         absolute_path : bool
             Convert file paths to be absolute
+            Default value True
 
         filename_map : OneToOneMappingContainer
             Filename map
+            Default value None
 
         """
 
@@ -421,14 +430,25 @@ class TUTRareSoundEvents_2017_DevelopmentSet(SyntheticSoundEventDataset):
 
         storage_name : str
             Name to be used when storing dataset on disk
+            Default value 'TUT-rare-sound-events-2017-development'
 
         data_path : str
             Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), 'dcase_util_datasets')
             is used.
+            Default value None
 
         included_content_types : list of str or str
             Indicates what content type should be processed. One or multiple from ['all', 'audio', 'meta', 'code',
             'documentation']. If None given, ['all'] is used. Parameter can be also comma separated string.
+            Default value None
+
+        synth_parameters : dict
+            Data synthesis parameters.
+            Default value None
+
+        dcase_compatibility : bool
+            Ensure that dataset is generated same way than in DCASE2017 Challenge setup
+            Default value True
 
         """
 
@@ -1076,14 +1096,17 @@ class TUTRareSoundEvents_2017_EvaluationSet(SyntheticSoundEventDataset):
 
         storage_name : str
             Name to be used when storing dataset on disk
+            Default value 'TUT-rare-sound-events-2017-evaluation'
 
         data_path : str
             Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), 'dcase_util_datasets')
             is used.
+            Default value None
 
         included_content_types : list of str or str
             Indicates what content type should be processed. One or multiple from ['all', 'audio', 'meta', 'code',
             'documentation']. If None given, ['all'] is used. Parameter can be also comma separated string.
+            Default value None
 
         """
 
@@ -1357,7 +1380,6 @@ class TUTRareSoundEvents_2017_EvaluationSet(SyntheticSoundEventDataset):
 
         return os.path.join(self.evaluation_setup_path, '_'.join(parts) + '.' + file_extension)
 
-
     def train(self, fold=None, scene_label=None, event_label=None, filename_contains=None, **kwargs):
         """List of training items.
 
@@ -1365,23 +1387,27 @@ class TUTRareSoundEvents_2017_EvaluationSet(SyntheticSoundEventDataset):
         ----------
         fold : int
             Fold id, if None all meta data is returned.
-            Default value "None"
+            Default value None
+
         scene_label : str
             Scene label
-            Default value "None"
+            Default value None"
+
         event_label : str
             Event label
-            Default value "None"
+            Default value None"
+
         filename_contains : str:
             String found in filename
-             Default value "None"
+             Default value None
 
         Returns
         -------
-        list : list of dicts
+        list
             List containing all meta data assigned to training set for given fold.
 
         """
+
         if fold is None or fold == 0:
             fold = 'all_data'
 
@@ -1409,20 +1435,23 @@ class TUTRareSoundEvents_2017_EvaluationSet(SyntheticSoundEventDataset):
         ----------
         fold : int
             Fold id, if None all meta data is returned.
-            Default value "None"
+            Default value None
+
         scene_label : str
             Scene label
-            Default value "None"
+            Default value None
+
         event_label : str
             Event label
-            Default value "None"
+            Default value None
+
         filename_contains : str:
             String found in filename
-             Default value "None"
+             Default value None
 
         Returns
         -------
-        list : list of dicts
+        list
             List containing all meta data assigned to testing set for given fold.
 
         """
@@ -1454,20 +1483,23 @@ class TUTRareSoundEvents_2017_EvaluationSet(SyntheticSoundEventDataset):
         ----------
         fold : int
             Fold id, if None all meta data is returned.
-            Default value "None"
+            Default value None
+
         scene_label : str
             Scene label
-            Default value "None"
+            Default value None
+
         event_label : str
             Event label
-            Default value "None"
+            Default value None
+
         filename_contains : str:
             String found in filename
-             Default value "None"
+             Default value None
 
         Returns
         -------
-        list : list of dicts
+        list
             List containing all meta data assigned to testing set for given fold.
 
         """
@@ -1513,14 +1545,17 @@ class TUTSoundEvents_2017_DevelopmentSet(SoundEventDataset):
 
         storage_name : str
             Name to be used when storing dataset on disk
+            Default value 'TUT-sound-events-2017-development'
 
         data_path : str
             Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), 'dcase_util_datasets')
             is used.
+            Default value None
 
         included_content_types : list of str or str
             Indicates what content type should be processed. One or multiple from ['all', 'audio', 'meta', 'code',
             'documentation']. If None given, ['all'] is used. Parameter can be also comma separated string.
+            Default value None
 
         """
 
@@ -1584,6 +1619,7 @@ class TUTSoundEvents_2017_DevelopmentSet(SoundEventDataset):
 
         absolute_path : bool
             Convert file paths to be absolute
+            Default value True
 
         """
 
@@ -1647,14 +1683,17 @@ class TUTSoundEvents_2017_EvaluationSet(SoundEventDataset):
 
         storage_name : str
             Name to be used when storing dataset on disk
+            Default value 'TUT-sound-events-2017-evaluation'
 
         data_path : str
             Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), 'dcase_util_datasets')
             is used.
+            Default value None
 
         included_content_types : list of str or str
             Indicates what content type should be processed. One or multiple from ['all', 'audio', 'meta', 'code',
             'documentation']. If None given, ['all'] is used. Parameter can be also comma separated string.
+            Default value None
 
         """
 
@@ -1716,6 +1755,7 @@ class TUTSoundEvents_2017_EvaluationSet(SoundEventDataset):
 
         absolute_path : bool
             Convert file paths to be absolute
+            Default value True
 
         """
 
@@ -1813,14 +1853,17 @@ class TUTAcousticScenes_2016_DevelopmentSet(AcousticSceneDataset):
 
         storage_name : str
             Name to be used when storing dataset on disk
+            Default value 'TUT-acoustic-scenes-2016-development'
 
         data_path : str
             Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), 'dcase_util_datasets')
             is used.
+            Default value None
 
         included_content_types : list of str or str
             Indicates what content type should be processed. One or multiple from ['all', 'audio', 'meta', 'code',
             'documentation']. If None given, ['all'] is used. Parameter can be also comma separated string.
+            Default value None
 
         """
 
@@ -1973,6 +2016,7 @@ class TUTAcousticScenes_2016_DevelopmentSet(AcousticSceneDataset):
 
         absolute_path : bool
             Convert file paths to be absolute
+            Default value True
 
         """
 
@@ -2005,14 +2049,17 @@ class TUTAcousticScenes_2016_EvaluationSet(AcousticSceneDataset):
 
         storage_name : str
             Name to be used when storing dataset on disk
+            Default value 'TUT-acoustic-scenes-2016-evaluation'
 
         data_path : str
             Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), 'dcase_util_datasets')
             is used.
+            Default value None
 
         included_content_types : list of str or str
             Indicates what content type should be processed. One or multiple from ['all', 'audio', 'meta', 'code',
             'documentation']. If None given, ['all'] is used. Parameter can be also comma separated string.
+            Default value None
 
         """
 
@@ -2083,6 +2130,7 @@ class TUTAcousticScenes_2016_EvaluationSet(AcousticSceneDataset):
 
         absolute_path : bool
             Convert file paths to be absolute
+            Default value True
 
         """
 
@@ -2153,14 +2201,17 @@ class TUTSoundEvents_2016_DevelopmentSet(SoundEventDataset):
 
         storage_name : str
             Name to be used when storing dataset on disk
+            Default value 'TUT-acoustic-scenes-2016-development'
 
         data_path : str
             Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), 'dcase_util_datasets')
             is used.
+            Default value None
 
         included_content_types : list of str or str
             Indicates what content type should be processed. One or multiple from ['all', 'audio', 'meta', 'code',
             'documentation']. If None given, ['all'] is used. Parameter can be also comma separated string.
+            Default value None
 
         """
 
@@ -2220,6 +2271,7 @@ class TUTSoundEvents_2016_DevelopmentSet(SoundEventDataset):
 
         absolute_path : bool
             Convert file paths to be absolute
+            Default value True
 
         """
 
@@ -2290,14 +2342,17 @@ class TUTSoundEvents_2016_EvaluationSet(SoundEventDataset):
 
         storage_name : str
             Name to be used when storing dataset on disk
+            Default value 'TUT-sound-events-2016-evaluation'
 
         data_path : str
             Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), 'dcase_util_datasets')
             is used.
+            Default value None
 
         included_content_types : list of str or str
             Indicates what content type should be processed. One or multiple from ['all', 'audio', 'meta', 'code',
             'documentation']. If None given, ['all'] is used. Parameter can be also comma separated string.
+            Default value None
 
         """
 
@@ -2412,14 +2467,17 @@ class TUT_SED_Synthetic_2016(SoundEventDataset):
 
         storage_name : str
             Name to be used when storing dataset on disk
+            Default value 'TUT-SED-synthetic-2016'
 
         data_path : str
             Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), 'dcase_util_datasets')
             is used.
+            Default value None
 
         included_content_types : list of str or str
             Indicates what content type should be processed. One or multiple from ['all', 'audio', 'meta', 'code',
             'documentation']. If None given, ['all'] is used. Parameter can be also comma separated string.
+            Default value None
 
         """
 
