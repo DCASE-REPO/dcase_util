@@ -249,6 +249,9 @@ class Normalizer(ObjectContainer):
         """
         from dcase_util.containers import DataContainer
 
+        # Make copy of data to prevent data contamination
+        data = copy.deepcopy(data)
+
         if isinstance(data, DataContainer):
             data.data = (data.data - self.mean) / self.std
 
