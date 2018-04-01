@@ -865,9 +865,19 @@ class Stacker(ObjectContainer):
                 stream_id = recipe_part['vector-index']['stream']
 
             if repository.get_container(label=label, stream_id=stream_id).time_resolution:
-                time_resolution.append(repository.get_container(label=label, stream_id=stream_id).time_resolution)
+                time_resolution.append(
+                    repository.get_container(
+                        label=label,
+                        stream_id=stream_id
+                    ).time_resolution
+                )
 
-            frame_count.append(repository.get_container(label=label, stream_id=stream_id).length)
+            frame_count.append(
+                repository.get_container(
+                    label=label,
+                    stream_id=stream_id
+                ).length
+            )
 
         if len(set(frame_count)) != 1:
             message = '{name}: Data matrices should have same number of frames {frame_count}'.format(
@@ -902,7 +912,12 @@ class Stacker(ObjectContainer):
 
                 # Full matrix
                 data_matrix.append(
-                    repository.get_container(label=label, stream_id=stream_id).get_frames(frame_hop=self.hop)
+                    repository.get_container(
+                        label=label,
+                        stream_id=stream_id
+                    ).get_frames(
+                        frame_hop=self.hop
+                    )
                 )
 
             elif ('vector-index' in recipe_part and
@@ -913,7 +928,13 @@ class Stacker(ObjectContainer):
 
                 # Selector vector
                 data_matrix.append(
-                    repository.get_container(label=label, stream_id=stream_id).get_frames(vector_ids=index, frame_hop=self.hop)
+                    repository.get_container(
+                        label=label,
+                        stream_id=stream_id
+                    ).get_frames(
+                        vector_ids=index,
+                        frame_hop=self.hop
+                    )
                 )
 
             elif ('vector-index' in recipe_part and
@@ -924,7 +945,13 @@ class Stacker(ObjectContainer):
 
                 # Start and end index
                 data_matrix.append(
-                    repository.get_container(label=label, stream_id=stream_id).get_frames(vector_ids=index, frame_hop=self.hop)
+                    repository.get_container(
+                        label=label,
+                        stream_id=stream_id
+                    ).get_frames(
+                        vector_ids=index,
+                        frame_hop=self.hop
+                    )
                 )
 
         from dcase_util.containers import FeatureContainer
