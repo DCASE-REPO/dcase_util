@@ -1681,7 +1681,7 @@ class AcousticSceneDataset(Dataset):
 
         training_files = []
         validation_files = []
-        validation_amounts = numpy.zeros((len(self.scene_labels())+1, 3))
+        validation_amounts = numpy.zeros((len(self.scene_labels())+1, 4))
 
         if identifier_present:
             # Do the balance based on scene class and identifier
@@ -1735,7 +1735,8 @@ class AcousticSceneDataset(Dataset):
                 training_files += sets_candidates[best_set_id]['training']
                 validation_amounts[scene_id, 0] = len(scene_meta.unique_identifiers)
                 validation_amounts[scene_id, 1] = len(scene_meta.unique_files)
-                validation_amounts[scene_id, 2] = current_scene_validation_amount[best_set_id] * 100
+                validation_amounts[scene_id, 2] = len(sets_candidates[best_set_id]['validation'])
+                validation_amounts[scene_id, 3] = current_scene_validation_amount[best_set_id] * 100
 
         else:
             # Do the balance based on scene class only
@@ -1750,25 +1751,48 @@ class AcousticSceneDataset(Dataset):
                 validation_files += current_validation_files
                 training_files += current_training_files
                 validation_amounts[scene_id, 1] = len(scene_files)
-                validation_amounts[scene_id, 2] = len(current_validation_files) / float(len(current_validation_files) + len(current_training_files)) * 100
+                validation_amounts[scene_id, 2] = len(current_validation_files)
+                validation_amounts[scene_id, 3] = len(current_validation_files) / float(len(current_validation_files) + len(current_training_files)) * 100
 
         if verbose:
             validation_amounts[-1, 0] = numpy.sum(validation_amounts[0:-1, 0])
             validation_amounts[-1, 1] = numpy.sum(validation_amounts[0:-1, 1])
-            validation_amounts[-1, 2] = numpy.mean(validation_amounts[0:-1, 2])
+            validation_amounts[-1, 2] = numpy.sum(validation_amounts[0:-1, 2])
+            validation_amounts[-1, 3] = numpy.mean(validation_amounts[0:-1, 3])
 
-            labels = self.scene_labels()
-            labels.append('Overall')
             logger = FancyLogger()
             logger.sub_header('Validation set for fold [{fold}] / balanced'.format(fold=fold), indent=2)
-            logger.table(
-                cell_data=[labels] + validation_amounts.T.tolist(),
-                column_headers=['Scene', 'Identifiers', 'Files', 'Amount (%)'],
-                column_types=['str20', 'int', 'int', 'float1'],
-                column_separators=[0, 1],
-                row_separators=[len(labels)-1],
+            logger.row(
+                '', 'Full training set', 'Selected validation subset',
+                widths=[20, 25, 35],
+                types=['str', 'str', 'str'],
+                separators=[True, True],
                 indent=2
             )
+            logger.row(
+                'Scene label', 'Identifiers', 'Files', 'Files', 'Amount (%)',
+                widths=[20, 15, 10, 10, 15],
+                types=['str20', 'int', 'int', 'int', 'float1_percentage'],
+                separators=[True, False, True, False]
+            )
+            logger.row('-', '-', '-', '-', '-')
+            for scene_id, scene_label in enumerate(self.scene_labels()):
+                logger.row(
+                    scene_label,
+                    validation_amounts[scene_id, 0],
+                    validation_amounts[scene_id, 1],
+                    validation_amounts[scene_id, 2],
+                    validation_amounts[scene_id, 3],
+                )
+            logger.row('-', '-', '-', '-', '-')
+            logger.row(
+                'Overall',
+                validation_amounts[-1, 0],
+                validation_amounts[-1, 1],
+                validation_amounts[-1, 2],
+                validation_amounts[-1, 3]
+            )
+        logger.line()
 
         return validation_files
 
