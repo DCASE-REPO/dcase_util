@@ -137,7 +137,7 @@ class ProcessingChain(ListDictContainer):
         output = ''
 
         ui = FancyStringifier()
-        output += ui.row('ID', 'Processor', 'INPUT', 'OUTPUT', 'INIT', widths=[5, 52, 18, 18, 25]) + '\n'
+        output += ui.row('ID', 'Processor', 'Input', 'Output', 'Init parameters set', widths=[5, 30, 18, 18, 50]) + '\n'
         output += ui.row('-', '-', '-', '-', '-') + '\n'
         if len(self):
             for item_id, item in enumerate(self):
@@ -145,13 +145,14 @@ class ProcessingChain(ListDictContainer):
                     current_processor = self.processor_class_reference(
                         processor_name=item['processor_name']
                     )
+                    processor_name = item['processor_name'].split('.')[-1]
 
                     output += ui.row(
                         item_id,
-                        item['processor_name'],
+                        processor_name,
                         current_processor.input_type,
                         current_processor.output_type,
-                        item.get('init_parameters')
+                        ','.join(item.get('init_parameters', {}).keys())
                     ) + '\n'
 
         else:
