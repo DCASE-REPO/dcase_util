@@ -26,7 +26,7 @@ class DecisionEncoder(ObjectContainer):
 
         self.label_list = label_list
 
-    def majority_vote(self, frame_decisions, frame_axis=0):
+    def majority_vote(self, frame_decisions, time_axis=1):
         """Majority vote.
 
         Parameters
@@ -34,9 +34,9 @@ class DecisionEncoder(ObjectContainer):
         frame_decisions : numpy.ndarray [shape=(d,t) or (t,d)]
             Frame decisions
 
-        frame_axis : int
-            Axis index for frames in the matrix
-            Default value 0
+        time_axis : int
+            Axis index for time in the matrix
+            Default value 1
 
         Returns
         -------
@@ -45,28 +45,35 @@ class DecisionEncoder(ObjectContainer):
 
         """
 
+        # Get data_axis
+        if time_axis == 0:
+            class_axis = 1
+        else:
+            class_axis = 0
+
         if isinstance(frame_decisions, numpy.ndarray) and len(frame_decisions.shape) == 2:
             # We have matrix
-            frame_decisions = numpy.argmax(frame_decisions, axis=frame_axis)
+            frame_decisions = numpy.argmax(frame_decisions, axis=class_axis)
 
         counts = numpy.bincount(frame_decisions)
+
         return self.label_list[numpy.argmax(counts)]
 
-    def many_hot(self, frame_decisions, frame_axis=0, label_list=None):
-        """Many hot decoder
+    def many_hot(self, frame_decisions, label_list=None, time_axis=1):
+        """Many hot
 
         Parameters
         ----------
         frame_decisions : numpy.ndarray [shape=(d,t) or (t,d)]
             Frame decisions
 
-        frame_axis : int
-            Axis index for frames in the matrix
-            Default value 0
-
         label_list : list or str
             Label list, if None given one for class initializer is used.
             Default value None
+
+        time_axis : int
+            Axis index for frames in the matrix
+            Default value 1
 
         Raises
         ------
@@ -90,14 +97,20 @@ class DecisionEncoder(ObjectContainer):
             self.logger.exception(message)
             raise ValueError(message)
 
-        encoded = []
-        for frame_id in range(0, frame_decisions.shape[frame_axis]):
-            # Get decisions for current frame
-            if frame_axis == 0:
-                current_frame = frame_decisions[frame_id, :]
+        # Get data_axis
+        if time_axis == 0:
+            class_axis = 1
+        else:
+            class_axis = 0
 
-            elif frame_axis == 1:
+        encoded = []
+        for frame_id in range(0, frame_decisions.shape[time_axis]):
+            # Get decisions for current frame
+            if class_axis == 0:
                 current_frame = frame_decisions[:, frame_id].T
+
+            elif class_axis == 1:
+                current_frame = frame_decisions[frame_id, :]
 
             # Encode current frame decisions
             current_frame_encoded = []
@@ -154,7 +167,7 @@ class DecisionEncoder(ObjectContainer):
             Window length in analysis frame amount
 
         operator : str
-            Operator to be used
+            Operator to be used ['median_filtering']
             Default value 'median_filtering'
 
         time_axis : int
