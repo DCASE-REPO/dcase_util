@@ -1402,6 +1402,381 @@ class DataMatrix3DContainer(DataMatrix2DContainer):
             raise NotImplementedError(message)
 
 
+class DataMatrix4DContainer(DataMatrix3DContainer):
+    """Four-dimensional data matrix container class, inherited from DataMatrix3DContainer."""
+    valid_formats = [FileFormat.CPICKLE]  #: Valid file formats
+
+    def __init__(self, data=None, stats=None, metadata=None, time_resolution=None, processing_chain=None, **kwargs):
+        """Constructor
+
+        Parameters
+        ----------
+        filename : str, optional
+            File path
+            Default value None
+
+        data : numpy.ndarray, optional
+            Data to initialize the container
+            Default value None
+
+        stats : dict, optional
+            Statistics of the data
+            Default value None
+
+        metadata : dict or MetadataContainer, optional
+            MetadataContainer
+            Default value None
+
+        time_resolution : float, optional
+            Time resolution
+            Default value None
+
+        processing_chain : ProcessingChain, optional
+            Processing chain.
+            Default value None
+
+        """
+
+        if data is None:
+            # Initialize with 4D-matrix
+            data = numpy.ndarray((0, 0, 0, 0))
+
+        kwargs.update({
+            'data': data,
+            'stats': stats,
+            'metadata': metadata,
+            'time_resolution': time_resolution,
+            'processing_chain': processing_chain
+        })
+
+        # Run DataMatrix3DContainer init
+        DataMatrix3DContainer.__init__(self, **kwargs)
+
+        # Run super init
+        super(DataMatrix4DContainer, self).__init__(**kwargs)
+
+        # Matrix axis
+        self.data_axis = 0
+        self.time_axis = 1
+        self.sequence_axis = 2
+        self.channel_axis = 3
+
+    def __getstate__(self):
+        d = super(DataMatrix4DContainer, self).__getstate__()
+        d.update({
+            'channel_axis': self.channel_axis
+        })
+
+        return d
+
+    def __setstate__(self, d):
+        super(DataMatrix4DContainer, self).__setstate__(d)
+        self.channel_axis = d['channel_axis']
+
+    def __str__(self):
+        ui = FancyStringifier()
+
+        output = super(DataMatrix4DContainer, self).__str__()
+
+        output += ui.line(field='Data') + '\n'
+        output += ui.line(indent=4, field='Dimensions') + '\n'
+        output += ui.data(indent=6, field='time_axis', value=self.time_axis) + '\n'
+        output += ui.data(indent=6, field='data_axis', value=self.data_axis) + '\n'
+        output += ui.data(indent=6, field='sequence_axis', value=self.sequence_axis) + '\n'
+        output += ui.data(indent=6, field='channel_axis', value=self.channel_axis) + '\n'
+
+        return output
+
+    def change_axis(self, time_axis=None, data_axis=None, sequence_axis=None, channel_axis=None):
+        """Set axis
+
+        Parameters
+        ----------
+        time_axis : int, optional
+            New data axis for time. Current axis and new axis are swapped.
+            Default value None
+
+        data_axis : int, optional
+            New data axis for data. Current axis and new axis are swapped.
+            Default value None
+
+        sequence_axis : int, optional
+            New data axis for data sequence. Current axis and new axis are swapped.
+            Default value None
+
+        channel_axis : int, optional
+            New data axis for data channel. Current axis and new axis are swapped.
+            Default value None
+
+        Returns
+        -------
+        self
+
+        """
+
+        # Get not None values
+        axis_list = [time_axis, data_axis, sequence_axis, channel_axis]
+        axis_list = [x for x in axis_list if x is not None]
+
+        # Get unique values
+        axis_set = set(axis_list)
+
+        if len(axis_list) != len(axis_set):
+            message = '{name}: Give unique axis indexes [{axis_list}].'.format(
+                name=self.__class__.__name__,
+                axis_list=axis_list
+            )
+
+            self.logger.exception(message)
+            raise ValueError(message)
+
+        if time_axis > 3:
+            message = '{name}: Given time_axis too large [{time_axis}].'.format(
+                name=self.__class__.__name__,
+                time_axis=time_axis
+            )
+
+            self.logger.exception(message)
+            raise ValueError(message)
+
+        if data_axis > 3:
+            message = '{name}: Given data_axis too large [{data_axis}].'.format(
+                name=self.__class__.__name__,
+                data_axis=data_axis
+            )
+
+            self.logger.exception(message)
+            raise ValueError(message)
+
+        if sequence_axis > 3:
+            message = '{name}: Given sequence_axis too large [{sequence_axis}].'.format(
+                name=self.__class__.__name__,
+                sequence_axis=sequence_axis
+            )
+
+            self.logger.exception(message)
+            raise ValueError(message)
+
+        if channel_axis > 3:
+            message = '{name}: Given channel_axis too large [{channel_axis}].'.format(
+                name=self.__class__.__name__,
+                channel_axis=channel_axis
+            )
+
+            self.logger.exception(message)
+            raise ValueError(message)
+
+        # Get axis map
+        axis_map = OneToOneMappingContainer({
+            'time_axis': self.time_axis,
+            'data_axis': self.data_axis,
+            'sequence_axis': self.sequence_axis,
+            'channel_axis': self.channel_axis,
+        })
+
+        if time_axis is not None and time_axis != self.time_axis:
+            # Modify time axis
+
+            # Get axis names
+            target_axis = axis_map.flipped.map(time_axis)
+            source_axis = axis_map.flipped.map(self.time_axis)
+
+            # Modify data
+            self.data = numpy.swapaxes(
+                a=self.data,
+                axis1=self.time_axis,
+                axis2=time_axis
+            )
+
+            # Store new axes
+            axis_map[target_axis] = self.time_axis
+            axis_map[source_axis] = time_axis
+
+            setattr(self, str(target_axis), self.time_axis)
+            setattr(self, str(source_axis), time_axis)
+
+        if data_axis is not None and data_axis != self.data_axis:
+            # Modify data axis
+
+            # Get axis names
+            target_axis = axis_map.flipped.map(data_axis)
+            source_axis = axis_map.flipped.map(self.data_axis)
+
+            # Modify data
+            self.data = numpy.swapaxes(
+                a=self.data,
+                axis1=self.data_axis,
+                axis2=data_axis
+            )
+
+            # Store new axes
+            axis_map[target_axis] = self.data_axis
+            axis_map[source_axis] = data_axis
+
+            setattr(self, str(target_axis), self.data_axis)
+            setattr(self, str(source_axis), data_axis)
+
+        if sequence_axis is not None and sequence_axis != self.sequence_axis:
+            # Modify sequence axis
+
+            # Get axis names
+            target_axis = axis_map.flipped.map(sequence_axis)
+            source_axis = axis_map.flipped.map(self.sequence_axis)
+
+            # Modify data
+            self.data = numpy.swapaxes(
+                a=self.data,
+                axis1=self.sequence_axis,
+                axis2=sequence_axis
+            )
+
+            # Store new axes
+            axis_map[target_axis] = self.sequence_axis
+            axis_map[source_axis] = sequence_axis
+
+            setattr(self, str(target_axis), self.sequence_axis)
+            setattr(self, str(source_axis), sequence_axis)
+
+        if channel_axis is not None and channel_axis != self.channel_axis:
+            # Modify channel axis
+
+            # Get axis names
+            target_axis = axis_map.flipped.map(channel_axis)
+            source_axis = axis_map.flipped.map(self.channel_axis)
+
+            # Modify data
+            self.data = numpy.swapaxes(
+                a=self.data,
+                axis1=self.channel_axis,
+                axis2=channel_axis
+            )
+
+            # Store new axes
+            axis_map[target_axis] = self.channel_axis
+            axis_map[source_axis] = channel_axis
+
+            setattr(self, str(target_axis), self.channel_axis)
+            setattr(self, str(source_axis), channel_axis)
+
+        return self
+
+    def plot(self, show_color_bar=False, show_filename=True, plot=True):
+        """Plot data
+
+        Parameters
+        ----------
+
+        show_color_bar : bool
+            Show color bar next to plot.
+            Default value False
+
+        show_filename : bool
+            Show filename as figure title
+            Default value True
+
+        plot : bool
+            If true, figure is shown automatically. Set to False if collecting multiple plots into same figure
+            outside this method.
+            Default value True
+
+        Returns
+        -------
+        self
+
+        """
+
+        data = self.get_focused()
+
+        if data.shape[self.sequence_axis] < 5:
+            from librosa.display import specshow
+            import matplotlib.pyplot as plt
+
+            if plot:
+                plt.figure()
+
+            rows_count = data.shape[self.channel_axis]
+            for sequence_id in range(data.shape[self.sequence_axis]):
+                for channel_id in range(data.shape[self.channel_axis]):
+                    if rows_count == 1:
+                        # Special case when only one stream, transpose presentation
+                        index = 1 + sequence_id
+
+                        plt.subplot(
+                            data.shape[self.sequence_axis],
+                            rows_count,
+                            index
+                        )
+
+                    else:
+                        index = 1 + (sequence_id + channel_id * data.shape[self.sequence_axis])
+
+                        plt.subplot(
+                            rows_count,
+                            data.shape[self.sequence_axis],
+                            index
+                        )
+                    if self.sequence_axis == 0 and self.channel_axis == 1:
+                        current_data = data[sequence_id, channel_id, :, :]
+
+                    elif self.sequence_axis == 0 and self.channel_axis == 2:
+                        current_data = data[sequence_id, :, channel_id, :]
+
+                    elif self.sequence_axis == 0 and self.channel_axis == 3:
+                        current_data = data[sequence_id, :, :, channel_id]
+
+                    elif self.sequence_axis == 1 and self.channel_axis == 3:
+                        current_data = data[:, sequence_id, :, channel_id]
+
+                    elif self.sequence_axis == 2 and self.channel_axis == 3:
+                        current_data = data[:, :, sequence_id, channel_id]
+
+                    # Plot feature matrix
+                    ax = specshow(
+                        data=current_data,
+                        x_axis='time',
+                        sr=1,
+                        hop_length=1
+                    )
+                    if rows_count == 1:
+                        if channel_id != data.shape[self.channel_axis] - 1:
+                            ax.tick_params(
+                                axis='x',
+                                which='both',
+                                bottom='off',
+                                top='off',
+                                labelbottom='off'
+                            )
+                            plt.xlabel('')
+                    else:
+                        if channel_id+1 != data.shape[self.channel_axis]:
+                            ax.tick_params(
+                                axis='x',
+                                which='both',
+                                bottom='off',
+                                top='off',
+                                labelbottom='off'
+                            )
+                            plt.xlabel('')
+
+                    plt.ylabel('seq['+str(sequence_id)+'] chan['+str(channel_id)+']')
+
+            # Add filename to first subplot
+            if show_filename and hasattr(self, 'filename') and self.filename:
+                plt.title(self.filename)
+
+            if plot:
+                plt.tight_layout()
+                plt.show()
+
+        else:
+            # TODO find method visualize deep matrices.
+            message = '{name}: Matrix is too deep, plot-method not yet implemented.'.format(
+                name=self.__class__.__name__
+            )
+            self.logger.exception(message)
+            raise NotImplementedError(message)
+
+
 class BinaryMatrix2DContainer(DataMatrix2DContainer):
     """Two-dimensional data matrix container class, inherited from DataContainer."""
     valid_formats = [FileFormat.CPICKLE]  #: Valid file formats
@@ -1760,8 +2135,6 @@ class DataRepository(RepositoryContainer):
                         self[label] = {}
 
                     self[label][int(stream_id)] = self.item_class().load(filename=filename)
-
-            return self
 
         elif isinstance(self.filename, dict):
             sorted(self.filename)
