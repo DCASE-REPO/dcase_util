@@ -52,7 +52,11 @@ class FeatureRepository(DataRepository):
         Parameters
         ----------
         filename: str or dict
-            Either one filename (str) or multiple filenames in a dictionary. Dictionary based parameter is used to construct the repository from separate FeatureContainers, two formats for the dictionary is supported: 1) label as key, and filename as value, and 2) two-level dictionary label as key1, stream as key2 and filename as value.
+            Either one filename (str) or multiple filenames in a dictionary. Dictionary based parameter is used to
+            construct the repository from separate FeatureContainers, two formats for the dictionary is supported:
+            1) label as key, and filename as value, and 2) two-level dictionary label as key1, stream as key2
+            and filename as value.
+            Default value None
 
         default_stream_id : str or int
             Default stream id used when accessing data
