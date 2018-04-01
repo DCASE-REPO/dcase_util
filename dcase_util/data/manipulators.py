@@ -22,18 +22,23 @@ class Normalizer(ObjectContainer):
         ----------
         n : int
             Item count used to calculate statistics
+            Default value None
 
         s1 : np.array [shape=(vector_length,)]
             Vector-wise sum of the data seen by the Normalizer
+            Default value None
 
         s2 : np.array [shape=(vector_length,)]
             Vector-wise sum^2 of the data seen by the Normalizer
+            Default value None
 
         mean : np.ndarray() [shape=(vector_length, 1)]
             Mean of the data
+            Default value None
 
         std : np.ndarray() [shape=(vector_length, 1)]
             Standard deviation of the data
+            Default value None
 
         """
 
@@ -163,10 +168,11 @@ class Normalizer(ObjectContainer):
 
         time_axis : int
             If data contains np.ndarray axis for the time
+            Default value 1
 
         Returns
         -------
-        nothing
+        self
 
         """
 
@@ -207,14 +213,14 @@ class Normalizer(ObjectContainer):
     def finalize(self):
         """Finalize statistics calculation
 
-        Accumulated values are used to get mean and std for the seen feature data.
+        Accumulated values are used to get mean and std for the seen data.
 
         Parameters
         ----------
 
         Returns
         -------
-        None
+        self
 
         """
 
@@ -224,7 +230,7 @@ class Normalizer(ObjectContainer):
         return self
 
     def normalize(self, data, **kwargs):
-        """Normalize feature matrix with internal statistics of the class
+        """Normalize data matrix with internal statistics of the class.
 
         Parameters
         ----------
@@ -233,7 +239,7 @@ class Normalizer(ObjectContainer):
 
         Returns
         -------
-        DataContainer or numpy.ndarray [shape=(frames, number of feature values)]
+        DataContainer or numpy.ndarray [shape=(frames, number of data values)]
             Normalized data matrix
 
         """
