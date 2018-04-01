@@ -269,3 +269,54 @@ def test_container():
     )
     nose.tools.eq_(param['field1'], 1000)
     nose.tools.eq_(param['field2']['field3'], 222)
+
+
+def test_sets():
+    param = dcase_util.containers.AppParameterContainer(
+        {
+            'active_set': 'set1',
+            'sets': [
+                {
+                    'set_id': 'set1',
+                    'section1': {
+                        'field1': 100,
+                        'field2': 100,
+                    }
+                },
+                {
+                    'set_id': 'set2',
+                    'section1': {
+                        'field1': 200,
+                        'field3': 200,
+                    }
+                },
+                {
+                    'set_id': 'set3',
+                    'section1': {
+                        'field1': 300,
+                        'field4': 300
+                    }
+                },
+            ],
+            'defaults': {
+                'field1': 1
+            }
+        },
+        app_base=os.path.join(tempfile.gettempdir(), 'dcase_util_app')
+    )
+    param.process()
+
+    nose.tools.eq_(param['set_id'], 'set1')
+    nose.tools.eq_(param['section1']['field1'], 100)
+    nose.tools.eq_(param['section1']['field2'], 100)
+    nose.tools.eq_(param['_hash'], '0afad0d180c377ea63b085bb6de7a9ee')
+
+    nose.tools.eq_(param.set_ids(), ['set1', 'set2', 'set3'])
+
+    param.update_parameter_set(set_id='set2')
+
+    nose.tools.eq_(param['set_id'], 'set2')
+    nose.tools.eq_(param['section1']['field1'], 200)
+    nose.tools.eq_(param['section1']['field3'], 200)
+    nose.tools.eq_(param['_hash'], 'd350d91259caa812c7eb363c8c065c39')
+
