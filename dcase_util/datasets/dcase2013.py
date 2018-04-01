@@ -272,7 +272,7 @@ class DCASE2013_Scenes_EvaluationSet(AcousticSceneDataset):
             {
                 'content_type': ['meta'],
                 'remote_file': 'https://archive.org/download/dcase2013_scene_classification_testset/dcase2013_task1_filenamekey.csv',
-                'remote_bytes': None,
+                'remote_bytes': 8572,
                 'remote_md5': None,
                 'filename': 'dcase2013_task1_filenamekey.csv'
             }
