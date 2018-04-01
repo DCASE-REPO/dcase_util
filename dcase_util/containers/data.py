@@ -90,6 +90,15 @@ class DataContainer(ObjectContainer):
         # Convert list to ProcessingChain
         if isinstance(processing_chain, list):
             processing_chain = ProcessingChain(processing_chain)
+
+        else:
+            message = '{name}: Wrong type of processing_chain given to class initializer.'.format(
+                name=self.__class__.__name__
+            )
+
+            self.logger.exception(message)
+            raise ValueError(message)
+
         self.processing_chain = processing_chain
 
         # Focus
