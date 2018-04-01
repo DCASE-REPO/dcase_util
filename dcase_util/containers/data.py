@@ -1643,18 +1643,20 @@ class DataRepository(RepositoryContainer):
         output = ''
         output += ui.class_name(self.__class__.__name__) + '\n'
 
-        if self.filename:
+        if hasattr(self, 'filename') and self.filename:
             output += ui.data(
                 field='filename',
                 value=self.filename
             ) + '\n'
 
         output += ui.line(field='Repository info') + '\n'
-        output += ui.data(
-            indent=4,
-            field='Item class',
-            value=self.item_class.__name__
-        ) + '\n'
+
+        if hasattr(self, 'item_class') and self.item_class:
+            output += ui.data(
+                indent=4,
+                field='Item class',
+                value=self.item_class.__name__
+            ) + '\n'
 
         output += ui.data(
             indent=4,
@@ -1671,12 +1673,13 @@ class DataRepository(RepositoryContainer):
         output += ui.line(field='Content') + '\n'
         for label, label_data in iteritems(self):
             if label_data:
-                for stream_id, stream_data in iteritems(label_data):
-                    output += ui.data(
-                        indent=4,
-                        field='['+str(label)+']' + '[' + str(stream_id) + ']',
-                        value=stream_data
-                    ) + '\n'
+                if isinstance(label_data, dict):
+                    for stream_id, stream_data in iteritems(label_data):
+                        output += ui.data(
+                            indent=4,
+                            field='['+str(label)+']' + '[' + str(stream_id) + ']',
+                            value=stream_data
+                        ) + '\n'
 
         output += '\n'
 
@@ -1771,7 +1774,7 @@ class DataRepository(RepositoryContainer):
                     self[label] = {}
                     if not label.startswith('_'):
                         # Skip labels starting with '_', those are just for extra info
-                        if isinstance(data, str):
+                        if isinstance(data, basestring):
                             # filename given directly, only one feature stream per method inputted.
                             self[label][self.default_stream_id] = self.item_class().load(filename=data)
 
@@ -1779,12 +1782,10 @@ class DataRepository(RepositoryContainer):
                             for stream, filename in iteritems(data):
                                 self[label][stream] = self.item_class().load(filename=filename)
 
-                return self
-
             else:
                 # All filenames did not exists, find which ones is missing and raise error.
                 for label, data in iteritems(self.filename):
-                    if isinstance(data, str) and not os.path.isfile(data):
+                    if isinstance(data, basestring) and not os.path.isfile(data):
                         message = '{name}: Repository cannot be loaded, file does not exists for method [{method}], file [{filename}]'.format(
                             name=self.__class__.__name__,
                             method=label,
@@ -1806,11 +1807,13 @@ class DataRepository(RepositoryContainer):
                                 raise IOError(message)
 
         else:
-            message = '{name}: Repository cannot be loaded, no filename set.'.format(
+            message = '{name}: Repository cannot be loaded, no valid filename set.'.format(
                 name=self.__class__.__name__
             )
             self.logger.exception(message)
             raise IOError(message)
+
+        return self
 
     def save(self, filename=None, split_into_containers=False):
         """Save file
@@ -1863,7 +1866,6 @@ class DataRepository(RepositoryContainer):
 
             # String filename given use load method from parent class
             super(DataRepository, self).save(filename=self.filename)
-            return self
 
         elif isinstance(self.filename, dict):
             # Custom naming and splitting into separate containers
@@ -1876,7 +1878,8 @@ class DataRepository(RepositoryContainer):
                         if stream_id in self.filename[label]:
                             current_container = self.get_container(label=label, stream_id=stream_id)
                             current_container.save(filename=self.filename[label][stream_id])
-            return self
+
+        return self
 
     def get_container(self, label, stream_id=None):
         """Get container from repository
@@ -1888,6 +1891,7 @@ class DataRepository(RepositoryContainer):
 
         stream_id : str or int
             Stream id, if None, default_stream is used.
+            Default value None
 
         Returns
         -------
@@ -1913,6 +1917,7 @@ class DataRepository(RepositoryContainer):
 
         stream_id : str or int
             Stream id, if None, default_stream is used.
+            Default value None
 
         Returns
         -------
