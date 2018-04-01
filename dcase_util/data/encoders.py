@@ -17,9 +17,11 @@ class BinaryMatrixEncoder(BinaryMatrix2DContainer):
         ----------
         label_list : list or str
             Label list
+            Default value None
 
         time_resolution : float
             Time resolution
+            Default value None
 
         """
 
@@ -45,15 +47,19 @@ class OneHotEncoder(BinaryMatrixEncoder):
         ----------
         label_list : list or str
             Label list
+            Default value None
 
         time_resolution : float
             Time resolution
+            Default value 1.0
 
         length_frames : int
             length of binary matrix in frames
+            Default value 1
 
         length_seconds : float
             length of binary matrix in seconds
+            Default value None
 
         """
 
@@ -110,10 +116,12 @@ class OneHotEncoder(BinaryMatrixEncoder):
         length_frames : int
             length of binary matrix in frames, use either this or length_seconds, if none set, one set in
             constructor is used.
+            Default value None
 
         length_seconds : float
             length of binary matrix in seconds, use either this or length_frames, if none set, one set in
             constructor is used.
+            Default value None
 
         Returns
         -------
@@ -157,9 +165,19 @@ class ManyHotEncoder(BinaryMatrixEncoder):
         ----------
         label_list : list or str
             Label list
+            Default value None
 
         time_resolution : float
             Time resolution
+            Default value None
+
+        length_frames : int
+            length of binary matrix
+            Default value None
+
+        length_seconds : float
+            length of binary matrix in seconds
+            Default value None
 
         """
 
@@ -215,9 +233,11 @@ class ManyHotEncoder(BinaryMatrixEncoder):
 
         length_frames : int
             length of binary matrix
+            Default value None
 
         length_seconds : float
             length of binary matrix in seconds
+            Default value None
 
         Returns
         -------
@@ -264,12 +284,15 @@ class EventRollEncoder(BinaryMatrixEncoder):
         ----------
         label_list : list
             List of labels in correct order
+            Default value None
 
         time_resolution : float > 0.0
             Time resolution used when converting event into event roll.
+            Default value None
 
         label : str
             Meta data field used to create event roll
+            Default value 'event_label'
 
         """
 
@@ -324,13 +347,15 @@ class EventRollEncoder(BinaryMatrixEncoder):
 
         label : str
             Meta data field used to create event roll
+            Default value None
 
         length_frames : int
             length of event roll
+            Default value None
 
         length_seconds : int, optional
             length of event roll in seconds, if none given max offset of the meta data is used.
-
+            Default value None
 
         Returns
         -------
