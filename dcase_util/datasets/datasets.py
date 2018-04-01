@@ -970,6 +970,7 @@ class Dataset(object):
         absolute_path : bool
             Path format for the returned meta item, if True path is absolute, False path is relative to
             the dataset root.
+            Default value True
 
         """
 
@@ -988,15 +989,19 @@ class Dataset(object):
         ----------
         setup_part :  str
             Setup part 'train', 'test', 'evaluate'
+            Default value 'train'
 
         fold : int
             Fold number
+            Default value None
 
         scene_label : str
             Scene label
+            Default value None
 
         file_extension : str
             File extension
+            Default value 'txt'
 
         Raises
         ------
@@ -1051,6 +1056,7 @@ class Dataset(object):
         absolute_paths : bool
             Path format for the returned meta items, if True paths are absolute, False paths are relative to
             the dataset root.
+            Default value True
 
         Returns
         -------
@@ -1085,6 +1091,7 @@ class Dataset(object):
         absolute_paths : bool
             Path format for the returned meta items, if True paths are absolute, False paths are relative to
             the dataset root.
+            Default value True
 
         Returns
         -------
@@ -1119,6 +1126,7 @@ class Dataset(object):
         absolute_paths : bool
             Path format for the returned meta items, if True paths are absolute, False paths are relative to
             the dataset root.
+            Default value True
 
         Returns
         -------
@@ -1149,10 +1157,12 @@ class Dataset(object):
         ----------
         fold : int
             Fold id, if None all meta data is returned.
+            Default value None
 
         absolute_paths : bool
             Path format for the returned meta items, if True paths are absolute, False paths are relative to
             the dataset root.
+            Default value True
 
         Returns
         -------
@@ -1170,10 +1180,12 @@ class Dataset(object):
         ----------
         fold : int
             Fold id, if None all meta data is returned.
+            Default value None
 
         absolute_paths : bool
             Path format for the returned meta items, if True paths are absolute, False paths are relative to
             the dataset root.
+            Default value True
 
         Returns
         -------
@@ -1191,10 +1203,12 @@ class Dataset(object):
         ----------
         fold : int
             Fold id, if None all meta data is returned.
+            Default value None
 
         absolute_paths : bool
             Path format for the returned meta items, if True paths are absolute, False paths are relative to
             the dataset root.
+            Default value True
 
         Returns
         -------
@@ -1215,24 +1229,31 @@ class Dataset(object):
         ----------
         fold : int
             Fold id, if None all meta data is returned.
+            Default value None
 
         split_type : str
             Split type [dataset, random, balanced]
+            Default value 'balanced'
 
         validation_amount : float
             Amount of training files to be assigned for validation
+            Default value None
 
         seed : int
             Randomization seed
+            Default value 0
 
         verbose : bool
             Show information about the validation set.
+            Default value False
 
         scene_label : str
             Scene label of the validation set. If None, all training material used.
+            Default value None
 
         iterations : int
             Randomization iterations done when finding balanced set before selecting best matched set.
+            Default value 100
 
         Returns
         -------
@@ -1276,7 +1297,8 @@ class Dataset(object):
         return training_files, validation_files
 
     def validation_files_dataset(self, fold=None, verbose=False, **kwargs):
-        """List of validation files delivered by the dataset."""
+        """List of validation files delivered by the dataset.
+        """
 
         message = '{name}: Dataset does not have fixed validation sets, use validation set generation to get sets'.format(
             name=self.__class__.__name__,
@@ -1292,15 +1314,19 @@ class Dataset(object):
         ----------
         fold : int
             Fold id, if None all meta data is returned.
+            Default value None
 
         validation_amount : float
             Amount of training material to be assigned for validation.
+            Default value 0.3
 
         seed : int
             Randomization seed
+            Default value 0
 
         verbose : bool
             Show information about the validation set.
+            Default value False
 
         Returns
         -------
@@ -1347,7 +1373,8 @@ class Dataset(object):
         return validation_files
 
     def validation_files_balanced(self, fold=None, validation_amount=0.3, seed=0, verbose=False, **kwargs):
-        """List of validation files randomly selecting while maintaining data balance."""
+        """List of validation files randomly selecting while maintaining data balance.
+        """
         message = '{name}: Balanced validation set generation has not been implemented for dataset class.'.format(
             name=self.__class__.__name__,
         )
@@ -1363,6 +1390,7 @@ class Dataset(object):
         mode : str {'folds','full'}
             Fold setup type, possible values are 'folds' and 'full'. In 'full' mode fold number is set 0 and
             all data is used for training.
+            Default value 'folds'
 
         Returns
         -------
@@ -1558,6 +1586,7 @@ class Dataset(object):
         ----------
         exclude_dirs : list of str
             List of directories to be excluded
+            Default value None
 
         Returns
         -------
@@ -1614,18 +1643,23 @@ class AcousticSceneDataset(Dataset):
         ----------
         fold : int
             Fold id, if None all meta data is returned.
+            Default value None
 
         validation_amount : float
             Amount of training material to be assigned for validation.
+            Default value 0.3
 
         seed : int
             Randomization seed
+            Default value 0
 
         verbose : bool
             Show information about the validation set.
+            Default value False
 
         iterations : int
             How many randomization iterations will be done before selecting best matched.
+            Default value 100
 
         Returns
         -------
@@ -1827,6 +1861,7 @@ class SoundEventDataset(Dataset):
         ----------
         scene_label : str
             Scene label
+            Default value None
 
         Returns
         -------
@@ -1844,6 +1879,7 @@ class SoundEventDataset(Dataset):
         ----------
         scene_label : str
             Scene label
+            Default value None
 
         Returns
         -------
@@ -1868,16 +1904,20 @@ class SoundEventDataset(Dataset):
         ----------
         fold : int
             Fold id, if None all meta data is returned.
+            Default value None
 
         absolute_paths : bool
             Path format for the returned meta items, if True paths are absolute, False paths are relative to
             the dataset root.
+            Default value True
 
         scene_label : str
             Scene label
+            Default value None
 
         event_label : str
             Event label
+            Default value None
 
         Returns
         -------
@@ -1917,16 +1957,20 @@ class SoundEventDataset(Dataset):
         ----------
         fold : int
             Fold id, if None all meta data is returned.
+            Default value None
 
         absolute_paths : bool
             Path format for the returned meta items, if True paths are absolute, False paths are relative to
             the dataset root.
+            Default value True
 
         scene_label : str
             Scene label
+            Default value None
 
         event_label : str
             Event label
+            Default value None
 
         Returns
         -------
@@ -1966,16 +2010,20 @@ class SoundEventDataset(Dataset):
         ----------
         fold : int
             Fold id, if None all meta data is returned.
+            Default value None
 
         absolute_paths : bool
             Path format for the returned meta items, if True paths are absolute, False paths are relative to
             the dataset root.
+            Default value True
 
         scene_label : str
             Scene label
+            Default value None
 
         event_label : str
             Event label
+            Default value None
 
         Returns
         -------
@@ -2015,16 +2063,20 @@ class SoundEventDataset(Dataset):
         ----------
         fold : int
             Fold id, if None all meta data is returned.
+            Default value None
 
         absolute_paths : bool
             Path format for the returned meta items, if True paths are absolute, False paths are relative to
             the dataset root.
+            Default value True
 
         scene_label : str
             Scene label
+            Default value None
 
         event_label : str
             Event label
+            Default value None
 
         Returns
         -------
@@ -2047,16 +2099,20 @@ class SoundEventDataset(Dataset):
         ----------
         fold : int
             Fold id, if None all meta data is returned.
+            Default value None
 
         absolute_paths : bool
             Path format for the returned meta items, if True paths are absolute, False paths are relative to
             the dataset root.
+            Default value True
 
         scene_label : str
             Scene label
+            Default value None
 
         event_label : str
             Event label
+            Default value None
 
         Returns
         -------
@@ -2079,16 +2135,20 @@ class SoundEventDataset(Dataset):
         ----------
         fold : int
             Fold id, if None all meta data is returned.
+            Default value None
 
         absolute_paths : bool
             Path format for the returned meta items, if True paths are absolute, False paths are relative to
             the dataset root.
+            Default value True
 
         scene_label : str
             Scene label
+            Default value None
 
         event_label : str
             Event label
+            Default value None
 
         Returns
         -------
@@ -2113,18 +2173,23 @@ class SoundEventDataset(Dataset):
         ----------
         fold : int
             Fold id, if None all meta data is returned.
+            Default value None
 
         validation_amount : float
             Amount of training material to be assigned for validation.
+            Default value 0.3
 
         seed : int
             Randomization seed
+            Default value 0
 
         verbose : bool
             Show information about the validation set.
+            Default value False
 
         scene_label : str
             Scene label of the validation set. If None, all training material used.
+            Default value None
 
         Returns
         -------
@@ -2206,21 +2271,27 @@ class SoundEventDataset(Dataset):
         ----------
         fold : int
             Fold id, if None all meta data is returned.
+            Default value None
 
         validation_amount : float
             Amount of training material to be assigned for validation.
+            Default value 0.3
 
         seed : int
             Randomization seed
+            Default value 0
 
         verbose : bool
             Show information about the validation set.
+            Default value False
 
         scene_label : str
             Scene label of the validation set. If None, all training material used.
+            Default value None
 
         iterations : int
             How many randomization iterations will be done before selecting best matched.
+            Default value 100
 
         Returns
         -------
@@ -2540,15 +2611,19 @@ class AudioTaggingDataset(Dataset):
         ----------
         fold : int
             Fold id, if None all meta data is returned.
+            Default value None
 
         validation_amount : float
             Amount of training material to be assigned for validation.
+            Default value 0.3
 
         seed : int
             Randomization seed
+            Default value 0
 
         verbose : bool
             Show information about the validation set.
+            Default value False
 
         Returns
         -------
@@ -2623,18 +2698,23 @@ class AudioTaggingDataset(Dataset):
         ----------
         fold : int
             Fold id, if None all meta data is returned.
+            Default value None
 
         validation_amount : float
             Amount of training material to be assigned for validation.
+            Default value 0.3
 
         seed : int
             Randomization seed
+            Default value 0
 
         verbose : bool
             Show information about the validation set.
+            Default value False
 
         iterations : int
             How many randomization iterations will be done before selecting best matched.
+            Default value 100
 
         Returns
         -------
