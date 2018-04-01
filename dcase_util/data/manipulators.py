@@ -338,18 +338,24 @@ class Aggregator(ObjectContainer):
         ----------
         recipe : list of dict or list of str
             Aggregation recipe, supported methods [mean, std, cov, kurtosis, skew, flatten].
+            Default value None
 
         win_length_frames : int
             Window length in data frames
+            Default value 10
 
         hop_length_frames : int
             Hop length in data frames
+            Default value 1
 
         center : bool
             Centering of the window
+            Default value True
 
         padding : bool
-            Padding of the first window with the first frame and last window with last frame to have equal length data in the windows.
+            Padding of the first window with the first frame and last window with last frame to have equal
+            length data in the windows.
+            Default value True
 
         """
 
@@ -416,6 +422,7 @@ class Aggregator(ObjectContainer):
         ----------
         data : DataContainer
             Features to be aggregated
+            Default value None
 
         Returns
         -------
@@ -763,6 +770,8 @@ class Sequencer(ObjectContainer):
         Parameters
         ----------
         shift_step : int
+            Amount to be added to the sequencing grid
+            Default value 1
 
         Returns
         -------
@@ -786,9 +795,11 @@ class Stacker(ObjectContainer):
         ----------
         recipe : dict or str
             Stacking recipe
+            Default value None
 
         hop : int, optional
             Data item hopping
+            Default value 1
 
         """
 
@@ -966,7 +977,7 @@ class Selector(ObjectContainer):
         return self
 
     def select(self, data, selection_events=None):
-        """Selecting feature repository with given events
+        """Selecting data repository with given events
 
         Parameters
         ----------
@@ -975,6 +986,7 @@ class Selector(ObjectContainer):
 
         selection_events : list of MetaItems or MetaDataContainer
             Event list used for selecting
+            Default value None
 
         Returns
         -------
@@ -1045,7 +1057,7 @@ class Masker(ObjectContainer):
         return self
 
     def mask(self, data, mask_events=None):
-        """Masking feature repository with given events
+        """Masking data repository with given events
 
         Parameters
         ----------
@@ -1054,6 +1066,7 @@ class Masker(ObjectContainer):
 
         mask_events : list of MetaItems or MetaDataContainer
             Event list used for masking
+            Default value None
 
         Returns
         -------
