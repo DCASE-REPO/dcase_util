@@ -606,8 +606,13 @@ class AppParameterContainer(ParameterContainer):
         """
 
         if section in parameters and parameters[section] and isinstance(parameters[section], dict):
+            # Get section name for method parameters
+            section_method_parameters = self._method_parameter_section(
+                section=section,
+                parameters=parameters
+            )
+
             # Inject method parameters
-            section_method_parameters = section + '_' + self.field_labels['METHOD_PARAMETERS']
             if self.field_labels['LABEL'] in parameters[section]:
                 if (section_method_parameters in parameters and parameters[section][self.field_labels['LABEL']] in parameters[section_method_parameters]):
                     self.set_path_translated(
@@ -895,7 +900,7 @@ class AppParameterContainer(ParameterContainer):
         """
 
         for field in parameters:
-            if field.endswith('_method_parameters'):
+            if field.endswith('_' + self.field_labels['METHOD_PARAMETERS']):
                 for key, params in iteritems(parameters[field]):
                     if params and isinstance(params, dict):
                         params['_hash'] = self.get_hash(
@@ -951,6 +956,50 @@ class AppParameterContainer(ParameterContainer):
             if isinstance(item, dict):
                 parameters[key] = DictContainer(item)
 
+    def _method_parameter_section(self, section, parameters):
+        """Get section name for method parameters.
+
+        Parameters
+        ----------
+        section : str
+            Section name
+
+        parameters : dict
+            Parameter dictionary
+
+        Returns
+        -------
+        str
+
+        """
+
+        # Get LABEL for section
+        section_label_map = OneToOneMappingContainer(self.section_labels)
+        section_translation_label = section_label_map.flipped.map(section)
+
+        # Test a few patterns to find method parameter section
+
+        # Test pattern [LABEL + METHOD_PARAMETERS]
+        method_parameter_section = section + '_' + self.field_labels['METHOD_PARAMETERS']
+
+        if method_parameter_section not in parameters:
+            if section_translation_label:
+                # Test mapped [LABEL + '_METHOD_PARAMETERS']
+                method_parameter_section = section_label_map.map(section_translation_label + '_METHOD_PARAMETERS')
+
+                if method_parameter_section not in parameters:
+                    # Test mapped [LABEL + '_PARAMETERS']
+                    method_parameter_section = section_label_map.map(section_translation_label + '_PARAMETERS')
+
+                    if method_parameter_section not in parameters:
+                        # No fitting method parameter section found
+                        method_parameter_section = None
+
+            else:
+                method_parameter_section = None
+
+        return method_parameter_section
+
     def update_parameter_set(self, set_id):
         """Update active parameter set
 
@@ -967,12 +1016,17 @@ class AppParameterContainer(ParameterContainer):
 
         """
 
-        active_set = ListDictContainer(self[self.field_labels['SET-LIST']]).search(
+        current_active_set = ListDictContainer(self[self.field_labels['SET-LIST']]).search(
+            key=self.field_labels['SET-ID'],
+            value=self[self.field_labels['ACTIVE-SET']]
+        )
+
+        new_active_set = ListDictContainer(self[self.field_labels['SET-LIST']]).search(
             key=self.field_labels['SET-ID'],
             value=set_id
         )
 
-        if not active_set:
+        if not new_active_set:
             message = '{name}: No valid set given [{set_name}]'.format(
                 name=self.__class__.__name__,
                 set_name=set_id
@@ -981,13 +1035,66 @@ class AppParameterContainer(ParameterContainer):
             self.logger.exception(message)
             raise ValueError(message)
 
+        # Clean up main level from old sections
+        for section in current_active_set:
+            if section in self:
+                del self[section]
+
         # Update parameters
-        self.merge(override=active_set)
+        self.merge(override=new_active_set)
 
         # Set new active set
         self[self.field_labels['ACTIVE-SET']] = set_id
 
         return self
+
+    def set_ids(self):
+        """Get set ids
+
+        Returns
+        -------
+        list
+
+        """
+
+        if self.field_labels['SET-LIST'] in self:
+            set_ids = []
+            for set_id, set_defined_parameters in enumerate(self[self.field_labels['SET-LIST']]):
+                if self.field_labels['SET-ID'] in set_defined_parameters:
+                    set_ids.append(
+                        set_defined_parameters[self.field_labels['SET-ID']]
+                    )
+
+            return sorted(set_ids)
+
+        else:
+            return None
+
+    def set_id_exists(self, set_id):
+        """Set id exists
+
+        Returns
+        -------
+        bool
+
+        """
+
+        if set_id in self.set_ids():
+            return True
+        else:
+            return False
+
+    def active_set(self):
+        """Get active set id
+
+
+        Returns
+        -------
+        str
+
+        """
+
+        return self[self.field_labels['ACTIVE-SET']]
 
 
 class DCASEAppParameterContainer(AppParameterContainer):
