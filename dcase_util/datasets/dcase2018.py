@@ -27,11 +27,14 @@ from dcase_util.utils import Path
 
 class DCASE2018_Task5_DevelopmentSet(AcousticSceneDataset):
     """Task 5, Monitoring of domestic activities based on multi-channel acoustics, development set
-	
+
     This dataset a part of the SINS database:
-        Dekkers G., Lauwereins S., Thoen B., Adhana M., Brouckxon H., Van den Bergh B., van Waterschoot T., Vanrumste B., Verhelst M., Karsmakers P. (2017). The SINS database for detection of daily activities in a home environment using an Acoustic Sensor Network. Detection and Classification of Acoustic Scenes and Events 2017 (accepted). DCASE Workshop. München, Germany, 16-17 November 2017.
-	A subset is used for "DCASE2018 - Task 5, Monitoring of domestic activities based on multi-channel acoustics"
-	
+    Dekkers G., Lauwereins S., Thoen B., Adhana M., Brouckxon H., Van den Bergh B., van Waterschoot T., Vanrumste B.,
+    Verhelst M., Karsmakers P. (2017). The SINS database for detection of daily activities in a home environment
+    using an Acoustic Sensor Network. Detection and Classification of Acoustic Scenes and Events 2017 (accepted).
+    DCASE Workshop. München, Germany, 16-17 November 2017.
+    A subset is used for "DCASE2018 - Task 5, Monitoring of domestic activities based on multi-channel acoustics"
+
     """
 
     def __init__(self,
@@ -47,14 +50,17 @@ class DCASE2018_Task5_DevelopmentSet(AcousticSceneDataset):
 
         storage_name : str
             Name to be used when storing dataset on disk
+            Default value 'DCASE18-Task5-development'
 
         data_path : str
             Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), 'dcase_util_datasets')
             is used.
+            Default value None
 
         included_content_types : list of str or str
             Indicates what content type should be processed. One or multiple from ['all', 'audio', 'meta', 'code',
             'documentation']. If None given, ['all'] is used. Parameter can be also comma separated string.
+            Default value None
 
         """
 

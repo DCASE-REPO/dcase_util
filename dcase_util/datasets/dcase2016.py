@@ -25,17 +25,21 @@ class CHiMEHome_DomesticAudioTag_DevelopmentSet(AudioTaggingDataset):
 
         storage_name : str
             Name to be used when storing dataset on disk
+            Default value 'CHiMeHome-audiotag-development'
 
         data_path : str
             Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), 'dcase_util_datasets')
             is used.
+            Default value None
 
         included_content_types : list of str or str
             Indicates what content type should be processed. One or multiple from ['all', 'audio', 'meta', 'code',
             'documentation']. If None given, ['all'] is used. Parameter can be also comma separated string.
+            Default value None
 
         sample_mode : str
             Sample rate mode, '16kHz' or '48kHz'
+            Default value '16kHz'
 
         """
 
@@ -127,6 +131,7 @@ class CHiMEHome_DomesticAudioTag_DevelopmentSet(AudioTaggingDataset):
 
         absolute_path : bool
             Convert file paths to be absolute
+            Default value True
 
         """
 
@@ -330,17 +335,21 @@ class CHiMEHome_DomesticAudioTag_EvaluationSet(CHiMEHome_DomesticAudioTag_Develo
 
         storage_name : str
             Name to be used when storing dataset on disk
+            Default value 'CHiMeHome-audiotag-evaluation'
 
         data_path : str
             Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), 'dcase_util_datasets')
             is used.
+            Default value None
 
         included_content_types : list of str or str
             Indicates what content type should be processed. One or multiple from ['all', 'audio', 'meta', 'code',
             'documentation']. If None given, ['all'] is used. Parameter can be also comma separated string.
+            Default value None
 
         sample_mode : str
             Sample rate mode, '16kHz' or '48kHz'
+            Default value '16kHz'
 
         """
 
