@@ -524,6 +524,9 @@ class MetaDataContainer(ListDictContainer):
             if not isinstance(self[item_id], self.item_class):
                 self[item_id] = self.item_class(self[item_id])
 
+        from dcase_util.processors import ProcessingChain
+        self.processing_chain = ProcessingChain()
+
     def __str__(self):
         return self.get_string()
 
@@ -2178,3 +2181,46 @@ class MetaDataContainer(ListDictContainer):
             difference.append(self[id1.index(id)])
 
         return difference
+
+    def push_processing_chain_item(self, processor_name, init_parameters=None, process_parameters=None,
+                                   preprocessing_callbacks=None,
+                                   input_type=None, output_type=None):
+        """Push processing chain item
+
+        Parameters
+        ----------
+        processor_name : str
+            Processor name
+
+        init_parameters : dict, optional
+            Initialization parameters for the processors
+            Default value None
+
+        process_parameters : dict, optional
+            Parameters for the process method of the Processor
+            Default value None
+
+        input_type : ProcessingChainItemType
+            Input data type
+            Default value None
+
+        output_type : ProcessingChainItemType
+            Output data type
+            Default value None
+
+        Returns
+        -------
+        self
+
+        """
+
+        self.processing_chain.push_processor(
+            processor_name=processor_name,
+            init_parameters=init_parameters,
+            process_parameters=process_parameters,
+            preprocessing_callbacks=preprocessing_callbacks,
+            input_type=input_type,
+            output_type=output_type,
+        )
+
+        return self
