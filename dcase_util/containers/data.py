@@ -976,8 +976,13 @@ class DataMatrix2DContainer(DataContainer):
 
         """
 
+        # Get not None values
         axis_list = [time_axis, data_axis]
+        axis_list = [x for x in axis_list if x is not None]
+
+        # Get unique values
         axis_set = set(axis_list)
+
         if len(axis_list) != len(axis_set):
             message = '{name}: Give unique axis indexes [{axis_list}].'.format(
                 name=self.__class__.__name__,
@@ -1205,8 +1210,13 @@ class DataMatrix3DContainer(DataMatrix2DContainer):
 
         """
 
+        # Get not None values
         axis_list = [time_axis, data_axis, sequence_axis]
+        axis_list = [x for x in axis_list if x is not None]
+
+        # Get unique values
         axis_set = set(axis_list)
+
         if len(axis_list) != len(axis_set):
             message = '{name}: Give unique axis indexes [{axis_list}].'.format(
                 name=self.__class__.__name__,
