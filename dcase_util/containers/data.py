@@ -1978,12 +1978,17 @@ class DataRepository(RepositoryContainer):
 
         return self
 
-    def plot(self):
+    def plot(self, plot=True):
         """Visualize data stored in the repository.
+
+        plot : bool
+            If true, figure is shown automatically. Set to False if collecting multiple plots into same figure
+            outside this method.
+            Default value True
 
         Returns
         -------
-        None
+        self
 
         """
 
@@ -1998,16 +2003,29 @@ class DataRepository(RepositoryContainer):
         labels = list(self.keys())
         labels.sort()
 
-        plt.figure()
+        if plot:
+            plt.figure()
+
         for label_id, label in enumerate(self.labels):
             for stream_id in self.stream_ids(label):
-                index = 1+(label_id + stream_id * len(self.labels))
+                if rows_count == 1:
+                    # Special case when only one stream, transpose presentation
+                    index = 1 + label_id
 
-                plt.subplot(
-                    rows_count,
-                    len(self.labels),
-                    index
-                )
+                    plt.subplot(
+                        len(self.labels),
+                        rows_count,
+                        index
+                    )
+
+                else:
+                    index = 1 + (label_id + stream_id * len(self.labels))
+
+                    plt.subplot(
+                        rows_count,
+                        len(self.labels),
+                        index
+                    )
 
                 current_container = self.get_container(
                     label=label,
@@ -2021,16 +2039,30 @@ class DataRepository(RepositoryContainer):
                     sr=int(1 / float(current_container.time_resolution)),
                     hop_length=1
                 )
-                if stream_id+1 != len(self.stream_ids(label)):
-                    ax.tick_params(
-                        axis='x',
-                        which='both',
-                        bottom='off',
-                        top='off',
-                        labelbottom='off'
-                    )
-                    plt.xlabel('')
+                if rows_count == 1:
+                    if label_id != len(self.labels) - 1:
+                        ax.tick_params(
+                            axis='x',
+                            which='both',
+                            bottom='off',
+                            top='off',
+                            labelbottom='off'
+                        )
+                        plt.xlabel('')
+                else:
+                    if stream_id+1 != len(self.stream_ids(label)):
+                        ax.tick_params(
+                            axis='x',
+                            which='both',
+                            bottom='off',
+                            top='off',
+                            labelbottom='off'
+                        )
+                        plt.xlabel('')
 
                 plt.ylabel('['+str(label)+']['+str(stream_id)+']')
 
-        plt.show()
+        if plot:
+            plt.show()
+
+        return self
