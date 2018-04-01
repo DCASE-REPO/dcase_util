@@ -28,9 +28,10 @@ def dataset_list(data_path='data', group=None):
     ----------
     data_path : str
         Base path for the datasets
+        Default value 'data'
 
     group : str
-        Group label for the datasets, currently supported ['scene', 'event', 'audio tagging']
+        Group label for the datasets, currently supported ['scene', 'event', 'tag']
 
     Returns
     -------
@@ -38,7 +39,7 @@ def dataset_list(data_path='data', group=None):
         Multi line string containing dataset table
 
     """
-    line = '  {class_name:<42s} | {group:5s} | {remote_size:6s} | {local_present:6s} | {files:5s} | {scene:6s} | {event:6s} | {tag:4s}\n'
+    line = '  {class_name:<42s} | {group:5s} | {remote_size:10s} | {local_present:6s} | {files:5s} | {scene:6s} | {event:6s} | {tag:4s}\n'
     output = ''
     output += '  Dataset list\n'
     output += line.format(
@@ -54,7 +55,7 @@ def dataset_list(data_path='data', group=None):
     output += line.format(
         class_name='-' * 42,
         group='-' * 5,
-        remote_size='-' * 6,
+        remote_size='-' * 10,
         local_present='-' * 6,
         files='-' * 5,
         scene='-' * 6,
