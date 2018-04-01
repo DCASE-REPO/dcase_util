@@ -47,6 +47,9 @@ class ProcessingChainItem(DictContainer):
         if processor_name:
             try:
                 # Get module
+                if len(processor_name.split('.')) == 1:
+                    processor_name = 'dcase_util.processors.' + processor_name
+
                 processor_module = importlib.import_module('.'.join(processor_name.split('.')[:-1]))
                 self.processor_class = eval('processor_module.' + processor_name.split('.')[-1])(**processor_init_parameters)
 
@@ -388,7 +391,11 @@ class ProcessingChain(ListDictContainer):
         """
 
         try:
+            if len(processor_name.split('.')) == 1:
+                processor_name = 'dcase_util.processors.' + processor_name
+
             processor_module = importlib.import_module('.'.join(processor_name.split('.')[:-1]))
+
             return eval('processor_module.' + processor_name.split('.')[-1])
 
         except NameError:
@@ -416,7 +423,11 @@ class ProcessingChain(ListDictContainer):
 
         try:
             # Get module
+            if len(processor_name.split('.')) == 1:
+                processor_name = 'dcase_util.processors.' + processor_name
+
             processor_module = importlib.import_module('.'.join(processor_name.split('.')[:-1]))
+
             return eval('processor_module.' + processor_name.split('.')[-1])(**kwargs)
 
         except NameError:
