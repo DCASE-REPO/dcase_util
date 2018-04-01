@@ -7,10 +7,14 @@ from six import iteritems
 import numpy
 import scipy
 import copy
+import os
+import glob
+from past.builtins import basestring
 
 from dcase_util.containers import DataContainer, ObjectContainer
 from dcase_util.ui import FancyStringifier
-from dcase_util.utils import VectorRecipeParser
+from dcase_util.utils import VectorRecipeParser, filelist_exists
+
 
 class Normalizer(ObjectContainer):
     """Data normalizer to accumulate data statistics"""
@@ -256,37 +260,98 @@ class Normalizer(ObjectContainer):
 
 class RepositoryNormalizer(ObjectContainer):
     """Data repository normalizer"""
-    def __init__(self, normalizer_dict=None, filename_dict=None, **kwargs):
+    def __init__(self, normalizers=None, filename=None, **kwargs):
         """__init__ method.
 
         Parameters
         ----------
-        normalizer_dict : dict
-            Normalizers in a dict, key should be the label used in the repository.
+        normalizers : dict
+            Normalizers in a dict to initialize the repository, key in the dictionary should be the label
+            Default value None
 
-        filename_dict : dict
-            Filenames of Normalizers, key should be the label used in the repository.
+        filename : str or dict
+            Either one filename (str) or multiple filenames in a dictionary. Dictionary based parameter is used to
+            construct the repository from separate Normalizer, format:
+            label as key, and filename as value.
+            Default value None
 
         """
 
         # Run super init to call init of mixins too
         super(RepositoryNormalizer, self).__init__(**kwargs)
 
-        self.normalizer_dict = {}
+        self.normalizers = {}
 
-        if normalizer_dict:
-            self.normalizer_dict = normalizer_dict
+        if normalizers:
+            if isinstance(normalizers, dict):
+                self.normalizers = normalizers
 
-        if filename_dict:
-            self.load(filename_dict=filename_dict)
+            else:
+                message = '{name}: Invalid type for normalizer_dict'.format(
+                    name=self.__class__.__name__
+                )
+                self.logger.exception(message)
+                raise ValueError(message)
 
-    def load(self, filename_dict):
+        self.filename = filename
+
+    def __enter__(self):
+        self.reset()
+        return self
+
+    def __exit__(self, type, value, traceback):
+        # Finalize accumulated calculation
+        self.finalize()
+
+    def __getitem__(self, label):
+        return self.normalizers[label]
+
+    def __str__(self):
+        ui = FancyStringifier()
+
+        output = super(RepositoryNormalizer, self).__str__()
+
+        output += ui.data(
+            indent=4,
+            field='Labels',
+            value=list(self.normalizers.keys())
+        ) + '\n'
+
+        output += ui.line(field='Content') + '\n'
+        for label, label_data in iteritems(self.normalizers):
+            if label_data:
+                output += ui.data(
+                    indent=4,
+                    field='['+str(label)+']',
+                    value=label_data
+                ) + '\n'
+
+        output += '\n'
+
+        return output
+
+    def reset(self):
+        """Reset normalizers.
+        """
+
+        for label in self.normalizers:
+            self.normalizers[label].reset()
+
+    def load(self, filename, collect_from_containers=True):
         """Load normalizers from disk.
+
 
         Parameters
         ----------
-        filename_dict : dict
-            Filenames of Normalizers, key should be the label used in the repository.
+        filename : str or dict
+            Either one filename (str) or multiple filenames in a dictionary. Dictionary based parameter is used to
+            construct the repository from separate Normalizer, format:
+            label as key, and filename as value. If None given, parameter given to class initializer is used instead.
+            Default value None
+
+        collect_from_containers : bool
+            Collect data to the repository from separate containers.
+            Default value True
 
         Returns
         -------
@@ -294,37 +359,216 @@ class RepositoryNormalizer(ObjectContainer):
 
         """
 
-        self.normalizer_dict = {}
-        for label, filename in iteritems(filename_dict):
-            self.normalizer_dict[label] = Normalizer().load(filename=filename)
+        if filename:
+            self.filename = filename
+
+        if isinstance(self.filename, basestring):
+            # String filename given use load method from parent class
+            if os.path.exists(self.filename):
+                # If file exist load it
+                self.detect_file_format()
+                self.validate_format()
+
+                super(RepositoryNormalizer, self).load(
+                    filename=self.filename
+                )
+
+            if collect_from_containers:
+                # Collect data to the repository from separate normalizer containers
+                filename_base, file_extension = os.path.splitext(self.filename)
+                normalizers = glob.glob(filename_base + '.*' + file_extension)
+                for filename in normalizers:
+                    label = os.path.splitext(filename)[0].split('.')[-1]
+                    self.normalizers[label] = Normalizer().load(
+                        filename=filename
+                    )
+
+        elif isinstance(self.filename, dict):
+            sorted(self.filename)
+
+            # Dictionary based filename given
+            if filelist_exists(self.filename):
+                self.normalizers = {}
+
+                for label, data in iteritems(self.filename):
+                    if not label.startswith('_'):
+                        # Skip labels starting with '_', those are just for extra info
+                        if isinstance(data, basestring):
+                            # filename given directly, only one data stream per method inputted.
+                            self.normalizers[label] = Normalizer().load(
+                                filename=data
+                            )
+            else:
+                # All filenames did not exists, find which ones is missing and raise error.
+                for label, data in iteritems(self.filename):
+                    if isinstance(data, basestring) and not os.path.isfile(data):
+                        message = '{name}: RepositoryNormalizer cannot be loaded, file does not exists for method [{method}], file [{filename}]'.format(
+                            name=self.__class__.__name__,
+                            method=label,
+                            filename=data
+                        )
+                        self.logger.exception(message)
+                        raise IOError(message)
+
+        else:
+            message = '{name}: RepositoryNormalizer cannot be loaded, no valid filename set.'.format(
+                name=self.__class__.__name__
+            )
+            self.logger.exception(message)
+            raise IOError(message)
 
         return self
 
-    def normalize(self, data_repository):
+    def save(self, filename=None, split_into_containers=False):
+        """Save file
+
+        Parameters
+        ----------
+        filename : str or dict
+            File path
+            Default value filename given to class constructor
+
+        split_into_containers : bool
+            Split data from repository separate normalizer containers and save them individually.
+            Default value False
+
+        Raises
+        ------
+        ImportError:
+            Error if file format specific module cannot be imported
+
+        IOError:
+            File has unknown file format
+
+        Returns
+        -------
+        self
+
+        """
+
+        if filename:
+            self.filename = filename
+
+        if split_into_containers and isinstance(self.filename, basestring):
+            # Automatic filename generation for saving data into separate containers
+            filename_base, file_extension = os.path.splitext(self.filename)
+            filename_dictionary = {}
+            for label in self.normalizers:
+                if label not in filename_dictionary:
+                    filename_dictionary[label] = {}
+
+                filename_dictionary[label] = filename_base + '.' + label  + file_extension
+
+            self.filename = filename_dictionary
+
+        if isinstance(self.filename, basestring):
+            # Single output file as target
+            self.detect_file_format()
+            self.validate_format()
+
+            # String filename given use load method from parent class
+            super(RepositoryNormalizer, self).save(
+                filename=self.filename
+            )
+
+        elif isinstance(self.filename, dict):
+            # Custom naming and splitting into separate normalizer containers
+            sorted(self.filename)
+
+            # Dictionary of filenames given, save each data normalizer in the repository separately
+            for label in self.normalizers:
+                if label in self.filename:
+                    current_normalizer = self.normalizers[label]
+                    current_normalizer.save(
+                        filename=self.filename[label]
+                    )
+
+        return self
+
+    def accumulate(self, data):
+        """Accumulate statistics
+
+        Parameters
+        ----------
+        data : DataRepository
+            Data in DataRepository
+
+        Returns
+        -------
+        self
+
+        """
+
+        for label_id, label in enumerate(data.labels):
+            if label not in self.normalizers:
+                # Label not yet encountered, initialize new normalizer for it
+                self.normalizers[label] = Normalizer()
+
+            # Loop through streams
+            for stream_id in data.stream_ids(label=label):
+                self.normalizers[label].accumulate(
+                    data=data.get_container(
+                        label=label,
+                        stream_id=stream_id
+                    )
+                )
+
+        return self
+
+    def finalize(self):
+        """Finalize statistics calculation
+
+        Accumulated values are used to get mean and std for the seen data.
+
+        Parameters
+        ----------
+
+        Returns
+        -------
+        self
+
+        """
+
+        for label in self.normalizers:
+            self.normalizers[label].finalize()
+
+        return self
+
+    def normalize(self, data, **kwargs):
         """Normalize data repository
 
         Parameters
         ----------
-        data_repository : DataRepository
+        data : DataRepository
             DataRepository to be normalized
 
         Returns
         -------
         DataRepository
-            Normalized data
 
         """
+
         from dcase_util.containers import DataRepository
 
-        if isinstance(data_repository, DataRepository):
-            for label_id, label in enumerate(data_repository.labels):
-                if label in self.normalizer_dict:
-                    for stream_id in data_repository.stream_ids(label=label):
-                        self.normalizer_dict[label].normalize(
-                            data=data_repository.get_container(label=label, stream_id=stream_id)
+        # Make copy of data to prevent data contamination
+        data = copy.deepcopy(data)
+
+        if isinstance(data, DataRepository):
+            for label_id, label in enumerate(data.labels):
+                if label in self.normalizers:
+                    for stream_id in data.stream_ids(label=label):
+                        data.set_container(
+                            label=label,
+                            stream_id=stream_id,
+                            container=self.normalizers[label].normalize(
+                                data=data.get_container(
+                                    label=label,
+                                    stream_id=stream_id
+                                )
+                            )
                         )
 
-        return data_repository
+        return data
 
 
 class Aggregator(ObjectContainer):
