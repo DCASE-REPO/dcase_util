@@ -66,8 +66,8 @@ tools:
         pip install pep8
         pep8 path/to/module.py
 
-Opening issue
--------------
+Creating an issue
+-----------------
 
 We use Github issues to track all bugs and feature requests; feel free to
 open an issue if you have found a bug or wish to see a new feature implemented.
