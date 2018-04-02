@@ -4,21 +4,15 @@
 from __future__ import print_function, absolute_import
 
 from dcase_util.containers import MetaDataContainer
-from dcase_util.processors import ProcessorMixin, ProcessingChainItemType
+from dcase_util.processors import Processor, ProcessingChainItemType
 
 
-class MetadataReadingProcessor(ProcessorMixin, MetaDataContainer):
+class MetadataReadingProcessor(Processor):
     input_type = ProcessingChainItemType.NONE  #: Input data type
     output_type = ProcessingChainItemType.METADATA  #: Output data type
 
     def __init__(self, *args, **kwargs):
         """Constructor"""
-
-        # Run ProcessorMixin init
-        ProcessorMixin.__init__(self, *args, **kwargs)
-
-        # Run MetaDataContainer init
-        MetaDataContainer.__init__(self, **kwargs)
 
         # Run super init to call init of mixins too
         super(MetadataReadingProcessor, self).__init__(*args, **kwargs)
@@ -64,30 +58,31 @@ class MetadataReadingProcessor(ProcessorMixin, MetaDataContainer):
         """
 
         if data is None and self.input_type == ProcessingChainItemType.NONE:
+            container = MetaDataContainer()
             if filename:
-                self.load(filename=filename)
+                container.load(filename=filename)
 
             if focus_filename is not None:
-                filtered = self.filter(filename=focus_filename)
-                self.update(filtered)
+                filtered = container.filter(filename=focus_filename)
+                container.update(filtered)
 
             if focus_start_seconds is not None and focus_duration_seconds is not None:
-                filtered = self.filter_time_segment(
+                filtered = container.filter_time_segment(
                     start=focus_start_seconds,
                     duration=focus_duration_seconds,
                     zero_time=zero_time,
                     trim=trim
                 )
-                self.update(filtered)
+                container.update(filtered)
 
             elif focus_start_seconds is not None and focus_stop_seconds is not None:
-                filtered = self.filter_time_segment(
+                filtered = container.filter_time_segment(
                     start=focus_start_seconds,
                     stop=focus_stop_seconds,
                     zero_time=zero_time,
                     trim=trim
                 )
-                self.update(filtered)
+                container.update(filtered)
 
             if store_processing_chain:
                 processing_chain_item = self.get_processing_chain_item()
@@ -103,9 +98,9 @@ class MetadataReadingProcessor(ProcessorMixin, MetaDataContainer):
                 processing_chain_item['process_parameters']['focus_stop_seconds'] = focus_stop_seconds
 
                 # Push chain item into processing chain stored in the container
-                self.push_processing_chain_item(**processing_chain_item)
+                container.push_processing_chain_item(**processing_chain_item)
 
-            return self
+            return container
 
         else:
             message = '{name}: Wrong input data type, type required [{input_type}].'.format(

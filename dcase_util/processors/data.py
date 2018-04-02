@@ -5,13 +5,13 @@ from __future__ import print_function, absolute_import
 from six import iteritems
 import numpy
 
-from dcase_util.containers import DataContainer
-from dcase_util.processors import ProcessorMixin, ProcessingChainItemType, ProcessingChain
-from dcase_util.data import Normalizer, Aggregator, Sequencer, Stacker, OneHotEncoder, ManyHotEncoder, \
+from dcase_util.containers import DataContainer, RepositoryContainer
+from dcase_util.processors import Processor, ProcessingChainItemType, ProcessingChain
+from dcase_util.data import Normalizer, RepositoryNormalizer, Aggregator, Sequencer, Stacker, OneHotEncoder, ManyHotEncoder, \
     EventRollEncoder, Masker
 
 
-class AggregationProcessor(Aggregator, ProcessorMixin):
+class AggregationProcessor(Processor):
     """Data aggregation processor"""
     input_type = ProcessingChainItemType.DATA_CONTAINER  #: Input data type
     output_type = ProcessingChainItemType.DATA_CONTAINER  #: Output data type
@@ -35,6 +35,7 @@ class AggregationProcessor(Aggregator, ProcessorMixin):
         if recipe is None and kwargs.get('aggregation_recipe', None) is not None:
             recipe = kwargs.get('aggregation_recipe', None)
 
+        # Inject initialization parameters back to kwargs
         kwargs.update(
             {
                 'win_length_frames': win_length_frames,
@@ -42,12 +43,11 @@ class AggregationProcessor(Aggregator, ProcessorMixin):
                 'recipe': recipe
             }
         )
-        
-        # Run ProcessorMixin init
-        ProcessorMixin.__init__(self, **kwargs)
 
         # Run super init to call init of mixins too
         super(AggregationProcessor, self).__init__(**kwargs)
+
+        self.aggregator = Aggregator(**self.init_parameters)
 
     def process(self, data=None, store_processing_chain=False, **kwargs):
         """Process
@@ -71,23 +71,14 @@ class AggregationProcessor(Aggregator, ProcessorMixin):
 
         if isinstance(data, ContainerMixin):
             # Do processing
-            container = self.aggregate(
+            container = self.aggregator.aggregate(
                 data=data,
                 **kwargs
             )
 
             if store_processing_chain:
                 # Get processing chain item
-                if hasattr(data, 'processing_chain') and data.processing_chain.chain_item_exists(
-                        processor_name='dcase_util.processors.' + self.__class__.__name__):
-                    # Current processor is already in the processing chain, reuse that
-                    processing_chain_item = data.processing_chain.chain_item(
-                        processor_name='dcase_util.processors.' + self.__class__.__name__
-                    )
-
-                else:
-                    # Create a new processing chain item based on current processor class
-                    processing_chain_item = self.get_processing_chain_item()
+                processing_chain_item = self.get_processing_chain_item()
 
                 # Update current processing parameters into chain item
                 processing_chain_item.update({
@@ -108,7 +99,98 @@ class AggregationProcessor(Aggregator, ProcessorMixin):
             raise ValueError(message)
 
 
-class SequencingProcessor(Sequencer, ProcessorMixin):
+class RepositoryAggregationProcessor(Processor):
+    """Data aggregation processor"""
+    input_type = ProcessingChainItemType.DATA_REPOSITORY  #: Input data type
+    output_type = ProcessingChainItemType.DATA_REPOSITORY  #: Output data type
+
+    def __init__(self, win_length_frames=10, hop_length_frames=1, recipe=None, **kwargs):
+        """Constructor
+
+        Parameters
+        ----------
+        recipe : list of dict or list of str
+            Aggregation recipe, supported methods [mean, std, cov, kurtosis, skew, flatten].
+
+        win_length_frames : int
+            Window length in feature frames
+
+        hop_length_frames : int
+            Hop length in feature frames
+
+        """
+
+        if recipe is None and kwargs.get('aggregation_recipe', None) is not None:
+            recipe = kwargs.get('aggregation_recipe', None)
+
+        # Inject initialization parameters back to kwargs
+        kwargs.update(
+            {
+                'win_length_frames': win_length_frames,
+                'hop_length_frames': hop_length_frames,
+                'recipe': recipe
+            }
+        )
+
+        # Run super init to call init of mixins too
+        super(RepositoryAggregationProcessor, self).__init__(**kwargs)
+
+        self.aggregator = Aggregator(**self.init_parameters)
+
+    def process(self, data=None, store_processing_chain=False, **kwargs):
+        """Process
+
+        Parameters
+        ----------
+        data : DataContainer
+            Data
+
+        store_processing_chain : bool
+            Store processing chain to data container returned
+            Default value False
+
+        Returns
+        -------
+        DataMatrix3DContainer
+
+        """
+
+        if isinstance(data, RepositoryContainer):
+            # Label exists in data repository
+            for label in data:
+                for stream_id in data[label]:
+                    # Do processing
+                    data.set_container(
+                        label=label,
+                        stream_id=stream_id,
+                        container=self.aggregator.aggregate(
+                            data=data.get_container(
+                                label=label,
+                                stream_id=stream_id
+                            ),
+                            **kwargs
+                        )
+                    )
+
+            if store_processing_chain:
+                # Get processing chain item
+                processing_chain_item = self.get_processing_chain_item()
+
+                # Push chain item into processing chain stored in the container
+                data.processing_chain.push_processor(**processing_chain_item)
+
+            return data
+
+        else:
+            message = '{name}: Wrong input data type, type required [{input_type}].'.format(
+                name=self.__class__.__name__,
+                input_type=self.input_type)
+
+            self.logger.exception(message)
+            raise ValueError(message)
+
+
+class SequencingProcessor(Processor):
     """Data sequencing processor"""
     input_type = ProcessingChainItemType.DATA_CONTAINER  #: Input data type
     output_type = ProcessingChainItemType.DATA_CONTAINER  #: Output data type
@@ -139,6 +221,7 @@ class SequencingProcessor(Sequencer, ProcessorMixin):
 
         """
 
+        # Inject initialization parameters back to kwargs
         kwargs.update(
             {
                 'frames': frames,
@@ -150,11 +233,10 @@ class SequencingProcessor(Sequencer, ProcessorMixin):
             }
         )
 
-        # Run ProcessorMixin init
-        ProcessorMixin.__init__(self, **kwargs)
-
         # Run super init to call init of mixins too
         super(SequencingProcessor, self).__init__(**kwargs)
+
+        self.sequencer = Sequencer(**self.init_parameters)
 
     def process(self, data=None, store_processing_chain=False, **kwargs):
         """Process
@@ -163,6 +245,10 @@ class SequencingProcessor(Sequencer, ProcessorMixin):
         ----------
         data : DataContainer
             Data
+
+        store_processing_chain : bool
+            Store processing chain to data container returned
+            Default value False
 
         Returns
         -------
@@ -173,22 +259,14 @@ class SequencingProcessor(Sequencer, ProcessorMixin):
 
         if isinstance(data, ContainerMixin):
             # Do processing
-            container = self.sequence(
+            container = self.sequencer.sequence(
                 data=data,
                 **kwargs
             )
 
             if store_processing_chain:
-                if hasattr(data, 'processing_chain') and data.processing_chain.chain_item_exists(
-                        processor_name='dcase_util.processors.' + self.__class__.__name__):
-                    # Current processor is already in the processing chain, get that
-                    processing_chain_item = data.processing_chain.chain_item(
-                        processor_name='dcase_util.processors.' + self.__class__.__name__
-                    )
-
-                else:
-                    # Create a new processing chain item based on current processor class
-                    processing_chain_item = self.get_processing_chain_item()
+                # Get processing chain item
+                processing_chain_item = self.get_processing_chain_item()
 
                 # Update current processing parameters into chain item
                 processing_chain_item.update({
@@ -209,7 +287,108 @@ class SequencingProcessor(Sequencer, ProcessorMixin):
             raise ValueError(message)
 
 
-class NormalizationProcessor(Normalizer, ProcessorMixin):
+class RepositorySequencingProcessor(Processor):
+    """Data sequencing processor"""
+    input_type = ProcessingChainItemType.DATA_REPOSITORY  #: Input data type
+    output_type = ProcessingChainItemType.DATA_REPOSITORY  #: Output data type
+
+    def __init__(self, frames=10, hop_length_frames=None, padding=None, shift_step=0,
+                 shift_border='roll', shift_max=None, **kwargs):
+        """__init__ method.
+
+        Parameters
+        ----------
+        frames : int
+            Sequence length
+
+        hop_length_frames : int
+            Hop value of when forming the sequence
+
+        padding: bool
+            Replicate data when sequence is not full
+
+        shift_step : int
+            Sequence start temporal shifting amount, is added once method increase_shifting is called
+
+        shift_border : string, {'roll', 'shift'}
+            Sequence border handling when doing temporal shifting.
+
+        shift_max : int
+            Maximum value for temporal shift
+
+        """
+
+        # Inject initialization parameters back to kwargs
+        kwargs.update(
+            {
+                'frames': frames,
+                'hop_length_frames': hop_length_frames,
+                'padding': padding,
+                'shift_step': shift_step,
+                'shift_border': shift_border,
+                'shift_max': shift_max
+            }
+        )
+
+        # Run super init to call init of mixins too
+        super(RepositorySequencingProcessor, self).__init__(**kwargs)
+
+        self.sequencer = Sequencer(**self.init_parameters)
+
+    def process(self, data=None, store_processing_chain=False, **kwargs):
+        """Process
+
+        Parameters
+        ----------
+        data : DataContainer
+            Data
+
+        store_processing_chain : bool
+            Store processing chain to data container returned
+            Default value False
+
+        Returns
+        -------
+        DataMatrix3DContainer
+
+        """
+
+        if isinstance(data, RepositoryContainer):
+            # Label exists in data repository
+            for label in data:
+                for stream_id in data[label]:
+                    # Do processing
+                    data.set_container(
+                        label=label,
+                        stream_id=stream_id,
+                        container=self.sequencer.sequence(
+                            data=data.get_container(
+                                label=label,
+                                stream_id=stream_id
+                            ),
+                            **kwargs
+                        )
+                    )
+
+            if store_processing_chain:
+                # Get processing chain item
+                processing_chain_item = self.get_processing_chain_item()
+
+                # Push chain item into processing chain stored in the container
+                data.processing_chain.push_processor(**processing_chain_item)
+
+            return data
+
+        else:
+            message = '{name}: Wrong input data type, type required [{input_type}].'.format(
+                name=self.__class__.__name__,
+                input_type=self.input_type)
+
+            self.logger.exception(message)
+            raise ValueError(message)
+
+
+class NormalizationProcessor(Processor):
     """Data normalizer to accumulate data statistics"""
     input_type = ProcessingChainItemType.DATA_CONTAINER  #: Input data type
     output_type = ProcessingChainItemType.DATA_CONTAINER  #: Output data type
@@ -221,23 +400,38 @@ class NormalizationProcessor(Normalizer, ProcessorMixin):
         ----------
         n : int
             Item count used to calculate statistics
+            Default value None
 
         s1 : numpy.array [shape=(vector_length,)]
             Vector-wise sum of the data seen by the Normalizer
+            Default value None
 
         s2 : numpy.array [shape=(vector_length,)]
             Vector-wise sum^2 of the data seen by the Normalizer
+            Default value None
 
         mean : numpy.ndarray() [shape=(vector_length, 1)]
             Mean of the data
+            Default value None
 
         std : numpy.ndarray() [shape=(vector_length, 1)]
             Standard deviation of the data
+            Default value None
+
+        normalizer : Normalizer
+            Normalizer object to initialize the processor
+            Default value None
+
+        filename : str
+            Filename to saved normalizer object to initialize the processor
+            Default value None
 
         """
+
         if filename is not None:
             normalizer = Normalizer().load(filename=filename)
 
+        # Inject initialization parameters back to kwargs
         if isinstance(normalizer, Normalizer):
             # Valid Normalizer class given
             kwargs.update(
@@ -261,11 +455,10 @@ class NormalizationProcessor(Normalizer, ProcessorMixin):
                 }
             )
 
-        # Run ProcessorMixin init
-        ProcessorMixin.__init__(self, **kwargs)
-
         # Run super init to call init of mixins too
         super(NormalizationProcessor, self).__init__(**kwargs)
+
+        self.normalizer = Normalizer(**self.init_parameters)
 
     def process(self, data=None, store_processing_chain=False, **kwargs):
         """Normalize feature matrix with internal statistics of the class
@@ -290,22 +483,14 @@ class NormalizationProcessor(Normalizer, ProcessorMixin):
 
         if isinstance(data, ContainerMixin):
             # Do processing
-            container = self.normalize(
+            container = self.normalizer.normalize(
                 data=data,
                 **kwargs
             )
 
             if store_processing_chain:
-                if hasattr(data, 'processing_chain') and data.processing_chain.chain_item_exists(
-                        processor_name='dcase_util.processors.' + self.__class__.__name__):
-                    # Current processor is already in the processing chain, get that
-                    processing_chain_item = data.processing_chain.chain_item(
-                        processor_name='dcase_util.processors.' + self.__class__.__name__
-                    )
-
-                else:
-                    # Create a new processing chain item based on current processor class
-                    processing_chain_item = self.get_processing_chain_item()
+                # Get processing chain item
+                processing_chain_item = self.get_processing_chain_item()
 
                 # Update current processing parameters into chain item
                 processing_chain_item.update({
@@ -326,31 +511,51 @@ class NormalizationProcessor(Normalizer, ProcessorMixin):
             raise ValueError(message)
 
 
-class RepositoryNormalizationProcessor(DataContainer, ProcessorMixin):
+class RepositoryNormalizationProcessor(Processor):
     """Data normalizer to accumulate data statistics inside repository"""
     input_type = ProcessingChainItemType.DATA_REPOSITORY
     output_type = ProcessingChainItemType.DATA_REPOSITORY
 
-    def __init__(self, parameters=None, **kwargs):
+    def __init__(self, parameters=None, normalizers=None, filename=None, **kwargs):
         """__init__ method.
 
         Parameters
         ----------
         parameters : dict
-            Pre-calculated statistics in dict to initialize internal state
+            Pre-calculated statistics in dict to initialize internal state, label as key
+            Default value None
+
+        normalizer : Normalizer
+            Normalizer object to initialize the processor, label as key
+            Default value None
+
+        filename : str
+            Filename to saved normalizer object to initialize the processor
+            Default value None
 
         """
-
-        # Run ProcessorMixin init
-        ProcessorMixin.__init__(self, **kwargs)
-
-        # Run super init to call init of mixins too
-        super(RepositoryNormalizationProcessor, self).__init__(**kwargs)
 
         if parameters is None:
             parameters = {}
 
+        if filename is not None:
+            normalizers = RepositoryNormalizer().load(filename=filename)
+
+        if not parameters and isinstance(normalizers, RepositoryNormalizer):
+
+            for label in normalizers.normalizers:
+                if label not in parameters:
+                    parameters[label] = {}
+
+                parameters[label] = {
+                    'mean': normalizers.normalizers[label].mean,
+                    'std': normalizers.normalizers[label].std
+                }
+
         self.parameters = parameters
+
+        # Run super init to call init of mixins too
+        super(RepositoryNormalizationProcessor, self).__init__(**kwargs)
 
     def __getstate__(self):
         d = super(RepositoryNormalizationProcessor, self).__getstate__()
@@ -372,6 +577,7 @@ class RepositoryNormalizationProcessor(DataContainer, ProcessorMixin):
         ----------
         data : DataRepository
             DataRepository
+            Default value None
 
         store_processing_chain : bool
             Store processing chain to data container returned
@@ -383,20 +589,7 @@ class RepositoryNormalizationProcessor(DataContainer, ProcessorMixin):
 
         """
 
-        from dcase_util.containers import RepositoryContainer
-
         if isinstance(data, RepositoryContainer):
-            if store_processing_chain:
-                if hasattr(data, 'processing_chain') and data.processing_chain.chain_item_exists(processor_name='dcase_util.processors.'+self.__class__.__name__):
-                    # Current processor is already in the processing chain, get that
-                    processing_chain_item = data.processing_chain.chain_item(
-                        processor_name='dcase_util.processors.'+self.__class__.__name__
-                    )
-
-                else:
-                    # Create a new processing chain item based on current processor class
-                    processing_chain_item = self.get_processing_chain_item()
-
             for label, parameters in iteritems(self.parameters):
                 if label in data:
                     # Label exists in data repository
@@ -409,6 +602,7 @@ class RepositoryNormalizationProcessor(DataContainer, ProcessorMixin):
                             # Make sure mean and std are numpy.array
                             if isinstance(parameters['mean'], list):
                                 parameters['mean'] = numpy.array(parameters['mean'])
+
                             if isinstance(parameters['std'], list):
                                 parameters['std'] = numpy.array(parameters['std'])
 
@@ -426,6 +620,9 @@ class RepositoryNormalizationProcessor(DataContainer, ProcessorMixin):
                         pass
 
             if store_processing_chain:
+                # Get processing chain item
+                processing_chain_item = self.get_processing_chain_item()
+
                 # Push chain item into processing chain stored in the container
                 data.processing_chain.push_processor(**processing_chain_item)
 
@@ -440,7 +637,7 @@ class RepositoryNormalizationProcessor(DataContainer, ProcessorMixin):
             raise ValueError(message)
 
 
-class StackingProcessor(Stacker, ProcessorMixin):
+class StackingProcessor(Processor):
     """Data stacking processor"""
     input_type = ProcessingChainItemType.DATA_REPOSITORY  #: Input data type
     output_type = ProcessingChainItemType.DATA_CONTAINER  #: Output data type
@@ -458,6 +655,7 @@ class StackingProcessor(Stacker, ProcessorMixin):
 
         """
 
+        # Inject initialization parameters back to kwargs
         kwargs.update(
             {
                 'recipe': recipe,
@@ -465,11 +663,10 @@ class StackingProcessor(Stacker, ProcessorMixin):
             }
         )
 
-        # Run ProcessorMixin init
-        ProcessorMixin.__init__(self, **kwargs)
-
         # Run super init to call init of mixins too
         super(StackingProcessor, self).__init__(**kwargs)
+
+        self.stacker = Stacker(**self.init_parameters)
 
     def process(self, data=None, store_processing_chain=False, **kwargs):
         """Vector creation based on recipe
@@ -493,22 +690,14 @@ class StackingProcessor(Stacker, ProcessorMixin):
 
         if isinstance(data, RepositoryContainer):
             # Do processing
-            container = self.stack(
+            container = self.stacker.stack(
                 repository=data,
                 **kwargs
             )
 
             if store_processing_chain:
-                if hasattr(data, 'processing_chain') and data.processing_chain.chain_item_exists(
-                        processor_name='dcase_util.processors.' + self.__class__.__name__):
-                    # Current processor is already in the processing chain, get that
-                    processing_chain_item = data.processing_chain.chain_item(
-                        processor_name='dcase_util.processors.' + self.__class__.__name__
-                    )
-
-                else:
-                    # Create a new processing chain item based on current processor class
-                    processing_chain_item = self.get_processing_chain_item()
+                # Get processing chain item
+                processing_chain_item = self.get_processing_chain_item()
 
                 # Update current processing parameters into chain item
                 processing_chain_item.update({
@@ -531,7 +720,7 @@ class StackingProcessor(Stacker, ProcessorMixin):
             raise ValueError(message)
 
 
-class RepositoryMaskingProcessor(Masker, ProcessorMixin):
+class RepositoryMaskingProcessor(Processor):
     """Data masking processor"""
     input_type = ProcessingChainItemType.DATA_REPOSITORY  #: Input data type
     output_type = ProcessingChainItemType.DATA_REPOSITORY  #: Output data type
@@ -540,11 +729,10 @@ class RepositoryMaskingProcessor(Masker, ProcessorMixin):
         """Constructor
         """
 
-        # Run ProcessorMixin init
-        ProcessorMixin.__init__(self, **kwargs)
-
         # Run super init to call init of mixins too
         super(RepositoryMaskingProcessor, self).__init__(**kwargs)
+
+        self.masker = Masker()
 
     def process(self, data, mask_events=None, store_processing_chain=False, **kwargs):
         """Vector creation based on recipe
@@ -556,6 +744,7 @@ class RepositoryMaskingProcessor(Masker, ProcessorMixin):
 
         mask_events : MetaDaaContainer
             Masking events
+            Default value None
 
         store_processing_chain : bool
             Store processing chain to data container returned
@@ -571,22 +760,14 @@ class RepositoryMaskingProcessor(Masker, ProcessorMixin):
 
         if isinstance(data, RepositoryContainer):
             # Do processing
-            container = self.mask(
+            container = self.masker.mask(
                 data=data,
                 mask_events=mask_events
             )
 
             if store_processing_chain:
-                if hasattr(data, 'processing_chain') and data.processing_chain.chain_item_exists(
-                        processor_name='dcase_util.processors.' + self.__class__.__name__):
-                    # Current processor is already in the processing chain, get that
-                    processing_chain_item = data.processing_chain.chain_item(
-                        processor_name='dcase_util.processors.' + self.__class__.__name__
-                    )
-
-                else:
-                    # Create a new processing chain item based on current processor class
-                    processing_chain_item = self.get_processing_chain_item()
+                # Get processing chain item
+                processing_chain_item = self.get_processing_chain_item()
 
                 # Push chain item into processing chain stored in the container
                 container.processing_chain.push_processor(**processing_chain_item)
@@ -602,7 +783,7 @@ class RepositoryMaskingProcessor(Masker, ProcessorMixin):
             raise ValueError(message)
 
 
-class OneHotEncodingProcessor(OneHotEncoder, ProcessorMixin):
+class OneHotEncodingProcessor(Processor):
     """One hot encoding processor"""
     input_type = ProcessingChainItemType.METADATA  #: Input data type
     output_type = ProcessingChainItemType.DATA_CONTAINER  #: Output data type
@@ -631,6 +812,7 @@ class OneHotEncodingProcessor(OneHotEncoder, ProcessorMixin):
 
         """
 
+        # Inject initialization parameters back to kwargs
         kwargs.update(
             {
                 'label_list': label_list,
@@ -640,12 +822,10 @@ class OneHotEncodingProcessor(OneHotEncoder, ProcessorMixin):
             }
         )
 
-        # Run ProcessorMixin init
-        ProcessorMixin.__init__(self, **kwargs)
-
         # Run super init to call init of mixins too
         super(OneHotEncodingProcessor, self).__init__(**kwargs)
 
+        self.encoder = OneHotEncoder(**self.init_parameters)
         self.focus_field = focus_field
 
     def process(self, data=None, label=None, focus_field=None, length_frames=None, length_seconds=None, store_processing_chain=False, **kwargs):
@@ -700,36 +880,22 @@ class OneHotEncodingProcessor(OneHotEncoder, ProcessorMixin):
         if data is not None and len(data) > 0 and label is None:
             label = data[0].get(focus_field)
 
-        if length_frames is None and length_seconds is not None:
-            length_frames = self._length_to_frames(length_seconds)
-
-        if length_frames is None:
-            length_frames = self.length_frames
-
         # Do processing
-        self.encode(
+        self.encoder.encode(
             label=label,
-            length_frames=length_frames
+            length_frames=length_frames,
+            length_seconds=length_seconds
         )
 
         if store_processing_chain:
-            if hasattr(data, 'processing_chain') and data.processing_chain.chain_item_exists(
-                    processor_name='dcase_util.processors.' + self.__class__.__name__):
-                # Current processor is already in the processing chain, get that
-                processing_chain_item = data.processing_chain.chain_item(
-                    processor_name='dcase_util.processors.' + self.__class__.__name__
-                )
-
-            else:
-                # Create a new processing chain item based on current processor class
-                processing_chain_item = self.get_processing_chain_item()
+            # Get processing chain item
+            processing_chain_item = self.get_processing_chain_item()
 
             if 'process_parameters' not in processing_chain_item:
                 processing_chain_item['process_parameters'] = {}
 
             processing_chain_item['process_parameters']['focus_field'] = focus_field
             processing_chain_item['process_parameters']['length_frames'] = length_frames
-
 
             # Create processing chain to be stored in the container, and push chain item into it
             if hasattr(data, 'processing_chain'):
@@ -743,16 +909,16 @@ class OneHotEncodingProcessor(OneHotEncoder, ProcessorMixin):
 
         from dcase_util.containers import BinaryMatrix2DContainer
         container = BinaryMatrix2DContainer(
-            data=self.data,
-            label_list=self.label_list,
-            time_resolution=self.time_resolution,
+            data=self.encoder.data,
+            label_list=self.encoder.label_list,
+            time_resolution=self.encoder.time_resolution,
             processing_chain=processing_chain
         )
 
         return container
 
 
-class ManyHotEncodingProcessor(ManyHotEncoder, ProcessorMixin):
+class ManyHotEncodingProcessor(Processor):
     """Many hot encoding processor"""
     input_type = ProcessingChainItemType.METADATA  #: Input data type
     output_type = ProcessingChainItemType.DATA_CONTAINER  #: Output data type
@@ -781,6 +947,7 @@ class ManyHotEncodingProcessor(ManyHotEncoder, ProcessorMixin):
 
         """
 
+        # Inject initialization parameters back to kwargs
         kwargs.update(
             {
                 'label_list': label_list,
@@ -790,13 +957,11 @@ class ManyHotEncodingProcessor(ManyHotEncoder, ProcessorMixin):
             }
         )
 
-        # Run ProcessorMixin init
-        ProcessorMixin.__init__(self, **kwargs)
-
         # Run super init to call init of mixins too
         super(ManyHotEncodingProcessor, self).__init__(**kwargs)
 
         self.focus_field = focus_field
+        self.encoder = ManyHotEncoder(**self.init_parameters)
 
     def process(self, data=None, focus_field=None, length_frames=None, length_seconds=None, store_processing_chain=False, **kwargs):
         """Encode metadata
@@ -832,34 +997,21 @@ class ManyHotEncodingProcessor(ManyHotEncoder, ProcessorMixin):
             focus_field = self.focus_field
 
         if isinstance(data, MetaDataContainer):
-            if length_frames is None and length_seconds is not None:
-                length_frames = self._length_to_frames(length_seconds)
-
-            if length_frames is None:
-                length_frames = self.length_frames
-
             if len(data) > 0:
                 label_list = data[0].get(focus_field)
                 if isinstance(label_list, str):
                     label_list = [label_list]
 
             # Do processing
-            self.encode(
+            self.encoder.encode(
                 label_list=label_list,
-                length_frames=length_frames
+                length_frames=length_frames,
+                length_seconds=length_seconds
             )
 
             if store_processing_chain:
-                if hasattr(data, 'processing_chain') and data.processing_chain.chain_item_exists(
-                        processor_name='dcase_util.processors.' + self.__class__.__name__):
-                    # Current processor is already in the processing chain, get that
-                    processing_chain_item = data.processing_chain.chain_item(
-                        processor_name='dcase_util.processors.' + self.__class__.__name__
-                    )
-
-                else:
-                    # Create a new processing chain item based on current processor class
-                    processing_chain_item = self.get_processing_chain_item()
+                # Get processing chain item
+                processing_chain_item = self.get_processing_chain_item()
 
                 if 'process_parameters' not in processing_chain_item:
                     processing_chain_item['process_parameters'] = {}
@@ -880,9 +1032,9 @@ class ManyHotEncodingProcessor(ManyHotEncoder, ProcessorMixin):
 
             from dcase_util.containers import BinaryMatrix2DContainer
             container = BinaryMatrix2DContainer(
-                data=self.data,
-                label_list=self.label_list,
-                time_resolution=self.time_resolution,
+                data=self.encoder.data,
+                label_list=self.encoder.label_list,
+                time_resolution=self.encoder.time_resolution,
                 processing_chain=processing_chain
             )
 
@@ -897,7 +1049,7 @@ class ManyHotEncodingProcessor(ManyHotEncoder, ProcessorMixin):
             raise ValueError(message)
 
 
-class EventRollEncodingProcessor(EventRollEncoder, ProcessorMixin):
+class EventRollEncodingProcessor(Processor):
     """Event roll encoding processor"""
     input_type = ProcessingChainItemType.METADATA  #: Input data type
     output_type = ProcessingChainItemType.DATA_CONTAINER  #: Output data type
@@ -918,6 +1070,7 @@ class EventRollEncodingProcessor(EventRollEncoder, ProcessorMixin):
 
         """
 
+        # Inject initialization parameters back to kwargs
         kwargs.update(
             {
                 'label_list': label_list,
@@ -926,11 +1079,10 @@ class EventRollEncodingProcessor(EventRollEncoder, ProcessorMixin):
             }
         )
 
-        # Run ProcessorMixin init
-        ProcessorMixin.__init__(self, **kwargs)
-
         # Run super init to call init of mixins too
         super(EventRollEncodingProcessor, self).__init__(**kwargs)
+
+        self.encoder = EventRollEncoder(**self.init_parameters)
 
     def process(self, data=None, store_processing_chain=False, **kwargs):
         """Encode metadata
@@ -954,21 +1106,13 @@ class EventRollEncodingProcessor(EventRollEncoder, ProcessorMixin):
 
         if isinstance(data, MetaDataContainer):
             # Do processing
-            self.encode(
+            self.encoder.encode(
                 metadata_container=data
             )
 
             if store_processing_chain:
-                if hasattr(data, 'processing_chain') and data.processing_chain.chain_item_exists(
-                        processor_name='dcase_util.processors.' + self.__class__.__name__):
-                    # Current processor is already in the processing chain, get that
-                    processing_chain_item = data.processing_chain.chain_item(
-                        processor_name='dcase_util.processors.' + self.__class__.__name__
-                    )
-
-                else:
-                    # Create a new processing chain item based on current processor class
-                    processing_chain_item = self.get_processing_chain_item()
+                # Get processing chain item
+                processing_chain_item = self.get_processing_chain_item()
 
                 processing_chain_item.update({
                     'process_parameters': kwargs
@@ -987,9 +1131,9 @@ class EventRollEncodingProcessor(EventRollEncoder, ProcessorMixin):
 
             from dcase_util.containers import BinaryMatrix2DContainer
             container = BinaryMatrix2DContainer(
-                data=self.data,
-                label_list=self.label_list,
-                time_resolution=self.time_resolution,
+                data=self.encoder.data,
+                label_list=self.encoder.label_list,
+                time_resolution=self.encoder.time_resolution,
                 processing_chain=processing_chain
             )
 
@@ -1004,12 +1148,12 @@ class EventRollEncodingProcessor(EventRollEncoder, ProcessorMixin):
             raise ValueError(message)
 
 
-class DataShapingProcessor(ProcessorMixin):
+class DataShapingProcessor(Processor):
     """Data shaping processor"""
     input_type = ProcessingChainItemType.DATA_CONTAINER  #: Input data type
     output_type = ProcessingChainItemType.DATA_CONTAINER  #: Output data type
 
-    def __init__(self, axis_list=None, time_axis=None, data_axis=None, sequence_axis=None, **kwargs):
+    def __init__(self, axis_list=None, time_axis=None, data_axis=None, sequence_axis=None, channel_axis=None, **kwargs):
         """Constructor
 
         Parameters
@@ -1030,17 +1174,32 @@ class DataShapingProcessor(ProcessorMixin):
             New data axis for data sequence. Current axis and new axis are swapped.
             Default value None
 
+        channel_axis : int, optional
+            New data axis for data channel. Current axis and new axis are swapped.
+            Default value None
+
         """
+
+        # Initialize axis ids
+        self.time_axis = None
+        self.data_axis = None
+        self.sequence_axis = None
+        self.channel_axis = None
 
         if axis_list is not None:
             if isinstance(axis_list, list):
                 for axis_id, item in enumerate(axis_list):
                     if 'time' in item:
                         self.time_axis = axis_id
+
                     elif 'data' in item:
                         self.data_axis = axis_id
+
                     elif 'sequence' in item:
                         self.sequence_axis = axis_id
+
+                    elif 'channel' in item:
+                        self.channel_axis = axis_id
 
             else:
                 message = '{name}: Wrong type for axis_list, list required.'.format(
@@ -1054,9 +1213,7 @@ class DataShapingProcessor(ProcessorMixin):
             self.time_axis = time_axis
             self.data_axis = data_axis
             self.sequence_axis = sequence_axis
-
-        # Run ProcessorMixin init
-        ProcessorMixin.__init__(self, **kwargs)
+            self.channel_axis = channel_axis
 
         # Run super init to call init of mixins too
         super(DataShapingProcessor, self).__init__(**kwargs)
@@ -1069,20 +1226,27 @@ class DataShapingProcessor(ProcessorMixin):
         data : DataContainer
             Data to be reshaped
 
+        store_processing_chain : bool
+            Store processing chain to data container returned
+            Default value False
+
         Returns
         -------
         DataContainer
 
         """
 
-        from dcase_util.containers import DataContainer, DataMatrix2DContainer, DataMatrix3DContainer
+        from dcase_util.containers import DataContainer, DataMatrix2DContainer, DataMatrix3DContainer, DataMatrix4DContainer
 
         if isinstance(data, DataContainer):
             # Do processing
-            if isinstance(data, DataMatrix2DContainer):
+
+            if isinstance(data, DataMatrix4DContainer):
                 data.change_axis(
                     time_axis=self.time_axis,
-                    data_axis=self.data_axis
+                    data_axis=self.data_axis,
+                    sequence_axis=self.sequence_axis,
+                    channel_axis=self.channel_axis
                 )
 
             elif isinstance(data, DataMatrix3DContainer):
@@ -1092,18 +1256,15 @@ class DataShapingProcessor(ProcessorMixin):
                     sequence_axis=self.sequence_axis
                 )
 
+            elif isinstance(data, DataMatrix2DContainer):
+                data.change_axis(
+                    time_axis=self.time_axis,
+                    data_axis=self.data_axis
+                )
+
             if store_processing_chain:
                 # Get processing chain item
-                if hasattr(data, 'processing_chain') and data.processing_chain.chain_item_exists(
-                        processor_name='dcase_util.processors.' + self.__class__.__name__):
-                    # Current processor is already in the processing chain, reuse that
-                    processing_chain_item = data.processing_chain.chain_item(
-                        processor_name='dcase_util.processors.' + self.__class__.__name__
-                    )
-
-                else:
-                    # Create a new processing chain item based on current processor class
-                    processing_chain_item = self.get_processing_chain_item()
+                processing_chain_item = self.get_processing_chain_item()
 
                 # Update current processing parameters into chain item
                 processing_chain_item.update({
@@ -1123,3 +1284,148 @@ class DataShapingProcessor(ProcessorMixin):
 
             self.logger.exception(message)
             raise ValueError(message)
+
+
+class RepositoryToMatrixProcessor(Processor):
+    """Repository converting processor"""
+    input_type = ProcessingChainItemType.DATA_REPOSITORY  #: Input data type
+    output_type = ProcessingChainItemType.DATA_CONTAINER  #: Output data type
+
+    def __init__(self, label=None, expanded_dimension='last', **kwargs):
+        """Constructor
+
+        Parameters
+        ----------
+        label : str
+            Default value None
+
+        data_format : str
+            Default value 'channel_last'
+
+        expanded_dimension : str
+            Controls where stream information should be added.
+            Possible values ['first', 'last']
+            Default value 'last'
+
+        """
+
+        # Run super init to call init of mixins too
+        super(RepositoryToMatrixProcessor, self).__init__(**kwargs)
+
+        self.label = label
+        self.expanded_dimension = expanded_dimension
+
+    def process(self, data=None, label=None, store_processing_chain=False, **kwargs):
+        """Process data
+
+        Parameters
+        ----------
+        data : DataRepository
+            Data to be reshaped
+
+        Returns
+        -------
+        DataContainer
+
+        """
+
+        if label is None:
+            label = self.label
+
+        from dcase_util.containers import DataRepository, DataMatrix3DContainer,  DataMatrix4DContainer
+
+        if isinstance(data, DataRepository):
+            # Do processing
+            if label in data:
+                data_list = []
+                for stream_id in data.stream_ids(label=label):
+                    current_container = data.get_container(
+                        label=label,
+                        stream_id=stream_id
+                    )
+
+                    data_list.append(current_container.data)
+
+                if len(current_container.shape) == 3:
+                    # Set expanded axis
+                    if self.expanded_dimension == 'first':
+                        stack_axis = 0
+
+                    elif self.expanded_dimension == 'last':
+                        stack_axis = 3
+
+                    # Create a new container
+                    container = DataMatrix4DContainer(
+                        data=numpy.stack(data_list, axis=stack_axis),
+                        processing_chain=data.processing_chain
+                    )
+
+                    # Set axis correctly
+                    if self.expanded_dimension == 'first':
+                        container.time_axis = current_container.time_axis + 1
+                        container.data_axis = current_container.data_axis + 1
+                        container.sequence_axis = current_container.sequence_axis + 1
+                        container.channel_axis = 0
+
+                    elif self.expanded_dimension == 'last':
+                        container.time_axis = current_container.time_axis
+                        container.data_axis = current_container.data_axis
+                        container.sequence_axis = current_container.sequence_axis
+                        container.channel_axis = 3
+
+                elif len(current_container.shape) == 2:
+                    # Set expanded axis
+                    if self.expanded_dimension == 'first':
+                        stack_axis = 0
+
+                    elif self.expanded_dimension == 'last':
+                        stack_axis = 2
+
+                    # Create a new container
+                    container = DataMatrix3DContainer(
+                        data=numpy.stack(data_list, axis=stack_axis),
+                        processing_chain=data.processing_chain
+                    )
+
+                    # Set axis correctly
+                    if self.expanded_dimension == 'first':
+                        container.time_axis = current_container.time_axis + 1
+                        container.data_axis = current_container.data_axis + 1
+                        container.sequence_axis = 0
+
+                    elif self.expanded_dimension == 'last':
+                        container.time_axis = current_container.time_axis
+                        container.data_axis = current_container.data_axis
+                        container.sequence_axis = 2
+
+                if store_processing_chain:
+                    # Get processing chain item
+                    processing_chain_item = self.get_processing_chain_item()
+
+                    # Update current processing parameters into chain item
+                    processing_chain_item.update({
+                        'process_parameters': kwargs
+                    })
+
+                    # Push chain item into processing chain stored in the container
+                    container.processing_chain.push_processor(**processing_chain_item)
+
+                return container
+            else:
+                message = '{name}: Label not found from repository [{label}].'.format(
+                    name=self.__class__.__name__,
+                    label=label
+                )
+
+                self.logger.exception(message)
+                raise ValueError(message)
+
+        else:
+            message = '{name}: Wrong input data type, type required [{input_type}].'.format(
+                name=self.__class__.__name__,
+                input_type=self.input_type
+            )
+
+            self.logger.exception(message)
+            raise ValueError(message)
+

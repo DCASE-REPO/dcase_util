@@ -4,25 +4,19 @@
 from __future__ import print_function, absolute_import
 from six import iteritems
 import copy
-from dcase_util.containers import FeatureContainer
+from dcase_util.containers import FeatureContainer, FeatureRepository
 from dcase_util.features import MelExtractor, MfccStaticExtractor, MfccDeltaExtractor, \
     MfccAccelerationExtractor, ZeroCrossingRateExtractor, RMSEnergyExtractor, SpectralCentroidExtractor
-from dcase_util.processors import ProcessorMixin, ProcessingChainItemType, ProcessingChain
+from dcase_util.processors import Processor, ProcessingChainItemType, ProcessingChain
 from dcase_util.utils import get_class_inheritors
 
 
-class FeatureReadingProcessor(ProcessorMixin, FeatureContainer):
+class FeatureReadingProcessor(Processor):
     input_type = ProcessingChainItemType.NONE  #: Input data type
     output_type = ProcessingChainItemType.DATA_CONTAINER  #: Output data type
 
     def __init__(self, *args, **kwargs):
         """Constructor"""
-
-        # Run ProcessorMixin init
-        ProcessorMixin.__init__(self, *args, **kwargs)
-
-        # Run FeatureContainer init
-        FeatureContainer.__init__(self, **kwargs)
 
         # Run super init to call init of mixins too
         super(FeatureReadingProcessor, self).__init__(*args, **kwargs)
@@ -72,41 +66,44 @@ class FeatureReadingProcessor(ProcessorMixin, FeatureContainer):
         """
 
         if data is None and self.input_type == ProcessingChainItemType.NONE:
+            container = FeatureContainer()
 
             if filename:
-                self.load(filename=filename)
+                # Load features from disk
+                container.load(
+                    filename=filename
+                )
 
             if focus_start is not None and focus_duration is not None:
-
                 # Set focus segment and channel
-                self.set_focus(
+                container.set_focus(
                     start=focus_start,
                     duration=focus_duration
                 )
 
             elif focus_start is not None and focus_stop is not None:
                 # Set focus segment and channel
-                self.set_focus(
+                container.set_focus(
                     start=focus_start,
                     stop=focus_stop
                 )
 
             elif focus_start_seconds is not None and focus_duration_seconds is not None:
-
                 # Set focus segment and channel
-                self.set_focus(
+                container.set_focus(
                     start_seconds=focus_start_seconds,
                     duration_seconds=focus_duration_seconds
                 )
 
             elif focus_start_seconds is not None and focus_stop_seconds is not None:
                 # Set focus segment and channel
-                self.set_focus(
+                container.set_focus(
                     start_seconds=focus_start_seconds,
                     stop_seconds=focus_stop_seconds
                 )
 
-            if store_processing_chain:
+            if store_processing_chain and not container.processing_chain:
+                # Insert Reader processor only if processing chain is empty
                 processing_chain_item = self.get_processing_chain_item()
 
                 if 'process_parameters' not in processing_chain_item:
@@ -122,10 +119,9 @@ class FeatureReadingProcessor(ProcessorMixin, FeatureContainer):
                 processing_chain_item['process_parameters']['focus_start_seconds'] = focus_start_seconds
                 processing_chain_item['process_parameters']['focus_stop_seconds'] = focus_stop_seconds
 
-                if not self.processing_chain_item_exists():
-                    self.push_processing_chain_item(**processing_chain_item)
+                container.push_processing_chain_item(**processing_chain_item)
 
-            return self
+            return container
 
         else:
             message = '{name}: Wrong input data type, type required [{input_type}].'.format(
@@ -136,7 +132,143 @@ class FeatureReadingProcessor(ProcessorMixin, FeatureContainer):
             raise ValueError(message)
 
 
-class RepositoryFeatureExtractorProcessor(ProcessorMixin):
+class RepositoryFeatureReadingProcessor(Processor):
+    input_type = ProcessingChainItemType.NONE  #: Input data type
+    output_type = ProcessingChainItemType.DATA_REPOSITORY  #: Output data type
+
+    def __init__(self, *args, **kwargs):
+        """Constructor"""
+
+        # Run super init to call init of mixins too
+        super(RepositoryFeatureReadingProcessor, self).__init__(*args, **kwargs)
+
+    def process(self,
+                data=None, filename=None,
+                store_processing_chain=False,
+                **kwargs):
+        """Meta data reading.
+
+        Parameters
+        ----------
+        data : FeatureContainer
+            Input feature data
+            Default value None
+
+        filename : str
+            Filename of the feature container to load.
+            Default value None
+
+        store_processing_chain : bool
+            Store processing chain to data container returned
+            Default value False
+
+        Returns
+        -------
+        self
+
+        """
+
+        if data is None and self.input_type == ProcessingChainItemType.NONE:
+            container = FeatureRepository()
+            if filename:
+                container.load(
+                    filename=filename
+                )
+
+            if store_processing_chain:
+                processing_chain_item = self.get_processing_chain_item()
+
+                if 'process_parameters' not in processing_chain_item:
+                    processing_chain_item['process_parameters'] = {}
+
+                processing_chain_item['process_parameters']['filename'] = filename
+
+                container.push_processing_chain_item(**processing_chain_item)
+
+            return container
+
+        else:
+            message = '{name}: Wrong input data type, type required [{input_type}].'.format(
+                name=self.__class__.__name__,
+                input_type=self.input_type)
+
+            self.logger.exception(message)
+            raise ValueError(message)
+
+
+class FeatureExtractorProcessor(Processor):
+    input_type = ProcessingChainItemType.AUDIO  #: Input data type
+    output_type = ProcessingChainItemType.DATA_CONTAINER  #: Output data type
+
+    def __init__(self, *args, **kwargs):
+        """Constructor"""
+
+        # Run super init to call init of mixins too
+        super(FeatureExtractorProcessor, self).__init__(*args, **kwargs)
+
+    def process(self, data=None, store_processing_chain=False, **kwargs):
+        """Extract features
+
+        Parameters
+        ----------
+        data : AudioContainer
+            Audio data to extract features
+
+        store_processing_chain : bool
+            Store processing chain to data container returned
+            Default value False
+
+        Returns
+        -------
+        FeatureContainer
+
+        """
+
+        from dcase_util.containers import FeatureContainer, AudioContainer
+
+        if isinstance(data, AudioContainer):
+            if store_processing_chain:
+                if hasattr(data, 'processing_chain') and data.processing_chain.chain_item_exists(
+                        processor_name='dcase_util.processors.' + self.__class__.__name__):
+                    # Current processor is already in the processing chain, get that
+                    processing_chain_item = data.processing_chain.chain_item(
+                        processor_name='dcase_util.processors.' + self.__class__.__name__
+                    )
+
+                else:
+                    # Create a new processing chain item
+                    processing_chain_item = self.get_processing_chain_item()
+
+                processing_chain_item.update({
+                    'process_parameters': kwargs
+                })
+
+                if hasattr(data, 'processing_chain'):
+                    data.processing_chain.push_processor(**processing_chain_item)
+                    processing_chain = data.processing_chain
+
+                else:
+                    processing_chain = ProcessingChain().push_processor(**processing_chain_item)
+
+            else:
+                processing_chain = None
+
+            return FeatureContainer(
+                data=self.extract(y=data.get_focused()),
+                time_resolution=self.hop_length_seconds,
+                processing_chain=processing_chain
+            )
+
+        else:
+            message = '{name}: Wrong input data type, type required [{input_type}].'.format(
+                name=self.__class__.__name__,
+                input_type=self.input_type)
+
+            self.logger.exception(message)
+            raise ValueError(message)
+
+
+class RepositoryFeatureExtractorProcessor(Processor):
     input_type = ProcessingChainItemType.AUDIO  #: Input data type
     output_type = ProcessingChainItemType.DATA_REPOSITORY  #: Output data type
 
@@ -158,9 +290,6 @@ class RepositoryFeatureExtractorProcessor(ProcessorMixin):
                 'parameters': parameters
             }
         )
-
-        # Run ProcessorMixin init
-        ProcessorMixin.__init__(self, **kwargs)
 
         # Run super init to call init of mixins too
         super(RepositoryFeatureExtractorProcessor, self).__init__(**kwargs)
@@ -299,81 +428,6 @@ class RepositoryFeatureExtractorProcessor(ProcessorMixin):
                             raise AssertionError(message)
 
             return repository
-
-
-class FeatureExtractorProcessor(ProcessorMixin):
-    input_type = ProcessingChainItemType.AUDIO  #: Input data type
-    output_type = ProcessingChainItemType.DATA_CONTAINER  #: Output data type
-
-    def __init__(self, *args, **kwargs):
-        """Constructor"""
-
-        # Run ProcessorMixin init
-        ProcessorMixin.__init__(self, *args, **kwargs)
-
-        # Run super init to call init of mixins too
-        super(FeatureExtractorProcessor, self).__init__(*args, **kwargs)
-
-    def process(self, data=None, store_processing_chain=False, **kwargs):
-        """Extract features
-
-        Parameters
-        ----------
-        data : AudioContainer
-            Audio data to extract features
-
-        store_processing_chain : bool
-            Store processing chain to data container returned
-            Default value False
-
-        Returns
-        -------
-        FeatureContainer
-
-        """
-
-        from dcase_util.containers import FeatureContainer, AudioContainer
-
-        if isinstance(data, AudioContainer):
-            if store_processing_chain:
-                if hasattr(data, 'processing_chain') and data.processing_chain.chain_item_exists(
-                        processor_name='dcase_util.processors.' + self.__class__.__name__):
-                    # Current processor is already in the processing chain, get that
-                    processing_chain_item = data.processing_chain.chain_item(
-                        processor_name='dcase_util.processors.' + self.__class__.__name__
-                    )
-
-                else:
-                    # Create a new processing chain item
-                    processing_chain_item = self.get_processing_chain_item()
-
-                processing_chain_item.update({
-                    'process_parameters': kwargs
-                })
-
-                if hasattr(data, 'processing_chain'):
-                    data.processing_chain.push_processor(**processing_chain_item)
-                    processing_chain = data.processing_chain
-
-                else:
-                    processing_chain = ProcessingChain().push_processor(**processing_chain_item)
-
-            else:
-                processing_chain = None
-
-            return FeatureContainer(
-                data=self.extract(y=data.get_focused()),
-                time_resolution=self.hop_length_seconds,
-                processing_chain=processing_chain
-            )
-
-        else:
-            message = '{name}: Wrong input data type, type required [{input_type}].'.format(
-                name=self.__class__.__name__,
-                input_type=self.input_type)
-
-            self.logger.exception(message)
-            raise ValueError(message)
 
 
 class MelExtractorProcessor(FeatureExtractorProcessor, MelExtractor):
