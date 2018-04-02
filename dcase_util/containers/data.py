@@ -1687,7 +1687,7 @@ class DataMatrix4DContainer(DataMatrix3DContainer):
 
         data = self.get_focused()
 
-        if data.shape[self.sequence_axis] < 5:
+        if data.shape[self.sequence_axis] <= 10:
             from librosa.display import specshow
             import matplotlib.pyplot as plt
 
