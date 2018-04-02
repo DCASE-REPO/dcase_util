@@ -123,6 +123,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../tutorial_audio.html#creating-container">Creating container</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../tutorial_audio.html#loading-and-saving">Loading and Saving</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../tutorial_audio.html#focus-segment">Focus segment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorial_audio.html#frames-and-segments">Frames and Segments</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../tutorial_audio.html#processing">Processing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../tutorial_audio.html#visualizations">Visualizations</a></li>
 </ul>
@@ -146,6 +147,8 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../tutorial_data.html#event-roll">Event roll</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorial_data.html#probability-encoding">Probability encoding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorial_data.html#decision-encoding">Decision encoding</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorial_metadata.html">Metadata</a><ul>
@@ -670,6 +673,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.data.DecisionEncoder.load.html">dcase_util.data.DecisionEncoder.load</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.data.DecisionEncoder.save.html">dcase_util.data.DecisionEncoder.save</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.data.DecisionEncoder.majority_vote.html">dcase_util.data.DecisionEncoder.majority_vote</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.data.DecisionEncoder.many_hot.html">dcase_util.data.DecisionEncoder.many_hot</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.data.DecisionEncoder.find_contiguous_regions.html">dcase_util.data.DecisionEncoder.find_contiguous_regions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.data.DecisionEncoder.process_activity.html">dcase_util.data.DecisionEncoder.process_activity</a></li>
 </ul>
@@ -684,6 +688,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.Dataset.initialize.html">dcase_util.datasets.Dataset.initialize</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.Dataset.download_packages.html">dcase_util.datasets.Dataset.download_packages</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.Dataset.extract_packages.html">dcase_util.datasets.Dataset.extract_packages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.Dataset.debug_packages.html">dcase_util.datasets.Dataset.debug_packages</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.Dataset.prepare.html">dcase_util.datasets.Dataset.prepare</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.Dataset.process_meta_item.html">dcase_util.datasets.Dataset.process_meta_item</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.Dataset.check_filelist.html">dcase_util.datasets.Dataset.check_filelist</a></li>
@@ -773,6 +778,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../features.html#spectralfeatureextractor">SpectralFeatureExtractor</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.features.SpectralFeatureExtractor.html">dcase_util.features.SpectralFeatureExtractor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.features.SpectralFeatureExtractor.extract.html">dcase_util.features.SpectralFeatureExtractor.extract</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.features.SpectralFeatureExtractor.get_window_function.html">dcase_util.features.SpectralFeatureExtractor.get_window_function</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.features.SpectralFeatureExtractor.get_spectrogram.html">dcase_util.features.SpectralFeatureExtractor.get_spectrogram</a></li>
 </ul>
@@ -826,6 +832,15 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.files.File.empty.html">dcase_util.files.File.empty</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.files.File.delimiter.html">dcase_util.files.File.delimiter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.files.File.is_package.html">dcase_util.files.File.is_package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../files.html#package">Package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.files.Package.html">dcase_util.files.Package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.files.Package.extract.html">dcase_util.files.Package.extract</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.files.Package.compress.html">dcase_util.files.Package.compress</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.files.Package.detect_file_format.html">dcase_util.files.Package.detect_file_format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.files.Package.validate_format.html">dcase_util.files.Package.validate_format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.files.Package.exists.html">dcase_util.files.Package.exists</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../files.html#filelock">FileLock</a><ul>
@@ -922,8 +937,16 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../../keras.html#generators">Generators</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../keras.html#kerasdatasequence">KerasDataSequence</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.keras.get_keras_data_sequence_class.html">dcase_util.keras.get_keras_data_sequence_class</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../../../keras.html#utils">Utils</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.keras.setup_keras.html">dcase_util.keras.setup_keras</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.keras.create_optimizer.html">dcase_util.keras.create_optimizer</a></li>
 </ul>
 </li>
 </ul>
@@ -940,10 +963,12 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.ProcessingChain.log_chain.html">dcase_util.processors.ProcessingChain.log_chain</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.ProcessingChain.push_processor.html">dcase_util.processors.ProcessingChain.push_processor</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.ProcessingChain.process.html">dcase_util.processors.ProcessingChain.process</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.ProcessingChain.call_method.html">dcase_util.processors.ProcessingChain.call_method</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.ProcessingChain.processor_exists.html">dcase_util.processors.ProcessingChain.processor_exists</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.ProcessingChain.processor_class_reference.html">dcase_util.processors.ProcessingChain.processor_class_reference</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.ProcessingChain.processor_class.html">dcase_util.processors.ProcessingChain.processor_class</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.ProcessingChain.chain_item_exists.html">dcase_util.processors.ProcessingChain.chain_item_exists</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.ProcessingChain.chain_item.html">dcase_util.processors.ProcessingChain.chain_item</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.ProcessingChain.call_method.html">dcase_util.processors.ProcessingChain.call_method</a></li>
 </ul>
 </li>
 </ul>
@@ -967,9 +992,19 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.AggregationProcessor.process.html">dcase_util.processors.AggregationProcessor.process</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../../../processors.html#repositoryaggregationprocessor">RepositoryAggregationProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.RepositoryAggregationProcessor.html">dcase_util.processors.RepositoryAggregationProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.RepositoryAggregationProcessor.process.html">dcase_util.processors.RepositoryAggregationProcessor.process</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../../../processors.html#sequencingprocessor">SequencingProcessor</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.SequencingProcessor.html">dcase_util.processors.SequencingProcessor</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.SequencingProcessor.process.html">dcase_util.processors.SequencingProcessor.process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../processors.html#repositorysequencingprocessor">RepositorySequencingProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.RepositorySequencingProcessor.html">dcase_util.processors.RepositorySequencingProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.RepositorySequencingProcessor.process.html">dcase_util.processors.RepositorySequencingProcessor.process</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../processors.html#normalizationprocessor">NormalizationProcessor</a><ul>
@@ -987,6 +1022,11 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.StackingProcessor.process.html">dcase_util.processors.StackingProcessor.process</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../../../processors.html#repositorymaskingprocessor">RepositoryMaskingProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.RepositoryMaskingProcessor.html">dcase_util.processors.RepositoryMaskingProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.RepositoryMaskingProcessor.process.html">dcase_util.processors.RepositoryMaskingProcessor.process</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../../../processors.html#onehotencodingprocessor">OneHotEncodingProcessor</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.OneHotEncodingProcessor.html">dcase_util.processors.OneHotEncodingProcessor</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.OneHotEncodingProcessor.process.html">dcase_util.processors.OneHotEncodingProcessor.process</a></li>
@@ -1002,9 +1042,24 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.EventRollEncodingProcessor.process.html">dcase_util.processors.EventRollEncodingProcessor.process</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../../../processors.html#datashapingprocessor">DataShapingProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.DataShapingProcessor.html">dcase_util.processors.DataShapingProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.DataShapingProcessor.process.html">dcase_util.processors.DataShapingProcessor.process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../processors.html#repositorytomatrixprocessor">RepositoryToMatrixProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.RepositoryToMatrixProcessor.html">dcase_util.processors.RepositoryToMatrixProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.RepositoryToMatrixProcessor.process.html">dcase_util.processors.RepositoryToMatrixProcessor.process</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../processors.html#features">Features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../processors.html#featurereadingprocessor">FeatureReadingProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.FeatureReadingProcessor.html">dcase_util.processors.FeatureReadingProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.FeatureReadingProcessor.process.html">dcase_util.processors.FeatureReadingProcessor.process</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../../../processors.html#repositoryfeatureextractorprocessor">RepositoryFeatureExtractorProcessor</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.RepositoryFeatureExtractorProcessor.html">dcase_util.processors.RepositoryFeatureExtractorProcessor</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.RepositoryFeatureExtractorProcessor.process.html">dcase_util.processors.RepositoryFeatureExtractorProcessor.process</a></li>
@@ -1013,6 +1068,11 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../processors.html#featureextractorprocessor">FeatureExtractorProcessor</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.FeatureExtractorProcessor.html">dcase_util.processors.FeatureExtractorProcessor</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.FeatureExtractorProcessor.process.html">dcase_util.processors.FeatureExtractorProcessor.process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../processors.html#id2">RepositoryFeatureExtractorProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.RepositoryFeatureExtractorProcessor.html">dcase_util.processors.RepositoryFeatureExtractorProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.RepositoryFeatureExtractorProcessor.process.html">dcase_util.processors.RepositoryFeatureExtractorProcessor.process</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../processors.html#melextractorprocessor">MelExtractorProcessor</a><ul>
@@ -1060,12 +1120,11 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../processors.html#mixin">Mixin</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../processors.html#processormixin">ProcessorMixin</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.ProcessorMixin.html">dcase_util.processors.ProcessorMixin</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.ProcessorMixin.process.html">dcase_util.processors.ProcessorMixin.process</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.ProcessorMixin.get_processing_chain_item.html">dcase_util.processors.ProcessorMixin.get_processing_chain_item</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.ProcessorMixin.push_processing_chain_item.html">dcase_util.processors.ProcessorMixin.push_processing_chain_item</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../processors.html#base-object">Base object</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../processors.html#processor">Processor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.Processor.html">dcase_util.processors.Processor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.Processor.process.html">dcase_util.processors.Processor.process</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.Processor.get_processing_chain_item.html">dcase_util.processors.Processor.get_processing_chain_item</a></li>
 </ul>
 </li>
 </ul>
@@ -1344,13 +1403,271 @@
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">absolute_import</span>
 <span class="kn">from</span> <span class="nn">six</span> <span class="k">import</span> <span class="n">iteritems</span>
 <span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="k">import</span> <span class="n">FeatureContainer</span><span class="p">,</span> <span class="n">FeatureRepository</span>
 <span class="kn">from</span> <span class="nn">dcase_util.features</span> <span class="k">import</span> <span class="n">MelExtractor</span><span class="p">,</span> <span class="n">MfccStaticExtractor</span><span class="p">,</span> <span class="n">MfccDeltaExtractor</span><span class="p">,</span> \
     <span class="n">MfccAccelerationExtractor</span><span class="p">,</span> <span class="n">ZeroCrossingRateExtractor</span><span class="p">,</span> <span class="n">RMSEnergyExtractor</span><span class="p">,</span> <span class="n">SpectralCentroidExtractor</span>
-<span class="kn">from</span> <span class="nn">dcase_util.processors</span> <span class="k">import</span> <span class="n">ProcessorMixin</span><span class="p">,</span> <span class="n">ProcessingChainItemType</span><span class="p">,</span> <span class="n">ProcessingChain</span>
+<span class="kn">from</span> <span class="nn">dcase_util.processors</span> <span class="k">import</span> <span class="n">Processor</span><span class="p">,</span> <span class="n">ProcessingChainItemType</span><span class="p">,</span> <span class="n">ProcessingChain</span>
 <span class="kn">from</span> <span class="nn">dcase_util.utils</span> <span class="k">import</span> <span class="n">get_class_inheritors</span>
 
 
-<div class="viewcode-block" id="RepositoryFeatureExtractorProcessor"><a class="viewcode-back" href="../../../generated/dcase_util.processors.RepositoryFeatureExtractorProcessor.html#dcase_util.processors.RepositoryFeatureExtractorProcessor">[docs]</a><span class="k">class</span> <span class="nc">RepositoryFeatureExtractorProcessor</span><span class="p">(</span><span class="n">ProcessorMixin</span><span class="p">):</span>
+<div class="viewcode-block" id="FeatureReadingProcessor"><a class="viewcode-back" href="../../../generated/dcase_util.processors.FeatureReadingProcessor.html#dcase_util.processors.FeatureReadingProcessor">[docs]</a><span class="k">class</span> <span class="nc">FeatureReadingProcessor</span><span class="p">(</span><span class="n">Processor</span><span class="p">):</span>
+    <span class="n">input_type</span> <span class="o">=</span> <span class="n">ProcessingChainItemType</span><span class="o">.</span><span class="n">NONE</span>  <span class="c1">#: Input data type</span>
+    <span class="n">output_type</span> <span class="o">=</span> <span class="n">ProcessingChainItemType</span><span class="o">.</span><span class="n">DATA_CONTAINER</span>  <span class="c1">#: Output data type</span>
+
+<div class="viewcode-block" id="FeatureReadingProcessor.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.processors.FeatureReadingProcessor.html#dcase_util.processors.FeatureReadingProcessor.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Constructor&quot;&quot;&quot;</span>
+
+        <span class="c1"># Run super init to call init of mixins too</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">FeatureReadingProcessor</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="FeatureReadingProcessor.process"><a class="viewcode-back" href="../../../generated/dcase_util.processors.FeatureReadingProcessor.process.html#dcase_util.processors.FeatureReadingProcessor.process">[docs]</a>    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                <span class="n">focus_start</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">focus_stop</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">focus_duration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                <span class="n">focus_start_seconds</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">focus_stop_seconds</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">focus_duration_seconds</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                <span class="n">store_processing_chain</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Meta data reading.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        data : FeatureContainer</span>
+<span class="sd">            Input feature data</span>
+
+<span class="sd">        filename : str</span>
+<span class="sd">            Filename of the feature container to load.</span>
+
+<span class="sd">        focus_start : int, optional</span>
+<span class="sd">            Segment start, frame index of focus segment start</span>
+
+<span class="sd">        focus_stop : int, optional</span>
+<span class="sd">            Segment end, Frame index of focus segment stop</span>
+
+<span class="sd">        focus_duration : int, optional</span>
+<span class="sd">            Segment duration, Frame count of focus segment</span>
+
+<span class="sd">        focus_start_seconds : float &gt; 0.0</span>
+<span class="sd">            Segment start, seconds</span>
+
+<span class="sd">        focus_stop_seconds : float &gt; 0.0</span>
+<span class="sd">            Segment end, seconds</span>
+
+<span class="sd">        focus_duration_seconds : float</span>
+<span class="sd">            Segment duration, seconds</span>
+
+<span class="sd">        store_processing_chain : bool</span>
+<span class="sd">            Store processing chain to data container returned</span>
+<span class="sd">            Default value False</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        self</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_type</span> <span class="o">==</span> <span class="n">ProcessingChainItemType</span><span class="o">.</span><span class="n">NONE</span><span class="p">:</span>
+            <span class="n">container</span> <span class="o">=</span> <span class="n">FeatureContainer</span><span class="p">()</span>
+
+            <span class="k">if</span> <span class="n">filename</span><span class="p">:</span>
+                <span class="c1"># Load features from disk</span>
+                <span class="n">container</span><span class="o">.</span><span class="n">load</span><span class="p">(</span>
+                    <span class="n">filename</span><span class="o">=</span><span class="n">filename</span>
+                <span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">focus_start</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">focus_duration</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="c1"># Set focus segment and channel</span>
+                <span class="n">container</span><span class="o">.</span><span class="n">set_focus</span><span class="p">(</span>
+                    <span class="n">start</span><span class="o">=</span><span class="n">focus_start</span><span class="p">,</span>
+                    <span class="n">duration</span><span class="o">=</span><span class="n">focus_duration</span>
+                <span class="p">)</span>
+
+            <span class="k">elif</span> <span class="n">focus_start</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">focus_stop</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="c1"># Set focus segment and channel</span>
+                <span class="n">container</span><span class="o">.</span><span class="n">set_focus</span><span class="p">(</span>
+                    <span class="n">start</span><span class="o">=</span><span class="n">focus_start</span><span class="p">,</span>
+                    <span class="n">stop</span><span class="o">=</span><span class="n">focus_stop</span>
+                <span class="p">)</span>
+
+            <span class="k">elif</span> <span class="n">focus_start_seconds</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">focus_duration_seconds</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="c1"># Set focus segment and channel</span>
+                <span class="n">container</span><span class="o">.</span><span class="n">set_focus</span><span class="p">(</span>
+                    <span class="n">start_seconds</span><span class="o">=</span><span class="n">focus_start_seconds</span><span class="p">,</span>
+                    <span class="n">duration_seconds</span><span class="o">=</span><span class="n">focus_duration_seconds</span>
+                <span class="p">)</span>
+
+            <span class="k">elif</span> <span class="n">focus_start_seconds</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">focus_stop_seconds</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="c1"># Set focus segment and channel</span>
+                <span class="n">container</span><span class="o">.</span><span class="n">set_focus</span><span class="p">(</span>
+                    <span class="n">start_seconds</span><span class="o">=</span><span class="n">focus_start_seconds</span><span class="p">,</span>
+                    <span class="n">stop_seconds</span><span class="o">=</span><span class="n">focus_stop_seconds</span>
+                <span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">store_processing_chain</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">container</span><span class="o">.</span><span class="n">processing_chain</span><span class="p">:</span>
+                <span class="c1"># Insert Reader processor only if processing chain is empty</span>
+                <span class="n">processing_chain_item</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_processing_chain_item</span><span class="p">()</span>
+
+                <span class="k">if</span> <span class="s1">&#39;process_parameters&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">processing_chain_item</span><span class="p">:</span>
+                    <span class="n">processing_chain_item</span><span class="p">[</span><span class="s1">&#39;process_parameters&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+
+                <span class="n">processing_chain_item</span><span class="p">[</span><span class="s1">&#39;process_parameters&#39;</span><span class="p">][</span><span class="s1">&#39;filename&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">filename</span>
+                <span class="n">processing_chain_item</span><span class="p">[</span><span class="s1">&#39;process_parameters&#39;</span><span class="p">][</span><span class="s1">&#39;focus_start&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">focus_start</span>
+                <span class="n">processing_chain_item</span><span class="p">[</span><span class="s1">&#39;process_parameters&#39;</span><span class="p">][</span><span class="s1">&#39;focus_duration&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">focus_duration</span>
+                <span class="n">processing_chain_item</span><span class="p">[</span><span class="s1">&#39;process_parameters&#39;</span><span class="p">][</span><span class="s1">&#39;focus_start&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">focus_start</span>
+                <span class="n">processing_chain_item</span><span class="p">[</span><span class="s1">&#39;process_parameters&#39;</span><span class="p">][</span><span class="s1">&#39;focus_stop&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">focus_stop</span>
+                <span class="n">processing_chain_item</span><span class="p">[</span><span class="s1">&#39;process_parameters&#39;</span><span class="p">][</span><span class="s1">&#39;focus_start_seconds&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">focus_start_seconds</span>
+                <span class="n">processing_chain_item</span><span class="p">[</span><span class="s1">&#39;process_parameters&#39;</span><span class="p">][</span><span class="s1">&#39;focus_duration_seconds&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">focus_duration_seconds</span>
+                <span class="n">processing_chain_item</span><span class="p">[</span><span class="s1">&#39;process_parameters&#39;</span><span class="p">][</span><span class="s1">&#39;focus_start_seconds&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">focus_start_seconds</span>
+                <span class="n">processing_chain_item</span><span class="p">[</span><span class="s1">&#39;process_parameters&#39;</span><span class="p">][</span><span class="s1">&#39;focus_stop_seconds&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">focus_stop_seconds</span>
+
+                <span class="n">container</span><span class="o">.</span><span class="n">push_processing_chain_item</span><span class="p">(</span><span class="o">**</span><span class="n">processing_chain_item</span><span class="p">)</span>
+
+            <span class="k">return</span> <span class="n">container</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Wrong input data type, type required [</span><span class="si">{input_type}</span><span class="s1">].&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                <span class="n">input_type</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">input_type</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></div></div>
+
+
+<span class="k">class</span> <span class="nc">RepositoryFeatureReadingProcessor</span><span class="p">(</span><span class="n">Processor</span><span class="p">):</span>
+    <span class="n">input_type</span> <span class="o">=</span> <span class="n">ProcessingChainItemType</span><span class="o">.</span><span class="n">NONE</span>  <span class="c1">#: Input data type</span>
+    <span class="n">output_type</span> <span class="o">=</span> <span class="n">ProcessingChainItemType</span><span class="o">.</span><span class="n">DATA_REPOSITORY</span>  <span class="c1">#: Output data type</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Constructor&quot;&quot;&quot;</span>
+
+        <span class="c1"># Run super init to call init of mixins too</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">RepositoryFeatureReadingProcessor</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                <span class="n">store_processing_chain</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Meta data reading.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        data : FeatureContainer</span>
+<span class="sd">            Input feature data</span>
+<span class="sd">            Default value None</span>
+
+<span class="sd">        filename : str</span>
+<span class="sd">            Filename of the feature container to load.</span>
+<span class="sd">            Default value None</span>
+
+<span class="sd">        store_processing_chain : bool</span>
+<span class="sd">            Store processing chain to data container returned</span>
+<span class="sd">            Default value False</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        self</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_type</span> <span class="o">==</span> <span class="n">ProcessingChainItemType</span><span class="o">.</span><span class="n">NONE</span><span class="p">:</span>
+            <span class="n">container</span> <span class="o">=</span> <span class="n">FeatureRepository</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">filename</span><span class="p">:</span>
+                <span class="n">container</span><span class="o">.</span><span class="n">load</span><span class="p">(</span>
+                    <span class="n">filename</span><span class="o">=</span><span class="n">filename</span>
+                <span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">store_processing_chain</span><span class="p">:</span>
+                <span class="n">processing_chain_item</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_processing_chain_item</span><span class="p">()</span>
+
+                <span class="k">if</span> <span class="s1">&#39;process_parameters&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">processing_chain_item</span><span class="p">:</span>
+                    <span class="n">processing_chain_item</span><span class="p">[</span><span class="s1">&#39;process_parameters&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+
+                <span class="n">processing_chain_item</span><span class="p">[</span><span class="s1">&#39;process_parameters&#39;</span><span class="p">][</span><span class="s1">&#39;filename&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">filename</span>
+
+                <span class="n">container</span><span class="o">.</span><span class="n">push_processing_chain_item</span><span class="p">(</span><span class="o">**</span><span class="n">processing_chain_item</span><span class="p">)</span>
+
+            <span class="k">return</span> <span class="n">container</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Wrong input data type, type required [</span><span class="si">{input_type}</span><span class="s1">].&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                <span class="n">input_type</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">input_type</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="FeatureExtractorProcessor"><a class="viewcode-back" href="../../../generated/dcase_util.processors.FeatureExtractorProcessor.html#dcase_util.processors.FeatureExtractorProcessor">[docs]</a><span class="k">class</span> <span class="nc">FeatureExtractorProcessor</span><span class="p">(</span><span class="n">Processor</span><span class="p">):</span>
+    <span class="n">input_type</span> <span class="o">=</span> <span class="n">ProcessingChainItemType</span><span class="o">.</span><span class="n">AUDIO</span>  <span class="c1">#: Input data type</span>
+    <span class="n">output_type</span> <span class="o">=</span> <span class="n">ProcessingChainItemType</span><span class="o">.</span><span class="n">DATA_CONTAINER</span>  <span class="c1">#: Output data type</span>
+
+<div class="viewcode-block" id="FeatureExtractorProcessor.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.processors.FeatureExtractorProcessor.html#dcase_util.processors.FeatureExtractorProcessor.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Constructor&quot;&quot;&quot;</span>
+
+        <span class="c1"># Run super init to call init of mixins too</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">FeatureExtractorProcessor</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="FeatureExtractorProcessor.process"><a class="viewcode-back" href="../../../generated/dcase_util.processors.FeatureExtractorProcessor.process.html#dcase_util.processors.FeatureExtractorProcessor.process">[docs]</a>    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">store_processing_chain</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Extract features</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        data : AudioContainer</span>
+<span class="sd">            Audio data to extract features</span>
+
+<span class="sd">        store_processing_chain : bool</span>
+<span class="sd">            Store processing chain to data container returned</span>
+<span class="sd">            Default value False</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        FeatureContainer</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="k">import</span> <span class="n">FeatureContainer</span><span class="p">,</span> <span class="n">AudioContainer</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">AudioContainer</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">store_processing_chain</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;processing_chain&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">data</span><span class="o">.</span><span class="n">processing_chain</span><span class="o">.</span><span class="n">chain_item_exists</span><span class="p">(</span>
+                        <span class="n">processor_name</span><span class="o">=</span><span class="s1">&#39;dcase_util.processors.&#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">):</span>
+                    <span class="c1"># Current processor is already in the processing chain, get that</span>
+                    <span class="n">processing_chain_item</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">processing_chain</span><span class="o">.</span><span class="n">chain_item</span><span class="p">(</span>
+                        <span class="n">processor_name</span><span class="o">=</span><span class="s1">&#39;dcase_util.processors.&#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+                    <span class="p">)</span>
+
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="c1"># Create a new processing chain item</span>
+                    <span class="n">processing_chain_item</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_processing_chain_item</span><span class="p">()</span>
+
+                <span class="n">processing_chain_item</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
+                    <span class="s1">&#39;process_parameters&#39;</span><span class="p">:</span> <span class="n">kwargs</span>
+                <span class="p">})</span>
+
+                <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;processing_chain&#39;</span><span class="p">):</span>
+                    <span class="n">data</span><span class="o">.</span><span class="n">processing_chain</span><span class="o">.</span><span class="n">push_processor</span><span class="p">(</span><span class="o">**</span><span class="n">processing_chain_item</span><span class="p">)</span>
+                    <span class="n">processing_chain</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">processing_chain</span>
+
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">processing_chain</span> <span class="o">=</span> <span class="n">ProcessingChain</span><span class="p">()</span><span class="o">.</span><span class="n">push_processor</span><span class="p">(</span><span class="o">**</span><span class="n">processing_chain_item</span><span class="p">)</span>
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">processing_chain</span> <span class="o">=</span> <span class="kc">None</span>
+
+            <span class="k">return</span> <span class="n">FeatureContainer</span><span class="p">(</span>
+                <span class="n">data</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">get_focused</span><span class="p">()),</span>
+                <span class="n">time_resolution</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">hop_length_seconds</span><span class="p">,</span>
+                <span class="n">processing_chain</span><span class="o">=</span><span class="n">processing_chain</span>
+            <span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Wrong input data type, type required [</span><span class="si">{input_type}</span><span class="s1">].&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                <span class="n">input_type</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">input_type</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="RepositoryFeatureExtractorProcessor"><a class="viewcode-back" href="../../../generated/dcase_util.processors.RepositoryFeatureExtractorProcessor.html#dcase_util.processors.RepositoryFeatureExtractorProcessor">[docs]</a><span class="k">class</span> <span class="nc">RepositoryFeatureExtractorProcessor</span><span class="p">(</span><span class="n">Processor</span><span class="p">):</span>
     <span class="n">input_type</span> <span class="o">=</span> <span class="n">ProcessingChainItemType</span><span class="o">.</span><span class="n">AUDIO</span>  <span class="c1">#: Input data type</span>
     <span class="n">output_type</span> <span class="o">=</span> <span class="n">ProcessingChainItemType</span><span class="o">.</span><span class="n">DATA_REPOSITORY</span>  <span class="c1">#: Output data type</span>
 
@@ -1373,11 +1690,8 @@
             <span class="p">}</span>
         <span class="p">)</span>
 
-        <span class="c1"># Run ProcessorMixin init</span>
-        <span class="n">ProcessorMixin</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
         <span class="c1"># Run super init to call init of mixins too</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">RepositoryFeatureExtractorProcessor</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">RepositoryFeatureExtractorProcessor</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;parameters&#39;</span><span class="p">,</span> <span class="p">{})</span>
 
@@ -1397,13 +1711,17 @@
         <span class="k">for</span> <span class="n">processor</span> <span class="ow">in</span> <span class="n">get_class_inheritors</span><span class="p">(</span><span class="n">FeatureExtractorProcessor</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">label_to_class</span><span class="p">[</span><span class="n">processor</span><span class="o">.</span><span class="n">label</span><span class="p">]</span> <span class="o">=</span> <span class="n">processor</span>
 
-<div class="viewcode-block" id="RepositoryFeatureExtractorProcessor.process"><a class="viewcode-back" href="../../../generated/dcase_util.processors.RepositoryFeatureExtractorProcessor.process.html#dcase_util.processors.RepositoryFeatureExtractorProcessor.process">[docs]</a>    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="RepositoryFeatureExtractorProcessor.process"><a class="viewcode-back" href="../../../generated/dcase_util.processors.RepositoryFeatureExtractorProcessor.process.html#dcase_util.processors.RepositoryFeatureExtractorProcessor.process">[docs]</a>    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">store_processing_chain</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Extract features</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        data : AudioContainer</span>
 <span class="sd">            Audio data to extract features</span>
+
+<span class="sd">        store_processing_chain : bool</span>
+<span class="sd">            Store processing chain to data container returned</span>
+<span class="sd">            Default value False</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -1414,15 +1732,35 @@
         <span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="k">import</span> <span class="n">FeatureRepository</span><span class="p">,</span> <span class="n">AudioContainer</span>
 
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">AudioContainer</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">store_processing_chain</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;processing_chain&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">data</span><span class="o">.</span><span class="n">processing_chain</span><span class="o">.</span><span class="n">chain_item_exists</span><span class="p">(</span>
+                        <span class="n">processor_name</span><span class="o">=</span><span class="s1">&#39;dcase_util.processors.&#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">):</span>
+                    <span class="c1"># Current processor is already in the processing chain, get that</span>
+                    <span class="n">processing_chain_item</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">processing_chain</span><span class="o">.</span><span class="n">chain_item</span><span class="p">(</span>
+                        <span class="n">processor_name</span><span class="o">=</span><span class="s1">&#39;dcase_util.processors.&#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+                    <span class="p">)</span>
 
-            <span class="n">processing_chain_item</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_processing_chain_item</span><span class="p">()</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="c1"># Create a new processing chain item</span>
+                    <span class="n">processing_chain_item</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_processing_chain_item</span><span class="p">()</span>
 
-            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;processing_chain&#39;</span><span class="p">):</span>
-                <span class="n">data</span><span class="o">.</span><span class="n">processing_chain</span><span class="o">.</span><span class="n">push_processor</span><span class="p">(</span><span class="o">**</span><span class="n">processing_chain_item</span><span class="p">)</span>
-                <span class="n">processing_chain</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">processing_chain</span>
+                <span class="c1"># Update current processing parameters into chain item</span>
+                <span class="n">processing_chain_item</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
+                    <span class="s1">&#39;process_parameters&#39;</span><span class="p">:</span> <span class="n">kwargs</span>
+                <span class="p">})</span>
+
+                <span class="c1"># Create processing chain to be stored in the container, and push chain item into it</span>
+                <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;processing_chain&#39;</span><span class="p">):</span>
+                    <span class="n">data</span><span class="o">.</span><span class="n">processing_chain</span><span class="o">.</span><span class="n">push_processor</span><span class="p">(</span><span class="o">**</span><span class="n">processing_chain_item</span><span class="p">)</span>
+                    <span class="n">processing_chain</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">processing_chain</span>
+
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">processing_chain</span> <span class="o">=</span> <span class="n">ProcessingChain</span><span class="p">()</span><span class="o">.</span><span class="n">push_processor</span><span class="p">(</span><span class="o">**</span><span class="n">processing_chain_item</span><span class="p">)</span>
+
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">processing_chain</span> <span class="o">=</span> <span class="n">ProcessingChain</span><span class="p">()</span><span class="o">.</span><span class="n">push_processor</span><span class="p">(</span><span class="o">**</span><span class="n">processing_chain_item</span><span class="p">)</span>
+                <span class="n">processing_chain</span> <span class="o">=</span> <span class="kc">None</span>
 
+            <span class="c1"># Create repository container</span>
             <span class="n">repository</span> <span class="o">=</span> <span class="n">FeatureRepository</span><span class="p">(</span>
                 <span class="n">processing_chain</span><span class="o">=</span><span class="n">processing_chain</span>
             <span class="p">)</span>
@@ -1450,7 +1788,7 @@
 
                     <span class="k">else</span><span class="p">:</span>
                         <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Unknown label [</span><span class="si">{label}</span><span class="s1">], no corresponding class found.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                            <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span>
+                            <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
                             <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
 
                         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
@@ -1482,69 +1820,13 @@
 
                         <span class="k">else</span><span class="p">:</span>
                             <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Unknown label [</span><span class="si">{label}</span><span class="s1">], no corresponding class found.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span>
+                                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
                                 <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
 
                             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
                             <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
             <span class="k">return</span> <span class="n">repository</span></div></div>
-
-
-<div class="viewcode-block" id="FeatureExtractorProcessor"><a class="viewcode-back" href="../../../generated/dcase_util.processors.FeatureExtractorProcessor.html#dcase_util.processors.FeatureExtractorProcessor">[docs]</a><span class="k">class</span> <span class="nc">FeatureExtractorProcessor</span><span class="p">(</span><span class="n">ProcessorMixin</span><span class="p">):</span>
-    <span class="n">input_type</span> <span class="o">=</span> <span class="n">ProcessingChainItemType</span><span class="o">.</span><span class="n">AUDIO</span>  <span class="c1">#: Input data type</span>
-    <span class="n">output_type</span> <span class="o">=</span> <span class="n">ProcessingChainItemType</span><span class="o">.</span><span class="n">DATA_CONTAINER</span>  <span class="c1">#: Output data type</span>
-
-<div class="viewcode-block" id="FeatureExtractorProcessor.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.processors.FeatureExtractorProcessor.html#dcase_util.processors.FeatureExtractorProcessor.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Constructor&quot;&quot;&quot;</span>
-
-        <span class="c1"># Run ProcessorMixin init</span>
-        <span class="n">ProcessorMixin</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-        <span class="c1"># Run super init to call init of mixins too</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">FeatureExtractorProcessor</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="FeatureExtractorProcessor.process"><a class="viewcode-back" href="../../../generated/dcase_util.processors.FeatureExtractorProcessor.process.html#dcase_util.processors.FeatureExtractorProcessor.process">[docs]</a>    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Extract features</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        data : AudioContainer</span>
-<span class="sd">            Audio data to extract features</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        FeatureContainer</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="k">import</span> <span class="n">FeatureContainer</span><span class="p">,</span> <span class="n">AudioContainer</span>
-
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">AudioContainer</span><span class="p">):</span>
-            <span class="n">processing_chain_item</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_processing_chain_item</span><span class="p">()</span>
-            <span class="n">processing_chain_item</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
-                <span class="s1">&#39;process_parameters&#39;</span><span class="p">:</span> <span class="n">kwargs</span>
-            <span class="p">})</span>
-
-            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;processing_chain&#39;</span><span class="p">):</span>
-                <span class="n">data</span><span class="o">.</span><span class="n">processing_chain</span><span class="o">.</span><span class="n">push_processor</span><span class="p">(</span><span class="o">**</span><span class="n">processing_chain_item</span><span class="p">)</span>
-                <span class="n">processing_chain</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">processing_chain</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">processing_chain</span> <span class="o">=</span> <span class="n">ProcessingChain</span><span class="p">()</span><span class="o">.</span><span class="n">push_processor</span><span class="p">(</span><span class="o">**</span><span class="n">processing_chain_item</span><span class="p">)</span>
-
-            <span class="k">return</span> <span class="n">FeatureContainer</span><span class="p">(</span>
-                <span class="n">data</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">get_focused</span><span class="p">()),</span>
-                <span class="n">time_resolution</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">hop_length_seconds</span><span class="p">,</span>
-                <span class="n">processing_chain</span><span class="o">=</span><span class="n">processing_chain</span>
-            <span class="p">)</span>
-
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Wrong input data type, type required [</span><span class="si">{input_type}</span><span class="s1">].&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span>
-                <span class="n">input_type</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">input_type</span><span class="p">)</span>
-
-            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="MelExtractorProcessor"><a class="viewcode-back" href="../../../generated/dcase_util.processors.MelExtractorProcessor.html#dcase_util.processors.MelExtractorProcessor">[docs]</a><span class="k">class</span> <span class="nc">MelExtractorProcessor</span><span class="p">(</span><span class="n">FeatureExtractorProcessor</span><span class="p">,</span> <span class="n">MelExtractor</span><span class="p">):</span>
@@ -1620,13 +1902,13 @@
         <span class="p">})</span>
 
         <span class="c1"># Run FeatureExtractorProcessor init</span>
-        <span class="n">FeatureExtractorProcessor</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">FeatureExtractorProcessor</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="c1"># Run MelExtractor init</span>
-        <span class="n">MelExtractor</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">MelExtractor</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="c1"># Run super init to call init of mixins too</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">MelExtractorProcessor</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div></div>
+        <span class="nb">super</span><span class="p">(</span><span class="n">MelExtractorProcessor</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="MfccStaticExtractorProcessor"><a class="viewcode-back" href="../../../generated/dcase_util.processors.MfccStaticExtractorProcessor.html#dcase_util.processors.MfccStaticExtractorProcessor">[docs]</a><span class="k">class</span> <span class="nc">MfccStaticExtractorProcessor</span><span class="p">(</span><span class="n">FeatureExtractorProcessor</span><span class="p">,</span> <span class="n">MfccStaticExtractor</span><span class="p">):</span>
@@ -1702,13 +1984,13 @@
         <span class="p">})</span>
 
         <span class="c1"># Run FeatureExtractorProcessor init</span>
-        <span class="n">FeatureExtractorProcessor</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">FeatureExtractorProcessor</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="c1"># Run MfccStaticExtractor init</span>
-        <span class="n">MfccStaticExtractor</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">MfccStaticExtractor</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="c1"># Run super init to call init of mixins too</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">MfccStaticExtractorProcessor</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div></div>
+        <span class="nb">super</span><span class="p">(</span><span class="n">MfccStaticExtractorProcessor</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="MfccDeltaExtractorProcessor"><a class="viewcode-back" href="../../../generated/dcase_util.processors.MfccDeltaExtractorProcessor.html#dcase_util.processors.MfccDeltaExtractorProcessor">[docs]</a><span class="k">class</span> <span class="nc">MfccDeltaExtractorProcessor</span><span class="p">(</span><span class="n">FeatureExtractorProcessor</span><span class="p">,</span> <span class="n">MfccDeltaExtractor</span><span class="p">):</span>
@@ -1789,13 +2071,13 @@
         <span class="p">})</span>
 
         <span class="c1"># Run FeatureExtractorProcessor init</span>
-        <span class="n">FeatureExtractorProcessor</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">FeatureExtractorProcessor</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="c1"># Run MfccDeltaExtractor init</span>
-        <span class="n">MfccDeltaExtractor</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">MfccDeltaExtractor</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="c1"># Run super init to call init of mixins too</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">MfccDeltaExtractorProcessor</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div></div>
+        <span class="nb">super</span><span class="p">(</span><span class="n">MfccDeltaExtractorProcessor</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="MfccAccelerationExtractorProcessor"><a class="viewcode-back" href="../../../generated/dcase_util.processors.MfccAccelerationExtractorProcessor.html#dcase_util.processors.MfccAccelerationExtractorProcessor">[docs]</a><span class="k">class</span> <span class="nc">MfccAccelerationExtractorProcessor</span><span class="p">(</span><span class="n">FeatureExtractorProcessor</span><span class="p">,</span> <span class="n">MfccAccelerationExtractor</span><span class="p">):</span>
@@ -1876,13 +2158,13 @@
         <span class="p">})</span>
 
         <span class="c1"># Run FeatureExtractorProcessor init</span>
-        <span class="n">FeatureExtractorProcessor</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">FeatureExtractorProcessor</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="c1"># Run MfccAccelerationExtractor init</span>
-        <span class="n">MfccAccelerationExtractor</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">MfccAccelerationExtractor</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="c1"># Run super init to call init of mixins too</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">MfccAccelerationExtractorProcessor</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div></div>
+        <span class="nb">super</span><span class="p">(</span><span class="n">MfccAccelerationExtractorProcessor</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="ZeroCrossingRateExtractorProcessor"><a class="viewcode-back" href="../../../generated/dcase_util.processors.ZeroCrossingRateExtractorProcessor.html#dcase_util.processors.ZeroCrossingRateExtractorProcessor">[docs]</a><span class="k">class</span> <span class="nc">ZeroCrossingRateExtractorProcessor</span><span class="p">(</span><span class="n">FeatureExtractorProcessor</span><span class="p">,</span> <span class="n">ZeroCrossingRateExtractor</span><span class="p">):</span>
@@ -1925,13 +2207,13 @@
         <span class="p">})</span>
 
         <span class="c1"># Run FeatureExtractorProcessor init</span>
-        <span class="n">FeatureExtractorProcessor</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">FeatureExtractorProcessor</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="c1"># Run ZeroCrossingRateExtractor init</span>
-        <span class="n">ZeroCrossingRateExtractor</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">ZeroCrossingRateExtractor</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="c1"># Run super init to call init of mixins too</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">ZeroCrossingRateExtractorProcessor</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div></div>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ZeroCrossingRateExtractorProcessor</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="RMSEnergyExtractorProcessor"><a class="viewcode-back" href="../../../generated/dcase_util.processors.RMSEnergyExtractorProcessor.html#dcase_util.processors.RMSEnergyExtractorProcessor">[docs]</a><span class="k">class</span> <span class="nc">RMSEnergyExtractorProcessor</span><span class="p">(</span><span class="n">FeatureExtractorProcessor</span><span class="p">,</span> <span class="n">RMSEnergyExtractor</span><span class="p">):</span>
@@ -1978,13 +2260,13 @@
         <span class="p">})</span>
 
         <span class="c1"># Run FeatureExtractorProcessor init</span>
-        <span class="n">FeatureExtractorProcessor</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">FeatureExtractorProcessor</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="c1"># Run RMSEnergyExtractor init</span>
-        <span class="n">RMSEnergyExtractor</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">RMSEnergyExtractor</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="c1"># Run super init to call init of mixins too</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">RMSEnergyExtractorProcessor</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div></div>
+        <span class="nb">super</span><span class="p">(</span><span class="n">RMSEnergyExtractorProcessor</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="SpectralCentroidExtractorProcessor"><a class="viewcode-back" href="../../../generated/dcase_util.processors.SpectralCentroidExtractorProcessor.html#dcase_util.processors.SpectralCentroidExtractorProcessor">[docs]</a><span class="k">class</span> <span class="nc">SpectralCentroidExtractorProcessor</span><span class="p">(</span><span class="n">FeatureExtractorProcessor</span><span class="p">,</span> <span class="n">SpectralCentroidExtractor</span><span class="p">):</span>
@@ -2031,13 +2313,13 @@
         <span class="p">})</span>
 
         <span class="c1"># Run FeatureExtractorProcessor init</span>
-        <span class="n">FeatureExtractorProcessor</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">FeatureExtractorProcessor</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="c1"># Run SpectralCentroidExtractor init</span>
-        <span class="n">SpectralCentroidExtractor</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">SpectralCentroidExtractor</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="c1"># Run super init to call init of mixins too</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">SpectralCentroidExtractorProcessor</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div></div>
+        <span class="nb">super</span><span class="p">(</span><span class="n">SpectralCentroidExtractorProcessor</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div></div>
 </pre></div>
 
            </div>

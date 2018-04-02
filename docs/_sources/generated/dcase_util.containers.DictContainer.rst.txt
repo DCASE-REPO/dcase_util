@@ -29,8 +29,12 @@ dcase_util.containers.DictContainer
       ~DictContainer.get_hash_for_path
       ~DictContainer.get_leaf_path_list
       ~DictContainer.get_path
+      ~DictContainer.has_key
       ~DictContainer.is_package
       ~DictContainer.items
+      ~DictContainer.iteritems
+      ~DictContainer.iterkeys
+      ~DictContainer.itervalues
       ~DictContainer.keys
       ~DictContainer.load
       ~DictContainer.log
@@ -44,6 +48,9 @@ dcase_util.containers.DictContainer
       ~DictContainer.update
       ~DictContainer.validate_format
       ~DictContainer.values
+      ~DictContainer.viewitems
+      ~DictContainer.viewkeys
+      ~DictContainer.viewvalues
    
    
 

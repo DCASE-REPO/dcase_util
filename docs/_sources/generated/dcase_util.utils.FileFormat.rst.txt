@@ -52,6 +52,7 @@ dcase_util.utils.FileFormat
       ~FileFormat.MPG
       ~FileFormat.MSGPACK
       ~FileFormat.NUMPY
+      ~FileFormat.NUMPYZ
       ~FileFormat.OGG
       ~FileFormat.PDF
       ~FileFormat.PNG

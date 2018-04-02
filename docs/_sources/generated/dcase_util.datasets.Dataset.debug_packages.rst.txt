@@ -1,0 +1,6 @@
+dcase_util.datasets.Dataset.debug_packages
+==========================================
+
+.. currentmodule:: dcase_util.datasets
+
+.. automethod:: Dataset.debug_packages

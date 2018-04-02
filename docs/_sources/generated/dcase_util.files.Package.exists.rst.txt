@@ -1,0 +1,6 @@
+dcase_util.files.Package.exists
+===============================
+
+.. currentmodule:: dcase_util.files
+
+.. automethod:: Package.exists

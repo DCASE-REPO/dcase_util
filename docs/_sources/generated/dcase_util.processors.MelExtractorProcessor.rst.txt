@@ -14,14 +14,22 @@ dcase_util.processors.MelExtractorProcessor
    .. autosummary::
    
       ~MelExtractorProcessor.__init__
+      ~MelExtractorProcessor.delimiter
+      ~MelExtractorProcessor.detect_file_format
+      ~MelExtractorProcessor.empty
+      ~MelExtractorProcessor.exists
       ~MelExtractorProcessor.extract
+      ~MelExtractorProcessor.get_file_information
       ~MelExtractorProcessor.get_processing_chain_item
       ~MelExtractorProcessor.get_spectrogram
       ~MelExtractorProcessor.get_window_function
+      ~MelExtractorProcessor.is_package
+      ~MelExtractorProcessor.load
       ~MelExtractorProcessor.log
       ~MelExtractorProcessor.process
-      ~MelExtractorProcessor.push_processing_chain_item
+      ~MelExtractorProcessor.save
       ~MelExtractorProcessor.show
+      ~MelExtractorProcessor.validate_format
    
    
 
@@ -35,5 +43,6 @@ dcase_util.processors.MelExtractorProcessor
       ~MelExtractorProcessor.label
       ~MelExtractorProcessor.logger
       ~MelExtractorProcessor.output_type
+      ~MelExtractorProcessor.valid_formats
    
    

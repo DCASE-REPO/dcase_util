@@ -14,14 +14,22 @@ dcase_util.processors.RMSEnergyExtractorProcessor
    .. autosummary::
    
       ~RMSEnergyExtractorProcessor.__init__
+      ~RMSEnergyExtractorProcessor.delimiter
+      ~RMSEnergyExtractorProcessor.detect_file_format
+      ~RMSEnergyExtractorProcessor.empty
+      ~RMSEnergyExtractorProcessor.exists
       ~RMSEnergyExtractorProcessor.extract
+      ~RMSEnergyExtractorProcessor.get_file_information
       ~RMSEnergyExtractorProcessor.get_processing_chain_item
       ~RMSEnergyExtractorProcessor.get_spectrogram
       ~RMSEnergyExtractorProcessor.get_window_function
+      ~RMSEnergyExtractorProcessor.is_package
+      ~RMSEnergyExtractorProcessor.load
       ~RMSEnergyExtractorProcessor.log
       ~RMSEnergyExtractorProcessor.process
-      ~RMSEnergyExtractorProcessor.push_processing_chain_item
+      ~RMSEnergyExtractorProcessor.save
       ~RMSEnergyExtractorProcessor.show
+      ~RMSEnergyExtractorProcessor.validate_format
    
    
 
@@ -35,5 +43,6 @@ dcase_util.processors.RMSEnergyExtractorProcessor
       ~RMSEnergyExtractorProcessor.label
       ~RMSEnergyExtractorProcessor.logger
       ~RMSEnergyExtractorProcessor.output_type
+      ~RMSEnergyExtractorProcessor.valid_formats
    
    

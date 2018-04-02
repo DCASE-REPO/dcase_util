@@ -1,0 +1,44 @@
+dcase_util.processors.RepositoryToMatrixProcessor
+=================================================
+
+.. currentmodule:: dcase_util.processors
+
+.. autoclass:: RepositoryToMatrixProcessor
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~RepositoryToMatrixProcessor.__init__
+      ~RepositoryToMatrixProcessor.delimiter
+      ~RepositoryToMatrixProcessor.detect_file_format
+      ~RepositoryToMatrixProcessor.empty
+      ~RepositoryToMatrixProcessor.exists
+      ~RepositoryToMatrixProcessor.get_file_information
+      ~RepositoryToMatrixProcessor.get_processing_chain_item
+      ~RepositoryToMatrixProcessor.is_package
+      ~RepositoryToMatrixProcessor.load
+      ~RepositoryToMatrixProcessor.log
+      ~RepositoryToMatrixProcessor.process
+      ~RepositoryToMatrixProcessor.save
+      ~RepositoryToMatrixProcessor.show
+      ~RepositoryToMatrixProcessor.validate_format
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~RepositoryToMatrixProcessor.input_type
+      ~RepositoryToMatrixProcessor.logger
+      ~RepositoryToMatrixProcessor.output_type
+      ~RepositoryToMatrixProcessor.valid_formats
+   
+   

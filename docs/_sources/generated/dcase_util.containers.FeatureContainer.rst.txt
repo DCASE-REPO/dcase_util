@@ -14,6 +14,7 @@ dcase_util.containers.FeatureContainer
    .. autosummary::
    
       ~FeatureContainer.__init__
+      ~FeatureContainer.change_axis
       ~FeatureContainer.delimiter
       ~FeatureContainer.detect_file_format
       ~FeatureContainer.empty

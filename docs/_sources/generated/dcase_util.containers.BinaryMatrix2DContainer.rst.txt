@@ -14,6 +14,7 @@ dcase_util.containers.BinaryMatrix2DContainer
    .. autosummary::
    
       ~BinaryMatrix2DContainer.__init__
+      ~BinaryMatrix2DContainer.change_axis
       ~BinaryMatrix2DContainer.delimiter
       ~BinaryMatrix2DContainer.detect_file_format
       ~BinaryMatrix2DContainer.empty

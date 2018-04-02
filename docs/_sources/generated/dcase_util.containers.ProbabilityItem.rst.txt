@@ -19,7 +19,11 @@ dcase_util.containers.ProbabilityItem
       ~ProbabilityItem.fromkeys
       ~ProbabilityItem.get
       ~ProbabilityItem.get_list
+      ~ProbabilityItem.has_key
       ~ProbabilityItem.items
+      ~ProbabilityItem.iteritems
+      ~ProbabilityItem.iterkeys
+      ~ProbabilityItem.itervalues
       ~ProbabilityItem.keys
       ~ProbabilityItem.log
       ~ProbabilityItem.pop
@@ -28,6 +32,9 @@ dcase_util.containers.ProbabilityItem
       ~ProbabilityItem.show
       ~ProbabilityItem.update
       ~ProbabilityItem.values
+      ~ProbabilityItem.viewitems
+      ~ProbabilityItem.viewkeys
+      ~ProbabilityItem.viewvalues
    
    
 

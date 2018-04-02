@@ -1,6 +1,0 @@
-dcase_util.processors.ProcessorMixin.push_processing_chain_item
-===============================================================
-
-.. currentmodule:: dcase_util.processors
-
-.. automethod:: ProcessorMixin.push_processing_chain_item

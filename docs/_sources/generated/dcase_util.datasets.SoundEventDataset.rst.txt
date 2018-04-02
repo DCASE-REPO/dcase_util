@@ -19,6 +19,7 @@ dcase_util.datasets.SoundEventDataset
       ~SoundEventDataset.dataset_bytes
       ~SoundEventDataset.dataset_size_on_disk
       ~SoundEventDataset.dataset_size_string
+      ~SoundEventDataset.debug_packages
       ~SoundEventDataset.download_packages
       ~SoundEventDataset.eval
       ~SoundEventDataset.eval_files

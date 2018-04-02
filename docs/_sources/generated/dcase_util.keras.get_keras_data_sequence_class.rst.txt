@@ -1,0 +1,6 @@
+dcase_util.keras.get_keras_data_sequence_class
+==============================================
+
+.. currentmodule:: dcase_util.keras
+
+.. autofunction:: get_keras_data_sequence_class

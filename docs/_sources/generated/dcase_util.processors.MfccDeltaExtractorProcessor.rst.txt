@@ -14,14 +14,22 @@ dcase_util.processors.MfccDeltaExtractorProcessor
    .. autosummary::
    
       ~MfccDeltaExtractorProcessor.__init__
+      ~MfccDeltaExtractorProcessor.delimiter
+      ~MfccDeltaExtractorProcessor.detect_file_format
+      ~MfccDeltaExtractorProcessor.empty
+      ~MfccDeltaExtractorProcessor.exists
       ~MfccDeltaExtractorProcessor.extract
+      ~MfccDeltaExtractorProcessor.get_file_information
       ~MfccDeltaExtractorProcessor.get_processing_chain_item
       ~MfccDeltaExtractorProcessor.get_spectrogram
       ~MfccDeltaExtractorProcessor.get_window_function
+      ~MfccDeltaExtractorProcessor.is_package
+      ~MfccDeltaExtractorProcessor.load
       ~MfccDeltaExtractorProcessor.log
       ~MfccDeltaExtractorProcessor.process
-      ~MfccDeltaExtractorProcessor.push_processing_chain_item
+      ~MfccDeltaExtractorProcessor.save
       ~MfccDeltaExtractorProcessor.show
+      ~MfccDeltaExtractorProcessor.validate_format
    
    
 
@@ -35,5 +43,6 @@ dcase_util.processors.MfccDeltaExtractorProcessor
       ~MfccDeltaExtractorProcessor.label
       ~MfccDeltaExtractorProcessor.logger
       ~MfccDeltaExtractorProcessor.output_type
+      ~MfccDeltaExtractorProcessor.valid_formats
    
    

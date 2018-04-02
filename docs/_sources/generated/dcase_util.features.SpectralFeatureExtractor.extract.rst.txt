@@ -1,0 +1,6 @@
+dcase_util.features.SpectralFeatureExtractor.extract
+====================================================
+
+.. currentmodule:: dcase_util.features
+
+.. automethod:: SpectralFeatureExtractor.extract

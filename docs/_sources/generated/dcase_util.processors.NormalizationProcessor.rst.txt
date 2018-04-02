@@ -14,21 +14,16 @@ dcase_util.processors.NormalizationProcessor
    .. autosummary::
    
       ~NormalizationProcessor.__init__
-      ~NormalizationProcessor.accumulate
       ~NormalizationProcessor.delimiter
       ~NormalizationProcessor.detect_file_format
       ~NormalizationProcessor.empty
       ~NormalizationProcessor.exists
-      ~NormalizationProcessor.finalize
       ~NormalizationProcessor.get_file_information
       ~NormalizationProcessor.get_processing_chain_item
       ~NormalizationProcessor.is_package
       ~NormalizationProcessor.load
       ~NormalizationProcessor.log
-      ~NormalizationProcessor.normalize
       ~NormalizationProcessor.process
-      ~NormalizationProcessor.push_processing_chain_item
-      ~NormalizationProcessor.reset
       ~NormalizationProcessor.save
       ~NormalizationProcessor.show
       ~NormalizationProcessor.validate_format
@@ -43,9 +38,7 @@ dcase_util.processors.NormalizationProcessor
    
       ~NormalizationProcessor.input_type
       ~NormalizationProcessor.logger
-      ~NormalizationProcessor.mean
       ~NormalizationProcessor.output_type
-      ~NormalizationProcessor.std
       ~NormalizationProcessor.valid_formats
    
    

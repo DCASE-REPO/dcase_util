@@ -15,8 +15,6 @@ dcase_util.containers.ProbabilityContainer
    
       ~ProbabilityContainer.__init__
       ~ProbabilityContainer.append
-      ~ProbabilityContainer.clear
-      ~ProbabilityContainer.copy
       ~ProbabilityContainer.count
       ~ProbabilityContainer.delimiter
       ~ProbabilityContainer.detect_file_format
@@ -26,6 +24,7 @@ dcase_util.containers.ProbabilityContainer
       ~ProbabilityContainer.filter
       ~ProbabilityContainer.get_dump_content
       ~ProbabilityContainer.get_field
+      ~ProbabilityContainer.get_field_unique
       ~ProbabilityContainer.get_file_information
       ~ProbabilityContainer.index
       ~ProbabilityContainer.insert

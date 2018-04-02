@@ -20,14 +20,11 @@ dcase_util.processors.SequencingProcessor
       ~SequencingProcessor.exists
       ~SequencingProcessor.get_file_information
       ~SequencingProcessor.get_processing_chain_item
-      ~SequencingProcessor.increase_shifting
       ~SequencingProcessor.is_package
       ~SequencingProcessor.load
       ~SequencingProcessor.log
       ~SequencingProcessor.process
-      ~SequencingProcessor.push_processing_chain_item
       ~SequencingProcessor.save
-      ~SequencingProcessor.sequence
       ~SequencingProcessor.show
       ~SequencingProcessor.validate_format
    

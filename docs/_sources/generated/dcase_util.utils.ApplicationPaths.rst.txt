@@ -22,6 +22,7 @@ dcase_util.utils.ApplicationPaths
       ~ApplicationPaths.file_list
       ~ApplicationPaths.generate
       ~ApplicationPaths.makedirs
+      ~ApplicationPaths.modify
       ~ApplicationPaths.posix
       ~ApplicationPaths.posix_to_nt
       ~ApplicationPaths.save_parameters_to_path
@@ -31,5 +32,11 @@ dcase_util.utils.ApplicationPaths
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ApplicationPaths.logger
    
    

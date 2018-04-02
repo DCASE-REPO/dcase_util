@@ -192,16 +192,16 @@ Creating sequence::
     # (40, 501)
     data_sequencer = dcase_util.data.Sequencer(
         frames=10,
-        hop_length_frames=10
+        hop_length_frames=100
     )
     sequenced_data = data_sequencer.sequence(data)
     print(sequenced_data.shape)
-    # (40, 10, 50)
+    # (40, 10, 5)
 
     sequenced_data.show()
     # DataMatrix3DContainer :: Class
     #   Data
-    #     data                            : matrix (40,10,50)
+    #     data                            : matrix (40,10,5)
     #     Dimensions
     #       time_axis                     : 1
     #     Timing information
@@ -217,6 +217,28 @@ Creating sequence::
     #       time_axis                     : 1
     #       data_axis                     : 0
     #       sequence_axis                 : 2
+
+
+**Original data**
+
+.. plot::
+
+    import dcase_util
+    data = dcase_util.utils.Example.feature_container()
+    data.plot()
+
+**Sequenced data**
+
+.. plot::
+
+    import dcase_util
+    data = dcase_util.utils.Example.feature_container()
+    data_sequencer = dcase_util.data.Sequencer(
+        frames=10,
+        hop_length_frames=100
+    )
+    sequenced_data = data_sequencer.sequence(data)
+    sequenced_data.plot()
 
 Stacking
 ::::::::
@@ -255,6 +277,24 @@ Example::
     data = dcase_util.data.Stacker(recipe='mfcc=1,5,7').stack(repo)
     print(data.shape)
     # (3, 501)
+
+
+**Original data**
+
+.. plot::
+
+    import dcase_util
+    dcase_util.utils.Example.feature_repository().plot()
+
+**Stacked data**
+
+Selecting 1st, 5th, and 7th row from the MFCC feature matrix.
+
+.. plot::
+
+    import dcase_util
+    repo = dcase_util.utils.Example.feature_repository()
+    dcase_util.data.Stacker(recipe='mfcc=1,5,7').stack(repo).plot()
 
 
 Data encoding
@@ -406,3 +446,186 @@ Example::
 
     # Visualize
     event_roll.plot()
+
+
+Probability encoding
+====================
+
+ProbabilityEncoder class (`dcase_util.data.ProbabilityEncoder`) can used to process 2D data matrix (class, time) with probabilities.
+
+Collapsing matrix over time axis to vector with per class values::
+
+    p = dcase_util.data.ProbabilityEncoder()
+
+    probabilities = numpy.array(
+        [
+            [0.2, 0.3, 0.1],
+            [0.4, 0.6, 0.7]
+        ]
+    )
+
+    out = p.collapse_probabilities(
+        probabilities=probabilities,
+        time_axis=1,
+        operator='prod'
+    )
+    print(out)
+    # [0.006 0.168]
+
+Collapsing data in the matrix with sliding window over time axis::
+
+    probabilities = numpy.array(
+        [
+            [0.1, 0.1, 0.1],
+            [0.2, 0.2, 0.2],
+            [0.1, 0.3, 0.3],
+            [0.1, 0.1, 0.1],
+        ]
+    )
+    out = p.collapse_probabilities_windowed(
+        probabilities=probabilities,
+        window_length=2,
+        time_axis=1
+    )
+    print(out)
+    # [[0.2 0.1 0.1]
+    #  [0.4 0.2 0.2]
+    #  [0.4 0.3 0.3]
+    #  [0.2 0.1 0.1]]
+
+Binarizing probabilities in the matrix with global threshold::
+
+    probabilities = numpy.array(
+        [
+            [0.1, 0.5, 0.1],
+            [0.2, 0.2, 0.2],
+            [0.1, 0.6, 0.7],
+            [0.1, 0.6, 0.6],
+        ]
+    )
+    out = p.binarization(
+        probabilities=probabilities,
+        binarization_type='global_threshold',
+        threshold=0.5,
+        time_axis=1
+    )
+    print(out)
+    # [[0 1 0]
+    #  [0 0 0]
+    #  [0 1 1]
+    #  [0 1 1]]
+
+Binarizing probabilities in the matrix with class wise thresholds::
+
+    probabilities = numpy.array(
+        [
+            [0.1, 0.5, 0.1],
+            [0.2, 0.2, 0.2],
+            [0.1, 0.6, 0.7],
+            [0.1, 0.6, 0.6],
+        ]
+    )
+    out = p.binarization(
+        probabilities=probabilities,
+        binarization_type='class_threshold',
+        threshold=[0.5, 0.2, 0.1, 0.4],
+        time_axis=1
+    )
+    print(out)
+    # [[0 1 0]
+    #  [1 1 1]
+    #  [1 1 1]
+    #  [0 1 1]]
+
+
+Binarizing probabilities in the matrix with frame wise max::
+
+    probabilities = numpy.array(
+        [
+            [0.1, 0.5, 0.1],
+            [0.2, 0.2, 0.2],
+            [0.1, 0.6, 0.7],
+            [0.1, 0.6, 0.6],
+        ]
+    )
+    out = p.binarization(
+        probabilities=probabilities,
+        binarization_type='frame_max',
+        time_axis=1
+    )
+    print(out)
+    # [[0 0 0]
+    #  [1 0 0]
+    #  [0 1 1]
+    #  [0 1 0]]
+
+
+Decision encoding
+=================
+
+DecisionEncoder class (`dcase_util.data.DecisionEncoder`) can used to process binary 2D data matrix (class, time)
+with frame wise activity.
+
+Majority vote::
+
+    d = dcase_util.data.DecisionEncoder(label_list=['A', 'B', 'C'])
+
+    activity_matrix = numpy.array([
+        [0, 0, 0, 1, 1, 0],
+        [0, 1, 1, 0, 0, 1],
+        [1, 0, 0, 1, 0, 0]
+    ])
+
+    out = d.majority_vote(
+        frame_decisions=activity_matrix,
+        time_axis=1
+    )
+    print(out)
+    # B
+
+Many hot encoding::
+
+    d = dcase_util.data.DecisionEncoder(label_list=['A', 'B', 'C'])
+    activity_matrix = numpy.array([
+        [1, 0, 0, 1, 1, 0],
+        [0, 1, 1, 0, 0, 1],
+        [1, 0, 0, 1, 1, 0]
+    ])
+
+    out = d.many_hot(
+        frame_decisions=activity_matrix,
+        time_axis=1
+    )
+    print(out)
+    # [['A', 'C'], ['B'], ['B'], ['A', 'C'], ['A', 'C'], ['B']]
+
+Translating activity array into start and end index pairs::
+
+    activity_array = numpy.array([1, 1, 1, 0, 0, 1, 1, 0, 1])
+    d = dcase_util.data.DecisionEncoder()
+    out = d.find_contiguous_regions(
+        activity_array=activity_array
+    )
+    print(out)
+    # [[0 3]
+    #  [5 7]
+    #  [8 9]]
+
+Filter activity matrix with median filter::
+
+    activity_matrix = numpy.array([
+        [0, 0, 0, 1, 1, 0],
+        [0, 1, 1, 0, 1, 1],
+        [1, 0, 0, 1, 0, 0]
+    ])
+    d = dcase_util.data.DecisionEncoder()
+    out = d.process_activity(
+        activity_matrix=activity_matrix,
+        window_length=3,
+        time_axis=1
+    )
+    print(out)
+    # [[0 0 0 1 1 0]
+    #  [0 1 1 1 1 1]
+    #  [0 0 0 0 0 0]]
+

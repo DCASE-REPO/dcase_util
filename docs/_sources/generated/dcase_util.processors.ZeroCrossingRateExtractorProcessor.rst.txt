@@ -14,12 +14,20 @@ dcase_util.processors.ZeroCrossingRateExtractorProcessor
    .. autosummary::
    
       ~ZeroCrossingRateExtractorProcessor.__init__
+      ~ZeroCrossingRateExtractorProcessor.delimiter
+      ~ZeroCrossingRateExtractorProcessor.detect_file_format
+      ~ZeroCrossingRateExtractorProcessor.empty
+      ~ZeroCrossingRateExtractorProcessor.exists
       ~ZeroCrossingRateExtractorProcessor.extract
+      ~ZeroCrossingRateExtractorProcessor.get_file_information
       ~ZeroCrossingRateExtractorProcessor.get_processing_chain_item
+      ~ZeroCrossingRateExtractorProcessor.is_package
+      ~ZeroCrossingRateExtractorProcessor.load
       ~ZeroCrossingRateExtractorProcessor.log
       ~ZeroCrossingRateExtractorProcessor.process
-      ~ZeroCrossingRateExtractorProcessor.push_processing_chain_item
+      ~ZeroCrossingRateExtractorProcessor.save
       ~ZeroCrossingRateExtractorProcessor.show
+      ~ZeroCrossingRateExtractorProcessor.validate_format
    
    
 
@@ -33,5 +41,6 @@ dcase_util.processors.ZeroCrossingRateExtractorProcessor
       ~ZeroCrossingRateExtractorProcessor.label
       ~ZeroCrossingRateExtractorProcessor.logger
       ~ZeroCrossingRateExtractorProcessor.output_type
+      ~ZeroCrossingRateExtractorProcessor.valid_formats
    
    

@@ -1,0 +1,44 @@
+dcase_util.processors.RepositoryAggregationProcessor
+====================================================
+
+.. currentmodule:: dcase_util.processors
+
+.. autoclass:: RepositoryAggregationProcessor
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~RepositoryAggregationProcessor.__init__
+      ~RepositoryAggregationProcessor.delimiter
+      ~RepositoryAggregationProcessor.detect_file_format
+      ~RepositoryAggregationProcessor.empty
+      ~RepositoryAggregationProcessor.exists
+      ~RepositoryAggregationProcessor.get_file_information
+      ~RepositoryAggregationProcessor.get_processing_chain_item
+      ~RepositoryAggregationProcessor.is_package
+      ~RepositoryAggregationProcessor.load
+      ~RepositoryAggregationProcessor.log
+      ~RepositoryAggregationProcessor.process
+      ~RepositoryAggregationProcessor.save
+      ~RepositoryAggregationProcessor.show
+      ~RepositoryAggregationProcessor.validate_format
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~RepositoryAggregationProcessor.input_type
+      ~RepositoryAggregationProcessor.logger
+      ~RepositoryAggregationProcessor.output_type
+      ~RepositoryAggregationProcessor.valid_formats
+   
+   

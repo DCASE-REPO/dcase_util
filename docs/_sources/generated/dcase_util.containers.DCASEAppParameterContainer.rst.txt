@@ -14,6 +14,7 @@ dcase_util.containers.DCASEAppParameterContainer
    .. autosummary::
    
       ~DCASEAppParameterContainer.__init__
+      ~DCASEAppParameterContainer.active_set
       ~DCASEAppParameterContainer.clear
       ~DCASEAppParameterContainer.copy
       ~DCASEAppParameterContainer.delimiter
@@ -30,8 +31,12 @@ dcase_util.containers.DCASEAppParameterContainer
       ~DCASEAppParameterContainer.get_leaf_path_list
       ~DCASEAppParameterContainer.get_path
       ~DCASEAppParameterContainer.get_path_translated
+      ~DCASEAppParameterContainer.has_key
       ~DCASEAppParameterContainer.is_package
       ~DCASEAppParameterContainer.items
+      ~DCASEAppParameterContainer.iteritems
+      ~DCASEAppParameterContainer.iterkeys
+      ~DCASEAppParameterContainer.itervalues
       ~DCASEAppParameterContainer.keys
       ~DCASEAppParameterContainer.load
       ~DCASEAppParameterContainer.log
@@ -40,15 +45,22 @@ dcase_util.containers.DCASEAppParameterContainer
       ~DCASEAppParameterContainer.pop
       ~DCASEAppParameterContainer.popitem
       ~DCASEAppParameterContainer.process
+      ~DCASEAppParameterContainer.process_set
       ~DCASEAppParameterContainer.reset
       ~DCASEAppParameterContainer.save
+      ~DCASEAppParameterContainer.set_id_exists
+      ~DCASEAppParameterContainer.set_ids
       ~DCASEAppParameterContainer.set_path
       ~DCASEAppParameterContainer.set_path_translated
       ~DCASEAppParameterContainer.setdefault
       ~DCASEAppParameterContainer.show
       ~DCASEAppParameterContainer.update
+      ~DCASEAppParameterContainer.update_parameter_set
       ~DCASEAppParameterContainer.validate_format
       ~DCASEAppParameterContainer.values
+      ~DCASEAppParameterContainer.viewitems
+      ~DCASEAppParameterContainer.viewkeys
+      ~DCASEAppParameterContainer.viewvalues
    
    
 

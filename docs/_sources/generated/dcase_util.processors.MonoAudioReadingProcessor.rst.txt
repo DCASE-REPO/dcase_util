@@ -16,27 +16,15 @@ dcase_util.processors.MonoAudioReadingProcessor
       ~MonoAudioReadingProcessor.__init__
       ~MonoAudioReadingProcessor.delimiter
       ~MonoAudioReadingProcessor.detect_file_format
+      ~MonoAudioReadingProcessor.empty
       ~MonoAudioReadingProcessor.exists
-      ~MonoAudioReadingProcessor.frames
-      ~MonoAudioReadingProcessor.freeze
       ~MonoAudioReadingProcessor.get_file_information
-      ~MonoAudioReadingProcessor.get_focused
       ~MonoAudioReadingProcessor.get_processing_chain_item
       ~MonoAudioReadingProcessor.is_package
       ~MonoAudioReadingProcessor.load
-      ~MonoAudioReadingProcessor.load_from_youtube
       ~MonoAudioReadingProcessor.log
-      ~MonoAudioReadingProcessor.mixdown
-      ~MonoAudioReadingProcessor.normalize
-      ~MonoAudioReadingProcessor.plot
-      ~MonoAudioReadingProcessor.plot_spec
-      ~MonoAudioReadingProcessor.plot_wave
       ~MonoAudioReadingProcessor.process
-      ~MonoAudioReadingProcessor.push_processing_chain_item
-      ~MonoAudioReadingProcessor.resample
-      ~MonoAudioReadingProcessor.reset_focus
       ~MonoAudioReadingProcessor.save
-      ~MonoAudioReadingProcessor.set_focus
       ~MonoAudioReadingProcessor.show
       ~MonoAudioReadingProcessor.validate_format
    
@@ -48,24 +36,9 @@ dcase_util.processors.MonoAudioReadingProcessor
 
    .. autosummary::
    
-      ~MonoAudioReadingProcessor.channels
-      ~MonoAudioReadingProcessor.data
-      ~MonoAudioReadingProcessor.duration_ms
-      ~MonoAudioReadingProcessor.duration_samples
-      ~MonoAudioReadingProcessor.duration_sec
-      ~MonoAudioReadingProcessor.empty
-      ~MonoAudioReadingProcessor.focus_channel
-      ~MonoAudioReadingProcessor.focus_start_samples
-      ~MonoAudioReadingProcessor.focus_start_seconds
-      ~MonoAudioReadingProcessor.focus_stop_samples
-      ~MonoAudioReadingProcessor.focus_stop_seconds
       ~MonoAudioReadingProcessor.input_type
-      ~MonoAudioReadingProcessor.length
-      ~MonoAudioReadingProcessor.loaded
       ~MonoAudioReadingProcessor.logger
       ~MonoAudioReadingProcessor.output_type
-      ~MonoAudioReadingProcessor.shape
-      ~MonoAudioReadingProcessor.streams
       ~MonoAudioReadingProcessor.valid_formats
    
    

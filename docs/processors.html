@@ -41,7 +41,7 @@
         <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="DCASE Utilities 1.0 documentation" href="index.html"/>
         <link rel="next" title="dcase_util.processors.ProcessingChainItem" href="generated/dcase_util.processors.ProcessingChainItem.html"/>
-        <link rel="prev" title="dcase_util.keras.setup_keras" href="generated/dcase_util.keras.setup_keras.html"/> 
+        <link rel="prev" title="dcase_util.keras.create_optimizer" href="generated/dcase_util.keras.create_optimizer.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -124,6 +124,7 @@
 <li class="toctree-l2"><a class="reference internal" href="tutorial_audio.html#creating-container">Creating container</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tutorial_audio.html#loading-and-saving">Loading and Saving</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tutorial_audio.html#focus-segment">Focus segment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial_audio.html#frames-and-segments">Frames and Segments</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tutorial_audio.html#processing">Processing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tutorial_audio.html#visualizations">Visualizations</a></li>
 </ul>
@@ -147,6 +148,8 @@
 <li class="toctree-l3"><a class="reference internal" href="tutorial_data.html#event-roll">Event roll</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial_data.html#probability-encoding">Probability encoding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial_data.html#decision-encoding">Decision encoding</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial_metadata.html">Metadata</a><ul>
@@ -671,6 +674,7 @@
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.data.DecisionEncoder.load.html">dcase_util.data.DecisionEncoder.load</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.data.DecisionEncoder.save.html">dcase_util.data.DecisionEncoder.save</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.data.DecisionEncoder.majority_vote.html">dcase_util.data.DecisionEncoder.majority_vote</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.data.DecisionEncoder.many_hot.html">dcase_util.data.DecisionEncoder.many_hot</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.data.DecisionEncoder.find_contiguous_regions.html">dcase_util.data.DecisionEncoder.find_contiguous_regions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.data.DecisionEncoder.process_activity.html">dcase_util.data.DecisionEncoder.process_activity</a></li>
 </ul>
@@ -685,6 +689,7 @@
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.Dataset.initialize.html">dcase_util.datasets.Dataset.initialize</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.Dataset.download_packages.html">dcase_util.datasets.Dataset.download_packages</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.Dataset.extract_packages.html">dcase_util.datasets.Dataset.extract_packages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.Dataset.debug_packages.html">dcase_util.datasets.Dataset.debug_packages</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.Dataset.prepare.html">dcase_util.datasets.Dataset.prepare</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.Dataset.process_meta_item.html">dcase_util.datasets.Dataset.process_meta_item</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.Dataset.check_filelist.html">dcase_util.datasets.Dataset.check_filelist</a></li>
@@ -774,6 +779,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="features.html#spectralfeatureextractor">SpectralFeatureExtractor</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.features.SpectralFeatureExtractor.html">dcase_util.features.SpectralFeatureExtractor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.features.SpectralFeatureExtractor.extract.html">dcase_util.features.SpectralFeatureExtractor.extract</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.features.SpectralFeatureExtractor.get_window_function.html">dcase_util.features.SpectralFeatureExtractor.get_window_function</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.features.SpectralFeatureExtractor.get_spectrogram.html">dcase_util.features.SpectralFeatureExtractor.get_spectrogram</a></li>
 </ul>
@@ -827,6 +833,15 @@
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.files.File.empty.html">dcase_util.files.File.empty</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.files.File.delimiter.html">dcase_util.files.File.delimiter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.files.File.is_package.html">dcase_util.files.File.is_package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="files.html#package">Package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.files.Package.html">dcase_util.files.Package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.files.Package.extract.html">dcase_util.files.Package.extract</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.files.Package.compress.html">dcase_util.files.Package.compress</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.files.Package.detect_file_format.html">dcase_util.files.Package.detect_file_format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.files.Package.validate_format.html">dcase_util.files.Package.validate_format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.files.Package.exists.html">dcase_util.files.Package.exists</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="files.html#filelock">FileLock</a><ul>
@@ -923,8 +938,16 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="keras.html#generators">Generators</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="keras.html#kerasdatasequence">KerasDataSequence</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.keras.get_keras_data_sequence_class.html">dcase_util.keras.get_keras_data_sequence_class</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="keras.html#utils">Utils</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.keras.setup_keras.html">dcase_util.keras.setup_keras</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.keras.create_optimizer.html">dcase_util.keras.create_optimizer</a></li>
 </ul>
 </li>
 </ul>
@@ -941,10 +964,12 @@
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.ProcessingChain.log_chain.html">dcase_util.processors.ProcessingChain.log_chain</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.ProcessingChain.push_processor.html">dcase_util.processors.ProcessingChain.push_processor</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.ProcessingChain.process.html">dcase_util.processors.ProcessingChain.process</a></li>
-<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.ProcessingChain.call_method.html">dcase_util.processors.ProcessingChain.call_method</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.ProcessingChain.processor_exists.html">dcase_util.processors.ProcessingChain.processor_exists</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.ProcessingChain.processor_class_reference.html">dcase_util.processors.ProcessingChain.processor_class_reference</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.ProcessingChain.processor_class.html">dcase_util.processors.ProcessingChain.processor_class</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.ProcessingChain.chain_item_exists.html">dcase_util.processors.ProcessingChain.chain_item_exists</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.ProcessingChain.chain_item.html">dcase_util.processors.ProcessingChain.chain_item</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.ProcessingChain.call_method.html">dcase_util.processors.ProcessingChain.call_method</a></li>
 </ul>
 </li>
 </ul>
@@ -968,9 +993,19 @@
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.AggregationProcessor.process.html">dcase_util.processors.AggregationProcessor.process</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#repositoryaggregationprocessor">RepositoryAggregationProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.RepositoryAggregationProcessor.html">dcase_util.processors.RepositoryAggregationProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.RepositoryAggregationProcessor.process.html">dcase_util.processors.RepositoryAggregationProcessor.process</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#sequencingprocessor">SequencingProcessor</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.SequencingProcessor.html">dcase_util.processors.SequencingProcessor</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.SequencingProcessor.process.html">dcase_util.processors.SequencingProcessor.process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#repositorysequencingprocessor">RepositorySequencingProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.RepositorySequencingProcessor.html">dcase_util.processors.RepositorySequencingProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.RepositorySequencingProcessor.process.html">dcase_util.processors.RepositorySequencingProcessor.process</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#normalizationprocessor">NormalizationProcessor</a><ul>
@@ -988,6 +1023,11 @@
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.StackingProcessor.process.html">dcase_util.processors.StackingProcessor.process</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#repositorymaskingprocessor">RepositoryMaskingProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.RepositoryMaskingProcessor.html">dcase_util.processors.RepositoryMaskingProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.RepositoryMaskingProcessor.process.html">dcase_util.processors.RepositoryMaskingProcessor.process</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#onehotencodingprocessor">OneHotEncodingProcessor</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.OneHotEncodingProcessor.html">dcase_util.processors.OneHotEncodingProcessor</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.OneHotEncodingProcessor.process.html">dcase_util.processors.OneHotEncodingProcessor.process</a></li>
@@ -1003,9 +1043,24 @@
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.EventRollEncodingProcessor.process.html">dcase_util.processors.EventRollEncodingProcessor.process</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#datashapingprocessor">DataShapingProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.DataShapingProcessor.html">dcase_util.processors.DataShapingProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.DataShapingProcessor.process.html">dcase_util.processors.DataShapingProcessor.process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#repositorytomatrixprocessor">RepositoryToMatrixProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.RepositoryToMatrixProcessor.html">dcase_util.processors.RepositoryToMatrixProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.RepositoryToMatrixProcessor.process.html">dcase_util.processors.RepositoryToMatrixProcessor.process</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#features">Features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#featurereadingprocessor">FeatureReadingProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.FeatureReadingProcessor.html">dcase_util.processors.FeatureReadingProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.FeatureReadingProcessor.process.html">dcase_util.processors.FeatureReadingProcessor.process</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#repositoryfeatureextractorprocessor">RepositoryFeatureExtractorProcessor</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.RepositoryFeatureExtractorProcessor.html">dcase_util.processors.RepositoryFeatureExtractorProcessor</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.RepositoryFeatureExtractorProcessor.process.html">dcase_util.processors.RepositoryFeatureExtractorProcessor.process</a></li>
@@ -1014,6 +1069,11 @@
 <li class="toctree-l3"><a class="reference internal" href="#featureextractorprocessor">FeatureExtractorProcessor</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.FeatureExtractorProcessor.html">dcase_util.processors.FeatureExtractorProcessor</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.FeatureExtractorProcessor.process.html">dcase_util.processors.FeatureExtractorProcessor.process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">RepositoryFeatureExtractorProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.RepositoryFeatureExtractorProcessor.html">dcase_util.processors.RepositoryFeatureExtractorProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.RepositoryFeatureExtractorProcessor.process.html">dcase_util.processors.RepositoryFeatureExtractorProcessor.process</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#melextractorprocessor">MelExtractorProcessor</a><ul>
@@ -1061,12 +1121,11 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#mixin">Mixin</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#processormixin">ProcessorMixin</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.ProcessorMixin.html">dcase_util.processors.ProcessorMixin</a></li>
-<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.ProcessorMixin.process.html">dcase_util.processors.ProcessorMixin.process</a></li>
-<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.ProcessorMixin.get_processing_chain_item.html">dcase_util.processors.ProcessorMixin.get_processing_chain_item</a></li>
-<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.ProcessorMixin.push_processing_chain_item.html">dcase_util.processors.ProcessorMixin.push_processing_chain_item</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#base-object">Base object</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#processor">Processor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.Processor.html">dcase_util.processors.Processor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.Processor.process.html">dcase_util.processors.Processor.process</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.Processor.get_processing_chain_item.html">dcase_util.processors.Processor.get_processing_chain_item</a></li>
 </ul>
 </li>
 </ul>
@@ -1266,6 +1325,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-1-8">v0.1.8</a></li>
 <li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-1-7">v0.1.7</a></li>
 <li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-1-6">v0.1.6</a></li>
 <li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-1-5">v0.1.5</a></li>
@@ -1365,7 +1425,7 @@
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.processors.ProcessingChain.html#dcase_util.processors.ProcessingChain" title="dcase_util.processors.ProcessingChain"><code class="xref py py-obj docutils literal"><span class="pre">ProcessingChain</span></code></a>(\*args,&nbsp;\*\*kwargs)</td>
-<td></td>
+<td>__init__ method.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.processors.ProcessingChain.show_chain.html#dcase_util.processors.ProcessingChain.show_chain" title="dcase_util.processors.ProcessingChain.show_chain"><code class="xref py py-obj docutils literal"><span class="pre">ProcessingChain.show_chain</span></code></a>()</td>
 <td>Show chain information.</td>
@@ -1374,22 +1434,28 @@
 <td>Log chain information</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.processors.ProcessingChain.push_processor.html#dcase_util.processors.ProcessingChain.push_processor" title="dcase_util.processors.ProcessingChain.push_processor"><code class="xref py py-obj docutils literal"><span class="pre">ProcessingChain.push_processor</span></code></a>(processor_name)</td>
-<td>Push processor item to the chain.</td>
+<td>Push processor item to the chain, if item already exists in the processing chain update only parameters.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.processors.ProcessingChain.process.html#dcase_util.processors.ProcessingChain.process" title="dcase_util.processors.ProcessingChain.process"><code class="xref py py-obj docutils literal"><span class="pre">ProcessingChain.process</span></code></a>([data])</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.processors.ProcessingChain.process.html#dcase_util.processors.ProcessingChain.process" title="dcase_util.processors.ProcessingChain.process"><code class="xref py py-obj docutils literal"><span class="pre">ProcessingChain.process</span></code></a>([data,&nbsp;...])</td>
 <td>Process the data with processing chain</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.processors.ProcessingChain.call_method.html#dcase_util.processors.ProcessingChain.call_method" title="dcase_util.processors.ProcessingChain.call_method"><code class="xref py py-obj docutils literal"><span class="pre">ProcessingChain.call_method</span></code></a>(method_name[,&nbsp;...])</td>
-<td>Call class method in the processing chain items</td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.processors.ProcessingChain.processor_exists.html#dcase_util.processors.ProcessingChain.processor_exists" title="dcase_util.processors.ProcessingChain.processor_exists"><code class="xref py py-obj docutils literal"><span class="pre">ProcessingChain.processor_exists</span></code></a>(processor_name)</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.processors.ProcessingChain.processor_exists.html#dcase_util.processors.ProcessingChain.processor_exists" title="dcase_util.processors.ProcessingChain.processor_exists"><code class="xref py py-obj docutils literal"><span class="pre">ProcessingChain.processor_exists</span></code></a>(processor_name)</td>
 <td>Checks that processor exists in the chain.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.processors.ProcessingChain.processor_class_reference.html#dcase_util.processors.ProcessingChain.processor_class_reference" title="dcase_util.processors.ProcessingChain.processor_class_reference"><code class="xref py py-obj docutils literal"><span class="pre">ProcessingChain.processor_class_reference</span></code></a>(...)</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.processors.ProcessingChain.processor_class_reference.html#dcase_util.processors.ProcessingChain.processor_class_reference" title="dcase_util.processors.ProcessingChain.processor_class_reference"><code class="xref py py-obj docutils literal"><span class="pre">ProcessingChain.processor_class_reference</span></code></a>(...)</td>
 <td>Processor class reference.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.processors.ProcessingChain.processor_class.html#dcase_util.processors.ProcessingChain.processor_class" title="dcase_util.processors.ProcessingChain.processor_class"><code class="xref py py-obj docutils literal"><span class="pre">ProcessingChain.processor_class</span></code></a>(...)</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.processors.ProcessingChain.processor_class.html#dcase_util.processors.ProcessingChain.processor_class" title="dcase_util.processors.ProcessingChain.processor_class"><code class="xref py py-obj docutils literal"><span class="pre">ProcessingChain.processor_class</span></code></a>(...)</td>
 <td>Processor class initialized.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.processors.ProcessingChain.chain_item_exists.html#dcase_util.processors.ProcessingChain.chain_item_exists" title="dcase_util.processors.ProcessingChain.chain_item_exists"><code class="xref py py-obj docutils literal"><span class="pre">ProcessingChain.chain_item_exists</span></code></a>(processor_name)</td>
+<td>Check if item exists already in the chain</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.processors.ProcessingChain.chain_item.html#dcase_util.processors.ProcessingChain.chain_item" title="dcase_util.processors.ProcessingChain.chain_item"><code class="xref py py-obj docutils literal"><span class="pre">ProcessingChain.chain_item</span></code></a>(processor_name)</td>
+<td>Get item based processor_name from the processing chain.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.processors.ProcessingChain.call_method.html#dcase_util.processors.ProcessingChain.call_method" title="dcase_util.processors.ProcessingChain.call_method"><code class="xref py py-obj docutils literal"><span class="pre">ProcessingChain.call_method</span></code></a>(method_name[,&nbsp;...])</td>
+<td>Call class method in the processing chain items</td>
 </tr>
 </tbody>
 </table>
@@ -1448,8 +1514,26 @@
 <tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.processors.AggregationProcessor.html#dcase_util.processors.AggregationProcessor" title="dcase_util.processors.AggregationProcessor"><code class="xref py py-obj docutils literal"><span class="pre">AggregationProcessor</span></code></a>([win_length_frames,&nbsp;...])</td>
 <td>Data aggregation processor</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.processors.AggregationProcessor.process.html#dcase_util.processors.AggregationProcessor.process" title="dcase_util.processors.AggregationProcessor.process"><code class="xref py py-obj docutils literal"><span class="pre">AggregationProcessor.process</span></code></a>([data])</td>
-<td>Process features</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.processors.AggregationProcessor.process.html#dcase_util.processors.AggregationProcessor.process" title="dcase_util.processors.AggregationProcessor.process"><code class="xref py py-obj docutils literal"><span class="pre">AggregationProcessor.process</span></code></a>([data,&nbsp;...])</td>
+<td>Process</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="repositoryaggregationprocessor">
+<h3>RepositoryAggregationProcessor<a class="headerlink" href="#repositoryaggregationprocessor" title="Permalink to this headline">¶</a></h3>
+<p><em>dcase_util.processors.RepositoryAggregationProcessor</em></p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.processors.RepositoryAggregationProcessor.html#dcase_util.processors.RepositoryAggregationProcessor" title="dcase_util.processors.RepositoryAggregationProcessor"><code class="xref py py-obj docutils literal"><span class="pre">RepositoryAggregationProcessor</span></code></a>([...])</td>
+<td>Data aggregation processor</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.processors.RepositoryAggregationProcessor.process.html#dcase_util.processors.RepositoryAggregationProcessor.process" title="dcase_util.processors.RepositoryAggregationProcessor.process"><code class="xref py py-obj docutils literal"><span class="pre">RepositoryAggregationProcessor.process</span></code></a>([...])</td>
+<td>Process</td>
 </tr>
 </tbody>
 </table>
@@ -1466,7 +1550,25 @@
 <tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.processors.SequencingProcessor.html#dcase_util.processors.SequencingProcessor" title="dcase_util.processors.SequencingProcessor"><code class="xref py py-obj docutils literal"><span class="pre">SequencingProcessor</span></code></a>([frames,&nbsp;...])</td>
 <td>Data sequencing processor</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.processors.SequencingProcessor.process.html#dcase_util.processors.SequencingProcessor.process" title="dcase_util.processors.SequencingProcessor.process"><code class="xref py py-obj docutils literal"><span class="pre">SequencingProcessor.process</span></code></a>([data])</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.processors.SequencingProcessor.process.html#dcase_util.processors.SequencingProcessor.process" title="dcase_util.processors.SequencingProcessor.process"><code class="xref py py-obj docutils literal"><span class="pre">SequencingProcessor.process</span></code></a>([data,&nbsp;...])</td>
+<td>Process</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="repositorysequencingprocessor">
+<h3>RepositorySequencingProcessor<a class="headerlink" href="#repositorysequencingprocessor" title="Permalink to this headline">¶</a></h3>
+<p><em>dcase_util.processors.RepositorySequencingProcessor</em></p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.processors.RepositorySequencingProcessor.html#dcase_util.processors.RepositorySequencingProcessor" title="dcase_util.processors.RepositorySequencingProcessor"><code class="xref py py-obj docutils literal"><span class="pre">RepositorySequencingProcessor</span></code></a>([frames,&nbsp;...])</td>
+<td>Data sequencing processor</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.processors.RepositorySequencingProcessor.process.html#dcase_util.processors.RepositorySequencingProcessor.process" title="dcase_util.processors.RepositorySequencingProcessor.process"><code class="xref py py-obj docutils literal"><span class="pre">RepositorySequencingProcessor.process</span></code></a>([...])</td>
 <td>Process</td>
 </tr>
 </tbody>
@@ -1481,10 +1583,10 @@
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.processors.NormalizationProcessor.html#dcase_util.processors.NormalizationProcessor" title="dcase_util.processors.NormalizationProcessor"><code class="xref py py-obj docutils literal"><span class="pre">NormalizationProcessor</span></code></a>([n,&nbsp;s1,&nbsp;s2,&nbsp;mean,&nbsp;std])</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.processors.NormalizationProcessor.html#dcase_util.processors.NormalizationProcessor" title="dcase_util.processors.NormalizationProcessor"><code class="xref py py-obj docutils literal"><span class="pre">NormalizationProcessor</span></code></a>([n,&nbsp;s1,&nbsp;s2,&nbsp;mean,&nbsp;...])</td>
 <td>Data normalizer to accumulate data statistics</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.processors.NormalizationProcessor.process.html#dcase_util.processors.NormalizationProcessor.process" title="dcase_util.processors.NormalizationProcessor.process"><code class="xref py py-obj docutils literal"><span class="pre">NormalizationProcessor.process</span></code></a>([data])</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.processors.NormalizationProcessor.process.html#dcase_util.processors.NormalizationProcessor.process" title="dcase_util.processors.NormalizationProcessor.process"><code class="xref py py-obj docutils literal"><span class="pre">NormalizationProcessor.process</span></code></a>([data,&nbsp;...])</td>
 <td>Normalize feature matrix with internal statistics of the class</td>
 </tr>
 </tbody>
@@ -1499,10 +1601,10 @@
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.processors.RepositoryNormalizationProcessor.html#dcase_util.processors.RepositoryNormalizationProcessor" title="dcase_util.processors.RepositoryNormalizationProcessor"><code class="xref py py-obj docutils literal"><span class="pre">RepositoryNormalizationProcessor</span></code></a>([parameters])</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.processors.RepositoryNormalizationProcessor.html#dcase_util.processors.RepositoryNormalizationProcessor" title="dcase_util.processors.RepositoryNormalizationProcessor"><code class="xref py py-obj docutils literal"><span class="pre">RepositoryNormalizationProcessor</span></code></a>([...])</td>
 <td>Data normalizer to accumulate data statistics inside repository</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.processors.RepositoryNormalizationProcessor.process.html#dcase_util.processors.RepositoryNormalizationProcessor.process" title="dcase_util.processors.RepositoryNormalizationProcessor.process"><code class="xref py py-obj docutils literal"><span class="pre">RepositoryNormalizationProcessor.process</span></code></a>([data])</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.processors.RepositoryNormalizationProcessor.process.html#dcase_util.processors.RepositoryNormalizationProcessor.process" title="dcase_util.processors.RepositoryNormalizationProcessor.process"><code class="xref py py-obj docutils literal"><span class="pre">RepositoryNormalizationProcessor.process</span></code></a>([...])</td>
 <td>Normalize data repository with internal statistics</td>
 </tr>
 </tbody>
@@ -1520,7 +1622,25 @@
 <tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.processors.StackingProcessor.html#dcase_util.processors.StackingProcessor" title="dcase_util.processors.StackingProcessor"><code class="xref py py-obj docutils literal"><span class="pre">StackingProcessor</span></code></a>([recipe,&nbsp;hop])</td>
 <td>Data stacking processor</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.processors.StackingProcessor.process.html#dcase_util.processors.StackingProcessor.process" title="dcase_util.processors.StackingProcessor.process"><code class="xref py py-obj docutils literal"><span class="pre">StackingProcessor.process</span></code></a>([data])</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.processors.StackingProcessor.process.html#dcase_util.processors.StackingProcessor.process" title="dcase_util.processors.StackingProcessor.process"><code class="xref py py-obj docutils literal"><span class="pre">StackingProcessor.process</span></code></a>([data,&nbsp;...])</td>
+<td>Vector creation based on recipe</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="repositorymaskingprocessor">
+<h3>RepositoryMaskingProcessor<a class="headerlink" href="#repositorymaskingprocessor" title="Permalink to this headline">¶</a></h3>
+<p><em>dcase_util.processors.RepositoryMaskingProcessor</em></p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.processors.RepositoryMaskingProcessor.html#dcase_util.processors.RepositoryMaskingProcessor" title="dcase_util.processors.RepositoryMaskingProcessor"><code class="xref py py-obj docutils literal"><span class="pre">RepositoryMaskingProcessor</span></code></a>(\*\*kwargs)</td>
+<td>Data masking processor</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.processors.RepositoryMaskingProcessor.process.html#dcase_util.processors.RepositoryMaskingProcessor.process" title="dcase_util.processors.RepositoryMaskingProcessor.process"><code class="xref py py-obj docutils literal"><span class="pre">RepositoryMaskingProcessor.process</span></code></a>(data[,&nbsp;...])</td>
 <td>Vector creation based on recipe</td>
 </tr>
 </tbody>
@@ -1536,7 +1656,7 @@
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.processors.OneHotEncodingProcessor.html#dcase_util.processors.OneHotEncodingProcessor" title="dcase_util.processors.OneHotEncodingProcessor"><code class="xref py py-obj docutils literal"><span class="pre">OneHotEncodingProcessor</span></code></a>([label_list,&nbsp;...])</td>
-<td>Event roll encoding processor</td>
+<td>One hot encoding processor</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.processors.OneHotEncodingProcessor.process.html#dcase_util.processors.OneHotEncodingProcessor.process" title="dcase_util.processors.OneHotEncodingProcessor.process"><code class="xref py py-obj docutils literal"><span class="pre">OneHotEncodingProcessor.process</span></code></a>([data,&nbsp;...])</td>
 <td>Encode metadata</td>
@@ -1554,7 +1674,7 @@
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.processors.ManyHotEncodingProcessor.html#dcase_util.processors.ManyHotEncodingProcessor" title="dcase_util.processors.ManyHotEncodingProcessor"><code class="xref py py-obj docutils literal"><span class="pre">ManyHotEncodingProcessor</span></code></a>([label_list,&nbsp;...])</td>
-<td>Event roll encoding processor</td>
+<td>Many hot encoding processor</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.processors.ManyHotEncodingProcessor.process.html#dcase_util.processors.ManyHotEncodingProcessor.process" title="dcase_util.processors.ManyHotEncodingProcessor.process"><code class="xref py py-obj docutils literal"><span class="pre">ManyHotEncodingProcessor.process</span></code></a>([data,&nbsp;...])</td>
 <td>Encode metadata</td>
@@ -1574,8 +1694,44 @@
 <tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.processors.EventRollEncodingProcessor.html#dcase_util.processors.EventRollEncodingProcessor" title="dcase_util.processors.EventRollEncodingProcessor"><code class="xref py py-obj docutils literal"><span class="pre">EventRollEncodingProcessor</span></code></a>([label_list,&nbsp;...])</td>
 <td>Event roll encoding processor</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.processors.EventRollEncodingProcessor.process.html#dcase_util.processors.EventRollEncodingProcessor.process" title="dcase_util.processors.EventRollEncodingProcessor.process"><code class="xref py py-obj docutils literal"><span class="pre">EventRollEncodingProcessor.process</span></code></a>([data])</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.processors.EventRollEncodingProcessor.process.html#dcase_util.processors.EventRollEncodingProcessor.process" title="dcase_util.processors.EventRollEncodingProcessor.process"><code class="xref py py-obj docutils literal"><span class="pre">EventRollEncodingProcessor.process</span></code></a>([data,&nbsp;...])</td>
 <td>Encode metadata</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="datashapingprocessor">
+<h3>DataShapingProcessor<a class="headerlink" href="#datashapingprocessor" title="Permalink to this headline">¶</a></h3>
+<p><em>dcase_util.processors.DataShapingProcessor</em></p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.processors.DataShapingProcessor.html#dcase_util.processors.DataShapingProcessor" title="dcase_util.processors.DataShapingProcessor"><code class="xref py py-obj docutils literal"><span class="pre">DataShapingProcessor</span></code></a>([axis_list,&nbsp;time_axis,&nbsp;...])</td>
+<td>Data shaping processor</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.processors.DataShapingProcessor.process.html#dcase_util.processors.DataShapingProcessor.process" title="dcase_util.processors.DataShapingProcessor.process"><code class="xref py py-obj docutils literal"><span class="pre">DataShapingProcessor.process</span></code></a>([data,&nbsp;...])</td>
+<td>Process data</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="repositorytomatrixprocessor">
+<h3>RepositoryToMatrixProcessor<a class="headerlink" href="#repositorytomatrixprocessor" title="Permalink to this headline">¶</a></h3>
+<p><em>dcase_util.processors.RepositoryToMatrixProcessor</em></p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.processors.RepositoryToMatrixProcessor.html#dcase_util.processors.RepositoryToMatrixProcessor" title="dcase_util.processors.RepositoryToMatrixProcessor"><code class="xref py py-obj docutils literal"><span class="pre">RepositoryToMatrixProcessor</span></code></a>([label,&nbsp;...])</td>
+<td>Repository converting processor</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.processors.RepositoryToMatrixProcessor.process.html#dcase_util.processors.RepositoryToMatrixProcessor.process" title="dcase_util.processors.RepositoryToMatrixProcessor.process"><code class="xref py py-obj docutils literal"><span class="pre">RepositoryToMatrixProcessor.process</span></code></a>([data,&nbsp;...])</td>
+<td>Process data</td>
 </tr>
 </tbody>
 </table>
@@ -1583,6 +1739,24 @@
 </div>
 <div class="section" id="features">
 <h2>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="featurereadingprocessor">
+<h3>FeatureReadingProcessor<a class="headerlink" href="#featurereadingprocessor" title="Permalink to this headline">¶</a></h3>
+<p><em>dcase_util.processors.FeatureReadingProcessor</em></p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.processors.FeatureReadingProcessor.html#dcase_util.processors.FeatureReadingProcessor" title="dcase_util.processors.FeatureReadingProcessor"><code class="xref py py-obj docutils literal"><span class="pre">FeatureReadingProcessor</span></code></a>(\*args,&nbsp;\*\*kwargs)</td>
+<td>Constructor</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.processors.FeatureReadingProcessor.process.html#dcase_util.processors.FeatureReadingProcessor.process" title="dcase_util.processors.FeatureReadingProcessor.process"><code class="xref py py-obj docutils literal"><span class="pre">FeatureReadingProcessor.process</span></code></a>([data,&nbsp;...])</td>
+<td>Meta data reading.</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div class="section" id="repositoryfeatureextractorprocessor">
 <h3>RepositoryFeatureExtractorProcessor<a class="headerlink" href="#repositoryfeatureextractorprocessor" title="Permalink to this headline">¶</a></h3>
 <p><em>dcase_util.processors.RepositoryFeatureExtractorProcessor</em></p>
@@ -1595,7 +1769,7 @@
 <tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.processors.RepositoryFeatureExtractorProcessor.html#dcase_util.processors.RepositoryFeatureExtractorProcessor" title="dcase_util.processors.RepositoryFeatureExtractorProcessor"><code class="xref py py-obj docutils literal"><span class="pre">RepositoryFeatureExtractorProcessor</span></code></a>([parameters])</td>
 <td>Constructor</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.processors.RepositoryFeatureExtractorProcessor.process.html#dcase_util.processors.RepositoryFeatureExtractorProcessor.process" title="dcase_util.processors.RepositoryFeatureExtractorProcessor.process"><code class="xref py py-obj docutils literal"><span class="pre">RepositoryFeatureExtractorProcessor.process</span></code></a>([data])</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.processors.RepositoryFeatureExtractorProcessor.process.html#dcase_util.processors.RepositoryFeatureExtractorProcessor.process" title="dcase_util.processors.RepositoryFeatureExtractorProcessor.process"><code class="xref py py-obj docutils literal"><span class="pre">RepositoryFeatureExtractorProcessor.process</span></code></a>([...])</td>
 <td>Extract features</td>
 </tr>
 </tbody>
@@ -1613,7 +1787,25 @@
 <tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.processors.FeatureExtractorProcessor.html#dcase_util.processors.FeatureExtractorProcessor" title="dcase_util.processors.FeatureExtractorProcessor"><code class="xref py py-obj docutils literal"><span class="pre">FeatureExtractorProcessor</span></code></a>(\*args,&nbsp;\*\*kwargs)</td>
 <td>Constructor</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.processors.FeatureExtractorProcessor.process.html#dcase_util.processors.FeatureExtractorProcessor.process" title="dcase_util.processors.FeatureExtractorProcessor.process"><code class="xref py py-obj docutils literal"><span class="pre">FeatureExtractorProcessor.process</span></code></a>([data])</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.processors.FeatureExtractorProcessor.process.html#dcase_util.processors.FeatureExtractorProcessor.process" title="dcase_util.processors.FeatureExtractorProcessor.process"><code class="xref py py-obj docutils literal"><span class="pre">FeatureExtractorProcessor.process</span></code></a>([data,&nbsp;...])</td>
+<td>Extract features</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id2">
+<h3>RepositoryFeatureExtractorProcessor<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p><em>dcase_util.processors.RepositoryFeatureExtractorProcessor</em></p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.processors.RepositoryFeatureExtractorProcessor.html#dcase_util.processors.RepositoryFeatureExtractorProcessor" title="dcase_util.processors.RepositoryFeatureExtractorProcessor"><code class="xref py py-obj docutils literal"><span class="pre">RepositoryFeatureExtractorProcessor</span></code></a>([parameters])</td>
+<td>Constructor</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.processors.RepositoryFeatureExtractorProcessor.process.html#dcase_util.processors.RepositoryFeatureExtractorProcessor.process" title="dcase_util.processors.RepositoryFeatureExtractorProcessor.process"><code class="xref py py-obj docutils literal"><span class="pre">RepositoryFeatureExtractorProcessor.process</span></code></a>([...])</td>
 <td>Extract features</td>
 </tr>
 </tbody>
@@ -1631,7 +1823,7 @@
 <tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.processors.MelExtractorProcessor.html#dcase_util.processors.MelExtractorProcessor" title="dcase_util.processors.MelExtractorProcessor"><code class="xref py py-obj docutils literal"><span class="pre">MelExtractorProcessor</span></code></a>([fs,&nbsp;...])</td>
 <td>Constructor</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.processors.MelExtractorProcessor.process.html#dcase_util.processors.MelExtractorProcessor.process" title="dcase_util.processors.MelExtractorProcessor.process"><code class="xref py py-obj docutils literal"><span class="pre">MelExtractorProcessor.process</span></code></a>([data])</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.processors.MelExtractorProcessor.process.html#dcase_util.processors.MelExtractorProcessor.process" title="dcase_util.processors.MelExtractorProcessor.process"><code class="xref py py-obj docutils literal"><span class="pre">MelExtractorProcessor.process</span></code></a>([data,&nbsp;...])</td>
 <td>Extract features</td>
 </tr>
 </tbody>
@@ -1649,7 +1841,7 @@
 <tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.processors.MfccStaticExtractorProcessor.html#dcase_util.processors.MfccStaticExtractorProcessor" title="dcase_util.processors.MfccStaticExtractorProcessor"><code class="xref py py-obj docutils literal"><span class="pre">MfccStaticExtractorProcessor</span></code></a>([fs,&nbsp;...])</td>
 <td>Constructor</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.processors.MfccStaticExtractorProcessor.process.html#dcase_util.processors.MfccStaticExtractorProcessor.process" title="dcase_util.processors.MfccStaticExtractorProcessor.process"><code class="xref py py-obj docutils literal"><span class="pre">MfccStaticExtractorProcessor.process</span></code></a>([data])</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.processors.MfccStaticExtractorProcessor.process.html#dcase_util.processors.MfccStaticExtractorProcessor.process" title="dcase_util.processors.MfccStaticExtractorProcessor.process"><code class="xref py py-obj docutils literal"><span class="pre">MfccStaticExtractorProcessor.process</span></code></a>([data,&nbsp;...])</td>
 <td>Extract features</td>
 </tr>
 </tbody>
@@ -1667,7 +1859,7 @@
 <tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.processors.MfccDeltaExtractorProcessor.html#dcase_util.processors.MfccDeltaExtractorProcessor" title="dcase_util.processors.MfccDeltaExtractorProcessor"><code class="xref py py-obj docutils literal"><span class="pre">MfccDeltaExtractorProcessor</span></code></a>([fs,&nbsp;...])</td>
 <td>Constructor</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.processors.MfccDeltaExtractorProcessor.process.html#dcase_util.processors.MfccDeltaExtractorProcessor.process" title="dcase_util.processors.MfccDeltaExtractorProcessor.process"><code class="xref py py-obj docutils literal"><span class="pre">MfccDeltaExtractorProcessor.process</span></code></a>([data])</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.processors.MfccDeltaExtractorProcessor.process.html#dcase_util.processors.MfccDeltaExtractorProcessor.process" title="dcase_util.processors.MfccDeltaExtractorProcessor.process"><code class="xref py py-obj docutils literal"><span class="pre">MfccDeltaExtractorProcessor.process</span></code></a>([data,&nbsp;...])</td>
 <td>Extract features</td>
 </tr>
 </tbody>
@@ -1685,7 +1877,7 @@
 <tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.processors.MfccAccelerationExtractorProcessor.html#dcase_util.processors.MfccAccelerationExtractorProcessor" title="dcase_util.processors.MfccAccelerationExtractorProcessor"><code class="xref py py-obj docutils literal"><span class="pre">MfccAccelerationExtractorProcessor</span></code></a>([fs,&nbsp;...])</td>
 <td>Constructor</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.processors.MfccAccelerationExtractorProcessor.process.html#dcase_util.processors.MfccAccelerationExtractorProcessor.process" title="dcase_util.processors.MfccAccelerationExtractorProcessor.process"><code class="xref py py-obj docutils literal"><span class="pre">MfccAccelerationExtractorProcessor.process</span></code></a>([data])</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.processors.MfccAccelerationExtractorProcessor.process.html#dcase_util.processors.MfccAccelerationExtractorProcessor.process" title="dcase_util.processors.MfccAccelerationExtractorProcessor.process"><code class="xref py py-obj docutils literal"><span class="pre">MfccAccelerationExtractorProcessor.process</span></code></a>([...])</td>
 <td>Extract features</td>
 </tr>
 </tbody>
@@ -1703,7 +1895,7 @@
 <tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.processors.ZeroCrossingRateExtractorProcessor.html#dcase_util.processors.ZeroCrossingRateExtractorProcessor" title="dcase_util.processors.ZeroCrossingRateExtractorProcessor"><code class="xref py py-obj docutils literal"><span class="pre">ZeroCrossingRateExtractorProcessor</span></code></a>([fs,&nbsp;...])</td>
 <td>Constructor</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.processors.ZeroCrossingRateExtractorProcessor.process.html#dcase_util.processors.ZeroCrossingRateExtractorProcessor.process" title="dcase_util.processors.ZeroCrossingRateExtractorProcessor.process"><code class="xref py py-obj docutils literal"><span class="pre">ZeroCrossingRateExtractorProcessor.process</span></code></a>([data])</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.processors.ZeroCrossingRateExtractorProcessor.process.html#dcase_util.processors.ZeroCrossingRateExtractorProcessor.process" title="dcase_util.processors.ZeroCrossingRateExtractorProcessor.process"><code class="xref py py-obj docutils literal"><span class="pre">ZeroCrossingRateExtractorProcessor.process</span></code></a>([...])</td>
 <td>Extract features</td>
 </tr>
 </tbody>
@@ -1721,7 +1913,7 @@
 <tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.processors.RMSEnergyExtractorProcessor.html#dcase_util.processors.RMSEnergyExtractorProcessor" title="dcase_util.processors.RMSEnergyExtractorProcessor"><code class="xref py py-obj docutils literal"><span class="pre">RMSEnergyExtractorProcessor</span></code></a>([fs,&nbsp;...])</td>
 <td>Constructor</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.processors.RMSEnergyExtractorProcessor.process.html#dcase_util.processors.RMSEnergyExtractorProcessor.process" title="dcase_util.processors.RMSEnergyExtractorProcessor.process"><code class="xref py py-obj docutils literal"><span class="pre">RMSEnergyExtractorProcessor.process</span></code></a>([data])</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.processors.RMSEnergyExtractorProcessor.process.html#dcase_util.processors.RMSEnergyExtractorProcessor.process" title="dcase_util.processors.RMSEnergyExtractorProcessor.process"><code class="xref py py-obj docutils literal"><span class="pre">RMSEnergyExtractorProcessor.process</span></code></a>([data,&nbsp;...])</td>
 <td>Extract features</td>
 </tr>
 </tbody>
@@ -1739,7 +1931,7 @@
 <tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.processors.SpectralCentroidExtractorProcessor.html#dcase_util.processors.SpectralCentroidExtractorProcessor" title="dcase_util.processors.SpectralCentroidExtractorProcessor"><code class="xref py py-obj docutils literal"><span class="pre">SpectralCentroidExtractorProcessor</span></code></a>([fs,&nbsp;...])</td>
 <td>Constructor</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.processors.SpectralCentroidExtractorProcessor.process.html#dcase_util.processors.SpectralCentroidExtractorProcessor.process" title="dcase_util.processors.SpectralCentroidExtractorProcessor.process"><code class="xref py py-obj docutils literal"><span class="pre">SpectralCentroidExtractorProcessor.process</span></code></a>([data])</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.processors.SpectralCentroidExtractorProcessor.process.html#dcase_util.processors.SpectralCentroidExtractorProcessor.process" title="dcase_util.processors.SpectralCentroidExtractorProcessor.process"><code class="xref py py-obj docutils literal"><span class="pre">SpectralCentroidExtractorProcessor.process</span></code></a>([...])</td>
 <td>Extract features</td>
 </tr>
 </tbody>
@@ -1767,28 +1959,25 @@
 </table>
 </div>
 </div>
-<div class="section" id="mixin">
-<h2>Mixin<a class="headerlink" href="#mixin" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="processormixin">
-<h3>ProcessorMixin<a class="headerlink" href="#processormixin" title="Permalink to this headline">¶</a></h3>
-<p><em>dcase_util.processors.ProcessorMixin</em></p>
+<div class="section" id="base-object">
+<h2>Base object<a class="headerlink" href="#base-object" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="processor">
+<h3>Processor<a class="headerlink" href="#processor" title="Permalink to this headline">¶</a></h3>
+<p><em>dcase_util.processors.Processor</em></p>
 <table border="1" class="longtable docutils">
 <colgroup>
 <col width="10%" />
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.processors.ProcessorMixin.html#dcase_util.processors.ProcessorMixin" title="dcase_util.processors.ProcessorMixin"><code class="xref py py-obj docutils literal"><span class="pre">ProcessorMixin</span></code></a>(\*args,&nbsp;\*\*kwargs)</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.processors.Processor.html#dcase_util.processors.Processor" title="dcase_util.processors.Processor"><code class="xref py py-obj docutils literal"><span class="pre">Processor</span></code></a>(\*args,&nbsp;\*\*kwargs)</td>
 <td>Data processing chain unit mixin</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.processors.ProcessorMixin.process.html#dcase_util.processors.ProcessorMixin.process" title="dcase_util.processors.ProcessorMixin.process"><code class="xref py py-obj docutils literal"><span class="pre">ProcessorMixin.process</span></code></a>([data])</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.processors.Processor.process.html#dcase_util.processors.Processor.process" title="dcase_util.processors.Processor.process"><code class="xref py py-obj docutils literal"><span class="pre">Processor.process</span></code></a>([data,&nbsp;store_processing_chain])</td>
 <td>Process data</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.processors.ProcessorMixin.get_processing_chain_item.html#dcase_util.processors.ProcessorMixin.get_processing_chain_item" title="dcase_util.processors.ProcessorMixin.get_processing_chain_item"><code class="xref py py-obj docutils literal"><span class="pre">ProcessorMixin.get_processing_chain_item</span></code></a>()</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.processors.Processor.get_processing_chain_item.html#dcase_util.processors.Processor.get_processing_chain_item" title="dcase_util.processors.Processor.get_processing_chain_item"><code class="xref py py-obj docutils literal"><span class="pre">Processor.get_processing_chain_item</span></code></a>()</td>
 <td>Get processing chain item with current Processor data.</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.processors.ProcessorMixin.push_processing_chain_item.html#dcase_util.processors.ProcessorMixin.push_processing_chain_item" title="dcase_util.processors.ProcessorMixin.push_processing_chain_item"><code class="xref py py-obj docutils literal"><span class="pre">ProcessorMixin.push_processing_chain_item</span></code></a>(...)</td>
-<td>Push processing chain item</td>
 </tr>
 </tbody>
 </table>
@@ -1809,7 +1998,7 @@
         <a href="generated/dcase_util.processors.ProcessingChainItem.html" class="btn btn-neutral float-right" title="dcase_util.processors.ProcessingChainItem" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="generated/dcase_util.keras.setup_keras.html" class="btn btn-neutral" title="dcase_util.keras.setup_keras" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="generated/dcase_util.keras.create_optimizer.html" class="btn btn-neutral" title="dcase_util.keras.create_optimizer" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

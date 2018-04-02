@@ -1,0 +1,6 @@
+dcase_util.processors.FeatureReadingProcessor.process
+=====================================================
+
+.. currentmodule:: dcase_util.processors
+
+.. automethod:: FeatureReadingProcessor.process

@@ -1,0 +1,44 @@
+dcase_util.processors.FeatureReadingProcessor
+=============================================
+
+.. currentmodule:: dcase_util.processors
+
+.. autoclass:: FeatureReadingProcessor
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~FeatureReadingProcessor.__init__
+      ~FeatureReadingProcessor.delimiter
+      ~FeatureReadingProcessor.detect_file_format
+      ~FeatureReadingProcessor.empty
+      ~FeatureReadingProcessor.exists
+      ~FeatureReadingProcessor.get_file_information
+      ~FeatureReadingProcessor.get_processing_chain_item
+      ~FeatureReadingProcessor.is_package
+      ~FeatureReadingProcessor.load
+      ~FeatureReadingProcessor.log
+      ~FeatureReadingProcessor.process
+      ~FeatureReadingProcessor.save
+      ~FeatureReadingProcessor.show
+      ~FeatureReadingProcessor.validate_format
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~FeatureReadingProcessor.input_type
+      ~FeatureReadingProcessor.logger
+      ~FeatureReadingProcessor.output_type
+      ~FeatureReadingProcessor.valid_formats
+   
+   

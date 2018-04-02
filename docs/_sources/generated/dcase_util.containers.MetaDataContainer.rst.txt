@@ -16,8 +16,6 @@ dcase_util.containers.MetaDataContainer
       ~MetaDataContainer.__init__
       ~MetaDataContainer.add_time
       ~MetaDataContainer.append
-      ~MetaDataContainer.clear
-      ~MetaDataContainer.copy
       ~MetaDataContainer.count
       ~MetaDataContainer.delimiter
       ~MetaDataContainer.detect_file_format
@@ -30,6 +28,7 @@ dcase_util.containers.MetaDataContainer
       ~MetaDataContainer.filter_time_segment
       ~MetaDataContainer.get_dump_content
       ~MetaDataContainer.get_field
+      ~MetaDataContainer.get_field_unique
       ~MetaDataContainer.get_file_information
       ~MetaDataContainer.get_string
       ~MetaDataContainer.index
@@ -42,6 +41,7 @@ dcase_util.containers.MetaDataContainer
       ~MetaDataContainer.log_all
       ~MetaDataContainer.pop
       ~MetaDataContainer.process_events
+      ~MetaDataContainer.push_processing_chain_item
       ~MetaDataContainer.remove
       ~MetaDataContainer.remove_field
       ~MetaDataContainer.reverse

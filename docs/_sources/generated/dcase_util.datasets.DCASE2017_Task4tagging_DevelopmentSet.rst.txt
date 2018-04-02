@@ -19,6 +19,7 @@ dcase_util.datasets.DCASE2017_Task4tagging_DevelopmentSet
       ~DCASE2017_Task4tagging_DevelopmentSet.dataset_bytes
       ~DCASE2017_Task4tagging_DevelopmentSet.dataset_size_on_disk
       ~DCASE2017_Task4tagging_DevelopmentSet.dataset_size_string
+      ~DCASE2017_Task4tagging_DevelopmentSet.debug_packages
       ~DCASE2017_Task4tagging_DevelopmentSet.download_packages
       ~DCASE2017_Task4tagging_DevelopmentSet.eval
       ~DCASE2017_Task4tagging_DevelopmentSet.eval_files

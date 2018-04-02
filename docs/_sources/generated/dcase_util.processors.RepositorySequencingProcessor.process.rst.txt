@@ -1,0 +1,6 @@
+dcase_util.processors.RepositorySequencingProcessor.process
+===========================================================
+
+.. currentmodule:: dcase_util.processors
+
+.. automethod:: RepositorySequencingProcessor.process

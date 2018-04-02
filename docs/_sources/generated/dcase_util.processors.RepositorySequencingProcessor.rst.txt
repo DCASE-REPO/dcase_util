@@ -1,0 +1,44 @@
+dcase_util.processors.RepositorySequencingProcessor
+===================================================
+
+.. currentmodule:: dcase_util.processors
+
+.. autoclass:: RepositorySequencingProcessor
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~RepositorySequencingProcessor.__init__
+      ~RepositorySequencingProcessor.delimiter
+      ~RepositorySequencingProcessor.detect_file_format
+      ~RepositorySequencingProcessor.empty
+      ~RepositorySequencingProcessor.exists
+      ~RepositorySequencingProcessor.get_file_information
+      ~RepositorySequencingProcessor.get_processing_chain_item
+      ~RepositorySequencingProcessor.is_package
+      ~RepositorySequencingProcessor.load
+      ~RepositorySequencingProcessor.log
+      ~RepositorySequencingProcessor.process
+      ~RepositorySequencingProcessor.save
+      ~RepositorySequencingProcessor.show
+      ~RepositorySequencingProcessor.validate_format
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~RepositorySequencingProcessor.input_type
+      ~RepositorySequencingProcessor.logger
+      ~RepositorySequencingProcessor.output_type
+      ~RepositorySequencingProcessor.valid_formats
+   
+   

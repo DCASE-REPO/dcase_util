@@ -14,6 +14,7 @@ dcase_util.containers.DataMatrix3DContainer
    .. autosummary::
    
       ~DataMatrix3DContainer.__init__
+      ~DataMatrix3DContainer.change_axis
       ~DataMatrix3DContainer.delimiter
       ~DataMatrix3DContainer.detect_file_format
       ~DataMatrix3DContainer.empty

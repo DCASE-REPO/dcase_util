@@ -19,6 +19,7 @@ dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet
       ~TUTAcousticScenes_2016_DevelopmentSet.dataset_bytes
       ~TUTAcousticScenes_2016_DevelopmentSet.dataset_size_on_disk
       ~TUTAcousticScenes_2016_DevelopmentSet.dataset_size_string
+      ~TUTAcousticScenes_2016_DevelopmentSet.debug_packages
       ~TUTAcousticScenes_2016_DevelopmentSet.download_packages
       ~TUTAcousticScenes_2016_DevelopmentSet.eval
       ~TUTAcousticScenes_2016_DevelopmentSet.eval_files

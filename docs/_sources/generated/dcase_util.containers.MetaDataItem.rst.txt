@@ -20,7 +20,11 @@ dcase_util.containers.MetaDataItem
       ~MetaDataItem.fromkeys
       ~MetaDataItem.get
       ~MetaDataItem.get_list
+      ~MetaDataItem.has_key
       ~MetaDataItem.items
+      ~MetaDataItem.iteritems
+      ~MetaDataItem.iterkeys
+      ~MetaDataItem.itervalues
       ~MetaDataItem.keys
       ~MetaDataItem.log
       ~MetaDataItem.pop
@@ -29,6 +33,9 @@ dcase_util.containers.MetaDataItem
       ~MetaDataItem.show
       ~MetaDataItem.update
       ~MetaDataItem.values
+      ~MetaDataItem.viewitems
+      ~MetaDataItem.viewkeys
+      ~MetaDataItem.viewvalues
    
    
 

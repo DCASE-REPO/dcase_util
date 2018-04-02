@@ -27,12 +27,14 @@ dcase_util.containers.AudioContainer
       ~AudioContainer.log
       ~AudioContainer.mixdown
       ~AudioContainer.normalize
+      ~AudioContainer.pad
       ~AudioContainer.plot
       ~AudioContainer.plot_spec
       ~AudioContainer.plot_wave
       ~AudioContainer.resample
       ~AudioContainer.reset_focus
       ~AudioContainer.save
+      ~AudioContainer.segments
       ~AudioContainer.set_focus
       ~AudioContainer.show
       ~AudioContainer.validate_format

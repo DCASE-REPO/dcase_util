@@ -15,16 +15,16 @@ dcase_util.containers.ParameterListContainer
    
       ~ParameterListContainer.__init__
       ~ParameterListContainer.append
-      ~ParameterListContainer.clear
-      ~ParameterListContainer.copy
       ~ParameterListContainer.count
       ~ParameterListContainer.delimiter
       ~ParameterListContainer.detect_file_format
       ~ParameterListContainer.empty
       ~ParameterListContainer.exists
       ~ParameterListContainer.extend
+      ~ParameterListContainer.filter
       ~ParameterListContainer.get_dump_content
       ~ParameterListContainer.get_field
+      ~ParameterListContainer.get_field_unique
       ~ParameterListContainer.get_file_information
       ~ParameterListContainer.index
       ~ParameterListContainer.insert

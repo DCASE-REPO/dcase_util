@@ -17,23 +17,14 @@ dcase_util.processors.ManyHotEncodingProcessor
       ~ManyHotEncodingProcessor.delimiter
       ~ManyHotEncodingProcessor.detect_file_format
       ~ManyHotEncodingProcessor.empty
-      ~ManyHotEncodingProcessor.encode
       ~ManyHotEncodingProcessor.exists
-      ~ManyHotEncodingProcessor.freeze
       ~ManyHotEncodingProcessor.get_file_information
-      ~ManyHotEncodingProcessor.get_focused
-      ~ManyHotEncodingProcessor.get_frames
       ~ManyHotEncodingProcessor.get_processing_chain_item
       ~ManyHotEncodingProcessor.is_package
       ~ManyHotEncodingProcessor.load
       ~ManyHotEncodingProcessor.log
-      ~ManyHotEncodingProcessor.pad
-      ~ManyHotEncodingProcessor.plot
       ~ManyHotEncodingProcessor.process
-      ~ManyHotEncodingProcessor.push_processing_chain_item
-      ~ManyHotEncodingProcessor.reset_focus
       ~ManyHotEncodingProcessor.save
-      ~ManyHotEncodingProcessor.set_focus
       ~ManyHotEncodingProcessor.show
       ~ManyHotEncodingProcessor.validate_format
    
@@ -45,18 +36,9 @@ dcase_util.processors.ManyHotEncodingProcessor
 
    .. autosummary::
    
-      ~ManyHotEncodingProcessor.T
-      ~ManyHotEncodingProcessor.data
-      ~ManyHotEncodingProcessor.focus_start
-      ~ManyHotEncodingProcessor.focus_stop
-      ~ManyHotEncodingProcessor.frames
       ~ManyHotEncodingProcessor.input_type
-      ~ManyHotEncodingProcessor.length
       ~ManyHotEncodingProcessor.logger
       ~ManyHotEncodingProcessor.output_type
-      ~ManyHotEncodingProcessor.shape
-      ~ManyHotEncodingProcessor.stats
       ~ManyHotEncodingProcessor.valid_formats
-      ~ManyHotEncodingProcessor.vector_length
    
    

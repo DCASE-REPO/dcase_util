@@ -14,15 +14,18 @@ dcase_util.data.RepositoryNormalizer
    .. autosummary::
    
       ~RepositoryNormalizer.__init__
+      ~RepositoryNormalizer.accumulate
       ~RepositoryNormalizer.delimiter
       ~RepositoryNormalizer.detect_file_format
       ~RepositoryNormalizer.empty
       ~RepositoryNormalizer.exists
+      ~RepositoryNormalizer.finalize
       ~RepositoryNormalizer.get_file_information
       ~RepositoryNormalizer.is_package
       ~RepositoryNormalizer.load
       ~RepositoryNormalizer.log
       ~RepositoryNormalizer.normalize
+      ~RepositoryNormalizer.reset
       ~RepositoryNormalizer.save
       ~RepositoryNormalizer.show
       ~RepositoryNormalizer.validate_format

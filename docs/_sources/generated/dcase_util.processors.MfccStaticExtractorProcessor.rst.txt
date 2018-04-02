@@ -14,14 +14,22 @@ dcase_util.processors.MfccStaticExtractorProcessor
    .. autosummary::
    
       ~MfccStaticExtractorProcessor.__init__
+      ~MfccStaticExtractorProcessor.delimiter
+      ~MfccStaticExtractorProcessor.detect_file_format
+      ~MfccStaticExtractorProcessor.empty
+      ~MfccStaticExtractorProcessor.exists
       ~MfccStaticExtractorProcessor.extract
+      ~MfccStaticExtractorProcessor.get_file_information
       ~MfccStaticExtractorProcessor.get_processing_chain_item
       ~MfccStaticExtractorProcessor.get_spectrogram
       ~MfccStaticExtractorProcessor.get_window_function
+      ~MfccStaticExtractorProcessor.is_package
+      ~MfccStaticExtractorProcessor.load
       ~MfccStaticExtractorProcessor.log
       ~MfccStaticExtractorProcessor.process
-      ~MfccStaticExtractorProcessor.push_processing_chain_item
+      ~MfccStaticExtractorProcessor.save
       ~MfccStaticExtractorProcessor.show
+      ~MfccStaticExtractorProcessor.validate_format
    
    
 
@@ -35,5 +43,6 @@ dcase_util.processors.MfccStaticExtractorProcessor
       ~MfccStaticExtractorProcessor.label
       ~MfccStaticExtractorProcessor.logger
       ~MfccStaticExtractorProcessor.output_type
+      ~MfccStaticExtractorProcessor.valid_formats
    
    

@@ -14,6 +14,7 @@ dcase_util.data.EventRollEncoder
    .. autosummary::
    
       ~EventRollEncoder.__init__
+      ~EventRollEncoder.change_axis
       ~EventRollEncoder.delimiter
       ~EventRollEncoder.detect_file_format
       ~EventRollEncoder.empty

@@ -19,6 +19,7 @@ dcase_util.datasets.Dataset
       ~Dataset.dataset_bytes
       ~Dataset.dataset_size_on_disk
       ~Dataset.dataset_size_string
+      ~Dataset.debug_packages
       ~Dataset.download_packages
       ~Dataset.eval
       ~Dataset.eval_files

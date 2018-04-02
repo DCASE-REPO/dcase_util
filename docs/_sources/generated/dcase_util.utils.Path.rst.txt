@@ -19,6 +19,7 @@ dcase_util.utils.Path
       ~Path.file_count
       ~Path.file_list
       ~Path.makedirs
+      ~Path.modify
       ~Path.posix
       ~Path.posix_to_nt
       ~Path.size_bytes
@@ -27,5 +28,11 @@ dcase_util.utils.Path
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Path.logger
    
    

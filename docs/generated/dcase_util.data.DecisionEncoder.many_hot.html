@@ -1,0 +1,1513 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>dcase_util.data.DecisionEncoder.many_hot &mdash; DCASE Utilities 1.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="DCASE Utilities 1.0 documentation" href="../index.html"/>
+        <link rel="up" title="Data" href="../data.html"/>
+        <link rel="next" title="dcase_util.data.DecisionEncoder.find_contiguous_regions" href="dcase_util.data.DecisionEncoder.find_contiguous_regions.html"/>
+        <link rel="prev" title="dcase_util.data.DecisionEncoder.majority_vote" href="dcase_util.data.DecisionEncoder.majority_vote.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> DCASE Utilities
+          
+
+          
+            
+            <img src="../_static/dcase_util.png" class="logo" />
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation instructions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#pypi">PyPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#source">Source</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../library.html">Library</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../library.html#author">Author</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../library.html#contributing">Contributing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../library.html#testing">Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../library.html#documentation">Documentation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial_introduction.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial_introduction.html#concepts">Concepts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial_containers.html">Containers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial_containers.html#basic-usage">Basic usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial_containers.html#dictionaries">Dictionaries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial_containers.html#list-of-dictionaries">List of Dictionaries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial_containers.html#data-containers">Data Containers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial_containers.html#repositories">Repositories</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial_audio.html">Audio</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial_audio.html#creating-container">Creating container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial_audio.html#loading-and-saving">Loading and Saving</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial_audio.html#focus-segment">Focus segment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial_audio.html#frames-and-segments">Frames and Segments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial_audio.html#processing">Processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial_audio.html#visualizations">Visualizations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial_features.html">Acoustic features</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial_features.html#extracting-features">Extracting features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial_features.html#visualization">Visualization</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial_data.html">Data processing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial_data.html#data-manipulation">Data manipulation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial_data.html#normalization">Normalization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial_data.html#aggregation">Aggregation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial_data.html#sequencing">Sequencing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial_data.html#stacking">Stacking</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial_data.html#data-encoding">Data encoding</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial_data.html#one-hot">One-hot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial_data.html#many-hot">Many-hot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial_data.html#event-roll">Event roll</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial_data.html#probability-encoding">Probability encoding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial_data.html#decision-encoding">Decision encoding</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial_metadata.html">Metadata</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial_metadata.html#creating-container">Creating container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial_metadata.html#loading-and-saving">Loading and saving</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial_metadata.html#accessing-data">Accessing data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial_metadata.html#filtering">Filtering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial_metadata.html#processing">Processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial_metadata.html#event-roll">Event roll</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial_datasets.html">Datasets</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial_datasets.html#initializing-dataset">Initializing dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial_datasets.html#cross-validation-setup">Cross-validation setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial_datasets.html#meta-data">Meta data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial_processing_chain.html">Processing chain</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial_processing_chain.html#feature-extraction-and-processing">Feature extraction and processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial_processing_chain.html#meta-data-processing">Meta data processing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial_applications.html">Application examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial_applications.html#acoustic-scene-classifier">Acoustic scene classifier</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial_applications.html#dataset-initialization">Dataset initialization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial_applications.html#feature-extraction">Feature extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial_applications.html#feature-normalization">Feature normalization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial_applications.html#model-learning">Model learning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial_applications.html#testing">Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial_applications.html#evaluation">Evaluation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Utilities</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../containers.html">Containers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../containers.html#basic-containers">Basic containers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../containers.html#objectcontainer">ObjectContainer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ObjectContainer.html">dcase_util.containers.ObjectContainer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ObjectContainer.load.html">dcase_util.containers.ObjectContainer.load</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ObjectContainer.save.html">dcase_util.containers.ObjectContainer.save</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ObjectContainer.show.html">dcase_util.containers.ObjectContainer.show</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ObjectContainer.log.html">dcase_util.containers.ObjectContainer.log</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../containers.html#dictcontainer">DictContainer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DictContainer.html">dcase_util.containers.DictContainer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DictContainer.load.html">dcase_util.containers.DictContainer.load</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DictContainer.save.html">dcase_util.containers.DictContainer.save</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DictContainer.show.html">dcase_util.containers.DictContainer.show</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DictContainer.log.html">dcase_util.containers.DictContainer.log</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DictContainer.get_path.html">dcase_util.containers.DictContainer.get_path</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DictContainer.set_path.html">dcase_util.containers.DictContainer.set_path</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DictContainer.get_leaf_path_list.html">dcase_util.containers.DictContainer.get_leaf_path_list</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DictContainer.merge.html">dcase_util.containers.DictContainer.merge</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DictContainer.get_hash_for_path.html">dcase_util.containers.DictContainer.get_hash_for_path</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DictContainer.get_hash.html">dcase_util.containers.DictContainer.get_hash</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../containers.html#listcontainer">ListContainer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ListContainer.html">dcase_util.containers.ListContainer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ListContainer.load.html">dcase_util.containers.ListContainer.load</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ListContainer.save.html">dcase_util.containers.ListContainer.save</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ListContainer.show.html">dcase_util.containers.ListContainer.show</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ListContainer.log.html">dcase_util.containers.ListContainer.log</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ListContainer.update.html">dcase_util.containers.ListContainer.update</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../containers.html#listdictcontainer">ListDictContainer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ListDictContainer.html">dcase_util.containers.ListDictContainer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ListDictContainer.load.html">dcase_util.containers.ListDictContainer.load</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ListDictContainer.save.html">dcase_util.containers.ListDictContainer.save</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ListDictContainer.show.html">dcase_util.containers.ListDictContainer.show</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ListDictContainer.log.html">dcase_util.containers.ListDictContainer.log</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ListDictContainer.search.html">dcase_util.containers.ListDictContainer.search</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ListDictContainer.get_field.html">dcase_util.containers.ListDictContainer.get_field</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../containers.html#repositorycontainer">RepositoryContainer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.RepositoryContainer.html">dcase_util.containers.RepositoryContainer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.RepositoryContainer.load.html">dcase_util.containers.RepositoryContainer.load</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.RepositoryContainer.save.html">dcase_util.containers.RepositoryContainer.save</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.RepositoryContainer.show.html">dcase_util.containers.RepositoryContainer.show</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.RepositoryContainer.log.html">dcase_util.containers.RepositoryContainer.log</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../containers.html#textcontainer">TextContainer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.TextContainer.html">dcase_util.containers.TextContainer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.TextContainer.load.html">dcase_util.containers.TextContainer.load</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.TextContainer.save.html">dcase_util.containers.TextContainer.save</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.TextContainer.show.html">dcase_util.containers.TextContainer.show</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.TextContainer.log.html">dcase_util.containers.TextContainer.log</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../containers.html#data-containers">Data containers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../containers.html#datacontainer">DataContainer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataContainer.html">dcase_util.containers.DataContainer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataContainer.load.html">dcase_util.containers.DataContainer.load</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataContainer.save.html">dcase_util.containers.DataContainer.save</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataContainer.show.html">dcase_util.containers.DataContainer.show</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataContainer.log.html">dcase_util.containers.DataContainer.log</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataContainer.data.html">dcase_util.containers.DataContainer.data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataContainer.shape.html">dcase_util.containers.DataContainer.shape</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataContainer.length.html">dcase_util.containers.DataContainer.length</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataContainer.frames.html">dcase_util.containers.DataContainer.frames</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataContainer.push_processing_chain_item.html">dcase_util.containers.DataContainer.push_processing_chain_item</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataContainer.focus_start.html">dcase_util.containers.DataContainer.focus_start</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataContainer.focus_stop.html">dcase_util.containers.DataContainer.focus_stop</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataContainer.stats.html">dcase_util.containers.DataContainer.stats</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataContainer.reset_focus.html">dcase_util.containers.DataContainer.reset_focus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataContainer.get_focused.html">dcase_util.containers.DataContainer.get_focused</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataContainer.freeze.html">dcase_util.containers.DataContainer.freeze</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataContainer.get_frames.html">dcase_util.containers.DataContainer.get_frames</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataContainer.plot.html">dcase_util.containers.DataContainer.plot</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../containers.html#dataarraycontainer">DataArrayContainer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataArrayContainer.html">dcase_util.containers.DataArrayContainer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataArrayContainer.load.html">dcase_util.containers.DataArrayContainer.load</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataArrayContainer.save.html">dcase_util.containers.DataArrayContainer.save</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataArrayContainer.show.html">dcase_util.containers.DataArrayContainer.show</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataArrayContainer.log.html">dcase_util.containers.DataArrayContainer.log</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataArrayContainer.data.html">dcase_util.containers.DataArrayContainer.data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataArrayContainer.shape.html">dcase_util.containers.DataArrayContainer.shape</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataArrayContainer.length.html">dcase_util.containers.DataArrayContainer.length</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataArrayContainer.frames.html">dcase_util.containers.DataArrayContainer.frames</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataArrayContainer.push_processing_chain_item.html">dcase_util.containers.DataArrayContainer.push_processing_chain_item</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataArrayContainer.focus_start.html">dcase_util.containers.DataArrayContainer.focus_start</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataArrayContainer.focus_stop.html">dcase_util.containers.DataArrayContainer.focus_stop</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataArrayContainer.stats.html">dcase_util.containers.DataArrayContainer.stats</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataArrayContainer.reset_focus.html">dcase_util.containers.DataArrayContainer.reset_focus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataArrayContainer.get_focused.html">dcase_util.containers.DataArrayContainer.get_focused</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataArrayContainer.freeze.html">dcase_util.containers.DataArrayContainer.freeze</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataArrayContainer.get_frames.html">dcase_util.containers.DataArrayContainer.get_frames</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataArrayContainer.plot.html">dcase_util.containers.DataArrayContainer.plot</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../containers.html#datamatrix2dcontainer">DataMatrix2DContainer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataMatrix2DContainer.html">dcase_util.containers.DataMatrix2DContainer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataMatrix2DContainer.load.html">dcase_util.containers.DataMatrix2DContainer.load</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataMatrix2DContainer.save.html">dcase_util.containers.DataMatrix2DContainer.save</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataMatrix2DContainer.show.html">dcase_util.containers.DataMatrix2DContainer.show</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataMatrix2DContainer.log.html">dcase_util.containers.DataMatrix2DContainer.log</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataMatrix2DContainer.data.html">dcase_util.containers.DataMatrix2DContainer.data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataMatrix2DContainer.shape.html">dcase_util.containers.DataMatrix2DContainer.shape</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataMatrix2DContainer.length.html">dcase_util.containers.DataMatrix2DContainer.length</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataMatrix2DContainer.frames.html">dcase_util.containers.DataMatrix2DContainer.frames</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataMatrix2DContainer.vector_length.html">dcase_util.containers.DataMatrix2DContainer.vector_length</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataMatrix2DContainer.push_processing_chain_item.html">dcase_util.containers.DataMatrix2DContainer.push_processing_chain_item</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataMatrix2DContainer.focus_start.html">dcase_util.containers.DataMatrix2DContainer.focus_start</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataMatrix2DContainer.focus_stop.html">dcase_util.containers.DataMatrix2DContainer.focus_stop</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataMatrix2DContainer.T.html">dcase_util.containers.DataMatrix2DContainer.T</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataMatrix2DContainer.stats.html">dcase_util.containers.DataMatrix2DContainer.stats</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataMatrix2DContainer.reset_focus.html">dcase_util.containers.DataMatrix2DContainer.reset_focus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataMatrix2DContainer.get_focused.html">dcase_util.containers.DataMatrix2DContainer.get_focused</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataMatrix2DContainer.freeze.html">dcase_util.containers.DataMatrix2DContainer.freeze</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataMatrix2DContainer.get_frames.html">dcase_util.containers.DataMatrix2DContainer.get_frames</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataMatrix2DContainer.plot.html">dcase_util.containers.DataMatrix2DContainer.plot</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../containers.html#datamatrix3dcontainer">DataMatrix3DContainer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataMatrix3DContainer.html">dcase_util.containers.DataMatrix3DContainer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataMatrix3DContainer.load.html">dcase_util.containers.DataMatrix3DContainer.load</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataMatrix3DContainer.save.html">dcase_util.containers.DataMatrix3DContainer.save</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataMatrix3DContainer.show.html">dcase_util.containers.DataMatrix3DContainer.show</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataMatrix3DContainer.log.html">dcase_util.containers.DataMatrix3DContainer.log</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataMatrix3DContainer.data.html">dcase_util.containers.DataMatrix3DContainer.data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataMatrix3DContainer.length.html">dcase_util.containers.DataMatrix3DContainer.length</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataMatrix3DContainer.frames.html">dcase_util.containers.DataMatrix3DContainer.frames</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../containers.html#binarymatrix2dcontainer">BinaryMatrix2DContainer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.BinaryMatrix2DContainer.html">dcase_util.containers.BinaryMatrix2DContainer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.BinaryMatrix2DContainer.load.html">dcase_util.containers.BinaryMatrix2DContainer.load</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.BinaryMatrix2DContainer.save.html">dcase_util.containers.BinaryMatrix2DContainer.save</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.BinaryMatrix2DContainer.show.html">dcase_util.containers.BinaryMatrix2DContainer.show</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.BinaryMatrix2DContainer.log.html">dcase_util.containers.BinaryMatrix2DContainer.log</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.BinaryMatrix2DContainer.data.html">dcase_util.containers.BinaryMatrix2DContainer.data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.BinaryMatrix2DContainer.length.html">dcase_util.containers.BinaryMatrix2DContainer.length</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.BinaryMatrix2DContainer.frames.html">dcase_util.containers.BinaryMatrix2DContainer.frames</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.BinaryMatrix2DContainer.pad.html">dcase_util.containers.BinaryMatrix2DContainer.pad</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.BinaryMatrix2DContainer.plot.html">dcase_util.containers.BinaryMatrix2DContainer.plot</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../containers.html#datarepository">DataRepository</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataRepository.html">dcase_util.containers.DataRepository</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataRepository.load.html">dcase_util.containers.DataRepository.load</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataRepository.get_container.html">dcase_util.containers.DataRepository.get_container</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataRepository.set_container.html">dcase_util.containers.DataRepository.set_container</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataRepository.push_processing_chain_item.html">dcase_util.containers.DataRepository.push_processing_chain_item</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DataRepository.plot.html">dcase_util.containers.DataRepository.plot</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../containers.html#audio-containers">Audio containers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../containers.html#audiocontainer">AudioContainer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AudioContainer.html">dcase_util.containers.AudioContainer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AudioContainer.load.html">dcase_util.containers.AudioContainer.load</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AudioContainer.load_from_youtube.html">dcase_util.containers.AudioContainer.load_from_youtube</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AudioContainer.save.html">dcase_util.containers.AudioContainer.save</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AudioContainer.show.html">dcase_util.containers.AudioContainer.show</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AudioContainer.log.html">dcase_util.containers.AudioContainer.log</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AudioContainer.data.html">dcase_util.containers.AudioContainer.data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AudioContainer.focus_start_samples.html">dcase_util.containers.AudioContainer.focus_start_samples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AudioContainer.focus_start_seconds.html">dcase_util.containers.AudioContainer.focus_start_seconds</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AudioContainer.focus_stop_samples.html">dcase_util.containers.AudioContainer.focus_stop_samples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AudioContainer.focus_stop_seconds.html">dcase_util.containers.AudioContainer.focus_stop_seconds</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AudioContainer.focus_channel.html">dcase_util.containers.AudioContainer.focus_channel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AudioContainer.loaded.html">dcase_util.containers.AudioContainer.loaded</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AudioContainer.shape.html">dcase_util.containers.AudioContainer.shape</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AudioContainer.length.html">dcase_util.containers.AudioContainer.length</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AudioContainer.duration_samples.html">dcase_util.containers.AudioContainer.duration_samples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AudioContainer.duration_ms.html">dcase_util.containers.AudioContainer.duration_ms</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AudioContainer.duration_sec.html">dcase_util.containers.AudioContainer.duration_sec</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AudioContainer.streams.html">dcase_util.containers.AudioContainer.streams</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AudioContainer.empty.html">dcase_util.containers.AudioContainer.empty</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AudioContainer.reset_focus.html">dcase_util.containers.AudioContainer.reset_focus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AudioContainer.set_focus.html">dcase_util.containers.AudioContainer.set_focus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AudioContainer.get_focused.html">dcase_util.containers.AudioContainer.get_focused</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AudioContainer.freeze.html">dcase_util.containers.AudioContainer.freeze</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AudioContainer.frames.html">dcase_util.containers.AudioContainer.frames</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AudioContainer.normalize.html">dcase_util.containers.AudioContainer.normalize</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AudioContainer.resample.html">dcase_util.containers.AudioContainer.resample</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AudioContainer.mixdown.html">dcase_util.containers.AudioContainer.mixdown</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AudioContainer.plot.html">dcase_util.containers.AudioContainer.plot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AudioContainer.plot_wave.html">dcase_util.containers.AudioContainer.plot_wave</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AudioContainer.plot_spec.html">dcase_util.containers.AudioContainer.plot_spec</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../containers.html#feature-containers">Feature containers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../containers.html#featurecontainer">FeatureContainer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.FeatureContainer.html">dcase_util.containers.FeatureContainer</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../containers.html#featurerepository">FeatureRepository</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.FeatureRepository.html">dcase_util.containers.FeatureRepository</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../containers.html#mapping-containers">Mapping containers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../containers.html#onetoonemappingcontainer">OneToOneMappingContainer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.OneToOneMappingContainer.html">dcase_util.containers.OneToOneMappingContainer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.OneToOneMappingContainer.load.html">dcase_util.containers.OneToOneMappingContainer.load</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.OneToOneMappingContainer.save.html">dcase_util.containers.OneToOneMappingContainer.save</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.OneToOneMappingContainer.show.html">dcase_util.containers.OneToOneMappingContainer.show</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.OneToOneMappingContainer.log.html">dcase_util.containers.OneToOneMappingContainer.log</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.OneToOneMappingContainer.map.html">dcase_util.containers.OneToOneMappingContainer.map</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.OneToOneMappingContainer.flipped.html">dcase_util.containers.OneToOneMappingContainer.flipped</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../containers.html#metadata-containers">Metadata containers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../containers.html#metadataitem">MetaDataItem</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataItem.html">dcase_util.containers.MetaDataItem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataItem.show.html">dcase_util.containers.MetaDataItem.show</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataItem.log.html">dcase_util.containers.MetaDataItem.log</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataItem.id.html">dcase_util.containers.MetaDataItem.id</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataItem.get_list.html">dcase_util.containers.MetaDataItem.get_list</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataItem.filename.html">dcase_util.containers.MetaDataItem.filename</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataItem.filename_original.html">dcase_util.containers.MetaDataItem.filename_original</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataItem.scene_label.html">dcase_util.containers.MetaDataItem.scene_label</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataItem.event_label.html">dcase_util.containers.MetaDataItem.event_label</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataItem.onset.html">dcase_util.containers.MetaDataItem.onset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataItem.offset.html">dcase_util.containers.MetaDataItem.offset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataItem.identifier.html">dcase_util.containers.MetaDataItem.identifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataItem.source_label.html">dcase_util.containers.MetaDataItem.source_label</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataItem.tags.html">dcase_util.containers.MetaDataItem.tags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataItem.active_within_segment.html">dcase_util.containers.MetaDataItem.active_within_segment</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../containers.html#metadatacontainer">MetaDataContainer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.html">dcase_util.containers.MetaDataContainer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.log.html">dcase_util.containers.MetaDataContainer.log</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.log_all.html">dcase_util.containers.MetaDataContainer.log_all</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.show.html">dcase_util.containers.MetaDataContainer.show</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.show_all.html">dcase_util.containers.MetaDataContainer.show_all</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.load.html">dcase_util.containers.MetaDataContainer.load</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.save.html">dcase_util.containers.MetaDataContainer.save</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.append.html">dcase_util.containers.MetaDataContainer.append</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.file_count.html">dcase_util.containers.MetaDataContainer.file_count</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.event_count.html">dcase_util.containers.MetaDataContainer.event_count</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.scene_label_count.html">dcase_util.containers.MetaDataContainer.scene_label_count</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.event_label_count.html">dcase_util.containers.MetaDataContainer.event_label_count</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.identifier_count.html">dcase_util.containers.MetaDataContainer.identifier_count</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.tag_count.html">dcase_util.containers.MetaDataContainer.tag_count</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.unique_files.html">dcase_util.containers.MetaDataContainer.unique_files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.unique_event_labels.html">dcase_util.containers.MetaDataContainer.unique_event_labels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.unique_scene_labels.html">dcase_util.containers.MetaDataContainer.unique_scene_labels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.unique_tags.html">dcase_util.containers.MetaDataContainer.unique_tags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.unique_identifiers.html">dcase_util.containers.MetaDataContainer.unique_identifiers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.max_offset.html">dcase_util.containers.MetaDataContainer.max_offset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.get_string.html">dcase_util.containers.MetaDataContainer.get_string</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.filter.html">dcase_util.containers.MetaDataContainer.filter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.filter_time_segment.html">dcase_util.containers.MetaDataContainer.filter_time_segment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.process_events.html">dcase_util.containers.MetaDataContainer.process_events</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.add_time.html">dcase_util.containers.MetaDataContainer.add_time</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.stats.html">dcase_util.containers.MetaDataContainer.stats</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.scene_stat_counts.html">dcase_util.containers.MetaDataContainer.scene_stat_counts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.event_stat_counts.html">dcase_util.containers.MetaDataContainer.event_stat_counts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.tag_stat_counts.html">dcase_util.containers.MetaDataContainer.tag_stat_counts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.to_event_roll.html">dcase_util.containers.MetaDataContainer.to_event_roll</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.intersection.html">dcase_util.containers.MetaDataContainer.intersection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.intersection_report.html">dcase_util.containers.MetaDataContainer.intersection_report</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.difference.html">dcase_util.containers.MetaDataContainer.difference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../containers.html#parameter-containers">Parameter containers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../containers.html#parametercontainer">ParameterContainer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ParameterContainer.html">dcase_util.containers.ParameterContainer</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../containers.html#appparametercontainer">AppParameterContainer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AppParameterContainer.html">dcase_util.containers.AppParameterContainer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AppParameterContainer.reset.html">dcase_util.containers.AppParameterContainer.reset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AppParameterContainer.process.html">dcase_util.containers.AppParameterContainer.process</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AppParameterContainer.override.html">dcase_util.containers.AppParameterContainer.override</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AppParameterContainer.get_path_translated.html">dcase_util.containers.AppParameterContainer.get_path_translated</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AppParameterContainer.set_path_translated.html">dcase_util.containers.AppParameterContainer.set_path_translated</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../containers.html#dcaseappparametercontainer">DCASEAppParameterContainer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.DCASEAppParameterContainer.html">dcase_util.containers.DCASEAppParameterContainer</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../containers.html#parameterlistcontainer">ParameterListContainer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ParameterListContainer.html">dcase_util.containers.ParameterListContainer</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../containers.html#probability-containers">Probability containers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../containers.html#probabilityitem">ProbabilityItem</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ProbabilityItem.html">dcase_util.containers.ProbabilityItem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ProbabilityItem.show.html">dcase_util.containers.ProbabilityItem.show</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ProbabilityItem.log.html">dcase_util.containers.ProbabilityItem.log</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ProbabilityItem.filename.html">dcase_util.containers.ProbabilityItem.filename</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ProbabilityItem.label.html">dcase_util.containers.ProbabilityItem.label</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ProbabilityItem.probability.html">dcase_util.containers.ProbabilityItem.probability</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ProbabilityItem.id.html">dcase_util.containers.ProbabilityItem.id</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ProbabilityItem.get_list.html">dcase_util.containers.ProbabilityItem.get_list</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../containers.html#probabilitycontainer">ProbabilityContainer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ProbabilityContainer.html">dcase_util.containers.ProbabilityContainer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ProbabilityContainer.show.html">dcase_util.containers.ProbabilityContainer.show</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ProbabilityContainer.log.html">dcase_util.containers.ProbabilityContainer.log</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ProbabilityContainer.load.html">dcase_util.containers.ProbabilityContainer.load</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ProbabilityContainer.save.html">dcase_util.containers.ProbabilityContainer.save</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ProbabilityContainer.append.html">dcase_util.containers.ProbabilityContainer.append</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ProbabilityContainer.unique_files.html">dcase_util.containers.ProbabilityContainer.unique_files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ProbabilityContainer.unique_labels.html">dcase_util.containers.ProbabilityContainer.unique_labels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ProbabilityContainer.filter.html">dcase_util.containers.ProbabilityContainer.filter</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../containers.html#mixins">Mixins</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../containers.html#containermixin">ContainerMixin</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ContainerMixin.html">dcase_util.containers.ContainerMixin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ContainerMixin.show.html">dcase_util.containers.ContainerMixin.show</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ContainerMixin.log.html">dcase_util.containers.ContainerMixin.log</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../containers.html#filemixin">FileMixin</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.FileMixin.html">dcase_util.containers.FileMixin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.FileMixin.get_file_information.html">dcase_util.containers.FileMixin.get_file_information</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.FileMixin.detect_file_format.html">dcase_util.containers.FileMixin.detect_file_format</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.FileMixin.validate_format.html">dcase_util.containers.FileMixin.validate_format</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.FileMixin.exists.html">dcase_util.containers.FileMixin.exists</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.FileMixin.empty.html">dcase_util.containers.FileMixin.empty</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.FileMixin.delimiter.html">dcase_util.containers.FileMixin.delimiter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.FileMixin.is_package.html">dcase_util.containers.FileMixin.is_package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../containers.html#packagemixin">PackageMixin</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.PackageMixin.html">dcase_util.containers.PackageMixin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.PackageMixin.package_password.html">dcase_util.containers.PackageMixin.package_password</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.PackageMixin.extract.html">dcase_util.containers.PackageMixin.extract</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../data.html">Data</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../data.html#buffers">Buffers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../data.html#databuffer">DataBuffer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.DataBuffer.html">dcase_util.data.DataBuffer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.DataBuffer.set.html">dcase_util.data.DataBuffer.set</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.DataBuffer.get.html">dcase_util.data.DataBuffer.get</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.DataBuffer.clear.html">dcase_util.data.DataBuffer.clear</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.DataBuffer.count.html">dcase_util.data.DataBuffer.count</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.DataBuffer.full.html">dcase_util.data.DataBuffer.full</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.DataBuffer.key_exists.html">dcase_util.data.DataBuffer.key_exists</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../data.html#encoders">Encoders</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../data.html#binarymatrixencoder">BinaryMatrixEncoder</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.BinaryMatrixEncoder.html">dcase_util.data.BinaryMatrixEncoder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.BinaryMatrixEncoder.pad.html">dcase_util.data.BinaryMatrixEncoder.pad</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.BinaryMatrixEncoder.plot.html">dcase_util.data.BinaryMatrixEncoder.plot</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../data.html#onehotencoder">OneHotEncoder</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.OneHotEncoder.html">dcase_util.data.OneHotEncoder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.OneHotEncoder.encode.html">dcase_util.data.OneHotEncoder.encode</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../data.html#manyhotencoder">ManyHotEncoder</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.ManyHotEncoder.html">dcase_util.data.ManyHotEncoder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.ManyHotEncoder.encode.html">dcase_util.data.ManyHotEncoder.encode</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../data.html#eventrollencoder">EventRollEncoder</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.EventRollEncoder.html">dcase_util.data.EventRollEncoder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.EventRollEncoder.encode.html">dcase_util.data.EventRollEncoder.encode</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../data.html#data-manipulators">Data manipulators</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../data.html#normalizer">Normalizer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.Normalizer.html">dcase_util.data.Normalizer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.Normalizer.log.html">dcase_util.data.Normalizer.log</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.Normalizer.show.html">dcase_util.data.Normalizer.show</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.Normalizer.load.html">dcase_util.data.Normalizer.load</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.Normalizer.save.html">dcase_util.data.Normalizer.save</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.Normalizer.mean.html">dcase_util.data.Normalizer.mean</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.Normalizer.std.html">dcase_util.data.Normalizer.std</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.Normalizer.reset.html">dcase_util.data.Normalizer.reset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.Normalizer.accumulate.html">dcase_util.data.Normalizer.accumulate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.Normalizer.finalize.html">dcase_util.data.Normalizer.finalize</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.Normalizer.normalize.html">dcase_util.data.Normalizer.normalize</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../data.html#repositorynormalizer">RepositoryNormalizer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.RepositoryNormalizer.html">dcase_util.data.RepositoryNormalizer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.RepositoryNormalizer.load.html">dcase_util.data.RepositoryNormalizer.load</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.RepositoryNormalizer.normalize.html">dcase_util.data.RepositoryNormalizer.normalize</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../data.html#aggregator">Aggregator</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.Aggregator.html">dcase_util.data.Aggregator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.Aggregator.log.html">dcase_util.data.Aggregator.log</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.Aggregator.show.html">dcase_util.data.Aggregator.show</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.Aggregator.load.html">dcase_util.data.Aggregator.load</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.Aggregator.save.html">dcase_util.data.Aggregator.save</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.Aggregator.aggregate.html">dcase_util.data.Aggregator.aggregate</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../data.html#sequencer">Sequencer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.Sequencer.html">dcase_util.data.Sequencer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.Sequencer.log.html">dcase_util.data.Sequencer.log</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.Sequencer.show.html">dcase_util.data.Sequencer.show</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.Sequencer.load.html">dcase_util.data.Sequencer.load</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.Sequencer.save.html">dcase_util.data.Sequencer.save</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.Sequencer.sequence.html">dcase_util.data.Sequencer.sequence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.Sequencer.increase_shifting.html">dcase_util.data.Sequencer.increase_shifting</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../data.html#stacker">Stacker</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.Stacker.html">dcase_util.data.Stacker</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.Stacker.log.html">dcase_util.data.Stacker.log</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.Stacker.show.html">dcase_util.data.Stacker.show</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.Stacker.load.html">dcase_util.data.Stacker.load</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.Stacker.save.html">dcase_util.data.Stacker.save</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.Stacker.stack.html">dcase_util.data.Stacker.stack</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../data.html#selector">Selector</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.Selector.html">dcase_util.data.Selector</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.Selector.log.html">dcase_util.data.Selector.log</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.Selector.show.html">dcase_util.data.Selector.show</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.Selector.load.html">dcase_util.data.Selector.load</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.Selector.save.html">dcase_util.data.Selector.save</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.Selector.select.html">dcase_util.data.Selector.select</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../data.html#masker">Masker</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.Masker.html">dcase_util.data.Masker</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.Masker.log.html">dcase_util.data.Masker.log</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.Masker.show.html">dcase_util.data.Masker.show</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.Masker.load.html">dcase_util.data.Masker.load</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.Masker.save.html">dcase_util.data.Masker.save</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.Masker.mask.html">dcase_util.data.Masker.mask</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../data.html#probabilities">Probabilities</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../data.html#probabilityencoder">ProbabilityEncoder</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.ProbabilityEncoder.html">dcase_util.data.ProbabilityEncoder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.ProbabilityEncoder.log.html">dcase_util.data.ProbabilityEncoder.log</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.ProbabilityEncoder.show.html">dcase_util.data.ProbabilityEncoder.show</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.ProbabilityEncoder.load.html">dcase_util.data.ProbabilityEncoder.load</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.ProbabilityEncoder.save.html">dcase_util.data.ProbabilityEncoder.save</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.ProbabilityEncoder.collapse_probabilities.html">dcase_util.data.ProbabilityEncoder.collapse_probabilities</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.ProbabilityEncoder.collapse_probabilities_windowed.html">dcase_util.data.ProbabilityEncoder.collapse_probabilities_windowed</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.ProbabilityEncoder.binarization.html">dcase_util.data.ProbabilityEncoder.binarization</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="../data.html#decisions">Decisions</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../data.html#decisionencoder">DecisionEncoder</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.DecisionEncoder.html">dcase_util.data.DecisionEncoder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.DecisionEncoder.log.html">dcase_util.data.DecisionEncoder.log</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.DecisionEncoder.show.html">dcase_util.data.DecisionEncoder.show</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.DecisionEncoder.load.html">dcase_util.data.DecisionEncoder.load</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.DecisionEncoder.save.html">dcase_util.data.DecisionEncoder.save</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.DecisionEncoder.majority_vote.html">dcase_util.data.DecisionEncoder.majority_vote</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">dcase_util.data.DecisionEncoder.many_hot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.DecisionEncoder.find_contiguous_regions.html">dcase_util.data.DecisionEncoder.find_contiguous_regions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.DecisionEncoder.process_activity.html">dcase_util.data.DecisionEncoder.process_activity</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../datasets.html">Datasets</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../datasets.html#id1">Dataset</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.html">dcase_util.datasets.Dataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.initialize.html">dcase_util.datasets.Dataset.initialize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.download_packages.html">dcase_util.datasets.Dataset.download_packages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.extract_packages.html">dcase_util.datasets.Dataset.extract_packages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.debug_packages.html">dcase_util.datasets.Dataset.debug_packages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.prepare.html">dcase_util.datasets.Dataset.prepare</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.process_meta_item.html">dcase_util.datasets.Dataset.process_meta_item</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.check_filelist.html">dcase_util.datasets.Dataset.check_filelist</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.show.html">dcase_util.datasets.Dataset.show</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.log.html">dcase_util.datasets.Dataset.log</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.load.html">dcase_util.datasets.Dataset.load</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.load_meta.html">dcase_util.datasets.Dataset.load_meta</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.load_crossvalidation_data.html">dcase_util.datasets.Dataset.load_crossvalidation_data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.audio_files.html">dcase_util.datasets.Dataset.audio_files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.audio_file_count.html">dcase_util.datasets.Dataset.audio_file_count</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.meta.html">dcase_util.datasets.Dataset.meta</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.meta_count.html">dcase_util.datasets.Dataset.meta_count</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.error_meta.html">dcase_util.datasets.Dataset.error_meta</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.error_meta_count.html">dcase_util.datasets.Dataset.error_meta_count</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.folds.html">dcase_util.datasets.Dataset.folds</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.fold_count.html">dcase_util.datasets.Dataset.fold_count</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.evaluation_setup_filename.html">dcase_util.datasets.Dataset.evaluation_setup_filename</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.train.html">dcase_util.datasets.Dataset.train</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.test.html">dcase_util.datasets.Dataset.test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.eval.html">dcase_util.datasets.Dataset.eval</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.train_files.html">dcase_util.datasets.Dataset.train_files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.test_files.html">dcase_util.datasets.Dataset.test_files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.eval_files.html">dcase_util.datasets.Dataset.eval_files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.validation_split.html">dcase_util.datasets.Dataset.validation_split</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.validation_files_dataset.html">dcase_util.datasets.Dataset.validation_files_dataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.validation_files_random.html">dcase_util.datasets.Dataset.validation_files_random</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.validation_files_balanced.html">dcase_util.datasets.Dataset.validation_files_balanced</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.scene_labels.html">dcase_util.datasets.Dataset.scene_labels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.scene_label_count.html">dcase_util.datasets.Dataset.scene_label_count</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.event_labels.html">dcase_util.datasets.Dataset.event_labels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.event_label_count.html">dcase_util.datasets.Dataset.event_label_count</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.tags.html">dcase_util.datasets.Dataset.tags</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.tag_count.html">dcase_util.datasets.Dataset.tag_count</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.file_meta.html">dcase_util.datasets.Dataset.file_meta</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.file_error_meta.html">dcase_util.datasets.Dataset.file_error_meta</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.file_features.html">dcase_util.datasets.Dataset.file_features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.relative_to_absolute_path.html">dcase_util.datasets.Dataset.relative_to_absolute_path</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.absolute_to_relative_path.html">dcase_util.datasets.Dataset.absolute_to_relative_path</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.dataset_bytes.html">dcase_util.datasets.Dataset.dataset_bytes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.dataset_size_string.html">dcase_util.datasets.Dataset.dataset_size_string</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.Dataset.dataset_size_on_disk.html">dcase_util.datasets.Dataset.dataset_size_on_disk</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets.html#acousticscenedataset">AcousticSceneDataset</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.AcousticSceneDataset.html">dcase_util.datasets.AcousticSceneDataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTAcousticScenes_2017_DevelopmentSet.html">dcase_util.datasets.TUTAcousticScenes_2017_DevelopmentSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTAcousticScenes_2017_EvaluationSet.html">dcase_util.datasets.TUTAcousticScenes_2017_EvaluationSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet.html">dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet.html">dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets.html#soundeventdataset">SoundEventDataset</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.SoundEventDataset.html">dcase_util.datasets.SoundEventDataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.SoundEventDataset.event_label_count.html">dcase_util.datasets.SoundEventDataset.event_label_count</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.SoundEventDataset.event_labels.html">dcase_util.datasets.SoundEventDataset.event_labels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.SoundEventDataset.train.html">dcase_util.datasets.SoundEventDataset.train</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.SoundEventDataset.test.html">dcase_util.datasets.SoundEventDataset.test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTRareSoundEvents_2017_DevelopmentSet.html">dcase_util.datasets.TUTRareSoundEvents_2017_DevelopmentSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTRareSoundEvents_2017_EvaluationSet.html">dcase_util.datasets.TUTRareSoundEvents_2017_EvaluationSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTSoundEvents_2017_DevelopmentSet.html">dcase_util.datasets.TUTSoundEvents_2017_DevelopmentSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTSoundEvents_2017_EvaluationSet.html">dcase_util.datasets.TUTSoundEvents_2017_EvaluationSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTSoundEvents_2016_DevelopmentSet.html">dcase_util.datasets.TUTSoundEvents_2016_DevelopmentSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTSoundEvents_2016_EvaluationSet.html">dcase_util.datasets.TUTSoundEvents_2016_EvaluationSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUT_SED_Synthetic_2016.html">dcase_util.datasets.TUT_SED_Synthetic_2016</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets.html#audiotaggingdataset">AudioTaggingDataset</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.AudioTaggingDataset.html">dcase_util.datasets.AudioTaggingDataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.DCASE2017_Task4tagging_DevelopmentSet.html">dcase_util.datasets.DCASE2017_Task4tagging_DevelopmentSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.DCASE2017_Task4tagging_EvaluationSet.html">dcase_util.datasets.DCASE2017_Task4tagging_EvaluationSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.CHiMEHome_DomesticAudioTag_DevelopmentSet.html">dcase_util.datasets.CHiMEHome_DomesticAudioTag_DevelopmentSet</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../decorators.html">Decorators</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../decorators.html#runonce">RunOnce</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.decorators.RunOnce.html">dcase_util.decorators.RunOnce</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../features.html">Features</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../features.html#featureextractor">FeatureExtractor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.features.FeatureExtractor.html">dcase_util.features.FeatureExtractor</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../features.html#spectralfeatureextractor">SpectralFeatureExtractor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.features.SpectralFeatureExtractor.html">dcase_util.features.SpectralFeatureExtractor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.features.SpectralFeatureExtractor.extract.html">dcase_util.features.SpectralFeatureExtractor.extract</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.features.SpectralFeatureExtractor.get_window_function.html">dcase_util.features.SpectralFeatureExtractor.get_window_function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.features.SpectralFeatureExtractor.get_spectrogram.html">dcase_util.features.SpectralFeatureExtractor.get_spectrogram</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../features.html#melextractor">MelExtractor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.features.MelExtractor.html">dcase_util.features.MelExtractor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.features.MelExtractor.extract.html">dcase_util.features.MelExtractor.extract</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../features.html#mfccstaticextractor">MfccStaticExtractor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.features.MfccStaticExtractor.html">dcase_util.features.MfccStaticExtractor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.features.MfccStaticExtractor.extract.html">dcase_util.features.MfccStaticExtractor.extract</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../features.html#mfccdeltaextractor">MfccDeltaExtractor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.features.MfccDeltaExtractor.html">dcase_util.features.MfccDeltaExtractor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.features.MfccDeltaExtractor.extract.html">dcase_util.features.MfccDeltaExtractor.extract</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../features.html#mfccaccelerationextractor">MfccAccelerationExtractor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.features.MfccAccelerationExtractor.html">dcase_util.features.MfccAccelerationExtractor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.features.MfccAccelerationExtractor.extract.html">dcase_util.features.MfccAccelerationExtractor.extract</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../features.html#zerocrossingrateextractor">ZeroCrossingRateExtractor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.features.ZeroCrossingRateExtractor.html">dcase_util.features.ZeroCrossingRateExtractor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.features.ZeroCrossingRateExtractor.extract.html">dcase_util.features.ZeroCrossingRateExtractor.extract</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../features.html#rmsenergyextractor">RMSEnergyExtractor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.features.RMSEnergyExtractor.html">dcase_util.features.RMSEnergyExtractor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.features.RMSEnergyExtractor.extract.html">dcase_util.features.RMSEnergyExtractor.extract</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../features.html#spectralcentroidextractor">SpectralCentroidExtractor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.features.SpectralCentroidExtractor.html">dcase_util.features.SpectralCentroidExtractor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.features.SpectralCentroidExtractor.extract.html">dcase_util.features.SpectralCentroidExtractor.extract</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../files.html">Files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../files.html#file">File</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.File.html">dcase_util.files.File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.File.load.html">dcase_util.files.File.load</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.File.save.html">dcase_util.files.File.save</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.File.get_file_information.html">dcase_util.files.File.get_file_information</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.File.detect_file_format.html">dcase_util.files.File.detect_file_format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.File.validate_format.html">dcase_util.files.File.validate_format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.File.exists.html">dcase_util.files.File.exists</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.File.empty.html">dcase_util.files.File.empty</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.File.delimiter.html">dcase_util.files.File.delimiter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.File.is_package.html">dcase_util.files.File.is_package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../files.html#package">Package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.Package.html">dcase_util.files.Package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.Package.extract.html">dcase_util.files.Package.extract</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.Package.compress.html">dcase_util.files.Package.compress</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.Package.detect_file_format.html">dcase_util.files.Package.detect_file_format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.Package.validate_format.html">dcase_util.files.Package.validate_format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.Package.exists.html">dcase_util.files.Package.exists</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../files.html#filelock">FileLock</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.FileLock.html">dcase_util.files.FileLock</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.FileLock.lock.html">dcase_util.files.FileLock.lock</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.FileLock.release.html">dcase_util.files.FileLock.release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.FileLock.expired.html">dcase_util.files.FileLock.expired</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.FileLock.is_locked.html">dcase_util.files.FileLock.is_locked</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.FileLock.touch.html">dcase_util.files.FileLock.touch</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../files.html#remotefile">RemoteFile</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.RemoteFile.html">dcase_util.files.RemoteFile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.RemoteFile.download.html">dcase_util.files.RemoteFile.download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.RemoteFile.is_content_type.html">dcase_util.files.RemoteFile.is_content_type</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.RemoteFile.local_md5.html">dcase_util.files.RemoteFile.local_md5</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.RemoteFile.local_modified.html">dcase_util.files.RemoteFile.local_modified</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.RemoteFile.local_bytes.html">dcase_util.files.RemoteFile.local_bytes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.RemoteFile.local_size_string.html">dcase_util.files.RemoteFile.local_size_string</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.RemoteFile.local_exists.html">dcase_util.files.RemoteFile.local_exists</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.RemoteFile.local_changed.html">dcase_util.files.RemoteFile.local_changed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.RemoteFile.remote_file.html">dcase_util.files.RemoteFile.remote_file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.RemoteFile.remote_modified.html">dcase_util.files.RemoteFile.remote_modified</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.RemoteFile.remote_bytes.html">dcase_util.files.RemoteFile.remote_bytes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.RemoteFile.remote_status.html">dcase_util.files.RemoteFile.remote_status</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.RemoteFile.remote_size_string.html">dcase_util.files.RemoteFile.remote_size_string</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.RemoteFile.remote_info.html">dcase_util.files.RemoteFile.remote_info</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.RemoteFile.remote_exists.html">dcase_util.files.RemoteFile.remote_exists</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../files.html#remotepackage">RemotePackage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.RemotePackage.html">dcase_util.files.RemotePackage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.RemotePackage.download.html">dcase_util.files.RemotePackage.download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.RemotePackage.extract.html">dcase_util.files.RemotePackage.extract</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.RemotePackage.package_password.html">dcase_util.files.RemotePackage.package_password</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.RemotePackage.is_content_type.html">dcase_util.files.RemotePackage.is_content_type</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.RemotePackage.local_md5.html">dcase_util.files.RemotePackage.local_md5</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.RemotePackage.local_modified.html">dcase_util.files.RemotePackage.local_modified</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.RemotePackage.local_bytes.html">dcase_util.files.RemotePackage.local_bytes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.RemotePackage.local_size_string.html">dcase_util.files.RemotePackage.local_size_string</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.RemotePackage.local_exists.html">dcase_util.files.RemotePackage.local_exists</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.RemotePackage.local_changed.html">dcase_util.files.RemotePackage.local_changed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.RemotePackage.remote_file.html">dcase_util.files.RemotePackage.remote_file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.RemotePackage.remote_modified.html">dcase_util.files.RemotePackage.remote_modified</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.RemotePackage.remote_bytes.html">dcase_util.files.RemotePackage.remote_bytes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.RemotePackage.remote_status.html">dcase_util.files.RemotePackage.remote_status</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.RemotePackage.remote_size_string.html">dcase_util.files.RemotePackage.remote_size_string</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.RemotePackage.remote_info.html">dcase_util.files.RemotePackage.remote_info</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.RemotePackage.remote_exists.html">dcase_util.files.RemotePackage.remote_exists</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../files.html#serializer">Serializer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.Serializer.html">dcase_util.files.Serializer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.Serializer.load_yaml.html">dcase_util.files.Serializer.load_yaml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.Serializer.load_cpickle.html">dcase_util.files.Serializer.load_cpickle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.Serializer.load_json.html">dcase_util.files.Serializer.load_json</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.Serializer.load_msgpack.html">dcase_util.files.Serializer.load_msgpack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.Serializer.load_marshal.html">dcase_util.files.Serializer.load_marshal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.Serializer.save_yaml.html">dcase_util.files.Serializer.save_yaml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.Serializer.save_cpickle.html">dcase_util.files.Serializer.save_cpickle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.Serializer.save_json.html">dcase_util.files.Serializer.save_json</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.Serializer.save_msgpack.html">dcase_util.files.Serializer.save_msgpack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.files.Serializer.save_marshal.html">dcase_util.files.Serializer.save_marshal</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../keras.html">Keras utilities</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../keras.html#model">Model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.keras.create_sequential_model.html">dcase_util.keras.create_sequential_model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.keras.model_summary_string.html">dcase_util.keras.model_summary_string</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../keras.html#callbacks">Callbacks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../keras.html#progressloggercallback">ProgressLoggerCallback</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.keras.ProgressLoggerCallback.html">dcase_util.keras.ProgressLoggerCallback</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../keras.html#progressplottercallback">ProgressPlotterCallback</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.keras.ProgressPlotterCallback.html">dcase_util.keras.ProgressPlotterCallback</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../keras.html#stoppercallback">StopperCallback</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.keras.StopperCallback.html">dcase_util.keras.StopperCallback</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../keras.html#stashercallback">StasherCallback</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.keras.StasherCallback.html">dcase_util.keras.StasherCallback</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../keras.html#basecallback">BaseCallback</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.keras.BaseCallback.html">dcase_util.keras.BaseCallback</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../keras.html#generators">Generators</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../keras.html#kerasdatasequence">KerasDataSequence</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.keras.get_keras_data_sequence_class.html">dcase_util.keras.get_keras_data_sequence_class</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../keras.html#utils">Utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.keras.setup_keras.html">dcase_util.keras.setup_keras</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.keras.create_optimizer.html">dcase_util.keras.create_optimizer</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../processors.html">Processors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../processors.html#processing-chain">Processing chain</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../processors.html#processingchainitem">ProcessingChainItem</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.ProcessingChainItem.html">dcase_util.processors.ProcessingChainItem</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../processors.html#processingchain">ProcessingChain</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.ProcessingChain.html">dcase_util.processors.ProcessingChain</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.ProcessingChain.show_chain.html">dcase_util.processors.ProcessingChain.show_chain</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.ProcessingChain.log_chain.html">dcase_util.processors.ProcessingChain.log_chain</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.ProcessingChain.push_processor.html">dcase_util.processors.ProcessingChain.push_processor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.ProcessingChain.process.html">dcase_util.processors.ProcessingChain.process</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.ProcessingChain.processor_exists.html">dcase_util.processors.ProcessingChain.processor_exists</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.ProcessingChain.processor_class_reference.html">dcase_util.processors.ProcessingChain.processor_class_reference</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.ProcessingChain.processor_class.html">dcase_util.processors.ProcessingChain.processor_class</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.ProcessingChain.chain_item_exists.html">dcase_util.processors.ProcessingChain.chain_item_exists</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.ProcessingChain.chain_item.html">dcase_util.processors.ProcessingChain.chain_item</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.ProcessingChain.call_method.html">dcase_util.processors.ProcessingChain.call_method</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../processors.html#audio">Audio</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../processors.html#audioreadingprocessor">AudioReadingProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.AudioReadingProcessor.html">dcase_util.processors.AudioReadingProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.AudioReadingProcessor.process.html">dcase_util.processors.AudioReadingProcessor.process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../processors.html#monoaudioreadingprocessor">MonoAudioReadingProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.MonoAudioReadingProcessor.html">dcase_util.processors.MonoAudioReadingProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.MonoAudioReadingProcessor.process.html">dcase_util.processors.MonoAudioReadingProcessor.process</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../processors.html#data">Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../processors.html#aggregationprocessor">AggregationProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.AggregationProcessor.html">dcase_util.processors.AggregationProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.AggregationProcessor.process.html">dcase_util.processors.AggregationProcessor.process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../processors.html#repositoryaggregationprocessor">RepositoryAggregationProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.RepositoryAggregationProcessor.html">dcase_util.processors.RepositoryAggregationProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.RepositoryAggregationProcessor.process.html">dcase_util.processors.RepositoryAggregationProcessor.process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../processors.html#sequencingprocessor">SequencingProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.SequencingProcessor.html">dcase_util.processors.SequencingProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.SequencingProcessor.process.html">dcase_util.processors.SequencingProcessor.process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../processors.html#repositorysequencingprocessor">RepositorySequencingProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.RepositorySequencingProcessor.html">dcase_util.processors.RepositorySequencingProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.RepositorySequencingProcessor.process.html">dcase_util.processors.RepositorySequencingProcessor.process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../processors.html#normalizationprocessor">NormalizationProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.NormalizationProcessor.html">dcase_util.processors.NormalizationProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.NormalizationProcessor.process.html">dcase_util.processors.NormalizationProcessor.process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../processors.html#repositorynormalizationprocessor">RepositoryNormalizationProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.RepositoryNormalizationProcessor.html">dcase_util.processors.RepositoryNormalizationProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.RepositoryNormalizationProcessor.process.html">dcase_util.processors.RepositoryNormalizationProcessor.process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../processors.html#stackingprocessor">StackingProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.StackingProcessor.html">dcase_util.processors.StackingProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.StackingProcessor.process.html">dcase_util.processors.StackingProcessor.process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../processors.html#repositorymaskingprocessor">RepositoryMaskingProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.RepositoryMaskingProcessor.html">dcase_util.processors.RepositoryMaskingProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.RepositoryMaskingProcessor.process.html">dcase_util.processors.RepositoryMaskingProcessor.process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../processors.html#onehotencodingprocessor">OneHotEncodingProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.OneHotEncodingProcessor.html">dcase_util.processors.OneHotEncodingProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.OneHotEncodingProcessor.process.html">dcase_util.processors.OneHotEncodingProcessor.process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../processors.html#manyhotencodingprocessor">ManyHotEncodingProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.ManyHotEncodingProcessor.html">dcase_util.processors.ManyHotEncodingProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.ManyHotEncodingProcessor.process.html">dcase_util.processors.ManyHotEncodingProcessor.process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../processors.html#eventrollencodingprocessor">EventRollEncodingProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.EventRollEncodingProcessor.html">dcase_util.processors.EventRollEncodingProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.EventRollEncodingProcessor.process.html">dcase_util.processors.EventRollEncodingProcessor.process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../processors.html#datashapingprocessor">DataShapingProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.DataShapingProcessor.html">dcase_util.processors.DataShapingProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.DataShapingProcessor.process.html">dcase_util.processors.DataShapingProcessor.process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../processors.html#repositorytomatrixprocessor">RepositoryToMatrixProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.RepositoryToMatrixProcessor.html">dcase_util.processors.RepositoryToMatrixProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.RepositoryToMatrixProcessor.process.html">dcase_util.processors.RepositoryToMatrixProcessor.process</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../processors.html#features">Features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../processors.html#featurereadingprocessor">FeatureReadingProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.FeatureReadingProcessor.html">dcase_util.processors.FeatureReadingProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.FeatureReadingProcessor.process.html">dcase_util.processors.FeatureReadingProcessor.process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../processors.html#repositoryfeatureextractorprocessor">RepositoryFeatureExtractorProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.RepositoryFeatureExtractorProcessor.html">dcase_util.processors.RepositoryFeatureExtractorProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.RepositoryFeatureExtractorProcessor.process.html">dcase_util.processors.RepositoryFeatureExtractorProcessor.process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../processors.html#featureextractorprocessor">FeatureExtractorProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.FeatureExtractorProcessor.html">dcase_util.processors.FeatureExtractorProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.FeatureExtractorProcessor.process.html">dcase_util.processors.FeatureExtractorProcessor.process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../processors.html#id2">RepositoryFeatureExtractorProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.RepositoryFeatureExtractorProcessor.html">dcase_util.processors.RepositoryFeatureExtractorProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.RepositoryFeatureExtractorProcessor.process.html">dcase_util.processors.RepositoryFeatureExtractorProcessor.process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../processors.html#melextractorprocessor">MelExtractorProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.MelExtractorProcessor.html">dcase_util.processors.MelExtractorProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.MelExtractorProcessor.process.html">dcase_util.processors.MelExtractorProcessor.process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../processors.html#mfccstaticextractorprocessor">MfccStaticExtractorProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.MfccStaticExtractorProcessor.html">dcase_util.processors.MfccStaticExtractorProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.MfccStaticExtractorProcessor.process.html">dcase_util.processors.MfccStaticExtractorProcessor.process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../processors.html#mfccdeltaextractorprocessor">MfccDeltaExtractorProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.MfccDeltaExtractorProcessor.html">dcase_util.processors.MfccDeltaExtractorProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.MfccDeltaExtractorProcessor.process.html">dcase_util.processors.MfccDeltaExtractorProcessor.process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../processors.html#mfccaccelerationextractorprocessor">MfccAccelerationExtractorProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.MfccAccelerationExtractorProcessor.html">dcase_util.processors.MfccAccelerationExtractorProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.MfccAccelerationExtractorProcessor.process.html">dcase_util.processors.MfccAccelerationExtractorProcessor.process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../processors.html#zerocrossingrateextractorprocessor">ZeroCrossingRateExtractorProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.ZeroCrossingRateExtractorProcessor.html">dcase_util.processors.ZeroCrossingRateExtractorProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.ZeroCrossingRateExtractorProcessor.process.html">dcase_util.processors.ZeroCrossingRateExtractorProcessor.process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../processors.html#rmsenergyextractorprocessor">RMSEnergyExtractorProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.RMSEnergyExtractorProcessor.html">dcase_util.processors.RMSEnergyExtractorProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.RMSEnergyExtractorProcessor.process.html">dcase_util.processors.RMSEnergyExtractorProcessor.process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../processors.html#spectralcentroidextractorprocessor">SpectralCentroidExtractorProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.SpectralCentroidExtractorProcessor.html">dcase_util.processors.SpectralCentroidExtractorProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.SpectralCentroidExtractorProcessor.process.html">dcase_util.processors.SpectralCentroidExtractorProcessor.process</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../processors.html#metadata">Metadata</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../processors.html#metadatareadingprocessor">MetadataReadingProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.MetadataReadingProcessor.html">dcase_util.processors.MetadataReadingProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.MetadataReadingProcessor.process.html">dcase_util.processors.MetadataReadingProcessor.process</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../processors.html#base-object">Base object</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../processors.html#processor">Processor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.Processor.html">dcase_util.processors.Processor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.Processor.process.html">dcase_util.processors.Processor.process</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.Processor.get_processing_chain_item.html">dcase_util.processors.Processor.get_processing_chain_item</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ui.html">User interfacing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ui.html#fancylogger">FancyLogger</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyLogger.html">dcase_util.ui.FancyLogger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyLogger.line.html">dcase_util.ui.FancyLogger.line</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyLogger.row.html">dcase_util.ui.FancyLogger.row</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyLogger.title.html">dcase_util.ui.FancyLogger.title</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyLogger.section_header.html">dcase_util.ui.FancyLogger.section_header</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyLogger.sub_header.html">dcase_util.ui.FancyLogger.sub_header</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyLogger.foot.html">dcase_util.ui.FancyLogger.foot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyLogger.data.html">dcase_util.ui.FancyLogger.data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyLogger.sep.html">dcase_util.ui.FancyLogger.sep</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyLogger.table.html">dcase_util.ui.FancyLogger.table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyLogger.info.html">dcase_util.ui.FancyLogger.info</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyLogger.debug.html">dcase_util.ui.FancyLogger.debug</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyLogger.error.html">dcase_util.ui.FancyLogger.error</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ui.html#fancyprinter">FancyPrinter</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyPrinter.html">dcase_util.ui.FancyPrinter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyPrinter.line.html">dcase_util.ui.FancyPrinter.line</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyPrinter.row.html">dcase_util.ui.FancyPrinter.row</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyPrinter.title.html">dcase_util.ui.FancyPrinter.title</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyPrinter.section_header.html">dcase_util.ui.FancyPrinter.section_header</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyPrinter.sub_header.html">dcase_util.ui.FancyPrinter.sub_header</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyPrinter.foot.html">dcase_util.ui.FancyPrinter.foot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyPrinter.data.html">dcase_util.ui.FancyPrinter.data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyPrinter.sep.html">dcase_util.ui.FancyPrinter.sep</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyPrinter.table.html">dcase_util.ui.FancyPrinter.table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyPrinter.info.html">dcase_util.ui.FancyPrinter.info</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyPrinter.debug.html">dcase_util.ui.FancyPrinter.debug</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyPrinter.error.html">dcase_util.ui.FancyPrinter.error</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ui.html#fancystringifier">FancyStringifier</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyStringifier.html">dcase_util.ui.FancyStringifier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyStringifier.title.html">dcase_util.ui.FancyStringifier.title</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyStringifier.section_header.html">dcase_util.ui.FancyStringifier.section_header</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyStringifier.sub_header.html">dcase_util.ui.FancyStringifier.sub_header</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyStringifier.foot.html">dcase_util.ui.FancyStringifier.foot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyStringifier.line.html">dcase_util.ui.FancyStringifier.line</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyStringifier.formatted_value.html">dcase_util.ui.FancyStringifier.formatted_value</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyStringifier.data.html">dcase_util.ui.FancyStringifier.data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyStringifier.sep.html">dcase_util.ui.FancyStringifier.sep</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyStringifier.table.html">dcase_util.ui.FancyStringifier.table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyStringifier.row.html">dcase_util.ui.FancyStringifier.row</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyStringifier.class_name.html">dcase_util.ui.FancyStringifier.class_name</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../utils.html">Utils</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../utils.html#general-functions">General functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.utils.get_class_inheritors.html">dcase_util.utils.get_class_inheritors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.utils.get_byte_string.html">dcase_util.utils.get_byte_string</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.utils.check_pkg_resources.html">dcase_util.utils.check_pkg_resources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.utils.is_int.html">dcase_util.utils.is_int</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.utils.is_float.html">dcase_util.utils.is_float</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../utils.html#suppressstdoutandstderr">SuppressStdoutAndStderr</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.utils.SuppressStdoutAndStderr.html">dcase_util.utils.SuppressStdoutAndStderr</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../utils.html#vectorrecipeparser">VectorRecipeParser</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.utils.VectorRecipeParser.html">dcase_util.utils.VectorRecipeParser</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../utils.html#files">Files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.utils.argument_file_exists.html">dcase_util.utils.argument_file_exists</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.utils.filelist_exists.html">dcase_util.utils.filelist_exists</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.utils.posix_path.html">dcase_util.utils.posix_path</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../utils.html#path">Path</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.utils.Path.html">dcase_util.utils.Path</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.utils.Path.posix.html">dcase_util.utils.Path.posix</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.utils.Path.posix_to_nt.html">dcase_util.utils.Path.posix_to_nt</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.utils.Path.file_list.html">dcase_util.utils.Path.file_list</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.utils.Path.exists.html">dcase_util.utils.Path.exists</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.utils.Path.file_count.html">dcase_util.utils.Path.file_count</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.utils.Path.size_bytes.html">dcase_util.utils.Path.size_bytes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.utils.Path.size_string.html">dcase_util.utils.Path.size_string</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.utils.Path.makedirs.html">dcase_util.utils.Path.makedirs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.utils.Path.create.html">dcase_util.utils.Path.create</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../utils.html#applicationpaths">ApplicationPaths</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.utils.ApplicationPaths.html">dcase_util.utils.ApplicationPaths</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.utils.ApplicationPaths.generate.html">dcase_util.utils.ApplicationPaths.generate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.utils.ApplicationPaths.directory_name.html">dcase_util.utils.ApplicationPaths.directory_name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.utils.ApplicationPaths.save_parameters_to_path.html">dcase_util.utils.ApplicationPaths.save_parameters_to_path</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.utils.ApplicationPaths.construct_path.html">dcase_util.utils.ApplicationPaths.construct_path</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../utils.html#fileformat">FileFormat</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.utils.FileFormat.html">dcase_util.utils.FileFormat</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.utils.FileFormat.detect.html">dcase_util.utils.FileFormat.detect</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.utils.FileFormat.detect_based_on_filename.html">dcase_util.utils.FileFormat.detect_based_on_filename</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.utils.FileFormat.detect_based_on_content.html">dcase_util.utils.FileFormat.detect_based_on_content</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.utils.FileFormat.validate_label.html">dcase_util.utils.FileFormat.validate_label</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../utils.html#hash">Hash</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.utils.get_parameter_hash.html">dcase_util.utils.get_parameter_hash</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.utils.get_file_hash.html">dcase_util.utils.get_file_hash</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../utils.html#logging">Logging</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.utils.setup_logging.html">dcase_util.utils.setup_logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../utils.html#disablelogger">DisableLogger</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.utils.DisableLogger.html">dcase_util.utils.DisableLogger</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../utils.html#math">Math</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../utils.html#simplemathstringevaluator">SimpleMathStringEvaluator</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.utils.SimpleMathStringEvaluator.html">dcase_util.utils.SimpleMathStringEvaluator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.utils.SimpleMathStringEvaluator.eval.html">dcase_util.utils.SimpleMathStringEvaluator.eval</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../utils.html#timer">Timer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.utils.Timer.html">dcase_util.utils.Timer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.utils.Timer.start.html">dcase_util.utils.Timer.start</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.utils.Timer.stop.html">dcase_util.utils.Timer.stop</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.utils.Timer.elapsed.html">dcase_util.utils.Timer.elapsed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.utils.Timer.get_string.html">dcase_util.utils.Timer.get_string</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../utils.html#validators">Validators</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../utils.html#fieldvalidator">FieldValidator</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.utils.FieldValidator.html">dcase_util.utils.FieldValidator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.utils.FieldValidator.process.html">dcase_util.utils.FieldValidator.process</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.utils.FieldValidator.is_empty.html">dcase_util.utils.FieldValidator.is_empty</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.utils.FieldValidator.is_number.html">dcase_util.utils.FieldValidator.is_number</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.utils.FieldValidator.is_audiofile.html">dcase_util.utils.FieldValidator.is_audiofile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.utils.FieldValidator.is_list.html">dcase_util.utils.FieldValidator.is_list</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.utils.FieldValidator.is_alpha.html">dcase_util.utils.FieldValidator.is_alpha</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../utils.html#examples">Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.utils.Example.html">dcase_util.utils.Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.utils.Example.audio_filename.html">dcase_util.utils.Example.audio_filename</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.utils.Example.acoustic_scene_audio_filename.html">dcase_util.utils.Example.acoustic_scene_audio_filename</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.utils.Example.audio_container.html">dcase_util.utils.Example.audio_container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.utils.Example.event_metadata_container.html">dcase_util.utils.Example.event_metadata_container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.utils.Example.scene_metadata_container.html">dcase_util.utils.Example.scene_metadata_container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.utils.Example.tag_metadata_container.html">dcase_util.utils.Example.tag_metadata_container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.utils.Example.feature_container.html">dcase_util.utils.Example.feature_container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.utils.Example.feature_repository.html">dcase_util.utils.Example.feature_repository</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Tools</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tools.html">Tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tools.html#submissionchecker">SubmissionChecker</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.tools.SubmissionChecker.html">dcase_util.tools.SubmissionChecker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.tools.SubmissionChecker.process.html">dcase_util.tools.SubmissionChecker.process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.tools.SubmissionChecker.parameter_file.html">dcase_util.tools.SubmissionChecker.parameter_file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.tools.SubmissionChecker.system_output_file.html">dcase_util.tools.SubmissionChecker.system_output_file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.tools.SubmissionChecker.main_structure.html">dcase_util.tools.SubmissionChecker.main_structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.tools.SubmissionChecker.submission_info.html">dcase_util.tools.SubmissionChecker.submission_info</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.tools.SubmissionChecker.system_meta.html">dcase_util.tools.SubmissionChecker.system_meta</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.tools.SubmissionChecker.system_description.html">dcase_util.tools.SubmissionChecker.system_description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.tools.SubmissionChecker.system_output.html">dcase_util.tools.SubmissionChecker.system_output</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../tools.html#bibtexprocessor">BibtexProcessor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.tools.BibtexProcessor.html">dcase_util.tools.BibtexProcessor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.tools.BibtexProcessor.key.html">dcase_util.tools.BibtexProcessor.key</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.tools.BibtexProcessor.authors.html">dcase_util.tools.BibtexProcessor.authors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.tools.BibtexProcessor.authors_fancy.html">dcase_util.tools.BibtexProcessor.authors_fancy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.tools.BibtexProcessor.affiliation_str.html">dcase_util.tools.BibtexProcessor.affiliation_str</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.tools.BibtexProcessor.affiliation_list.html">dcase_util.tools.BibtexProcessor.affiliation_list</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.tools.BibtexProcessor.affiliation_list_fancy.html">dcase_util.tools.BibtexProcessor.affiliation_list_fancy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.tools.BibtexProcessor.submissions_fancy.html">dcase_util.tools.BibtexProcessor.submissions_fancy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.tools.BibtexProcessor.title.html">dcase_util.tools.BibtexProcessor.title</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.tools.BibtexProcessor.abstract.html">dcase_util.tools.BibtexProcessor.abstract</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-1-8">v0.1.8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-1-7">v0.1.7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-1-6">v0.1.6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-1-5">v0.1.5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-1-4">v0.1.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-1-0">v0.1.0</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DCASE Utilities</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../data.html">Data</a> &raquo;</li>
+        
+      <li>dcase_util.data.DecisionEncoder.many_hot</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="dcase-util-data-decisionencoder-many-hot">
+<h1>dcase_util.data.DecisionEncoder.many_hot<a class="headerlink" href="#dcase-util-data-decisionencoder-many-hot" title="Permalink to this headline">¶</a></h1>
+<dl class="method">
+<dt id="dcase_util.data.DecisionEncoder.many_hot">
+<code class="descclassname">DecisionEncoder.</code><code class="descname">many_hot</code><span class="sig-paren">(</span><em>frame_decisions</em>, <em>label_list=None</em>, <em>time_axis=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/data/decisions.html#DecisionEncoder.many_hot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.data.DecisionEncoder.many_hot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Many hot</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>frame_decisions</strong> : numpy.ndarray [shape=(d,t) or (t,d)]</p>
+<blockquote>
+<div><p>Frame decisions</p>
+</div></blockquote>
+<p><strong>label_list</strong> : list or str</p>
+<blockquote>
+<div><p>Label list, if None given one for class initializer is used.
+Default value None</p>
+</div></blockquote>
+<p><strong>time_axis</strong> : int</p>
+<blockquote>
+<div><p>Axis index for frames in the matrix
+Default value 1</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">list</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><p class="first"><strong>ValueError</strong></p>
+<blockquote class="last">
+<div><p>No label list given as method parameter or class initializer parameter</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="dcase_util.data.DecisionEncoder.find_contiguous_regions.html" class="btn btn-neutral float-right" title="dcase_util.data.DecisionEncoder.find_contiguous_regions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="dcase_util.data.DecisionEncoder.majority_vote.html" class="btn btn-neutral" title="dcase_util.data.DecisionEncoder.majority_vote" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Toni Heittola et al..
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

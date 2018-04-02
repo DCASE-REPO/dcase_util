@@ -1,0 +1,42 @@
+dcase_util.processors.Processor
+===============================
+
+.. currentmodule:: dcase_util.processors
+
+.. autoclass:: Processor
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~Processor.__init__
+      ~Processor.delimiter
+      ~Processor.detect_file_format
+      ~Processor.empty
+      ~Processor.exists
+      ~Processor.get_file_information
+      ~Processor.get_processing_chain_item
+      ~Processor.is_package
+      ~Processor.load
+      ~Processor.log
+      ~Processor.process
+      ~Processor.save
+      ~Processor.show
+      ~Processor.validate_format
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Processor.logger
+      ~Processor.valid_formats
+   
+   

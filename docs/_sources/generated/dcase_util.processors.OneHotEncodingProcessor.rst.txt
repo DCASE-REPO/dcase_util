@@ -17,23 +17,14 @@ dcase_util.processors.OneHotEncodingProcessor
       ~OneHotEncodingProcessor.delimiter
       ~OneHotEncodingProcessor.detect_file_format
       ~OneHotEncodingProcessor.empty
-      ~OneHotEncodingProcessor.encode
       ~OneHotEncodingProcessor.exists
-      ~OneHotEncodingProcessor.freeze
       ~OneHotEncodingProcessor.get_file_information
-      ~OneHotEncodingProcessor.get_focused
-      ~OneHotEncodingProcessor.get_frames
       ~OneHotEncodingProcessor.get_processing_chain_item
       ~OneHotEncodingProcessor.is_package
       ~OneHotEncodingProcessor.load
       ~OneHotEncodingProcessor.log
-      ~OneHotEncodingProcessor.pad
-      ~OneHotEncodingProcessor.plot
       ~OneHotEncodingProcessor.process
-      ~OneHotEncodingProcessor.push_processing_chain_item
-      ~OneHotEncodingProcessor.reset_focus
       ~OneHotEncodingProcessor.save
-      ~OneHotEncodingProcessor.set_focus
       ~OneHotEncodingProcessor.show
       ~OneHotEncodingProcessor.validate_format
    
@@ -45,18 +36,9 @@ dcase_util.processors.OneHotEncodingProcessor
 
    .. autosummary::
    
-      ~OneHotEncodingProcessor.T
-      ~OneHotEncodingProcessor.data
-      ~OneHotEncodingProcessor.focus_start
-      ~OneHotEncodingProcessor.focus_stop
-      ~OneHotEncodingProcessor.frames
       ~OneHotEncodingProcessor.input_type
-      ~OneHotEncodingProcessor.length
       ~OneHotEncodingProcessor.logger
       ~OneHotEncodingProcessor.output_type
-      ~OneHotEncodingProcessor.shape
-      ~OneHotEncodingProcessor.stats
       ~OneHotEncodingProcessor.valid_formats
-      ~OneHotEncodingProcessor.vector_length
    
    

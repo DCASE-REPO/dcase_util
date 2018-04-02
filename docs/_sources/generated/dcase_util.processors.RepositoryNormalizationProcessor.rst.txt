@@ -18,20 +18,13 @@ dcase_util.processors.RepositoryNormalizationProcessor
       ~RepositoryNormalizationProcessor.detect_file_format
       ~RepositoryNormalizationProcessor.empty
       ~RepositoryNormalizationProcessor.exists
-      ~RepositoryNormalizationProcessor.freeze
       ~RepositoryNormalizationProcessor.get_file_information
-      ~RepositoryNormalizationProcessor.get_focused
-      ~RepositoryNormalizationProcessor.get_frames
       ~RepositoryNormalizationProcessor.get_processing_chain_item
       ~RepositoryNormalizationProcessor.is_package
       ~RepositoryNormalizationProcessor.load
       ~RepositoryNormalizationProcessor.log
-      ~RepositoryNormalizationProcessor.plot
       ~RepositoryNormalizationProcessor.process
-      ~RepositoryNormalizationProcessor.push_processing_chain_item
-      ~RepositoryNormalizationProcessor.reset_focus
       ~RepositoryNormalizationProcessor.save
-      ~RepositoryNormalizationProcessor.set_focus
       ~RepositoryNormalizationProcessor.show
       ~RepositoryNormalizationProcessor.validate_format
    
@@ -43,16 +36,9 @@ dcase_util.processors.RepositoryNormalizationProcessor
 
    .. autosummary::
    
-      ~RepositoryNormalizationProcessor.data
-      ~RepositoryNormalizationProcessor.focus_start
-      ~RepositoryNormalizationProcessor.focus_stop
-      ~RepositoryNormalizationProcessor.frames
       ~RepositoryNormalizationProcessor.input_type
-      ~RepositoryNormalizationProcessor.length
       ~RepositoryNormalizationProcessor.logger
       ~RepositoryNormalizationProcessor.output_type
-      ~RepositoryNormalizationProcessor.shape
-      ~RepositoryNormalizationProcessor.stats
       ~RepositoryNormalizationProcessor.valid_formats
    
    

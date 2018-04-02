@@ -14,50 +14,18 @@ dcase_util.processors.MetadataReadingProcessor
    .. autosummary::
    
       ~MetadataReadingProcessor.__init__
-      ~MetadataReadingProcessor.add_time
-      ~MetadataReadingProcessor.append
-      ~MetadataReadingProcessor.clear
-      ~MetadataReadingProcessor.copy
-      ~MetadataReadingProcessor.count
       ~MetadataReadingProcessor.delimiter
       ~MetadataReadingProcessor.detect_file_format
-      ~MetadataReadingProcessor.difference
       ~MetadataReadingProcessor.empty
-      ~MetadataReadingProcessor.event_stat_counts
       ~MetadataReadingProcessor.exists
-      ~MetadataReadingProcessor.extend
-      ~MetadataReadingProcessor.filter
-      ~MetadataReadingProcessor.filter_time_segment
-      ~MetadataReadingProcessor.get_dump_content
-      ~MetadataReadingProcessor.get_field
       ~MetadataReadingProcessor.get_file_information
       ~MetadataReadingProcessor.get_processing_chain_item
-      ~MetadataReadingProcessor.get_string
-      ~MetadataReadingProcessor.index
-      ~MetadataReadingProcessor.insert
-      ~MetadataReadingProcessor.intersection
-      ~MetadataReadingProcessor.intersection_report
       ~MetadataReadingProcessor.is_package
       ~MetadataReadingProcessor.load
       ~MetadataReadingProcessor.log
-      ~MetadataReadingProcessor.log_all
-      ~MetadataReadingProcessor.pop
       ~MetadataReadingProcessor.process
-      ~MetadataReadingProcessor.process_events
-      ~MetadataReadingProcessor.push_processing_chain_item
-      ~MetadataReadingProcessor.remove
-      ~MetadataReadingProcessor.remove_field
-      ~MetadataReadingProcessor.reverse
       ~MetadataReadingProcessor.save
-      ~MetadataReadingProcessor.scene_stat_counts
-      ~MetadataReadingProcessor.search
       ~MetadataReadingProcessor.show
-      ~MetadataReadingProcessor.show_all
-      ~MetadataReadingProcessor.sort
-      ~MetadataReadingProcessor.stats
-      ~MetadataReadingProcessor.tag_stat_counts
-      ~MetadataReadingProcessor.to_event_roll
-      ~MetadataReadingProcessor.update
       ~MetadataReadingProcessor.validate_format
    
    
@@ -68,21 +36,9 @@ dcase_util.processors.MetadataReadingProcessor
 
    .. autosummary::
    
-      ~MetadataReadingProcessor.event_count
-      ~MetadataReadingProcessor.event_label_count
-      ~MetadataReadingProcessor.file_count
-      ~MetadataReadingProcessor.identifier_count
       ~MetadataReadingProcessor.input_type
       ~MetadataReadingProcessor.logger
-      ~MetadataReadingProcessor.max_offset
       ~MetadataReadingProcessor.output_type
-      ~MetadataReadingProcessor.scene_label_count
-      ~MetadataReadingProcessor.tag_count
-      ~MetadataReadingProcessor.unique_event_labels
-      ~MetadataReadingProcessor.unique_files
-      ~MetadataReadingProcessor.unique_identifiers
-      ~MetadataReadingProcessor.unique_scene_labels
-      ~MetadataReadingProcessor.unique_tags
       ~MetadataReadingProcessor.valid_formats
    
    

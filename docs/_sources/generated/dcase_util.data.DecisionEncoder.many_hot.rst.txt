@@ -1,0 +1,6 @@
+dcase_util.data.DecisionEncoder.many_hot
+========================================
+
+.. currentmodule:: dcase_util.data
+
+.. automethod:: DecisionEncoder.many_hot

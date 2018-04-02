@@ -55,7 +55,7 @@ Initialize meta data container with sound event list::
         ]
     )
 
-initialize meta data container with tags::
+Initialize meta data container with tags::
 
     meta_container_tags = dcase_util.containers.MetaDataContainer(
         [

@@ -14,9 +14,19 @@ dcase_util.processors.FeatureExtractorProcessor
    .. autosummary::
    
       ~FeatureExtractorProcessor.__init__
+      ~FeatureExtractorProcessor.delimiter
+      ~FeatureExtractorProcessor.detect_file_format
+      ~FeatureExtractorProcessor.empty
+      ~FeatureExtractorProcessor.exists
+      ~FeatureExtractorProcessor.get_file_information
       ~FeatureExtractorProcessor.get_processing_chain_item
+      ~FeatureExtractorProcessor.is_package
+      ~FeatureExtractorProcessor.load
+      ~FeatureExtractorProcessor.log
       ~FeatureExtractorProcessor.process
-      ~FeatureExtractorProcessor.push_processing_chain_item
+      ~FeatureExtractorProcessor.save
+      ~FeatureExtractorProcessor.show
+      ~FeatureExtractorProcessor.validate_format
    
    
 
@@ -29,5 +39,6 @@ dcase_util.processors.FeatureExtractorProcessor
       ~FeatureExtractorProcessor.input_type
       ~FeatureExtractorProcessor.logger
       ~FeatureExtractorProcessor.output_type
+      ~FeatureExtractorProcessor.valid_formats
    
    

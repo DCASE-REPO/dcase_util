@@ -3,7 +3,7 @@
 Library
 -------
 
-dcase_util is a collection of utility classes and function implemented to streamline the research code,
+`dcase_util` is a collection of utility classes and function implemented to streamline the research code,
 make it more readable, and easier to maintain. Most of the implemented utilities are related to audio datasets:
 handling meta data and various forms of other structured data, and provide standardize usage API to
 audio datasets from various sources.

@@ -1,0 +1,6 @@
+dcase_util.processors.Processor.process
+=======================================
+
+.. currentmodule:: dcase_util.processors
+
+.. automethod:: Processor.process

@@ -1,6 +1,0 @@
-dcase_util.processors.ProcessorMixin.get_processing_chain_item
-==============================================================
-
-.. currentmodule:: dcase_util.processors
-
-.. automethod:: ProcessorMixin.get_processing_chain_item

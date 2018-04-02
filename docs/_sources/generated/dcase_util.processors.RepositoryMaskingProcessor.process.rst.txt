@@ -1,0 +1,6 @@
+dcase_util.processors.RepositoryMaskingProcessor.process
+========================================================
+
+.. currentmodule:: dcase_util.processors
+
+.. automethod:: RepositoryMaskingProcessor.process

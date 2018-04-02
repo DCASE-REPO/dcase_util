@@ -1,0 +1,6 @@
+dcase_util.files.Package.extract
+================================
+
+.. currentmodule:: dcase_util.files
+
+.. automethod:: Package.extract

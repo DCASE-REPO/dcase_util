@@ -24,10 +24,8 @@ dcase_util.processors.StackingProcessor
       ~StackingProcessor.load
       ~StackingProcessor.log
       ~StackingProcessor.process
-      ~StackingProcessor.push_processing_chain_item
       ~StackingProcessor.save
       ~StackingProcessor.show
-      ~StackingProcessor.stack
       ~StackingProcessor.validate_format
    
    

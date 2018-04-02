@@ -14,7 +14,6 @@ dcase_util.processors.AggregationProcessor
    .. autosummary::
    
       ~AggregationProcessor.__init__
-      ~AggregationProcessor.aggregate
       ~AggregationProcessor.delimiter
       ~AggregationProcessor.detect_file_format
       ~AggregationProcessor.empty
@@ -25,7 +24,6 @@ dcase_util.processors.AggregationProcessor
       ~AggregationProcessor.load
       ~AggregationProcessor.log
       ~AggregationProcessor.process
-      ~AggregationProcessor.push_processing_chain_item
       ~AggregationProcessor.save
       ~AggregationProcessor.show
       ~AggregationProcessor.validate_format
@@ -42,6 +40,5 @@ dcase_util.processors.AggregationProcessor
       ~AggregationProcessor.logger
       ~AggregationProcessor.output_type
       ~AggregationProcessor.valid_formats
-      ~AggregationProcessor.valid_method
    
    

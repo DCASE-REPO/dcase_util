@@ -14,14 +14,22 @@ dcase_util.processors.MfccAccelerationExtractorProcessor
    .. autosummary::
    
       ~MfccAccelerationExtractorProcessor.__init__
+      ~MfccAccelerationExtractorProcessor.delimiter
+      ~MfccAccelerationExtractorProcessor.detect_file_format
+      ~MfccAccelerationExtractorProcessor.empty
+      ~MfccAccelerationExtractorProcessor.exists
       ~MfccAccelerationExtractorProcessor.extract
+      ~MfccAccelerationExtractorProcessor.get_file_information
       ~MfccAccelerationExtractorProcessor.get_processing_chain_item
       ~MfccAccelerationExtractorProcessor.get_spectrogram
       ~MfccAccelerationExtractorProcessor.get_window_function
+      ~MfccAccelerationExtractorProcessor.is_package
+      ~MfccAccelerationExtractorProcessor.load
       ~MfccAccelerationExtractorProcessor.log
       ~MfccAccelerationExtractorProcessor.process
-      ~MfccAccelerationExtractorProcessor.push_processing_chain_item
+      ~MfccAccelerationExtractorProcessor.save
       ~MfccAccelerationExtractorProcessor.show
+      ~MfccAccelerationExtractorProcessor.validate_format
    
    
 
@@ -35,5 +43,6 @@ dcase_util.processors.MfccAccelerationExtractorProcessor
       ~MfccAccelerationExtractorProcessor.label
       ~MfccAccelerationExtractorProcessor.logger
       ~MfccAccelerationExtractorProcessor.output_type
+      ~MfccAccelerationExtractorProcessor.valid_formats
    
    

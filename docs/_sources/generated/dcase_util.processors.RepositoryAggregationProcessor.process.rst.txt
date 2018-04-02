@@ -1,0 +1,6 @@
+dcase_util.processors.RepositoryAggregationProcessor.process
+============================================================
+
+.. currentmodule:: dcase_util.processors
+
+.. automethod:: RepositoryAggregationProcessor.process

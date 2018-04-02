@@ -19,6 +19,7 @@ dcase_util.datasets.CHiMEHome_DomesticAudioTag_DevelopmentSet
       ~CHiMEHome_DomesticAudioTag_DevelopmentSet.dataset_bytes
       ~CHiMEHome_DomesticAudioTag_DevelopmentSet.dataset_size_on_disk
       ~CHiMEHome_DomesticAudioTag_DevelopmentSet.dataset_size_string
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.debug_packages
       ~CHiMEHome_DomesticAudioTag_DevelopmentSet.download_packages
       ~CHiMEHome_DomesticAudioTag_DevelopmentSet.eval
       ~CHiMEHome_DomesticAudioTag_DevelopmentSet.eval_files

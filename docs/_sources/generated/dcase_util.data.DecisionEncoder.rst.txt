@@ -24,6 +24,7 @@ dcase_util.data.DecisionEncoder
       ~DecisionEncoder.load
       ~DecisionEncoder.log
       ~DecisionEncoder.majority_vote
+      ~DecisionEncoder.many_hot
       ~DecisionEncoder.process_activity
       ~DecisionEncoder.save
       ~DecisionEncoder.show

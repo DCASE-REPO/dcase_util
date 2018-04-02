@@ -16,17 +16,19 @@ dcase_util.processors.ProcessingChain
       ~ProcessingChain.__init__
       ~ProcessingChain.append
       ~ProcessingChain.call_method
+      ~ProcessingChain.chain_item
+      ~ProcessingChain.chain_item_exists
       ~ProcessingChain.chain_string
-      ~ProcessingChain.clear
-      ~ProcessingChain.copy
       ~ProcessingChain.count
       ~ProcessingChain.delimiter
       ~ProcessingChain.detect_file_format
       ~ProcessingChain.empty
       ~ProcessingChain.exists
       ~ProcessingChain.extend
+      ~ProcessingChain.filter
       ~ProcessingChain.get_dump_content
       ~ProcessingChain.get_field
+      ~ProcessingChain.get_field_unique
       ~ProcessingChain.get_file_information
       ~ProcessingChain.index
       ~ProcessingChain.insert

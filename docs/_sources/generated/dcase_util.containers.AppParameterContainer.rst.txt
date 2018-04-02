@@ -14,6 +14,7 @@ dcase_util.containers.AppParameterContainer
    .. autosummary::
    
       ~AppParameterContainer.__init__
+      ~AppParameterContainer.active_set
       ~AppParameterContainer.clear
       ~AppParameterContainer.copy
       ~AppParameterContainer.delimiter
@@ -30,8 +31,12 @@ dcase_util.containers.AppParameterContainer
       ~AppParameterContainer.get_leaf_path_list
       ~AppParameterContainer.get_path
       ~AppParameterContainer.get_path_translated
+      ~AppParameterContainer.has_key
       ~AppParameterContainer.is_package
       ~AppParameterContainer.items
+      ~AppParameterContainer.iteritems
+      ~AppParameterContainer.iterkeys
+      ~AppParameterContainer.itervalues
       ~AppParameterContainer.keys
       ~AppParameterContainer.load
       ~AppParameterContainer.log
@@ -40,15 +45,22 @@ dcase_util.containers.AppParameterContainer
       ~AppParameterContainer.pop
       ~AppParameterContainer.popitem
       ~AppParameterContainer.process
+      ~AppParameterContainer.process_set
       ~AppParameterContainer.reset
       ~AppParameterContainer.save
+      ~AppParameterContainer.set_id_exists
+      ~AppParameterContainer.set_ids
       ~AppParameterContainer.set_path
       ~AppParameterContainer.set_path_translated
       ~AppParameterContainer.setdefault
       ~AppParameterContainer.show
       ~AppParameterContainer.update
+      ~AppParameterContainer.update_parameter_set
       ~AppParameterContainer.validate_format
       ~AppParameterContainer.values
+      ~AppParameterContainer.viewitems
+      ~AppParameterContainer.viewkeys
+      ~AppParameterContainer.viewvalues
    
    
 

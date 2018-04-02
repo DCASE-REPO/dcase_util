@@ -1,0 +1,44 @@
+dcase_util.processors.RepositoryMaskingProcessor
+================================================
+
+.. currentmodule:: dcase_util.processors
+
+.. autoclass:: RepositoryMaskingProcessor
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~RepositoryMaskingProcessor.__init__
+      ~RepositoryMaskingProcessor.delimiter
+      ~RepositoryMaskingProcessor.detect_file_format
+      ~RepositoryMaskingProcessor.empty
+      ~RepositoryMaskingProcessor.exists
+      ~RepositoryMaskingProcessor.get_file_information
+      ~RepositoryMaskingProcessor.get_processing_chain_item
+      ~RepositoryMaskingProcessor.is_package
+      ~RepositoryMaskingProcessor.load
+      ~RepositoryMaskingProcessor.log
+      ~RepositoryMaskingProcessor.process
+      ~RepositoryMaskingProcessor.save
+      ~RepositoryMaskingProcessor.show
+      ~RepositoryMaskingProcessor.validate_format
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~RepositoryMaskingProcessor.input_type
+      ~RepositoryMaskingProcessor.logger
+      ~RepositoryMaskingProcessor.output_type
+      ~RepositoryMaskingProcessor.valid_formats
+   
+   

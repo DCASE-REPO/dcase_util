@@ -14,6 +14,7 @@ dcase_util.data.BinaryMatrixEncoder
    .. autosummary::
    
       ~BinaryMatrixEncoder.__init__
+      ~BinaryMatrixEncoder.change_axis
       ~BinaryMatrixEncoder.delimiter
       ~BinaryMatrixEncoder.detect_file_format
       ~BinaryMatrixEncoder.empty

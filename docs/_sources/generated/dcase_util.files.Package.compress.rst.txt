@@ -1,0 +1,6 @@
+dcase_util.files.Package.compress
+=================================
+
+.. currentmodule:: dcase_util.files
+
+.. automethod:: Package.compress

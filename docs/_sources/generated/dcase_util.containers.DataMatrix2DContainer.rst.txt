@@ -14,6 +14,7 @@ dcase_util.containers.DataMatrix2DContainer
    .. autosummary::
    
       ~DataMatrix2DContainer.__init__
+      ~DataMatrix2DContainer.change_axis
       ~DataMatrix2DContainer.delimiter
       ~DataMatrix2DContainer.detect_file_format
       ~DataMatrix2DContainer.empty

@@ -1,6 +1,0 @@
-dcase_util.processors.ProcessorMixin.process
-============================================
-
-.. currentmodule:: dcase_util.processors
-
-.. automethod:: ProcessorMixin.process

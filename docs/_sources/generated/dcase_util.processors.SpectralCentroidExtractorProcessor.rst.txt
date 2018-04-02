@@ -14,14 +14,22 @@ dcase_util.processors.SpectralCentroidExtractorProcessor
    .. autosummary::
    
       ~SpectralCentroidExtractorProcessor.__init__
+      ~SpectralCentroidExtractorProcessor.delimiter
+      ~SpectralCentroidExtractorProcessor.detect_file_format
+      ~SpectralCentroidExtractorProcessor.empty
+      ~SpectralCentroidExtractorProcessor.exists
       ~SpectralCentroidExtractorProcessor.extract
+      ~SpectralCentroidExtractorProcessor.get_file_information
       ~SpectralCentroidExtractorProcessor.get_processing_chain_item
       ~SpectralCentroidExtractorProcessor.get_spectrogram
       ~SpectralCentroidExtractorProcessor.get_window_function
+      ~SpectralCentroidExtractorProcessor.is_package
+      ~SpectralCentroidExtractorProcessor.load
       ~SpectralCentroidExtractorProcessor.log
       ~SpectralCentroidExtractorProcessor.process
-      ~SpectralCentroidExtractorProcessor.push_processing_chain_item
+      ~SpectralCentroidExtractorProcessor.save
       ~SpectralCentroidExtractorProcessor.show
+      ~SpectralCentroidExtractorProcessor.validate_format
    
    
 
@@ -35,5 +43,6 @@ dcase_util.processors.SpectralCentroidExtractorProcessor
       ~SpectralCentroidExtractorProcessor.label
       ~SpectralCentroidExtractorProcessor.logger
       ~SpectralCentroidExtractorProcessor.output_type
+      ~SpectralCentroidExtractorProcessor.valid_formats
    
    

@@ -19,6 +19,7 @@ dcase_util.datasets.TUTRareSoundEvents_2017_DevelopmentSet
       ~TUTRareSoundEvents_2017_DevelopmentSet.dataset_bytes
       ~TUTRareSoundEvents_2017_DevelopmentSet.dataset_size_on_disk
       ~TUTRareSoundEvents_2017_DevelopmentSet.dataset_size_string
+      ~TUTRareSoundEvents_2017_DevelopmentSet.debug_packages
       ~TUTRareSoundEvents_2017_DevelopmentSet.download_packages
       ~TUTRareSoundEvents_2017_DevelopmentSet.eval
       ~TUTRareSoundEvents_2017_DevelopmentSet.eval_files

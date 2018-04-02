@@ -19,6 +19,7 @@ dcase_util.datasets.TUT_SED_Synthetic_2016
       ~TUT_SED_Synthetic_2016.dataset_bytes
       ~TUT_SED_Synthetic_2016.dataset_size_on_disk
       ~TUT_SED_Synthetic_2016.dataset_size_string
+      ~TUT_SED_Synthetic_2016.debug_packages
       ~TUT_SED_Synthetic_2016.download_packages
       ~TUT_SED_Synthetic_2016.eval
       ~TUT_SED_Synthetic_2016.eval_files

@@ -1,0 +1,6 @@
+dcase_util.files.Package.validate_format
+========================================
+
+.. currentmodule:: dcase_util.files
+
+.. automethod:: Package.validate_format

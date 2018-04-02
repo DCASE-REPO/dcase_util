@@ -1,0 +1,44 @@
+dcase_util.processors.DataShapingProcessor
+==========================================
+
+.. currentmodule:: dcase_util.processors
+
+.. autoclass:: DataShapingProcessor
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~DataShapingProcessor.__init__
+      ~DataShapingProcessor.delimiter
+      ~DataShapingProcessor.detect_file_format
+      ~DataShapingProcessor.empty
+      ~DataShapingProcessor.exists
+      ~DataShapingProcessor.get_file_information
+      ~DataShapingProcessor.get_processing_chain_item
+      ~DataShapingProcessor.is_package
+      ~DataShapingProcessor.load
+      ~DataShapingProcessor.log
+      ~DataShapingProcessor.process
+      ~DataShapingProcessor.save
+      ~DataShapingProcessor.show
+      ~DataShapingProcessor.validate_format
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~DataShapingProcessor.input_type
+      ~DataShapingProcessor.logger
+      ~DataShapingProcessor.output_type
+      ~DataShapingProcessor.valid_formats
+   
+   
