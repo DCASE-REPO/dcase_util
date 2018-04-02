@@ -3,9 +3,8 @@
 Audio
 -----
 
-`dcase_util.containers.AudioContainer` is data container for multi-channel audio. It reads many
-formats (WAV, FLAC, M4A, WEBM) and writes WAV and FLAC files. Downloading
-audio content directly from Youtube is also supported.
+`dcase_util.containers.AudioContainer` is data container for multi-channel audio. It reads and writes many
+formats (e.g. WAV, FLAC, OGG, MP3, M4A, WEBM). Downloading audio content directly from Youtube is also supported.
 
 Creating container
 ==================
@@ -108,6 +107,78 @@ Using focus to get part data starting 5 sec with 2 sec duration, and freeze this
     print(audio_container.shape)
     # (2, 88200)
 
+Frames and Segments
+===================
+
+Splitting audio signal into overlapping frames (200ms frame length with 50% overlap)::
+
+    print(audio_container.frames(frame_length_seconds=0.2, hop_length_seconds=0.1).shape)
+    # (8820, 99)
+
+Splitting audio signal into non-overlapping segments (1 sec)::
+
+    data, segment_meta = audio_container.segments(segment_length_seconds=1.0)
+    print(len(data))
+    # 10
+    print(data[0].shape)
+    # (44100,)
+    segment_meta.log_all()
+    [I] MetaDataContainer :: Class
+    #   Items                             : 10
+    #   Unique
+    #     Files                           : 0
+    #     Scene labels                    : 0
+    #     Event labels                    : 0
+    #     Tags                            : 0
+    #
+    #   Meta data
+    #         Source                  Onset   Offset   Scene             Event             Tags              Identifier
+    #         --------------------   ------   ------   ---------------   ---------------   ---------------   -----
+    #         -                        0.00     1.00   -                 -                 -                 -
+    #         -                        1.00     2.00   -                 -                 -                 -
+    #         -                        2.00     3.00   -                 -                 -                 -
+    #         -                        3.00     4.00   -                 -                 -                 -
+    #         -                        4.00     5.00   -                 -                 -                 -
+    #         -                        5.00     6.00   -                 -                 -                 -
+    #         -                        6.00     7.00   -                 -                 -                 -
+    #         -                        7.00     8.00   -                 -                 -                 -
+    #         -                        8.00     9.00   -                 -                 -                 -
+    #         -                        9.00    10.00   -                 -                 -                 -
+
+
+Splitting audio signal into non-overlapping segments (1 sec) while avoiding certain regions of the signal::
+
+    data, segment_meta = audio_container.segments(
+        segment_length_seconds=1.0,
+        skip_segments=dcase_util.containers.MetaDataContainer(
+            [
+                {
+                    'onset': 3.5,
+                    'offset': 6.5
+                }
+            ]
+        )
+    )
+    segment_meta.log_all()
+    # MetaDataContainer :: Class
+    #   Items                             : 6
+    #   Unique
+    #     Files                           : 0
+    #     Scene labels                    : 0
+    #     Event labels                    : 0
+    #     Tags                            : 0
+    #
+    #   Meta data
+    #         Source                  Onset   Offset   Scene             Event             Tags              Identifier
+    #         --------------------   ------   ------   ---------------   ---------------   ---------------   -----
+    #         -                        0.00     1.00   -                 -                 -                 -
+    #         -                        1.00     2.00   -                 -                 -                 -
+    #         -                        2.00     3.00   -                 -                 -                 -
+    #         -                        6.50     7.50   -                 -                 -                 -
+    #         -                        7.50     8.50   -                 -                 -                 -
+    #         -                        8.50     9.50   -                 -                 -                 -
+    #
+
 Processing
 ==========
 
@@ -147,3 +218,27 @@ Plot spectrogram::
     )
     audio_container.filename = None
     audio_container.plot_spec()
+
+Plot waveform and spectrogram together::
+
+    plt.figure()
+    plt.subplot(2, 1, 1)
+    audio_container.plot(plot_type='wave', plot=False, show_filename=False)
+    plt.subplot(2, 1, 2)
+    audio_container.plot(plot_type='spec', plot=False, show_filename=False, show_colorbar=False)
+    plt.show()
+
+.. plot::
+
+    import dcase_util
+    audio_container = dcase_util.containers.AudioContainer().load(
+        filename=dcase_util.utils.Example.audio_filename(),
+        mono=True
+    )
+    plt.figure()
+    plt.subplot(2, 1, 1)
+    audio_container.plot(plot_type='wave', plot=False, show_filename=False)
+    plt.subplot(2, 1, 2)
+    audio_container.plot(plot_type='spec', plot=False, show_filename=False, show_colorbar=False)
+    plt.show()
+
