@@ -5,7 +5,7 @@ from __future__ import print_function, absolute_import
 from six import iteritems
 import numpy
 
-from dcase_util.containers import DataContainer, RepositoryContainer
+from dcase_util.containers import RepositoryContainer
 from dcase_util.processors import Processor, ProcessingChainItemType, ProcessingChain
 from dcase_util.data import Normalizer, RepositoryNormalizer, Aggregator, Sequencer, Stacker, OneHotEncoder, ManyHotEncoder, \
     EventRollEncoder, Masker
@@ -142,7 +142,7 @@ class RepositoryAggregationProcessor(Processor):
 
         Parameters
         ----------
-        data : DataContainer
+        data : DataRepository
             Data
 
         store_processing_chain : bool
@@ -340,7 +340,7 @@ class RepositorySequencingProcessor(Processor):
 
         Parameters
         ----------
-        data : DataContainer
+        data : DataRepository
             Data
 
         store_processing_chain : bool

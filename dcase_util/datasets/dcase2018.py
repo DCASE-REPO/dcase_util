@@ -3,25 +3,10 @@
 
 from __future__ import print_function, absolute_import
 
-import collections
-import hashlib
-import os
-import pickle
-import sys
-
-import numpy
-import yaml
-from six import iteritems
-from tqdm import tqdm
-
-
-from dcase_util.datasets import AcousticSceneDataset, SyntheticSoundEventDataset, SoundEventDataset
-from dcase_util.containers import MetaDataContainer, MetaDataItem, OneToOneMappingContainer, \
-    DictContainer, ParameterContainer
-from dcase_util.utils import Path
+from dcase_util.datasets import AcousticSceneDataset
 
 # =====================================================
-# DCASE 2017
+# DCASE 2018
 # =====================================================
 
 

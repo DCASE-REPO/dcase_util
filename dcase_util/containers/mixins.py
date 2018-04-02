@@ -2,11 +2,9 @@
 # -*- coding: utf-8 -*-
 
 from __future__ import print_function, absolute_import
-from six import iteritems
 
 import os
 import sys
-import numpy
 import logging
 import csv
 import zipfile

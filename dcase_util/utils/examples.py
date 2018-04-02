@@ -2,16 +2,9 @@
 # -*- coding: utf-8 -*-
 
 from __future__ import print_function, absolute_import
-from six import iteritems
 
 import os
-import locale
-import argparse
-import logging
-import logging.config
 import pkg_resources
-import itertools
-import platform
 import numpy
 
 

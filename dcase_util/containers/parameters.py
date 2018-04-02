@@ -5,10 +5,8 @@ from six import iteritems
 
 import os
 import sys
-import hashlib
 import copy
 import numpy
-import itertools
 import platform
 
 from dcase_util.containers import DictContainer, ListDictContainer, OneToOneMappingContainer

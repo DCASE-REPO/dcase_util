@@ -1,13 +1,11 @@
 # !/usr/bin/env python
 # -*- coding: utf-8 -*-
-import numpy
 import importlib
 import logging
 import os
 import numpy
 import random
-from dcase_util.containers import DictContainer
-from dcase_util.ui import FancyStringifier, FancyLogger
+from dcase_util.ui import FancyLogger
 from dcase_util.utils import SuppressStdoutAndStderr, setup_logging
 from dcase_util.decorators import RunOnce
 

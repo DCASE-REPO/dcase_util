@@ -3,7 +3,6 @@
 
 from __future__ import print_function, absolute_import
 from six import iteritems
-import logging
 import os
 
 from dcase_util.ui import FancyLogger

@@ -9,7 +9,7 @@ import zipfile
 import tarfile
 
 from dcase_util.containers import FileMixin, ObjectContainer, PackageMixin
-from dcase_util.utils import get_byte_string, get_file_hash, FileFormat
+from dcase_util.utils import get_byte_string, FileFormat
 from dcase_util.ui import FancyStringifier
 
 

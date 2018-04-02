@@ -5,7 +5,6 @@ from __future__ import print_function, absolute_import
 import six
 import copy
 import numpy
-import os
 import csv
 import logging
 from dcase_util.containers import ListDictContainer

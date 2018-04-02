@@ -11,7 +11,7 @@ import os
 import glob
 from past.builtins import basestring
 
-from dcase_util.containers import DataContainer, ObjectContainer
+from dcase_util.containers import ObjectContainer
 from dcase_util.ui import FancyStringifier
 from dcase_util.utils import VectorRecipeParser, filelist_exists
 

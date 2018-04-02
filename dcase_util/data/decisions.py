@@ -3,8 +3,6 @@
 
 from __future__ import print_function, absolute_import
 import numpy
-import math
-import logging
 import copy
 import scipy
 

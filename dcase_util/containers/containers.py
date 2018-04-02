@@ -10,8 +10,6 @@ import copy
 import csv
 import json
 import hashlib
-import collections
-import types
 
 from dcase_util.containers import ContainerMixin, FileMixin
 from dcase_util.ui import FancyStringifier

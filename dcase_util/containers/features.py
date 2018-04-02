@@ -3,7 +3,6 @@
 
 
 from __future__ import print_function, absolute_import
-from six import iteritems
 
 from dcase_util.containers import DataMatrix2DContainer, DataRepository
 from dcase_util.utils import FileFormat
