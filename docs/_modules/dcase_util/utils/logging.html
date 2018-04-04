@@ -1324,6 +1324,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-1-9">v0.1.9</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-1-8">v0.1.8</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-1-7">v0.1.7</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-1-6">v0.1.6</a></li>
@@ -1422,26 +1423,30 @@
 <span class="sd">    ----------</span>
 <span class="sd">    parameters : dict</span>
 <span class="sd">        Parameters in dict</span>
-<span class="sd">        Default value &quot;None&quot;</span>
+<span class="sd">        Default value None</span>
+
 <span class="sd">    coloredlogs : bool</span>
 <span class="sd">        Use coloredlogs</span>
-<span class="sd">        Default value &quot;False&quot;</span>
+<span class="sd">        Default value False</span>
+
 <span class="sd">    logging_file : str</span>
 <span class="sd">        Log filename for file based logging, if none given no file logging is used.</span>
-<span class="sd">        Default value &quot;None&quot;</span>
+<span class="sd">        Default value None</span>
+
 <span class="sd">    environmental_variable : str</span>
 <span class="sd">        Environmental variable to get the logging setup filename, if set will override default_setup_file</span>
-<span class="sd">        Default value &quot;LOG_CFG&quot;</span>
+<span class="sd">        Default value &#39;LOG_CFG&#39;</span>
+
 <span class="sd">    default_setup_file : str</span>
 <span class="sd">        Default logging parameter file, used if one is not set in given ParameterContainer</span>
-<span class="sd">        Default value &quot;logging.yaml&quot;</span>
+<span class="sd">        Default value &#39;logging.yaml&#39;</span>
+
 <span class="sd">    default_level : logging.level</span>
 <span class="sd">        Default logging level, used if one is not set in given ParameterContainer</span>
-<span class="sd">        Default value &quot;logging.INFO&quot;</span>
+<span class="sd">        Default value &#39;logging.INFO&#39;</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-
 <span class="sd">    nothing</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -1475,6 +1480,7 @@
             <span class="n">logging</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">dictConfig</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
 
             <span class="k">try</span><span class="p">:</span>
+                <span class="c1"># Check if coloredlogs is available</span>
                 <span class="kn">import</span> <span class="nn">coloredlogs</span>
                 <span class="n">coloredlogs</span><span class="o">.</span><span class="n">install</span><span class="p">(</span>
                     <span class="n">level</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;handlers&#39;</span><span class="p">][</span><span class="s1">&#39;console&#39;</span><span class="p">][</span><span class="s1">&#39;level&#39;</span><span class="p">],</span>
@@ -1487,6 +1493,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">coloredlogs</span><span class="p">:</span>
                 <span class="k">try</span><span class="p">:</span>
+                    <span class="c1"># Check if coloredlogs is available</span>
                     <span class="kn">import</span> <span class="nn">coloredlogs</span>
 
                     <span class="n">coloredlogs</span><span class="o">.</span><span class="n">install</span><span class="p">(</span>
@@ -1593,6 +1600,7 @@
            <span class="s1">&#39;console&#39;</span> <span class="ow">in</span> <span class="n">parameters</span><span class="o">.</span><span class="n">get_path</span><span class="p">(</span><span class="s1">&#39;parameters.handlers&#39;</span><span class="p">)):</span>
 
             <span class="k">try</span><span class="p">:</span>
+                <span class="c1"># Check if coloredlogs is available</span>
                 <span class="kn">import</span> <span class="nn">coloredlogs</span>
                 <span class="n">coloredlogs</span><span class="o">.</span><span class="n">install</span><span class="p">(</span>
                     <span class="n">level</span><span class="o">=</span><span class="n">parameters</span><span class="o">.</span><span class="n">get_path</span><span class="p">(</span><span class="s1">&#39;parameters.handlers.console.level&#39;</span><span class="p">),</span>
