@@ -768,7 +768,7 @@ class Aggregator(ObjectContainer):
 class Sequencer(ObjectContainer):
     """Data sequencer"""
 
-    def __init__(self, frames=10, hop_length_frames=None,
+    def __init__(self, sequence_length=10, hop_length=None,
                  padding=None,
                  shift_border='roll', shift=0,
                  required_data_amount_per_segment=0.9,
@@ -777,12 +777,12 @@ class Sequencer(ObjectContainer):
 
         Parameters
         ----------
-        frames : int
+        sequence_length : int
             Sequence length
             Default value 10
 
-        hop_length_frames : int
-            Hop value of when forming the sequence, if None then hop length equals to frames (non-overlapping hopping).
+        hop_length : int
+            Hop value of when forming the sequence, if None then hop length equals to sequence_length (non-overlapping sequences).
             Default value None
 
         padding: str
@@ -807,13 +807,13 @@ class Sequencer(ObjectContainer):
         # Run super init to call init of mixins too
         super(Sequencer, self).__init__(**kwargs)
 
-        self.frames = frames
+        self.sequence_length = sequence_length
 
-        if hop_length_frames is None:
-            self.hop_length_frames = self.frames
+        if hop_length is None:
+            self.hop_length = self.sequence_length
 
         else:
-            self.hop_length_frames = hop_length_frames
+            self.hop_length = hop_length
 
         # Padding
         if padding in [None, False, 'zero', 'repeat']:
@@ -847,8 +847,8 @@ class Sequencer(ObjectContainer):
         ui = FancyStringifier()
 
         output = super(Sequencer, self).__str__()
-        output += ui.data(field='frames', value=self.frames) + '\n'
-        output += ui.data(field='hop_length_frames', value=self.hop_length_frames) + '\n'
+        output += ui.data(field='frames', value=self.sequence_length) + '\n'
+        output += ui.data(field='hop_length_frames', value=self.hop_length) + '\n'
         output += ui.data(field='padding', value=self.padding) + '\n'
         output += ui.data(field='required_data_amount_per_segment', value=self.required_data_amount_per_segment) + '\n'
         output += ui.line(field='Shifting') + '\n'
@@ -860,8 +860,8 @@ class Sequencer(ObjectContainer):
     def __getstate__(self):
         # Return only needed data for pickle
         return {
-            'frames': self.frames,
-            'hop_length_frames': self.hop_length_frames,
+            'frames': self.sequence_length,
+            'hop_length_frames': self.hop_length,
             'padding': self.padding,
             'shift': self.shift,
             'shift_border': self.shift_border,
@@ -869,8 +869,8 @@ class Sequencer(ObjectContainer):
         }
 
     def __setstate__(self, d):
-        self.frames = d['frames']
-        self.hop_length_frames = d['hop_length_frames']
+        self.sequence_length = d['frames']
+        self.hop_length = d['hop_length_frames']
         self.padding = d['padding']
         self.shift = d['shift']
         self.shift_border = d['shift_border']
@@ -915,10 +915,10 @@ class Sequencer(ObjectContainer):
             processed_data = []
 
             if self.shift_border == 'shift':
-                segment_indexes = numpy.arange(self.shift, data.length, self.hop_length_frames)
+                segment_indexes = numpy.arange(self.shift, data.length, self.hop_length)
 
             elif self.shift_border == 'roll':
-                segment_indexes = numpy.arange(0, data.length, self.hop_length_frames)
+                segment_indexes = numpy.arange(0, data.length, self.hop_length)
 
                 if self.shift != 0:
                     # Roll data
@@ -945,16 +945,16 @@ class Sequencer(ObjectContainer):
 
             else:
                 # Remove segments which are not full
-                segment_indexes = segment_indexes[(segment_indexes+self.frames-1) < data.length]
+                segment_indexes = segment_indexes[(segment_indexes + self.sequence_length - 1) < data.length]
 
             for segment_start_frame in segment_indexes:
-                segment_end_frame = segment_start_frame + self.frames
+                segment_end_frame = segment_start_frame + self.sequence_length
 
                 frame_ids = numpy.array(range(segment_start_frame, segment_end_frame))
 
                 valid_frames = numpy.where(numpy.logical_and(frame_ids >= 0, frame_ids < data.length))[0]
 
-                if len(valid_frames) / float(self.frames) > self.required_data_amount_per_segment:
+                if len(valid_frames) / float(self.sequence_length) > self.required_data_amount_per_segment:
                     # Process segment only if it has minimum about of valid frames
 
                     if self.padding == 'repeat':
@@ -977,7 +977,7 @@ class Sequencer(ObjectContainer):
                         # Handle boundaries with zero padding
 
                         # Initialize current segment with zero content
-                        current_segment = numpy.zeros((data.vector_length, self.frames))
+                        current_segment = numpy.zeros((data.vector_length, self.sequence_length))
 
                         # Copy data into correct position within the segment
                         current_segment[:, valid_frames] = data.get_frames(

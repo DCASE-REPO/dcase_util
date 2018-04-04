@@ -17,8 +17,8 @@ def test_sequence():
 
     # Initialize sequencer, 10 frames long sequences, non-overlapping sequences
     sequencer = Sequencer(
-        frames=10,
-        hop_length_frames=10
+        sequence_length=10,
+        hop_length=10
     )
     sequenced_data = sequencer.sequence(
         data=container
@@ -35,8 +35,8 @@ def test_sequence():
 
     # Initialize sequencer, 10 frames long sequences, 1 frame hop
     sequencer = Sequencer(
-        frames=10,
-        hop_length_frames=1
+        sequence_length=10,
+        hop_length=1
     )
     sequenced_data = sequencer.sequence(
         data=container
@@ -53,8 +53,8 @@ def test_sequence():
 
     # Initialize sequencer, 10 frames long sequences, 1 frame hop
     sequencer = Sequencer(
-        frames=10,
-        hop_length_frames=1
+        sequence_length=10,
+        hop_length=1
     )
     # Shift with one frame (+1 from original)
     sequencer.increase_shifting(1)
@@ -76,8 +76,8 @@ def test_sequence():
 
     # Initialize sequencer, 10 frames long sequences, 1 frame hop, shifting border handling mode 'shift'
     sequencer = Sequencer(
-        frames=10,
-        hop_length_frames=1,
+        sequence_length=10,
+        hop_length=1,
         shift_border='shift'
     )
     sequencer.increase_shifting(1)
@@ -92,8 +92,8 @@ def test_sequence():
     container = dcase_util.utils.Example.feature_container()
 
     sequencer = Sequencer(
-        frames=10,
-        hop_length_frames=10,
+        sequence_length=10,
+        hop_length=10,
     )
     sequenced_data = sequencer.sequence(data=container)
     nose.tools.eq_(sequenced_data.length, 10)
@@ -101,8 +101,8 @@ def test_sequence():
     nose.tools.eq_(sequenced_data.data.shape, (40, 10, 50))
 
     sequencer = Sequencer(
-        frames=10,
-        hop_length_frames=1,
+        sequence_length=10,
+        hop_length=1,
     )
     sequenced_data = sequencer.sequence(data=container)
 
@@ -147,8 +147,8 @@ def test_save():
     try:
 
         sequencer = Sequencer(
-            frames=10,
-            hop_length_frames=10,
+            sequence_length=10,
+            hop_length=10,
         ).save(filename=tmp.name).load()
 
         sequenced_data = sequencer.sequence(data=container)
@@ -163,7 +163,7 @@ def test_save():
 def test_log():
     with dcase_util.utils.DisableLogger():
         Sequencer(
-            frames=10,
-            hop_length_frames=10,
+            sequence_length=10,
+            hop_length=10,
             filename='Sequencer.cpickle'
         ).log()

@@ -298,8 +298,7 @@ Extracting a few different acoustic features for an audio file, normalize them, 
         {
             'processor_name': 'SequencingProcessor',
             'init_parameters': {
-                'frames': 50,
-                'hop_length_frames': 50
+                'sequence_length': 50
             }
         },
     ])
@@ -417,8 +416,7 @@ Extracting a few different acoustic features for an audio file, normalize them, 
         {
             'processor_name': 'SequencingProcessor',
             'init_parameters': {
-                'frames': 50,
-                'hop_length_frames': 50
+                'sequence_length': 50
             }
         },
     ])
@@ -516,8 +514,7 @@ Reshaping output matrix::
         {
             'processor_name': 'SequencingProcessor',
             'init_parameters': {
-                'frames': 50,
-                'hop_length_frames': 50
+                'sequence_length': 50
             }
         },
         {
@@ -641,8 +638,7 @@ Reshaping output matrix::
         {
             'processor_name': 'SequencingProcessor',
             'init_parameters': {
-                'frames': 50,
-                'hop_length_frames': 50
+                'sequence_length': 50
             }
         },
         {
@@ -676,8 +672,7 @@ Handling multi-channel audio and output data in 4D matrix::
         {
             'processor_name': 'RepositorySequencingProcessor',
             'init_parameters': {
-                'frames': 100,
-                'hop_length_frames': 100
+                'sequence_length': 100
             }
         },
         {
@@ -738,8 +733,7 @@ Handling multi-channel audio and output data in 4D matrix::
         {
             'processor_name': 'RepositorySequencingProcessor',
             'init_parameters': {
-                'frames': 100,
-                'hop_length_frames': 100
+                'sequence_length': 100
             }
         },
         {
