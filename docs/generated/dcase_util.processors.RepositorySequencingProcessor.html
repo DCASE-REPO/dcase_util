@@ -1402,36 +1402,43 @@
 <h1>dcase_util.processors.RepositorySequencingProcessor<a class="headerlink" href="#dcase-util-processors-repositorysequencingprocessor" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="dcase_util.processors.RepositorySequencingProcessor">
-<em class="property">class </em><code class="descclassname">dcase_util.processors.</code><code class="descname">RepositorySequencingProcessor</code><span class="sig-paren">(</span><em>frames=10</em>, <em>hop_length_frames=None</em>, <em>padding=None</em>, <em>shift_step=0</em>, <em>shift_border='roll'</em>, <em>shift_max=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/processors/data.html#RepositorySequencingProcessor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.processors.RepositorySequencingProcessor" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">dcase_util.processors.</code><code class="descname">RepositorySequencingProcessor</code><span class="sig-paren">(</span><em>sequence_length=10</em>, <em>hop_length=None</em>, <em>padding=None</em>, <em>shift=0</em>, <em>shift_border='roll'</em>, <em>required_data_amount_per_segment=0.9</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/processors/data.html#RepositorySequencingProcessor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.processors.RepositorySequencingProcessor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Data sequencing processor</p>
 <p>__init__ method.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>frames</strong> : int</p>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>sequence_length</strong> : int</p>
 <blockquote>
-<div><p>Sequence length</p>
+<div><p>Sequence length
+Default value 10</p>
 </div></blockquote>
-<p><strong>hop_length_frames</strong> : int</p>
+<p><strong>hop_length</strong> : int</p>
 <blockquote>
-<div><p>Hop value of when forming the sequence</p>
+<div><p>Hop value of when forming the sequence, if None then hop length equals to sequence_length (non-overlapping sequences).
+Default value None</p>
 </div></blockquote>
-<p><strong>padding: bool</strong></p>
+<p><strong>padding: str</strong></p>
 <blockquote>
-<div><p>Replicate data when sequence is not full</p>
+<div><p>How data is treated at the boundaries [None, &#8216;zero&#8217;, &#8216;repeat&#8217;]
+Default value None</p>
 </div></blockquote>
-<p><strong>shift_step</strong> : int</p>
+<p><strong>shift_border</strong> : string, [&#8216;roll&#8217;, &#8216;shift&#8217;]</p>
 <blockquote>
-<div><p>Sequence start temporal shifting amount, is added once method increase_shifting is called</p>
+<div><p>Sequence border handling when doing temporal shifting.
+Default value roll</p>
 </div></blockquote>
-<p><strong>shift_border</strong> : string, {&#8216;roll&#8217;, &#8216;shift&#8217;}</p>
+<p><strong>shift</strong> : int</p>
 <blockquote>
-<div><p>Sequence border handling when doing temporal shifting.</p>
+<div><p>Sequencing grid shift.
+Default value 0</p>
 </div></blockquote>
-<p><strong>shift_max</strong> : int</p>
+<p><strong>required_data_amount_per_segment</strong> : float [0,1]</p>
 <blockquote class="last">
-<div><p>Maximum value for temporal shift</p>
+<div><p>Percentage of valid data items per segment there need to be for valid segment. Use this parameter to
+filter out part of the non-full segments.
+Default value 0.9</p>
 </div></blockquote>
 </td>
 </tr>
@@ -1439,35 +1446,42 @@
 </table>
 <dl class="method">
 <dt id="dcase_util.processors.RepositorySequencingProcessor.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>frames=10</em>, <em>hop_length_frames=None</em>, <em>padding=None</em>, <em>shift_step=0</em>, <em>shift_border='roll'</em>, <em>shift_max=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/processors/data.html#RepositorySequencingProcessor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.processors.RepositorySequencingProcessor.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>sequence_length=10</em>, <em>hop_length=None</em>, <em>padding=None</em>, <em>shift=0</em>, <em>shift_border='roll'</em>, <em>required_data_amount_per_segment=0.9</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/processors/data.html#RepositorySequencingProcessor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.processors.RepositorySequencingProcessor.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>__init__ method.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>frames</strong> : int</p>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>sequence_length</strong> : int</p>
 <blockquote>
-<div><p>Sequence length</p>
+<div><p>Sequence length
+Default value 10</p>
 </div></blockquote>
-<p><strong>hop_length_frames</strong> : int</p>
+<p><strong>hop_length</strong> : int</p>
 <blockquote>
-<div><p>Hop value of when forming the sequence</p>
+<div><p>Hop value of when forming the sequence, if None then hop length equals to sequence_length (non-overlapping sequences).
+Default value None</p>
 </div></blockquote>
-<p><strong>padding: bool</strong></p>
+<p><strong>padding: str</strong></p>
 <blockquote>
-<div><p>Replicate data when sequence is not full</p>
+<div><p>How data is treated at the boundaries [None, &#8216;zero&#8217;, &#8216;repeat&#8217;]
+Default value None</p>
 </div></blockquote>
-<p><strong>shift_step</strong> : int</p>
+<p><strong>shift_border</strong> : string, [&#8216;roll&#8217;, &#8216;shift&#8217;]</p>
 <blockquote>
-<div><p>Sequence start temporal shifting amount, is added once method increase_shifting is called</p>
+<div><p>Sequence border handling when doing temporal shifting.
+Default value roll</p>
 </div></blockquote>
-<p><strong>shift_border</strong> : string, {&#8216;roll&#8217;, &#8216;shift&#8217;}</p>
+<p><strong>shift</strong> : int</p>
 <blockquote>
-<div><p>Sequence border handling when doing temporal shifting.</p>
+<div><p>Sequencing grid shift.
+Default value 0</p>
 </div></blockquote>
-<p><strong>shift_max</strong> : int</p>
+<p><strong>required_data_amount_per_segment</strong> : float [0,1]</p>
 <blockquote class="last">
-<div><p>Maximum value for temporal shift</p>
+<div><p>Percentage of valid data items per segment there need to be for valid segment. Use this parameter to
+filter out part of the non-full segments.
+Default value 0.9</p>
 </div></blockquote>
 </td>
 </tr>
@@ -1482,7 +1496,7 @@
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#dcase_util.processors.RepositorySequencingProcessor.__init__" title="dcase_util.processors.RepositorySequencingProcessor.__init__"><code class="xref py py-obj docutils literal"><span class="pre">__init__</span></code></a>([frames,&nbsp;hop_length_frames,&nbsp;...])</td>
+<tr class="row-odd"><td><a class="reference internal" href="#dcase_util.processors.RepositorySequencingProcessor.__init__" title="dcase_util.processors.RepositorySequencingProcessor.__init__"><code class="xref py py-obj docutils literal"><span class="pre">__init__</span></code></a>([sequence_length,&nbsp;hop_length,&nbsp;...])</td>
 <td>__init__ method.</td>
 </tr>
 <tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">delimiter</span></code>([exclude_delimiters])</td>

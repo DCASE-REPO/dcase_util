@@ -195,41 +195,48 @@ class SequencingProcessor(Processor):
     input_type = ProcessingChainItemType.DATA_CONTAINER  #: Input data type
     output_type = ProcessingChainItemType.DATA_CONTAINER  #: Output data type
 
-    def __init__(self, frames=10, hop_length_frames=None, padding=None, shift_step=0,
-                 shift_border='roll', shift_max=None, **kwargs):
+    def __init__(self, sequence_length=10, hop_length=None, padding=None, shift=0,
+                 shift_border='roll', required_data_amount_per_segment=0.9, **kwargs):
         """__init__ method.
 
         Parameters
         ----------
-        frames : int
+        sequence_length : int
             Sequence length
+            Default value 10
 
-        hop_length_frames : int
-            Hop value of when forming the sequence
+        hop_length : int
+            Hop value of when forming the sequence, if None then hop length equals to sequence_length (non-overlapping sequences).
+            Default value None
 
-        padding: bool
-            Replicate data when sequence is not full
+        padding: str
+            How data is treated at the boundaries [None, 'zero', 'repeat']
+            Default value None
 
-        shift_step : int
-            Sequence start temporal shifting amount, is added once method increase_shifting is called
-
-        shift_border : string, {'roll', 'shift'}
+        shift_border : string, ['roll', 'shift']
             Sequence border handling when doing temporal shifting.
+            Default value roll
 
-        shift_max : int
-            Maximum value for temporal shift
+        shift : int
+            Sequencing grid shift.
+            Default value 0
+
+        required_data_amount_per_segment : float [0,1]
+            Percentage of valid data items per segment there need to be for valid segment. Use this parameter to
+            filter out part of the non-full segments.
+            Default value 0.9
 
         """
 
         # Inject initialization parameters back to kwargs
         kwargs.update(
             {
-                'frames': frames,
-                'hop_length_frames': hop_length_frames,
+                'sequence_length': sequence_length,
+                'hop_length': hop_length,
                 'padding': padding,
-                'shift_step': shift_step,
+                'shift': shift,
                 'shift_border': shift_border,
-                'shift_max': shift_max
+                'required_data_amount_per_segment': required_data_amount_per_segment
             }
         )
 
@@ -292,41 +299,48 @@ class RepositorySequencingProcessor(Processor):
     input_type = ProcessingChainItemType.DATA_REPOSITORY  #: Input data type
     output_type = ProcessingChainItemType.DATA_REPOSITORY  #: Output data type
 
-    def __init__(self, frames=10, hop_length_frames=None, padding=None, shift_step=0,
-                 shift_border='roll', shift_max=None, **kwargs):
+    def __init__(self, sequence_length=10, hop_length=None, padding=None, shift=0,
+                 shift_border='roll', required_data_amount_per_segment=0.9, **kwargs):
         """__init__ method.
 
         Parameters
         ----------
-        frames : int
+        sequence_length : int
             Sequence length
+            Default value 10
 
-        hop_length_frames : int
-            Hop value of when forming the sequence
+        hop_length : int
+            Hop value of when forming the sequence, if None then hop length equals to sequence_length (non-overlapping sequences).
+            Default value None
 
-        padding: bool
-            Replicate data when sequence is not full
+        padding: str
+            How data is treated at the boundaries [None, 'zero', 'repeat']
+            Default value None
 
-        shift_step : int
-            Sequence start temporal shifting amount, is added once method increase_shifting is called
-
-        shift_border : string, {'roll', 'shift'}
+        shift_border : string, ['roll', 'shift']
             Sequence border handling when doing temporal shifting.
+            Default value roll
 
-        shift_max : int
-            Maximum value for temporal shift
+        shift : int
+            Sequencing grid shift.
+            Default value 0
+
+        required_data_amount_per_segment : float [0,1]
+            Percentage of valid data items per segment there need to be for valid segment. Use this parameter to
+            filter out part of the non-full segments.
+            Default value 0.9
 
         """
 
         # Inject initialization parameters back to kwargs
         kwargs.update(
             {
-                'frames': frames,
-                'hop_length_frames': hop_length_frames,
+                'sequence_length': sequence_length,
+                'hop_length': hop_length,
                 'padding': padding,
-                'shift_step': shift_step,
+                'shift': shift,
                 'shift_border': shift_border,
-                'shift_max': shift_max
+                'required_data_amount_per_segment': required_data_amount_per_segment
             }
         )
 

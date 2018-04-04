@@ -88,8 +88,7 @@ chain = dcase_util.processors.ProcessingChain([
     {
         'processor_name': 'SequencingProcessor',
         'init_parameters': {
-            'frames': 50,
-            'hop_length_frames': 50
+            'sequence_length': 50
         }
     },
 ])

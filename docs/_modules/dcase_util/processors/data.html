@@ -1324,6 +1324,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-1-9">v0.1.9</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-1-8">v0.1.8</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-1-7">v0.1.7</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-1-6">v0.1.6</a></li>
@@ -1404,7 +1405,7 @@
 <span class="kn">from</span> <span class="nn">six</span> <span class="k">import</span> <span class="n">iteritems</span>
 <span class="kn">import</span> <span class="nn">numpy</span>
 
-<span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="k">import</span> <span class="n">DataContainer</span><span class="p">,</span> <span class="n">RepositoryContainer</span>
+<span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="k">import</span> <span class="n">RepositoryContainer</span>
 <span class="kn">from</span> <span class="nn">dcase_util.processors</span> <span class="k">import</span> <span class="n">Processor</span><span class="p">,</span> <span class="n">ProcessingChainItemType</span><span class="p">,</span> <span class="n">ProcessingChain</span>
 <span class="kn">from</span> <span class="nn">dcase_util.data</span> <span class="k">import</span> <span class="n">Normalizer</span><span class="p">,</span> <span class="n">RepositoryNormalizer</span><span class="p">,</span> <span class="n">Aggregator</span><span class="p">,</span> <span class="n">Sequencer</span><span class="p">,</span> <span class="n">Stacker</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">,</span> <span class="n">ManyHotEncoder</span><span class="p">,</span> \
     <span class="n">EventRollEncoder</span><span class="p">,</span> <span class="n">Masker</span>
@@ -1541,7 +1542,7 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        data : DataContainer</span>
+<span class="sd">        data : DataRepository</span>
 <span class="sd">            Data</span>
 
 <span class="sd">        store_processing_chain : bool</span>
@@ -1594,41 +1595,48 @@
     <span class="n">input_type</span> <span class="o">=</span> <span class="n">ProcessingChainItemType</span><span class="o">.</span><span class="n">DATA_CONTAINER</span>  <span class="c1">#: Input data type</span>
     <span class="n">output_type</span> <span class="o">=</span> <span class="n">ProcessingChainItemType</span><span class="o">.</span><span class="n">DATA_CONTAINER</span>  <span class="c1">#: Output data type</span>
 
-<div class="viewcode-block" id="SequencingProcessor.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.processors.SequencingProcessor.html#dcase_util.processors.SequencingProcessor.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frames</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">hop_length_frames</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">shift_step</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-                 <span class="n">shift_border</span><span class="o">=</span><span class="s1">&#39;roll&#39;</span><span class="p">,</span> <span class="n">shift_max</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="SequencingProcessor.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.processors.SequencingProcessor.html#dcase_util.processors.SequencingProcessor.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sequence_length</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                 <span class="n">shift_border</span><span class="o">=</span><span class="s1">&#39;roll&#39;</span><span class="p">,</span> <span class="n">required_data_amount_per_segment</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;__init__ method.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        frames : int</span>
+<span class="sd">        sequence_length : int</span>
 <span class="sd">            Sequence length</span>
+<span class="sd">            Default value 10</span>
 
-<span class="sd">        hop_length_frames : int</span>
-<span class="sd">            Hop value of when forming the sequence</span>
+<span class="sd">        hop_length : int</span>
+<span class="sd">            Hop value of when forming the sequence, if None then hop length equals to sequence_length (non-overlapping sequences).</span>
+<span class="sd">            Default value None</span>
 
-<span class="sd">        padding: bool</span>
-<span class="sd">            Replicate data when sequence is not full</span>
+<span class="sd">        padding: str</span>
+<span class="sd">            How data is treated at the boundaries [None, &#39;zero&#39;, &#39;repeat&#39;]</span>
+<span class="sd">            Default value None</span>
 
-<span class="sd">        shift_step : int</span>
-<span class="sd">            Sequence start temporal shifting amount, is added once method increase_shifting is called</span>
-
-<span class="sd">        shift_border : string, {&#39;roll&#39;, &#39;shift&#39;}</span>
+<span class="sd">        shift_border : string, [&#39;roll&#39;, &#39;shift&#39;]</span>
 <span class="sd">            Sequence border handling when doing temporal shifting.</span>
+<span class="sd">            Default value roll</span>
 
-<span class="sd">        shift_max : int</span>
-<span class="sd">            Maximum value for temporal shift</span>
+<span class="sd">        shift : int</span>
+<span class="sd">            Sequencing grid shift.</span>
+<span class="sd">            Default value 0</span>
+
+<span class="sd">        required_data_amount_per_segment : float [0,1]</span>
+<span class="sd">            Percentage of valid data items per segment there need to be for valid segment. Use this parameter to</span>
+<span class="sd">            filter out part of the non-full segments.</span>
+<span class="sd">            Default value 0.9</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># Inject initialization parameters back to kwargs</span>
         <span class="n">kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
             <span class="p">{</span>
-                <span class="s1">&#39;frames&#39;</span><span class="p">:</span> <span class="n">frames</span><span class="p">,</span>
-                <span class="s1">&#39;hop_length_frames&#39;</span><span class="p">:</span> <span class="n">hop_length_frames</span><span class="p">,</span>
+                <span class="s1">&#39;sequence_length&#39;</span><span class="p">:</span> <span class="n">sequence_length</span><span class="p">,</span>
+                <span class="s1">&#39;hop_length&#39;</span><span class="p">:</span> <span class="n">hop_length</span><span class="p">,</span>
                 <span class="s1">&#39;padding&#39;</span><span class="p">:</span> <span class="n">padding</span><span class="p">,</span>
-                <span class="s1">&#39;shift_step&#39;</span><span class="p">:</span> <span class="n">shift_step</span><span class="p">,</span>
+                <span class="s1">&#39;shift&#39;</span><span class="p">:</span> <span class="n">shift</span><span class="p">,</span>
                 <span class="s1">&#39;shift_border&#39;</span><span class="p">:</span> <span class="n">shift_border</span><span class="p">,</span>
-                <span class="s1">&#39;shift_max&#39;</span><span class="p">:</span> <span class="n">shift_max</span>
+                <span class="s1">&#39;required_data_amount_per_segment&#39;</span><span class="p">:</span> <span class="n">required_data_amount_per_segment</span>
             <span class="p">}</span>
         <span class="p">)</span>
 
@@ -1691,41 +1699,48 @@
     <span class="n">input_type</span> <span class="o">=</span> <span class="n">ProcessingChainItemType</span><span class="o">.</span><span class="n">DATA_REPOSITORY</span>  <span class="c1">#: Input data type</span>
     <span class="n">output_type</span> <span class="o">=</span> <span class="n">ProcessingChainItemType</span><span class="o">.</span><span class="n">DATA_REPOSITORY</span>  <span class="c1">#: Output data type</span>
 
-<div class="viewcode-block" id="RepositorySequencingProcessor.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.processors.RepositorySequencingProcessor.html#dcase_util.processors.RepositorySequencingProcessor.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frames</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">hop_length_frames</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">shift_step</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-                 <span class="n">shift_border</span><span class="o">=</span><span class="s1">&#39;roll&#39;</span><span class="p">,</span> <span class="n">shift_max</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="RepositorySequencingProcessor.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.processors.RepositorySequencingProcessor.html#dcase_util.processors.RepositorySequencingProcessor.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sequence_length</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                 <span class="n">shift_border</span><span class="o">=</span><span class="s1">&#39;roll&#39;</span><span class="p">,</span> <span class="n">required_data_amount_per_segment</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;__init__ method.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        frames : int</span>
+<span class="sd">        sequence_length : int</span>
 <span class="sd">            Sequence length</span>
+<span class="sd">            Default value 10</span>
 
-<span class="sd">        hop_length_frames : int</span>
-<span class="sd">            Hop value of when forming the sequence</span>
+<span class="sd">        hop_length : int</span>
+<span class="sd">            Hop value of when forming the sequence, if None then hop length equals to sequence_length (non-overlapping sequences).</span>
+<span class="sd">            Default value None</span>
 
-<span class="sd">        padding: bool</span>
-<span class="sd">            Replicate data when sequence is not full</span>
+<span class="sd">        padding: str</span>
+<span class="sd">            How data is treated at the boundaries [None, &#39;zero&#39;, &#39;repeat&#39;]</span>
+<span class="sd">            Default value None</span>
 
-<span class="sd">        shift_step : int</span>
-<span class="sd">            Sequence start temporal shifting amount, is added once method increase_shifting is called</span>
-
-<span class="sd">        shift_border : string, {&#39;roll&#39;, &#39;shift&#39;}</span>
+<span class="sd">        shift_border : string, [&#39;roll&#39;, &#39;shift&#39;]</span>
 <span class="sd">            Sequence border handling when doing temporal shifting.</span>
+<span class="sd">            Default value roll</span>
 
-<span class="sd">        shift_max : int</span>
-<span class="sd">            Maximum value for temporal shift</span>
+<span class="sd">        shift : int</span>
+<span class="sd">            Sequencing grid shift.</span>
+<span class="sd">            Default value 0</span>
+
+<span class="sd">        required_data_amount_per_segment : float [0,1]</span>
+<span class="sd">            Percentage of valid data items per segment there need to be for valid segment. Use this parameter to</span>
+<span class="sd">            filter out part of the non-full segments.</span>
+<span class="sd">            Default value 0.9</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># Inject initialization parameters back to kwargs</span>
         <span class="n">kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
             <span class="p">{</span>
-                <span class="s1">&#39;frames&#39;</span><span class="p">:</span> <span class="n">frames</span><span class="p">,</span>
-                <span class="s1">&#39;hop_length_frames&#39;</span><span class="p">:</span> <span class="n">hop_length_frames</span><span class="p">,</span>
+                <span class="s1">&#39;sequence_length&#39;</span><span class="p">:</span> <span class="n">sequence_length</span><span class="p">,</span>
+                <span class="s1">&#39;hop_length&#39;</span><span class="p">:</span> <span class="n">hop_length</span><span class="p">,</span>
                 <span class="s1">&#39;padding&#39;</span><span class="p">:</span> <span class="n">padding</span><span class="p">,</span>
-                <span class="s1">&#39;shift_step&#39;</span><span class="p">:</span> <span class="n">shift_step</span><span class="p">,</span>
+                <span class="s1">&#39;shift&#39;</span><span class="p">:</span> <span class="n">shift</span><span class="p">,</span>
                 <span class="s1">&#39;shift_border&#39;</span><span class="p">:</span> <span class="n">shift_border</span><span class="p">,</span>
-                <span class="s1">&#39;shift_max&#39;</span><span class="p">:</span> <span class="n">shift_max</span>
+                <span class="s1">&#39;required_data_amount_per_segment&#39;</span><span class="p">:</span> <span class="n">required_data_amount_per_segment</span>
             <span class="p">}</span>
         <span class="p">)</span>
 
@@ -1739,7 +1754,7 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        data : DataContainer</span>
+<span class="sd">        data : DataRepository</span>
 <span class="sd">            Data</span>
 
 <span class="sd">        store_processing_chain : bool</span>

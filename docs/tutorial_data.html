@@ -1541,8 +1541,8 @@ Sequences can overlap, and sequencing grid can be altered between calls (shifted
 <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="c1"># (40, 501)</span>
 <span class="n">data_sequencer</span> <span class="o">=</span> <span class="n">dcase_util</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Sequencer</span><span class="p">(</span>
-    <span class="n">frames</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-    <span class="n">hop_length_frames</span><span class="o">=</span><span class="mi">100</span>
+    <span class="n">sequence_length</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">hop_length</span><span class="o">=</span><span class="mi">100</span>
 <span class="p">)</span>
 <span class="n">sequenced_data</span> <span class="o">=</span> <span class="n">data_sequencer</span><span class="o">.</span><span class="n">sequence</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">sequenced_data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>

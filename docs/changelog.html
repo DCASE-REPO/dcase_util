@@ -1325,6 +1325,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#v0-1-9">v0.1.9</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#v0-1-8">v0.1.8</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#v0-1-7">v0.1.7</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#v0-1-6">v0.1.6</a></li>
@@ -1397,13 +1398,73 @@
             
   <div class="section" id="release-notes">
 <span id="changelog"></span><h1>Release notes<a class="headerlink" href="#release-notes" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="v0-1-9">
+<h2>v0.1.9<a class="headerlink" href="#v0-1-9" title="Permalink to this headline">¶</a></h2>
+<p><strong>New features</strong></p>
+<ul class="simple">
+<li>Add new processors <code class="docutils literal"><span class="pre">FeatureReadingProcessor</span></code>, <code class="docutils literal"><span class="pre">DataShapingProcessor</span></code>, <code class="docutils literal"><span class="pre">RepositoryAggregationProcessor</span></code>, <code class="docutils literal"><span class="pre">RepositorySequencingProcessor</span></code>, and  <code class="docutils literal"><span class="pre">RepositoryToMatrixProcessor</span></code></li>
+<li>Add extract method to <code class="docutils literal"><span class="pre">SpectralFeatureExtractor</span></code></li>
+<li>Add automatic conversion of numeric fields when loading CSV data to <code class="docutils literal"><span class="pre">ListDictContainer</span></code></li>
+<li>Add filter and get_field_unique methods to <code class="docutils literal"><span class="pre">ListDictContainer</span></code></li>
+<li>Add MP4 to valid audio formats for <code class="docutils literal"><span class="pre">AudioContainer</span></code></li>
+<li>Add general path modification method (<code class="docutils literal"><span class="pre">Path.modify</span></code>)</li>
+<li>Add Keras profile <code class="docutils literal"><span class="pre">cuda0_fast</span></code></li>
+<li>Add Keras utility to create optimizer instance (<em class="xref py py-obj">create_optimizer</em>)</li>
+<li>Add <code class="docutils literal"><span class="pre">DCASE2018_Task5_DevelopmentSet</span></code> and <code class="docutils literal"><span class="pre">DCASE2013_Scenes_EvaluationSet</span></code> datasets</li>
+<li>Add <code class="docutils literal"><span class="pre">DataMatrix4DContainer</span></code></li>
+<li>Add <code class="docutils literal"><span class="pre">plot`</span> <span class="pre">method</span> <span class="pre">to</span> <span class="pre">``DataMatrix3DContainer</span></code></li>
+<li>Add support for a new annotation format for tags [filename][tab][tags] in <code class="docutils literal"><span class="pre">MetaDataContainer</span></code></li>
+<li>Add zero padding to <code class="docutils literal"><span class="pre">Sequencer</span></code></li>
+<li>Add header field override in <em class="xref py py-obj">load</em> method of <code class="docutils literal"><span class="pre">MetaDataContainer</span></code></li>
+<li>Add support for new compressed audio formats (OGG, MP3) in <code class="docutils literal"><span class="pre">AudioContainer</span></code></li>
+<li>Add <code class="docutils literal"><span class="pre">segments</span></code> method in <code class="docutils literal"><span class="pre">AudioContainer</span></code> to split signal into non-overlapping segments with optionally skipped regions</li>
+<li>Add <code class="docutils literal"><span class="pre">pad</span></code> method in <code class="docutils literal"><span class="pre">AudioContainer</span></code> to pad signal into given length</li>
+<li>Add <code class="docutils literal"><span class="pre">compress</span></code> method in <code class="docutils literal"><span class="pre">PackageMixin</span></code></li>
+<li>Add <code class="docutils literal"><span class="pre">Package</span></code> class to handle local compressed file packages</li>
+<li>Add <code class="docutils literal"><span class="pre">change_axis</span></code> method to <code class="docutils literal"><span class="pre">DataMatrix2DContainer</span></code>, <code class="docutils literal"><span class="pre">DataMatrix3DContainer</span></code>, and <code class="docutils literal"><span class="pre">DataMatrix4DContainer</span></code></li>
+<li>Add <code class="docutils literal"><span class="pre">KerasDataSequence</span></code> class for data generation through processing chain</li>
+<li>Add support for data and meta processing chains to <code class="docutils literal"><span class="pre">DCASEAppParameterContainer</span></code></li>
+<li>Add <code class="docutils literal"><span class="pre">many_hot</span></code> method in <code class="docutils literal"><span class="pre">DecisionEncoder</span></code></li>
+</ul>
+<p><strong>Updates</strong></p>
+<ul class="simple">
+<li>Update <code class="docutils literal"><span class="pre">TUTRareSoundEvents_2017_DevelopmentSet</span></code> and <code class="docutils literal"><span class="pre">TUTRareSoundEvents_2017_EvaluationSet</span></code> datasets</li>
+<li>Update Keras utility <code class="docutils literal"><span class="pre">model_summary_string</span></code> to use by default standard method from Keras</li>
+<li>Update <code class="docutils literal"><span class="pre">FeatureRepository</span></code> API to be aligned with Container classes</li>
+<li>Update <code class="docutils literal"><span class="pre">Sequencer</span></code>, <code class="docutils literal"><span class="pre">SequencingProcessor</span></code>, and <code class="docutils literal"><span class="pre">RepositorySequencingProcessor</span></code> API</li>
+<li>Update <code class="docutils literal"><span class="pre">AppParameterContainer</span></code> to allow change of active set even after <code class="docutils literal"><span class="pre">process</span></code> method has been called</li>
+<li>Update mechanism to store meta information about chain item when data is processed using processing chain</li>
+</ul>
+<p><strong>Bug fixes</strong></p>
+<ul class="simple">
+<li>Fix <code class="docutils literal"><span class="pre">save</span></code> method in <code class="docutils literal"><span class="pre">MetaDataContainer</span></code> when saving with tags in CSV format</li>
+<li>Fix many methods to give more appropriate error messages</li>
+</ul>
+<p>API changes and compatibility</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">Sequencer</span></code>, <code class="docutils literal"><span class="pre">SequencingProcessor</span></code>, and <code class="docutils literal"><span class="pre">RepositorySequencingProcessor</span></code> API changes:</dt>
+<dd><ul class="first last">
+<li><code class="docutils literal"><span class="pre">frames</span></code> changed to <code class="docutils literal"><span class="pre">sequence_length</span></code></li>
+<li><code class="docutils literal"><span class="pre">hop_length_frames</span></code> to <code class="docutils literal"><span class="pre">hop_length</span></code></li>
+<li><code class="docutils literal"><span class="pre">padding</span></code> parameter accepts now strings (<code class="docutils literal"><span class="pre">zero</span></code> and <code class="docutils literal"><span class="pre">repeat</span></code>)</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
 <div class="section" id="v0-1-8">
 <h2>v0.1.8<a class="headerlink" href="#v0-1-8" title="Permalink to this headline">¶</a></h2>
+<p><strong>New features</strong></p>
 <ul class="simple">
-<li>Add new formats for <em class="xref py py-obj">MetaDataContainer</em> (cpickle, CSV)</li>
+<li>Add new formats for <code class="docutils literal"><span class="pre">MetaDataContainer</span></code> (cpickle, CSV)</li>
 <li>Add forced file formats when reading and saving containers</li>
 <li>Add Keras setup function</li>
-<li>Add frame splitting method into <em class="xref py py-obj">AudioContainer</em></li>
+<li>Add frame splitting method into <code class="docutils literal"><span class="pre">AudioContainer</span></code></li>
+</ul>
+<p><strong>Bug fixes</strong></p>
+<ul class="simple">
 <li>Fix unicode string support when printing container information</li>
 <li>Fix data contamination through data references while manipulating data</li>
 <li>Some minor bug fixes</li>
@@ -1411,21 +1472,35 @@
 </div>
 <div class="section" id="v0-1-7">
 <h2>v0.1.7<a class="headerlink" href="#v0-1-7" title="Permalink to this headline">¶</a></h2>
+<p><strong>New features</strong></p>
 <ul class="simple">
-<li>Add intersection method for <a href="#id1"><span class="problematic" id="id2">`</span></a>MetaDataContainer `</li>
+<li>Add intersection method for <code class="docutils literal"><span class="pre">MetaDataContainer</span></code></li>
+</ul>
+<p><strong>Updates</strong></p>
+<ul class="simple">
 <li>Update dataset class API (e.g. copy returned metadata prevent accidental manipulation, uniform method names)</li>
+</ul>
+<p><strong>Bug fixes</strong></p>
+<ul class="simple">
 <li>Fix data sequencing when overlapping sequencing is used.</li>
-<li>Fix datasets <em class="xref py py-obj">CHiMEHome_DomesticAudioTag_DevelopmentSet</em>, <em class="xref py py-obj">TUTAcousticScenes_2017_EvaluationSet</em>, and <em class="xref py py-obj">TUTSoundEvents_2017_EvaluationSet</em></li>
+<li>Fix datasets <code class="docutils literal"><span class="pre">CHiMEHome_DomesticAudioTag_DevelopmentSet</span></code>, <code class="docutils literal"><span class="pre">TUTAcousticScenes_2017_EvaluationSet</span></code>, and <code class="docutils literal"><span class="pre">TUTSoundEvents_2017_EvaluationSet</span></code></li>
 </ul>
 </div>
 <div class="section" id="v0-1-6">
 <h2>v0.1.6<a class="headerlink" href="#v0-1-6" title="Permalink to this headline">¶</a></h2>
+<p><strong>New features</strong></p>
 <ul class="simple">
-<li>Add <em class="xref py py-obj">CHiMEHome_DomesticAudioTag_EvaluationSet</em> dataset</li>
+<li>Add <code class="docutils literal"><span class="pre">CHiMEHome_DomesticAudioTag_EvaluationSet</span></code> dataset</li>
+</ul>
+<p><strong>Updates</strong></p>
+<ul class="simple">
 <li>Update example audio to be 16-bit audio file in wav-format instead of FLAC used earlier</li>
-<li>Update <em class="xref py py-obj">ProbabilityContainer</em> API to be more compatible with <em class="xref py py-obj">MetaDataContainer</em></li>
-<li>Update <em class="xref py py-obj">MetaDataItem</em> to be compatible with field naming used previously in DCASE baseline systems</li>
+<li>Update <code class="docutils literal"><span class="pre">ProbabilityContainer</span></code> API to be more compatible with <code class="docutils literal"><span class="pre">MetaDataContainer</span></code></li>
+<li>Update <code class="docutils literal"><span class="pre">MetaDataItem</span></code> to be compatible with field naming used previously in DCASE baseline systems</li>
 <li>Update ui utilities</li>
+</ul>
+<p><strong>Bug fixes</strong></p>
+<ul class="simple">
 <li>Fix audio reading when target sampling rate is not set</li>
 <li>Some minor bug fixes</li>
 </ul>
