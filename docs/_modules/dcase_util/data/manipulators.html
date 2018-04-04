@@ -1410,7 +1410,7 @@
 <span class="kn">import</span> <span class="nn">glob</span>
 <span class="kn">from</span> <span class="nn">past.builtins</span> <span class="k">import</span> <span class="n">basestring</span>
 
-<span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="k">import</span> <span class="n">DataContainer</span><span class="p">,</span> <span class="n">ObjectContainer</span>
+<span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="k">import</span> <span class="n">ObjectContainer</span>
 <span class="kn">from</span> <span class="nn">dcase_util.ui</span> <span class="k">import</span> <span class="n">FancyStringifier</span>
 <span class="kn">from</span> <span class="nn">dcase_util.utils</span> <span class="k">import</span> <span class="n">VectorRecipeParser</span><span class="p">,</span> <span class="n">filelist_exists</span>
 
@@ -2167,7 +2167,7 @@
 <div class="viewcode-block" id="Sequencer"><a class="viewcode-back" href="../../../generated/dcase_util.data.Sequencer.html#dcase_util.data.Sequencer">[docs]</a><span class="k">class</span> <span class="nc">Sequencer</span><span class="p">(</span><span class="n">ObjectContainer</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Data sequencer&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Sequencer.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.data.Sequencer.html#dcase_util.data.Sequencer.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frames</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">hop_length_frames</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<div class="viewcode-block" id="Sequencer.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.data.Sequencer.html#dcase_util.data.Sequencer.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sequence_length</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">padding</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">shift_border</span><span class="o">=</span><span class="s1">&#39;roll&#39;</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
                  <span class="n">required_data_amount_per_segment</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>
@@ -2176,12 +2176,12 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        frames : int</span>
+<span class="sd">        sequence_length : int</span>
 <span class="sd">            Sequence length</span>
 <span class="sd">            Default value 10</span>
 
-<span class="sd">        hop_length_frames : int</span>
-<span class="sd">            Hop value of when forming the sequence, if None then hop length equals to frames (non-overlapping hopping).</span>
+<span class="sd">        hop_length : int</span>
+<span class="sd">            Hop value of when forming the sequence, if None then hop length equals to sequence_length (non-overlapping sequences).</span>
 <span class="sd">            Default value None</span>
 
 <span class="sd">        padding: str</span>
@@ -2206,13 +2206,13 @@
         <span class="c1"># Run super init to call init of mixins too</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Sequencer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">frames</span> <span class="o">=</span> <span class="n">frames</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sequence_length</span> <span class="o">=</span> <span class="n">sequence_length</span>
 
-        <span class="k">if</span> <span class="n">hop_length_frames</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">hop_length_frames</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">frames</span>
+        <span class="k">if</span> <span class="n">hop_length</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">hop_length</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sequence_length</span>
 
         <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">hop_length_frames</span> <span class="o">=</span> <span class="n">hop_length_frames</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">hop_length</span> <span class="o">=</span> <span class="n">hop_length</span>
 
         <span class="c1"># Padding</span>
         <span class="k">if</span> <span class="n">padding</span> <span class="ow">in</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;zero&#39;</span><span class="p">,</span> <span class="s1">&#39;repeat&#39;</span><span class="p">]:</span>
@@ -2246,8 +2246,8 @@
         <span class="n">ui</span> <span class="o">=</span> <span class="n">FancyStringifier</span><span class="p">()</span>
 
         <span class="n">output</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">Sequencer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__str__</span><span class="p">()</span>
-        <span class="n">output</span> <span class="o">+=</span> <span class="n">ui</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">field</span><span class="o">=</span><span class="s1">&#39;frames&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
-        <span class="n">output</span> <span class="o">+=</span> <span class="n">ui</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">field</span><span class="o">=</span><span class="s1">&#39;hop_length_frames&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">hop_length_frames</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="n">output</span> <span class="o">+=</span> <span class="n">ui</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">field</span><span class="o">=</span><span class="s1">&#39;frames&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sequence_length</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="n">output</span> <span class="o">+=</span> <span class="n">ui</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">field</span><span class="o">=</span><span class="s1">&#39;hop_length_frames&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">hop_length</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
         <span class="n">output</span> <span class="o">+=</span> <span class="n">ui</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">field</span><span class="o">=</span><span class="s1">&#39;padding&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">padding</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
         <span class="n">output</span> <span class="o">+=</span> <span class="n">ui</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">field</span><span class="o">=</span><span class="s1">&#39;required_data_amount_per_segment&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">required_data_amount_per_segment</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
         <span class="n">output</span> <span class="o">+=</span> <span class="n">ui</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">field</span><span class="o">=</span><span class="s1">&#39;Shifting&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
@@ -2259,8 +2259,8 @@
     <span class="k">def</span> <span class="nf">__getstate__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># Return only needed data for pickle</span>
         <span class="k">return</span> <span class="p">{</span>
-            <span class="s1">&#39;frames&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="p">,</span>
-            <span class="s1">&#39;hop_length_frames&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">hop_length_frames</span><span class="p">,</span>
+            <span class="s1">&#39;frames&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">sequence_length</span><span class="p">,</span>
+            <span class="s1">&#39;hop_length_frames&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">hop_length</span><span class="p">,</span>
             <span class="s1">&#39;padding&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">padding</span><span class="p">,</span>
             <span class="s1">&#39;shift&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">shift</span><span class="p">,</span>
             <span class="s1">&#39;shift_border&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">shift_border</span><span class="p">,</span>
@@ -2268,8 +2268,8 @@
         <span class="p">}</span>
 
     <span class="k">def</span> <span class="nf">__setstate__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">frames</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;frames&#39;</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">hop_length_frames</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;hop_length_frames&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sequence_length</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;frames&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hop_length</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;hop_length_frames&#39;</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">padding</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;padding&#39;</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">shift</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;shift&#39;</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">shift_border</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;shift_border&#39;</span><span class="p">]</span>
@@ -2314,10 +2314,10 @@
             <span class="n">processed_data</span> <span class="o">=</span> <span class="p">[]</span>
 
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">shift_border</span> <span class="o">==</span> <span class="s1">&#39;shift&#39;</span><span class="p">:</span>
-                <span class="n">segment_indexes</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shift</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">length</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hop_length_frames</span><span class="p">)</span>
+                <span class="n">segment_indexes</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shift</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">length</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hop_length</span><span class="p">)</span>
 
             <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">shift_border</span> <span class="o">==</span> <span class="s1">&#39;roll&#39;</span><span class="p">:</span>
-                <span class="n">segment_indexes</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">length</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hop_length_frames</span><span class="p">)</span>
+                <span class="n">segment_indexes</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">length</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hop_length</span><span class="p">)</span>
 
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">shift</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
                     <span class="c1"># Roll data</span>
@@ -2344,16 +2344,16 @@
 
             <span class="k">else</span><span class="p">:</span>
                 <span class="c1"># Remove segments which are not full</span>
-                <span class="n">segment_indexes</span> <span class="o">=</span> <span class="n">segment_indexes</span><span class="p">[(</span><span class="n">segment_indexes</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">data</span><span class="o">.</span><span class="n">length</span><span class="p">]</span>
+                <span class="n">segment_indexes</span> <span class="o">=</span> <span class="n">segment_indexes</span><span class="p">[(</span><span class="n">segment_indexes</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">sequence_length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">data</span><span class="o">.</span><span class="n">length</span><span class="p">]</span>
 
             <span class="k">for</span> <span class="n">segment_start_frame</span> <span class="ow">in</span> <span class="n">segment_indexes</span><span class="p">:</span>
-                <span class="n">segment_end_frame</span> <span class="o">=</span> <span class="n">segment_start_frame</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">frames</span>
+                <span class="n">segment_end_frame</span> <span class="o">=</span> <span class="n">segment_start_frame</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">sequence_length</span>
 
                 <span class="n">frame_ids</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">segment_start_frame</span><span class="p">,</span> <span class="n">segment_end_frame</span><span class="p">))</span>
 
                 <span class="n">valid_frames</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">frame_ids</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">frame_ids</span> <span class="o">&lt;</span> <span class="n">data</span><span class="o">.</span><span class="n">length</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
 
-                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">valid_frames</span><span class="p">)</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="p">)</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">required_data_amount_per_segment</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">valid_frames</span><span class="p">)</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sequence_length</span><span class="p">)</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">required_data_amount_per_segment</span><span class="p">:</span>
                     <span class="c1"># Process segment only if it has minimum about of valid frames</span>
 
                     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">padding</span> <span class="o">==</span> <span class="s1">&#39;repeat&#39;</span><span class="p">:</span>
@@ -2376,7 +2376,7 @@
                         <span class="c1"># Handle boundaries with zero padding</span>
 
                         <span class="c1"># Initialize current segment with zero content</span>
-                        <span class="n">current_segment</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">data</span><span class="o">.</span><span class="n">vector_length</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="p">))</span>
+                        <span class="n">current_segment</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">data</span><span class="o">.</span><span class="n">vector_length</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sequence_length</span><span class="p">))</span>
 
                         <span class="c1"># Copy data into correct position within the segment</span>
                         <span class="n">current_segment</span><span class="p">[:,</span> <span class="n">valid_frames</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get_frames</span><span class="p">(</span>

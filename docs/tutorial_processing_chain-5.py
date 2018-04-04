@@ -17,8 +17,7 @@ chain = dcase_util.processors.ProcessingChain([
     {
         'processor_name': 'RepositorySequencingProcessor',
         'init_parameters': {
-            'frames': 100,
-            'hop_length_frames': 100
+            'sequence_length': 100
         }
     },
     {
