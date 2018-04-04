@@ -32,7 +32,7 @@ except (IOError, ImportError, RuntimeError):
 
 setup(
     name='dcase_util',
-    version='0.1.8',
+    version='0.1.9',
     description='A collection of utilities for Detection and Classification of Acoustic Scenes and Events',
     author='Toni Heittola',
     author_email='toni.heittola@gmail.com',
@@ -51,7 +51,6 @@ setup(
         "Topic :: Multimedia :: Sound/Audio :: Analysis",
         "Topic :: Scientific/Engineering :: Artificial Intelligence",
         "Programming Language :: Python :: 2.7",
-        "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: 3.6",
     ],
     keywords='audio sound',
