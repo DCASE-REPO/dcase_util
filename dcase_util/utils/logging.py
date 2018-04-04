@@ -23,26 +23,30 @@ def setup_logging(parameters=None,
     ----------
     parameters : dict
         Parameters in dict
-        Default value "None"
+        Default value None
+
     coloredlogs : bool
         Use coloredlogs
-        Default value "False"
+        Default value False
+
     logging_file : str
         Log filename for file based logging, if none given no file logging is used.
-        Default value "None"
+        Default value None
+
     environmental_variable : str
         Environmental variable to get the logging setup filename, if set will override default_setup_file
-        Default value "LOG_CFG"
+        Default value 'LOG_CFG'
+
     default_setup_file : str
         Default logging parameter file, used if one is not set in given ParameterContainer
-        Default value "logging.yaml"
+        Default value 'logging.yaml'
+
     default_level : logging.level
         Default logging level, used if one is not set in given ParameterContainer
-        Default value "logging.INFO"
+        Default value 'logging.INFO'
 
     Returns
     -------
-
     nothing
 
     """
@@ -76,6 +80,7 @@ def setup_logging(parameters=None,
             logging.config.dictConfig(config)
 
             try:
+                # Check if coloredlogs is available
                 import coloredlogs
                 coloredlogs.install(
                     level=config['handlers']['console']['level'],
@@ -88,6 +93,7 @@ def setup_logging(parameters=None,
         else:
             if coloredlogs:
                 try:
+                    # Check if coloredlogs is available
                     import coloredlogs
 
                     coloredlogs.install(
@@ -194,6 +200,7 @@ def setup_logging(parameters=None,
            'console' in parameters.get_path('parameters.handlers')):
 
             try:
+                # Check if coloredlogs is available
                 import coloredlogs
                 coloredlogs.install(
                     level=parameters.get_path('parameters.handlers.console.level'),
