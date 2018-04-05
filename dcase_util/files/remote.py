@@ -435,12 +435,24 @@ class RemoteFile(DictContainer):
                           disable=self.disable_progress_bar,
                           ascii=self.use_ascii_progress_bar) as t:
 
-                    local_filename, headers = urlretrieve(
-                        url=self.remote_file,
-                        filename=tmp_file,
-                        reporthook=progress_hook(t),
-                        data=None
-                    )
+                    try:
+                        local_filename, headers = urlretrieve(
+                            url=self.remote_file,
+                            filename=tmp_file,
+                            reporthook=progress_hook(t),
+                            data=None
+                        )
+                    except IOError:
+                        # Second attempt by ignoring SSL context.
+                        import ssl
+                        ssl._create_default_https_context = ssl._create_unverified_context
+
+                        local_filename, headers = urlretrieve(
+                            url=self.remote_file,
+                            filename=tmp_file,
+                            reporthook=progress_hook(t),
+                            data=None
+                        )
 
                 tmp_md5 = get_file_hash(filename=tmp_file)
                 file_valid = True
