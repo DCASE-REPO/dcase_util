@@ -1479,18 +1479,18 @@ class DCASEAppParameterContainer(AppParameterContainer):
                     # Collect enabled items from the processing chain.
                     enabled_items = []
                     for item_id, item in enumerate(data[self.field_labels['CHAIN']]):
-                        if 'FeatureExtractorProcessor' in item['processor_name']:
-                            item['init_parameters'] = self._get_dependency_parameters_feature_extraction(
-                                parameters=parameters
-                            )['parameters']
-
-                        elif 'RepositoryFeatureExtractorProcessor' in item['processor_name']:
+                        if 'RepositoryFeatureExtractorProcessor' in item['processor_name']:
                             # Get dependency parameters
                             item['init_parameters'] = {
                                 'parameters': self._get_dependency_parameters_feature_extraction(
                                     parameters=parameters
                                 )['parameters']
                             }
+
+                        elif 'FeatureExtractorProcessor' in item['processor_name']:
+                            item['init_parameters'] = self._get_dependency_parameters_feature_extraction(
+                                parameters=parameters
+                            )['parameters']
 
                         elif 'FeatureReadingProcessor' in item['processor_name']:
                             # Get dependency parameters
@@ -1533,18 +1533,18 @@ class DCASEAppParameterContainer(AppParameterContainer):
                     # Collect enabled items from the processing chain.
                     enabled_items = []
                     for item_id, item in enumerate(data[self.field_labels['CHAIN']]):
-                        if 'FeatureExtractorProcessor' in item['processor_name']:
-                            item['init_parameters'] = self._get_dependency_parameters_feature_extraction(
-                                parameters=parameters
-                            )['parameters']
-
-                        elif 'RepositoryFeatureExtractorProcessor' in item['processor_name']:
+                        if 'RepositoryFeatureExtractorProcessor' in item['processor_name']:
                             # Get dependency parameters
                             item['init_parameters'] = {
                                 'parameters': self._get_dependency_parameters_feature_extraction(
                                     parameters=parameters
                                 )['parameters']
                             }
+
+                        elif 'FeatureExtractorProcessor' in item['processor_name']:
+                            item['init_parameters'] = self._get_dependency_parameters_feature_extraction(
+                                parameters=parameters
+                            )['parameters']
 
                         elif 'FeatureReadingProcessor' in item['processor_name']:
                             # Get dependency parameters
