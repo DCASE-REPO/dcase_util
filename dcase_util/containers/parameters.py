@@ -748,6 +748,7 @@ class AppParameterContainer(ParameterContainer):
                             path=['PATH', 'APPLICATION_PATHS', 'BASE'],
                             new_value=base_path
                         )
+
                 else:
                     # No base path given, use main application base
                     base_path = self.app_base
