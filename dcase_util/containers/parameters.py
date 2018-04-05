@@ -1196,6 +1196,59 @@ class DCASEAppParameterContainer(AppParameterContainer):
 
         self.reset(**kwargs)
 
+    def _get_dependency_parameters_feature_extraction(self, parameters):
+        # Get dependency parameters
+        dependency_parameters = dict(self.get_path_translated(
+            parameters=parameters,
+            path=['FEATURE_EXTRACTOR']
+        ))
+
+        # Get section name for dependency method parameters
+        dep_section_method_parameters = self._method_parameter_section(
+            section=self.section_labels['FEATURE_EXTRACTOR'],
+            parameters=parameters
+        )
+
+        # Inject parameters based on label
+        if self.field_labels['LABEL'] in dependency_parameters:
+            if dep_section_method_parameters in parameters and dependency_parameters[self.field_labels['LABEL']] in \
+                    parameters[dep_section_method_parameters]:
+                dependency_parameters[self.field_labels['PARAMETERS']] = copy.deepcopy(
+                    dict(
+                        self.get_path_translated(
+                            parameters=parameters,
+                            path=[dep_section_method_parameters, dependency_parameters[self.field_labels['LABEL']]]
+                        )
+                    )
+                )
+
+        # Inject parameters based on recipes
+        if self.field_labels['RECIPE'] in dependency_parameters:
+            # Remove current parameters
+            dependency_parameters[self.field_labels['PARAMETERS']] = {}
+            dependency_parameters[self.field_labels['RECIPE']] = VectorRecipeParser().parse(
+                recipe=str(dependency_parameters[self.field_labels['RECIPE']])
+            )
+
+            for dep_item in dependency_parameters[self.field_labels['RECIPE']]:
+                if self.field_labels['LABEL'] in dep_item:
+                    label = dep_item[self.field_labels['LABEL']]
+
+                elif 'label' in dep_item:
+                    label = dep_item['label']
+
+                label_parameters = dict(
+                    self.get_path_translated(
+                        parameters=parameters,
+                        path=[dep_section_method_parameters, label]
+                    )
+                )
+
+                if label_parameters:
+                    dependency_parameters[self.field_labels['PARAMETERS']][label] = label_parameters
+
+        return dependency_parameters
+
     def _process_LOGGING(self, parameters):
         """Process LOGGING section."""
 
@@ -1426,111 +1479,24 @@ class DCASEAppParameterContainer(AppParameterContainer):
                     # Collect enabled items from the processing chain.
                     enabled_items = []
                     for item_id, item in enumerate(data[self.field_labels['CHAIN']]):
-                        if 'FeatureExtractorProcessor' in item['processor_name'] or 'RepositoryFeatureExtractorProcessor' in item['processor_name']:
-                            # Get dependency parameters
-                            dependency_parameters = dict(self.get_path_translated(
-                                parameters=parameters,
-                                path=['FEATURE_EXTRACTOR']
-                            ))
-
-                            # Get section name for dependency method parameters
-                            dep_section_method_parameters = self._method_parameter_section(
-                                section=self.section_labels['FEATURE_EXTRACTOR'],
+                        if 'FeatureExtractorProcessor' in item['processor_name']:
+                            item['init_parameters'] = self._get_dependency_parameters_feature_extraction(
                                 parameters=parameters
-                            )
-                            # Inject parameters based on label
-                            if self.field_labels['LABEL'] in dependency_parameters:
-                                if dep_section_method_parameters in parameters and dependency_parameters[self.field_labels['LABEL']] in parameters[dep_section_method_parameters]:
-                                    dependency_parameters[self.field_labels['PARAMETERS']] = copy.deepcopy(
-                                        dict(
-                                            self.get_path_translated(
-                                                parameters=parameters,
-                                                path=[dep_section_method_parameters, dependency_parameters[self.field_labels['LABEL']]]
-                                            )
-                                        )
-                                    )
+                            )['parameters']
 
-                            # Inject parameters based on recipes
-                            if self.field_labels['RECIPE'] in dependency_parameters:
-                                # Remove current parameters
-                                dependency_parameters[self.field_labels['PARAMETERS']] = {}
-                                dependency_parameters[self.field_labels['RECIPE']] = VectorRecipeParser().parse(
-                                    recipe=str(dependency_parameters[self.field_labels['RECIPE']])
-                                )
-
-                                for dep_item in dependency_parameters[self.field_labels['RECIPE']]:
-                                    if self.field_labels['LABEL'] in dep_item:
-                                        label = dep_item[self.field_labels['LABEL']]
-
-                                    elif 'label' in dep_item:
-                                        label = dep_item['label']
-
-                                    label_parameters = dict(
-                                        self.get_path_translated(
-                                            parameters=parameters,
-                                            path=[dep_section_method_parameters, label]
-                                        )
-                                    )
-
-                                    if label_parameters:
-                                        dependency_parameters[self.field_labels['PARAMETERS']][label] = label_parameters
-
-                            if 'FeatureExtractorProcessor' in item['processor_name']:
-                                item['init_parameters'] = dependency_parameters['parameters']
-
-                            else:
-                                item['init_parameters'] = {
-                                    'parameters': dependency_parameters['parameters']
-                                }
+                        elif 'RepositoryFeatureExtractorProcessor' in item['processor_name']:
+                            # Get dependency parameters
+                            item['init_parameters'] = {
+                                'parameters': self._get_dependency_parameters_feature_extraction(
+                                    parameters=parameters
+                                )['parameters']
+                            }
 
                         elif 'FeatureReadingProcessor' in item['processor_name']:
                             # Get dependency parameters
-                            dependency_parameters = dict(self.get_path_translated(
-                                parameters=parameters,
-                                path=['FEATURE_EXTRACTOR']
-                            ))
-
-                            # Get section name for dependency method parameters
-                            dep_section_method_parameters = self._method_parameter_section(
-                                section=self.section_labels['FEATURE_EXTRACTOR'],
+                            dependency_parameters = self._get_dependency_parameters_feature_extraction(
                                 parameters=parameters
                             )
-                            # Inject parameters based on label
-                            if self.field_labels['LABEL'] in dependency_parameters:
-                                if dep_section_method_parameters in parameters and dependency_parameters[self.field_labels['LABEL']] in parameters[dep_section_method_parameters]:
-                                    dependency_parameters[self.field_labels['PARAMETERS']] = copy.deepcopy(
-                                        dict(
-                                            self.get_path_translated(
-                                                parameters=parameters,
-                                                path=[dep_section_method_parameters, dependency_parameters[self.field_labels['LABEL']]]
-                                            )
-                                        )
-                                    )
-
-                            # Inject parameters based on recipes
-                            if self.field_labels['RECIPE'] in dependency_parameters:
-                                # Remove current parameters
-                                dependency_parameters[self.field_labels['PARAMETERS']] = {}
-                                dependency_parameters[self.field_labels['RECIPE']] = VectorRecipeParser().parse(
-                                    recipe=str(dependency_parameters[self.field_labels['RECIPE']])
-                                )
-
-                                for dep_item in dependency_parameters[self.field_labels['RECIPE']]:
-                                    if self.field_labels['LABEL'] in dep_item:
-                                        label = dep_item[self.field_labels['LABEL']]
-
-                                    elif 'label' in dep_item:
-                                        label = dep_item['label']
-
-                                    label_parameters = dict(
-                                        self.get_path_translated(
-                                            parameters=parameters,
-                                            path=[dep_section_method_parameters, label]
-                                        )
-                                    )
-
-                                    if label_parameters:
-                                        dependency_parameters[self.field_labels['PARAMETERS']][label] = label_parameters
 
                             # Inject feature extraction parameters to get correct hash value
                             item[self.field_labels['DEPENDENCY_PARAMETERS']] = dependency_parameters
@@ -1567,63 +1533,18 @@ class DCASEAppParameterContainer(AppParameterContainer):
                     # Collect enabled items from the processing chain.
                     enabled_items = []
                     for item_id, item in enumerate(data[self.field_labels['CHAIN']]):
-                        if 'FeatureExtractorProcessor' in item['processor_name'] or 'RepositoryFeatureExtractorProcessor' in item['processor_name']:
-                            # Get dependency parameters
-                            dependency_parameters = dict(self.get_path_translated(
-                                parameters=parameters,
-                                path=['FEATURE_EXTRACTOR']
-                            ))
-
-                            # Get section name for dependency method parameters
-                            dep_section_method_parameters = self._method_parameter_section(
-                                section=self.section_labels['FEATURE_EXTRACTOR'],
+                        if 'FeatureExtractorProcessor' in item['processor_name']:
+                            item['init_parameters'] = self._get_dependency_parameters_feature_extraction(
                                 parameters=parameters
-                            )
-                            # Inject parameters based on label
-                            if self.field_labels['LABEL'] in dependency_parameters:
-                                if dep_section_method_parameters in parameters and dependency_parameters[self.field_labels['LABEL']] in parameters[dep_section_method_parameters]:
-                                    dependency_parameters[self.field_labels['PARAMETERS']] = copy.deepcopy(
-                                        dict(
-                                            self.get_path_translated(
-                                                parameters=parameters,
-                                                path=[dep_section_method_parameters, dependency_parameters[self.field_labels['LABEL']]]
-                                            )
-                                        )
-                                    )
+                            )['parameters']
 
-                            # Inject parameters based on recipes
-                            if self.field_labels['RECIPE'] in dependency_parameters:
-                                # Remove current parameters
-                                dependency_parameters[self.field_labels['PARAMETERS']] = {}
-                                dependency_parameters[self.field_labels['RECIPE']] = VectorRecipeParser().parse(
-                                    recipe=str(dependency_parameters[self.field_labels['RECIPE']])
-                                )
-
-                                for dep_item in dependency_parameters[self.field_labels['RECIPE']]:
-                                    if self.field_labels['LABEL'] in dep_item:
-                                        label = dep_item[self.field_labels['LABEL']]
-
-                                    elif 'label' in dep_item:
-                                        label = dep_item['label']
-
-                                    label_parameters = dict(
-                                        self.get_path_translated(
-                                            parameters=parameters,
-                                            path=[dep_section_method_parameters, label]
-                                        )
-                                    )
-
-                                    if label_parameters:
-                                        dependency_parameters[self.field_labels['PARAMETERS']][label] = label_parameters
-
-                            if 'FeatureExtractorProcessor' in item['processor_name']:
-                                item['init_parameters'] = dependency_parameters['parameters']
-
-                            else:
-                                item['init_parameters'] = {
-                                    'parameters': dependency_parameters['parameters']
-                                }
-
+                        elif 'RepositoryFeatureExtractorProcessor' in item['processor_name']:
+                            # Get dependency parameters
+                            item['init_parameters'] = {
+                                'parameters': self._get_dependency_parameters_feature_extraction(
+                                    parameters=parameters
+                                )['parameters']
+                            }
 
                         elif 'FeatureReadingProcessor' in item['processor_name']:
                             # Get dependency parameters
