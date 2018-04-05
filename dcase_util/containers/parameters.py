@@ -1475,7 +1475,9 @@ class DCASEAppParameterContainer(AppParameterContainer):
                                     if label_parameters:
                                         dependency_parameters[self.field_labels['PARAMETERS']][label] = label_parameters
 
-                            item['init_parameters'] = dependency_parameters['parameters']
+                            item['init_parameters'] = {
+                                'parameters': dependency_parameters['parameters']
+                            }
 
                         elif 'FeatureReadingProcessor' in item['processor_name']:
                             # Get dependency parameters
@@ -1610,7 +1612,9 @@ class DCASEAppParameterContainer(AppParameterContainer):
                                     if label_parameters:
                                         dependency_parameters[self.field_labels['PARAMETERS']][label] = label_parameters
 
-                            item['init_parameters'] = dependency_parameters['parameters']
+                            item['init_parameters'] = {
+                                'parameters': dependency_parameters['parameters']
+                            }
 
                         elif 'FeatureReadingProcessor' in item['processor_name']:
                             # Get dependency parameters
