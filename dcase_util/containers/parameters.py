@@ -190,23 +190,23 @@ class AppParameterContainer(ParameterContainer):
             self.path_structure.update(path_structure)
 
         # Translate path_structure
-        path_structure_tmp = dict()
-        for key, structure in iteritems(self.path_structure):
+        path_structure_tmp = copy.deepcopy(self.path_structure)
+        for key, structure in iteritems(path_structure_tmp):
             for part_id, part in enumerate(structure):
                 split = part.split('.')
                 # Translate only first section level
                 if split[0] in self.section_labels:
                     split[0] = self.section_labels[split[0]]
                 structure[part_id] = '.'.join(split)
-            #self.path_structure[key] = structure
-            path_structure_tmp[key] = structure
+            self.path_structure[key] = structure
+            #path_structure_tmp[key] = structure
 
             # translate key
             if key in self.section_labels:
                 new_key = self.section_labels[key]
-                #self.path_structure[new_key] = self.path_structure.pop(key)
-                path_structure_tmp[new_key] = self.path_structure[key]
-        self.path_structure = path_structure_tmp
+                self.path_structure[new_key] = self.path_structure.pop(key)
+                #path_structure_tmp[new_key] = path_structure_tmp.pop[key]
+        #self.path_structure = path_structure_tmp
 
         # Method dependencies map
         self.method_dependencies = self.default_method_dependencies
