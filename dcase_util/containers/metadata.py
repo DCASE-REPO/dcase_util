@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from __future__ import print_function, absolute_import
+import sys
 import six
 import copy
 import numpy
@@ -904,7 +905,15 @@ class MetaDataContainer(ListDictContainer):
 
                 data = []
                 field_validator = FieldValidator()
-                with open(self.filename, 'rtU') as f:
+
+                if sys.version_info > (3,0):
+                    # Python > 3.0
+                    f = open(self.filename, 'rt')
+                else:
+                    # Python 2.7, make use universal newline mode is used
+                    f = open(self.filename, 'rtU')
+
+                try:
                     for row in csv.reader(f, delimiter=delimiter):
                         if row:
                             row_format = []
@@ -1376,6 +1385,8 @@ class MetaDataContainer(ListDictContainer):
                                 )
                                 self.logger.exception(message)
                                 raise IOError(message)
+                finally:
+                    f.close()
 
                 self.update(data=data)
 
