@@ -806,10 +806,11 @@ class MetaDataContainer(ListDictContainer):
         ----------
         show_data : bool
             Include data
-            Default value "True"
+            Default value True
+
         show_stats : bool
             Include scene and event statistics
-            Default value "True"
+            Default value True
 
         Returns
         -------
@@ -1469,7 +1470,7 @@ class MetaDataContainer(ListDictContainer):
 
         delimiter : str
             Delimiter to be used when saving data.
-            Default value \t
+            Default value '\t'
 
         Returns
         -------
@@ -1537,9 +1538,11 @@ class MetaDataContainer(ListDictContainer):
         ----------
         show_data : bool
             Include data
+            Default value True
 
         show_stats : bool
             Include scene and event statistics
+            Default value True
 
         Returns
         -------
@@ -1798,9 +1801,11 @@ class MetaDataContainer(ListDictContainer):
         ----------
         minimum_event_length : float > 0.0
             Minimum event length in seconds, shorten than given are filtered out from the output.
+            Default value None
 
         minimum_event_gap : float > 0.0
             Minimum allowed gap between events in seconds from same event label class.
+            Default value None
 
         Returns
         -------
@@ -1896,21 +1901,27 @@ class MetaDataContainer(ListDictContainer):
         ----------
         start : float > 0.0
             Segment start, seconds
+            Default value None
 
         stop : float > 0.0
             Segment end, seconds
+            Default value None
 
         duration : float
             Segment duration, seconds
+            Default value None
 
         filename : str
             Filename to filter
+            Default value None
 
         zero_time : bool
             Convert timestamps in respect to the segment start
+            Default value True
 
         trim : bool
             Trim event onsets and offset according to segment start and stop times.
+            Default value True
 
         Returns
         -------
@@ -1975,12 +1986,15 @@ class MetaDataContainer(ListDictContainer):
         ----------
         event_label_list : list of str
             List of event labels to be included in the statistics. If none given, all unique labels used
+            Default value None
 
         scene_label_list : list of str
             List of scene labels to be included in the statistics. If none given, all unique labels used
+            Default value None
 
         tag_list : list of str
             List of tags to be included in the statistics. If none given, all unique tags used
+            Default value None
 
         Returns
         -------
@@ -2091,15 +2105,19 @@ class MetaDataContainer(ListDictContainer):
         ----------
         label_list : list
             List of labels in correct order
+            Default value None
 
         time_resolution : float > 0.0
             Time resolution used when converting event into event roll.
+            Default value 0.01
 
         label : str
             Meta data field used to create event roll
+            Default value 'event_label'
 
         length_seconds : float
             Event roll length in seconds
+            Default value None
 
         Returns
         -------
