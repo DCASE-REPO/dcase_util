@@ -1645,7 +1645,8 @@ class MetaDataContainer(ListDictContainer):
                scene_label=None, scene_list=None,
                event_label=None, event_list=None,
                tag=None, tag_list=None,
-               identifier=None, identifier_list=None
+               identifier=None, identifier_list=None,
+               source_label=None, source_label_list=None,
                ):
         """Filter content
 
@@ -1653,33 +1654,51 @@ class MetaDataContainer(ListDictContainer):
         ----------
         filename : str, optional
             Filename to be matched
+            Default value None
 
         file_list : list, optional
             List of filenames to be matched
+            Default value None
 
         scene_label : str, optional
             Scene label to be matched
+            Default value None
 
         scene_list : list of str, optional
             List of scene labels to be matched
+            Default value None
 
         event_label : str, optional
             Event label to be matched
+            Default value None
 
         event_list : list of str, optional
             List of event labels to be matched
+            Default value None
 
         tag : str, optional
             Tag to be matched
+            Default value None
 
         tag_list : list of str, optional
             List of tags to be matched
+            Default value None
 
         identifier : str, optional
             Identifier to be matched
+            Default value None
 
         identifier_list : list of str, optional
             List of identifiers to be matched
+            Default value None
+
+        source_label : str, optional
+            Source label to be matched
+            Default value None
+
+        source_label_list : list of str, optional
+            List of source labels to be matched
+            Default value None
 
         Returns
         -------
@@ -1749,6 +1768,18 @@ class MetaDataContainer(ListDictContainer):
 
             if identifier_list:
                 if item.identifier in identifier_list:
+                    matched.append(True)
+                else:
+                    matched.append(False)
+
+            if source_label:
+                if item.source_label == source_label:
+                    matched.append(True)
+                else:
+                    matched.append(False)
+
+            if source_label_list:
+                if item.source_label in source_label_list:
                     matched.append(True)
                 else:
                     matched.append(False)
