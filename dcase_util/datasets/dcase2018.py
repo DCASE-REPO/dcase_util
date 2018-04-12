@@ -3,22 +3,32 @@
 
 from __future__ import print_function, absolute_import
 
-from dcase_util.datasets import AcousticSceneDataset
+import collections
+import hashlib
+import os
+import pickle
+import sys
+
+import numpy
+import yaml
+from six import iteritems
+from tqdm import tqdm
+
+from dcase_util.datasets import AcousticSceneDataset, SyntheticSoundEventDataset, SoundEventDataset
+from dcase_util.containers import MetaDataContainer, MetaDataItem, OneToOneMappingContainer, \
+    DictContainer, ParameterContainer
+from dcase_util.utils import Path
+
 
 # =====================================================
 # DCASE 2018
 # =====================================================
-
-
 class DCASE2018_Task5_DevelopmentSet(AcousticSceneDataset):
     """Task 5, Monitoring of domestic activities based on multi-channel acoustics, development set
 
     This dataset a part of the SINS database:
-    Dekkers G., Lauwereins S., Thoen B., Adhana M., Brouckxon H., Van den Bergh B., van Waterschoot T., Vanrumste B.,
-    Verhelst M., Karsmakers P. (2017). The SINS database for detection of daily activities in a home environment
-    using an Acoustic Sensor Network. Detection and Classification of Acoustic Scenes and Events 2017 (accepted).
-    DCASE Workshop. München, Germany, 16-17 November 2017.
-    A subset is used for "DCASE2018 - Task 5, Monitoring of domestic activities based on multi-channel acoustics"
+        Dekkers G., Lauwereins S., Thoen B., Adhana M., Brouckxon H., Van den Bergh B., van Waterschoot T., Vanrumste B., Verhelst M., Karsmakers P. (2017). The SINS database for detection of daily activities in a home environment using an Acoustic Sensor Network. Detection and Classification of Acoustic Scenes and Events 2017 (accepted). DCASE Workshop. München, Germany, 16-17 November 2017.
+	A subset is used for "DCASE2018 - Task 5, Monitoring of domestic activities based on multi-channel acoustics"
 
     """
 
@@ -35,17 +45,14 @@ class DCASE2018_Task5_DevelopmentSet(AcousticSceneDataset):
 
         storage_name : str
             Name to be used when storing dataset on disk
-            Default value 'DCASE18-Task5-development'
 
         data_path : str
             Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), 'dcase_util_datasets')
             is used.
-            Default value None
 
         included_content_types : list of str or str
             Indicates what content type should be processed. One or multiple from ['all', 'audio', 'meta', 'code',
             'documentation']. If None given, ['all'] is used. Parameter can be also comma separated string.
-            Default value None
 
         """
 
@@ -65,21 +72,20 @@ class DCASE2018_Task5_DevelopmentSet(AcousticSceneDataset):
         }
         kwargs['crossvalidation_folds'] = 4
 
-		#ToDo: add own challenge data, this is currently acoustic scene repo
-        source_url = 'https://zenodo.org/record/1209366/files/'
+        source_url = 'https://zenodo.org/record/1217452/files/'
         kwargs['package_list'] = [
             {
                 'content_type': 'documentation',
                 'remote_file': source_url + 'DCASE2018-task5-dev.doc.zip',
-                'remote_bytes': 110000,
-                'remote_md5': '2f7cb69f9d18c05c7d15ec384acb24b3',
+                'remote_bytes': 118300,
+                'remote_md5': '7c85f21c8d9e37a8de582c45acaa109b',
                 'filename': 'DCASE2018-task5-dev.doc.zip'
             },
             {
                 'content_type': 'meta',
                 'remote_file': source_url + 'DCASE2018-task5-dev.meta.zip',
-                'remote_bytes': 826700,
-                'remote_md5': '53d8ad78db27df7059362367a4bdeb51',
+                'remote_bytes': 984000,
+                'remote_md5': '8fd269986c168db5562e7509e6dc033a',
                 'filename': 'DCASE2018-task5-dev.meta.zip'
             },
             {
@@ -94,7 +100,7 @@ class DCASE2018_Task5_DevelopmentSet(AcousticSceneDataset):
                 'remote_file': source_url + 'DCASE2018-task5-dev.audio.2.zip',
                 'remote_bytes': 2000000000,
                 'remote_md5': 'c75b1c1b3cc1340cfcace37559aed63f',
-                'filename': 'DCASE2018-task5-dev.audio.2.zip '
+                'filename': 'DCASE2018-task5-dev.audio.2.zip'
             },
             {
                 'content_type': 'audio',
