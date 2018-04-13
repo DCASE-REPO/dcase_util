@@ -1966,11 +1966,14 @@ class MetaDataContainer(ListDictContainer):
                         # Trim negative onsets to 0 and trim offsets going over slice stop to slice stop.
                         if item_.onset < 0:
                             item_.onset = 0
+
                         if item_.offset > stop-start:
                             item_.offset = stop - start
+
                 elif trim:
                     if item_.onset < start:
                         item_.onset = start
+
                     if item_.offset > stop:
                         item_.offset = stop
 
@@ -2138,6 +2141,7 @@ class MetaDataContainer(ListDictContainer):
                 label=label,
                 length_seconds=length_seconds
             )
+
             return event_roll
 
         else:
