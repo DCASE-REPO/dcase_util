@@ -2,12 +2,12 @@
 # -*- coding: utf-8 -*-
 
 from __future__ import print_function, absolute_import
-import sys
 import six
 import copy
 import numpy
 import csv
 import logging
+import io
 from dcase_util.containers import ListDictContainer
 from dcase_util.utils import posix_path, get_parameter_hash, FieldValidator, setup_logging, is_float, is_int, FileFormat
 from dcase_util.ui import FancyStringifier
@@ -907,13 +907,7 @@ class MetaDataContainer(ListDictContainer):
                 data = []
                 field_validator = FieldValidator()
 
-                if sys.version_info > (3,0):
-                    # Python > 3.0
-                    f = open(self.filename, 'rt')
-                else:
-                    # Python 2.7, make use universal newline mode is used
-                    f = open(self.filename, 'rtU')
-
+                f = io.open(self.filename, 'rt')
                 try:
                     for row in csv.reader(f, delimiter=delimiter):
                         if row:
