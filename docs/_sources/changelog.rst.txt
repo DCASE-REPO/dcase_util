@@ -3,6 +3,25 @@
 Release notes
 =============
 
+v0.2.0
+------
+
+**New features**
+
+* Add ``row_reset`` and ``row_sep`` helper methods to ``FancyStringifier``, ``FancyLogger``, and ``FancyPrinter`` classes
+
+**Updates**
+
+* Update ``download`` method in ``RemoteFile`` to be more robust when encounter SSL problems.
+* Update ``AppParameterContainer`` to handle ``FEATURE_PROCESSING_CHAIN``, ``DATA_PROCESSING_CHAIN``.
+* Update ``filter`` method in ``MetaDataContainer`` to accept ``source_label`` and ``source_label_list`` parameters.
+* Update ``DCASE2018_Task5_DevelopmentSet``
+
+**Bug fixes**
+
+* Fix ``construct_path`` method in ``ApplicationPaths`` to work in Windows as well.
+* Fix path creation in ``AppParameterContainer``
+
 v0.1.9
 ------
 

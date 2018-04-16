@@ -1136,6 +1136,8 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.ui.FancyLogger.html">dcase_util.ui.FancyLogger</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.ui.FancyLogger.line.html">dcase_util.ui.FancyLogger.line</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.ui.FancyLogger.row.html">dcase_util.ui.FancyLogger.row</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.ui.FancyLogger.row_reset.html">dcase_util.ui.FancyLogger.row_reset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.ui.FancyLogger.row_sep.html">dcase_util.ui.FancyLogger.row_sep</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.ui.FancyLogger.title.html">dcase_util.ui.FancyLogger.title</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.ui.FancyLogger.section_header.html">dcase_util.ui.FancyLogger.section_header</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.ui.FancyLogger.sub_header.html">dcase_util.ui.FancyLogger.sub_header</a></li>
@@ -1152,6 +1154,8 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.ui.FancyPrinter.html">dcase_util.ui.FancyPrinter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.ui.FancyPrinter.line.html">dcase_util.ui.FancyPrinter.line</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.ui.FancyPrinter.row.html">dcase_util.ui.FancyPrinter.row</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.ui.FancyPrinter.row_reset.html">dcase_util.ui.FancyPrinter.row_reset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.ui.FancyPrinter.row_sep.html">dcase_util.ui.FancyPrinter.row_sep</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.ui.FancyPrinter.title.html">dcase_util.ui.FancyPrinter.title</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.ui.FancyPrinter.section_header.html">dcase_util.ui.FancyPrinter.section_header</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.ui.FancyPrinter.sub_header.html">dcase_util.ui.FancyPrinter.sub_header</a></li>
@@ -1176,6 +1180,8 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.ui.FancyStringifier.sep.html">dcase_util.ui.FancyStringifier.sep</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.ui.FancyStringifier.table.html">dcase_util.ui.FancyStringifier.table</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.ui.FancyStringifier.row.html">dcase_util.ui.FancyStringifier.row</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.ui.FancyStringifier.row_reset.html">dcase_util.ui.FancyStringifier.row_reset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.ui.FancyStringifier.row_sep.html">dcase_util.ui.FancyStringifier.row_sep</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.ui.FancyStringifier.class_name.html">dcase_util.ui.FancyStringifier.class_name</a></li>
 </ul>
 </li>
@@ -1324,6 +1330,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-0">v0.2.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-1-9">v0.1.9</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-1-8">v0.1.8</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-1-7">v0.1.7</a></li>
@@ -1417,7 +1424,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">row_column_widths</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">row_data_types</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">row_indent</span> <span class="o">=</span> <span class="mi">2</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">row_column_separators</span> <span class="o">=</span> <span class="p">[]</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">row_column_separators</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">row_column_count</span> <span class="o">=</span> <span class="kc">None</span></div>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">logger</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1437,7 +1445,6 @@
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        str</span>
-<span class="sd">            title string</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -1458,7 +1465,6 @@
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        str</span>
-<span class="sd">            section header string</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -1479,7 +1485,6 @@
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        str</span>
-<span class="sd">            Sub header string</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -1509,7 +1514,6 @@
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        str</span>
-<span class="sd">            footer string</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -1541,6 +1545,7 @@
 <span class="sd">        str</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
+
         <span class="n">lines</span> <span class="o">=</span> <span class="n">field</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">line_id</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">lines</span><span class="p">):</span>
@@ -1898,6 +1903,8 @@
 <div class="viewcode-block" id="FancyStringifier.row"><a class="viewcode-back" href="../../../generated/dcase_util.ui.FancyStringifier.row.html#dcase_util.ui.FancyStringifier.row">[docs]</a>    <span class="k">def</span> <span class="nf">row</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Table row</span>
 
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
 <span class="sd">        args : various</span>
 <span class="sd">            Data for columns</span>
 
@@ -1931,6 +1938,8 @@
 
         <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;separators&#39;</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">row_column_separators</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;separators&#39;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">row_column_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
 
         <span class="n">line_string</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
         <span class="k">for</span> <span class="n">column_id</span><span class="p">,</span> <span class="n">column_data</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
@@ -1976,6 +1985,44 @@
                 <span class="n">line_string</span> <span class="o">+=</span> <span class="s1">&#39; &#39;</span>
 
         <span class="k">return</span> <span class="s1">&#39; &#39;</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">row_indent</span> <span class="o">+</span> <span class="n">line_string</span></div>
+
+<div class="viewcode-block" id="FancyStringifier.row_reset"><a class="viewcode-back" href="../../../generated/dcase_util.ui.FancyStringifier.row_reset.html#dcase_util.ui.FancyStringifier.row_reset">[docs]</a>    <span class="k">def</span> <span class="nf">row_reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Reset table row formatting</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        self</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">row_column_widths</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">row_data_types</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">row_indent</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">row_column_separators</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">row_column_count</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="FancyStringifier.row_sep"><a class="viewcode-back" href="../../../generated/dcase_util.ui.FancyStringifier.row_sep.html#dcase_util.ui.FancyStringifier.row_sep">[docs]</a>    <span class="k">def</span> <span class="nf">row_sep</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">separator_char</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Table separator row</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        separator_char : str</span>
+<span class="sd">            Character used for the separator row</span>
+<span class="sd">            Default value &#39;-&#39;</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        str</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">row_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">row_column_count</span><span class="p">):</span>
+            <span class="n">row_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">separator_char</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="o">*</span><span class="n">row_list</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="FancyStringifier.class_name"><a class="viewcode-back" href="../../../generated/dcase_util.ui.FancyStringifier.class_name.html#dcase_util.ui.FancyStringifier.class_name">[docs]</a>    <span class="k">def</span> <span class="nf">class_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">class_name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Class name</span>
@@ -2067,8 +2114,64 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39; &#39;</span> <span class="o">*</span> <span class="n">indent</span> <span class="o">+</span> <span class="n">line</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="FancyLogger.row"><a class="viewcode-back" href="../../../generated/dcase_util.ui.FancyLogger.row.html#dcase_util.ui.FancyLogger.row">[docs]</a>    <span class="k">def</span> <span class="nf">row</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Table row</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        args : various</span>
+<span class="sd">            Data for columns</span>
+
+<span class="sd">        indent : int</span>
+<span class="sd">            Amount of indention used for the row. If None given, value from previous method call is used.</span>
+
+<span class="sd">        widths : list of int</span>
+<span class="sd">            Column widths. If None given, value from previous method call is used.</span>
+
+<span class="sd">        types : list of str</span>
+<span class="sd">            Column data types, see `formatted_value` method more. If None given, value from previous</span>
+<span class="sd">            method call is used.</span>
+
+<span class="sd">        separators : list of bool</span>
+<span class="sd">            Column vertical separators. If None given, value from previous method call is used.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        nothing</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">line</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="FancyLogger.row_reset"><a class="viewcode-back" href="../../../generated/dcase_util.ui.FancyLogger.row_reset.html#dcase_util.ui.FancyLogger.row_reset">[docs]</a>    <span class="k">def</span> <span class="nf">row_reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Reset table row formatting</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        nothing</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">row_reset</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="FancyLogger.row_sep"><a class="viewcode-back" href="../../../generated/dcase_util.ui.FancyLogger.row_sep.html#dcase_util.ui.FancyLogger.row_sep">[docs]</a>    <span class="k">def</span> <span class="nf">row_sep</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">separator_char</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Table separator row</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        separator_char : str</span>
+<span class="sd">            Character used for the separator row</span>
+<span class="sd">            Default value &#39;-&#39;</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        nothing</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">line</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">row_sep</span><span class="p">(</span><span class="n">separator_char</span><span class="o">=</span><span class="n">separator_char</span><span class="p">)</span>
         <span class="p">)</span></div>
 
 <div class="viewcode-block" id="FancyLogger.title"><a class="viewcode-back" href="../../../generated/dcase_util.ui.FancyLogger.title.html#dcase_util.ui.FancyLogger.title">[docs]</a>    <span class="k">def</span> <span class="nf">title</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="s1">&#39;info&#39;</span><span class="p">):</span>
@@ -2081,10 +2184,10 @@
 
 <span class="sd">        level : str</span>
 <span class="sd">            Logging level, one of [info, debug, warning, warn, error]</span>
+<span class="sd">            Default value &#39;info&#39;</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-
 <span class="sd">        nothing</span>
 
 <span class="sd">        See Also</span>
@@ -2111,14 +2214,14 @@
 
 <span class="sd">        indent : int</span>
 <span class="sd">            Amount of indention used for the line</span>
+<span class="sd">            Default value 0</span>
 
 <span class="sd">        level : str</span>
 <span class="sd">            Logging level, one of [info, debug, warning, warn, error]</span>
-
+<span class="sd">            Default value &#39;info&#39;</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-
 <span class="sd">        nothing</span>
 
 <span class="sd">        See Also</span>
@@ -2146,14 +2249,15 @@
 
 <span class="sd">        indent : int</span>
 <span class="sd">            Amount of indention used for the line</span>
+<span class="sd">            Default value 0</span>
 
 <span class="sd">        level : str</span>
 <span class="sd">            Logging level, one of [info, debug, warning, warn, error]</span>
+<span class="sd">            Default value &#39;info&#39;</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        str</span>
-<span class="sd">            Sub header string</span>
+<span class="sd">        nothing</span>
 
 <span class="sd">        See Also</span>
 <span class="sd">        --------</span>
@@ -2177,23 +2281,26 @@
 <span class="sd">        ----------</span>
 <span class="sd">        text : str, optional</span>
 <span class="sd">            Footer text.</span>
+<span class="sd">            Default value &#39;DONE&#39;</span>
 
 <span class="sd">        time : str, optional</span>
 <span class="sd">            Elapsed time as string.</span>
+<span class="sd">            Default value None</span>
 
 <span class="sd">        item_count : int, optional</span>
 <span class="sd">            Item count.</span>
+<span class="sd">            Default value None</span>
 
 <span class="sd">        indent : int</span>
 <span class="sd">            Amount of indention used for the line.</span>
+<span class="sd">            Default value 2</span>
 
 <span class="sd">        level : str</span>
 <span class="sd">            Logging level, one of [info, debug, warning, warn, error].</span>
-
+<span class="sd">            Default value &#39;info&#39;</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-
 <span class="sd">        nothing</span>
 
 <span class="sd">        See Also</span>
@@ -2221,22 +2328,26 @@
 <span class="sd">        ----------</span>
 <span class="sd">        field : str</span>
 <span class="sd">            Data field name</span>
+<span class="sd">            Default value None</span>
 
 <span class="sd">        value : str, bool, int, float, list or dict</span>
 <span class="sd">            Data value</span>
+<span class="sd">            Default value None</span>
 
 <span class="sd">        unit : str</span>
 <span class="sd">            Data value unit</span>
+<span class="sd">            Default value None</span>
 
 <span class="sd">        indent : int</span>
 <span class="sd">            Amount of indention used for the line</span>
+<span class="sd">            Default value 2</span>
 
 <span class="sd">        level : str</span>
 <span class="sd">            Logging level, one of [info,debug,warning,warn,error]</span>
+<span class="sd">            Default value &#39;info&#39;</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-
 <span class="sd">        nothing</span>
 
 <span class="sd">        See Also</span>
@@ -2263,12 +2374,15 @@
 <span class="sd">        ----------</span>
 <span class="sd">        level : str</span>
 <span class="sd">            Logging level, one of [info,debug,warning,warn,error]</span>
+<span class="sd">            Default value &#39;info&#39;</span>
 
 <span class="sd">        length : int</span>
 <span class="sd">            Length of separator</span>
+<span class="sd">            Default value 40</span>
 
 <span class="sd">        indent : int</span>
 <span class="sd">            Amount of indention used for the line</span>
+<span class="sd">            Default value 0</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -2298,30 +2412,36 @@
 <span class="sd">        cell_data : list of list</span>
 <span class="sd">            Cell data in format [ [cell(col1,row1), cell(col1,row2), cell(col1,row3)],</span>
 <span class="sd">            [cell(col2,row1), cell(col2,row2), cell(col2,row3)] ]</span>
+<span class="sd">            Default value None</span>
 
 <span class="sd">        column_headers : list of str</span>
 <span class="sd">            Column headers in list, if None given column numbers are used</span>
+<span class="sd">            Default value None</span>
 
 <span class="sd">        column_types : list of str</span>
 <span class="sd">            Column data types, if None given type is determined automatically.</span>
 <span class="sd">            Possible values: [&#39;int&#39;, &#39;float1&#39;, &#39;float2&#39;, &#39;float3&#39;, &#39;float4&#39;, &#39;str10&#39;, &#39;str20&#39;]]</span>
+<span class="sd">            Default value None</span>
 
 <span class="sd">        column_separators : list of int</span>
 <span class="sd">            Column ids where to place separation lines. Line is placed on the right of the indicated column.</span>
+<span class="sd">            Default value None</span>
 
 <span class="sd">        row_separators : list of int</span>
 <span class="sd">            Row ids where to place separation lines. Line is place after indicated row.</span>
+<span class="sd">            Default value None</span>
 
 <span class="sd">        indent : int</span>
 <span class="sd">            Amount of indention used for the line</span>
+<span class="sd">            Default value 0</span>
 
 <span class="sd">        level : str</span>
 <span class="sd">            Logging level, one of [info,debug,warning,warn,error]</span>
-
+<span class="sd">            Default value &#39;info&#39;</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        str</span>
+<span class="sd">        nothing</span>
 
 <span class="sd">        See Also</span>
 <span class="sd">        --------</span>
@@ -2349,14 +2469,14 @@
 <span class="sd">        ----------</span>
 <span class="sd">        text : str</span>
 <span class="sd">            Text</span>
+<span class="sd">            Default value &#39;&#39;</span>
 
 <span class="sd">        indent : int</span>
 <span class="sd">            Amount of indention used for the line</span>
-
+<span class="sd">            Default value 0</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-
 <span class="sd">        nothing</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -2374,13 +2494,14 @@
 <span class="sd">        ----------</span>
 <span class="sd">        text : str</span>
 <span class="sd">            Text</span>
+<span class="sd">            Default value &#39;&#39;</span>
 
 <span class="sd">        indent : int</span>
 <span class="sd">            Amount of indention used for the line</span>
+<span class="sd">            Default value 0</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-
 <span class="sd">        nothing</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -2398,13 +2519,14 @@
 <span class="sd">        ----------</span>
 <span class="sd">        text : str</span>
 <span class="sd">            Text</span>
+<span class="sd">            Default value &#39;&#39;</span>
 
 <span class="sd">        indent : int</span>
 <span class="sd">            Amount of indention used for the line</span>
+<span class="sd">            Default value 0</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-
 <span class="sd">        nothing</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -2425,13 +2547,16 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
+<span class="sd">        colors : bool</span>
+<span class="sd">            Using colors or not</span>
+<span class="sd">            Default value True</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-
 <span class="sd">        nothing</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
+
         <span class="nb">super</span><span class="p">(</span><span class="n">FancyPrinter</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">colors</span> <span class="o">=</span> <span class="n">colors</span>
@@ -2471,12 +2596,15 @@
 <span class="sd">        ----------</span>
 <span class="sd">        data : str or list, optional</span>
 <span class="sd">            String or list of strings</span>
+<span class="sd">            Default value &#39;&#39;</span>
 
 <span class="sd">        indent : int</span>
 <span class="sd">            Amount of indention used for the line</span>
+<span class="sd">            Default value 0</span>
 
 <span class="sd">        level : str</span>
 <span class="sd">            Logging level, one of [info, debug, warning, warn, error]</span>
+<span class="sd">            Default value &#39;info&#39;</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -2501,6 +2629,7 @@
         <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">level</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">levels</span><span class="p">:</span>
                 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span> <span class="o">*</span> <span class="n">indent</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">levels</span><span class="p">[</span><span class="n">level</span><span class="p">]</span> <span class="o">+</span> <span class="n">line</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">levels</span><span class="p">[</span><span class="s1">&#39;reset&#39;</span><span class="p">])</span>
+
             <span class="k">else</span><span class="p">:</span>
                 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span> <span class="o">*</span> <span class="n">indent</span> <span class="o">+</span> <span class="n">line</span><span class="p">)</span></div></div>
 

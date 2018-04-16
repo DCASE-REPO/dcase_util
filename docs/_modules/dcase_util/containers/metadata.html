@@ -1136,6 +1136,8 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.ui.FancyLogger.html">dcase_util.ui.FancyLogger</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.ui.FancyLogger.line.html">dcase_util.ui.FancyLogger.line</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.ui.FancyLogger.row.html">dcase_util.ui.FancyLogger.row</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.ui.FancyLogger.row_reset.html">dcase_util.ui.FancyLogger.row_reset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.ui.FancyLogger.row_sep.html">dcase_util.ui.FancyLogger.row_sep</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.ui.FancyLogger.title.html">dcase_util.ui.FancyLogger.title</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.ui.FancyLogger.section_header.html">dcase_util.ui.FancyLogger.section_header</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.ui.FancyLogger.sub_header.html">dcase_util.ui.FancyLogger.sub_header</a></li>
@@ -1152,6 +1154,8 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.ui.FancyPrinter.html">dcase_util.ui.FancyPrinter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.ui.FancyPrinter.line.html">dcase_util.ui.FancyPrinter.line</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.ui.FancyPrinter.row.html">dcase_util.ui.FancyPrinter.row</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.ui.FancyPrinter.row_reset.html">dcase_util.ui.FancyPrinter.row_reset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.ui.FancyPrinter.row_sep.html">dcase_util.ui.FancyPrinter.row_sep</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.ui.FancyPrinter.title.html">dcase_util.ui.FancyPrinter.title</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.ui.FancyPrinter.section_header.html">dcase_util.ui.FancyPrinter.section_header</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.ui.FancyPrinter.sub_header.html">dcase_util.ui.FancyPrinter.sub_header</a></li>
@@ -1176,6 +1180,8 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.ui.FancyStringifier.sep.html">dcase_util.ui.FancyStringifier.sep</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.ui.FancyStringifier.table.html">dcase_util.ui.FancyStringifier.table</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.ui.FancyStringifier.row.html">dcase_util.ui.FancyStringifier.row</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.ui.FancyStringifier.row_reset.html">dcase_util.ui.FancyStringifier.row_reset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.ui.FancyStringifier.row_sep.html">dcase_util.ui.FancyStringifier.row_sep</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.ui.FancyStringifier.class_name.html">dcase_util.ui.FancyStringifier.class_name</a></li>
 </ul>
 </li>
@@ -1324,6 +1330,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-0">v0.2.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-1-9">v0.1.9</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-1-8">v0.1.8</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-1-7">v0.1.7</a></li>
@@ -1407,6 +1414,7 @@
 <span class="kn">import</span> <span class="nn">numpy</span>
 <span class="kn">import</span> <span class="nn">csv</span>
 <span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">io</span>
 <span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="k">import</span> <span class="n">ListDictContainer</span>
 <span class="kn">from</span> <span class="nn">dcase_util.utils</span> <span class="k">import</span> <span class="n">posix_path</span><span class="p">,</span> <span class="n">get_parameter_hash</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="p">,</span> <span class="n">setup_logging</span><span class="p">,</span> <span class="n">is_float</span><span class="p">,</span> <span class="n">is_int</span><span class="p">,</span> <span class="n">FileFormat</span>
 <span class="kn">from</span> <span class="nn">dcase_util.ui</span> <span class="k">import</span> <span class="n">FancyStringifier</span>
@@ -2205,10 +2213,11 @@
 <span class="sd">        ----------</span>
 <span class="sd">        show_data : bool</span>
 <span class="sd">            Include data</span>
-<span class="sd">            Default value &quot;True&quot;</span>
+<span class="sd">            Default value True</span>
+
 <span class="sd">        show_stats : bool</span>
 <span class="sd">            Include scene and event statistics</span>
-<span class="sd">            Default value &quot;True&quot;</span>
+<span class="sd">            Default value True</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -2304,7 +2313,9 @@
 
                 <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
                 <span class="n">field_validator</span> <span class="o">=</span> <span class="n">FieldValidator</span><span class="p">()</span>
-                <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;rtU&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+
+                <span class="n">f</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;rt&#39;</span><span class="p">)</span>
+                <span class="k">try</span><span class="p">:</span>
                     <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="n">delimiter</span><span class="p">):</span>
                         <span class="k">if</span> <span class="n">row</span><span class="p">:</span>
                             <span class="n">row_format</span> <span class="o">=</span> <span class="p">[]</span>
@@ -2776,6 +2787,8 @@
                                 <span class="p">)</span>
                                 <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
                                 <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+                <span class="k">finally</span><span class="p">:</span>
+                    <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
                 <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
 
@@ -2858,7 +2871,7 @@
 
 <span class="sd">        delimiter : str</span>
 <span class="sd">            Delimiter to be used when saving data.</span>
-<span class="sd">            Default value \t</span>
+<span class="sd">            Default value &#39;\t&#39;</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -2926,9 +2939,11 @@
 <span class="sd">        ----------</span>
 <span class="sd">        show_data : bool</span>
 <span class="sd">            Include data</span>
+<span class="sd">            Default value True</span>
 
 <span class="sd">        show_stats : bool</span>
 <span class="sd">            Include scene and event statistics</span>
+<span class="sd">            Default value True</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -3034,7 +3049,8 @@
                <span class="n">scene_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">scene_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                <span class="n">event_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">event_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                <span class="n">tag</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tag_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-               <span class="n">identifier</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">identifier_list</span><span class="o">=</span><span class="kc">None</span>
+               <span class="n">identifier</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">identifier_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+               <span class="n">source_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">source_label_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Filter content</span>
 
@@ -3042,33 +3058,51 @@
 <span class="sd">        ----------</span>
 <span class="sd">        filename : str, optional</span>
 <span class="sd">            Filename to be matched</span>
+<span class="sd">            Default value None</span>
 
 <span class="sd">        file_list : list, optional</span>
 <span class="sd">            List of filenames to be matched</span>
+<span class="sd">            Default value None</span>
 
 <span class="sd">        scene_label : str, optional</span>
 <span class="sd">            Scene label to be matched</span>
+<span class="sd">            Default value None</span>
 
 <span class="sd">        scene_list : list of str, optional</span>
 <span class="sd">            List of scene labels to be matched</span>
+<span class="sd">            Default value None</span>
 
 <span class="sd">        event_label : str, optional</span>
 <span class="sd">            Event label to be matched</span>
+<span class="sd">            Default value None</span>
 
 <span class="sd">        event_list : list of str, optional</span>
 <span class="sd">            List of event labels to be matched</span>
+<span class="sd">            Default value None</span>
 
 <span class="sd">        tag : str, optional</span>
 <span class="sd">            Tag to be matched</span>
+<span class="sd">            Default value None</span>
 
 <span class="sd">        tag_list : list of str, optional</span>
 <span class="sd">            List of tags to be matched</span>
+<span class="sd">            Default value None</span>
 
 <span class="sd">        identifier : str, optional</span>
 <span class="sd">            Identifier to be matched</span>
+<span class="sd">            Default value None</span>
 
 <span class="sd">        identifier_list : list of str, optional</span>
 <span class="sd">            List of identifiers to be matched</span>
+<span class="sd">            Default value None</span>
+
+<span class="sd">        source_label : str, optional</span>
+<span class="sd">            Source label to be matched</span>
+<span class="sd">            Default value None</span>
+
+<span class="sd">        source_label_list : list of str, optional</span>
+<span class="sd">            List of source labels to be matched</span>
+<span class="sd">            Default value None</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -3142,6 +3176,18 @@
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">matched</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 
+            <span class="k">if</span> <span class="n">source_label</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">source_label</span> <span class="o">==</span> <span class="n">source_label</span><span class="p">:</span>
+                    <span class="n">matched</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">matched</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">source_label_list</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">source_label</span> <span class="ow">in</span> <span class="n">source_label_list</span><span class="p">:</span>
+                    <span class="n">matched</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">matched</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
             <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">matched</span><span class="p">):</span>
                 <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">item</span><span class="p">))</span>
 
@@ -3156,9 +3202,11 @@
 <span class="sd">        ----------</span>
 <span class="sd">        minimum_event_length : float &gt; 0.0</span>
 <span class="sd">            Minimum event length in seconds, shorten than given are filtered out from the output.</span>
+<span class="sd">            Default value None</span>
 
 <span class="sd">        minimum_event_gap : float &gt; 0.0</span>
 <span class="sd">            Minimum allowed gap between events in seconds from same event label class.</span>
+<span class="sd">            Default value None</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -3254,21 +3302,27 @@
 <span class="sd">        ----------</span>
 <span class="sd">        start : float &gt; 0.0</span>
 <span class="sd">            Segment start, seconds</span>
+<span class="sd">            Default value None</span>
 
 <span class="sd">        stop : float &gt; 0.0</span>
 <span class="sd">            Segment end, seconds</span>
+<span class="sd">            Default value None</span>
 
 <span class="sd">        duration : float</span>
 <span class="sd">            Segment duration, seconds</span>
+<span class="sd">            Default value None</span>
 
 <span class="sd">        filename : str</span>
 <span class="sd">            Filename to filter</span>
+<span class="sd">            Default value None</span>
 
 <span class="sd">        zero_time : bool</span>
 <span class="sd">            Convert timestamps in respect to the segment start</span>
+<span class="sd">            Default value True</span>
 
 <span class="sd">        trim : bool</span>
 <span class="sd">            Trim event onsets and offset according to segment start and stop times.</span>
+<span class="sd">            Default value True</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -3313,11 +3367,14 @@
                         <span class="c1"># Trim negative onsets to 0 and trim offsets going over slice stop to slice stop.</span>
                         <span class="k">if</span> <span class="n">item_</span><span class="o">.</span><span class="n">onset</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
                             <span class="n">item_</span><span class="o">.</span><span class="n">onset</span> <span class="o">=</span> <span class="mi">0</span>
+
                         <span class="k">if</span> <span class="n">item_</span><span class="o">.</span><span class="n">offset</span> <span class="o">&gt;</span> <span class="n">stop</span><span class="o">-</span><span class="n">start</span><span class="p">:</span>
                             <span class="n">item_</span><span class="o">.</span><span class="n">offset</span> <span class="o">=</span> <span class="n">stop</span> <span class="o">-</span> <span class="n">start</span>
+
                 <span class="k">elif</span> <span class="n">trim</span><span class="p">:</span>
                     <span class="k">if</span> <span class="n">item_</span><span class="o">.</span><span class="n">onset</span> <span class="o">&lt;</span> <span class="n">start</span><span class="p">:</span>
                         <span class="n">item_</span><span class="o">.</span><span class="n">onset</span> <span class="o">=</span> <span class="n">start</span>
+
                     <span class="k">if</span> <span class="n">item_</span><span class="o">.</span><span class="n">offset</span> <span class="o">&gt;</span> <span class="n">stop</span><span class="p">:</span>
                         <span class="n">item_</span><span class="o">.</span><span class="n">offset</span> <span class="o">=</span> <span class="n">stop</span>
 
@@ -3333,12 +3390,15 @@
 <span class="sd">        ----------</span>
 <span class="sd">        event_label_list : list of str</span>
 <span class="sd">            List of event labels to be included in the statistics. If none given, all unique labels used</span>
+<span class="sd">            Default value None</span>
 
 <span class="sd">        scene_label_list : list of str</span>
 <span class="sd">            List of scene labels to be included in the statistics. If none given, all unique labels used</span>
+<span class="sd">            Default value None</span>
 
 <span class="sd">        tag_list : list of str</span>
 <span class="sd">            List of tags to be included in the statistics. If none given, all unique tags used</span>
+<span class="sd">            Default value None</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -3449,15 +3509,19 @@
 <span class="sd">        ----------</span>
 <span class="sd">        label_list : list</span>
 <span class="sd">            List of labels in correct order</span>
+<span class="sd">            Default value None</span>
 
 <span class="sd">        time_resolution : float &gt; 0.0</span>
 <span class="sd">            Time resolution used when converting event into event roll.</span>
+<span class="sd">            Default value 0.01</span>
 
 <span class="sd">        label : str</span>
 <span class="sd">            Meta data field used to create event roll</span>
+<span class="sd">            Default value &#39;event_label&#39;</span>
 
 <span class="sd">        length_seconds : float</span>
 <span class="sd">            Event roll length in seconds</span>
+<span class="sd">            Default value None</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -3478,6 +3542,7 @@
                 <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">,</span>
                 <span class="n">length_seconds</span><span class="o">=</span><span class="n">length_seconds</span>
             <span class="p">)</span>
+
             <span class="k">return</span> <span class="n">event_roll</span>
 
         <span class="k">else</span><span class="p">:</span>
