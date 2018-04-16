@@ -7,6 +7,7 @@ import copy
 import numpy
 import csv
 import logging
+import io
 from dcase_util.containers import ListDictContainer
 from dcase_util.utils import posix_path, get_parameter_hash, FieldValidator, setup_logging, is_float, is_int, FileFormat
 from dcase_util.ui import FancyStringifier
@@ -805,10 +806,11 @@ class MetaDataContainer(ListDictContainer):
         ----------
         show_data : bool
             Include data
-            Default value "True"
+            Default value True
+
         show_stats : bool
             Include scene and event statistics
-            Default value "True"
+            Default value True
 
         Returns
         -------
@@ -904,7 +906,9 @@ class MetaDataContainer(ListDictContainer):
 
                 data = []
                 field_validator = FieldValidator()
-                with open(self.filename, 'rtU') as f:
+
+                f = io.open(self.filename, 'rt')
+                try:
                     for row in csv.reader(f, delimiter=delimiter):
                         if row:
                             row_format = []
@@ -1376,6 +1380,8 @@ class MetaDataContainer(ListDictContainer):
                                 )
                                 self.logger.exception(message)
                                 raise IOError(message)
+                finally:
+                    f.close()
 
                 self.update(data=data)
 
@@ -1458,7 +1464,7 @@ class MetaDataContainer(ListDictContainer):
 
         delimiter : str
             Delimiter to be used when saving data.
-            Default value \t
+            Default value '\t'
 
         Returns
         -------
@@ -1526,9 +1532,11 @@ class MetaDataContainer(ListDictContainer):
         ----------
         show_data : bool
             Include data
+            Default value True
 
         show_stats : bool
             Include scene and event statistics
+            Default value True
 
         Returns
         -------
@@ -1634,7 +1642,8 @@ class MetaDataContainer(ListDictContainer):
                scene_label=None, scene_list=None,
                event_label=None, event_list=None,
                tag=None, tag_list=None,
-               identifier=None, identifier_list=None
+               identifier=None, identifier_list=None,
+               source_label=None, source_label_list=None,
                ):
         """Filter content
 
@@ -1642,33 +1651,51 @@ class MetaDataContainer(ListDictContainer):
         ----------
         filename : str, optional
             Filename to be matched
+            Default value None
 
         file_list : list, optional
             List of filenames to be matched
+            Default value None
 
         scene_label : str, optional
             Scene label to be matched
+            Default value None
 
         scene_list : list of str, optional
             List of scene labels to be matched
+            Default value None
 
         event_label : str, optional
             Event label to be matched
+            Default value None
 
         event_list : list of str, optional
             List of event labels to be matched
+            Default value None
 
         tag : str, optional
             Tag to be matched
+            Default value None
 
         tag_list : list of str, optional
             List of tags to be matched
+            Default value None
 
         identifier : str, optional
             Identifier to be matched
+            Default value None
 
         identifier_list : list of str, optional
             List of identifiers to be matched
+            Default value None
+
+        source_label : str, optional
+            Source label to be matched
+            Default value None
+
+        source_label_list : list of str, optional
+            List of source labels to be matched
+            Default value None
 
         Returns
         -------
@@ -1742,6 +1769,18 @@ class MetaDataContainer(ListDictContainer):
                 else:
                     matched.append(False)
 
+            if source_label:
+                if item.source_label == source_label:
+                    matched.append(True)
+                else:
+                    matched.append(False)
+
+            if source_label_list:
+                if item.source_label in source_label_list:
+                    matched.append(True)
+                else:
+                    matched.append(False)
+
             if all(matched):
                 data.append(copy.deepcopy(item))
 
@@ -1756,9 +1795,11 @@ class MetaDataContainer(ListDictContainer):
         ----------
         minimum_event_length : float > 0.0
             Minimum event length in seconds, shorten than given are filtered out from the output.
+            Default value None
 
         minimum_event_gap : float > 0.0
             Minimum allowed gap between events in seconds from same event label class.
+            Default value None
 
         Returns
         -------
@@ -1854,21 +1895,27 @@ class MetaDataContainer(ListDictContainer):
         ----------
         start : float > 0.0
             Segment start, seconds
+            Default value None
 
         stop : float > 0.0
             Segment end, seconds
+            Default value None
 
         duration : float
             Segment duration, seconds
+            Default value None
 
         filename : str
             Filename to filter
+            Default value None
 
         zero_time : bool
             Convert timestamps in respect to the segment start
+            Default value True
 
         trim : bool
             Trim event onsets and offset according to segment start and stop times.
+            Default value True
 
         Returns
         -------
@@ -1913,11 +1960,14 @@ class MetaDataContainer(ListDictContainer):
                         # Trim negative onsets to 0 and trim offsets going over slice stop to slice stop.
                         if item_.onset < 0:
                             item_.onset = 0
+
                         if item_.offset > stop-start:
                             item_.offset = stop - start
+
                 elif trim:
                     if item_.onset < start:
                         item_.onset = start
+
                     if item_.offset > stop:
                         item_.offset = stop
 
@@ -1933,12 +1983,15 @@ class MetaDataContainer(ListDictContainer):
         ----------
         event_label_list : list of str
             List of event labels to be included in the statistics. If none given, all unique labels used
+            Default value None
 
         scene_label_list : list of str
             List of scene labels to be included in the statistics. If none given, all unique labels used
+            Default value None
 
         tag_list : list of str
             List of tags to be included in the statistics. If none given, all unique tags used
+            Default value None
 
         Returns
         -------
@@ -2049,15 +2102,19 @@ class MetaDataContainer(ListDictContainer):
         ----------
         label_list : list
             List of labels in correct order
+            Default value None
 
         time_resolution : float > 0.0
             Time resolution used when converting event into event roll.
+            Default value 0.01
 
         label : str
             Meta data field used to create event roll
+            Default value 'event_label'
 
         length_seconds : float
             Event roll length in seconds
+            Default value None
 
         Returns
         -------
@@ -2078,6 +2135,7 @@ class MetaDataContainer(ListDictContainer):
                 label=label,
                 length_seconds=length_seconds
             )
+
             return event_roll
 
         else:

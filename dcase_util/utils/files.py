@@ -642,11 +642,14 @@ class ApplicationPaths(Path):
                 path_parts = list(itertools.product(path_parts[0], path_parts[1], path_parts[2], path_parts[3],
                                                     path_parts[4], path_parts[5], path_parts[6], path_parts[7]))
 
-        out_path = []
-        for l in path_parts:
-            out_path.append(os.path.join(*l))
+            out_path = []
+            for l in path_parts:
+                out_path.append(os.path.join(*l))
 
-        return out_path
+            return out_path
+
+        else:
+            return path_parts
 
 
 class FileFormat(object):

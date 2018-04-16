@@ -190,7 +190,8 @@ class AppParameterContainer(ParameterContainer):
             self.path_structure.update(path_structure)
 
         # Translate path_structure
-        for key, structure in iteritems(self.path_structure):
+        path_structure_tmp = copy.deepcopy(self.path_structure)
+        for key, structure in iteritems(path_structure_tmp):
             for part_id, part in enumerate(structure):
                 split = part.split('.')
                 # Translate only first section level
@@ -748,6 +749,7 @@ class AppParameterContainer(ParameterContainer):
                             path=['PATH', 'APPLICATION_PATHS', 'BASE'],
                             new_value=base_path
                         )
+
                 else:
                     # No base path given, use main application base
                     base_path = self.app_base
@@ -1113,8 +1115,10 @@ class DCASEAppParameterContainer(AppParameterContainer):
             'FEATURE_AGGREGATOR_METHOD_PARAMETERS': 'feature_aggregator_method_parameters',
             'FEATURE_SEQUENCER': 'feature_sequencer',
             'FEATURE_SEQUENCER_METHOD_PARAMETERS': 'feature_sequencer_method_parameters',
+            'FEATURE_PROCESSING_CHAIN': 'feature_processing_chain',
+            'FEATURE_PROCESSING_CHAIN_METHOD_PARAMETERS': 'feature_processing_chain_method_parameters',
             'DATA_PROCESSING_CHAIN': 'data_processing_chain',
-            'DATA_PROCESSING_CHAIN_METHOD_PARAMETERS': 'data_processing_chain_parameters',
+            'DATA_PROCESSING_CHAIN_METHOD_PARAMETERS': 'data_processing_chain_method_parameters',
             'META_PROCESSING_CHAIN': 'meta_processing_chain',
             'META_PROCESSING_CHAIN_METHOD_PARAMETERS': 'meta_processing_chain_method_parameters',
             'LEARNER': 'learner',
@@ -1138,6 +1142,8 @@ class DCASEAppParameterContainer(AppParameterContainer):
             'FEATURE_AGGREGATOR_METHOD_PARAMETERS',
             'FEATURE_SEQUENCER',
             'FEATURE_SEQUENCER_METHOD_PARAMETERS',
+            'FEATURE_PROCESSING_CHAIN',
+            'FEATURE_PROCESSING_CHAIN_METHOD_PARAMETERS',
             'DATA_PROCESSING_CHAIN',
             'DATA_PROCESSING_CHAIN_METHOD_PARAMETERS',
             'META_PROCESSING_CHAIN',
@@ -1191,6 +1197,59 @@ class DCASEAppParameterContainer(AppParameterContainer):
         ]
 
         self.reset(**kwargs)
+
+    def _get_dependency_parameters_feature_extraction(self, parameters):
+        # Get dependency parameters
+        dependency_parameters = dict(self.get_path_translated(
+            parameters=parameters,
+            path=['FEATURE_EXTRACTOR']
+        ))
+
+        # Get section name for dependency method parameters
+        dep_section_method_parameters = self._method_parameter_section(
+            section=self.section_labels['FEATURE_EXTRACTOR'],
+            parameters=parameters
+        )
+
+        # Inject parameters based on label
+        if self.field_labels['LABEL'] in dependency_parameters:
+            if dep_section_method_parameters in parameters and dependency_parameters[self.field_labels['LABEL']] in \
+                    parameters[dep_section_method_parameters]:
+                dependency_parameters[self.field_labels['PARAMETERS']] = copy.deepcopy(
+                    dict(
+                        self.get_path_translated(
+                            parameters=parameters,
+                            path=[dep_section_method_parameters, dependency_parameters[self.field_labels['LABEL']]]
+                        )
+                    )
+                )
+
+        # Inject parameters based on recipes
+        if self.field_labels['RECIPE'] in dependency_parameters:
+            # Remove current parameters
+            dependency_parameters[self.field_labels['PARAMETERS']] = {}
+            dependency_parameters[self.field_labels['RECIPE']] = VectorRecipeParser().parse(
+                recipe=str(dependency_parameters[self.field_labels['RECIPE']])
+            )
+
+            for dep_item in dependency_parameters[self.field_labels['RECIPE']]:
+                if self.field_labels['LABEL'] in dep_item:
+                    label = dep_item[self.field_labels['LABEL']]
+
+                elif 'label' in dep_item:
+                    label = dep_item['label']
+
+                label_parameters = dict(
+                    self.get_path_translated(
+                        parameters=parameters,
+                        path=[dep_section_method_parameters, label]
+                    )
+                )
+
+                if label_parameters:
+                    dependency_parameters[self.field_labels['PARAMETERS']][label] = label_parameters
+
+        return dependency_parameters
 
     def _process_LOGGING(self, parameters):
         """Process LOGGING section."""
@@ -1399,6 +1458,60 @@ class DCASEAppParameterContainer(AppParameterContainer):
                 new_value=int(numpy.ceil(hop_length_seconds_aggregator / float(win_length_seconds_feature_extraction)))
             )
 
+    def _process_FEATURE_PROCESSING_CHAIN_METHOD_PARAMETERS(self, parameters):
+        """Process FEATURE_PROCESSING_CHAIN_METHOD_PARAMETERS section."""
+
+        # Get section name for method parameters
+        section_method_parameters = self._method_parameter_section(
+            section=self.section_labels['FEATURE_PROCESSING_CHAIN'],
+            parameters=parameters
+        )
+
+        if section_method_parameters in parameters:
+            # Change None feature parameter sections into empty dicts
+            for label in list(parameters[section_method_parameters].keys()):
+                if parameters[section_method_parameters][label] is None:
+                    parameters[section_method_parameters][label] = {}
+
+            for label, data in iteritems(parameters[section_method_parameters]):
+                # Add label
+                data[self.field_labels['LABEL']] = label
+
+                if self.field_labels['CHAIN'] in data:
+                    # Collect enabled items from the processing chain.
+                    enabled_items = []
+                    for item_id, item in enumerate(data[self.field_labels['CHAIN']]):
+                        if 'RepositoryFeatureExtractorProcessor' in item['processor_name']:
+                            # Get dependency parameters
+                            item['init_parameters'] = {
+                                'parameters': self._get_dependency_parameters_feature_extraction(
+                                    parameters=parameters
+                                )['parameters']
+                            }
+
+                        elif 'FeatureExtractorProcessor' in item['processor_name']:
+                            item['init_parameters'] = self._get_dependency_parameters_feature_extraction(
+                                parameters=parameters
+                            )['parameters']
+
+                        elif 'FeatureReadingProcessor' in item['processor_name']:
+                            # Get dependency parameters
+                            dependency_parameters = self._get_dependency_parameters_feature_extraction(
+                                parameters=parameters
+                            )
+
+                            # Inject feature extraction parameters to get correct hash value
+                            item[self.field_labels['DEPENDENCY_PARAMETERS']] = dependency_parameters
+
+                        init_parameters = item.get('init_parameters', {})
+                        if self.field_labels['ENABLE'] in init_parameters and init_parameters[self.field_labels['ENABLE']]:
+                            enabled_items.append(item)
+
+                        elif self.field_labels['ENABLE'] not in init_parameters:
+                            enabled_items.append(item)
+
+                    data[self.field_labels['CHAIN']] = enabled_items
+
     def _process_DATA_PROCESSING_CHAIN_METHOD_PARAMETERS(self, parameters):
         """Process DATA_PROCESSING_CHAIN_METHOD_PARAMETERS section."""
 
@@ -1422,7 +1535,20 @@ class DCASEAppParameterContainer(AppParameterContainer):
                     # Collect enabled items from the processing chain.
                     enabled_items = []
                     for item_id, item in enumerate(data[self.field_labels['CHAIN']]):
-                        if 'FeatureReadingProcessor' in item['processor_name']:
+                        if 'RepositoryFeatureExtractorProcessor' in item['processor_name']:
+                            # Get dependency parameters
+                            item['init_parameters'] = {
+                                'parameters': self._get_dependency_parameters_feature_extraction(
+                                    parameters=parameters
+                                )['parameters']
+                            }
+
+                        elif 'FeatureExtractorProcessor' in item['processor_name']:
+                            item['init_parameters'] = self._get_dependency_parameters_feature_extraction(
+                                parameters=parameters
+                            )['parameters']
+
+                        elif 'FeatureReadingProcessor' in item['processor_name']:
                             # Get dependency parameters
                             dependency_parameters = dict(self.get_path_translated(
                                 parameters=parameters,

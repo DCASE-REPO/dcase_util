@@ -1,0 +1,6 @@
+dcase_util.ui.FancyStringifier.row_sep
+======================================
+
+.. currentmodule:: dcase_util.ui
+
+.. automethod:: FancyStringifier.row_sep

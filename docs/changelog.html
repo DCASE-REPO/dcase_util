@@ -1137,6 +1137,8 @@
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.ui.FancyLogger.html">dcase_util.ui.FancyLogger</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.ui.FancyLogger.line.html">dcase_util.ui.FancyLogger.line</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.ui.FancyLogger.row.html">dcase_util.ui.FancyLogger.row</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.ui.FancyLogger.row_reset.html">dcase_util.ui.FancyLogger.row_reset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.ui.FancyLogger.row_sep.html">dcase_util.ui.FancyLogger.row_sep</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.ui.FancyLogger.title.html">dcase_util.ui.FancyLogger.title</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.ui.FancyLogger.section_header.html">dcase_util.ui.FancyLogger.section_header</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.ui.FancyLogger.sub_header.html">dcase_util.ui.FancyLogger.sub_header</a></li>
@@ -1153,6 +1155,8 @@
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.ui.FancyPrinter.html">dcase_util.ui.FancyPrinter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.ui.FancyPrinter.line.html">dcase_util.ui.FancyPrinter.line</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.ui.FancyPrinter.row.html">dcase_util.ui.FancyPrinter.row</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.ui.FancyPrinter.row_reset.html">dcase_util.ui.FancyPrinter.row_reset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.ui.FancyPrinter.row_sep.html">dcase_util.ui.FancyPrinter.row_sep</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.ui.FancyPrinter.title.html">dcase_util.ui.FancyPrinter.title</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.ui.FancyPrinter.section_header.html">dcase_util.ui.FancyPrinter.section_header</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.ui.FancyPrinter.sub_header.html">dcase_util.ui.FancyPrinter.sub_header</a></li>
@@ -1177,6 +1181,8 @@
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.ui.FancyStringifier.sep.html">dcase_util.ui.FancyStringifier.sep</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.ui.FancyStringifier.table.html">dcase_util.ui.FancyStringifier.table</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.ui.FancyStringifier.row.html">dcase_util.ui.FancyStringifier.row</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.ui.FancyStringifier.row_reset.html">dcase_util.ui.FancyStringifier.row_reset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.ui.FancyStringifier.row_sep.html">dcase_util.ui.FancyStringifier.row_sep</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.ui.FancyStringifier.class_name.html">dcase_util.ui.FancyStringifier.class_name</a></li>
 </ul>
 </li>
@@ -1325,6 +1331,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#v0-2-0">v0.2.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#v0-1-9">v0.1.9</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#v0-1-8">v0.1.8</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#v0-1-7">v0.1.7</a></li>
@@ -1398,6 +1405,25 @@
             
   <div class="section" id="release-notes">
 <span id="changelog"></span><h1>Release notes<a class="headerlink" href="#release-notes" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="v0-2-0">
+<h2>v0.2.0<a class="headerlink" href="#v0-2-0" title="Permalink to this headline">¶</a></h2>
+<p><strong>New features</strong></p>
+<ul class="simple">
+<li>Add <code class="docutils literal"><span class="pre">row_reset</span></code> and <code class="docutils literal"><span class="pre">row_sep</span></code> helper methods to <code class="docutils literal"><span class="pre">FancyStringifier</span></code>, <code class="docutils literal"><span class="pre">FancyLogger</span></code>, and <code class="docutils literal"><span class="pre">FancyPrinter</span></code> classes</li>
+</ul>
+<p><strong>Updates</strong></p>
+<ul class="simple">
+<li>Update <code class="docutils literal"><span class="pre">download</span></code> method in <code class="docutils literal"><span class="pre">RemoteFile</span></code> to be more robust when encounter SSL problems.</li>
+<li>Update <code class="docutils literal"><span class="pre">AppParameterContainer</span></code> to handle <code class="docutils literal"><span class="pre">FEATURE_PROCESSING_CHAIN</span></code>, <code class="docutils literal"><span class="pre">DATA_PROCESSING_CHAIN</span></code>.</li>
+<li>Update <code class="docutils literal"><span class="pre">filter</span></code> method in <code class="docutils literal"><span class="pre">MetaDataContainer</span></code> to accept <code class="docutils literal"><span class="pre">source_label</span></code> and <code class="docutils literal"><span class="pre">source_label_list</span></code> parameters.</li>
+<li>Update <code class="docutils literal"><span class="pre">DCASE2018_Task5_DevelopmentSet</span></code></li>
+</ul>
+<p><strong>Bug fixes</strong></p>
+<ul class="simple">
+<li>Fix <code class="docutils literal"><span class="pre">construct_path</span></code> method in <code class="docutils literal"><span class="pre">ApplicationPaths</span></code> to work in Windows as well.</li>
+<li>Fix path creation in <code class="docutils literal"><span class="pre">AppParameterContainer</span></code></li>
+</ul>
+</div>
 <div class="section" id="v0-1-9">
 <h2>v0.1.9<a class="headerlink" href="#v0-1-9" title="Permalink to this headline">¶</a></h2>
 <p><strong>New features</strong></p>
