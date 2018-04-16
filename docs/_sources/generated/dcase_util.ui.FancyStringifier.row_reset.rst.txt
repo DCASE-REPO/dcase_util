@@ -1,0 +1,6 @@
+dcase_util.ui.FancyStringifier.row_reset
+========================================
+
+.. currentmodule:: dcase_util.ui
+
+.. automethod:: FancyStringifier.row_reset

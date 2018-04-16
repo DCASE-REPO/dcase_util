@@ -1,0 +1,6 @@
+dcase_util.ui.FancyLogger.row_reset
+===================================
+
+.. currentmodule:: dcase_util.ui
+
+.. automethod:: FancyLogger.row_reset
