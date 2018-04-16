@@ -75,6 +75,8 @@ Output::
     FancyLogger
     FancyLogger.line
     FancyLogger.row
+    FancyLogger.row_reset
+    FancyLogger.row_sep
     FancyLogger.title
     FancyLogger.section_header
     FancyLogger.sub_header
@@ -150,6 +152,8 @@ Output::
     FancyPrinter
     FancyPrinter.line
     FancyPrinter.row
+    FancyPrinter.row_reset
+    FancyPrinter.row_sep
     FancyPrinter.title
     FancyPrinter.section_header
     FancyPrinter.sub_header
@@ -182,6 +186,8 @@ This class can be used to produce uniformly formatted output strings.
     FancyStringifier.sep
     FancyStringifier.table
     FancyStringifier.row
+    FancyStringifier.row_reset
+    FancyStringifier.row_sep
     FancyStringifier.class_name
 
 """
