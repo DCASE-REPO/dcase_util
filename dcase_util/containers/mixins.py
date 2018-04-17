@@ -485,6 +485,7 @@ class PackageMixin(object):
         file_list : list of dict
 
         size_limit : int
+            Size limit in bytes
             Default value None
 
         overwrite : bool
