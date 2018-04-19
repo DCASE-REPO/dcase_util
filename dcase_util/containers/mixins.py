@@ -136,6 +136,22 @@ class FileMixin(object):
         else:
             return None
 
+    @property
+    def bytes(self):
+        """File size in bytes
+
+        Returns
+        -------
+        int
+
+        """
+
+        if self.exists():
+            return os.path.getsize(self.filename)
+
+        else:
+            return None
+
     def get_file_information(self):
         """Get file information, filename
 
@@ -373,6 +389,38 @@ class PackageMixin(object):
     @package_password.setter
     def package_password(self, value):
         self['package_password'] = value
+
+    @property
+    def md5(self):
+        """Checksum for file.
+
+        Returns
+        -------
+        str
+
+        """
+
+        if self.exists():
+            return get_file_hash(filename=self.filename)
+
+        else:
+            return None
+
+    @property
+    def bytes(self):
+        """File size in bytes
+
+        Returns
+        -------
+        int
+
+        """
+
+        if self.exists():
+            return os.path.getsize(self.filename)
+
+        else:
+            return None
 
     def extract(self, target_path=None, overwrite=False, omit_first_level=False):
         """Extract the package. Supports Zip and Tar packages.
