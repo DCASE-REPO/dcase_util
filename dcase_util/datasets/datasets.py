@@ -15,7 +15,7 @@ import importlib
 from tqdm import tqdm
 
 from dcase_util.containers import DictContainer, ListDictContainer, TextContainer, MetaDataContainer
-from dcase_util.files import RemoteFile, RemotePackage, File
+from dcase_util.files import RemoteFile, RemotePackage, File, Package
 from dcase_util.utils import get_byte_string, setup_logging, Path
 from dcase_util.utils import get_parameter_hash, get_class_inheritors
 from dcase_util.ui import FancyLogger
@@ -327,6 +327,7 @@ class Dataset(object):
         # }
         if package_list is None:
             package_list = []
+
         self.package_list = ListDictContainer(package_list)
 
         # Expand local filenames to be related to local path
@@ -358,6 +359,7 @@ class Dataset(object):
         # List of directories to contain the audio material
         if audio_paths is None:
             audio_paths = ['audio']
+
         self.audio_paths = audio_paths
 
         # Expand local filenames to be related to local path
@@ -413,6 +415,7 @@ class Dataset(object):
         """Load dataset meta data and cross-validation sets into the container."""
         self.load_meta()
         self.load_crossvalidation_data()
+
 
     def load_meta(self):
         """Load meta data into the container."""
@@ -644,7 +647,7 @@ class Dataset(object):
 
         Returns
         -------
-        list
+        MetaDataContainer
             List containing meta data as dict.
 
         """
@@ -819,20 +822,62 @@ class Dataset(object):
 
         log = FancyLogger()
         log.sub_header('Debug packages')
-        log.row('package', 'remote_md5', 'remote_bytes', widths=[70, 36, 15])
-        log.row('-', '-', '-')
+        log.line('Local', indent=2)
+        log.row_reset()
+        log.row('package', 'local_md5', 'local_bytes', widths=[60, 35, 15])
+        log.row_sep()
         for item in self.package_list:
-            remote_file = RemoteFile(**item)
-            if self.included_content_types is None or remote_file.is_content_type(
-                    content_type=self.included_content_types
-            ):
-                remote_file.remote_info()
+            package = Package(**item)
+            if package.exists():
+                md5 = package.md5
+                bytes = package.bytes
+            else:
+                md5 = ''
+                bytes = ''
+            log.row(
+                os.path.split(package.filename)[-1],
+                md5,
+                bytes
+            )
 
-                log.row(
-                    os.path.split(item['remote_file'])[-1],
-                    remote_file.remote_md5 if item['remote_md5'] != remote_file.remote_md5 else 'OK',
-                    remote_file.remote_bytes if item['remote_bytes'] != remote_file.remote_bytes else 'OK'
-                )
+        log.line()
+        log.line('Remote', indent=2)
+        log.row('package', 'remote_md5', 'remote_bytes', 'md5', 'b', widths=[60, 35, 15, 6, 6])
+        log.row_sep()
+        for item in self.package_list:
+            if 'remote_file' in item:
+                remote_file = RemoteFile(**item)
+                if self.included_content_types is None or remote_file.is_content_type(
+                        content_type=self.included_content_types
+                ):
+                    remote_file.remote_info()
+
+                remote_filename = os.path.split(item['remote_file'])[-1]
+
+                if 'remote_md5' in item:
+                    md5 = remote_file.remote_md5
+                    md5_status = 'Dif' if item['remote_md5'] != remote_file.remote_md5 else 'OK',
+                else:
+                    md5 = ''
+                    md5_status = ''
+
+                bytes = remote_file.remote_bytes
+                bytes_status = 'Dif' if item['remote_bytes'] != remote_file.remote_bytes else 'OK'
+
+            else:
+                remote_filename = ''
+                md5 = ''
+                md5_status = ''
+                bytes = ''
+                bytes_status = ''
+
+            log.row(
+                remote_filename,
+                md5,
+                bytes,
+                md5_status,
+                bytes_status
+            )
 
         return self
 
@@ -1053,6 +1098,7 @@ class Dataset(object):
         ----------
         fold : int [scalar]
             Fold id, if None all meta data is returned.
+            Default value None
 
         absolute_paths : bool
             Path format for the returned meta items, if True paths are absolute, False paths are relative to
@@ -1088,6 +1134,7 @@ class Dataset(object):
         ----------
         fold : int
             Fold id, if None all meta data is returned.
+            Default value None
 
         absolute_paths : bool
             Path format for the returned meta items, if True paths are absolute, False paths are relative to
@@ -1123,6 +1170,7 @@ class Dataset(object):
         ----------
         fold : int
             Fold id, if None all meta data is returned.
+            Default value None
 
         absolute_paths : bool
             Path format for the returned meta items, if True paths are absolute, False paths are relative to
