@@ -169,6 +169,7 @@ class DictContainer(dict, ContainerMixin, FileMixin):
             '_hash',
             'verbose',
         ]
+
         if kwargs.get('non_hashable_fields'):
             self.non_hashable_fields.update(kwargs.get('non_hashable_fields'))
 
@@ -312,6 +313,7 @@ class DictContainer(dict, ContainerMixin, FileMixin):
             for key, value in iteritems(data):
                 if len(fields) > 1:
                     self.set_path(new_value=new_value, data=value, path='.'.join(fields[1:]))
+
                 else:
                     data[key] = new_value
 
@@ -322,9 +324,11 @@ class DictContainer(dict, ContainerMixin, FileMixin):
             else:
                 if fields[0] not in data:
                     data[fields[0]] = {}
+
                 elif not isinstance(data[fields[0]], dict):
                     # Overwrite path
                     data[fields[0]] = {}
+
                 self.set_path(new_value=new_value, data=data[fields[0]], path='.'.join(fields[1:]))
 
     def get_leaf_path_list(self, target_field=None, target_field_startswith=None, target_field_endswith=None):
@@ -392,6 +396,7 @@ class DictContainer(dict, ContainerMixin, FileMixin):
         for k, v in iteritems(override):
             if k in target and isinstance(target[k], dict) and isinstance(override[k], dict):
                 self.merge(target=target[k], override=override[k])
+
             else:
                 target[k] = override[k]
 
@@ -417,8 +422,10 @@ class DictContainer(dict, ContainerMixin, FileMixin):
             data = self.get_path(path=dotted_path)
             if data is not None:
                 return self.get_hash(data)
+
             else:
                 return None
+
         else:
             return self.get_hash(self)
 
@@ -443,6 +450,7 @@ class DictContainer(dict, ContainerMixin, FileMixin):
 
         md5 = hashlib.md5()
         md5.update(str(json.dumps(self._clean_for_hashing(copy.deepcopy(data)), sort_keys=True)).encode('utf-8'))
+
         return md5.hexdigest()
 
     def load(self, filename=None):
@@ -628,8 +636,10 @@ class DictContainer(dict, ContainerMixin, FileMixin):
             for k, v in iteritems(data):
                 if isinstance(v, numpy.generic):
                     data[k] = numpy.asscalar(v)
+
                 elif isinstance(v, DictContainer):
                     data[k] = self.get_dump_content(data=dict(data[k]))
+
                 elif isinstance(v, dict):
                     data[k] = self.get_dump_content(data=data[k])
 
@@ -799,7 +809,7 @@ class DictContainer(dict, ContainerMixin, FileMixin):
         Parameters
         ----------
         data : dict, optional
-            Dict for filter is done, if None given self is used.
+            Dict to filter, if None given self is used.
             Default value None
 
         excluded_key_prefix : str
@@ -885,6 +895,7 @@ class ListContainer(list, ContainerMixin, FileMixin):
         """
 
         list.__init__(self, data)
+
         return self
 
     def load(self, filename=None, headers=None):
@@ -925,6 +936,7 @@ class ListContainer(list, ContainerMixin, FileMixin):
                     # Remove line breaks
                     for i in range(0, len(lines)):
                         lines[i] = lines[i].replace('\r\n', '').replace('\n', '')
+
                     list.__init__(self, lines)
 
             elif self.format == FileFormat.CPICKLE:
@@ -1024,8 +1036,10 @@ class ListContainer(list, ContainerMixin, FileMixin):
             for k, v in iteritems(data):
                 if isinstance(v, numpy.generic):
                     data[k] = numpy.asscalar(v)
+
                 elif isinstance(v, DictContainer):
                     data[k] = self.get_dump_content(data=dict(data[k]))
+
                 elif isinstance(v, dict):
                     data[k] = self.get_dump_content(data=data[k])
 
@@ -1189,6 +1203,7 @@ class ListDictContainer(ListContainer):
                 data = Serializer.load_yaml(filename=self.filename)
                 if isinstance(data, list):
                     list.__init__(self, data)
+
                 else:
                     message = '{name}: YAML data is not in list format.'.format(name=self.__class__.__name__)
                     self.logger.exception(message)
@@ -1282,6 +1297,7 @@ class ListDictContainer(ListContainer):
                     fields = set()
                     for item in self:
                         fields.update(list(item.keys()))
+
                     fields = sorted(list(fields))
 
                 with open(self.filename, 'w') as csv_file:
@@ -1293,6 +1309,7 @@ class ListDictContainer(ListContainer):
                         item_values = []
                         for field in fields:
                             item_values.append(item[field])
+
                         csv_writer.writerow(item_values)
 
             elif self.format == FileFormat.CPICKLE:
@@ -1402,6 +1419,7 @@ class ListDictContainer(ListContainer):
         for field in kwargs:
             if case_insensitive_fields:
                 filter_fields[field.lower()] = kwargs[field]
+
             else:
                 filter_fields[field] = kwargs[field]
 
@@ -1414,6 +1432,7 @@ class ListDictContainer(ListContainer):
             for field in item_field_list:
                 if case_insensitive_fields:
                     item_field_map[field.lower()] = field
+
                 else:
                     item_field_map[field] = field
 
@@ -1422,11 +1441,14 @@ class ListDictContainer(ListContainer):
                 if condition_field in item_field_map:
                     if item[item_field_map[condition_field]] == filter_fields[condition_field]:
                         matched.append(True)
+
                     else:
                         matched.append(False)
+
                 elif condition_field_alternative in item_field_map:
                     if item[item_field_map[condition_field_alternative]] == filter_fields[condition_field]:
                         matched.append(True)
+
                     else:
                         matched.append(False)
 
