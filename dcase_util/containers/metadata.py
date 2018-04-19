@@ -1548,8 +1548,12 @@ class MetaDataContainer(ListDictContainer):
 
         string_data = ''
         string_data += ui.class_name(self.__class__.__name__) + '\n'
-        if self.filename:
-            string_data += ui.data(field='Filename', value=self.filename) + '\n'
+
+        if hasattr(self, 'filename') and self.filename:
+            string_data += ui.data(
+                field='Filename',
+                value=self.filename
+            ) + '\n'
 
         string_data += ui.data(field='Items', value=len(self)) + '\n'
         string_data += ui.line(field='Unique') + '\n'
