@@ -200,9 +200,11 @@ class DictContainer(dict, ContainerMixin, FileMixin):
 
         default : str, int, float
             Default value returned if path does not exists
+            Default value None
 
         data : dict, optional
             Dict for which path search is done, if None given self is used. Used for recursive path search.
+            Default value None
 
         Returns
         -------
@@ -279,6 +281,7 @@ class DictContainer(dict, ContainerMixin, FileMixin):
 
         data : dict, optional
             Dict for which path search is done, if None given self is used. Used for recursive path search.
+            Default value None
 
         Returns
         -------
@@ -331,17 +334,21 @@ class DictContainer(dict, ContainerMixin, FileMixin):
         ----------
         target_field : str
             Field name to filter paths.
+            Default value None
 
         target_field_startswith : str
             Start of field name to filter paths.
+            Default value None
 
         target_field_endswith : str
             End of field name to filter paths.
+            Default value None
 
         Returns
         -------
         list
             Path list
+
         """
 
         path_list = list(self._path_generator())
@@ -366,11 +373,12 @@ class DictContainer(dict, ContainerMixin, FileMixin):
 
         Parameters
         ----------
-        target : dict
-            target parameter dict
-
         override : dict
             override parameter dict
+
+        target : dict
+            target parameter dict
+            Default value None
 
         Returns
         -------
@@ -396,6 +404,7 @@ class DictContainer(dict, ContainerMixin, FileMixin):
         ----------
         dotted_path : str or list
             target path
+            Default value None
 
         Returns
         -------
@@ -420,6 +429,7 @@ class DictContainer(dict, ContainerMixin, FileMixin):
         ----------
         data : dict or list
             Input parameters
+            Default value None
 
         Returns
         -------
@@ -441,8 +451,8 @@ class DictContainer(dict, ContainerMixin, FileMixin):
         Parameters
         ----------
         filename : str, optional
-            File path
-            Default value filename given to class constructor
+            File path, if None given, filename given to class constructor is used.
+            Default value None
 
         Raises
         ------
@@ -522,8 +532,8 @@ class DictContainer(dict, ContainerMixin, FileMixin):
         Parameters
         ----------
         filename : str, optional
-            File path
-            Default value filename given to class constructor
+            File path, if None given, filename given to class constructor is used.
+            Default value None
 
         Raises
         ------
@@ -612,6 +622,7 @@ class DictContainer(dict, ContainerMixin, FileMixin):
         dict
 
         """
+
         if data:
             data = dict(data)
             for k, v in iteritems(data):
@@ -650,6 +661,7 @@ class DictContainer(dict, ContainerMixin, FileMixin):
 
         depth : int
             Depth of walk, string is indented with this
+            Default value 0
 
         Returns
         -------
@@ -729,6 +741,7 @@ class DictContainer(dict, ContainerMixin, FileMixin):
 
         non_hashable_fields : list
             List of fields to be removed.
+            Default value None
 
         Returns
         -------
@@ -787,9 +800,11 @@ class DictContainer(dict, ContainerMixin, FileMixin):
         ----------
         data : dict, optional
             Dict for filter is done, if None given self is used.
+            Default value None
 
         excluded_key_prefix : str
             Key prefix to be excluded
+            Default value '_'
 
         Returns
         -------
@@ -825,6 +840,7 @@ class ListContainer(list, ContainerMixin, FileMixin):
         ----------
         filename : str, optional
             File path
+
         """
 
         # Run ContainerMixin init
@@ -879,6 +895,7 @@ class ListContainer(list, ContainerMixin, FileMixin):
         filename : str, optional
             File path
             Default value filename given to class constructor
+            Default value None
 
         headers : list of str, optional
             List of column names
@@ -934,8 +951,8 @@ class ListContainer(list, ContainerMixin, FileMixin):
         Parameters
         ----------
         filename : str, optional
-            File path
-            Default value filename given to class constructor
+            File path, if None given, filename given to class constructor is used.
+            Default value None
 
         Raises
         ------
@@ -1001,6 +1018,7 @@ class ListContainer(list, ContainerMixin, FileMixin):
         dict
 
         """
+
         if data:
             data = dict(data)
             for k, v in iteritems(data):
@@ -1025,6 +1043,7 @@ class ListDictContainer(ListContainer):
         ----------
         filename : str, optional
             File path
+
         """
 
         # Run ContainerMixin init
@@ -1075,6 +1094,7 @@ class ListDictContainer(ListContainer):
         for element in self:
             if element.get(key) == value:
                 return element
+
         return None
 
     def load(self, filename=None, fields=None, csv_header=True, file_format=None, delimiter=None, convert_numeric_fields=True):
@@ -1083,11 +1103,12 @@ class ListDictContainer(ListContainer):
         Parameters
         ----------
         filename : str, optional
-            File path
-            Default value filename given to class constructor
+            File path, if None given, filename given to class constructor is used.
+            Default value None
 
         fields : list of str, optional
             List of column names
+            Default value None
 
         csv_header : bool, optional
             Read field names from first line (header). Used only for CSV formatted files.
@@ -1095,9 +1116,11 @@ class ListDictContainer(ListContainer):
 
         file_format : FileFormat, optional
             Forced file format, use this when there is a miss-match between file extension and file format.
+            Default value None
 
         delimiter : str, optional
             Forced data delimiter for csv format. If None given, automatic delimiter sniffer used. Use this when sniffer does not work.
+            Default value None
 
         convert_numeric_fields : bool, optional
             Convert int and float fields to correct type.
@@ -1196,11 +1219,12 @@ class ListDictContainer(ListContainer):
         Parameters
         ----------
         filename : str, optional
-            File path
-            Default value filename given to class constructor
+            File path, if None given, filename given to class constructor is used.
+            Default value None
 
         fields : list of str
             Fields in correct order, if none given all field in alphabetical order will be outputted
+            Default value None
 
         csv_header : bool
             In case of CSV formatted file, first line will contain field names. Names are taken from fields parameter.
@@ -1208,9 +1232,11 @@ class ListDictContainer(ListContainer):
 
         file_format : FileFormat, optional
             Forced file format, use this when there is a miss-match between file extension and file format.
+            Default value None
 
         delimiter : str
             Delimiter to be used when saving data
+            Default value ','
 
         Raises
         ------
@@ -1297,6 +1323,7 @@ class ListDictContainer(ListContainer):
 
         skip_items_without_field : bool
             Skip items without field, if true None inserted to the output.
+            Default value True
 
         Returns
         -------
