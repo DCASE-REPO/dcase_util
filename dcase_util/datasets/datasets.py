@@ -2016,7 +2016,7 @@ class AcousticSceneDataset(Dataset):
                     'Overall',
                     numpy.sum(amounts_full_items),
                     numpy.sum(amounts_validation_items),
-                    numpy.mean(amounts_validation_ratio)
+                    numpy.sum(amounts_validation_items) / float(numpy.sum(amounts_full_items)) * 100.0
                 )
             
             elif balancing_mode == 'identifier':
@@ -2050,7 +2050,7 @@ class AcousticSceneDataset(Dataset):
                     numpy.sum(amounts_full_items),
                     numpy.sum(amounts_validation_identifiers1),
                     numpy.sum(amounts_validation_items),
-                    numpy.mean(amounts_validation_ratio)
+                    numpy.sum(amounts_validation_items) / float(numpy.sum(amounts_full_items)) * 100.0
                 )
 
             elif balancing_mode == 'identifier_two_level_hierarchy':
@@ -2088,7 +2088,7 @@ class AcousticSceneDataset(Dataset):
                     numpy.sum(amounts_validation_identifiers1),
                     numpy.sum(amounts_validation_identifiers2),
                     numpy.sum(amounts_validation_items),
-                    numpy.mean(amounts_validation_ratio)
+                    numpy.sum(amounts_validation_items) / float(numpy.sum(amounts_full_items)) * 100.0
                 )
 
             log.line()
