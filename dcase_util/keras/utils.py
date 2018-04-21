@@ -23,9 +23,11 @@ def setup_keras(seed=None, profile=None,
     ----------
     seed : int, optional
         Randomization seed. If none given, no seed is set.
+        Default value None
 
     profile : str, optional
         Profile name ['deterministic', 'cuda0_fast'], will override other parameters with profile parameters.
+        Default value None
 
     backend : str
         Keras backend ['theano', 'tensorflow']
@@ -33,9 +35,11 @@ def setup_keras(seed=None, profile=None,
 
     device : str, optional
         Device for computations ['cpu', 'cuda', 'cuda0', 'cuda1', 'opencl0:0', 'opencl0:1']
+        Default value None
 
     BLAS_thread_count : int
         Number of thread used for BLAS libraries
+        Default value None
 
     BLAS_MKL_CNR : bool
         Conditional numerical reproducibility for MKL BLAS library. Use this to reproduce results with MKL.
@@ -43,21 +47,27 @@ def setup_keras(seed=None, profile=None,
 
     nvcc_fastmath : str, optional
         Control the usage of fast math library in NVCC
+        Default value None
 
     theano_floatX : str, optional
         Default dtype for Theano matrix and tensor ['float64', 'float32', 'float16']
+        Default value None
 
     theano_optimizer : str, optional
         Optimizer ['fast_run', 'merge', 'fast_compile', 'None']
+        Default value None
 
     theano_OpenMP : bool, optional
         Enable or disable parallel computation on the CPU with OpenMP.
+        Default value None
 
     theano_deterministic : bool, optional
+        Default value None
 
     verbose : bool
         Print information
         Default value True
+
     """
 
     def logger():
