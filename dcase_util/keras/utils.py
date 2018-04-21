@@ -15,7 +15,7 @@ def setup_keras(seed=None, profile=None,
                 BLAS_thread_count=None, BLAS_MKL_CNR=True,
                 nvcc_fastmath=None,
                 theano_floatX=None, theano_optimizer=None, theano_OpenMP=None, theano_deterministic=None,
-                verbose=True):
+                verbose=True, print_indent=0):
     """Setup Keras and environmental variables effecting on it.
     Given parameters are used to override ones specified in keras.json file.
 
@@ -68,12 +68,17 @@ def setup_keras(seed=None, profile=None,
         Print information
         Default value True
 
+    print_indent : int
+        Print indent
+        Default value 0
+
     """
 
     def logger():
         logger_instance = logging.getLogger(__name__)
         if not logger_instance.handlers:
             setup_logging()
+
         return logger_instance
 
     if profile:
@@ -144,11 +149,12 @@ def setup_keras(seed=None, profile=None,
 
     ui = FancyLogger()
     if verbose:
-        ui.sub_header('Keras setup')
+        ui.sub_header('Keras setup', indent=print_indent)
 
     # Get BLAS library associated to numpy
     if numpy.__config__.blas_opt_info and 'libraries' in numpy.__config__.blas_opt_info:
         blas_libraries = numpy.__config__.blas_opt_info['libraries']
+
     else:
         blas_libraries = ['']
 
@@ -167,6 +173,7 @@ def setup_keras(seed=None, profile=None,
         if BLAS_thread_count > 1:
             os.environ['OMP_DYNAMIC'] = 'False'
             os.environ['MKL_DYNAMIC'] = 'False'
+
         else:
             os.environ['OMP_DYNAMIC'] = 'True'
             os.environ['MKL_DYNAMIC'] = 'True'
@@ -180,27 +187,35 @@ def setup_keras(seed=None, profile=None,
     if verbose:
         if numpy.__config__.blas_opt_info and 'libraries' in numpy.__config__.blas_opt_info:
             blas_libraries = numpy.__config__.blas_opt_info['libraries']
+
             if blas_libraries[0].startswith('openblas'):
                 ui.data(
                     field='BLAS library',
-                    value='OpenBLAS ({info})'.format(info=', '.join(blas_extra_info))
+                    value='OpenBLAS ({info})'.format(info=', '.join(blas_extra_info)),
+                    indent=print_indent + 2
                 )
 
             elif blas_libraries[0].startswith('blas'):
                 ui.data(
                     field='BLAS library',
-                    value='BLAS/Atlas ({info})'.format(info=', '.join(blas_extra_info))
+                    value='BLAS/Atlas ({info})'.format(info=', '.join(blas_extra_info)),
+                    indent=print_indent + 2
                 )
 
             elif blas_libraries[0].startswith('mkl'):
                 ui.data(
                     field='BLAS library',
-                    value='MKL ({info})'.format(info=', '.join(blas_extra_info))
+                    value='MKL ({info})'.format(info=', '.join(blas_extra_info)),
+                    indent=print_indent + 2
                 )
 
     # Set backend and parameters before importing keras
     if verbose:
-        ui.data(field='Backend', value=backend)
+        ui.data(
+            field='Backend',
+            value=backend,
+            indent=print_indent + 2
+        )
 
     if backend == 'theano':
         # Theano setup
@@ -222,7 +237,8 @@ def setup_keras(seed=None, profile=None,
             if verbose:
                 ui.data(
                     field='floatX',
-                    value=theano_floatX
+                    value=theano_floatX,
+                    indent=print_indent + 2
                 )
 
         # Set optimizer
@@ -240,23 +256,25 @@ def setup_keras(seed=None, profile=None,
         if theano_OpenMP is not None:
             if theano_OpenMP:
                 flags.append('openmp=True')
+
             else:
                 flags.append('openmp=False')
 
         if theano_deterministic is not None:
             if theano_deterministic:
                 flags.append('deterministic=more')
+
             else:
                 flags.append('deterministic=default')
 
         if verbose:
-            ui.line('Theano', indent=2)
+            ui.line('Theano', indent=print_indent + 2)
 
             for item in flags:
                 ui.data(
                     field=item.split('=')[0],
                     value=item.split('=')[1],
-                    indent=4
+                    indent=print_indent + 6
                 )
 
         # Set environmental variable for Theano
@@ -266,7 +284,7 @@ def setup_keras(seed=None, profile=None,
         flags = []
         # Tensorflow setup
         if verbose:
-            ui.line('Tensorflow', indent=2)
+            ui.line('Tensorflow', indent=print_indent + 2)
 
         # Set device
         if device:
@@ -277,13 +295,13 @@ def setup_keras(seed=None, profile=None,
                 os.environ["CUDA_VISIBLE_DEVICES"] = ''
 
         if verbose:
-            ui.line('Tensorflow', indent=2)
+            ui.line('Tensorflow', indent=print_indent + 2)
 
             for item in flags:
                 ui.data(
                     field=item.split('=')[0],
                     value=item.split('=')[1],
-                    indent=4
+                    indent=print_indent + 6
                 )
 
     with SuppressStdoutAndStderr():
@@ -291,7 +309,7 @@ def setup_keras(seed=None, profile=None,
         import keras
 
     if verbose:
-        ui.foot()
+        ui.foot(indent=print_indent)
 
 
 def create_optimizer(class_name, config=None):
