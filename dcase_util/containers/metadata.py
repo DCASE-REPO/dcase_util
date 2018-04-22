@@ -1548,8 +1548,12 @@ class MetaDataContainer(ListDictContainer):
 
         string_data = ''
         string_data += ui.class_name(self.__class__.__name__) + '\n'
-        if self.filename:
-            string_data += ui.data(field='Filename', value=self.filename) + '\n'
+
+        if hasattr(self, 'filename') and self.filename:
+            string_data += ui.data(
+                field='Filename',
+                value=self.filename
+            ) + '\n'
 
         string_data += ui.data(field='Items', value=len(self)) + '\n'
         string_data += ui.line(field='Unique') + '\n'
@@ -1557,6 +1561,7 @@ class MetaDataContainer(ListDictContainer):
         string_data += ui.data(indent=4, field='Scene labels', value=len(self.unique_scene_labels)) + '\n'
         string_data += ui.data(indent=4, field='Event labels', value=len(self.unique_event_labels)) + '\n'
         string_data += ui.data(indent=4, field='Tags', value=len(self.unique_tags)) + '\n'
+        string_data += ui.data(indent=4, field='Identifiers', value=len(self.unique_identifiers)) + '\n'
         string_data += '\n'
 
         if show_data:

@@ -244,6 +244,7 @@ def get_keras_data_sequence_class():
                                 data=data,
                                 meta=meta
                             )
+
                     # Collect data
                     batch_buffer_data.append(data.data)
 
@@ -326,6 +327,7 @@ def get_keras_data_sequence_class():
                     'time_axis': data.time_axis,
                     'data_axis': data.data_axis
                 }
+
                 if hasattr(data,'sequence_axis'):
                     self._data_axis['sequence_axis']= data.sequence_axis
 
@@ -344,6 +346,7 @@ def get_keras_data_sequence_class():
                     'time_axis': data.time_axis,
                     'data_axis': data.data_axis
                 }
+
                 if hasattr(data, 'sequence_axis'):
                     self._data_axis['sequence_axis'] = data.sequence_axis
 

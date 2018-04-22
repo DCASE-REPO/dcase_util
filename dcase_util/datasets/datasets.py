@@ -15,7 +15,7 @@ import importlib
 from tqdm import tqdm
 
 from dcase_util.containers import DictContainer, ListDictContainer, TextContainer, MetaDataContainer
-from dcase_util.files import RemoteFile, RemotePackage, File
+from dcase_util.files import RemoteFile, RemotePackage, File, Package
 from dcase_util.utils import get_byte_string, setup_logging, Path
 from dcase_util.utils import get_parameter_hash, get_class_inheritors
 from dcase_util.ui import FancyLogger
@@ -327,6 +327,7 @@ class Dataset(object):
         # }
         if package_list is None:
             package_list = []
+
         self.package_list = ListDictContainer(package_list)
 
         # Expand local filenames to be related to local path
@@ -358,6 +359,7 @@ class Dataset(object):
         # List of directories to contain the audio material
         if audio_paths is None:
             audio_paths = ['audio']
+
         self.audio_paths = audio_paths
 
         # Expand local filenames to be related to local path
@@ -644,7 +646,7 @@ class Dataset(object):
 
         Returns
         -------
-        list
+        MetaDataContainer
             List containing meta data as dict.
 
         """
@@ -819,20 +821,62 @@ class Dataset(object):
 
         log = FancyLogger()
         log.sub_header('Debug packages')
-        log.row('package', 'remote_md5', 'remote_bytes', widths=[70, 36, 15])
-        log.row('-', '-', '-')
+        log.line('Local', indent=2)
+        log.row_reset()
+        log.row('package', 'local_md5', 'local_bytes', widths=[60, 35, 15])
+        log.row_sep()
         for item in self.package_list:
-            remote_file = RemoteFile(**item)
-            if self.included_content_types is None or remote_file.is_content_type(
-                    content_type=self.included_content_types
-            ):
-                remote_file.remote_info()
+            package = Package(**item)
+            if package.exists():
+                md5 = package.md5
+                bytes = package.bytes
+            else:
+                md5 = ''
+                bytes = ''
+            log.row(
+                os.path.split(package.filename)[-1],
+                md5,
+                bytes
+            )
 
-                log.row(
-                    os.path.split(item['remote_file'])[-1],
-                    remote_file.remote_md5 if item['remote_md5'] != remote_file.remote_md5 else 'OK',
-                    remote_file.remote_bytes if item['remote_bytes'] != remote_file.remote_bytes else 'OK'
-                )
+        log.line()
+        log.line('Remote', indent=2)
+        log.row('package', 'remote_md5', 'remote_bytes', 'md5', 'b', widths=[60, 35, 15, 6, 6])
+        log.row_sep()
+        for item in self.package_list:
+            if 'remote_file' in item:
+                remote_file = RemoteFile(**item)
+                if self.included_content_types is None or remote_file.is_content_type(
+                        content_type=self.included_content_types
+                ):
+                    remote_file.remote_info()
+
+                remote_filename = os.path.split(item['remote_file'])[-1]
+
+                if 'remote_md5' in item:
+                    md5 = remote_file.remote_md5
+                    md5_status = 'Dif' if item['remote_md5'] != remote_file.remote_md5 else 'OK',
+                else:
+                    md5 = ''
+                    md5_status = ''
+
+                bytes = remote_file.remote_bytes
+                bytes_status = 'Dif' if item['remote_bytes'] != remote_file.remote_bytes else 'OK'
+
+            else:
+                remote_filename = ''
+                md5 = ''
+                md5_status = ''
+                bytes = ''
+                bytes_status = ''
+
+            log.row(
+                remote_filename,
+                md5,
+                bytes,
+                md5_status,
+                bytes_status
+            )
 
         return self
 
@@ -1053,6 +1097,7 @@ class Dataset(object):
         ----------
         fold : int [scalar]
             Fold id, if None all meta data is returned.
+            Default value None
 
         absolute_paths : bool
             Path format for the returned meta items, if True paths are absolute, False paths are relative to
@@ -1088,6 +1133,7 @@ class Dataset(object):
         ----------
         fold : int
             Fold id, if None all meta data is returned.
+            Default value None
 
         absolute_paths : bool
             Path format for the returned meta items, if True paths are absolute, False paths are relative to
@@ -1123,6 +1169,7 @@ class Dataset(object):
         ----------
         fold : int
             Fold id, if None all meta data is returned.
+            Default value None
 
         absolute_paths : bool
             Path format for the returned meta items, if True paths are absolute, False paths are relative to
@@ -1637,6 +1684,7 @@ class AcousticSceneDataset(Dataset):
 
     def validation_files_balanced(self,
                                   fold=None, validation_amount=0.3, seed=0, verbose=False, iterations=100,
+                                  balancing_mode='auto', identifier_hierarchy_separator='-',
                                   **kwargs):
         """List of validation files randomly selecting while maintaining data balance.
 
@@ -1662,6 +1710,14 @@ class AcousticSceneDataset(Dataset):
             How many randomization iterations will be done before selecting best matched.
             Default value 100
 
+        balancing_mode : str
+            Balancing mode ['auto', 'class', 'identifier', 'identifier_two_level_hierarchy']
+            Default value 'auto'
+
+        identifier_hierarchy_separator : str
+            Hierarchy separator character to split identifiers
+            Default value '-'
+
         Returns
         -------
         list of str
@@ -1672,18 +1728,92 @@ class AcousticSceneDataset(Dataset):
         random.seed(seed)
         training_meta = self.train(fold=fold)
 
-        # Check do we have location/source identifier present
-        identifier_present = False
-        for item in training_meta:
-            if item.identifier:
-                identifier_present = True
-                break
-
         training_files = []
         validation_files = []
-        validation_amounts = numpy.zeros((len(self.scene_labels())+1, 4))
+
+        amounts_full_items = numpy.zeros((len(self.scene_labels()), 1))
+        amounts_full_identifiers1 = numpy.zeros((len(self.scene_labels()), 1))
+        amounts_full_identifiers2 = numpy.zeros((len(self.scene_labels()), 1))
+
+        amounts_validation_identifiers1 = numpy.zeros((len(self.scene_labels()), 1))
+        amounts_validation_identifiers2 = numpy.zeros((len(self.scene_labels()), 1))
+
+        amounts_validation_items = numpy.zeros((len(self.scene_labels()), 1))
+        amounts_validation_ratio = numpy.zeros((len(self.scene_labels()), 1))
+
+        identifier_present = True
+        # Check that all items have identifier present
+        for item in training_meta:
+            if not item.identifier:
+                identifier_present = False
+                break
+
+        identifier_hierarchical = False
+        identifier_hierarchy_level = None
 
         if identifier_present:
+            # Check type of identifier
+            identifier_hierarchical = True
+            hierarchy_levels = []
+            for item in training_meta:
+                hierarchy_levels.append(len(item.identifier.split(identifier_hierarchy_separator)))
+                if len(item.identifier.split('-')) == 1:
+                    identifier_hierarchical = False
+                    break
+
+            if identifier_hierarchical:
+                hierarchy_levels = list(set(hierarchy_levels))
+
+                if len(hierarchy_levels) == 1:
+                    identifier_hierarchy_level = hierarchy_levels[0]
+
+                else:
+                    message = '{name}: Multiple hierarchy levels detected in the identifiers. Use different balancing_mode.'.format(
+                        name=self.__class__.__name__
+                    )
+
+                    self.logger.exception(message)
+                    raise AssertionError(message)
+
+        if balancing_mode == 'auto':
+            # Handle auto mode
+            if identifier_present and not identifier_hierarchical:
+                balancing_mode = 'identifier'
+
+            elif identifier_present and identifier_hierarchical and identifier_hierarchy_level == 2:
+                balancing_mode = 'identifier_two_level_hierarchy'
+
+            elif not identifier_present:
+                balancing_mode = 'class'
+
+        if balancing_mode == 'class':
+            # Do the balance based on scene class only
+            for scene_id, scene_label in enumerate(self.scene_labels()):
+                scene_files = training_meta.filter(scene_label=scene_label).unique_files
+
+                random.shuffle(scene_files, random.random)
+                validation_split_index = int(numpy.ceil(validation_amount * len(scene_files)))
+                current_validation_files = scene_files[0:validation_split_index]
+                current_training_files = scene_files[validation_split_index:]
+
+                validation_files += current_validation_files
+                training_files += current_training_files
+
+                amounts_full_items[scene_id] = len(scene_files)
+                amounts_validation_items[scene_id] = len(current_validation_files)
+                amounts_validation_ratio[scene_id] = len(current_validation_files) / float(
+                    len(current_validation_files) + len(current_training_files)) * 100
+
+        elif balancing_mode == 'identifier':
+            # Check that we have identifiers present before going further
+            if not identifier_present:
+                message = '{name}: No identifiers set for meta data items. Use different balancing_mode.'.format(
+                    name=self.__class__.__name__
+                )
+
+                self.logger.exception(message)
+                raise AssertionError(message)
+
             # Do the balance based on scene class and identifier
             for scene_id, scene_label in enumerate(self.scene_labels()):
                 scene_meta = training_meta.filter(scene_label=scene_label)
@@ -1728,71 +1858,240 @@ class AcousticSceneDataset(Dataset):
                     sets_candidates.append({
                         'validation': current_validation_files,
                         'training': current_training_files,
+                        'validation_identifiers1': len(current_validation_identifiers),
                     })
 
                 best_set_id = numpy.argmin(numpy.abs(numpy.array(current_scene_validation_amount) - validation_amount))
                 validation_files += sets_candidates[best_set_id]['validation']
                 training_files += sets_candidates[best_set_id]['training']
-                validation_amounts[scene_id, 0] = len(scene_meta.unique_identifiers)
-                validation_amounts[scene_id, 1] = len(scene_meta.unique_files)
-                validation_amounts[scene_id, 2] = len(sets_candidates[best_set_id]['validation'])
-                validation_amounts[scene_id, 3] = current_scene_validation_amount[best_set_id] * 100
+                
+                amounts_full_identifiers1[scene_id] = len(scene_meta.unique_identifiers)
+                amounts_validation_identifiers1[scene_id] = sets_candidates[best_set_id]['validation_identifiers1']
 
-        else:
-            # Do the balance based on scene class only
+                amounts_full_items[scene_id] = len(scene_meta.unique_files)
+
+                amounts_validation_items[scene_id] = len(sets_candidates[best_set_id]['validation'])
+                amounts_validation_ratio[scene_id] = current_scene_validation_amount[best_set_id] * 100
+
+        elif balancing_mode == 'identifier_two_level_hierarchy':
+            # Check that we have identifiers present, they are hierarchical, and the hierarchy level is two
+            if not identifier_present:
+                message = '{name}: No identifiers set for meta data items. Use different balancing_mode.'.format(
+                    name=self.__class__.__name__
+                )
+
+                self.logger.exception(message)
+                raise AssertionError(message)
+
+            if not identifier_hierarchical:
+                message = '{name}: No hierarchical identifiers set for meta data items. Use different balancing_mode.'.format(
+                    name=self.__class__.__name__
+                )
+
+                self.logger.exception(message)
+                raise AssertionError(message)
+
+            if identifier_hierarchy_level != 2:
+                message = '{name}: Hierarchy level of identifiers is not two. Use different balancing_mode.'.format(
+                    name=self.__class__.__name__
+                )
+
+                self.logger.exception(message)
+                raise AssertionError(message)
+
+            # Do the balance based on scene class and two-level hierarchical identifier
             for scene_id, scene_label in enumerate(self.scene_labels()):
-                scene_files = training_meta.filter(scene_label=scene_label).unique_files
+                scene_meta = training_meta.filter(scene_label=scene_label)
 
-                random.shuffle(scene_files, random.random)
-                validation_split_index = int(numpy.ceil(validation_amount * len(scene_files)))
-                current_validation_files = scene_files[0:validation_split_index]
-                current_training_files = scene_files[validation_split_index:]
+                data = DictContainer()
+                for identifier in scene_meta.unique_identifiers:
+                    data.set_path(
+                        path=identifier.split(identifier_hierarchy_separator),
+                        new_value=scene_meta.filter(identifier=identifier).unique_files
+                    )
 
-                validation_files += current_validation_files
-                training_files += current_training_files
-                validation_amounts[scene_id, 1] = len(scene_files)
-                validation_amounts[scene_id, 2] = len(current_validation_files)
-                validation_amounts[scene_id, 3] = len(current_validation_files) / float(len(current_validation_files) + len(current_training_files)) * 100
+                current_scene_validation_amount = []
+                sets_candidates = []
+
+                iteration_progress = tqdm(
+                    range(0, iterations),
+                    desc="{0: <25s}".format('Generate validation split candidates'),
+                    file=sys.stdout,
+                    leave=False,
+                    disable=self.disable_progress_bar,
+                    ascii=self.use_ascii_progress_bar
+                )
+
+                identifier_first_level = list(data.keys())
+
+                for i in iteration_progress:
+                    current_validation_files = []
+                    current_training_files = []
+
+                    current_validation_identifiers2 = 0
+                    for identifier1 in identifier_first_level:
+                        current_ids = list(data[identifier1].keys())
+                        random.shuffle(current_ids, random.random)
+                        validation_split_index = int(numpy.ceil(validation_amount * len(current_ids)))
+                        current_validation = current_ids[0:validation_split_index]
+                        current_training = current_ids[validation_split_index:]
+
+                        # Collect validation files
+                        for identifier2 in current_validation:
+                            current_validation_files += data[identifier1][identifier2]
+
+                        # Collect training files
+                        for identifier2 in current_training:
+                            current_training_files += data[identifier1][identifier2]
+
+                        current_validation_identifiers2 += len(current_validation)
+
+                    current_scene_validation_amount.append(
+                        len(current_validation_files) / float(
+                            len(current_validation_files) + len(current_training_files))
+                    )
+
+                    sets_candidates.append({
+                        'validation': current_validation_files,
+                        'training': current_training_files,
+                        'validation_identifiers1': len(identifier_first_level),
+                        'validation_identifiers2': current_validation_identifiers2,
+                    })
+
+                best_set_id = numpy.argmin(numpy.abs(numpy.array(current_scene_validation_amount) - validation_amount))
+                validation_files += sets_candidates[best_set_id]['validation']
+                training_files += sets_candidates[best_set_id]['training']
+
+                amounts_full_items[scene_id] = len(scene_meta.unique_files)
+
+                amounts_full_identifiers1[scene_id] = len(data.keys())
+
+                identifiers2 = 0
+                for identifier_first_level in data:
+                    identifiers2 += len(data[identifier_first_level].keys())
+
+                amounts_full_identifiers2[scene_id] = identifiers2
+
+                amounts_validation_identifiers1[scene_id] = sets_candidates[best_set_id]['validation_identifiers1']
+                amounts_validation_identifiers2[scene_id] = sets_candidates[best_set_id]['validation_identifiers2']
+
+                amounts_validation_items[scene_id] = len(sets_candidates[best_set_id]['validation'])
+                amounts_validation_ratio[scene_id] = current_scene_validation_amount[best_set_id] * 100
 
         if verbose:
-            validation_amounts[-1, 0] = numpy.sum(validation_amounts[0:-1, 0])
-            validation_amounts[-1, 1] = numpy.sum(validation_amounts[0:-1, 1])
-            validation_amounts[-1, 2] = numpy.sum(validation_amounts[0:-1, 2])
-            validation_amounts[-1, 3] = numpy.mean(validation_amounts[0:-1, 3])
+            log = FancyLogger()
+            log.sub_header('Validation set for fold [{fold}] / balanced'.format(fold=fold), indent=2)
+            log.data(
+                field='Balancing mode',
+                value=balancing_mode,
+                indent=4
+            )
+            log.line()
+            log.row_reset()
 
-            logger = FancyLogger()
-            logger.sub_header('Validation set for fold [{fold}] / balanced'.format(fold=fold), indent=2)
-            logger.row(
-                '', 'Full training set', 'Selected validation subset',
-                widths=[20, 25, 35],
-                types=['str', 'str', 'str'],
-                separators=[True, True],
-                indent=2
-            )
-            logger.row(
-                'Scene label', 'Identifiers', 'Files', 'Files', 'Amount (%)',
-                widths=[20, 15, 10, 10, 15],
-                types=['str20', 'int', 'int', 'int', 'float1_percentage'],
-                separators=[True, False, True, False]
-            )
-            logger.row('-', '-', '-', '-', '-')
-            for scene_id, scene_label in enumerate(self.scene_labels()):
-                logger.row(
-                    scene_label,
-                    validation_amounts[scene_id, 0],
-                    validation_amounts[scene_id, 1],
-                    validation_amounts[scene_id, 2],
-                    validation_amounts[scene_id, 3],
+            if balancing_mode == 'class':
+                log.row(
+                    '', 'Full training set', 'Selected validation subset', '',
+                    widths=[20, 30, 30, 15],
+                    types=['str', 'str', 'str'],
+                    separators=[True, True, True],
+                    indent=4
                 )
-            logger.row('-', '-', '-', '-', '-')
-            logger.row(
-                'Overall',
-                validation_amounts[-1, 0],
-                validation_amounts[-1, 1],
-                validation_amounts[-1, 2],
-                validation_amounts[-1, 3]
-            )
-        logger.line()
+                log.row(
+                    'Scene label', 'Items', 'Items', 'Ratio (%)',
+                    widths=[20, 30, 30, 15],
+                    types=['str20', 'int', 'int', 'float1_percentage'],
+                    separators=[True, True, True]
+                )
+                log.row_sep()
+                for scene_id, scene_label in enumerate(self.scene_labels()):
+                    log.row(
+                        scene_label,
+                        amounts_full_items[scene_id],
+                        amounts_validation_items[scene_id],
+                        amounts_validation_ratio[scene_id],
+                    )
+                log.row_sep()
+                log.row(
+                    'Overall',
+                    numpy.sum(amounts_full_items),
+                    numpy.sum(amounts_validation_items),
+                    numpy.sum(amounts_validation_items) / float(numpy.sum(amounts_full_items)) * 100.0
+                )
+            
+            elif balancing_mode == 'identifier':
+                log.row(
+                    '', 'Full training set', 'Selected validation subset', '',
+                    widths=[20, 30, 30, 15],
+                    types=['str', 'str', 'str'],
+                    separators=[True, True, True],
+                    indent=4
+                )
+                log.row(
+                    'Scene label', 'Identifiers', 'Items', 'Identifiers', 'Items', 'Ratio (%)',
+                    widths=[20, 15, 15, 15, 15, 15],
+                    types=['str20', 'int', 'int', 'int', 'int', 'float1_percentage'],
+                    separators=[True, False, True, False, True]
+                )
+                log.row_sep()
+                for scene_id, scene_label in enumerate(self.scene_labels()):
+                    log.row(
+                        scene_label,
+                        amounts_full_identifiers1[scene_id],
+                        amounts_full_items[scene_id],
+                        amounts_validation_identifiers1[scene_id],
+                        amounts_validation_items[scene_id],
+                        amounts_validation_ratio[scene_id],
+                    )
+                log.row_sep()
+                log.row(
+                    'Overall',
+                    numpy.sum(amounts_full_identifiers1),
+                    numpy.sum(amounts_full_items),
+                    numpy.sum(amounts_validation_identifiers1),
+                    numpy.sum(amounts_validation_items),
+                    numpy.sum(amounts_validation_items) / float(numpy.sum(amounts_full_items)) * 100.0
+                )
+
+            elif balancing_mode == 'identifier_two_level_hierarchy':
+                log.row(
+                    '', 'Full training set', 'Selected validation subset', '',
+                    widths=[20, 30, 30, 15],
+                    types=['str', 'str', 'str'],
+                    separators=[True, True, True],
+                    indent=4
+                )
+                log.row(
+                    'Scene label', 'Id1', 'Id2', 'Items', 'Id1', 'Id2', 'Items', 'Ratio (%)',
+                    widths=[20, 7, 8, 15, 7, 8, 15, 15],
+                    types=['str20', 'int', 'int', 'int', 'int', 'int', 'int', 'float1_percentage'],
+                    separators=[True, False, False, True, False, False, True]
+                )
+                log.row_sep()
+                for scene_id, scene_label in enumerate(self.scene_labels()):
+                    log.row(
+                        scene_label,
+                        amounts_full_identifiers1[scene_id],
+                        amounts_full_identifiers2[scene_id],
+                        amounts_full_items[scene_id],
+                        amounts_validation_identifiers1[scene_id],
+                        amounts_validation_identifiers2[scene_id],
+                        amounts_validation_items[scene_id],
+                        amounts_validation_ratio[scene_id],
+                    )
+                log.row_sep()
+                log.row(
+                    'Overall',
+                    numpy.sum(amounts_full_identifiers1),
+                    numpy.sum(amounts_full_identifiers2),
+                    numpy.sum(amounts_full_items),
+                    numpy.sum(amounts_validation_identifiers1),
+                    numpy.sum(amounts_validation_identifiers2),
+                    numpy.sum(amounts_validation_items),
+                    numpy.sum(amounts_validation_items) / float(numpy.sum(amounts_full_items)) * 100.0
+                )
+
+            log.line()
 
         return validation_files
 
