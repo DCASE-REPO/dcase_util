@@ -1268,7 +1268,8 @@ class Dataset(object):
         return self.eval(fold=fold, absolute_paths=absolute_paths).unique_files
 
     def validation_split(self,
-                         fold=None, split_type='balanced', validation_amount=None,
+                         fold=None, training_meta=None,
+                         split_type='balanced', validation_amount=None,
                          seed=0, verbose=False, scene_label=None, iterations=100,
                          **kwargs):
         """List of validation files. Validation files are always subset of training files.
@@ -1277,6 +1278,11 @@ class Dataset(object):
         ----------
         fold : int
             Fold id, if None all meta data is returned.
+            Default value None
+
+        training_meta : MetaDataContainer
+            Training data meta container. Use this instead of fold parameter, if additional processing is needed for
+            traning meta before usage.
             Default value None
 
         split_type : str
@@ -1315,6 +1321,7 @@ class Dataset(object):
 
         kwargs.update({
             'fold': fold,
+            'training_meta': training_meta,
             'validation_amount': validation_amount,
             'seed': seed,
             'verbose': verbose,
@@ -1355,13 +1362,21 @@ class Dataset(object):
         self.logger.exception(message)
         raise ValueError(message)
 
-    def validation_files_random(self, fold=None, validation_amount=0.3, seed=0, verbose=False, **kwargs):
+    def validation_files_random(self,
+                                fold=None, training_meta=None,
+                                validation_amount=0.3, seed=0, verbose=False,
+                                **kwargs):
         """List of validation files selected randomly from the training material.
 
         Parameters
         ----------
         fold : int
             Fold id, if None all meta data is returned.
+            Default value None
+
+        training_meta : MetaDataContainer
+            Training data meta container. Use this instead of fold parameter, if additional processing is needed for
+            traning meta before usage.
             Default value None
 
         validation_amount : float
@@ -1385,7 +1400,9 @@ class Dataset(object):
 
         random.seed(seed)
 
-        training_meta = self.train(fold=fold)
+        if training_meta is None:
+            training_meta = self.train(fold=fold)
+
         training_files = training_meta.unique_files
         random.shuffle(training_files, random.random)
 
@@ -1420,7 +1437,10 @@ class Dataset(object):
 
         return validation_files
 
-    def validation_files_balanced(self, fold=None, validation_amount=0.3, seed=0, verbose=False, **kwargs):
+    def validation_files_balanced(self,
+                                  fold=None, training_meta=None,
+                                  validation_amount=0.3, seed=0, verbose=False,
+                                  **kwargs):
         """List of validation files randomly selecting while maintaining data balance.
         """
         message = '{name}: Balanced validation set generation has not been implemented for dataset class.'.format(
@@ -1683,7 +1703,8 @@ class AcousticSceneDataset(Dataset):
         super(AcousticSceneDataset, self).__init__(*args, **kwargs)
 
     def validation_files_balanced(self,
-                                  fold=None, validation_amount=0.3, seed=0, verbose=False, iterations=100,
+                                  fold=None, training_meta=None,
+                                  validation_amount=0.3, seed=0, verbose=False, iterations=100,
                                   balancing_mode='auto', identifier_hierarchy_separator='-',
                                   **kwargs):
         """List of validation files randomly selecting while maintaining data balance.
@@ -1692,6 +1713,11 @@ class AcousticSceneDataset(Dataset):
         ----------
         fold : int
             Fold id, if None all meta data is returned.
+            Default value None
+
+        training_meta : MetaDataContainer
+            Training data meta container. Use this instead of fold parameter, if additional processing is needed for
+            traning meta before usage.
             Default value None
 
         validation_amount : float
@@ -1726,7 +1752,9 @@ class AcousticSceneDataset(Dataset):
         """
 
         random.seed(seed)
-        training_meta = self.train(fold=fold)
+
+        if training_meta is None:
+            training_meta = self.train(fold=fold)
 
         training_files = []
         validation_files = []
@@ -2489,7 +2517,8 @@ class SoundEventDataset(Dataset):
         ).unique_files
 
     def validation_files_random(self,
-                                fold=None, validation_amount=0.3, seed=0, verbose=False, scene_label=None,
+                                fold=None, training_meta=None,
+                                validation_amount=0.3, seed=0, verbose=False, scene_label=None,
                                 **kwargs):
         """List of validation files selected randomly from the training material.
 
@@ -2497,6 +2526,11 @@ class SoundEventDataset(Dataset):
         ----------
         fold : int
             Fold id, if None all meta data is returned.
+            Default value None
+
+        training_meta : MetaDataContainer
+            Training data meta container. Use this instead of fold parameter, if additional processing is needed for
+            traning meta before usage.
             Default value None
 
         validation_amount : float
@@ -2523,10 +2557,12 @@ class SoundEventDataset(Dataset):
         """
 
         random.seed(seed)
-        training_meta = self.train(
-            fold=fold,
-            scene_label=scene_label
-        )
+
+        if training_meta is None:
+            training_meta = self.train(
+                fold=fold,
+                scene_label=scene_label
+            )
 
         if scene_label:
             scene_labels = [scene_label]
@@ -2586,7 +2622,8 @@ class SoundEventDataset(Dataset):
         return validation_files
 
     def validation_files_balanced(self,
-                                  fold=None, validation_amount=0.3, seed=0,
+                                  fold=None, training_meta=None,
+                                  validation_amount=0.3, seed=0,
                                   verbose=False, scene_label=None, iterations=100,
                                   **kwargs):
         """List of validation files randomly selecting while maintaining data balance.
@@ -2595,6 +2632,11 @@ class SoundEventDataset(Dataset):
         ----------
         fold : int
             Fold id, if None all meta data is returned.
+            Default value None
+
+        training_meta : MetaDataContainer
+            Training data meta container. Use this instead of fold parameter, if additional processing is needed for
+            traning meta before usage.
             Default value None
 
         validation_amount : float
@@ -2627,10 +2669,12 @@ class SoundEventDataset(Dataset):
         from sklearn.metrics import mean_absolute_error
 
         random.seed(seed)
-        training_meta = self.train(
-            fold=fold,
-            scene_label=scene_label
-        )
+
+        if training_meta is None:
+            training_meta = self.train(
+                fold=fold,
+                scene_label=scene_label
+            )
 
         if scene_label:
             scene_labels = [scene_label]
@@ -2927,7 +2971,8 @@ class AudioTaggingDataset(Dataset):
         super(AudioTaggingDataset, self).__init__(*args, **kwargs)
 
     def validation_files_random(self,
-                                fold=None, validation_amount=0.3, seed=0, verbose=False,
+                                fold=None, training_meta=None,
+                                validation_amount=0.3, seed=0, verbose=False,
                                 **kwargs):
         """List of validation files selected randomly from the training material.
 
@@ -2935,6 +2980,11 @@ class AudioTaggingDataset(Dataset):
         ----------
         fold : int
             Fold id, if None all meta data is returned.
+            Default value None
+
+        training_meta : MetaDataContainer
+            Training data meta container. Use this instead of fold parameter, if additional processing is needed for
+            traning meta before usage.
             Default value None
 
         validation_amount : float
@@ -2957,7 +3007,9 @@ class AudioTaggingDataset(Dataset):
         """
 
         random.seed(seed)
-        training_meta = self.train(fold=fold)
+
+        if training_meta is None:
+            training_meta = self.train(fold=fold)
 
         scene_labels = self.scene_labels()
 
@@ -3014,7 +3066,8 @@ class AudioTaggingDataset(Dataset):
         return validation_files
 
     def validation_files_balanced(self,
-                                  fold=None, validation_amount=0.3, seed=0, verbose=False, iterations=100,
+                                  fold=None, training_meta=None,
+                                  validation_amount=0.3, seed=0, verbose=False, iterations=100,
                                   **kwargs):
         """List of validation files randomly selecting while maintaining data balance.
 
@@ -3022,6 +3075,11 @@ class AudioTaggingDataset(Dataset):
         ----------
         fold : int
             Fold id, if None all meta data is returned.
+            Default value None
+
+        training_meta : MetaDataContainer
+            Training data meta container. Use this instead of fold parameter, if additional processing is needed for
+            traning meta before usage.
             Default value None
 
         validation_amount : float
@@ -3050,7 +3108,9 @@ class AudioTaggingDataset(Dataset):
         from sklearn.metrics import mean_absolute_error
 
         random.seed(seed)
-        training_meta = self.train(fold=fold)
+
+        if training_meta is None:
+            training_meta = self.train(fold=fold)
 
         # Check do we have location/source identifier present
         identifier_present = False
