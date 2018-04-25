@@ -1029,6 +1029,12 @@ class AudioContainer(ContainerMixin, FileMixin):
 
             # Get temp file
             tmp_file = tempfile.NamedTemporaryFile(suffix='.'+youtube_audio.extension)
+            
+            # Get temporary filename
+            tmp_filename = tmp_file.name
+            
+            # Remove temporary file (avoid FileExistsError on Windows)
+            tmp_file.close()
 
             download_progress_bar = None
             if not silent:
@@ -1048,7 +1054,7 @@ class AudioContainer(ContainerMixin, FileMixin):
 
             # Download audio
             youtube_audio.download(
-                filepath=tmp_file.name,
+                filepath=tmp_filename,
                 quiet=True,
                 callback=callback
             )
@@ -1073,7 +1079,7 @@ class AudioContainer(ContainerMixin, FileMixin):
 
             # Load audio segment
             self.load(
-                filename=tmp_file.name,
+                filename=tmp_filename,
                 mono=mono,
                 fs=self.fs,
                 res_type='kaiser_best',
