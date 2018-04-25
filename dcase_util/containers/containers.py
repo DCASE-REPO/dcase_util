@@ -1408,6 +1408,7 @@ class ListDictContainer(ListContainer):
         kwargs
             Use filtered field name and parameter name, and target value for the field as parameter value.
             Underscore is parameter name is replace with whitespace when matching with field names.
+            If value can be a single value or list of values.
 
         Returns
         -------
@@ -1439,18 +1440,34 @@ class ListDictContainer(ListContainer):
             for condition_field in filter_fields:
                 condition_field_alternative = condition_field.replace('_', ' ')
                 if condition_field in item_field_map:
-                    if item[item_field_map[condition_field]] == filter_fields[condition_field]:
-                        matched.append(True)
+                    if isinstance(filter_fields[condition_field], list):
+                        if item[item_field_map[condition_field]] in filter_fields[condition_field]:
+                            matched.append(True)
+
+                        else:
+                            matched.append(False)
 
                     else:
-                        matched.append(False)
+                        if item[item_field_map[condition_field]] == filter_fields[condition_field]:
+                            matched.append(True)
+
+                        else:
+                            matched.append(False)
 
                 elif condition_field_alternative in item_field_map:
-                    if item[item_field_map[condition_field_alternative]] == filter_fields[condition_field]:
-                        matched.append(True)
+                    if isinstance(filter_fields[condition_field], list):
+                        if item[item_field_map[condition_field_alternative]] in filter_fields[condition_field]:
+                            matched.append(True)
+
+                        else:
+                            matched.append(False)
 
                     else:
-                        matched.append(False)
+                        if item[item_field_map[condition_field_alternative]] == filter_fields[condition_field]:
+                            matched.append(True)
+
+                        else:
+                            matched.append(False)
 
             if all(matched):
                 data.append(copy.deepcopy(item))
