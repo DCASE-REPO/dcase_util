@@ -841,7 +841,7 @@ class Dataset(object):
 
         log.line()
         log.line('Remote', indent=2)
-        log.row('package', 'remote_md5', 'remote_bytes', 'md5', 'b', widths=[60, 35, 15, 6, 6])
+        log.row('package', 'remote_md5', 'remote_bytes', 'md5', 'size', widths=[63, 35, 15, 6, 7])
         log.row_sep()
         for item in self.package_list:
             if 'remote_file' in item:
@@ -855,7 +855,7 @@ class Dataset(object):
 
                 if 'remote_md5' in item:
                     md5 = remote_file.remote_md5
-                    md5_status = 'Dif' if item['remote_md5'] != remote_file.remote_md5 else 'OK',
+                    md5_status = 'Dif' if item['remote_md5'] != remote_file.remote_md5 else 'OK'
                 else:
                     md5 = ''
                     md5_status = ''
@@ -863,20 +863,14 @@ class Dataset(object):
                 bytes = remote_file.remote_bytes
                 bytes_status = 'Dif' if item['remote_bytes'] != remote_file.remote_bytes else 'OK'
 
-            else:
-                remote_filename = ''
-                md5 = ''
-                md5_status = ''
-                bytes = ''
-                bytes_status = ''
-
-            log.row(
-                remote_filename,
-                md5,
-                bytes,
-                md5_status,
-                bytes_status
-            )
+                log.row(
+                    remote_filename,
+                    md5,
+                    bytes,
+                    md5_status,
+                    bytes_status
+                )
+        log.line()
 
         return self
 
