@@ -757,6 +757,7 @@ MetaDataItem
     MetaDataItem.offset
     MetaDataItem.identifier
     MetaDataItem.source_label
+    MetaDataItem.set_label
     MetaDataItem.tags
     MetaDataItem.active_within_segment
 
