@@ -1282,7 +1282,7 @@ class Dataset(object):
 
         training_meta : MetaDataContainer
             Training data meta container. Use this instead of fold parameter, if additional processing is needed for
-            traning meta before usage.
+            training meta before usage.
             Default value None
 
         split_type : str
@@ -1376,7 +1376,7 @@ class Dataset(object):
 
         training_meta : MetaDataContainer
             Training data meta container. Use this instead of fold parameter, if additional processing is needed for
-            traning meta before usage.
+            training meta before usage.
             Default value None
 
         validation_amount : float
@@ -1717,7 +1717,7 @@ class AcousticSceneDataset(Dataset):
 
         training_meta : MetaDataContainer
             Training data meta container. Use this instead of fold parameter, if additional processing is needed for
-            traning meta before usage.
+            training meta before usage.
             Default value None
 
         validation_amount : float
@@ -2530,7 +2530,7 @@ class SoundEventDataset(Dataset):
 
         training_meta : MetaDataContainer
             Training data meta container. Use this instead of fold parameter, if additional processing is needed for
-            traning meta before usage.
+            training meta before usage.
             Default value None
 
         validation_amount : float
@@ -2636,7 +2636,7 @@ class SoundEventDataset(Dataset):
 
         training_meta : MetaDataContainer
             Training data meta container. Use this instead of fold parameter, if additional processing is needed for
-            traning meta before usage.
+            training meta before usage.
             Default value None
 
         validation_amount : float
@@ -2984,7 +2984,7 @@ class AudioTaggingDataset(Dataset):
 
         training_meta : MetaDataContainer
             Training data meta container. Use this instead of fold parameter, if additional processing is needed for
-            traning meta before usage.
+            training meta before usage.
             Default value None
 
         validation_amount : float
@@ -3079,7 +3079,7 @@ class AudioTaggingDataset(Dataset):
 
         training_meta : MetaDataContainer
             Training data meta container. Use this instead of fold parameter, if additional processing is needed for
-            traning meta before usage.
+            training meta before usage.
             Default value None
 
         validation_amount : float
