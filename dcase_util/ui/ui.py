@@ -214,10 +214,10 @@ class FancyStringifier(object):
             value = '+/-{:3.2f}'.format(float(value))
 
         elif data_type == 'float1_ci_bracket' and isinstance(value, tuple):
-            value = '{:3.1f}-{:3.1f}'.format(float(value[0]), float(value[0]))
+            value = '{:3.1f}-{:3.1f}'.format(float(value[0]), float(value[1]))
 
         elif data_type == 'float2_ci_bracket' and isinstance(value, tuple):
-            value = '{:3.2f}-{:3.2f}'.format(float(value[0]), float(value[0]))
+            value = '{:3.2f}-{:3.2f}'.format(float(value[0]), float(value[1]))
 
         elif isinstance(value, numpy.ndarray):
             shape = value.shape
