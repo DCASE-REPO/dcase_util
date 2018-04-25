@@ -201,8 +201,15 @@ class FancyStringifier(object):
         elif data_type == 'float2_percentage' and is_float(value):
             value = '{:3.2f}%'.format(float(value))
 
+        elif data_type == 'float1_percentage+ci' and isinstance(value, tuple):
+            value = '{:3.1f}% (+/-{:3.1f})'.format(float(value[0]), float(value[1]))
+
+        elif data_type == 'float2_percentage+ci' and isinstance(value, tuple):
+            value = '{:3.2f}% (+/-{:3.2f})'.format(float(value[0]), float(value[1]))
+
         elif isinstance(value, numpy.ndarray):
             shape = value.shape
+
             if len(shape) == 1:
                 value = 'array ({0:d},)'.format(shape[0])
 
@@ -218,6 +225,7 @@ class FancyStringifier(object):
         elif data_type == 'bool':
             if value:
                 value = 'True'
+
             else:
                 value = 'False'
 
