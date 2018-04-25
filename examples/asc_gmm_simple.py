@@ -319,6 +319,7 @@ for fold in db.folds():
     estimated_scene_list = dcase_util.containers.MetaDataContainer().load(
         filename=fold_results_filename
     )
+
     for item_id, item in enumerate(estimated_scene_list):
         # Modify data for sed_eval
         estimated_scene_list[item_id]['file'] = item.filename
@@ -370,4 +371,5 @@ log.table(
     row_separators=[10],
     indent=2
 )
+
 log.foot()
