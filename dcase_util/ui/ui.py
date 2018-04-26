@@ -6,6 +6,7 @@ from __future__ import print_function, absolute_import
 import six
 import logging
 import numpy
+import datetime
 from dcase_util.utils import setup_logging, is_float, is_int
 
 
@@ -92,8 +93,8 @@ class FancyStringifier(object):
             Footer text
             Default value 'DONE'
 
-        time : str, optional
-            Elapsed time as string
+        time : str or float, optional
+            Elapsed time as string or float (as seconds)
             Default value None
 
         item_count : int, optional
@@ -113,10 +114,19 @@ class FancyStringifier(object):
         output = '{text:10s} '.format(text=text)
 
         if time:
-            output += '[{time:<15s}] '.format(time=time)
+            if isinstance(time, six.string_types):
+                output += '[{time:<14s}] '.format(time=time)
+
+            elif isinstance(time, float):
+                output += '[{time:<14s}] '.format(time=str(datetime.timedelta(seconds=time)))
 
         if item_count:
             output += '[{items:<d} items] '.format(items=item_count)
+
+            if time and isinstance(time, float):
+                output += '[{item_time:<14s} per item]'.format(
+                    item_time=str(datetime.timedelta(seconds=time / float(item_count)))
+                )
 
         return ' ' * indent + output
 
