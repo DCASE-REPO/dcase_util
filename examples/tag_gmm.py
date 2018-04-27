@@ -84,7 +84,7 @@ param = dcase_util.containers.ParameterContainer({
 })
 
 # Make sure all paths exists
-dcase_util.utils.Path().create(param['path'].values())
+dcase_util.utils.Path().create(list(param['path'].values()))
 
 # Expand the feature recipe
 param.set_path(
