@@ -1073,6 +1073,11 @@ class AppParameterContainer(ParameterContainer):
     def set_id_exists(self, set_id):
         """Set id exists
 
+        Parameters
+        ----------
+        set_id : str
+            Parameter set id
+
         Returns
         -------
         bool
@@ -1095,6 +1100,28 @@ class AppParameterContainer(ParameterContainer):
         """
 
         return self[self.field_labels['ACTIVE-SET']]
+
+    def get_set(self, set_id):
+        """Get parameter set
+
+        Parameters
+        ----------
+        set_id : str
+            Parameter set id
+
+        Returns
+        -------
+        dict
+
+        """
+
+        if self.field_labels['SET-LIST'] in self and self.set_id_exists(set_id=set_id):
+            for id, set_defined_parameters in enumerate(self[self.field_labels['SET-LIST']]):
+                if self.field_labels['SET-ID'] in set_defined_parameters and set_defined_parameters[self.field_labels['SET-ID']] == set_id:
+                    return set_defined_parameters
+
+        else:
+            return None
 
 
 class DCASEAppParameterContainer(AppParameterContainer):
@@ -1640,7 +1667,6 @@ class DCASEAppParameterContainer(AppParameterContainer):
                             enabled_items.append(item)
 
                     data[self.field_labels['CHAIN']] = enabled_items
-
 
     def _process_LEARNER(self, parameters):
         """Process LEARNER section."""
