@@ -274,7 +274,7 @@ def setup_keras(seed=None, profile=None,
                 ui.data(
                     field=item.split('=')[0],
                     value=item.split('=')[1],
-                    indent=print_indent + 6
+                    indent=print_indent + 4
                 )
 
         # Set environmental variable for Theano
