@@ -140,12 +140,26 @@ def dataset_factory(dataset_class_name, **kwargs):
     """
 
     try:
-        dataset_class = getattr(
-            importlib.import_module("dcase_util.datasets"),
-            dataset_class_name
-        )
+        dataset_class = None
+
+        # Get all classes inherited from Dataset
+        class_list = get_class_inheritors(Dataset)
+
+        # Search correct dataset
+        for item in class_list:
+            if str(item.__name__) == dataset_class_name:
+                dataset_class = getattr(
+                    importlib.import_module(str(item.__module__)),
+                    dataset_class_name
+                )
+                break
+
+        # Valid dataset class not found, raise error
+        if not dataset_class:
+            raise AttributeError
 
     except AttributeError:
+
         message = 'Invalid Dataset class given [{class_name}].'.format(
             class_name=dataset_class_name
         )
