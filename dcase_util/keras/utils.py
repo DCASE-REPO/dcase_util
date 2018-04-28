@@ -294,14 +294,24 @@ def setup_keras(seed=None, profile=None,
             if device == 'cpu':
                 os.environ["CUDA_VISIBLE_DEVICES"] = ''
 
-        if verbose:
-            ui.line('Tensorflow', indent=print_indent + 2)
+        import tensorflow as tf
+        if seed:
+            tf.set_random_seed(seed)
 
+        config = tf.ConfigProto(
+            inter_op_parallelism_threads=BLAS_thread_count
+        )
+
+        from keras import backend as k
+        session = tf.Session(config=config)
+        k.set_session(session)
+
+        if verbose:
             for item in flags:
                 ui.data(
                     field=item.split('=')[0],
                     value=item.split('=')[1],
-                    indent=print_indent + 6
+                    indent=print_indent + 4
                 )
 
     with SuppressStdoutAndStderr():
