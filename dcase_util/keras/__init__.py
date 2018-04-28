@@ -182,8 +182,8 @@ BaseCallback
 
     BaseCallback
 
-Generators
-::::::::::
+Data processing
+:::::::::::::::
 
 KerasDataSequence
 -----------------
@@ -197,6 +197,16 @@ This mechanics allows user to decide when importing the Keras, and set random se
     :toctree: generated/
 
     get_keras_data_sequence_class
+
+data_collector
+--------------
+
+*dcase_util.keras.data_collector*
+
+.. autosummary::
+    :toctree: generated/
+
+    data_collector
 
 Utils
 :::::
@@ -213,7 +223,7 @@ Utils
 
 from .model import *
 from .callbacks import *
-from .generators import *
+from .data import *
 from .utils import *
 
 __all__ = [_ for _ in dir() if not _.startswith('_')]
