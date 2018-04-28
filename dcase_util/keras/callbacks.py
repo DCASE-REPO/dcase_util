@@ -111,21 +111,27 @@ class ProgressLoggerCallback(BaseCallback):
         ----------
         epochs : int
             Total amount of epochs
+            Default value None
 
         metric : str
             Metric name
+            Default value None
 
         manual_update : bool
             Manually update callback, use this to when injecting external metrics
+            Default value False
 
         manual_update_interval : int
             Epoch interval for manual update, used anticipate updates
+            Default value 1
 
         output_type : str
             Output type, either 'logging' or 'console'
+            Default value 'logging'
 
         external_metric_labels : dict or OrderedDict
             Dictionary with {'metric_label': 'metric_name'}
+            Default value None
 
         """
 
@@ -398,7 +404,7 @@ class ProgressPlotterCallback(ProgressLoggerCallback):
 
     def __init__(self,
                  epochs=None, manual_update=False, external_metric_labels=None, metric=None, loss=None,
-                 filename=None, plotting_rate=10, interactive=True, save=True, focus_span=10,
+                 filename=None, plotting_rate=10, interactive=True, save=False, focus_span=10,
                  **kwargs):
         """Constructor
 
@@ -406,27 +412,35 @@ class ProgressPlotterCallback(ProgressLoggerCallback):
         ----------
         epochs : int
             Total amount of epochs
+            Default value None
 
         metric : str
             Metric name
+            Default value None
 
         manual_update : bool
             Manually update callback, use this to when injecting external metrics
+            Default value False
 
         interactive : bool
             Show plot during the training and update with plotting rate
+            Default value True
 
         plotting_rate : int
             Plot update rate in seconds
+            Default value 10
 
         save : bool
             Save plot on disk, plotting rate applies
+            Default value False
 
         filename : str
             Filename of figure
+            Default value None
 
         focus_span : int
             Epoch amount to highlight, and show separately in the plot.
+            Default value 10
 
         """
 
@@ -578,12 +592,14 @@ class ProgressPlotterCallback(ProgressLoggerCallback):
             lw=3,
             color='red',
         )
+
         self.ax1_2.plot(
             numpy.arange(span[0], span[1]),
             self.data['l_val'][span[0]:span[1]],
             lw=3,
             color='green',
         )
+
         self.ax1_2.set_xticklabels([])
         self.ax1_2.grid(True)
         self.ax1_2.yaxis.tick_right()
@@ -593,6 +609,7 @@ class ProgressPlotterCallback(ProgressLoggerCallback):
         self.ax2_1.cla()
         self.ax2_1.set_title('Metric')
         self.ax2_1.set_ylabel(self.metric)
+
         # Plots
         self.ax2_1.plot(
             numpy.arange(self.epochs),
@@ -1016,27 +1033,35 @@ class StasherCallback(BaseCallback):
         ----------
         epochs : int
             Total amount of epochs
+            Default value None
 
         manual_update : bool
             Manually update callback, use this to when injecting external metrics
+            Default value False
 
         monitor : str
             Metric to monitor
+            Default value 'val_loss'
 
         mode : str
             Which way metric is interpreted, values {auto, min, max}
+            Default value 'auto'
 
         period : int
             Save only after every Nth epoch
+            Default value 1
 
         initial_delay : int
             Amount of epochs to wait at the beginning before quantity is monitored.
+            Default value 10
 
         save_weights : bool
             Save weight to the disk
+            Default value False
 
         file_path : str
             File name for model weight
+            Default value None
 
         """
 
