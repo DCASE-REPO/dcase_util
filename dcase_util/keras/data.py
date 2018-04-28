@@ -4,7 +4,7 @@ from __future__ import print_function, absolute_import
 import numpy
 import copy
 
-from dcase_util.ui import FancyStringifier
+from dcase_util.ui import FancyStringifier, FancyLogger
 from dcase_util.containers import ContainerMixin
 from dcase_util.data import DataBuffer
 
@@ -411,3 +411,228 @@ def get_keras_data_sequence_class():
                 self.data_buffer.clear()
 
     return KerasDataSequence
+
+
+def data_collector(item_list=None,
+                   data_processing_chain=None, meta_processing_chain=None,
+                   target_format='single_target_per_sequence',
+                   channel_dimension='channels_last',
+                   verbose=True,
+                   print_indent=2
+                   ):
+    """Data collector
+
+    Collects data and meta into matrices while processing them through processing chains.
+
+    Parameters
+    ----------
+    item_list : list or dict
+        Items in the data sequence. List containing multi-level dictionary with first level key
+        'data' and 'meta'. Second level should contain parameters for process method in the processing chain.
+        Default value None
+
+    data_processing_chain : ProcessingChain
+        Data processing chain.
+        Default value None
+
+    meta_processing_chain : ProcessingChain
+        Meta processing chain.
+        Default value None
+
+    channel_dimension : str
+        Controls where channel dimension should be added. Similar to Keras data format parameter.
+        If None given, no channel dimension is added.
+        Possible values [None, 'channels_first', 'channels_last']
+        Default value None
+
+    target_format : str
+        Meta data interpretation in the relation to the data items.
+        Default value 'single_target_per_segment'
+
+    verbose : bool
+        Print information about the data
+        Default value True
+
+    print_indent : int
+        Default value 2
+
+    Returns
+    -------
+    numpy.ndarray
+        data
+
+    numpy.ndarray
+        meta
+
+    dict
+        data size information
+
+    """
+
+    if item_list:
+        # Collect all data and meta
+        X = []
+        Y = []
+
+        for item in item_list:
+            data = data_processing_chain.process(**item['data'])
+            meta = meta_processing_chain.process(**item['meta'])
+
+            X.append(data.data)
+
+            # Collect meta
+            if target_format == 'single_target_per_sequence':
+                # Collect single target per sequence
+                for i in range(0, data.shape[data.sequence_axis]):
+                    Y.append(meta.data[:, 0])
+
+            elif target_format == 'same':
+                # Collect single target per sequence
+                Y.append(
+                    numpy.repeat(
+                        a=meta.data,
+                        repeats=data.length,
+                        axis=1
+                    ).T
+                )
+
+        data_size = {}
+
+        if len(data.shape) == 2:
+            # Stack collected data and meta correct way
+            if data.time_axis == 0:
+                X = numpy.vstack(X)
+                Y = numpy.vstack(Y)
+
+            else:
+                X = numpy.hstack(X)
+                Y = numpy.hstack(Y)
+
+            # Get data item size
+            data_size = {
+                'data': X.shape[data.data_axis],
+                'time': X.shape[data.time_axis],
+            }
+
+        elif len(data.shape) == 3:
+            # Stack collected data and meta correct way
+            if data.sequence_axis == 0:
+                X = numpy.vstack(X)
+                Y = numpy.vstack(Y)
+
+            elif data.sequence_axis == 1:
+                X = numpy.hstack(X)
+                Y = numpy.hstack(Y)
+
+            elif data.sequence_axis == 2:
+                X = numpy.dstack(X)
+                Y = numpy.dstack(Y)
+
+            if channel_dimension:
+                # Add channel dimension to the data
+                if channel_dimension == 'channels_first':
+                    X = numpy.expand_dims(X, axis=1)
+
+                elif channel_dimension == 'channels_last':
+                    X = numpy.expand_dims(X, axis=3)
+
+            # Get data item size
+            data_size = {
+                'data': X.shape[data.data_axis],
+                'time': X.shape[data.time_axis],
+                'sequence': X.shape[data.sequence_axis],
+            }
+
+        if verbose:
+            data_shape = data.shape
+            data_axis = {
+                'time_axis': data.time_axis,
+                'data_axis': data.data_axis
+            }
+
+            if hasattr(data, 'sequence_axis'):
+                data_axis['sequence_axis'] = data.sequence_axis
+
+            meta_shape = meta.shape
+            meta_axis = {
+                'time_axis': meta.time_axis,
+                'data_axis': meta.data_axis
+            }
+
+            if hasattr(meta, 'sequence_axis'):
+                meta_axis['sequence_axis'] = meta.sequence_axis
+
+            logger = FancyLogger()
+
+            # Data information
+            logger.line('Data', indent=print_indent)
+
+            # Matrix
+            logger.data(
+                field='Matrix shape',
+                value=X.shape,
+                indent=print_indent + 2
+            )
+
+            # Item
+            logger.data(
+                field='Item shape',
+                value=data_shape,
+                indent=print_indent + 2
+            )
+
+            logger.data(
+                field='Time',
+                value=data_shape[data_axis['time_axis']],
+                indent=print_indent + 4
+            )
+
+            logger.data(
+                field='Data',
+                value=data_shape[data_axis['data_axis']],
+                indent=print_indent + 4
+            )
+
+            if 'sequence_axis' in data_axis:
+                logger.data(
+                    field='Sequence',
+                    value=data_shape[data_axis['sequence_axis']],
+                    indent=print_indent + 4
+                )
+
+            # Meta information
+            logger.line('Meta', indent=print_indent)
+
+            # Matrix
+            logger.data(
+                field='Matrix shape',
+                value=Y.shape,
+                indent=print_indent + 2
+            )
+
+            # Item
+            logger.data(
+                field='Item shape',
+                value=meta_shape,
+                indent=print_indent + 2
+            )
+            logger.data(
+                field='Time',
+                value=meta_shape[meta_axis['time_axis']],
+                indent=print_indent + 4
+            )
+
+            logger.data(
+                field='Data',
+                value=meta_shape[meta_axis['data_axis']],
+                indent=print_indent + 4
+            )
+
+            if 'sequence_axis' in meta_axis:
+                logger.data(
+                    field='Sequence',
+                    value=meta_shape[meta_axis['sequence_axis']],
+                    indent=print_indent + 4
+                )
+
+        return X, Y, data_size
