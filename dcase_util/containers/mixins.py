@@ -10,7 +10,7 @@ import csv
 import zipfile
 import tarfile
 from tqdm import tqdm
-from dcase_util.utils import setup_logging, FileFormat, Path
+from dcase_util.utils import setup_logging, FileFormat, Path, get_file_hash
 from dcase_util.ui import FancyLogger
 
 
@@ -120,6 +120,38 @@ class FileMixin(object):
             setup_logging()
         return logger
 
+    @property
+    def md5(self):
+        """Checksum for file.
+
+        Returns
+        -------
+        str
+
+        """
+
+        if self.exists():
+            return get_file_hash(filename=self.filename)
+
+        else:
+            return None
+
+    @property
+    def bytes(self):
+        """File size in bytes
+
+        Returns
+        -------
+        int
+
+        """
+
+        if self.exists():
+            return os.path.getsize(self.filename)
+
+        else:
+            return None
+
     def get_file_information(self):
         """Get file information, filename
 
@@ -141,6 +173,7 @@ class FileMixin(object):
         ----------
         filename : str
             filename
+            Default value None
 
         Raises
         ------
@@ -234,16 +267,22 @@ class FileMixin(object):
 
         if len(self) == 0:
             return True
+
         else:
             return False
 
     def delimiter(self, exclude_delimiters=None):
         """Use csv.sniffer to guess delimiter for CSV file
 
+        Parameters
+        ----------
+        exclude_delimiters : list of str
+            List of delimiter to be excluded
+            Default value None
+
         Returns
         -------
         str
-            Delimiter character
 
         """
 
@@ -287,6 +326,7 @@ class FileMixin(object):
         ----------
         filename : str
             filename
+            Default value None
 
         Returns
         -------
@@ -349,6 +389,38 @@ class PackageMixin(object):
     @package_password.setter
     def package_password(self, value):
         self['package_password'] = value
+
+    @property
+    def md5(self):
+        """Checksum for file.
+
+        Returns
+        -------
+        str
+
+        """
+
+        if self.exists():
+            return get_file_hash(filename=self.filename)
+
+        else:
+            return None
+
+    @property
+    def bytes(self):
+        """File size in bytes
+
+        Returns
+        -------
+        int
+
+        """
+
+        if self.exists():
+            return os.path.getsize(self.filename)
+
+        else:
+            return None
 
     def extract(self, target_path=None, overwrite=False, omit_first_level=False):
         """Extract the package. Supports Zip and Tar packages.
@@ -485,6 +557,7 @@ class PackageMixin(object):
         file_list : list of dict
 
         size_limit : int
+            Size limit in bytes
             Default value None
 
         overwrite : bool

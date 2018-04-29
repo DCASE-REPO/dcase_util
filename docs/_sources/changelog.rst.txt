@@ -3,6 +3,34 @@
 Release notes
 =============
 
+v0.2.1
+------
+
+**New features**
+
+* Add ``md5`` and ``bytes`` properties to FileMixin
+* Add two level hierarchical balancing to ``validation_files_balanced`` method in ``AcousticSceneDataset``
+* Add ``TUTUrbanAcousticScenes_2018_DevelopmentSet`` and ``TUTUrbanAcousticScenes_2018_Mobile_DevelopmentSet`` datasets
+* Add ``float1_ci``, ``float2_ci``, ``float1_ci_bracket``, ``float2_ci_bracket``, ``float1_percentage+ci`` and ``float2_percentage+ci`` value types to ``formatted_value`` method in ``FancyStringifier``
+* Add ``get_set`` method to ``AppParameterContainer``
+* Add ``data_collector`` function to collect data and meta
+
+**Updates**
+
+* Update ``debug_packages`` method in ``Dataset`` to provide more information
+* Update validation subset generation methods (``validation_split``, ``validation_files_dataset``, ``validation_files_random``, and ``validation_files_balanced``)  method in ``Dataset``, ``AcousticSceneDataset``, ``SoundEventDataset``, and ``AudioTaggingDataset`` to allow external processing of meta data before processing through ``training_meta`` parameter
+* Update ``filter`` method in ``ListDictContainer`` to allow filtering based on list of values
+* Update ``set_label`` property to ``MetaDataItem``
+* Update ``filter`` method in ``MetaDataContainer`` to use ``filter`` method from parent class
+* Update example applications to use current API
+* Update random seed setting for TensorFlow in ``setup_keras`` function
+* Update ``dataset_factory`` to handle dataset classes defined outside dcase_util
+
+**Bug fixes**
+
+* Fix ``load_from_youtube`` method in ``AudioContainer``
+* Fix example applications to work on Windows (Python 3.6)
+
 v0.2.0
 ------
 

@@ -19,6 +19,7 @@ def audio_filename_to_feature_filename(audio_filename, feature_path, feature_lab
 
 log = dcase_util.ui.FancyLogger()
 log.title('Acoustic Scene Classification Example / GMM')
+log.line()
 
 # Get dataset class and initialize it
 db = dcase_util.datasets.DCASE2013_Scenes_DevelopmentSet(
@@ -72,7 +73,7 @@ param = dcase_util.containers.ParameterContainer({
 })
 
 # Make sure all paths exists
-dcase_util.utils.Path().create(param['path'].values())
+dcase_util.utils.Path().create(list(param['path'].values()))
 
 # Expand the feature recipe
 param.set_path(
@@ -94,7 +95,7 @@ if param.get_path('flow.feature_extraction'):
 
     # Loop over all audio files in the dataset and extract features for them.
     for audio_filename in db.audio_files:
-        log.line(os.path.split(audio_filename)[1], indent=2)
+        log.line(os.path.split(audio_filename)[1], indent=4)
         for feature_label in feature_label_list:
             # Get filename for feature data from audio filename
             feature_filename = audio_filename_to_feature_filename(
@@ -126,7 +127,7 @@ if param.get_path('flow.feature_normalization'):
 
     # Loop over all cross-validation folds and calculate mean and std for the training data
     for fold in db.folds():
-        log.line('Fold {fold:d}'.format(fold=fold), indent=2)
+        log.line('Fold {fold:d}'.format(fold=fold), indent=4)
 
         for feature_label in feature_label_list:
             # Get filename for the normalization factors
@@ -164,7 +165,7 @@ if param.get_path('flow.learning'):
 
     # Loop over all cross-validation folds and learn acoustic models
     for fold in db.folds():
-        log.line('Fold {fold:d}'.format(fold=fold), indent=2)
+        log.line('Fold {fold:d}'.format(fold=fold), indent=4)
 
         # Get model filename
         fold_model_filename = os.path.join(param['path']['models'], 'model_fold_{fold:d}.cpickle'.format(fold=fold))
@@ -178,7 +179,7 @@ if param.get_path('flow.learning'):
                 ))
 
             repo_normalizer = dcase_util.data.RepositoryNormalizer(
-                filename_dict=normalizer_filenames
+                filename=normalizer_filenames
             )
 
             # Collect class wise training data
@@ -199,7 +200,7 @@ if param.get_path('flow.learning'):
 
                     # Load all features.
                     repo = dcase_util.containers.FeatureRepository().load(
-                        filename_dict=filename_dict
+                        filename=filename_dict
                     )
 
                     # Normalize features.
@@ -216,11 +217,14 @@ if param.get_path('flow.learning'):
                     class_wise_data[scene_label].append(features.data)
 
             # Initialize model container.
-            model = dcase_util.containers.DictContainer(filename=fold_model_filename)
+            model = dcase_util.containers.DictContainer(
+                filename=fold_model_filename
+            )
 
             # Loop though all scene classes and train acoustic model for each
             for scene_label in db.scene_labels():
                 log.line('[{scene_label}]'.format(scene_label=scene_label), indent=4)
+
                 # Train acoustic model
                 model[scene_label] = GaussianMixture(**param['learner']).fit(numpy.hstack(class_wise_data[scene_label]).T)
 
@@ -235,13 +239,15 @@ if param.get_path('flow.testing'):
 
     # Loop over all cross-validation folds and test
     for fold in db.folds():
-        log.line('Fold {fold:d}'.format(fold=fold), indent=2)
+        log.line('Fold {fold:d}'.format(fold=fold), indent=4)
 
         # Get model filename
         fold_model_filename = os.path.join(param.get_path('path.models'), 'model_fold_{fold:d}.cpickle'.format(fold=fold))
 
         # Load model
-        model = dcase_util.containers.DictContainer(filename=fold_model_filename).load()
+        model = dcase_util.containers.DictContainer().load(
+            filename=fold_model_filename
+        )
 
         # Get normalization factor filename
         fold_stats_filename = os.path.join(param.get_path('path.normalization'), 'norm_fold_{fold:d}.cpickle'.format(fold=fold))
@@ -249,12 +255,13 @@ if param.get_path('flow.testing'):
         normalizer_filenames = {}
         for feature_label in feature_label_list:
             # Get filename for the normalization factors
-            normalizer_filenames[feature_label] = os.path.join(param.get_path('path.normalization'), 'norm_fold_{fold:d}.{feature_label}.cpickle'.format(
-                                                   fold=fold, feature_label=feature_label
-            ))
+            normalizer_filenames[feature_label] = os.path.join(
+                param.get_path('path.normalization'),
+                'norm_fold_{fold:d}.{feature_label}.cpickle'.format(fold=fold, feature_label=feature_label)
+            )
 
         repo_normalizer = dcase_util.data.RepositoryNormalizer(
-            filename_dict=normalizer_filenames
+            filename=normalizer_filenames
         )
 
         # Get results filename
@@ -276,15 +283,18 @@ if param.get_path('flow.testing'):
 
                 # Load all features.
                 repo = dcase_util.containers.FeatureRepository().load(
-                    filename_dict=filename_dict
+                    filename=filename_dict
                 )
 
                 # Normalize features.
                 repo = repo_normalizer.normalize(repo)
 
                 # Form feature matrix based on stacking recipe.
-                features = dcase_util.data.Stacker(recipe=param.get_path('feature_stacking.recipe')).stack(
-                    repository=repo)
+                features = dcase_util.data.Stacker(
+                    recipe=param.get_path('feature_stacking.recipe')
+                ).stack(
+                    repository=repo
+                )
 
                 # Initialize log likelihoods matrix
                 logls = numpy.ones((db.scene_label_count(), features.data.shape[1])) * -numpy.inf
@@ -355,27 +365,57 @@ if param.get_path('flow.evaluation'):
             )
 
     # Form results table
-    cell_data = class_wise_results
-    scene_mean_accuracy = numpy.mean(cell_data, axis=0).reshape((1, -1))
-    cell_data = numpy.vstack((cell_data, scene_mean_accuracy))
-    fold_mean_accuracy = numpy.mean(cell_data, axis=1).reshape((-1, 1))
-    cell_data = numpy.hstack((cell_data, fold_mean_accuracy))
-
-    scene_list = db.scene_labels()
-    scene_list.extend(['Average'])
-    cell_data = [scene_list] + (cell_data*100).tolist()
-
+    log.line()
+    log.row_reset()
     column_headers = ['Scene']
-    for fold in db.folds():
+    column_widths = [20]
+    column_types = ['str20']
+    column_separators = [True]
+
+    for fold_id, fold in enumerate(db.folds()):
         column_headers.append('Fold {fold:d}'.format(fold=fold))
+        column_widths.append(10)
+        column_types.append('float1_percentage')
+        if fold < len(db.folds()):
+            column_separators.append(False)
+        else:
+            column_separators.append(True)
 
     column_headers.append('Average')
+    column_widths.append(10)
+    column_types.append('float1_percentage')
+    column_separators.append(False)
 
-    log.table(
-        cell_data=cell_data,
-        column_headers=column_headers,
-        column_separators=[0, 5],
-        row_separators=[10],
+    log.row(
+        *column_headers,
+        widths=column_widths,
+        types=column_types,
+        separators=column_separators,
         indent=2
     )
+    log.row_sep()
+    for scene_label_id, scene_label in enumerate(db.scene_labels()):
+        column_fields = [scene_label]
+        for fold_id, fold in enumerate(db.folds()):
+            column_fields.append(class_wise_results[fold_id, scene_label_id]*100)
+
+        column_fields.append(numpy.mean(class_wise_results[:, scene_label_id])*100)
+
+        log.row(
+            *column_fields
+        )
+    log.row_sep()
+
+    column_fields = ['Average']
+    fold_wise_averages = []
+    for fold_id, fold in enumerate(db.folds()):
+        column_fields.append(numpy.mean(class_wise_results[fold_id, :]) * 100)
+        fold_wise_averages.append(numpy.mean(class_wise_results[fold_id, :]) * 100)
+
+    column_fields.append(numpy.mean(fold_wise_averages))
+
+    log.row(
+        *column_fields
+    )
+
     log.foot()

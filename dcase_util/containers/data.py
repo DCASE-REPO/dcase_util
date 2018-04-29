@@ -2012,6 +2012,24 @@ class DataRepository(RepositoryContainer):
         if data is not None and isinstance(data, dict):
             dict.update(self, data)
 
+    def __getstate__(self):
+        d = super(DataRepository, self).__getstate__()
+        d.update({
+            'default_stream_id': self.default_stream_id,
+            'processing_chain': self.processing_chain,
+            'item_class': self.item_class
+        })
+
+        return d
+
+    def __setstate__(self, d):
+        super(DataRepository, self).__setstate__(d)
+
+        self.default_stream_id = d['default_stream_id']
+        self.processing_chain = d['processing_chain']
+        self.item_class = d['item_class']
+        self.processing_chain = d['processing_chain']
+
     def __str__(self):
         ui = FancyStringifier()
 

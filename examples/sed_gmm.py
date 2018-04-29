@@ -19,6 +19,7 @@ def audio_filename_to_feature_filename(audio_filename, feature_path, feature_lab
 
 log = dcase_util.ui.FancyLogger()
 log.title('Sound Event Detection Example / GMM')
+log.line()
 
 # Get dataset class and initialize it
 db = dcase_util.datasets.TUTSoundEvents_2017_DevelopmentSet(
@@ -83,7 +84,7 @@ param = dcase_util.containers.ParameterContainer({
 })
 
 # Make sure all paths exists
-dcase_util.utils.Path().create(param['path'].values())
+dcase_util.utils.Path().create(list(param['path'].values()))
 
 # Expand the feature recipe
 param.set_path(
@@ -106,7 +107,7 @@ if param.get_path('flow.feature_extraction'):
 
     # Loop over all audio files in the dataset and extract features for them.
     for audio_filename in db.audio_files:
-        log.line(os.path.split(audio_filename)[1], indent=2)
+        log.line(os.path.split(audio_filename)[1], indent=4)
         for feature_label in feature_label_list:
             # Get filename for feature data from audio filename
             feature_filename = audio_filename_to_feature_filename(
@@ -138,12 +139,14 @@ if param.get_path('flow.feature_normalization'):
 
     # Loop over all cross-validation folds and calculate mean and std for the training data
     for fold in db.folds():
-        log.line('Fold {fold:d}'.format(fold=fold), indent=2)
+        log.line('Fold {fold:d}'.format(fold=fold), indent=4)
 
         for feature_label in feature_label_list:
             # Get filename for the normalization factors
-            fold_stats_filename = os.path.join(param.get_path('path.normalization'), 'norm_fold_{fold:d}.{feature_label}.cpickle'.format(
-                fold=fold, feature_label=feature_label))
+            fold_stats_filename = os.path.join(
+                param.get_path('path.normalization'),
+                'norm_fold_{fold:d}.{feature_label}.cpickle'.format(fold=fold, feature_label=feature_label)
+            )
 
             if not os.path.isfile(fold_stats_filename) or overwrite:
                 normalizer = dcase_util.data.Normalizer(filename=fold_stats_filename)
@@ -176,7 +179,7 @@ if param.get_path('flow.learning'):
 
     # Loop over all cross-validation folds and learn acoustic models
     for fold in db.folds():
-        log.line('Fold {fold:d}'.format(fold=fold), indent=2)
+        log.line('Fold {fold:d}'.format(fold=fold), indent=4)
 
         # Get model filename
         fold_model_filename = os.path.join(param['path']['models'], 'model_fold_{fold:d}.cpickle'.format(fold=fold))
@@ -189,7 +192,7 @@ if param.get_path('flow.learning'):
                     fold=fold, feature_label=feature_label))
 
             repo_normalizer = dcase_util.data.RepositoryNormalizer(
-                filename_dict=normalizer_filenames
+                filename=normalizer_filenames
             )
 
             training_material = db.train(fold=fold)
@@ -207,7 +210,7 @@ if param.get_path('flow.learning'):
                         feature_label=feature_label
                     )
                 # Load all features.
-                repo = dcase_util.containers.FeatureRepository(filename_dict=filename_dict).load()
+                repo = dcase_util.containers.FeatureRepository(filename=filename_dict).load()
 
                 # Normalize features.
                 repo = repo_normalizer.normalize(repo)
@@ -276,7 +279,7 @@ if param.get_path('flow.testing'):
 
     # Loop over all cross-validation folds and test
     for fold in db.folds():
-        log.line('Fold {fold:d}'.format(fold=fold), indent=2)
+        log.line('Fold {fold:d}'.format(fold=fold), indent=4)
 
         # Get model filename
         fold_model_filename = os.path.join(param.get_path('path.models'), 'model_fold_{fold:d}.cpickle'.format(fold=fold))
@@ -295,7 +298,7 @@ if param.get_path('flow.testing'):
             ))
 
         repo_normalizer = dcase_util.data.RepositoryNormalizer(
-            filename_dict=normalizer_filenames
+            filename=normalizer_filenames
         )
 
         # Get results filename
@@ -316,7 +319,7 @@ if param.get_path('flow.testing'):
                     )
 
                 # Load all features.
-                repo = dcase_util.containers.FeatureRepository(filename_dict=filename_dict).load()
+                repo = dcase_util.containers.FeatureRepository(filename=filename_dict).load()
 
                 # Normalize features.
                 repo = repo_normalizer.normalize(repo)

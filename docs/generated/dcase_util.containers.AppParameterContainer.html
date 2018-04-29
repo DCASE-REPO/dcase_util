@@ -426,6 +426,7 @@
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataItem.offset.html">dcase_util.containers.MetaDataItem.offset</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataItem.identifier.html">dcase_util.containers.MetaDataItem.identifier</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataItem.source_label.html">dcase_util.containers.MetaDataItem.source_label</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataItem.set_label.html">dcase_util.containers.MetaDataItem.set_label</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataItem.tags.html">dcase_util.containers.MetaDataItem.tags</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataItem.active_within_segment.html">dcase_util.containers.MetaDataItem.active_within_segment</a></li>
 </ul>
@@ -477,9 +478,15 @@
 <li class="toctree-l4 current"><a class="current reference internal" href="#">dcase_util.containers.AppParameterContainer</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AppParameterContainer.reset.html">dcase_util.containers.AppParameterContainer.reset</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AppParameterContainer.process.html">dcase_util.containers.AppParameterContainer.process</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AppParameterContainer.process_set.html">dcase_util.containers.AppParameterContainer.process_set</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AppParameterContainer.override.html">dcase_util.containers.AppParameterContainer.override</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AppParameterContainer.get_path_translated.html">dcase_util.containers.AppParameterContainer.get_path_translated</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AppParameterContainer.set_path_translated.html">dcase_util.containers.AppParameterContainer.set_path_translated</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AppParameterContainer.update_parameter_set.html">dcase_util.containers.AppParameterContainer.update_parameter_set</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AppParameterContainer.set_ids.html">dcase_util.containers.AppParameterContainer.set_ids</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AppParameterContainer.set_id_exists.html">dcase_util.containers.AppParameterContainer.set_id_exists</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AppParameterContainer.active_set.html">dcase_util.containers.AppParameterContainer.active_set</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AppParameterContainer.get_set.html">dcase_util.containers.AppParameterContainer.get_set</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../containers.html#dcaseappparametercontainer">DCASEAppParameterContainer</a><ul>
@@ -740,6 +747,9 @@
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTAcousticScenes_2017_EvaluationSet.html">dcase_util.datasets.TUTAcousticScenes_2017_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet.html">dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet.html">dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTUrbanAcousticScenes_2018_DevelopmentSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_DevelopmentSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_DevelopmentSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_DevelopmentSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.DCASE2018_Task5_DevelopmentSet.html">dcase_util.datasets.DCASE2018_Task5_DevelopmentSet</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../datasets.html#soundeventdataset">SoundEventDataset</a><ul>
@@ -939,9 +949,13 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../keras.html#generators">Generators</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../keras.html#data-processing">Data processing</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../keras.html#kerasdatasequence">KerasDataSequence</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.keras.get_keras_data_sequence_class.html">dcase_util.keras.get_keras_data_sequence_class</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../keras.html#data-collector">data_collector</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.keras.data_collector.html">dcase_util.keras.data_collector</a></li>
 </ul>
 </li>
 </ul>
@@ -1332,6 +1346,8 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-1">v0.2.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-0">v0.2.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-1-9">v0.1.9</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-1-8">v0.1.8</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-1-7">v0.1.7</a></li>
@@ -1520,7 +1536,7 @@ is used to override internal default list.</p>
 <tr class="row-odd"><td><a class="reference internal" href="#dcase_util.containers.AppParameterContainer.__init__" title="dcase_util.containers.AppParameterContainer.__init__"><code class="xref py py-obj docutils literal"><span class="pre">__init__</span></code></a>([data,&nbsp;app_base,&nbsp;...])</td>
 <td>Constructor</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">active_set</span></code>()</td>
+<tr class="row-even"><td><a class="reference internal" href="dcase_util.containers.AppParameterContainer.active_set.html#dcase_util.containers.AppParameterContainer.active_set" title="dcase_util.containers.AppParameterContainer.active_set"><code class="xref py py-obj docutils literal"><span class="pre">active_set</span></code></a>()</td>
 <td>Get active set id</td>
 </tr>
 <tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">clear</span></code>(()&nbsp;-&gt;&nbsp;None.&nbsp;&nbsp;Remove&nbsp;all&nbsp;items&nbsp;from&nbsp;D.)</td>
@@ -1613,7 +1629,7 @@ is used to override internal default list.</p>
 <tr class="row-even"><td><a class="reference internal" href="dcase_util.containers.AppParameterContainer.process.html#dcase_util.containers.AppParameterContainer.process" title="dcase_util.containers.AppParameterContainer.process"><code class="xref py py-obj docutils literal"><span class="pre">process</span></code></a>([create_paths,&nbsp;create_parameter_hints])</td>
 <td>Process parameters</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">process_set</span></code>(parameters[,&nbsp;create_paths,&nbsp;...])</td>
+<tr class="row-odd"><td><a class="reference internal" href="dcase_util.containers.AppParameterContainer.process_set.html#dcase_util.containers.AppParameterContainer.process_set" title="dcase_util.containers.AppParameterContainer.process_set"><code class="xref py py-obj docutils literal"><span class="pre">process_set</span></code></a>(parameters[,&nbsp;create_paths,&nbsp;...])</td>
 <td>Process parameter set</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="dcase_util.containers.AppParameterContainer.reset.html#dcase_util.containers.AppParameterContainer.reset" title="dcase_util.containers.AppParameterContainer.reset"><code class="xref py py-obj docutils literal"><span class="pre">reset</span></code></a>([field_labels,&nbsp;section_labels,&nbsp;...])</td>
@@ -1622,10 +1638,10 @@ is used to override internal default list.</p>
 <tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">save</span></code>([filename])</td>
 <td>Save file</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">set_id_exists</span></code>(set_id)</td>
+<tr class="row-even"><td><a class="reference internal" href="dcase_util.containers.AppParameterContainer.set_id_exists.html#dcase_util.containers.AppParameterContainer.set_id_exists" title="dcase_util.containers.AppParameterContainer.set_id_exists"><code class="xref py py-obj docutils literal"><span class="pre">set_id_exists</span></code></a>(set_id)</td>
 <td>Set id exists</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">set_ids</span></code>()</td>
+<tr class="row-odd"><td><a class="reference internal" href="dcase_util.containers.AppParameterContainer.set_ids.html#dcase_util.containers.AppParameterContainer.set_ids" title="dcase_util.containers.AppParameterContainer.set_ids"><code class="xref py py-obj docutils literal"><span class="pre">set_ids</span></code></a>()</td>
 <td>Get set ids</td>
 </tr>
 <tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">set_path</span></code>(path,&nbsp;new_value[,&nbsp;data])</td>
@@ -1643,7 +1659,7 @@ is used to override internal default list.</p>
 <tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">update</span></code>(([E,&nbsp;...)</td>
 <td>If E present and has a .keys() method, does:     for k in E: D[k] = E[k]</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">update_parameter_set</span></code>(set_id)</td>
+<tr class="row-odd"><td><a class="reference internal" href="dcase_util.containers.AppParameterContainer.update_parameter_set.html#dcase_util.containers.AppParameterContainer.update_parameter_set" title="dcase_util.containers.AppParameterContainer.update_parameter_set"><code class="xref py py-obj docutils literal"><span class="pre">update_parameter_set</span></code></a>(set_id)</td>
 <td>Update active parameter set</td>
 </tr>
 <tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">validate_format</span></code>()</td>

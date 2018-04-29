@@ -757,6 +757,7 @@ MetaDataItem
     MetaDataItem.offset
     MetaDataItem.identifier
     MetaDataItem.source_label
+    MetaDataItem.set_label
     MetaDataItem.tags
     MetaDataItem.active_within_segment
 
@@ -826,9 +827,15 @@ AppParameterContainer
     AppParameterContainer
     AppParameterContainer.reset
     AppParameterContainer.process
+    AppParameterContainer.process_set
     AppParameterContainer.override
     AppParameterContainer.get_path_translated
     AppParameterContainer.set_path_translated
+    AppParameterContainer.update_parameter_set
+    AppParameterContainer.set_ids
+    AppParameterContainer.set_id_exists
+    AppParameterContainer.active_set
+    AppParameterContainer.get_set
 
 
 DCASEAppParameterContainer
@@ -853,7 +860,6 @@ ParameterListContainer
 
 Probability containers
 ::::::::::::::::::::::
-
 
 ProbabilityItem
 ---------------

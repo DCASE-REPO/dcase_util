@@ -6,6 +6,7 @@ from __future__ import print_function, absolute_import
 import six
 import logging
 import numpy
+import datetime
 from dcase_util.utils import setup_logging, is_float, is_int
 
 
@@ -92,8 +93,8 @@ class FancyStringifier(object):
             Footer text
             Default value 'DONE'
 
-        time : str, optional
-            Elapsed time as string
+        time : str or float, optional
+            Elapsed time as string or float (as seconds)
             Default value None
 
         item_count : int, optional
@@ -113,10 +114,19 @@ class FancyStringifier(object):
         output = '{text:10s} '.format(text=text)
 
         if time:
-            output += '[{time:<15s}] '.format(time=time)
+            if isinstance(time, six.string_types):
+                output += '[{time:<14s}] '.format(time=time)
+
+            elif isinstance(time, float):
+                output += '[{time:<14s}] '.format(time=str(datetime.timedelta(seconds=time)))
 
         if item_count:
             output += '[{items:<d} items] '.format(items=item_count)
+
+            if time and isinstance(time, float):
+                output += '[{item_time:<14s} per item]'.format(
+                    item_time=str(datetime.timedelta(seconds=time / float(item_count)))
+                )
 
         return ' ' * indent + output
 
@@ -148,6 +158,17 @@ class FancyStringifier(object):
 
     def formatted_value(self, value, data_type='auto'):
         """Format value into string.
+
+        Valid data_type parameters:
+
+        - auto
+        - str
+        - bool
+        - float1, float2, float3, float4
+        - float1_percentage, float2_percentage
+        - float1_percentage+ci, float2_percentage+ci
+        - float1_ci, float2_ci
+        - float1_ci_bracket, float2_ci_bracket
 
         Parameters
         ----------
@@ -201,8 +222,27 @@ class FancyStringifier(object):
         elif data_type == 'float2_percentage' and is_float(value):
             value = '{:3.2f}%'.format(float(value))
 
+        elif data_type == 'float1_percentage+ci' and isinstance(value, tuple):
+            value = '{:3.1f}% (+/-{:3.1f})'.format(float(value[0]), float(value[1]))
+
+        elif data_type == 'float2_percentage+ci' and isinstance(value, tuple):
+            value = '{:3.2f}% (+/-{:3.2f})'.format(float(value[0]), float(value[1]))
+
+        elif data_type == 'float1_ci':
+            value = '+/-{:3.1f}'.format(float(value))
+
+        elif data_type == 'float2_ci':
+            value = '+/-{:3.2f}'.format(float(value))
+
+        elif data_type == 'float1_ci_bracket' and isinstance(value, tuple):
+            value = '{:3.1f}-{:3.1f}'.format(float(value[0]), float(value[1]))
+
+        elif data_type == 'float2_ci_bracket' and isinstance(value, tuple):
+            value = '{:3.2f}-{:3.2f}'.format(float(value[0]), float(value[1]))
+
         elif isinstance(value, numpy.ndarray):
             shape = value.shape
+
             if len(shape) == 1:
                 value = 'array ({0:d},)'.format(shape[0])
 
@@ -218,6 +258,7 @@ class FancyStringifier(object):
         elif data_type == 'bool':
             if value:
                 value = 'True'
+
             else:
                 value = 'False'
 

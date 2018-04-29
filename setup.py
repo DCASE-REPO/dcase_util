@@ -4,7 +4,7 @@ requirements = [
     'numpy>=1.9.2',
     'scipy>=0.19.1',
     'matplotlib>=2.0.0',
-    'librosa>=0.5.0',
+    'librosa>=0.6.0',
     'six>=1.10.0',
     'future>=0.16.0',
     'soundfile>=0.9.0',
@@ -32,7 +32,7 @@ except (IOError, ImportError, RuntimeError):
 
 setup(
     name='dcase_util',
-    version='0.2.0',
+    version='0.2.1',
     description='A collection of utilities for Detection and Classification of Acoustic Scenes and Events',
     author='Toni Heittola',
     author_email='toni.heittola@gmail.com',

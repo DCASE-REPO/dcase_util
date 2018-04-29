@@ -344,6 +344,7 @@ class SpectralFeatureExtractor(FeatureExtractor):
             window=self.window
         )
 
+
 class MelExtractor(SpectralFeatureExtractor):
     """Feature extractor class to extract mel band energy features"""
     label = 'mel'  #: Extractor label

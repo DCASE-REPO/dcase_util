@@ -111,6 +111,9 @@ class MetaDataItem(dict):
         if self.source_label:
             output += ui.data(indent=4, field='source_label', value=self.source_label) + '\n'
 
+        if self.set_label:
+            output += ui.data(indent=4, field='set_label', value=self.set_label) + '\n'
+
         if self.onset is not None:
             output += ui.data(indent=4, field='onset', value=self.onset, unit='sec') + '\n'
 
@@ -183,20 +186,31 @@ class MetaDataItem(dict):
         """
 
         string = ''
+
         if self.filename:
             string += self.filename
+
         if self.scene_label:
             string += self.scene_label
+
         if self.event_label:
             string += self.event_label
+
         if self.identifier:
             string += self.identifier
+
         if self.source_label:
             string += self.source_label
+
+        if self.set_label:
+            string += self.set_label
+
         if self.tags:
             string += ','.join(self.tags)
+
         if self.onset:
             string += '{:8.4f}'.format(self.onset)
+
         if self.offset:
             string += '{:8.4f}'.format(self.offset)
 
@@ -436,6 +450,26 @@ class MetaDataItem(dict):
     @source_label.setter
     def source_label(self, value):
         self['source_label'] = value
+
+    @property
+    def set_label(self):
+        """Set label
+
+        Returns
+        -------
+        str or None
+            set label
+
+        """
+
+        if 'set_label' in self:
+            return self['set_label']
+        else:
+            return None
+
+    @set_label.setter
+    def set_label(self, value):
+        self['set_label'] = value
 
     @property
     def tags(self):
@@ -1548,8 +1582,12 @@ class MetaDataContainer(ListDictContainer):
 
         string_data = ''
         string_data += ui.class_name(self.__class__.__name__) + '\n'
-        if self.filename:
-            string_data += ui.data(field='Filename', value=self.filename) + '\n'
+
+        if hasattr(self, 'filename') and self.filename:
+            string_data += ui.data(
+                field='Filename',
+                value=self.filename
+            ) + '\n'
 
         string_data += ui.data(field='Items', value=len(self)) + '\n'
         string_data += ui.line(field='Unique') + '\n'
@@ -1557,6 +1595,7 @@ class MetaDataContainer(ListDictContainer):
         string_data += ui.data(indent=4, field='Scene labels', value=len(self.unique_scene_labels)) + '\n'
         string_data += ui.data(indent=4, field='Event labels', value=len(self.unique_event_labels)) + '\n'
         string_data += ui.data(indent=4, field='Tags', value=len(self.unique_tags)) + '\n'
+        string_data += ui.data(indent=4, field='Identifiers', value=len(self.unique_identifiers)) + '\n'
         string_data += '\n'
 
         if show_data:
@@ -1638,12 +1677,19 @@ class MetaDataContainer(ListDictContainer):
         return string_data
 
     def filter(self,
-               filename=None, file_list=None,
-               scene_label=None, scene_list=None,
-               event_label=None, event_list=None,
-               tag=None, tag_list=None,
-               identifier=None, identifier_list=None,
-               source_label=None, source_label_list=None,
+               filename=None,
+               file_list=None,
+               scene_label=None,
+               scene_list=None,
+               event_label=None,
+               event_list=None,
+               tag=None,
+               tag_list=None,
+               identifier=None,
+               identifier_list=None,
+               source_label=None,
+               source_label_list=None,
+               **kwargs
                ):
         """Filter content
 
@@ -1703,88 +1749,67 @@ class MetaDataContainer(ListDictContainer):
 
         """
 
-        if tag_list:
-            tag_list = set(tag_list)
+        # Inject parameters back to kwargs, and use parent filter method
+        if filename is not None:
+            kwargs['filename'] = filename
 
-        data = []
-        for item in self:
-            matched = []
-            if filename:
-                if item.filename == filename:
-                    matched.append(True)
-                else:
-                    matched.append(False)
+        if scene_label is not None:
+            kwargs['scene_label'] = scene_label
 
-            if file_list:
-                if item.filename in file_list:
-                    matched.append(True)
-                else:
-                    matched.append(False)
+        if event_label is not None:
+            kwargs['event_label'] = event_label
 
-            if scene_label:
-                if item.scene_label == scene_label:
-                    matched.append(True)
-                else:
-                    matched.append(False)
+        if identifier is not None:
+            kwargs['identifier'] = identifier
 
-            if scene_list:
-                if item.scene_label in scene_list:
-                    matched.append(True)
-                else:
-                    matched.append(False)
+        if source_label is not None:
+            kwargs['source_label'] = source_label
 
-            if event_label:
-                if item.event_label == event_label:
-                    matched.append(True)
-                else:
-                    matched.append(False)
+        if file_list is not None:
+            kwargs['filename'] = list(file_list)
 
-            if event_list:
-                if item.event_label in event_list:
-                    matched.append(True)
-                else:
-                    matched.append(False)
+        if scene_list is not None:
+            kwargs['scene_label'] = list(scene_list)
 
-            if tag:
-                if item.tags and tag in item.tags:
-                    matched.append(True)
-                else:
-                    matched.append(False)
+        if event_list is not None:
+            kwargs['event_label'] = list(event_list)
+
+        if identifier_list is not None:
+            kwargs['identifier'] = list(identifier_list)
+
+        if source_label_list is not None:
+            kwargs['source_label'] = list(source_label_list)
+
+        result = MetaDataContainer(super(MetaDataContainer, self).filter(**kwargs))
+
+        # Handle tags separately
+        if tag is not None or tag_list is not None:
+            data = []
 
             if tag_list:
-                if item.tags and tag_list.intersection(item.tags):
-                    matched.append(True)
-                else:
-                    matched.append(False)
+                tag_list = set(tag_list)
 
-            if identifier:
-                if item.identifier == identifier:
-                    matched.append(True)
-                else:
-                    matched.append(False)
+            for item in result:
+                matched = []
+                if tag:
+                    if item.tags and tag in item.tags:
+                        matched.append(True)
+                    else:
+                        matched.append(False)
 
-            if identifier_list:
-                if item.identifier in identifier_list:
-                    matched.append(True)
-                else:
-                    matched.append(False)
+                if tag_list:
+                    if item.tags and tag_list.intersection(item.tags):
+                        matched.append(True)
+                    else:
+                        matched.append(False)
 
-            if source_label:
-                if item.source_label == source_label:
-                    matched.append(True)
-                else:
-                    matched.append(False)
+                if all(matched):
+                    data.append(copy.deepcopy(item))
 
-            if source_label_list:
-                if item.source_label in source_label_list:
-                    matched.append(True)
-                else:
-                    matched.append(False)
+            return MetaDataContainer(data)
 
-            if all(matched):
-                data.append(copy.deepcopy(item))
-
-        return MetaDataContainer(data)
+        else:
+            return result
 
     def process_events(self, minimum_event_length=None, minimum_event_gap=None):
         """Process event content
