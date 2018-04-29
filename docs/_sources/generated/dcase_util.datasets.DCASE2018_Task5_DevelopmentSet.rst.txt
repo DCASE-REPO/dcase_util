@@ -1,0 +1,73 @@
+dcase_util.datasets.DCASE2018_Task5_DevelopmentSet
+==================================================
+
+.. currentmodule:: dcase_util.datasets
+
+.. autoclass:: DCASE2018_Task5_DevelopmentSet
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~DCASE2018_Task5_DevelopmentSet.__init__
+      ~DCASE2018_Task5_DevelopmentSet.absolute_to_relative_path
+      ~DCASE2018_Task5_DevelopmentSet.check_filelist
+      ~DCASE2018_Task5_DevelopmentSet.dataset_bytes
+      ~DCASE2018_Task5_DevelopmentSet.dataset_size_on_disk
+      ~DCASE2018_Task5_DevelopmentSet.dataset_size_string
+      ~DCASE2018_Task5_DevelopmentSet.debug_packages
+      ~DCASE2018_Task5_DevelopmentSet.download_packages
+      ~DCASE2018_Task5_DevelopmentSet.eval
+      ~DCASE2018_Task5_DevelopmentSet.eval_files
+      ~DCASE2018_Task5_DevelopmentSet.evaluation_setup_filename
+      ~DCASE2018_Task5_DevelopmentSet.event_label_count
+      ~DCASE2018_Task5_DevelopmentSet.event_labels
+      ~DCASE2018_Task5_DevelopmentSet.extract_packages
+      ~DCASE2018_Task5_DevelopmentSet.file_error_meta
+      ~DCASE2018_Task5_DevelopmentSet.file_features
+      ~DCASE2018_Task5_DevelopmentSet.file_meta
+      ~DCASE2018_Task5_DevelopmentSet.folds
+      ~DCASE2018_Task5_DevelopmentSet.initialize
+      ~DCASE2018_Task5_DevelopmentSet.load
+      ~DCASE2018_Task5_DevelopmentSet.load_crossvalidation_data
+      ~DCASE2018_Task5_DevelopmentSet.load_meta
+      ~DCASE2018_Task5_DevelopmentSet.log
+      ~DCASE2018_Task5_DevelopmentSet.prepare
+      ~DCASE2018_Task5_DevelopmentSet.process_meta_item
+      ~DCASE2018_Task5_DevelopmentSet.relative_to_absolute_path
+      ~DCASE2018_Task5_DevelopmentSet.scene_label_count
+      ~DCASE2018_Task5_DevelopmentSet.scene_labels
+      ~DCASE2018_Task5_DevelopmentSet.show
+      ~DCASE2018_Task5_DevelopmentSet.tag_count
+      ~DCASE2018_Task5_DevelopmentSet.tags
+      ~DCASE2018_Task5_DevelopmentSet.test
+      ~DCASE2018_Task5_DevelopmentSet.test_files
+      ~DCASE2018_Task5_DevelopmentSet.train
+      ~DCASE2018_Task5_DevelopmentSet.train_files
+      ~DCASE2018_Task5_DevelopmentSet.validation_files_balanced
+      ~DCASE2018_Task5_DevelopmentSet.validation_files_dataset
+      ~DCASE2018_Task5_DevelopmentSet.validation_files_random
+      ~DCASE2018_Task5_DevelopmentSet.validation_split
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~DCASE2018_Task5_DevelopmentSet.audio_file_count
+      ~DCASE2018_Task5_DevelopmentSet.audio_files
+      ~DCASE2018_Task5_DevelopmentSet.error_meta
+      ~DCASE2018_Task5_DevelopmentSet.error_meta_count
+      ~DCASE2018_Task5_DevelopmentSet.fold_count
+      ~DCASE2018_Task5_DevelopmentSet.logger
+      ~DCASE2018_Task5_DevelopmentSet.meta
+      ~DCASE2018_Task5_DevelopmentSet.meta_count
+   
+   
