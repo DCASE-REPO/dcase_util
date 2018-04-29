@@ -115,7 +115,7 @@ Calculating mean and standard deviation in 10 frame window, with 1 frame hop::
         win_length_frames=10,
         hop_length_frames=1,
     )
-    data_aggregator.aggregate(data)
+    data = data_aggregator.aggregate(data)
     print(data.shape)
     # (80, 501)
 
