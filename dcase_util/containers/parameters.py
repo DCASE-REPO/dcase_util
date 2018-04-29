@@ -1003,8 +1003,11 @@ class AppParameterContainer(ParameterContainer):
     def update_parameter_set(self, set_id):
         """Update active parameter set
 
+        Parameters
+        ----------
         set_id : str
             Set id used in set list
+
         Raises
         ------
         ValueError:
