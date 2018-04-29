@@ -159,6 +159,17 @@ class FancyStringifier(object):
     def formatted_value(self, value, data_type='auto'):
         """Format value into string.
 
+        Valid data_type parameters:
+
+        - auto
+        - str
+        - bool
+        - float1, float2, float3, float4
+        - float1_percentage, float2_percentage
+        - float1_percentage+ci, float2_percentage+ci
+        - float1_ci, float2_ci
+        - float1_ci_bracket, float2_ci_bracket
+
         Parameters
         ----------
         value :
