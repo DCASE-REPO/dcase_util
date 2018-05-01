@@ -888,45 +888,76 @@ class Dataset(object):
         log.sub_header('Debug packages')
         log.line('Local', indent=2)
         log.row_reset()
-        log.row('package', 'local_md5', 'local_bytes', widths=[60, 35, 15])
+        log.row('package', 'local_md5', 'local_bytes', widths=[55, 35, 15])
         log.row_sep()
+
         for item in self.package_list:
-            package = Package(**item)
-            if package.exists():
-                md5 = package.md5
-                bytes = package.bytes
+            file = File(**item)
+
+            if file.is_package():
+                package = Package(**item)
+                if package.exists():
+                    md5 = package.md5
+                    bytes = package.bytes
+                else:
+                    md5 = '-- PACKAGE DOES NOT EXISTS --'
+                    bytes = ''
+
+            elif file.exists():
+                md5 = file.md5
+                bytes = file.bytes
+
             else:
-                md5 = ''
+                md5 = '-- FILE DOES NOT EXISTS --'
                 bytes = ''
+
             log.row(
-                os.path.split(package.filename)[-1],
+                os.path.split(item['filename'])[-1],
                 md5,
                 bytes
             )
 
         log.line()
         log.line('Remote', indent=2)
-        log.row('package', 'remote_md5', 'remote_bytes', 'md5', 'size', widths=[63, 35, 15, 6, 7])
+        log.row('package', 'remote_md5', 'remote_bytes', 'md5', 'size', widths=[55, 35, 15, 6, 7])
         log.row_sep()
+
         for item in self.package_list:
             if 'remote_file' in item:
-                remote_file = RemoteFile(**item)
+                remote_filename = os.path.split(item['remote_file'])[-1]
+
+                item_remote = copy.deepcopy(item)
+                del item_remote['remote_md5']
+                del item_remote['remote_bytes']
+
+                remote_file = RemoteFile(**item_remote)
                 if self.included_content_types is None or remote_file.is_content_type(
                         content_type=self.included_content_types
                 ):
-                    remote_file.remote_info()
+                    if remote_file.remote_exists():
+                        remote_file.remote_info()
 
-                remote_filename = os.path.split(item['remote_file'])[-1]
+                        if 'remote_md5' in item:
+                            md5 = remote_file.remote_md5
+                            md5_status = 'Dif' if item['remote_md5'] != remote_file.remote_md5 else 'OK'
+                        else:
+                            md5 = ''
+                            md5_status = ''
 
-                if 'remote_md5' in item:
-                    md5 = remote_file.remote_md5
-                    md5_status = 'Dif' if item['remote_md5'] != remote_file.remote_md5 else 'OK'
+                        bytes = remote_file.remote_bytes
+                        bytes_status = 'Dif' if item['remote_bytes'] != remote_file.remote_bytes else 'OK'
+
+                    else:
+                        md5 = ''
+                        md5_status = 'Err'
+                        bytes = ''
+                        bytes_status = 'Err'
+
                 else:
-                    md5 = ''
+                    md5 = 'SKIPPED'
                     md5_status = ''
-
-                bytes = remote_file.remote_bytes
-                bytes_status = 'Dif' if item['remote_bytes'] != remote_file.remote_bytes else 'OK'
+                    bytes = ''
+                    bytes_status = ''
 
                 log.row(
                     remote_filename,
@@ -935,6 +966,7 @@ class Dataset(object):
                     md5_status,
                     bytes_status
                 )
+
         log.line()
 
         return self
