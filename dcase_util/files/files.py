@@ -16,7 +16,7 @@ from dcase_util.ui import FancyStringifier
 class File(FileMixin):
     """Generic file class"""
     valid_formats = [FileFormat.YAML, FileFormat.JSON, FileFormat.CPICKLE, FileFormat.MARSHAL, FileFormat.MSGPACK,
-                     FileFormat.TXT, FileFormat.CSV]
+                     FileFormat.TXT, FileFormat.CSV, FileFormat.ZIP, FileFormat.TAR]
 
     def __init__(self, *args, **kwargs):
         """Constructor
