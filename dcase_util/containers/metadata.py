@@ -766,6 +766,25 @@ class MetaDataContainer(ListDictContainer):
         return labels
 
     @property
+    def unique_source_labels(self):
+        """Unique source labels
+
+        Returns
+        -------
+        labels: list, shape=(n,)
+            Unique labels in alphabetical order
+
+        """
+
+        labels = []
+        for item in self:
+            if item.source_label and item.source_label not in labels:
+                labels.append(item.source_label)
+
+        labels.sort()
+        return labels
+
+    @property
     def max_offset(self):
         """Find the offset (end-time) of last event
 
@@ -1596,6 +1615,7 @@ class MetaDataContainer(ListDictContainer):
         string_data += ui.data(indent=4, field='Event labels', value=len(self.unique_event_labels)) + '\n'
         string_data += ui.data(indent=4, field='Tags', value=len(self.unique_tags)) + '\n'
         string_data += ui.data(indent=4, field='Identifiers', value=len(self.unique_identifiers)) + '\n'
+        string_data += ui.data(indent=4, field='Source labels', value=len(self.unique_source_labels)) + '\n'
         string_data += '\n'
 
         if show_data:
