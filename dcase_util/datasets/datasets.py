@@ -194,6 +194,8 @@ class Dataset(object):
                  dataset_meta=None,
 
                  evaluation_setup_folder='evaluation_setup',
+                 evaluation_setup_file_extension='txt',
+
                  meta_filename='meta.txt',
                  error_meta_filename='error.txt',
                  filelisthash_filename='filelist.python.hash',
@@ -303,6 +305,9 @@ class Dataset(object):
 
         # Evaluation setup folder
         self.evaluation_setup_folder = evaluation_setup_folder
+
+        # Evaluation setup file extension
+        self.evaluation_setup_file_extension = evaluation_setup_file_extension
 
         # Path to the folder containing evaluation setup files
         self.evaluation_setup_path = os.path.join(self.local_path, self.evaluation_setup_folder)
@@ -1035,7 +1040,7 @@ class Dataset(object):
             # Make sure filename has relative path
             item.filename = self.absolute_to_relative_path(item.filename)
 
-    def evaluation_setup_filename(self, setup_part='train', fold=None, scene_label=None, file_extension='txt'):
+    def evaluation_setup_filename(self, setup_part='train', fold=None, scene_label=None, file_extension=None):
         """Evaluation setup filename generation.
 
         Parameters
@@ -1053,8 +1058,8 @@ class Dataset(object):
             Default value None
 
         file_extension : str
-            File extension
-            Default value 'txt'
+            File extension. If None given, self.evaluation_setup_file_extension is used.
+            Default value None
 
         Raises
         ------
@@ -1070,6 +1075,9 @@ class Dataset(object):
 
         if fold == 'all_data':
             fold = None
+
+        if file_extension is None:
+            file_extension = self.evaluation_setup_file_extension
 
         parts = []
         if scene_label:
