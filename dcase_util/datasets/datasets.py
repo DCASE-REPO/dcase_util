@@ -214,65 +214,101 @@ class Dataset(object):
         ----------
         name : str
             Dataset name
+            Default value 'dataset'
 
         storage_name : str
             Name to be used when storing dataset on disk
+            Default value 'dataset'
 
         data_path : str
             Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), 'dcase_util_datasets')
-            is used.
+            is used
+            Default value None
 
         local_path : str
-            Direct storage path setup for the dataset. If None, data_path and storage_name are used to create one.
+            Direct storage path setup for the dataset. If None, data_path and storage_name are used to create one
+            Default value None
 
         show_progress_in_console : bool
-            Show progress in console.
+            Show progress in console
+            Default value True
 
         log_system_progress : bool
-            Show progress in log.
+            Show progress in log
+            Default value True
 
         use_ascii_progress_bar : bool
             Show progress bar using ASCII characters. Use this if your console does not support UTF-8 characters.
+            Default value True
 
         dataset_group : str
             Dataset group label, one of ['scene', 'event', 'tag']
+            Default value 'base class'
 
         dataset_meta : dict
             Dictionary containing metadata about the dataset, e.g., collecting device information, dataset authors.
+            Default value None
 
         evaluation_setup_folder : str
             Directory name where evaluation setup files are stores
+            Default value 'evaluation_setup'
+
+        evaluation_setup_file_extension : str
+            Setup file extension
+            Default value 'txt'
 
         meta_filename : str
-            Filename to be used for main meta file (contains all files with their reference data) of the dataset.
+            Filename to be used for main meta file (contains all files with their reference data) of the dataset
+            Default value 'meta.txt'
 
         error_meta_filename : str
-            Filename for the error annotation file.
+            Filename for the error annotation file
+            Default value 'error.txt'
 
         filelisthash_filename : str
-            Filename for filelist hash file.
+            Filename for filelist hash file
+            Default value 'filelist.python.hash'
 
         filelisthash_exclude_dirs : str
-            Directories to be excluded from filelist hash calculation.
+            Directories to be excluded from filelist hash calculation
+            Default value None
 
         crossvalidation_folds : int
             Count fo cross-validation folds. Indexing starts from one.
+            Default value None
 
         package_list : list of dict
             Package list, remote files associated to the dataset.
+            Item format:
+            {
+                'content_type': 'documentation',                            # Possible values ['meta', 'documentation', 'audio', 'code', 'features']
+                'remote_file': 'https://zenodo.org/record/45759/files/TUT-sound-events-2016-development.doc.zip', # URL
+                'remote_bytes': 70918,                                      # Size of remote file in bytes
+                'remote_md5': '33fd26a895530aef607a07b08704eacd',           # MD5 hash of remote file
+                'filename': 'TUT-sound-events-2016-development.doc.zip',    # Filename relative to self.local_path always
+            }
+            Default value None
+
+        package_extract_parameters : dict
+            Extra parameters for package extraction.
+            Default value None
 
         included_content_types : list of str or str
             Indicates what content type should be processed. One or multiple from ['all', 'audio', 'meta', 'code',
             'documentation']. If None given, ['all'] is used. Parameter can be also comma separated string.
+            Default value None
 
         audio_paths : list of str
             List of paths to include audio material associated to the dataset. If None given, ['audio'] is used.
+            Default value None
 
         default_audio_extension : str
             Default audio extension
+            Default value 'wav'
 
         reference_data_present : bool
-            Reference data is delivered with the dataset.
+            Reference data is delivered with the dataset
+            Default value True
 
         """
 
@@ -341,9 +377,9 @@ class Dataset(object):
         # {
         #    'content_type': 'documentation',  # Possible values ['meta', 'documentation', 'audio', 'code', 'features']
         #    'remote_file': 'https://zenodo.org/record/45759/files/TUT-sound-events-2016-development.doc.zip', # URL
-        #    'remote_bytes': 70918,            # Size of remote file in bytes
+        #    'remote_bytes': 70918,                             # Size of remote file in bytes
         #    'remote_md5': '33fd26a895530aef607a07b08704eacd',  # MD5 hash of remote file
-        #    'filename': 'TUT-sound-events-2016-development.doc.zip' # filename relative to self.local_path always
+        #    'filename': 'TUT-sound-events-2016-development.doc.zip', # filename relative to self.local_path always
         # }
         if package_list is None:
             package_list = []
