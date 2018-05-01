@@ -202,6 +202,7 @@ class Dataset(object):
                  filelisthash_exclude_dirs=None,
                  crossvalidation_folds=None,
                  package_list=None,
+                 package_extract_parameters=None,
                  included_content_types=None,
                  audio_paths=None,
                  default_audio_extension='wav',
@@ -352,6 +353,15 @@ class Dataset(object):
         # Expand local filenames to be related to local path
         for item in self.package_list:
             item['filename'] = os.path.join(self.local_path, item['filename'])
+
+        # Default parameters for package extraction
+        default_package_extract_parameters = DictContainer({
+            'omit_first_level': True
+        })
+
+        self.package_extract_parameters = default_package_extract_parameters
+        if package_extract_parameters is not None:
+            self.package_extract_parameters.update(package_extract_parameters)
 
         # What content type should be processed. Use this for example to access only the meta data, and exclude usually
         # large and time consuming audio material downloading. Leave to "all" to include all content types.
@@ -962,9 +972,7 @@ class Dataset(object):
                         content_type=self.included_content_types
                 ):
                     if remote_package.local_exists():
-                        remote_package.extract(
-                            omit_first_level=True
-                        )
+                        remote_package.extract(**self.package_extract_parameters)
 
                     else:
                         # Local file not present
