@@ -332,6 +332,19 @@ def test_log():
         a.log()
 
 
+def test_pad():
+    a = dcase_util.utils.Example.audio_container().mixdown()
+    a.pad(length_seconds=10)
+    nose.tools.eq_(a.duration_sec, 10)
+
+    a = dcase_util.utils.Example.audio_container()
+    a.pad(length_seconds=10)
+    nose.tools.eq_(a.duration_sec, 10)
+
+    a = dcase_util.utils.Example.audio_container_ch4()
+    a.pad(length_seconds=10)
+    nose.tools.eq_(a.duration_sec, 10)
+
 @nose.tools.raises(ValueError)
 def test_focus_channel():
     with dcase_util.utils.DisableLogger():
