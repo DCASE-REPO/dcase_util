@@ -1553,6 +1553,12 @@ class AudioContainer(ContainerMixin, FileMixin):
                         pad_width=(0,length-self.length),
                         mode='constant'
                     )
+                else:
+                    self._data = numpy.pad(
+                        array=self._data,
+                        pad_width=((0,0),(0,length-self.length)),
+                        mode='constant'
+                    )
 
         return self
 
