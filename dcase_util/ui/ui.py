@@ -1204,8 +1204,18 @@ class FancyPrinter(FancyLogger):
         }
 
         if self.colors:
-            from colorama import init
-            from colorama import Fore, Back, Style
+            try:
+                from colorama import init
+                from colorama import Fore, Back, Style
+
+            except ImportError:
+                message = '{name}: Unable to import colorama module. You can install it with `pip install colorama`.'.format(
+                    name=self.__class__.__name__
+                )
+
+                self.logger.exception(message)
+                raise ImportError(message)
+
             init()
             self.levels['reset'] = Style.RESET_ALL
             self.levels['info'] = Style.NORMAL
