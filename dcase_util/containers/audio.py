@@ -1025,8 +1025,27 @@ class AudioContainer(ContainerMixin, FileMixin):
 
             return inner
 
-        import pafy
-        from youtube_dl.utils import ExtractorError
+        try:
+            import pafy
+
+        except ImportError:
+            message = '{name}: Unable to import pafy module. You can install it with `pip install pafy`.'.format(
+                name=self.__class__.__name__
+            )
+
+            self.logger().exception(message)
+            raise ImportError(message)
+
+        try:
+            from youtube_dl.utils import ExtractorError
+
+        except ImportError:
+            message = '{name}: Unable to import youtube_dl module. You can install it with `pip install youtube-dl`.'.format(
+                name=self.__class__.__name__
+            )
+
+            self.logger().exception(message)
+            raise ImportError(message)
 
         try:
             # Access youtube video and get best quality audio stream
