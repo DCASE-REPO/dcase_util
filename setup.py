@@ -15,7 +15,6 @@ requirements = [
     'pafy>=0.5.3.1',
     'youtube-dl>=2017.10.1',
     'validators>=0.12.0',
-    'pyparsing>=2.2.0',
     'titlecase>=0.12.0',
     'python-magic>=0.4.13'
 ]
