@@ -63,7 +63,7 @@ class Serializer(object):
             import yaml
 
         except ImportError:
-            message = '{name}: Unable to import YAML module.'.format(name=cls.__class__.__name__)
+            message = '{name}: Unable to import YAML module. You can install it with `pip install pyyaml`.'.format(name=cls.__class__.__name__)
             cls.logger().exception(message)
             raise ImportError(message)
 
@@ -146,7 +146,7 @@ class Serializer(object):
                 import json
 
             except ImportError:
-                message = '{name}: Unable to import json module.'.format(
+                message = '{name}: Unable to import json module. You can install it with `pip install ujson`.'.format(
                     name=cls.__class__.__name__
                 )
 
@@ -176,7 +176,7 @@ class Serializer(object):
             import msgpack
 
         except ImportError:
-            message = '{name}: Unable to import msgpack module.'.format(
+            message = '{name}: Unable to import msgpack module. You can install it with `pip install msgpack-python`.'.format(
                 name=cls.__class__.__name__
             )
 
@@ -206,7 +206,7 @@ class Serializer(object):
             import marshal
 
         except ImportError:
-            message = '{name}: Unable to import marshal module.'.format(
+            message = '{name}: Unable to import marshal module. You can install it with `pip install pymarshal`.'.format(
                 name=cls.__class__.__name__
             )
 
@@ -237,7 +237,7 @@ class Serializer(object):
             import yaml
 
         except ImportError:
-            message = '{name}: Unable to import yaml module.'.format(
+            message = '{name}: Unable to import yaml module. You can install it with `pip install pyyaml`.'.format(
                 name=cls.__class__.__name__
             )
 
@@ -308,7 +308,7 @@ class Serializer(object):
                 import json
 
             except ImportError:
-                message = '{name}: Unable to import json module.'.format(
+                message = '{name}: Unable to import json module. You can install it with `pip install ujson`.'.format(
                     name=cls.__class__.__name__
                 )
 
@@ -339,7 +339,7 @@ class Serializer(object):
             import msgpack
 
         except ImportError:
-            message = '{name}: Unable to import msgpack module.'.format(
+            message = '{name}: Unable to import msgpack module. You can install it with `pip install msgpack-python`.'.format(
                 name=cls.__class__.__name__
             )
 
@@ -370,7 +370,7 @@ class Serializer(object):
             import marshal
 
         except ImportError:
-            message = '{name}: Unable to import marshal module.'.format(
+            message = '{name}: Unable to import marshal module. You can install it with `pip install pymarshal`.'.format(
                 name=cls.__class__.__name__
             )
 
