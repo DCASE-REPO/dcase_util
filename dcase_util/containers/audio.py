@@ -628,18 +628,23 @@ class AudioContainer(ContainerMixin, FileMixin):
             Target sampling frequency, if loaded audio does have different sampling frequency, audio will
             be re-sampled. If None given, value given to class constructor is used. If 'native' is given then
             native sampling frequency defined by audio file is used.
+            Default value 'native'
 
         mono : bool
             Monophonic target, multi-channel audio will be down-mixed.
+            Default value False
 
         res_type : str
-            Resample type, defined by Librosa
+            Resample type, defined by Librosa.
+            Default value 'kaiser_best'
 
         start : float, optional
-            Segment start time in seconds
+            Segment start time in seconds.
+            Default value None
 
         stop : float, optional
-            Segment stop time in seconds
+            Segment stop time in seconds.
+            Default value None
 
         Raises
         ------
@@ -777,11 +782,12 @@ class AudioContainer(ContainerMixin, FileMixin):
             Default value None
 
         bit_depth : int, optional
-            Bit depth for audio
+            Bit depth for audio.
             Default value 16
 
         bit_rate : int, optional
-            Bit rate for compressed audio formats
+            Bit rate for compressed audio formats.
+            Default value None
 
         Raises
         ------
@@ -979,19 +985,23 @@ class AudioContainer(ContainerMixin, FileMixin):
         Parameters
         ----------
         query_id : str
-            Youtube query id
+            Youtube query id.
 
         start : float, optional
-            Segment start time in seconds
+            Segment start time in seconds.
+            Default value None
 
         stop : float, optional
-            Segment stop time in seconds
+            Segment stop time in seconds.
+            Default value None
 
         mono : bool
             Monophonic target, multi-channel audio will be down-mixed.
+            Default value False
 
         silent : bool
-            Switch to show progress bar
+            Switch to show progress bar.
+            Default value True
 
         Raises
         ------
@@ -1116,7 +1126,8 @@ class AudioContainer(ContainerMixin, FileMixin):
         Parameters
         ----------
         headroom : float
-            How much headroom there should be left under 1.0
+            How much headroom there should be left under 1.0.
+            Default value 0.005
 
         Returns
         -------
@@ -1149,10 +1160,12 @@ class AudioContainer(ContainerMixin, FileMixin):
             Target sampling rate
 
         scale : bool
-            Scale the resampled signal to have approximately equal total energy (see `librosa.core.resample`)
+            Scale the resampled signal to have approximately equal total energy (see `librosa.core.resample`).
+            Default value True
 
         res_type : str
             Resample type (see `librosa.core.resample`)
+            Default value 'kaiser_best'
 
         Returns
         -------
@@ -1211,27 +1224,34 @@ class AudioContainer(ContainerMixin, FileMixin):
         Parameters
         ----------
         start : int
-            Sample index of focus segment start
+            Sample index of focus segment start.
+            Default value None
 
         stop : int
-            Sample index of focus segment stop
+            Sample index of focus segment stop.
+            Default value None
 
         duration : int
-            Sample count of focus segment
+            Sample count of focus segment.
+            Default value None
 
         start_seconds : float
-            Time stamp (in seconds) of focus segment start
+            Time stamp (in seconds) of focus segment start.
+            Default value None
 
         stop_seconds : float
-            Time stamp (in seconds) of focus segment stop
+            Time stamp (in seconds) of focus segment stop.
+            Default value None
 
         duration_seconds : float
-            Duration (in seconds) of focus segment
+            Duration (in seconds) of focus segment.
+            Default value None
 
         channel : int or str
             Audio channel id or name to focus. In case of stereo signal, valid channel labels to select
             single channel are 'L', 'R', 'left', and 'right' or 0, 1, and to get mixed down
             version of all channels 'mixdown'.
+            Default value None
 
         Returns
         -------
@@ -1570,6 +1590,7 @@ class AudioContainer(ContainerMixin, FileMixin):
 
         plot_type : str
             Visualization type, 'wave' for waveform plot, 'spec' for spectrogram.
+            Default value 'wave'
 
         Returns
         -------
@@ -1591,7 +1612,7 @@ class AudioContainer(ContainerMixin, FileMixin):
         ----------
 
         x_axis : str
-            X-axis type
+            X-axis type.
             Default value 'time'
 
         max_points : float
@@ -1611,7 +1632,7 @@ class AudioContainer(ContainerMixin, FileMixin):
             Default value 1.0
 
         show_filename : bool
-            Show filename as figure title
+            Show filename as figure title.
             Default value True
 
         plot : bool
@@ -1699,11 +1720,11 @@ class AudioContainer(ContainerMixin, FileMixin):
             Default value 'magma'
 
         show_filename : bool
-            Show filename as figure title
+            Show filename as figure title.
             Default value True
 
         show_colorbar : bool
-            Show color bar next to plot
+            Show color bar next to plot.
             Default value True
 
         plot : bool
@@ -1851,7 +1872,7 @@ class AudioContainer(ContainerMixin, FileMixin):
         Parameters
         ----------
         time : float
-            Time stamp in seconds
+            Time stamp in seconds.
 
         Returns
         -------
@@ -1867,7 +1888,7 @@ class AudioContainer(ContainerMixin, FileMixin):
         Parameters
         ----------
         sample : int
-            Sample index
+            Sample index.
 
         Returns
         -------
