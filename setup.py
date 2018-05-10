@@ -17,7 +17,6 @@ requirements = [
     'validators>=0.12.0',
     'pyparsing>=2.2.0',
     'titlecase>=0.12.0',
-    'colorama>=0.3.7',
     'python-magic>=0.4.13'
 ]
 
