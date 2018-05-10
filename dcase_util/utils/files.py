@@ -9,7 +9,6 @@ import argparse
 import itertools
 import platform
 import logging
-from dcase_util.utils import setup_logging
 
 
 def argument_file_exists(filename):
@@ -99,7 +98,9 @@ class Path(object):
         """Logger instance"""
         logger = logging.getLogger(__name__)
         if not logger.handlers:
+            from dcase_util.utils import setup_logging
             setup_logging()
+
         return logger
 
     def posix(self, path=None):

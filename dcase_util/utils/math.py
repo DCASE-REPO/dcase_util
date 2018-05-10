@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function, absolute_import
 import logging
-from dcase_util.utils import setup_logging
 
 
 class SimpleMathStringEvaluator(object):
@@ -203,6 +202,7 @@ class SimpleMathStringEvaluator(object):
     def logger(self):
         logger = logging.getLogger(__name__)
         if not logger.handlers:
+            from dcase_util.utils import setup_logging
             setup_logging()
 
         return logger
