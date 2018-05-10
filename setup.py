@@ -12,8 +12,6 @@ requirements = [
     'requests>=2.12.4',
     'tqdm>=4.11.2',
     'pydot-ng>= 1.0.0',
-    'pafy>=0.5.3.1',
-    'youtube-dl>=2017.10.1',
     'validators>=0.12.0',
     'python-magic>=0.4.13'
 ]
