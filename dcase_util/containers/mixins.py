@@ -572,7 +572,8 @@ class PackageMixin(object):
 
         Returns
         -------
-        self
+        list of str
+            Filenames of created packages
 
         """
 
@@ -593,7 +594,13 @@ class PackageMixin(object):
                     }
                 )
 
-        if size_limit is None:
+        package_filenames = []
+
+        total_uncompressed_size = 0
+        for item in file_list:
+            total_uncompressed_size += os.path.getsize(item['source'])
+
+        if size_limit is None or total_uncompressed_size < size_limit:
             package = None
 
             if self.format == FileFormat.ZIP:
@@ -607,6 +614,8 @@ class PackageMixin(object):
                     name=self.filename,
                     mode='w:gz'
                 )
+
+            package_filenames.append(self.filename)
 
             size_uncompressed = 0
             for item in file_list:
@@ -665,6 +674,8 @@ class PackageMixin(object):
                     mode='w:gz'
                 )
 
+            package_filenames.append(filename_template.format(package_id=package_id))
+
             progress = tqdm(
                 file_list,
                 desc="{0: <25s}".format('Compress'),
@@ -702,7 +713,12 @@ class PackageMixin(object):
                                 mode='w:gz'
                             )
 
+                        package_filenames.append(
+                            filename_template.format(package_id=package_id)
+                        )
+
                         size_uncompressed = 0
+
                     if self.format == FileFormat.ZIP:
                         package.write(
                             filename=item['source'],
@@ -731,6 +747,7 @@ class PackageMixin(object):
                         filename=item['source'],
                         package=filename_template.format(package_id=package_id)
                     )
+
                     if self.logger:
                         self.logger.exception(message)
 
@@ -738,4 +755,5 @@ class PackageMixin(object):
 
             package.close()
 
-        return self
+        return package_filenames
+
