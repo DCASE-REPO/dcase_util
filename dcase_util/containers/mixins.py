@@ -737,3 +737,5 @@ class PackageMixin(object):
                     raise IOError(message)
 
             package.close()
+
+        return self
