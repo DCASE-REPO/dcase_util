@@ -162,6 +162,20 @@ AudioTaggingDataset
     DCASE2017_Task4tagging_EvaluationSet
     CHiMEHome_DomesticAudioTag_DevelopmentSet
 
+Helpers
+-------
+
+*dcase_util.datasets.*
+
+Helper functions to access Dataset classes.
+
+.. autosummary::
+    :toctree: generated/
+
+    dataset_list
+    dataset_factory
+    dataset_exists
+
 """
 
 from .datasets import *
