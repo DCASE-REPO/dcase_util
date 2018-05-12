@@ -191,7 +191,11 @@ class DatasetPacker(object):
             all_packages = Path().file_list(path=os.path.split(package_filename)[0], extensions=os.path.splitext(package_filename)[1][1:])
             newest_package = 0
             for package in all_packages:
-                if os.path.splitext(package)[0] == os.path.splitext(package_filename)[0]:
+                base_name = os.path.splitext(package)[0]
+                if base_name[-1].isdigit():
+                    base_name = os.path.splitext(base_name)[0]
+
+                if base_name == os.path.splitext(package_filename)[0]:
                     timestamp = os.path.getmtime(package)
                     if newest_package < timestamp:
                         newest_package = timestamp
