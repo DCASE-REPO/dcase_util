@@ -173,6 +173,31 @@ def dataset_factory(dataset_class_name, **kwargs):
     return dataset_class(**dict(kwargs))
 
 
+def dataset_exists(dataset_class_name):
+    """Check dataset class based on name
+
+    Parameters
+    ----------
+    dataset_class_name : str
+        Class name
+
+    Returns
+    -------
+    bool
+
+    """
+
+    # Get all classes inherited from Dataset
+    class_list = get_class_inheritors(Dataset)
+
+    # Search correct dataset
+    for item in class_list:
+        if str(item.__name__) == dataset_class_name:
+            return True
+
+    return False
+
+
 class Dataset(object):
     """Dataset base class
 
