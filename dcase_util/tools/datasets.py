@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 from dcase_util.ui import FancyLogger
 from dcase_util.files import Package
-from dcase_util.utils import get_byte_string
+from dcase_util.utils import get_byte_string, Path
 import os
 import codecs
 import logging
@@ -187,7 +187,16 @@ class DatasetPacker(object):
                 if newest_source < timestamp:
                     newest_source = timestamp
 
-            if not os.path.exists(package_filename) or os.path.getmtime(package_filename) < newest_source or overwrite:
+            # Get newest package, take care of split packages
+            all_packages = Path().file_list(path=os.path.split(package_filename)[0], extensions=os.path.splitext(package_filename)[1][1:])
+            newest_package = 0
+            for package in all_packages:
+                if os.path.splitext(package)[0] == os.path.splitext(package_filename)[0]:
+                    timestamp = os.path.getmtime(package)
+                    if newest_package < timestamp:
+                        newest_package = timestamp
+
+            if not os.path.exists(package_filename) or newest_package < newest_source or overwrite:
                 if self.convert_md_to_html:
                     # Check for markdown content
                     new_files = []
