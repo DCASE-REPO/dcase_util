@@ -200,7 +200,7 @@ class DatasetPacker(object):
                     if newest_package < timestamp:
                         newest_package = timestamp
 
-            if not os.path.exists(package_filename) or newest_package < newest_source or overwrite:
+            if newest_package < newest_source or overwrite:
                 if self.convert_md_to_html:
                     # Check for markdown content
                     new_files = []
