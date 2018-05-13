@@ -217,7 +217,8 @@ def test_TUTAcousticScenes_2017_DevelopmentSet():
             fold=1,
             validation_amount=0.5,
             split_type='random',
-            verbose=True
+            iterations=10,
+            verbose=False
         )
 
     nose.tools.eq_(set(rand_train).intersection(rand_validation), set())
@@ -227,7 +228,8 @@ def test_TUTAcousticScenes_2017_DevelopmentSet():
             fold=1,
             validation_amount=0.5,
             split_type='balanced',
-            verbose=True
+            iterations=10,
+            verbose=False
         )
 
     nose.tools.eq_(set(bal_train).intersection(bal_validation), set())
@@ -353,7 +355,7 @@ def test_TUTSoundEvents_2017_DevelopmentSet():
             fold=1,
             validation_amount=0.5,
             split_type='random',
-            verbose=True
+            verbose=False
         )
 
     nose.tools.eq_(set(rand_train).intersection(rand_validation), set())
@@ -363,7 +365,8 @@ def test_TUTSoundEvents_2017_DevelopmentSet():
             fold=1,
             validation_amount=0.5,
             split_type='balanced',
-            verbose=True
+            iterations=10,
+            verbose=False
         )
 
     nose.tools.eq_(set(bal_train).intersection(bal_validation), set())
