@@ -2630,7 +2630,7 @@ class TUTSoundEvents_2016_DevelopmentSet(SoundEventDataset):
     """
 
     def __init__(self,
-                 storage_name='TUT-acoustic-scenes-2016-development',
+                 storage_name='TUT-sound-events-2016-development',
                  data_path=None,
                  included_content_types=None,
                  **kwargs):
