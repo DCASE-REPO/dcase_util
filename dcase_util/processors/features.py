@@ -27,36 +27,44 @@ class FeatureReadingProcessor(Processor):
                 focus_start_seconds=None, focus_stop_seconds=None, focus_duration_seconds=None,
                 store_processing_chain=False,
                 **kwargs):
-        """Meta data reading.
+        """Data reading.
 
         Parameters
         ----------
         data : FeatureContainer
-            Input feature data
+            Input feature data.
+            Default value None
 
         filename : str
             Filename of the feature container to load.
+            Default value None
 
         focus_start : int, optional
-            Segment start, frame index of focus segment start
+            Segment start, frame index of focus segment start.
+            Default value None
 
         focus_stop : int, optional
-            Segment end, Frame index of focus segment stop
+            Segment end, Frame index of focus segment stop.
+            Default value None
 
         focus_duration : int, optional
-            Segment duration, Frame count of focus segment
+            Segment duration, Frame count of focus segment.
+            Default value None
 
         focus_start_seconds : float > 0.0
-            Segment start, seconds
+            Segment start, seconds.
+            Default value None
 
         focus_stop_seconds : float > 0.0
-            Segment end, seconds
+            Segment end, seconds.
+            Default value None
 
         focus_duration_seconds : float
-            Segment duration, seconds
+            Segment duration, seconds.
+            Default value None
 
         store_processing_chain : bool
-            Store processing chain to data container returned
+            Store processing chain to data container returned.
             Default value False
 
         Returns
@@ -146,12 +154,12 @@ class RepositoryFeatureReadingProcessor(Processor):
                 data=None, filename=None,
                 store_processing_chain=False,
                 **kwargs):
-        """Meta data reading.
+        """Data repository reading.
 
         Parameters
         ----------
         data : FeatureContainer
-            Input feature data
+            Input feature data.
             Default value None
 
         filename : str
@@ -159,7 +167,7 @@ class RepositoryFeatureReadingProcessor(Processor):
             Default value None
 
         store_processing_chain : bool
-            Store processing chain to data container returned
+            Store processing chain to data container returned.
             Default value False
 
         Returns
