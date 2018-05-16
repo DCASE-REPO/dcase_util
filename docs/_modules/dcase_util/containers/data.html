@@ -1008,6 +1008,16 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.MonoAudioReadingProcessor.process.html">dcase_util.processors.MonoAudioReadingProcessor.process</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../../../processors.html#audiowritingprocessor">AudioWritingProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.AudioWritingProcessor.html">dcase_util.processors.AudioWritingProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.AudioWritingProcessor.process.html">dcase_util.processors.AudioWritingProcessor.process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../processors.html#monoaudiowritingprocessor">MonoAudioWritingProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.MonoAudioWritingProcessor.html">dcase_util.processors.MonoAudioWritingProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.MonoAudioWritingProcessor.process.html">dcase_util.processors.MonoAudioWritingProcessor.process</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../processors.html#data">Data</a><ul>
@@ -1082,6 +1092,21 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../processors.html#featurereadingprocessor">FeatureReadingProcessor</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.FeatureReadingProcessor.html">dcase_util.processors.FeatureReadingProcessor</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.FeatureReadingProcessor.process.html">dcase_util.processors.FeatureReadingProcessor.process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../processors.html#featurewritingprocessor">FeatureWritingProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.FeatureWritingProcessor.html">dcase_util.processors.FeatureWritingProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.FeatureWritingProcessor.process.html">dcase_util.processors.FeatureWritingProcessor.process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../processors.html#repositoryfeaturereadingprocessor">RepositoryFeatureReadingProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.RepositoryFeatureReadingProcessor.html">dcase_util.processors.RepositoryFeatureReadingProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.RepositoryFeatureReadingProcessor.process.html">dcase_util.processors.RepositoryFeatureReadingProcessor.process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../processors.html#repositoryfeaturewritingprocessor">RepositoryFeatureWritingProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.RepositoryFeatureWritingProcessor.html">dcase_util.processors.RepositoryFeatureWritingProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.RepositoryFeatureWritingProcessor.process.html">dcase_util.processors.RepositoryFeatureWritingProcessor.process</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../processors.html#repositoryfeatureextractorprocessor">RepositoryFeatureExtractorProcessor</a><ul>
@@ -1360,6 +1385,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-3">v0.2.3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-2">v0.2.2</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-1">v0.2.1</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-0">v0.2.0</a></li>
@@ -3467,7 +3493,11 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">default_stream_id</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;default_stream_id&#39;</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">processing_chain</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;processing_chain&#39;</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">item_class</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;item_class&#39;</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">processing_chain</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;processing_chain&#39;</span><span class="p">]</span>
+
+        <span class="c1"># Remove internal variables from dict</span>
+        <span class="k">del</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;default_stream_id&#39;</span><span class="p">]</span>
+        <span class="k">del</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;processing_chain&#39;</span><span class="p">]</span>
+        <span class="k">del</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;item_class&#39;</span><span class="p">]</span>
 
     <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">ui</span> <span class="o">=</span> <span class="n">FancyStringifier</span><span class="p">()</span>
@@ -3545,6 +3575,7 @@
 
         <span class="k">if</span> <span class="n">label</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
             <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="p">[</span><span class="n">label</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">None</span>
 

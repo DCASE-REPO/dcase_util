@@ -10,8 +10,10 @@ All processors classes are inherited from `dcase_util.processors.Processor`.
 
 Audio related processors:
 
-- `dcase_util.processors.AudioReadingProcessor`, audio reading, suppors multi-channel audio.
+- `dcase_util.processors.AudioReadingProcessor`, audio reading, supports multi-channel audio.
+- `dcase_util.processors.AudioWritingProcessor`, audio writing, supports multi-channel audio.
 - `dcase_util.processors.MonoAudioReadingProcessor`, audio reading, in case of multi-channel audio channels will be mixed down into single channel.
+- `dcase_util.processors.MonoAudioWritingProcessor`, audio writing, in case of multi-channel audio channels will be mixed down into single channel.
 
 Data manipulation processors:
 
@@ -38,7 +40,9 @@ Data encoding processors:
 Feature extraction processors:
 
 - `dcase_util.processors.FeatureReadingProcessor`, reading features from a file.
-- `dcase_util.processors.RepositoryFeatureExtractorProcessor`, reading features from a file and storing them in the data repository.
+- `dcase_util.processors.FeatureWritingProcessor`, writing features into a file.
+- `dcase_util.processors.RepositoryFeatureReadingProcessor`, reading features from a file and storing them in the data repository.
+- `dcase_util.processors.RepositoryFeatureWritingProcessor`, writing feature repository into a file.
 
 - `dcase_util.processors.FeatureExtractorProcessor`, extracting features.
 - `dcase_util.processors.RepositoryFeatureExtractorProcessor`, extracting many feature types at the same time, and storing them into single repository. Supports multi-channel audio input.

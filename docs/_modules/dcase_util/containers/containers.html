@@ -1008,6 +1008,16 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.MonoAudioReadingProcessor.process.html">dcase_util.processors.MonoAudioReadingProcessor.process</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../../../processors.html#audiowritingprocessor">AudioWritingProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.AudioWritingProcessor.html">dcase_util.processors.AudioWritingProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.AudioWritingProcessor.process.html">dcase_util.processors.AudioWritingProcessor.process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../processors.html#monoaudiowritingprocessor">MonoAudioWritingProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.MonoAudioWritingProcessor.html">dcase_util.processors.MonoAudioWritingProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.MonoAudioWritingProcessor.process.html">dcase_util.processors.MonoAudioWritingProcessor.process</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../processors.html#data">Data</a><ul>
@@ -1082,6 +1092,21 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../processors.html#featurereadingprocessor">FeatureReadingProcessor</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.FeatureReadingProcessor.html">dcase_util.processors.FeatureReadingProcessor</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.FeatureReadingProcessor.process.html">dcase_util.processors.FeatureReadingProcessor.process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../processors.html#featurewritingprocessor">FeatureWritingProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.FeatureWritingProcessor.html">dcase_util.processors.FeatureWritingProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.FeatureWritingProcessor.process.html">dcase_util.processors.FeatureWritingProcessor.process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../processors.html#repositoryfeaturereadingprocessor">RepositoryFeatureReadingProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.RepositoryFeatureReadingProcessor.html">dcase_util.processors.RepositoryFeatureReadingProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.RepositoryFeatureReadingProcessor.process.html">dcase_util.processors.RepositoryFeatureReadingProcessor.process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../processors.html#repositoryfeaturewritingprocessor">RepositoryFeatureWritingProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.RepositoryFeatureWritingProcessor.html">dcase_util.processors.RepositoryFeatureWritingProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.RepositoryFeatureWritingProcessor.process.html">dcase_util.processors.RepositoryFeatureWritingProcessor.process</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../processors.html#repositoryfeatureextractorprocessor">RepositoryFeatureExtractorProcessor</a><ul>
@@ -1360,6 +1385,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-3">v0.2.3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-2">v0.2.2</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-1">v0.2.1</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-0">v0.2.0</a></li>
@@ -1974,6 +2000,9 @@
             <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: File does not exists [</span><span class="si">{file}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
             <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+        <span class="c1"># Call __setstate__ to handle internal variables of the class</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__setstate__</span><span class="p">(</span><span class="n">d</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
 
         <span class="c1"># Check if after load function is defined, call if found</span>
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_after_load&#39;</span><span class="p">):</span>

@@ -2028,7 +2028,11 @@ class DataRepository(RepositoryContainer):
         self.default_stream_id = d['default_stream_id']
         self.processing_chain = d['processing_chain']
         self.item_class = d['item_class']
-        self.processing_chain = d['processing_chain']
+
+        # Remove internal variables from dict
+        del d['default_stream_id']
+        del d['processing_chain']
+        del d['item_class']
 
     def __str__(self):
         ui = FancyStringifier()
@@ -2106,6 +2110,7 @@ class DataRepository(RepositoryContainer):
 
         if label in self:
             return sorted(list(self[label].keys()))
+
         else:
             return None
 

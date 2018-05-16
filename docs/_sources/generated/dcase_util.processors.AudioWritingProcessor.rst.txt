@@ -1,0 +1,46 @@
+dcase_util.processors.AudioWritingProcessor
+===========================================
+
+.. currentmodule:: dcase_util.processors
+
+.. autoclass:: AudioWritingProcessor
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~AudioWritingProcessor.__init__
+      ~AudioWritingProcessor.delimiter
+      ~AudioWritingProcessor.detect_file_format
+      ~AudioWritingProcessor.empty
+      ~AudioWritingProcessor.exists
+      ~AudioWritingProcessor.get_file_information
+      ~AudioWritingProcessor.get_processing_chain_item
+      ~AudioWritingProcessor.is_package
+      ~AudioWritingProcessor.load
+      ~AudioWritingProcessor.log
+      ~AudioWritingProcessor.process
+      ~AudioWritingProcessor.save
+      ~AudioWritingProcessor.show
+      ~AudioWritingProcessor.validate_format
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~AudioWritingProcessor.bytes
+      ~AudioWritingProcessor.input_type
+      ~AudioWritingProcessor.logger
+      ~AudioWritingProcessor.md5
+      ~AudioWritingProcessor.output_type
+      ~AudioWritingProcessor.valid_formats
+   
+   

@@ -27,36 +27,44 @@ class FeatureReadingProcessor(Processor):
                 focus_start_seconds=None, focus_stop_seconds=None, focus_duration_seconds=None,
                 store_processing_chain=False,
                 **kwargs):
-        """Meta data reading.
+        """Data reading.
 
         Parameters
         ----------
         data : FeatureContainer
-            Input feature data
+            Input feature data.
+            Default value None
 
         filename : str
             Filename of the feature container to load.
+            Default value None
 
         focus_start : int, optional
-            Segment start, frame index of focus segment start
+            Segment start, frame index of focus segment start.
+            Default value None
 
         focus_stop : int, optional
-            Segment end, Frame index of focus segment stop
+            Segment end, Frame index of focus segment stop.
+            Default value None
 
         focus_duration : int, optional
-            Segment duration, Frame count of focus segment
+            Segment duration, Frame count of focus segment.
+            Default value None
 
         focus_start_seconds : float > 0.0
-            Segment start, seconds
+            Segment start, seconds.
+            Default value None
 
         focus_stop_seconds : float > 0.0
-            Segment end, seconds
+            Segment end, seconds.
+            Default value None
 
         focus_duration_seconds : float
-            Segment duration, seconds
+            Segment duration, seconds.
+            Default value None
 
         store_processing_chain : bool
-            Store processing chain to data container returned
+            Store processing chain to data container returned.
             Default value False
 
         Returns
@@ -132,6 +140,64 @@ class FeatureReadingProcessor(Processor):
             raise ValueError(message)
 
 
+class FeatureWritingProcessor(Processor):
+    input_type = ProcessingChainItemType.DATA_CONTAINER  #: Input data type
+    output_type = ProcessingChainItemType.NONE  #: Output data type
+
+    def __init__(self, *args, **kwargs):
+        """Constructor"""
+
+        # Run super init to call init of mixins too
+        super(FeatureWritingProcessor, self).__init__(*args, **kwargs)
+
+    def process(self,
+                data=None, output_filename=None, store_processing_chain=False,
+                **kwargs):
+        """Data writing.
+
+        Parameters
+        ----------
+        data : FeatureContainer
+            Input feature data.
+            Default value None
+
+        output_filename : str
+            Filename of the feature container to save.
+            Default value None
+
+        store_processing_chain : bool
+            Store processing chain to data container
+            Default value False
+
+        Returns
+        -------
+        self
+
+        """
+
+        if data:
+            container = FeatureContainer(data=data)
+
+            if store_processing_chain:
+                container.processing_chain = data.processing_chain
+
+            if output_filename:
+                # Load features from disk
+                container.save(
+                    filename=output_filename
+                )
+
+            return container
+
+        else:
+            message = '{name}: No input data.'.format(
+                name=self.__class__.__name__
+            )
+
+            self.logger.exception(message)
+            raise ValueError(message)
+
+
 class RepositoryFeatureReadingProcessor(Processor):
     input_type = ProcessingChainItemType.NONE  #: Input data type
     output_type = ProcessingChainItemType.DATA_REPOSITORY  #: Output data type
@@ -146,12 +212,12 @@ class RepositoryFeatureReadingProcessor(Processor):
                 data=None, filename=None,
                 store_processing_chain=False,
                 **kwargs):
-        """Meta data reading.
+        """Data repository reading.
 
         Parameters
         ----------
         data : FeatureContainer
-            Input feature data
+            Input feature data.
             Default value None
 
         filename : str
@@ -159,7 +225,7 @@ class RepositoryFeatureReadingProcessor(Processor):
             Default value None
 
         store_processing_chain : bool
-            Store processing chain to data container returned
+            Store processing chain to data container returned.
             Default value False
 
         Returns
@@ -191,6 +257,64 @@ class RepositoryFeatureReadingProcessor(Processor):
             message = '{name}: Wrong input data type, type required [{input_type}].'.format(
                 name=self.__class__.__name__,
                 input_type=self.input_type)
+
+            self.logger.exception(message)
+            raise ValueError(message)
+
+
+class RepositoryFeatureWritingProcessor(Processor):
+    input_type = ProcessingChainItemType.DATA_REPOSITORY  #: Input data type
+    output_type = ProcessingChainItemType.NONE  #: Output data type
+
+    def __init__(self, *args, **kwargs):
+        """Constructor"""
+
+        # Run super init to call init of mixins too
+        super(RepositoryFeatureWritingProcessor, self).__init__(*args, **kwargs)
+
+    def process(self,
+                data=None, output_filename=None, store_processing_chain=False,
+                **kwargs):
+        """Data repository writing.
+
+        Parameters
+        ----------
+        data : FeatureContainer
+            Input feature data.
+            Default value None
+
+        output_filename : str
+            Filename of the feature container to save.
+            Default value None
+
+        store_processing_chain : bool
+            Store processing chain to data container
+            Default value False
+
+        Returns
+        -------
+        self
+
+        """
+
+        if data:
+            repository = FeatureRepository(data=data)
+
+            if store_processing_chain:
+                repository.processing_chain = data.processing_chain
+
+            if output_filename:
+                # Load features from disk
+                repository.save(
+                    filename=output_filename
+                )
+
+            return repository
+
+        else:
+            message = '{name}: No input data.'.format(
+                name=self.__class__.__name__
+            )
 
             self.logger.exception(message)
             raise ValueError(message)

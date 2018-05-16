@@ -66,6 +66,28 @@ MonoAudioReadingProcessor
     MonoAudioReadingProcessor
     MonoAudioReadingProcessor.process
 
+AudioWritingProcessor
+---------------------
+
+*dcase_util.processors.AudioWritingProcessor*
+
+.. autosummary::
+    :toctree: generated/
+
+    AudioWritingProcessor
+    AudioWritingProcessor.process
+
+MonoAudioWritingProcessor
+-------------------------
+
+*dcase_util.processors.MonoAudioWritingProcessor*
+
+.. autosummary::
+    :toctree: generated/
+
+    MonoAudioWritingProcessor
+    MonoAudioWritingProcessor.process
+
 Data
 ::::
 
@@ -226,6 +248,39 @@ FeatureReadingProcessor
 
     FeatureReadingProcessor
     FeatureReadingProcessor.process
+
+FeatureWritingProcessor
+-----------------------
+
+*dcase_util.processors.FeatureWritingProcessor*
+
+.. autosummary::
+    :toctree: generated/
+
+    FeatureWritingProcessor
+    FeatureWritingProcessor.process
+
+RepositoryFeatureReadingProcessor
+---------------------------------
+
+*dcase_util.processors.RepositoryFeatureReadingProcessor*
+
+.. autosummary::
+    :toctree: generated/
+
+    RepositoryFeatureReadingProcessor
+    RepositoryFeatureReadingProcessor.process
+
+RepositoryFeatureWritingProcessor
+---------------------------------
+
+*dcase_util.processors.RepositoryFeatureWritingProcessor*
+
+.. autosummary::
+    :toctree: generated/
+
+    RepositoryFeatureWritingProcessor
+    RepositoryFeatureWritingProcessor.process
 
 RepositoryFeatureExtractorProcessor
 -----------------------------------

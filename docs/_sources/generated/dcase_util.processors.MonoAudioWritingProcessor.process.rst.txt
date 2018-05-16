@@ -1,0 +1,6 @@
+dcase_util.processors.MonoAudioWritingProcessor.process
+=======================================================
+
+.. currentmodule:: dcase_util.processors
+
+.. automethod:: MonoAudioWritingProcessor.process

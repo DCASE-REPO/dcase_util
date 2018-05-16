@@ -1,0 +1,46 @@
+dcase_util.processors.RepositoryFeatureWritingProcessor
+=======================================================
+
+.. currentmodule:: dcase_util.processors
+
+.. autoclass:: RepositoryFeatureWritingProcessor
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~RepositoryFeatureWritingProcessor.__init__
+      ~RepositoryFeatureWritingProcessor.delimiter
+      ~RepositoryFeatureWritingProcessor.detect_file_format
+      ~RepositoryFeatureWritingProcessor.empty
+      ~RepositoryFeatureWritingProcessor.exists
+      ~RepositoryFeatureWritingProcessor.get_file_information
+      ~RepositoryFeatureWritingProcessor.get_processing_chain_item
+      ~RepositoryFeatureWritingProcessor.is_package
+      ~RepositoryFeatureWritingProcessor.load
+      ~RepositoryFeatureWritingProcessor.log
+      ~RepositoryFeatureWritingProcessor.process
+      ~RepositoryFeatureWritingProcessor.save
+      ~RepositoryFeatureWritingProcessor.show
+      ~RepositoryFeatureWritingProcessor.validate_format
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~RepositoryFeatureWritingProcessor.bytes
+      ~RepositoryFeatureWritingProcessor.input_type
+      ~RepositoryFeatureWritingProcessor.logger
+      ~RepositoryFeatureWritingProcessor.md5
+      ~RepositoryFeatureWritingProcessor.output_type
+      ~RepositoryFeatureWritingProcessor.valid_formats
+   
+   

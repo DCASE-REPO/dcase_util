@@ -1009,6 +1009,16 @@
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.MonoAudioReadingProcessor.process.html">dcase_util.processors.MonoAudioReadingProcessor.process</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="processors.html#audiowritingprocessor">AudioWritingProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.AudioWritingProcessor.html">dcase_util.processors.AudioWritingProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.AudioWritingProcessor.process.html">dcase_util.processors.AudioWritingProcessor.process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="processors.html#monoaudiowritingprocessor">MonoAudioWritingProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.MonoAudioWritingProcessor.html">dcase_util.processors.MonoAudioWritingProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.MonoAudioWritingProcessor.process.html">dcase_util.processors.MonoAudioWritingProcessor.process</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="processors.html#data">Data</a><ul>
@@ -1083,6 +1093,21 @@
 <li class="toctree-l3"><a class="reference internal" href="processors.html#featurereadingprocessor">FeatureReadingProcessor</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.FeatureReadingProcessor.html">dcase_util.processors.FeatureReadingProcessor</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.FeatureReadingProcessor.process.html">dcase_util.processors.FeatureReadingProcessor.process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="processors.html#featurewritingprocessor">FeatureWritingProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.FeatureWritingProcessor.html">dcase_util.processors.FeatureWritingProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.FeatureWritingProcessor.process.html">dcase_util.processors.FeatureWritingProcessor.process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="processors.html#repositoryfeaturereadingprocessor">RepositoryFeatureReadingProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.RepositoryFeatureReadingProcessor.html">dcase_util.processors.RepositoryFeatureReadingProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.RepositoryFeatureReadingProcessor.process.html">dcase_util.processors.RepositoryFeatureReadingProcessor.process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="processors.html#repositoryfeaturewritingprocessor">RepositoryFeatureWritingProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.RepositoryFeatureWritingProcessor.html">dcase_util.processors.RepositoryFeatureWritingProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.RepositoryFeatureWritingProcessor.process.html">dcase_util.processors.RepositoryFeatureWritingProcessor.process</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="processors.html#repositoryfeatureextractorprocessor">RepositoryFeatureExtractorProcessor</a><ul>
@@ -1443,8 +1468,10 @@ which are contained in the <strong>processing chain</strong> (a list of processo
 All processors classes are inherited from <a class="reference internal" href="generated/dcase_util.processors.Processor.html#dcase_util.processors.Processor" title="dcase_util.processors.Processor"><code class="xref py py-obj docutils literal"><span class="pre">dcase_util.processors.Processor</span></code></a>.</p>
 <p>Audio related processors:</p>
 <ul class="simple">
-<li><a class="reference internal" href="generated/dcase_util.processors.AudioReadingProcessor.html#dcase_util.processors.AudioReadingProcessor" title="dcase_util.processors.AudioReadingProcessor"><code class="xref py py-obj docutils literal"><span class="pre">dcase_util.processors.AudioReadingProcessor</span></code></a>, audio reading, suppors multi-channel audio.</li>
+<li><a class="reference internal" href="generated/dcase_util.processors.AudioReadingProcessor.html#dcase_util.processors.AudioReadingProcessor" title="dcase_util.processors.AudioReadingProcessor"><code class="xref py py-obj docutils literal"><span class="pre">dcase_util.processors.AudioReadingProcessor</span></code></a>, audio reading, supports multi-channel audio.</li>
+<li><a class="reference internal" href="generated/dcase_util.processors.AudioWritingProcessor.html#dcase_util.processors.AudioWritingProcessor" title="dcase_util.processors.AudioWritingProcessor"><code class="xref py py-obj docutils literal"><span class="pre">dcase_util.processors.AudioWritingProcessor</span></code></a>, audio writing, supports multi-channel audio.</li>
 <li><a class="reference internal" href="generated/dcase_util.processors.MonoAudioReadingProcessor.html#dcase_util.processors.MonoAudioReadingProcessor" title="dcase_util.processors.MonoAudioReadingProcessor"><code class="xref py py-obj docutils literal"><span class="pre">dcase_util.processors.MonoAudioReadingProcessor</span></code></a>, audio reading, in case of multi-channel audio channels will be mixed down into single channel.</li>
+<li><a class="reference internal" href="generated/dcase_util.processors.MonoAudioWritingProcessor.html#dcase_util.processors.MonoAudioWritingProcessor" title="dcase_util.processors.MonoAudioWritingProcessor"><code class="xref py py-obj docutils literal"><span class="pre">dcase_util.processors.MonoAudioWritingProcessor</span></code></a>, audio writing, in case of multi-channel audio channels will be mixed down into single channel.</li>
 </ul>
 <p>Data manipulation processors:</p>
 <ul class="simple">
@@ -1468,7 +1495,9 @@ All processors classes are inherited from <a class="reference internal" href="ge
 <p>Feature extraction processors:</p>
 <ul class="simple">
 <li><a class="reference internal" href="generated/dcase_util.processors.FeatureReadingProcessor.html#dcase_util.processors.FeatureReadingProcessor" title="dcase_util.processors.FeatureReadingProcessor"><code class="xref py py-obj docutils literal"><span class="pre">dcase_util.processors.FeatureReadingProcessor</span></code></a>, reading features from a file.</li>
-<li><a class="reference internal" href="generated/dcase_util.processors.RepositoryFeatureExtractorProcessor.html#dcase_util.processors.RepositoryFeatureExtractorProcessor" title="dcase_util.processors.RepositoryFeatureExtractorProcessor"><code class="xref py py-obj docutils literal"><span class="pre">dcase_util.processors.RepositoryFeatureExtractorProcessor</span></code></a>, reading features from a file and storing them in the data repository.</li>
+<li><a class="reference internal" href="generated/dcase_util.processors.FeatureWritingProcessor.html#dcase_util.processors.FeatureWritingProcessor" title="dcase_util.processors.FeatureWritingProcessor"><code class="xref py py-obj docutils literal"><span class="pre">dcase_util.processors.FeatureWritingProcessor</span></code></a>, writing features into a file.</li>
+<li><a class="reference internal" href="generated/dcase_util.processors.RepositoryFeatureReadingProcessor.html#dcase_util.processors.RepositoryFeatureReadingProcessor" title="dcase_util.processors.RepositoryFeatureReadingProcessor"><code class="xref py py-obj docutils literal"><span class="pre">dcase_util.processors.RepositoryFeatureReadingProcessor</span></code></a>, reading features from a file and storing them in the data repository.</li>
+<li><a class="reference internal" href="generated/dcase_util.processors.RepositoryFeatureWritingProcessor.html#dcase_util.processors.RepositoryFeatureWritingProcessor" title="dcase_util.processors.RepositoryFeatureWritingProcessor"><code class="xref py py-obj docutils literal"><span class="pre">dcase_util.processors.RepositoryFeatureWritingProcessor</span></code></a>, writing feature repository into a file.</li>
 <li><a class="reference internal" href="generated/dcase_util.processors.FeatureExtractorProcessor.html#dcase_util.processors.FeatureExtractorProcessor" title="dcase_util.processors.FeatureExtractorProcessor"><code class="xref py py-obj docutils literal"><span class="pre">dcase_util.processors.FeatureExtractorProcessor</span></code></a>, extracting features.</li>
 <li><a class="reference internal" href="generated/dcase_util.processors.RepositoryFeatureExtractorProcessor.html#dcase_util.processors.RepositoryFeatureExtractorProcessor" title="dcase_util.processors.RepositoryFeatureExtractorProcessor"><code class="xref py py-obj docutils literal"><span class="pre">dcase_util.processors.RepositoryFeatureExtractorProcessor</span></code></a>, extracting many feature types at the same time, and storing them into single repository. Supports multi-channel audio input.</li>
 <li><a class="reference internal" href="generated/dcase_util.processors.MelExtractorProcessor.html#dcase_util.processors.MelExtractorProcessor" title="dcase_util.processors.MelExtractorProcessor"><code class="xref py py-obj docutils literal"><span class="pre">dcase_util.processors.MelExtractorProcessor</span></code></a>, extracting mel-band energies. Supports only single channel audio.</li>
