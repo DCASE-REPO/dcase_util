@@ -25,7 +25,7 @@ except (IOError, ImportError, RuntimeError):
 
 setup(
     name='dcase_util',
-    version='0.2.1',
+    version='0.2.2',
     description='A collection of utilities for Detection and Classification of Acoustic Scenes and Events',
     author='Toni Heittola',
     author_email='toni.heittola@gmail.com',
