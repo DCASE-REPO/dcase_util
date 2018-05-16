@@ -1,0 +1,73 @@
+dcase_util.datasets.TUTUrbanAcousticScenes_2018_LeaderboardSet
+==============================================================
+
+.. currentmodule:: dcase_util.datasets
+
+.. autoclass:: TUTUrbanAcousticScenes_2018_LeaderboardSet
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.__init__
+      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.absolute_to_relative_path
+      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.check_filelist
+      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.dataset_bytes
+      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.dataset_size_on_disk
+      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.dataset_size_string
+      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.debug_packages
+      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.download_packages
+      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.eval
+      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.eval_files
+      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.evaluation_setup_filename
+      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.event_label_count
+      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.event_labels
+      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.extract_packages
+      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.file_error_meta
+      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.file_features
+      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.file_meta
+      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.folds
+      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.initialize
+      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.load
+      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.load_crossvalidation_data
+      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.load_meta
+      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.log
+      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.prepare
+      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.process_meta_item
+      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.relative_to_absolute_path
+      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.scene_label_count
+      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.scene_labels
+      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.show
+      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.tag_count
+      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.tags
+      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.test
+      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.test_files
+      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.train
+      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.train_files
+      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.validation_files_balanced
+      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.validation_files_dataset
+      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.validation_files_random
+      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.validation_split
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.audio_file_count
+      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.audio_files
+      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.error_meta
+      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.error_meta_count
+      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.fold_count
+      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.logger
+      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.meta
+      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.meta_count
+   
+   
