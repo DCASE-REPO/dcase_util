@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from __future__ import print_function, absolute_import
+import copy
 from dcase_util.containers import AudioContainer
 from dcase_util.processors import Processor, ProcessingChainItemType, ProcessingChain
 
@@ -206,3 +207,122 @@ class MonoAudioReadingProcessor(AudioReadingProcessor):
 
         # Run super init to call init of mixins too
         super(MonoAudioReadingProcessor, self).__init__(**kwargs)
+
+
+class AudioWritingProcessor(Processor):
+    input_type = ProcessingChainItemType.AUDIO  #: Input data type
+    output_type = ProcessingChainItemType.NONE  #: Output data type
+
+    def __init__(self, *args, **kwargs):
+        """Constructor"""
+
+        # Run super init to call init of mixins too
+        super(AudioWritingProcessor, self).__init__(*args, **kwargs)
+
+    def process(self, data=None, output_filename=None,
+                bit_depth=16, bit_rate=None,
+                **kwargs):
+        """Audio writing
+
+        Parameters
+        ----------
+        data :
+
+        output_filename : str
+            Filename
+
+        bit_depth : int, optional
+            Bit depth for audio.
+            Default value 16
+
+        bit_rate : int, optional
+            Bit rate for compressed audio formats.
+            Default value None
+
+        Returns
+        -------
+        AudioContainer
+
+        """
+
+        if data and isinstance(data, AudioContainer):
+            audio_container = copy.deepcopy(data)
+
+            if output_filename:
+                audio_container.save(
+                    filename=output_filename,
+                    bit_depth=bit_depth,
+                    bit_rate=bit_rate
+                )
+
+            return audio_container
+
+        else:
+            message = '{name}: Wrong input data type, type required [{input_type}].'.format(
+                name=self.__class__.__name__,
+                input_type=self.input_type
+            )
+
+            self.logger.exception(message)
+            raise ValueError(message)
+
+
+class MonoAudioWritingProcessor(Processor):
+    input_type = ProcessingChainItemType.AUDIO  #: Input data type
+    output_type = ProcessingChainItemType.NONE  #: Output data type
+
+    def __init__(self, *args, **kwargs):
+        """Constructor"""
+
+        # Run super init to call init of mixins too
+        super(MonoAudioWritingProcessor, self).__init__(*args, **kwargs)
+
+    def process(self, data=None, output_filename=None,
+                bit_depth=16, bit_rate=None,
+                **kwargs):
+        """Audio writing
+
+        Parameters
+        ----------
+        data :
+
+        output_filename : str
+            Filename
+
+        bit_depth : int, optional
+            Bit depth for audio.
+            Default value 16
+
+        bit_rate : int, optional
+            Bit rate for compressed audio formats.
+            Default value None
+
+        Returns
+        -------
+        AudioContainer
+
+        """
+
+        if data and isinstance(data, AudioContainer):
+            audio_container = copy.deepcopy(data)
+
+            audio_container.mixdown()
+
+            if output_filename:
+                audio_container.save(
+                    filename=output_filename,
+                    bit_depth=bit_depth,
+                    bit_rate=bit_rate
+                )
+
+            return audio_container
+
+        else:
+            message = '{name}: Wrong input data type, type required [{input_type}].'.format(
+                name=self.__class__.__name__,
+                input_type=self.input_type
+            )
+
+            self.logger.exception(message)
+            raise ValueError(message)
+
