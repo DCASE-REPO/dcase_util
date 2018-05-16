@@ -536,6 +536,9 @@ class DictContainer(dict, ContainerMixin, FileMixin):
             self.logger.exception(message)
             raise IOError(message)
 
+        # Call __setstate__ to handle internal variables of the class
+        self.__setstate__(d=self)
+
         # Check if after load function is defined, call if found
         if hasattr(self, '_after_load'):
             self._after_load()
