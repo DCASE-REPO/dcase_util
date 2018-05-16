@@ -41,7 +41,7 @@
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="DCASE Utilities 1.0 documentation" href="../index.html"/>
         <link rel="up" title="Processors" href="../processors.html"/>
-        <link rel="next" title="dcase_util.processors.RepositoryFeatureExtractorProcessor" href="dcase_util.processors.RepositoryFeatureExtractorProcessor.html"/>
+        <link rel="next" title="dcase_util.processors.FeatureWritingProcessor" href="dcase_util.processors.FeatureWritingProcessor.html"/>
         <link rel="prev" title="dcase_util.processors.FeatureReadingProcessor" href="dcase_util.processors.FeatureReadingProcessor.html"/> 
 
   
@@ -1010,6 +1010,16 @@
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.MonoAudioReadingProcessor.process.html">dcase_util.processors.MonoAudioReadingProcessor.process</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../processors.html#audiowritingprocessor">AudioWritingProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.AudioWritingProcessor.html">dcase_util.processors.AudioWritingProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.AudioWritingProcessor.process.html">dcase_util.processors.AudioWritingProcessor.process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../processors.html#monoaudiowritingprocessor">MonoAudioWritingProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.MonoAudioWritingProcessor.html">dcase_util.processors.MonoAudioWritingProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.MonoAudioWritingProcessor.process.html">dcase_util.processors.MonoAudioWritingProcessor.process</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../processors.html#data">Data</a><ul>
@@ -1084,6 +1094,21 @@
 <li class="toctree-l3 current"><a class="reference internal" href="../processors.html#featurereadingprocessor">FeatureReadingProcessor</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.FeatureReadingProcessor.html">dcase_util.processors.FeatureReadingProcessor</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">dcase_util.processors.FeatureReadingProcessor.process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../processors.html#featurewritingprocessor">FeatureWritingProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.FeatureWritingProcessor.html">dcase_util.processors.FeatureWritingProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.FeatureWritingProcessor.process.html">dcase_util.processors.FeatureWritingProcessor.process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../processors.html#repositoryfeaturereadingprocessor">RepositoryFeatureReadingProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.RepositoryFeatureReadingProcessor.html">dcase_util.processors.RepositoryFeatureReadingProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.RepositoryFeatureReadingProcessor.process.html">dcase_util.processors.RepositoryFeatureReadingProcessor.process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../processors.html#repositoryfeaturewritingprocessor">RepositoryFeatureWritingProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.RepositoryFeatureWritingProcessor.html">dcase_util.processors.RepositoryFeatureWritingProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.RepositoryFeatureWritingProcessor.process.html">dcase_util.processors.RepositoryFeatureWritingProcessor.process</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../processors.html#repositoryfeatureextractorprocessor">RepositoryFeatureExtractorProcessor</a><ul>
@@ -1443,46 +1468,54 @@
 <dl class="method">
 <dt id="dcase_util.processors.FeatureReadingProcessor.process">
 <code class="descclassname">FeatureReadingProcessor.</code><code class="descname">process</code><span class="sig-paren">(</span><em>data=None</em>, <em>filename=None</em>, <em>focus_start=None</em>, <em>focus_stop=None</em>, <em>focus_duration=None</em>, <em>focus_start_seconds=None</em>, <em>focus_stop_seconds=None</em>, <em>focus_duration_seconds=None</em>, <em>store_processing_chain=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/processors/features.html#FeatureReadingProcessor.process"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.processors.FeatureReadingProcessor.process" title="Permalink to this definition">¶</a></dt>
-<dd><p>Meta data reading.</p>
+<dd><p>Data reading.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>data</strong> : FeatureContainer</p>
 <blockquote>
-<div><p>Input feature data</p>
+<div><p>Input feature data.
+Default value None</p>
 </div></blockquote>
 <p><strong>filename</strong> : str</p>
 <blockquote>
-<div><p>Filename of the feature container to load.</p>
+<div><p>Filename of the feature container to load.
+Default value None</p>
 </div></blockquote>
 <p><strong>focus_start</strong> : int, optional</p>
 <blockquote>
-<div><p>Segment start, frame index of focus segment start</p>
+<div><p>Segment start, frame index of focus segment start.
+Default value None</p>
 </div></blockquote>
 <p><strong>focus_stop</strong> : int, optional</p>
 <blockquote>
-<div><p>Segment end, Frame index of focus segment stop</p>
+<div><p>Segment end, Frame index of focus segment stop.
+Default value None</p>
 </div></blockquote>
 <p><strong>focus_duration</strong> : int, optional</p>
 <blockquote>
-<div><p>Segment duration, Frame count of focus segment</p>
+<div><p>Segment duration, Frame count of focus segment.
+Default value None</p>
 </div></blockquote>
 <p><strong>focus_start_seconds</strong> : float &gt; 0.0</p>
 <blockquote>
-<div><p>Segment start, seconds</p>
+<div><p>Segment start, seconds.
+Default value None</p>
 </div></blockquote>
 <p><strong>focus_stop_seconds</strong> : float &gt; 0.0</p>
 <blockquote>
-<div><p>Segment end, seconds</p>
+<div><p>Segment end, seconds.
+Default value None</p>
 </div></blockquote>
 <p><strong>focus_duration_seconds</strong> : float</p>
 <blockquote>
-<div><p>Segment duration, seconds</p>
+<div><p>Segment duration, seconds.
+Default value None</p>
 </div></blockquote>
 <p><strong>store_processing_chain</strong> : bool</p>
 <blockquote>
-<div><p>Store processing chain to data container returned
+<div><p>Store processing chain to data container returned.
 Default value False</p>
 </div></blockquote>
 </td>
@@ -1506,7 +1539,7 @@ Default value False</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="dcase_util.processors.RepositoryFeatureExtractorProcessor.html" class="btn btn-neutral float-right" title="dcase_util.processors.RepositoryFeatureExtractorProcessor" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="dcase_util.processors.FeatureWritingProcessor.html" class="btn btn-neutral float-right" title="dcase_util.processors.FeatureWritingProcessor" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="dcase_util.processors.FeatureReadingProcessor.html" class="btn btn-neutral" title="dcase_util.processors.FeatureReadingProcessor" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

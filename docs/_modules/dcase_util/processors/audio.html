@@ -1008,6 +1008,16 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.MonoAudioReadingProcessor.process.html">dcase_util.processors.MonoAudioReadingProcessor.process</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../../../processors.html#audiowritingprocessor">AudioWritingProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.AudioWritingProcessor.html">dcase_util.processors.AudioWritingProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.AudioWritingProcessor.process.html">dcase_util.processors.AudioWritingProcessor.process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../processors.html#monoaudiowritingprocessor">MonoAudioWritingProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.MonoAudioWritingProcessor.html">dcase_util.processors.MonoAudioWritingProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.MonoAudioWritingProcessor.process.html">dcase_util.processors.MonoAudioWritingProcessor.process</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../processors.html#data">Data</a><ul>
@@ -1082,6 +1092,21 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../processors.html#featurereadingprocessor">FeatureReadingProcessor</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.FeatureReadingProcessor.html">dcase_util.processors.FeatureReadingProcessor</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.FeatureReadingProcessor.process.html">dcase_util.processors.FeatureReadingProcessor.process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../processors.html#featurewritingprocessor">FeatureWritingProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.FeatureWritingProcessor.html">dcase_util.processors.FeatureWritingProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.FeatureWritingProcessor.process.html">dcase_util.processors.FeatureWritingProcessor.process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../processors.html#repositoryfeaturereadingprocessor">RepositoryFeatureReadingProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.RepositoryFeatureReadingProcessor.html">dcase_util.processors.RepositoryFeatureReadingProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.RepositoryFeatureReadingProcessor.process.html">dcase_util.processors.RepositoryFeatureReadingProcessor.process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../processors.html#repositoryfeaturewritingprocessor">RepositoryFeatureWritingProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.RepositoryFeatureWritingProcessor.html">dcase_util.processors.RepositoryFeatureWritingProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.RepositoryFeatureWritingProcessor.process.html">dcase_util.processors.RepositoryFeatureWritingProcessor.process</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../processors.html#repositoryfeatureextractorprocessor">RepositoryFeatureExtractorProcessor</a><ul>
@@ -1441,6 +1466,7 @@
 <span class="c1"># -*- coding: utf-8 -*-</span>
 
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">absolute_import</span>
+<span class="kn">import</span> <span class="nn">copy</span>
 <span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="k">import</span> <span class="n">AudioContainer</span>
 <span class="kn">from</span> <span class="nn">dcase_util.processors</span> <span class="k">import</span> <span class="n">Processor</span><span class="p">,</span> <span class="n">ProcessingChainItemType</span><span class="p">,</span> <span class="n">ProcessingChain</span>
 
@@ -1645,6 +1671,125 @@
 
         <span class="c1"># Run super init to call init of mixins too</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">MonoAudioReadingProcessor</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="AudioWritingProcessor"><a class="viewcode-back" href="../../../generated/dcase_util.processors.AudioWritingProcessor.html#dcase_util.processors.AudioWritingProcessor">[docs]</a><span class="k">class</span> <span class="nc">AudioWritingProcessor</span><span class="p">(</span><span class="n">Processor</span><span class="p">):</span>
+    <span class="n">input_type</span> <span class="o">=</span> <span class="n">ProcessingChainItemType</span><span class="o">.</span><span class="n">AUDIO</span>  <span class="c1">#: Input data type</span>
+    <span class="n">output_type</span> <span class="o">=</span> <span class="n">ProcessingChainItemType</span><span class="o">.</span><span class="n">NONE</span>  <span class="c1">#: Output data type</span>
+
+<div class="viewcode-block" id="AudioWritingProcessor.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.processors.AudioWritingProcessor.html#dcase_util.processors.AudioWritingProcessor.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Constructor&quot;&quot;&quot;</span>
+
+        <span class="c1"># Run super init to call init of mixins too</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">AudioWritingProcessor</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AudioWritingProcessor.process"><a class="viewcode-back" href="../../../generated/dcase_util.processors.AudioWritingProcessor.process.html#dcase_util.processors.AudioWritingProcessor.process">[docs]</a>    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">output_filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                <span class="n">bit_depth</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">bit_rate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Audio writing</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        data :</span>
+
+<span class="sd">        output_filename : str</span>
+<span class="sd">            Filename</span>
+
+<span class="sd">        bit_depth : int, optional</span>
+<span class="sd">            Bit depth for audio.</span>
+<span class="sd">            Default value 16</span>
+
+<span class="sd">        bit_rate : int, optional</span>
+<span class="sd">            Bit rate for compressed audio formats.</span>
+<span class="sd">            Default value None</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        AudioContainer</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">data</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">AudioContainer</span><span class="p">):</span>
+            <span class="n">audio_container</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">output_filename</span><span class="p">:</span>
+                <span class="n">audio_container</span><span class="o">.</span><span class="n">save</span><span class="p">(</span>
+                    <span class="n">filename</span><span class="o">=</span><span class="n">output_filename</span><span class="p">,</span>
+                    <span class="n">bit_depth</span><span class="o">=</span><span class="n">bit_depth</span><span class="p">,</span>
+                    <span class="n">bit_rate</span><span class="o">=</span><span class="n">bit_rate</span>
+                <span class="p">)</span>
+
+            <span class="k">return</span> <span class="n">audio_container</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Wrong input data type, type required [</span><span class="si">{input_type}</span><span class="s1">].&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                <span class="n">input_type</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">input_type</span>
+            <span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="MonoAudioWritingProcessor"><a class="viewcode-back" href="../../../generated/dcase_util.processors.MonoAudioWritingProcessor.html#dcase_util.processors.MonoAudioWritingProcessor">[docs]</a><span class="k">class</span> <span class="nc">MonoAudioWritingProcessor</span><span class="p">(</span><span class="n">Processor</span><span class="p">):</span>
+    <span class="n">input_type</span> <span class="o">=</span> <span class="n">ProcessingChainItemType</span><span class="o">.</span><span class="n">AUDIO</span>  <span class="c1">#: Input data type</span>
+    <span class="n">output_type</span> <span class="o">=</span> <span class="n">ProcessingChainItemType</span><span class="o">.</span><span class="n">NONE</span>  <span class="c1">#: Output data type</span>
+
+<div class="viewcode-block" id="MonoAudioWritingProcessor.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.processors.MonoAudioWritingProcessor.html#dcase_util.processors.MonoAudioWritingProcessor.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Constructor&quot;&quot;&quot;</span>
+
+        <span class="c1"># Run super init to call init of mixins too</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">MonoAudioWritingProcessor</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="MonoAudioWritingProcessor.process"><a class="viewcode-back" href="../../../generated/dcase_util.processors.MonoAudioWritingProcessor.process.html#dcase_util.processors.MonoAudioWritingProcessor.process">[docs]</a>    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">output_filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                <span class="n">bit_depth</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">bit_rate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Audio writing</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        data :</span>
+
+<span class="sd">        output_filename : str</span>
+<span class="sd">            Filename</span>
+
+<span class="sd">        bit_depth : int, optional</span>
+<span class="sd">            Bit depth for audio.</span>
+<span class="sd">            Default value 16</span>
+
+<span class="sd">        bit_rate : int, optional</span>
+<span class="sd">            Bit rate for compressed audio formats.</span>
+<span class="sd">            Default value None</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        AudioContainer</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">data</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">AudioContainer</span><span class="p">):</span>
+            <span class="n">audio_container</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+            <span class="n">audio_container</span><span class="o">.</span><span class="n">mixdown</span><span class="p">()</span>
+
+            <span class="k">if</span> <span class="n">output_filename</span><span class="p">:</span>
+                <span class="n">audio_container</span><span class="o">.</span><span class="n">save</span><span class="p">(</span>
+                    <span class="n">filename</span><span class="o">=</span><span class="n">output_filename</span><span class="p">,</span>
+                    <span class="n">bit_depth</span><span class="o">=</span><span class="n">bit_depth</span><span class="p">,</span>
+                    <span class="n">bit_rate</span><span class="o">=</span><span class="n">bit_rate</span>
+                <span class="p">)</span>
+
+            <span class="k">return</span> <span class="n">audio_container</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Wrong input data type, type required [</span><span class="si">{input_type}</span><span class="s1">].&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                <span class="n">input_type</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">input_type</span>
+            <span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></div></div>
+
 </pre></div>
 
            </div>

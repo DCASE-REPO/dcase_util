@@ -1,0 +1,46 @@
+dcase_util.processors.MonoAudioWritingProcessor
+===============================================
+
+.. currentmodule:: dcase_util.processors
+
+.. autoclass:: MonoAudioWritingProcessor
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~MonoAudioWritingProcessor.__init__
+      ~MonoAudioWritingProcessor.delimiter
+      ~MonoAudioWritingProcessor.detect_file_format
+      ~MonoAudioWritingProcessor.empty
+      ~MonoAudioWritingProcessor.exists
+      ~MonoAudioWritingProcessor.get_file_information
+      ~MonoAudioWritingProcessor.get_processing_chain_item
+      ~MonoAudioWritingProcessor.is_package
+      ~MonoAudioWritingProcessor.load
+      ~MonoAudioWritingProcessor.log
+      ~MonoAudioWritingProcessor.process
+      ~MonoAudioWritingProcessor.save
+      ~MonoAudioWritingProcessor.show
+      ~MonoAudioWritingProcessor.validate_format
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~MonoAudioWritingProcessor.bytes
+      ~MonoAudioWritingProcessor.input_type
+      ~MonoAudioWritingProcessor.logger
+      ~MonoAudioWritingProcessor.md5
+      ~MonoAudioWritingProcessor.output_type
+      ~MonoAudioWritingProcessor.valid_formats
+   
+   

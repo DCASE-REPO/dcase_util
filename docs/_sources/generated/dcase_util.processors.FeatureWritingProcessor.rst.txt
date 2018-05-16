@@ -1,0 +1,46 @@
+dcase_util.processors.FeatureWritingProcessor
+=============================================
+
+.. currentmodule:: dcase_util.processors
+
+.. autoclass:: FeatureWritingProcessor
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~FeatureWritingProcessor.__init__
+      ~FeatureWritingProcessor.delimiter
+      ~FeatureWritingProcessor.detect_file_format
+      ~FeatureWritingProcessor.empty
+      ~FeatureWritingProcessor.exists
+      ~FeatureWritingProcessor.get_file_information
+      ~FeatureWritingProcessor.get_processing_chain_item
+      ~FeatureWritingProcessor.is_package
+      ~FeatureWritingProcessor.load
+      ~FeatureWritingProcessor.log
+      ~FeatureWritingProcessor.process
+      ~FeatureWritingProcessor.save
+      ~FeatureWritingProcessor.show
+      ~FeatureWritingProcessor.validate_format
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~FeatureWritingProcessor.bytes
+      ~FeatureWritingProcessor.input_type
+      ~FeatureWritingProcessor.logger
+      ~FeatureWritingProcessor.md5
+      ~FeatureWritingProcessor.output_type
+      ~FeatureWritingProcessor.valid_formats
+   
+   
