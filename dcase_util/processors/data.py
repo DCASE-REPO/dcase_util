@@ -977,23 +977,31 @@ class ManyHotEncodingProcessor(Processor):
         self.focus_field = focus_field
         self.encoder = ManyHotEncoder(**self.init_parameters)
 
-    def process(self, data=None, focus_field=None, length_frames=None, length_seconds=None, store_processing_chain=False, **kwargs):
+    def process(self, data=None, label_list=None, focus_field=None, length_frames=None, length_seconds=None, store_processing_chain=False, **kwargs):
         """Encode metadata
 
         Parameters
         ----------
         data : MetaDataContainer
             Meta data to encode.
+            Default value None
+
+        label_list : list of str
+            Class labels to be hot
+            Default value None
 
         focus_field : str
             Field from the meta data item to be used in encoding. If None, one given as parameter for
             class constructor is used.
+            Default value None
 
         length_frames : int
             Length of encoded segment in frames. If None, one given as parameter for class constructor is used.
+            Default value None
 
         length_seconds : float > 0.0
             Length of encoded segment in seconds. If None, one given as parameter for class constructor is used.
+            Default value None
 
         store_processing_chain : bool
             Store processing chain to data container returned
@@ -1005,62 +1013,66 @@ class ManyHotEncodingProcessor(Processor):
 
         """
 
+        if data is None and label_list is None:
+            message = '{name}: Give data or label_list parameter.'.format(name=self.__class__.__name__)
+            self.logger.exception(message)
+            raise ValueError(message)
+
         from dcase_util.containers import MetaDataContainer
 
-        if focus_field is None:
-            focus_field = self.focus_field
-
-        if isinstance(data, MetaDataContainer):
-            if len(data) > 0:
-                label_list = data[0].get(focus_field)
-                if isinstance(label_list, str):
-                    label_list = [label_list]
-
-            # Do processing
-            self.encoder.encode(
-                label_list=label_list,
-                length_frames=length_frames,
-                length_seconds=length_seconds
-            )
-
-            if store_processing_chain:
-                # Get processing chain item
-                processing_chain_item = self.get_processing_chain_item()
-
-                if 'process_parameters' not in processing_chain_item:
-                    processing_chain_item['process_parameters'] = {}
-
-                processing_chain_item['process_parameters']['focus_field'] = focus_field
-                processing_chain_item['process_parameters']['length_frames'] = length_frames
-
-                # Create processing chain to be stored in the container, and push chain item into it
-                if hasattr(data, 'processing_chain'):
-                    data.processing_chain.push_processor(**processing_chain_item)
-                    processing_chain = data.processing_chain
-
-                else:
-                    processing_chain = ProcessingChain().push_processor(**processing_chain_item)
-
-            else:
-                processing_chain = None
-
-            from dcase_util.containers import BinaryMatrix2DContainer
-            container = BinaryMatrix2DContainer(
-                data=self.encoder.data,
-                label_list=self.encoder.label_list,
-                time_resolution=self.encoder.time_resolution,
-                processing_chain=processing_chain
-            )
-
-            return container
-
-        else:
+        if data is not None and not isinstance(data, MetaDataContainer):
             message = '{name}: Wrong input data type, type required [{input_type}].'.format(
                 name=self.__class__.__name__,
                 input_type=self.input_type)
 
             self.logger.exception(message)
             raise ValueError(message)
+
+        if focus_field is None:
+            focus_field = self.focus_field
+
+        if data is not None and len(data) > 0 and label_list is None:
+            label_list = data[0].get(focus_field)
+            if isinstance(label_list, str):
+                label_list = [label_list]
+
+        # Do processing
+        self.encoder.encode(
+            label_list=label_list,
+            length_frames=length_frames,
+            length_seconds=length_seconds
+        )
+
+        if store_processing_chain:
+            # Get processing chain item
+            processing_chain_item = self.get_processing_chain_item()
+
+            if 'process_parameters' not in processing_chain_item:
+                processing_chain_item['process_parameters'] = {}
+
+            processing_chain_item['process_parameters']['focus_field'] = focus_field
+            processing_chain_item['process_parameters']['length_frames'] = length_frames
+
+            # Create processing chain to be stored in the container, and push chain item into it
+            if hasattr(data, 'processing_chain'):
+                data.processing_chain.push_processor(**processing_chain_item)
+                processing_chain = data.processing_chain
+
+            else:
+                processing_chain = ProcessingChain().push_processor(**processing_chain_item)
+
+        else:
+            processing_chain = None
+
+        from dcase_util.containers import BinaryMatrix2DContainer
+        container = BinaryMatrix2DContainer(
+            data=self.encoder.data,
+            label_list=self.encoder.label_list,
+            time_resolution=self.encoder.time_resolution,
+            processing_chain=processing_chain
+        )
+
+        return container
 
 
 class EventRollEncodingProcessor(Processor):

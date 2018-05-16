@@ -453,13 +453,17 @@ class DictContainer(dict, ContainerMixin, FileMixin):
 
         return md5.hexdigest()
 
-    def load(self, filename=None):
+    def load(self, filename=None, file_format=None):
         """Load file
 
         Parameters
         ----------
         filename : str, optional
             File path, if None given, filename given to class constructor is used.
+            Default value None
+
+        file_format : FileFormat, optional
+            Forced file format, use this when there is a miss-match between file extension and file format.
             Default value None
 
         Raises
@@ -478,8 +482,12 @@ class DictContainer(dict, ContainerMixin, FileMixin):
 
         if filename:
             self.filename = filename
-            self.detect_file_format()
-            self.validate_format()
+            if not file_format:
+                self.detect_file_format()
+                self.validate_format()
+
+        if file_format and FileFormat.validate_label(label=file_format):
+            self.format = file_format
 
         if self.exists():
             # File exits
@@ -534,13 +542,17 @@ class DictContainer(dict, ContainerMixin, FileMixin):
 
         return self
 
-    def save(self, filename=None):
+    def save(self, filename=None, file_format=None):
         """Save file
 
         Parameters
         ----------
         filename : str, optional
             File path, if None given, filename given to class constructor is used.
+            Default value None
+
+        file_format : FileFormat, optional
+            Forced file format, use this when there is a miss-match between file extension and file format.
             Default value None
 
         Raises
@@ -559,8 +571,12 @@ class DictContainer(dict, ContainerMixin, FileMixin):
 
         if filename:
             self.filename = filename
-            self.detect_file_format()
-            self.validate_format()
+            if not file_format:
+                self.detect_file_format()
+                self.validate_format()
+
+        if file_format and FileFormat.validate_label(label=file_format):
+            self.format = file_format
 
         if self.filename is None or self.filename == '':
             message = '{name}: Filename is empty [{filename}]'.format(
@@ -898,18 +914,23 @@ class ListContainer(list, ContainerMixin, FileMixin):
 
         return self
 
-    def load(self, filename=None, headers=None):
+    def load(self, filename=None, headers=None, file_format=None):
         """Load file
 
         Parameters
         ----------
         filename : str, optional
             File path
-            Default value filename given to class constructor
+            Default value filename given to class constructor.
             Default value None
 
         headers : list of str, optional
-            List of column names
+            List of column names.
+            Default value None
+
+        file_format : FileFormat, optional
+            Forced file format, use this when there is a miss-match between file extension and file format.
+            Default value None
 
         Raises
         ------
@@ -924,8 +945,12 @@ class ListContainer(list, ContainerMixin, FileMixin):
 
         if filename:
             self.filename = filename
-            self.detect_file_format()
-            self.validate_format()
+            if not file_format:
+                self.detect_file_format()
+                self.validate_format()
+
+        if file_format and FileFormat.validate_label(label=file_format):
+            self.format = file_format
 
         if self.exists():
             from dcase_util.files import Serializer
@@ -957,13 +982,17 @@ class ListContainer(list, ContainerMixin, FileMixin):
 
         return self
 
-    def save(self, filename=None):
+    def save(self, filename=None, file_format=None):
         """Save file
 
         Parameters
         ----------
         filename : str, optional
             File path, if None given, filename given to class constructor is used.
+            Default value None
+
+        file_format : FileFormat, optional
+            Forced file format, use this when there is a miss-match between file extension and file format.
             Default value None
 
         Raises
@@ -979,8 +1008,12 @@ class ListContainer(list, ContainerMixin, FileMixin):
 
         if filename:
             self.filename = filename
-            self.detect_file_format()
-            self.validate_format()
+            if not file_format:
+                self.detect_file_format()
+                self.validate_format()
+
+        if file_format and FileFormat.validate_label(label=file_format):
+            self.format = file_format
 
         if self.filename is None or self.filename == '':
             message = '{name}: Filename is empty [{filename}]'.format(

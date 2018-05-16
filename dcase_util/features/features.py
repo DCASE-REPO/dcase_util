@@ -152,12 +152,15 @@ class SpectralFeatureExtractor(FeatureExtractor):
 
         spectrogram_type : str
             Spectrogram type, magnitude or power spectrogram.
+            Default value 'magnitude'
 
         n_fft : int
             Length of the FFT window.
+            Default value 2048
 
         window_type : str
             Window function type.
+            Default value 'hamming_asymmetric'
 
         """
 
@@ -196,6 +199,7 @@ class SpectralFeatureExtractor(FeatureExtractor):
 
         window_type : str
             window type
+            Default value 'hamming_asymmetric'
 
         Raises
         ------
@@ -242,21 +246,27 @@ class SpectralFeatureExtractor(FeatureExtractor):
 
         n_fft : int
             FFT size
+            Default value 2048
 
         win_length_samples : float
             Window length in seconds
+            Default value None
 
         hop_length_samples : float
             Hop length in seconds
+            Default value None
 
         window : numpy.array
             Window function
+            Default value None
 
         center : bool
             If true, input signal is padded so to the frame is centered at hop length
+            Default value True
 
         spectrogram_type : str
             Type of spectrogram "magnitude" or "power"
+            Default value None
 
         Returns
         -------
@@ -364,42 +374,55 @@ class MelExtractor(SpectralFeatureExtractor):
 
         win_length_samples : int
             Window length in samples.
+            Default value None
 
         hop_length_samples : int
             Hop length in samples.
+            Default value None
 
         win_length_seconds : float
             Window length in seconds.
+            Default value 0.04
 
         hop_length_seconds : float
             Hop length in seconds.
+            Default value 0.02
 
         spectrogram_type : str
             Spectrogram type, magnitude or power spectrogram.
+            Default value 'magnitude'
 
         n_fft : int
             Length of the FFT window.
+            Default value 2048
 
         window_type : str
             Window function type.
+            Default value 'hamming_asymmetric'
 
         n_mels : int
             Number of mel bands to generate
+            Default value 40
 
         fmin : int
             Lowest frequency in mel bands (in Hz)
+            Default value 0
 
         fmax : int
             Highest frequency in mel bands (in Hz), if None, fmax = fs/2.0
+            Default value None
 
         normalize_mel_bands : bool
             Normalize mel band to have peak at 1.0
+            Default value False
 
         htk : bool
             Use HTK formula for mel band creation instead of Slaney
+            Default value False
 
         logarithmic : bool
             Switch for log mel-band energies
+            Default value True
 
         """
 
@@ -536,48 +559,63 @@ class MfccStaticExtractor(SpectralFeatureExtractor):
         ----------
         fs : int
             Sampling rate of the incoming signal.
+            Default value 44100
 
         win_length_samples : int
             Window length in samples.
+            Default value None
 
         hop_length_samples : int
             Hop length in samples.
+            Default value None
 
         win_length_seconds : float
             Window length in seconds.
+            Default value 0.04
 
         hop_length_seconds : float
             Hop length in seconds.
+            Default value 0.02
 
         spectrogram_type : str
             Spectrogram type, magnitude or power spectrogram.
+            Default value 'magnitude'
 
         n_fft : int
             Length of the FFT window.
+            Default value 2048
 
         window_type : str
             Window function type.
+            Default value 'hamming_asymmetric'
 
         n_mels : int
-            Number of mel bands to generate
+            Number of mel bands to generate.
+            Default value 40
 
         fmin : int
-            Lowest frequency in mel bands (in Hz)
+            Lowest frequency in mel bands (in Hz).
+            Default value 0
 
         fmax : int
             Highest frequency in mel bands (in Hz), if None, fmax = fs/2.0
+            Default value None
 
         normalize_mel_bands : bool
             Normalize mel band to have peak at 1.0
+            Default value False
 
         htk : bool
             Use HTK formula for mel band creation instead of Slaney
+            Default value False
 
         n_mfcc : int
             Number of MFCC coefficients
+            Default value 20
 
         omit_zeroth : bool
             Omit 0th coefficient
+            Default value False
 
         """
 
@@ -725,51 +763,67 @@ class MfccDeltaExtractor(MfccStaticExtractor):
         ----------
         fs : int
             Sampling rate of the incoming signal.
+            Default value 44100
 
         win_length_samples : int
             Window length in samples.
+            Default value None
 
         hop_length_samples : int
             Hop length in samples.
+            Default value None
 
         win_length_seconds : float
             Window length in seconds.
+            Default value 0.04
 
         hop_length_seconds : float
             Hop length in seconds.
+            Default value 0.02
 
         spectrogram_type : str
             Spectrogram type, magnitude or power spectrogram.
+            Default value 'magnitude'
 
         n_fft : int
             Length of the FFT window.
+            Default value 2048
 
         window_type : str
             Window function type.
+            Default value 'hamming_asymmetric'
 
         n_mels : int
             Number of mel bands to generate.
+            Default value 40
 
         fmin : int
             Lowest frequency in mel bands (in Hz).
+            Default value 0
 
         fmax : int
             Highest frequency in mel bands (in Hz), if None, fmax = fs/2.0.
+            Default value None
 
         normalize_mel_bands : bool
             Normalize mel band to have peak at 1.0.
+            Default value False
 
         htk : bool
             Use HTK formula for mel band creation instead of Slaney.
+            Default value False
 
         n_mfcc : int
             Number of MFCC coefficients.
+            Default value 20
 
         omit_zeroth : bool
-            Omit 0th coefficient
+            Omit 0th coefficient.
+            Default value False
 
         width : int
             Width of the delta window.
+            Default value 9
 
         """
 
@@ -844,51 +898,67 @@ class MfccAccelerationExtractor(MfccStaticExtractor):
         ----------
         fs : int
             Sampling rate of the incoming signal.
+            Default value 44100
 
         win_length_samples : int
             Window length in samples.
+            Default value None
 
         hop_length_samples : int
             Hop length in samples.
+            Default value None
 
         win_length_seconds : float
             Window length in seconds.
+            Default value 0.04
 
         hop_length_seconds : float
             Hop length in seconds.
+            Default value 0.02
 
         spectrogram_type : str
             Spectrogram type, magnitude or power spectrogram.
+            Default value 'magnitude'
 
         n_fft : int
             Length of the FFT window.
+            Default value 2048
 
         window_type : str
             Window function type.
+            Default value 'hamming_asymmetric'
 
         n_mels : int
             Number of mel bands to generate.
+            Default value 40
 
         fmin : int
             Lowest frequency in mel bands (in Hz).
+            Default value 0
 
         fmax : int
             Highest frequency in mel bands (in Hz), if None, fmax = fs/2.0.
+            Default value None
 
         normalize_mel_bands : bool
             Normalize mel band to have peak at 1.0.
+            Default value False
 
         htk : bool
             Use HTK formula for mel band creation instead of Slaney.
+            Default value False
 
         n_mfcc : int
             Number of MFCC coefficients.
+            Default value 20
 
         omit_zeroth : bool
-            Omit 0th coefficient
+            Omit 0th coefficient.
+            Default value False
 
         width : int
             Width of the delta window.
+            Default value 9
 
         """
 
@@ -961,21 +1031,27 @@ class ZeroCrossingRateExtractor(FeatureExtractor):
         ----------
         fs : int
             Sampling rate of the incoming signal.
+            Default value 44100
 
         win_length_samples : int
             Window length in samples.
+            Default value None
 
         hop_length_samples : int
             Hop length in samples.
+            Default value None
 
         win_length_seconds : float
             Window length in seconds.
+            Default value 0.04
 
         hop_length_seconds : float
             Hop length in seconds.
+            Default value 0.02
 
         center : bool
             If True, frames are centered by padding the edges of signal.
+            Default value True
 
         """
 
@@ -1057,21 +1133,39 @@ class RMSEnergyExtractor(SpectralFeatureExtractor):
         ----------
         fs : int
             Sampling rate of the incoming signal.
+            Default value 44100
 
         win_length_samples : int
             Window length in samples.
+            Default value None
 
         hop_length_samples : int
             Hop length in samples.
+            Default value None
 
         win_length_seconds : float
             Window length in seconds.
+            Default value 0.04
 
         hop_length_seconds : float
             Hop length in seconds.
+            Default value 0.02
+
+        spectrogram_type : str
+            Spectrogram type, magnitude or power spectrogram.
+            Default value 'magnitude'
+
+        n_fft : int
+            Length of the FFT window.
+            Default value 2048
+
+        window_type : str
+            Window function type.
+            Default value 'hamming_asymmetric'
 
         center : bool
             If True, frames are centered by padding the edges of signal.
+            Default value True
 
         """
 
@@ -1163,21 +1257,39 @@ class SpectralCentroidExtractor(SpectralFeatureExtractor):
         ----------
         fs : int
             Sampling rate of the incoming signal.
+            Default value 44100
 
         win_length_samples : int
             Window length in samples.
+            Default value None
 
         hop_length_samples : int
             Hop length in samples.
+            Default value None
 
         win_length_seconds : float
             Window length in seconds.
+            Default value 0.04
 
         hop_length_seconds : float
             Hop length in seconds.
+            Default value 0.02
+
+        spectrogram_type : str
+            Spectrogram type, magnitude or power spectrogram.
+            Default value 'magnitude'
+
+        n_fft : int
+            Length of the FFT window.
+            Default value 2048
+
+        window_type : str
+            Window function type.
+            Default value 'hamming_asymmetric'
 
         center : bool
             If true, input signal is padded so to the frame is centered at hop length
+            Default value True
 
         """
 

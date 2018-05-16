@@ -72,13 +72,13 @@ class DCASE2018_Task5_DevelopmentSet(AcousticSceneDataset):
         }
         kwargs['crossvalidation_folds'] = 4
 
-        source_url = 'https://zenodo.org/record/1217452/files/'
+        source_url = 'https://zenodo.org/record/1247102/files/'
         kwargs['package_list'] = [
             {
                 'content_type': 'documentation',
                 'remote_file': source_url + 'DCASE2018-task5-dev.doc.zip',
-                'remote_bytes': 118300,
-                'remote_md5': '7c85f21c8d9e37a8de582c45acaa109b',
+                'remote_bytes': 62900,
+                'remote_md5': '4517a2560820af5da20e65e4a15a2d90',
                 'filename': 'DCASE2018-task5-dev.doc.zip'
             },
             {
@@ -92,161 +92,161 @@ class DCASE2018_Task5_DevelopmentSet(AcousticSceneDataset):
                 'content_type': 'audio',
                 'remote_file': source_url + 'DCASE2018-task5-dev.audio.1.zip',
                 'remote_bytes': 2000000000,
-                'remote_md5': '1b00b50177bafef2f013e5a911578d22',
+                'remote_md5': 'ae81259fa58b4ed11babd52386cb035a',
                 'filename': 'DCASE2018-task5-dev.audio.1.zip'
             },
             {
                 'content_type': 'audio',
                 'remote_file': source_url + 'DCASE2018-task5-dev.audio.2.zip',
                 'remote_bytes': 2000000000,
-                'remote_md5': 'c75b1c1b3cc1340cfcace37559aed63f',
+                'remote_md5': '88f2fa5306f76d6b4c4c82ce63798dc4',
                 'filename': 'DCASE2018-task5-dev.audio.2.zip'
             },
             {
                 'content_type': 'audio',
                 'remote_file': source_url + 'DCASE2018-task5-dev.audio.3.zip',
                 'remote_bytes': 2000000000,
-                'remote_md5': '4cdc067f07093a8bd291a6626f679341',
+                'remote_md5': '6fe16ce76abf801aa64662b06eecdacf',
                 'filename': 'DCASE2018-task5-dev.audio.3.zip'
             },
             {
                 'content_type': 'audio',
                 'remote_file': source_url + 'DCASE2018-task5-dev.audio.4.zip',
                 'remote_bytes': 2000000000,
-                'remote_md5': '548a05a7b9d8c4bb049fa0f50851e53d',
+                'remote_md5': '29892d9d444db700283058ea032ed18e',
                 'filename': 'DCASE2018-task5-dev.audio.4.zip'
             },
             {
                 'content_type': 'audio',
                 'remote_file': source_url + 'DCASE2018-task5-dev.audio.5.zip',
                 'remote_bytes': 2000000000,
-                'remote_md5': 'b17a8d90c5a01291841755360c5f3831',
+                'remote_md5': '05aad2d1c80bf4b73d8c23ade155e9df',
                 'filename': 'DCASE2018-task5-dev.audio.5.zip'
             },
             {
                 'content_type': 'audio',
                 'remote_file': source_url + 'DCASE2018-task5-dev.audio.6.zip',
                 'remote_bytes': 2000000000,
-                'remote_md5': '6c0969113bc6181401557c2de82295f2',
+                'remote_md5': 'aa9bad6f4b877e5c4c74aa26f9e31c32',
                 'filename': 'DCASE2018-task5-dev.audio.6.zip'
             },
             {
                 'content_type': 'audio',
                 'remote_file': source_url + 'DCASE2018-task5-dev.audio.7.zip',
                 'remote_bytes': 2000000000,
-                'remote_md5': 'd17fd35d44f6ff2969ebaf4e89a2ef1b',
+                'remote_md5': 'b87d1fb20da8ce1f45d50c56bf35c560',
                 'filename': 'DCASE2018-task5-dev.audio.7.zip'
             },
             {
                 'content_type': 'audio',
                 'remote_file': source_url + 'DCASE2018-task5-dev.audio.8.zip',
                 'remote_bytes': 2000000000,
-                'remote_md5': '7599fb9d73c95e48daef4dc956ae923c',
+                'remote_md5': 'd214fe45d50a18a18ebe7051956b872b',
                 'filename': 'DCASE2018-task5-dev.audio.8.zip'
             },
             {
                 'content_type': 'audio',
                 'remote_file': source_url + 'DCASE2018-task5-dev.audio.9.zip',
                 'remote_bytes': 2000000000,
-                'remote_md5': '464276df297552db9501825b4d43a6c9',
+                'remote_md5': '668631009d2b3bcf872bdd3d780446c6',
                 'filename': 'DCASE2018-task5-dev.audio.9.zip'
             },
             {
                 'content_type': 'audio',
                 'remote_file': source_url + 'DCASE2018-task5-dev.audio.10.zip',
                 'remote_bytes': 2000000000,
-                'remote_md5': '8f33c008bc9c5f03b3942ebe7c0668da',
+                'remote_md5': '195c2d2a810c5c4bf6523541a8536a58',
                 'filename': 'DCASE2018-task5-dev.audio.10.zip'
             },
             {
                 'content_type': 'audio',
                 'remote_file': source_url + 'DCASE2018-task5-dev.audio.11.zip',
                 'remote_bytes': 2000000000,
-                'remote_md5': 'bd024a1664c0b47bbfcbffd1e49d88e2',
+                'remote_md5': '1c92328c0fad3f9eb4a114bac89e8b19',
                 'filename': 'DCASE2018-task5-dev.audio.11.zip'
             },
             {
                 'content_type': 'audio',
                 'remote_file': source_url + 'DCASE2018-task5-dev.audio.12.zip',
                 'remote_bytes': 2000000000,
-                'remote_md5': '4d54480c449f658e9452d5d038e620d6',
+                'remote_md5': 'b651887afa7558bcbd79267fc40ea6c6',
                 'filename': 'DCASE2018-task5-dev.audio.12.zip'
             },
             {
                 'content_type': 'audio',
                 'remote_file': source_url + 'DCASE2018-task5-dev.audio.13.zip',
                 'remote_bytes': 2000000000,
-                'remote_md5': '189b882158f4ba7bc72d674408f9ca09',
+                'remote_md5': 'f05a08f5c85633210be81c5ad5da3ef0',
                 'filename': 'DCASE2018-task5-dev.audio.13.zip'
             },
             {
                 'content_type': 'audio',
                 'remote_file': source_url + 'DCASE2018-task5-dev.audio.14.zip',
                 'remote_bytes': 2000000000,
-                'remote_md5': 'd7577ffb014f85e73f4e311af9a4ce2b',
+                'remote_md5': '5c97b4ed12c167bf27bf3320fc3e665d',
                 'filename': 'DCASE2018-task5-dev.audio.14.zip'
             },
             {
                 'content_type': 'audio',
                 'remote_file': source_url + 'DCASE2018-task5-dev.audio.15.zip',
                 'remote_bytes': 2000000000,
-                'remote_md5': 'dbaa64f4659a291e9ef7fc364b526d6c',
+                'remote_md5': '78370c4047caedfbc002b9d010ae4172',
                 'filename': 'DCASE2018-task5-dev.audio.15.zip'
             },
             {
                 'content_type': 'audio',
                 'remote_file': source_url + 'DCASE2018-task5-dev.audio.16.zip',
                 'remote_bytes': 2000000000,
-                'remote_md5': 'ce3a3a58c7b030baf8c9d566e3c6d8b4',
+                'remote_md5': '635747f2a89eb4fee971c53585bbac93',
                 'filename': 'DCASE2018-task5-dev.audio.16.zip'
             },
             {
                 'content_type': 'audio',
                 'remote_file': source_url + 'DCASE2018-task5-dev.audio.17.zip',
                 'remote_bytes': 2000000000,
-                'remote_md5': '5aed62b76c76c6672a827db992814b2f',
+                'remote_md5': 'a166c76ef8af1eef1e2c1b193de127a6',
                 'filename': 'DCASE2018-task5-dev.audio.17.zip'
             },
             {
                 'content_type': 'audio',
                 'remote_file': source_url + 'DCASE2018-task5-dev.audio.18.zip',
                 'remote_bytes': 2000000000,
-                'remote_md5': 'cc0de32cf63da580e21c0c4644e85cb5',
+                'remote_md5': 'ed326b2f5e8bb65553cea738a1a42250',
                 'filename': 'DCASE2018-task5-dev.audio.18.zip'
             },
             {
                 'content_type': 'audio',
                 'remote_file': source_url + 'DCASE2018-task5-dev.audio.19.zip',
                 'remote_bytes': 2000000000,
-                'remote_md5': '2adfcf66fb33ded9d64b806674031abf',
+                'remote_md5': '429874b969a345e176136f2da6c6ec13',
                 'filename': 'DCASE2018-task5-dev.audio.19.zip'
             },
             {
                 'content_type': 'audio',
                 'remote_file': source_url + 'DCASE2018-task5-dev.audio.20.zip',
                 'remote_bytes': 2000000000,
-                'remote_md5': 'b7aae8cfb445d7a76b01a052a3696c91',
+                'remote_md5': 'b5779fdfb14194c3823f981f573f4784',
                 'filename': 'DCASE2018-task5-dev.audio.20.zip'
             },
             {
                 'content_type': 'audio',
                 'remote_file': source_url + 'DCASE2018-task5-dev.audio.21.zip',
                 'remote_bytes': 2000000000,
-                'remote_md5': '1040c4eaba91f2f379dc5b36ba6554b0',
+                'remote_md5': '684874d4882945145642be946dc10f39',
                 'filename': 'DCASE2018-task5-dev.audio.21.zip'
             },
             {
                 'content_type': 'audio',
                 'remote_file': source_url + 'DCASE2018-task5-dev.audio.22.zip',
                 'remote_bytes': 2000000000,
-                'remote_md5': '2e3707dbbc175a736af067c39f1d8a60',
+                'remote_md5': '6d1767a8ef6e3c5978f86a5b372641b6',
                 'filename': 'DCASE2018-task5-dev.audio.22.zip'
             },
             {
                 'content_type': 'audio',
                 'remote_file': source_url + 'DCASE2018-task5-dev.audio.23.zip',
                 'remote_bytes': 1800000000,
-                'remote_md5': '05575e618e64f942ed4e43fcce4c146c',
+                'remote_md5': '4b727a3aca0b6b1456df46dd6196ae97',
                 'filename': 'DCASE2018-task5-dev.audio.23.zip'
             }
         ]

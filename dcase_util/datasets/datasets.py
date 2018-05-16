@@ -173,6 +173,31 @@ def dataset_factory(dataset_class_name, **kwargs):
     return dataset_class(**dict(kwargs))
 
 
+def dataset_exists(dataset_class_name):
+    """Check dataset class based on name
+
+    Parameters
+    ----------
+    dataset_class_name : str
+        Class name
+
+    Returns
+    -------
+    bool
+
+    """
+
+    # Get all classes inherited from Dataset
+    class_list = get_class_inheritors(Dataset)
+
+    # Search correct dataset
+    for item in class_list:
+        if str(item.__name__) == dataset_class_name:
+            return True
+
+    return False
+
+
 class Dataset(object):
     """Dataset base class
 
@@ -194,12 +219,15 @@ class Dataset(object):
                  dataset_meta=None,
 
                  evaluation_setup_folder='evaluation_setup',
+                 evaluation_setup_file_extension='txt',
+
                  meta_filename='meta.txt',
                  error_meta_filename='error.txt',
                  filelisthash_filename='filelist.python.hash',
                  filelisthash_exclude_dirs=None,
                  crossvalidation_folds=None,
                  package_list=None,
+                 package_extract_parameters=None,
                  included_content_types=None,
                  audio_paths=None,
                  default_audio_extension='wav',
@@ -211,65 +239,101 @@ class Dataset(object):
         ----------
         name : str
             Dataset name
+            Default value 'dataset'
 
         storage_name : str
             Name to be used when storing dataset on disk
+            Default value 'dataset'
 
         data_path : str
             Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), 'dcase_util_datasets')
-            is used.
+            is used
+            Default value None
 
         local_path : str
-            Direct storage path setup for the dataset. If None, data_path and storage_name are used to create one.
+            Direct storage path setup for the dataset. If None, data_path and storage_name are used to create one
+            Default value None
 
         show_progress_in_console : bool
-            Show progress in console.
+            Show progress in console
+            Default value True
 
         log_system_progress : bool
-            Show progress in log.
+            Show progress in log
+            Default value True
 
         use_ascii_progress_bar : bool
             Show progress bar using ASCII characters. Use this if your console does not support UTF-8 characters.
+            Default value True
 
         dataset_group : str
             Dataset group label, one of ['scene', 'event', 'tag']
+            Default value 'base class'
 
         dataset_meta : dict
             Dictionary containing metadata about the dataset, e.g., collecting device information, dataset authors.
+            Default value None
 
         evaluation_setup_folder : str
             Directory name where evaluation setup files are stores
+            Default value 'evaluation_setup'
+
+        evaluation_setup_file_extension : str
+            Setup file extension
+            Default value 'txt'
 
         meta_filename : str
-            Filename to be used for main meta file (contains all files with their reference data) of the dataset.
+            Filename to be used for main meta file (contains all files with their reference data) of the dataset
+            Default value 'meta.txt'
 
         error_meta_filename : str
-            Filename for the error annotation file.
+            Filename for the error annotation file
+            Default value 'error.txt'
 
         filelisthash_filename : str
-            Filename for filelist hash file.
+            Filename for filelist hash file
+            Default value 'filelist.python.hash'
 
         filelisthash_exclude_dirs : str
-            Directories to be excluded from filelist hash calculation.
+            Directories to be excluded from filelist hash calculation
+            Default value None
 
         crossvalidation_folds : int
             Count fo cross-validation folds. Indexing starts from one.
+            Default value None
 
         package_list : list of dict
             Package list, remote files associated to the dataset.
+            Item format:
+            {
+                'content_type': 'documentation',                            # Possible values ['meta', 'documentation', 'audio', 'code', 'features']
+                'remote_file': 'https://zenodo.org/record/45759/files/TUT-sound-events-2016-development.doc.zip', # URL
+                'remote_bytes': 70918,                                      # Size of remote file in bytes
+                'remote_md5': '33fd26a895530aef607a07b08704eacd',           # MD5 hash of remote file
+                'filename': 'TUT-sound-events-2016-development.doc.zip',    # Filename relative to self.local_path always
+            }
+            Default value None
+
+        package_extract_parameters : dict
+            Extra parameters for package extraction.
+            Default value None
 
         included_content_types : list of str or str
             Indicates what content type should be processed. One or multiple from ['all', 'audio', 'meta', 'code',
             'documentation']. If None given, ['all'] is used. Parameter can be also comma separated string.
+            Default value None
 
         audio_paths : list of str
             List of paths to include audio material associated to the dataset. If None given, ['audio'] is used.
+            Default value None
 
         default_audio_extension : str
             Default audio extension
+            Default value 'wav'
 
         reference_data_present : bool
-            Reference data is delivered with the dataset.
+            Reference data is delivered with the dataset
+            Default value True
 
         """
 
@@ -304,6 +368,9 @@ class Dataset(object):
         # Evaluation setup folder
         self.evaluation_setup_folder = evaluation_setup_folder
 
+        # Evaluation setup file extension
+        self.evaluation_setup_file_extension = evaluation_setup_file_extension
+
         # Path to the folder containing evaluation setup files
         self.evaluation_setup_path = os.path.join(self.local_path, self.evaluation_setup_folder)
 
@@ -335,9 +402,9 @@ class Dataset(object):
         # {
         #    'content_type': 'documentation',  # Possible values ['meta', 'documentation', 'audio', 'code', 'features']
         #    'remote_file': 'https://zenodo.org/record/45759/files/TUT-sound-events-2016-development.doc.zip', # URL
-        #    'remote_bytes': 70918,            # Size of remote file in bytes
+        #    'remote_bytes': 70918,                             # Size of remote file in bytes
         #    'remote_md5': '33fd26a895530aef607a07b08704eacd',  # MD5 hash of remote file
-        #    'filename': 'TUT-sound-events-2016-development.doc.zip' # filename relative to self.local_path always
+        #    'filename': 'TUT-sound-events-2016-development.doc.zip', # filename relative to self.local_path always
         # }
         if package_list is None:
             package_list = []
@@ -347,6 +414,15 @@ class Dataset(object):
         # Expand local filenames to be related to local path
         for item in self.package_list:
             item['filename'] = os.path.join(self.local_path, item['filename'])
+
+        # Default parameters for package extraction
+        default_package_extract_parameters = DictContainer({
+            'omit_first_level': True
+        })
+
+        self.package_extract_parameters = default_package_extract_parameters
+        if package_extract_parameters is not None:
+            self.package_extract_parameters.update(package_extract_parameters)
 
         # What content type should be processed. Use this for example to access only the meta data, and exclude usually
         # large and time consuming audio material downloading. Leave to "all" to include all content types.
@@ -837,45 +913,76 @@ class Dataset(object):
         log.sub_header('Debug packages')
         log.line('Local', indent=2)
         log.row_reset()
-        log.row('package', 'local_md5', 'local_bytes', widths=[60, 35, 15])
+        log.row('package', 'local_md5', 'local_bytes', widths=[55, 35, 15])
         log.row_sep()
+
         for item in self.package_list:
-            package = Package(**item)
-            if package.exists():
-                md5 = package.md5
-                bytes = package.bytes
+            file = File(**item)
+
+            if file.is_package():
+                package = Package(**item)
+                if package.exists():
+                    md5 = package.md5
+                    bytes = package.bytes
+                else:
+                    md5 = '-- PACKAGE DOES NOT EXISTS --'
+                    bytes = ''
+
+            elif file.exists():
+                md5 = file.md5
+                bytes = file.bytes
+
             else:
-                md5 = ''
+                md5 = '-- FILE DOES NOT EXISTS --'
                 bytes = ''
+
             log.row(
-                os.path.split(package.filename)[-1],
+                os.path.split(item['filename'])[-1],
                 md5,
                 bytes
             )
 
         log.line()
         log.line('Remote', indent=2)
-        log.row('package', 'remote_md5', 'remote_bytes', 'md5', 'size', widths=[63, 35, 15, 6, 7])
+        log.row('package', 'remote_md5', 'remote_bytes', 'md5', 'size', widths=[55, 35, 15, 6, 7])
         log.row_sep()
+
         for item in self.package_list:
             if 'remote_file' in item:
-                remote_file = RemoteFile(**item)
+                remote_filename = os.path.split(item['remote_file'])[-1]
+
+                item_remote = copy.deepcopy(item)
+                del item_remote['remote_md5']
+                del item_remote['remote_bytes']
+
+                remote_file = RemoteFile(**item_remote)
                 if self.included_content_types is None or remote_file.is_content_type(
                         content_type=self.included_content_types
                 ):
-                    remote_file.remote_info()
+                    if remote_file.remote_exists():
+                        remote_file.remote_info()
 
-                remote_filename = os.path.split(item['remote_file'])[-1]
+                        if 'remote_md5' in item:
+                            md5 = remote_file.remote_md5
+                            md5_status = 'Dif' if item['remote_md5'] != remote_file.remote_md5 else 'OK'
+                        else:
+                            md5 = ''
+                            md5_status = ''
 
-                if 'remote_md5' in item:
-                    md5 = remote_file.remote_md5
-                    md5_status = 'Dif' if item['remote_md5'] != remote_file.remote_md5 else 'OK'
+                        bytes = remote_file.remote_bytes
+                        bytes_status = 'Dif' if item['remote_bytes'] != remote_file.remote_bytes else 'OK'
+
+                    else:
+                        md5 = ''
+                        md5_status = 'Err'
+                        bytes = ''
+                        bytes_status = 'Err'
+
                 else:
-                    md5 = ''
+                    md5 = 'SKIPPED'
                     md5_status = ''
-
-                bytes = remote_file.remote_bytes
-                bytes_status = 'Dif' if item['remote_bytes'] != remote_file.remote_bytes else 'OK'
+                    bytes = ''
+                    bytes_status = ''
 
                 log.row(
                     remote_filename,
@@ -884,6 +991,7 @@ class Dataset(object):
                     md5_status,
                     bytes_status
                 )
+
         log.line()
 
         return self
@@ -957,9 +1065,7 @@ class Dataset(object):
                         content_type=self.included_content_types
                 ):
                     if remote_package.local_exists():
-                        remote_package.extract(
-                            omit_first_level=True
-                        )
+                        remote_package.extract(**self.package_extract_parameters)
 
                     else:
                         # Local file not present
@@ -1035,7 +1141,7 @@ class Dataset(object):
             # Make sure filename has relative path
             item.filename = self.absolute_to_relative_path(item.filename)
 
-    def evaluation_setup_filename(self, setup_part='train', fold=None, scene_label=None, file_extension='txt'):
+    def evaluation_setup_filename(self, setup_part='train', fold=None, scene_label=None, file_extension=None):
         """Evaluation setup filename generation.
 
         Parameters
@@ -1053,8 +1159,8 @@ class Dataset(object):
             Default value None
 
         file_extension : str
-            File extension
-            Default value 'txt'
+            File extension. If None given, self.evaluation_setup_file_extension is used.
+            Default value None
 
         Raises
         ------
@@ -1070,6 +1176,9 @@ class Dataset(object):
 
         if fold == 'all_data':
             fold = None
+
+        if file_extension is None:
+            file_extension = self.evaluation_setup_file_extension
 
         parts = []
         if scene_label:

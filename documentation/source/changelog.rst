@@ -3,6 +3,30 @@
 Release notes
 =============
 
+v0.2.2
+------
+
+In this version external dependencies of this module are minimized. External modules required for non-core functionality is not anymore included in the setup.py, and not automatically installed. Once user uses functionality requiring these rarely used external modules and module is not found, ImportError is raised with instructions to install correct module through pip. All module requirements are still available in ``requirements.txt``.
+
+**New features**
+
+* Add ``unique_source_labels`` property to ``MetaDataContainer``
+* Add ``file_format`` parameter to load and save method for ``ListContainer`` and ``DictContainer`` to force specific file format
+* Add  ``label_list`` parameter to ``ManyHotEncodingProcessor``
+* Add ``DatasetPacker`` class to make DCASE styled dataset packages
+* Add ``dataset_exists`` helper function to check Dataset classes
+* Add multi-channel audio example ``audio_container_ch4``
+* Add ``TUTUrbanAcousticScenes_2018_LeaderboardSet`` and ``TUTUrbanAcousticScenes_2018_Mobile_LeaderboardSet`` dataset classes
+
+**Updates**
+
+* Update ``Dataset`` class handle also non-text file meta files by introducing parameter ``evaluation_setup_file_extension``
+* Update package list handling in ``Dataset`` to support custom package extraction parameters by extra parameter ``package_extract_parameters``
+* Update ``pad`` method in ``AudioContainer`` to work with multi-channel audio
+* Update ``compress`` method to produce split packages only if size limit is met
+* Update ``compress`` method to return package filenames
+* Update ``DCASE2018_Task5_DevelopmentSet`` dataset
+
 v0.2.1
 ------
 

@@ -1,0 +1,30 @@
+dcase_util.tools.DatasetPacker
+==============================
+
+.. currentmodule:: dcase_util.tools
+
+.. autoclass:: DatasetPacker
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~DatasetPacker.__init__
+      ~DatasetPacker.convert_markdown
+      ~DatasetPacker.pack
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~DatasetPacker.logger
+   
+   

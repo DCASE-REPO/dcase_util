@@ -35,6 +35,19 @@ class Example(object):
         return container
 
     @classmethod
+    def audio_container_ch4(cls):
+        from dcase_util.containers import AudioContainer
+        container = AudioContainer(fs=44100)
+        t = numpy.linspace(0, 2, 2 * container.fs, endpoint=False)
+        x1 = numpy.sin(220 * 2 * numpy.pi * t)
+        x2 = numpy.sin(440 * 2 * numpy.pi * t)
+        x3 = numpy.sin(660 * 2 * numpy.pi * t)
+        x4 = numpy.sin(880 * 2 * numpy.pi * t)
+        container.data = numpy.vstack([x1, x2, x3, x4])
+
+        return container
+
+    @classmethod
     def scene_metadata_container(cls, filename=None):
         from dcase_util.containers import MetaDataContainer
 

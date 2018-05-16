@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from __future__ import print_function, absolute_import
+import logging
 
 
 class SimpleMathStringEvaluator(object):
@@ -13,7 +14,16 @@ class SimpleMathStringEvaluator(object):
     """
 
     def __init__(self):
-        from pyparsing import Word, nums, alphas, Combine, oneOf, opAssoc, operatorPrecedence
+        try:
+            from pyparsing import Word, nums, alphas, Combine, oneOf, opAssoc, operatorPrecedence
+
+        except ImportError:
+            message = '{name}: Unable to import pyparsing module. You can install it with `pip install pyparsing`.'.format(
+                name=self.__class__.__name__
+            )
+
+            self.logger.exception(message)
+            raise ImportError(message)
 
         # Define the parser
         integer = Word(nums).setParseAction(lambda t: int(t[0]))
@@ -155,8 +165,17 @@ class SimpleMathStringEvaluator(object):
         result : numeric
             Evaluation result
         """
+        try:
+            from pyparsing import ParseException
 
-        from pyparsing import ParseException
+        except ImportError:
+            message = '{name}: Unable to import pyparsing module. You can install it with `pip install pyparsing`.'.format(
+                name=self.__class__.__name__
+            )
+
+            self.logger.exception(message)
+            raise ImportError(message)
+
         if not isinstance(string, str):
             # Bypass everything else than strings
             return string
@@ -178,3 +197,12 @@ class SimpleMathStringEvaluator(object):
                     except ParseException:
                         # Bypass eval for strings which cannot be evaluated
                         return string
+
+    @property
+    def logger(self):
+        logger = logging.getLogger(__name__)
+        if not logger.handlers:
+            from dcase_util.utils import setup_logging
+            setup_logging()
+
+        return logger

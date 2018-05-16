@@ -98,7 +98,6 @@ Usage examples:
     Dataset.dataset_size_string
     Dataset.dataset_size_on_disk
 
-
 AcousticSceneDataset
 --------------------
 
@@ -119,7 +118,9 @@ Specialized classes inherited AcousticSceneDataset:
     TUTAcousticScenes_2016_DevelopmentSet
     TUTAcousticScenes_2016_EvaluationSet
     TUTUrbanAcousticScenes_2018_DevelopmentSet
+    TUTUrbanAcousticScenes_2018_LeaderboardSet
     TUTUrbanAcousticScenes_2018_Mobile_DevelopmentSet
+    TUTUrbanAcousticScenes_2018_Mobile_LeaderboardSet
     DCASE2018_Task5_DevelopmentSet
 
 SoundEventDataset
@@ -161,6 +162,20 @@ AudioTaggingDataset
     DCASE2017_Task4tagging_DevelopmentSet
     DCASE2017_Task4tagging_EvaluationSet
     CHiMEHome_DomesticAudioTag_DevelopmentSet
+
+Helpers
+-------
+
+*dcase_util.datasets.*
+
+Helper functions to access Dataset classes.
+
+.. autosummary::
+    :toctree: generated/
+
+    dataset_list
+    dataset_factory
+    dataset_exists
 
 """
 

@@ -1,0 +1,6 @@
+dcase_util.datasets.dataset_list
+================================
+
+.. currentmodule:: dcase_util.datasets
+
+.. autofunction:: dataset_list

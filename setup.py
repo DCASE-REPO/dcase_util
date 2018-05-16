@@ -9,17 +9,10 @@ requirements = [
     'future>=0.16.0',
     'soundfile>=0.9.0',
     'pyyaml>=3.11',
-    'msgpack-python>=0.4.8',
-    'ujson>=1.35',
     'requests>=2.12.4',
     'tqdm>=4.11.2',
     'pydot-ng>= 1.0.0',
-    'pafy>=0.5.3.1',
-    'youtube-dl>=2017.10.1',
     'validators>=0.12.0',
-    'pyparsing>=2.2.0',
-    'titlecase>=0.12.0',
-    'colorama>=0.3.7',
     'python-magic>=0.4.13'
 ]
 
@@ -32,7 +25,7 @@ except (IOError, ImportError, RuntimeError):
 
 setup(
     name='dcase_util',
-    version='0.2.1',
+    version='0.2.2',
     description='A collection of utilities for Detection and Classification of Acoustic Scenes and Events',
     author='Toni Heittola',
     author_email='toni.heittola@gmail.com',

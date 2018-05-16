@@ -332,6 +332,85 @@ def test_log():
         a.log()
 
 
+def test_pad():
+    a = dcase_util.utils.Example.audio_container().mixdown()
+    a.pad(length_seconds=10)
+    nose.tools.eq_(a.duration_sec, 10)
+
+    a = dcase_util.utils.Example.audio_container()
+    a.pad(length_seconds=10)
+    nose.tools.eq_(a.duration_sec, 10)
+
+    a = dcase_util.utils.Example.audio_container_ch4()
+    a.pad(length_seconds=10)
+    nose.tools.eq_(a.duration_sec, 10)
+
+
+def test_segments():
+    a = dcase_util.utils.Example.audio_container().mixdown()
+    segments, segment_meta = a.segments(segment_length=1000)
+    nose.tools.eq_(len(segments), 88)
+    nose.tools.eq_(len(segments), len(segment_meta))
+
+    segments, segment_meta = a.segments(segment_length_seconds=0.5)
+    nose.tools.eq_(len(segments), 3)
+    nose.tools.eq_(len(segments), len(segment_meta))
+
+    segments, segment_meta = a.segments(
+        segments=[
+            {'onset': 0.5, 'offset': 0.8}
+        ]
+    )
+    nose.tools.eq_(len(segments), 1)
+    nose.tools.eq_(len(segments), len(segment_meta))
+    nose.tools.eq_(segment_meta[0]['onset'], 0.5)
+    nose.tools.eq_(segment_meta[0]['offset'], 0.8)
+
+    segments, segment_meta = a.segments(
+        segment_length_seconds=0.5,
+        skip_segments=[
+            {
+                'onset': 0.6,
+                'offset': 0.8
+            }
+        ]
+    )
+    nose.tools.eq_(len(segments), 3)
+    nose.tools.eq_(len(segments), len(segment_meta))
+    nose.tools.eq_(segment_meta, [
+        {
+            'onset': 0.0,
+            'offset': 0.5
+        },
+        {
+            'onset': 0.8,
+            'offset': 1.3
+        },
+        {
+            'onset': 1.3,
+            'offset': 1.8
+        }
+    ])
+
+    a = dcase_util.utils.Example.audio_container()
+    segments, segment_meta = a.segments(segment_length=1000)
+    nose.tools.eq_(len(segments), 88)
+    nose.tools.eq_(len(segments), len(segment_meta))
+
+
+def test_frames():
+    a = dcase_util.utils.Example.audio_container().mixdown()
+    frames = a.frames(frame_length=1000, hop_length=1000)
+    nose.tools.eq_(frames.shape[0], 1000)
+    nose.tools.eq_(frames.shape[1], 88)
+
+    a = dcase_util.utils.Example.audio_container()
+    frames = a.frames(frame_length=1000, hop_length=1000)
+    nose.tools.eq_(frames.shape[0], 2)
+    nose.tools.eq_(frames.shape[1], 1000)
+    nose.tools.eq_(frames.shape[2], 88)
+
+
 @nose.tools.raises(ValueError)
 def test_focus_channel():
     with dcase_util.utils.DisableLogger():

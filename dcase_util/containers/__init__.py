@@ -788,6 +788,7 @@ MetaDataContainer
     MetaDataContainer.unique_scene_labels
     MetaDataContainer.unique_tags
     MetaDataContainer.unique_identifiers
+    MetaDataContainer.unique_source_labels
     MetaDataContainer.max_offset
     MetaDataContainer.get_string
     MetaDataContainer.filter

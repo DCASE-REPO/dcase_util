@@ -95,6 +95,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation instructions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../installation.html#pypi">PyPI</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation.html#source">Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#dependencies">Dependencies</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../library.html">Library</a><ul>
@@ -426,6 +427,7 @@
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataItem.offset.html">dcase_util.containers.MetaDataItem.offset</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataItem.identifier.html">dcase_util.containers.MetaDataItem.identifier</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataItem.source_label.html">dcase_util.containers.MetaDataItem.source_label</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataItem.set_label.html">dcase_util.containers.MetaDataItem.set_label</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataItem.tags.html">dcase_util.containers.MetaDataItem.tags</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataItem.active_within_segment.html">dcase_util.containers.MetaDataItem.active_within_segment</a></li>
 </ul>
@@ -450,6 +452,7 @@
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.unique_scene_labels.html">dcase_util.containers.MetaDataContainer.unique_scene_labels</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.unique_tags.html">dcase_util.containers.MetaDataContainer.unique_tags</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.unique_identifiers.html">dcase_util.containers.MetaDataContainer.unique_identifiers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.unique_source_labels.html">dcase_util.containers.MetaDataContainer.unique_source_labels</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.max_offset.html">dcase_util.containers.MetaDataContainer.max_offset</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.get_string.html">dcase_util.containers.MetaDataContainer.get_string</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.filter.html">dcase_util.containers.MetaDataContainer.filter</a></li>
@@ -477,9 +480,15 @@
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AppParameterContainer.html">dcase_util.containers.AppParameterContainer</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AppParameterContainer.reset.html">dcase_util.containers.AppParameterContainer.reset</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AppParameterContainer.process.html">dcase_util.containers.AppParameterContainer.process</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AppParameterContainer.process_set.html">dcase_util.containers.AppParameterContainer.process_set</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AppParameterContainer.override.html">dcase_util.containers.AppParameterContainer.override</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AppParameterContainer.get_path_translated.html">dcase_util.containers.AppParameterContainer.get_path_translated</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AppParameterContainer.set_path_translated.html">dcase_util.containers.AppParameterContainer.set_path_translated</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AppParameterContainer.update_parameter_set.html">dcase_util.containers.AppParameterContainer.update_parameter_set</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AppParameterContainer.set_ids.html">dcase_util.containers.AppParameterContainer.set_ids</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AppParameterContainer.set_id_exists.html">dcase_util.containers.AppParameterContainer.set_id_exists</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AppParameterContainer.active_set.html">dcase_util.containers.AppParameterContainer.active_set</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AppParameterContainer.get_set.html">dcase_util.containers.AppParameterContainer.get_set</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../containers.html#dcaseappparametercontainer">DCASEAppParameterContainer</a><ul>
@@ -740,6 +749,11 @@
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTAcousticScenes_2017_EvaluationSet.html">dcase_util.datasets.TUTAcousticScenes_2017_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet.html">dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet.html">dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTUrbanAcousticScenes_2018_DevelopmentSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_DevelopmentSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTUrbanAcousticScenes_2018_LeaderboardSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_LeaderboardSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_DevelopmentSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_DevelopmentSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_LeaderboardSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_LeaderboardSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.DCASE2018_Task5_DevelopmentSet.html">dcase_util.datasets.DCASE2018_Task5_DevelopmentSet</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../datasets.html#soundeventdataset">SoundEventDataset</a><ul>
@@ -762,6 +776,12 @@
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.DCASE2017_Task4tagging_DevelopmentSet.html">dcase_util.datasets.DCASE2017_Task4tagging_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.DCASE2017_Task4tagging_EvaluationSet.html">dcase_util.datasets.DCASE2017_Task4tagging_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.CHiMEHome_DomesticAudioTag_DevelopmentSet.html">dcase_util.datasets.CHiMEHome_DomesticAudioTag_DevelopmentSet</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../datasets.html#helpers">Helpers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.dataset_list.html">dcase_util.datasets.dataset_list</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.dataset_factory.html">dcase_util.datasets.dataset_factory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.dataset_exists.html">dcase_util.datasets.dataset_exists</a></li>
 </ul>
 </li>
 </ul>
@@ -939,9 +959,13 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../keras.html#generators">Generators</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../keras.html#data-processing">Data processing</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../keras.html#kerasdatasequence">KerasDataSequence</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.keras.get_keras_data_sequence_class.html">dcase_util.keras.get_keras_data_sequence_class</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../keras.html#data-collector">data_collector</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.keras.data_collector.html">dcase_util.keras.data_collector</a></li>
 </ul>
 </li>
 </ul>
@@ -1138,6 +1162,8 @@
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyLogger.html">dcase_util.ui.FancyLogger</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyLogger.line.html">dcase_util.ui.FancyLogger.line</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyLogger.row.html">dcase_util.ui.FancyLogger.row</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyLogger.row_reset.html">dcase_util.ui.FancyLogger.row_reset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyLogger.row_sep.html">dcase_util.ui.FancyLogger.row_sep</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyLogger.title.html">dcase_util.ui.FancyLogger.title</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyLogger.section_header.html">dcase_util.ui.FancyLogger.section_header</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyLogger.sub_header.html">dcase_util.ui.FancyLogger.sub_header</a></li>
@@ -1154,6 +1180,8 @@
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyPrinter.html">dcase_util.ui.FancyPrinter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyPrinter.line.html">dcase_util.ui.FancyPrinter.line</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyPrinter.row.html">dcase_util.ui.FancyPrinter.row</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyPrinter.row_reset.html">dcase_util.ui.FancyPrinter.row_reset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyPrinter.row_sep.html">dcase_util.ui.FancyPrinter.row_sep</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyPrinter.title.html">dcase_util.ui.FancyPrinter.title</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyPrinter.section_header.html">dcase_util.ui.FancyPrinter.section_header</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyPrinter.sub_header.html">dcase_util.ui.FancyPrinter.sub_header</a></li>
@@ -1178,6 +1206,8 @@
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyStringifier.sep.html">dcase_util.ui.FancyStringifier.sep</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyStringifier.table.html">dcase_util.ui.FancyStringifier.table</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyStringifier.row.html">dcase_util.ui.FancyStringifier.row</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyStringifier.row_reset.html">dcase_util.ui.FancyStringifier.row_reset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyStringifier.row_sep.html">dcase_util.ui.FancyStringifier.row_sep</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyStringifier.class_name.html">dcase_util.ui.FancyStringifier.class_name</a></li>
 </ul>
 </li>
@@ -1295,6 +1325,12 @@
 <p class="caption"><span class="caption-text">Tools</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../tools.html">Tools</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../tools.html#datasetpacker">DatasetPacker</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.tools.DatasetPacker.html">dcase_util.tools.DatasetPacker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.tools.DatasetPacker.pack.html">dcase_util.tools.DatasetPacker.pack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.tools.DatasetPacker.convert_markdown.html">dcase_util.tools.DatasetPacker.convert_markdown</a></li>
+</ul>
+</li>
 <li class="toctree-l2 current"><a class="reference internal" href="../tools.html#submissionchecker">SubmissionChecker</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.tools.SubmissionChecker.html">dcase_util.tools.SubmissionChecker</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">dcase_util.tools.SubmissionChecker.process</a></li>
@@ -1326,6 +1362,10 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-2">v0.2.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-1">v0.2.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-0">v0.2.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-1-9">v0.1.9</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-1-8">v0.1.8</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-1-7">v0.1.7</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-1-6">v0.1.6</a></li>

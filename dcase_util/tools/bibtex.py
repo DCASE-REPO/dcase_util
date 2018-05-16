@@ -5,7 +5,8 @@ from __future__ import print_function, absolute_import
 import six
 import string
 import collections
-from titlecase import titlecase
+import logging
+from dcase_util.utils import setup_logging
 
 
 class BibtexProcessor(object):
@@ -59,6 +60,7 @@ class BibtexProcessor(object):
 
         if title not in self.keys[key]:
             self.keys[key].append(title)
+
         key += self.num2alpha[self.keys[key].index(title)]
 
         if six.PY2:
@@ -86,6 +88,7 @@ class BibtexProcessor(object):
         bibtex_authors = []
         for author in authors:
             bibtex_authors.append(author['lastname']+', '+author['firstname'])
+
         return ' and '.join(bibtex_authors)
 
     def authors_fancy(self, authors, affiliation_list=None):
@@ -256,8 +259,7 @@ class BibtexProcessor(object):
                 output += sub+', '
         return output
 
-    @staticmethod
-    def title(title):
+    def title(self, title):
         """Process publication title.
 
         Parameters
@@ -272,7 +274,19 @@ class BibtexProcessor(object):
 
         """
 
+        try:
+            from titlecase import titlecase
+
+        except ImportError:
+            message = '{name}: Unable to import titlecase module. You can install it with `pip install titlecase`.'.format(
+                name=self.__class__.__name__
+            )
+
+            self.logger.exception(message)
+            raise ImportError(message)
+
         def abbreviations(word, **kwargs):
+
             word_prefix = ''
             word_postfix = ''
 
@@ -360,3 +374,11 @@ class BibtexProcessor(object):
             abstract = abstract.replace(pair[0], pair[1])
 
         return abstract
+
+    @property
+    def logger(self):
+        logger = logging.getLogger(__name__)
+        if not logger.handlers:
+            setup_logging()
+
+        return logger
