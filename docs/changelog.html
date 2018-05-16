@@ -1386,6 +1386,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#v0-2-3">v0.2.3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#v0-2-2">v0.2.2</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#v0-2-1">v0.2.1</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#v0-2-0">v0.2.0</a></li>
@@ -1462,6 +1463,18 @@
             
   <div class="section" id="release-notes">
 <span id="changelog"></span><h1>Release notes<a class="headerlink" href="#release-notes" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="v0-2-3">
+<h2>v0.2.3<a class="headerlink" href="#v0-2-3" title="Permalink to this headline">¶</a></h2>
+<p><strong>New features</strong></p>
+<ul class="simple">
+<li>Add <code class="docutils literal"><span class="pre">AudioWritingProcessor</span></code> and <code class="docutils literal"><span class="pre">MonoAudioWritingProcessor</span></code> processor classes</li>
+<li>Add <code class="docutils literal"><span class="pre">FeatureWritingProcessor</span></code> and <code class="docutils literal"><span class="pre">RepositoryFeatureWritingProcessor</span></code> processor classes</li>
+</ul>
+<p><strong>Bug fixes</strong></p>
+<ul class="simple">
+<li>Fix <code class="docutils literal"><span class="pre">DataRepository</span></code> not to have internal variables in the <code class="docutils literal"><span class="pre">__dict__</span></code> after loading container from disk</li>
+</ul>
+</div>
 <div class="section" id="v0-2-2">
 <h2>v0.2.2<a class="headerlink" href="#v0-2-2" title="Permalink to this headline">¶</a></h2>
 <p>In this version external dependencies of this module are minimized. External modules required for non-core functionality is not anymore included in the setup.py, and not automatically installed. Once user uses functionality requiring these rarely used external modules and module is not found, ImportError is raised with instructions to install correct module through pip. All module requirements are still available in <code class="docutils literal"><span class="pre">requirements.txt</span></code>.</p>

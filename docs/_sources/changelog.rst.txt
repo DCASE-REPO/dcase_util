@@ -3,6 +3,18 @@
 Release notes
 =============
 
+v0.2.3
+------
+
+**New features**
+
+* Add ``AudioWritingProcessor`` and ``MonoAudioWritingProcessor`` processor classes
+* Add ``FeatureWritingProcessor`` and ``RepositoryFeatureWritingProcessor`` processor classes
+
+**Bug fixes**
+
+* Fix ``DataRepository`` not to have internal variables in the ``__dict__`` after loading container from disk
+
 v0.2.2
 ------
 
