@@ -262,6 +262,64 @@ class RepositoryFeatureReadingProcessor(Processor):
             raise ValueError(message)
 
 
+class RepositoryFeatureWritingProcessor(Processor):
+    input_type = ProcessingChainItemType.DATA_REPOSITORY  #: Input data type
+    output_type = ProcessingChainItemType.NONE  #: Output data type
+
+    def __init__(self, *args, **kwargs):
+        """Constructor"""
+
+        # Run super init to call init of mixins too
+        super(RepositoryFeatureWritingProcessor, self).__init__(*args, **kwargs)
+
+    def process(self,
+                data=None, output_filename=None, store_processing_chain=False,
+                **kwargs):
+        """Data repository writing.
+
+        Parameters
+        ----------
+        data : FeatureContainer
+            Input feature data.
+            Default value None
+
+        output_filename : str
+            Filename of the feature container to save.
+            Default value None
+
+        store_processing_chain : bool
+            Store processing chain to data container
+            Default value False
+
+        Returns
+        -------
+        self
+
+        """
+
+        if data:
+            repository = FeatureRepository(data=data)
+
+            if store_processing_chain:
+                repository.processing_chain = data.processing_chain
+
+            if output_filename:
+                # Load features from disk
+                repository.save(
+                    filename=output_filename
+                )
+
+            return repository
+
+        else:
+            message = '{name}: No input data.'.format(
+                name=self.__class__.__name__
+            )
+
+            self.logger.exception(message)
+            raise ValueError(message)
+
+
 class FeatureExtractorProcessor(Processor):
     input_type = ProcessingChainItemType.AUDIO  #: Input data type
     output_type = ProcessingChainItemType.DATA_CONTAINER  #: Output data type
