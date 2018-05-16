@@ -98,7 +98,6 @@ Usage examples:
     Dataset.dataset_size_string
     Dataset.dataset_size_on_disk
 
-
 AcousticSceneDataset
 --------------------
 

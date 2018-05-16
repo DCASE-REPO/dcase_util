@@ -16,6 +16,7 @@ separate packages. Large data packages are split into multiple smalled ones to e
 
 .. autosummary::
     :toctree: generated/
+
     DatasetPacker
     DatasetPacker.pack
     DatasetPacker.convert_markdown
