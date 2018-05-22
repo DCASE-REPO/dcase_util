@@ -165,10 +165,10 @@ class FancyStringifier(object):
         - str
         - bool
         - float1, float2, float3, float4
-        - float1_percentage, float2_percentage
-        - float1_percentage+ci, float2_percentage+ci
-        - float1_ci, float2_ci
-        - float1_ci_bracket, float2_ci_bracket
+        - float1_percentage, float2_percentage, float3_percentage, float4_percentage
+        - float1_percentage+ci, float2_percentage+ci, float3_percentage+ci, float4_percentage+ci
+        - float1_ci, float2_ci, float3_ci, float4_ci
+        - float1_ci_bracket, float2_ci_bracket, float3_ci_bracket, float4_ci_bracket
 
         Parameters
         ----------
@@ -201,6 +201,7 @@ class FancyStringifier(object):
             else:
                 data_type = 'str'
 
+        # Float
         if data_type == 'float1' and is_float(value):
             value = '{:.1f}'.format(float(value))
 
@@ -216,29 +217,70 @@ class FancyStringifier(object):
         elif data_type == 'int' and is_int(value):
             value = '{:d}'.format(int(value))
 
+        # Float (percentage)
         elif data_type == 'float1_percentage' and is_float(value):
             value = '{:3.1f}%'.format(float(value))
 
         elif data_type == 'float2_percentage' and is_float(value):
             value = '{:3.2f}%'.format(float(value))
 
+        elif data_type == 'float3_percentage' and is_float(value):
+            value = '{:3.3f}%'.format(float(value))
+
+        elif data_type == 'float4_percentage' and is_float(value):
+            value = '{:3.4f}%'.format(float(value))
+
+        # Float (percentage) + confidence interval
         elif data_type == 'float1_percentage+ci' and isinstance(value, tuple):
             value = '{:3.1f}% (+/-{:3.1f})'.format(float(value[0]), float(value[1]))
 
         elif data_type == 'float2_percentage+ci' and isinstance(value, tuple):
             value = '{:3.2f}% (+/-{:3.2f})'.format(float(value[0]), float(value[1]))
 
+        elif data_type == 'float3_percentage+ci' and isinstance(value, tuple):
+            value = '{:3.3f}% (+/-{:3.3f})'.format(float(value[0]), float(value[1]))
+
+        elif data_type == 'float4_percentage+ci' and isinstance(value, tuple):
+            value = '{:3.4f}% (+/-{:3.4f})'.format(float(value[0]), float(value[1]))
+
+        # Float + confidence interval
+        elif data_type == 'float1+ci' and isinstance(value, tuple):
+            value = '{:3.1f} (+/-{:3.1f})'.format(float(value[0]), float(value[1]))
+
+        elif data_type == 'float2+ci' and isinstance(value, tuple):
+            value = '{:3.2f} (+/-{:3.2f})'.format(float(value[0]), float(value[1]))
+
+        elif data_type == 'float3+ci' and isinstance(value, tuple):
+            value = '{:3.3f} (+/-{:3.3f})'.format(float(value[0]), float(value[1]))
+
+        elif data_type == 'float4+ci' and isinstance(value, tuple):
+            value = '{:3.4f} (+/-{:3.4f})'.format(float(value[0]), float(value[1]))
+
+        # Float confidence interval
         elif data_type == 'float1_ci':
             value = '+/-{:3.1f}'.format(float(value))
 
         elif data_type == 'float2_ci':
             value = '+/-{:3.2f}'.format(float(value))
 
+        elif data_type == 'float3_ci':
+            value = '+/-{:3.3f}'.format(float(value))
+
+        elif data_type == 'float4_ci':
+            value = '+/-{:3.4f}'.format(float(value))
+
+        # Float confidence interval bracket
         elif data_type == 'float1_ci_bracket' and isinstance(value, tuple):
             value = '{:3.1f}-{:3.1f}'.format(float(value[0]), float(value[1]))
 
         elif data_type == 'float2_ci_bracket' and isinstance(value, tuple):
             value = '{:3.2f}-{:3.2f}'.format(float(value[0]), float(value[1]))
+
+        elif data_type == 'float3_ci_bracket' and isinstance(value, tuple):
+            value = '{:3.3f}-{:3.3f}'.format(float(value[0]), float(value[1]))
+
+        elif data_type == 'float4_ci_bracket' and isinstance(value, tuple):
+            value = '{:3.4f}-{:3.4f}'.format(float(value[0]), float(value[1]))
 
         elif isinstance(value, numpy.ndarray):
             shape = value.shape
