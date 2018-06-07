@@ -1942,7 +1942,7 @@ class TUTRareSoundEvents_2017_EvaluationSet(SyntheticSoundEventDataset):
                 'filename': 'TUT-rare-sound-events-2017-evaluation.mixture_data.5.zip'
             }
         ]
-        kwargs['audio_paths'] = ['audio']
+        kwargs['audio_paths'] = [os.path.join('data', 'mixture_data', 'evaltest', 'bbb81504db15a03680a0044474633b67', 'audio')]
 
         # Initialize base class
         super(TUTRareSoundEvents_2017_EvaluationSet, self).__init__(**kwargs)
