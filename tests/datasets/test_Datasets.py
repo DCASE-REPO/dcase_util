@@ -199,37 +199,37 @@ def test_TUTAcousticScenes_2016_DevelopmentSet():
         db.log()
 
 
-def test_TUTAcousticScenes_2016_EvaluationSet():
-    db = dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet(
-        included_content_types=['meta']
-    ).initialize()
-
-    # Cross-validation setup / Train
-    nose.tools.eq_(db.train().file_count, 0)
-
-    # Cross-validation setup / Test
-    nose.tools.eq_(db.test().file_count, 390)
-
-    nose.tools.eq_(db.eval().file_count, 390)
-
-    nose.tools.eq_(db.audio_files, [])
-    nose.tools.eq_(db.audio_file_count, 0)
-
-    nose.tools.eq_(len(db.meta), 390)
-    nose.tools.eq_(db.meta_count, 390)
-
-    nose.tools.eq_(db.fold_count, None)
-
-    nose.tools.eq_(db.scene_label_count(), 15)
-
-    nose.tools.eq_(db.check_filelist(), True)
-
-    nose.tools.eq_(db.folds(), ['all_data'])
-    nose.tools.eq_(db.folds('full'), ['all_data'])
-
-    with dcase_util.utils.DisableLogger():
-        db.log()
-
+# def test_TUTAcousticScenes_2016_EvaluationSet():
+#     db = dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet(
+#         included_content_types=['meta']
+#     ).initialize()
+#
+#     # Cross-validation setup / Train
+#     nose.tools.eq_(db.train().file_count, 0)
+#
+#     # Cross-validation setup / Test
+#     nose.tools.eq_(db.test().file_count, 390)
+#
+#     nose.tools.eq_(db.eval().file_count, 390)
+#
+#     nose.tools.eq_(db.audio_files, [])
+#     nose.tools.eq_(db.audio_file_count, 0)
+#
+#     nose.tools.eq_(len(db.meta), 390)
+#     nose.tools.eq_(db.meta_count, 390)
+#
+#     nose.tools.eq_(db.fold_count, None)
+#
+#     nose.tools.eq_(db.scene_label_count(), 15)
+#
+#     nose.tools.eq_(db.check_filelist(), True)
+#
+#     nose.tools.eq_(db.folds(), ['all_data'])
+#     nose.tools.eq_(db.folds('full'), ['all_data'])
+#
+#     with dcase_util.utils.DisableLogger():
+#         db.log()
+#
 
 # def test_TUTAcousticScenes_2017_DevelopmentSet():
 #     db = dcase_util.datasets.TUTAcousticScenes_2017_DevelopmentSet(
@@ -529,33 +529,33 @@ def test_TUTSoundEvents_2016_DevelopmentSet():
     nose.tools.eq_(db.folds('full'), ['all_data'])
 
 
-def test_TUTSoundEvents_2016_EvaluationSet():
-    db = dcase_util.datasets.TUTSoundEvents_2016_EvaluationSet(
-        included_content_types=['meta']
-    ).initialize()
-
-    # Cross-validation setup / Test
-    nose.tools.eq_(db.test().file_count, 10)
-
-    nose.tools.eq_(db.eval().file_count, 10)
-
-    nose.tools.eq_(len(db.meta), 511)
-    nose.tools.eq_(db.meta_count, 511)
-
-    nose.tools.eq_(db.scene_labels(), ['home', 'residential_area'])
-    nose.tools.eq_(db.scene_label_count(), 2)
-
-    nose.tools.eq_(db.event_labels(),
-                   ['(object) banging', '(object) rustling', '(object) snapping', 'bird singing', 'car passing by',
-                    'children shouting', 'cupboard', 'cutlery', 'dishes', 'drawer', 'glass jingling', 'object impact',
-                    'people speaking', 'people walking', 'washing dishes', 'water tap running', 'wind blowing'])
-
-    nose.tools.eq_(db.event_label_count(), 17)
-
-    nose.tools.eq_(db.check_filelist(), True)
-
-    nose.tools.eq_(db.folds(), ['all_data'])
-    nose.tools.eq_(db.folds('full'), ['all_data'])
+# def test_TUTSoundEvents_2016_EvaluationSet():
+#     db = dcase_util.datasets.TUTSoundEvents_2016_EvaluationSet(
+#         included_content_types=['meta']
+#     ).initialize()
+#
+#     # Cross-validation setup / Test
+#     nose.tools.eq_(db.test().file_count, 10)
+#
+#     nose.tools.eq_(db.eval().file_count, 10)
+#
+#     nose.tools.eq_(len(db.meta), 511)
+#     nose.tools.eq_(db.meta_count, 511)
+#
+#     nose.tools.eq_(db.scene_labels(), ['home', 'residential_area'])
+#     nose.tools.eq_(db.scene_label_count(), 2)
+#
+#     nose.tools.eq_(db.event_labels(),
+#                    ['(object) banging', '(object) rustling', '(object) snapping', 'bird singing', 'car passing by',
+#                     'children shouting', 'cupboard', 'cutlery', 'dishes', 'drawer', 'glass jingling', 'object impact',
+#                     'people speaking', 'people walking', 'washing dishes', 'water tap running', 'wind blowing'])
+#
+#     nose.tools.eq_(db.event_label_count(), 17)
+#
+#     nose.tools.eq_(db.check_filelist(), True)
+#
+#     nose.tools.eq_(db.folds(), ['all_data'])
+#     nose.tools.eq_(db.folds('full'), ['all_data'])
 
 
 #def test_TUTSoundEvents_2017_DevelopmentSet():
