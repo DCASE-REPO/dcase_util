@@ -29,7 +29,7 @@ install:
 
 # command to run tests
 script:
-    - "nosetests --with-coverage --cover-erase --nocapture --cover-package=dcase_util -v -w tests/"
+    - "travis_wait nosetests --with-coverage --cover-erase --nocapture --cover-package=dcase_util -v -w tests/"
 
 after_success:
     - "coveralls"
