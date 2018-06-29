@@ -5,8 +5,10 @@ python:
     - "3.6"
 
 cache:
-  - pip
-  - bundler
+  pip: true
+  bundler: true
+  directories:
+    - /tmp/dcase_util_datasets
 
 notifications:
   email: false
