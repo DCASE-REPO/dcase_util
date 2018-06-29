@@ -119,9 +119,12 @@ Specialized classes inherited AcousticSceneDataset:
     TUTAcousticScenes_2016_EvaluationSet
     TUTUrbanAcousticScenes_2018_DevelopmentSet
     TUTUrbanAcousticScenes_2018_LeaderboardSet
+    TUTUrbanAcousticScenes_2018_EvaluationSet
     TUTUrbanAcousticScenes_2018_Mobile_DevelopmentSet
     TUTUrbanAcousticScenes_2018_Mobile_LeaderboardSet
+    TUTUrbanAcousticScenes_2018_Mobile_EvaluationSet
     DCASE2018_Task5_DevelopmentSet
+    DCASE2018_Task5_EvaluationSet
 
 SoundEventDataset
 -----------------
