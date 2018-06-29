@@ -750,9 +750,12 @@
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet.html">dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_DevelopmentSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_LeaderboardSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_LeaderboardSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_EvaluationSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_DevelopmentSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_LeaderboardSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_LeaderboardSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_EvaluationSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.DCASE2018_Task5_DevelopmentSet.html">dcase_util.datasets.DCASE2018_Task5_DevelopmentSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.DCASE2018_Task5_EvaluationSet.html">dcase_util.datasets.DCASE2018_Task5_EvaluationSet</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="datasets.html#soundeventdataset">SoundEventDataset</a><ul>
@@ -1386,6 +1389,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#v0-2-4">v0.2.4</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#v0-2-3">v0.2.3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#v0-2-2">v0.2.2</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#v0-2-1">v0.2.1</a></li>
@@ -1463,6 +1467,22 @@
             
   <div class="section" id="release-notes">
 <span id="changelog"></span><h1>Release notes<a class="headerlink" href="#release-notes" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="v0-2-4">
+<h2>v0.2.4<a class="headerlink" href="#v0-2-4" title="Permalink to this headline">¶</a></h2>
+<p><strong>New features</strong></p>
+<ul class="simple">
+<li>Add <code class="docutils literal"><span class="pre">TUTUrbanAcousticScenes_2018_EvaluationSet</span></code> and <code class="docutils literal"><span class="pre">TUTUrbanAcousticScenes_2018_Mobile_EvaluationSet</span></code> dataset classes</li>
+<li>Add <code class="docutils literal"><span class="pre">DCASE2018_Task5_EvaluationSet</span></code> dataset class</li>
+</ul>
+<p><strong>Updates</strong></p>
+<ul class="simple">
+<li>Update <code class="docutils literal"><span class="pre">formatted_value</span></code> method in <code class="docutils literal"><span class="pre">FancyStringifier</span></code> to have full coverage of float formats (float precision from 1 to 4).</li>
+</ul>
+<p><strong>Bug fixes</strong></p>
+<ul class="simple">
+<li>Fix <code class="docutils literal"><span class="pre">TUTRareSoundEvents_2017_EvaluationSet</span></code> dataset class to have correct audio path</li>
+</ul>
+</div>
 <div class="section" id="v0-2-3">
 <h2>v0.2.3<a class="headerlink" href="#v0-2-3" title="Permalink to this headline">¶</a></h2>
 <p><strong>New features</strong></p>
