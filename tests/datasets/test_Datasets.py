@@ -134,6 +134,7 @@ def test_dataset_construction():
         included_content_types=['meta']
     )
 
+
 def test_TUTAcousticScenes_2016_DevelopmentSet():
     db = dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet(
         included_content_types=['meta']
@@ -411,88 +412,75 @@ def test_TUTAcousticScenes_2017_EvaluationSet():
 
 
 def test_TUTUrbanAcousticScenes_2018_DevelopmentSet():
-    db = dcase_util.datasets.TUTUrbanAcousticScenes_2018_DevelopmentSet(
-        included_content_types=['meta']
-    ).initialize()
+   db = dcase_util.datasets.TUTUrbanAcousticScenes_2018_DevelopmentSet(
+       included_content_types=['meta']
+   ).initialize()
 
-    # Cross-validation setup / Train
-    nose.tools.eq_(db.train().file_count, 8640)
-    nose.tools.eq_(db.train(1).file_count, 6122)
+   # Cross-validation setup / Train
+   nose.tools.eq_(db.train().file_count, 8640)
+   nose.tools.eq_(db.train(1).file_count, 6122)
 
-    # Cross-validation setup / Test
-    nose.tools.eq_(db.test().file_count, 8640)
-    nose.tools.eq_(db.test(1).file_count, 2518)
+   # Cross-validation setup / Test
+   nose.tools.eq_(db.test().file_count, 8640)
+   nose.tools.eq_(db.test(1).file_count, 2518)
 
-    nose.tools.eq_(db.eval().file_count, 8640)
-    nose.tools.eq_(db.eval(1).file_count, 2518)
+   nose.tools.eq_(db.eval().file_count, 8640)
+   nose.tools.eq_(db.eval(1).file_count, 2518)
 
-    nose.tools.eq_(set(db.train_files(1)).intersection(db.test_files(1)), set())
+   nose.tools.eq_(set(db.train_files(1)).intersection(db.test_files(1)), set())
+   nose.tools.eq_(db.audio_files, [])
+   nose.tools.eq_(db.audio_file_count, 0)
+   nose.tools.eq_(len(db.meta), 8640)
+   nose.tools.eq_(db.meta_count, 8640)
+   nose.tools.eq_(db.fold_count, 1)
+   nose.tools.eq_(db.scene_label_count(), 10)
+   nose.tools.eq_(db.check_filelist(), True)
 
-    nose.tools.eq_(db.audio_files, [])
-    nose.tools.eq_(db.audio_file_count, 0)
+   with dcase_util.utils.DisableLogger():
+       bal_train, bal_validation = db.validation_split(
+           fold=1,
+           validation_amount=0.5,
+           split_type='balanced',
+           iterations=10,
+           verbose=False
+       )
 
-    nose.tools.eq_(len(db.meta), 8640)
-    nose.tools.eq_(db.meta_count, 8640)
+   nose.tools.eq_(set(bal_train).intersection(bal_validation), set())
+   nose.tools.eq_(db.folds(), [1])
+   nose.tools.eq_(db.folds('full'), ['all_data'])
 
-    nose.tools.eq_(db.fold_count, 1)
-
-    nose.tools.eq_(db.scene_label_count(), 10)
-
-    nose.tools.eq_(db.check_filelist(), True)
-
-    with dcase_util.utils.DisableLogger():
-        bal_train, bal_validation = db.validation_split(
-            fold=1,
-            validation_amount=0.5,
-            split_type='balanced',
-            iterations=10,
-            verbose=False
-        )
-
-    nose.tools.eq_(set(bal_train).intersection(bal_validation), set())
-
-    nose.tools.eq_(db.folds(), [1])
-    nose.tools.eq_(db.folds('full'), ['all_data'])
-
-    with dcase_util.utils.DisableLogger():
-        db.log()
+   with dcase_util.utils.DisableLogger():
+       db.log()
 
 
 def test_TUTUrbanAcousticScenes_2018_Mobile_DevelopmentSet():
-    db = dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_DevelopmentSet(
-        included_content_types=['meta']
-    ).initialize()
+   db = dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_DevelopmentSet(
+       included_content_types=['meta']
+   ).initialize()
 
-    # Cross-validation setup / Train
-    nose.tools.eq_(db.train().file_count, 10080)
-    nose.tools.eq_(db.train(1).file_count, 7202)
+   # Cross-validation setup / Train
+   nose.tools.eq_(db.train().file_count, 10080)
+   nose.tools.eq_(db.train(1).file_count, 7202)
 
-    # Cross-validation setup / Test
-    nose.tools.eq_(db.test().file_count, 10080)
-    nose.tools.eq_(db.test(1).file_count, 2878)
+   # Cross-validation setup / Test
+   nose.tools.eq_(db.test().file_count, 10080)
+   nose.tools.eq_(db.test(1).file_count, 2878)
 
-    nose.tools.eq_(db.eval().file_count, 10080)
-    nose.tools.eq_(db.eval(1).file_count, 2878)
+   nose.tools.eq_(db.eval().file_count, 10080)
+   nose.tools.eq_(db.eval(1).file_count, 2878)
 
-    nose.tools.eq_(set(db.train_files(1)).intersection(db.test_files(1)), set())
-
-    nose.tools.eq_(db.audio_files, [])
-    nose.tools.eq_(db.audio_file_count, 0)
-
-    nose.tools.eq_(len(db.meta), 10080)
-    nose.tools.eq_(db.meta_count, 10080)
-
-    nose.tools.eq_(db.fold_count, 1)
-
-    nose.tools.eq_(db.scene_label_count(), 10)
-
-    nose.tools.eq_(db.check_filelist(), True)
-
-    nose.tools.eq_(db.folds(), [1])
-    nose.tools.eq_(db.folds('full'), ['all_data'])
-
-    with dcase_util.utils.DisableLogger():
-        db.log()
+   nose.tools.eq_(set(db.train_files(1)).intersection(db.test_files(1)), set())
+   nose.tools.eq_(db.audio_files, [])
+   nose.tools.eq_(db.audio_file_count, 0)
+   nose.tools.eq_(len(db.meta), 10080)
+   nose.tools.eq_(db.meta_count, 10080)
+   nose.tools.eq_(db.fold_count, 1)
+   nose.tools.eq_(db.scene_label_count(), 10)
+   nose.tools.eq_(db.check_filelist(), True)
+   nose.tools.eq_(db.folds(), [1])
+   nose.tools.eq_(db.folds('full'), ['all_data'])
+   with dcase_util.utils.DisableLogger():
+       db.log()
 
 
 def test_TUTSoundEvents_2016_DevelopmentSet():
@@ -571,140 +559,135 @@ def test_TUTSoundEvents_2016_EvaluationSet():
 
 
 def test_TUTSoundEvents_2017_DevelopmentSet():
-    db = dcase_util.datasets.TUTSoundEvents_2017_DevelopmentSet(
-        included_content_types=['meta']
-    ).initialize()
+   db = dcase_util.datasets.TUTSoundEvents_2017_DevelopmentSet(
+       included_content_types=['meta']
+   ).initialize()
 
-    audio_path = os.path.join(
-        tempfile.gettempdir(),
-        'dcase_util_datasets',
-        db.storage_name,
-        'audio',
-        'street'
-    )
+   audio_path = os.path.join(
+       tempfile.gettempdir(),
+       'dcase_util_datasets',
+       db.storage_name,
+       'audio',
+       'street'
+   )
 
-    # Cross-validation setup / Train
-    nose.tools.eq_(db.train().file_count, 24)
-    nose.tools.eq_(db.train(1).file_count, 18)
-    nose.tools.eq_(db.train(2).file_count, 18)
-    nose.tools.eq_(db.train(3).file_count, 18)
-    nose.tools.eq_(db.train(4).file_count, 18)
+   # Cross-validation setup / Train
+   nose.tools.eq_(db.train().file_count, 24)
+   nose.tools.eq_(db.train(1).file_count, 18)
+   nose.tools.eq_(db.train(2).file_count, 18)
+   nose.tools.eq_(db.train(3).file_count, 18)
+   nose.tools.eq_(db.train(4).file_count, 18)
 
-    nose.tools.eq_(db.train_files()[0], os.path.join(audio_path, 'a001.wav'))
-    nose.tools.eq_(db.train_files(1)[0], os.path.join(audio_path, 'a001.wav'))
-    nose.tools.eq_(db.train_files(2)[0], os.path.join(audio_path, 'a001.wav'))
-    nose.tools.eq_(db.train_files(3)[0], os.path.join(audio_path, 'a001.wav'))
-    nose.tools.eq_(db.train_files(4)[0], os.path.join(audio_path, 'a003.wav'))
+   nose.tools.eq_(db.train_files()[0], os.path.join(audio_path, 'a001.wav'))
+   nose.tools.eq_(db.train_files(1)[0], os.path.join(audio_path, 'a001.wav'))
+   nose.tools.eq_(db.train_files(2)[0], os.path.join(audio_path, 'a001.wav'))
+   nose.tools.eq_(db.train_files(3)[0], os.path.join(audio_path, 'a001.wav'))
+   nose.tools.eq_(db.train_files(4)[0], os.path.join(audio_path, 'a003.wav'))
 
-    # Cross-validation setup / Test
-    nose.tools.eq_(db.test().file_count, 24)
-    nose.tools.eq_(db.test(1).file_count, 6)
-    nose.tools.eq_(db.test(2).file_count, 6)
-    nose.tools.eq_(db.test(3).file_count, 6)
-    nose.tools.eq_(db.test(4).file_count, 6)
+   # Cross-validation setup / Test
+   nose.tools.eq_(db.test().file_count, 24)
+   nose.tools.eq_(db.test(1).file_count, 6)
+   nose.tools.eq_(db.test(2).file_count, 6)
+   nose.tools.eq_(db.test(3).file_count, 6)
+   nose.tools.eq_(db.test(4).file_count, 6)
 
-    nose.tools.eq_(db.test_files()[0], os.path.join(audio_path, 'a001.wav'))
-    nose.tools.eq_(db.test_files(1)[0], os.path.join(audio_path, 'a010.wav'))
-    nose.tools.eq_(db.test_files(2)[0], os.path.join(audio_path, 'a003.wav'))
-    nose.tools.eq_(db.test_files(3)[0], os.path.join(audio_path, 'a008.wav'))
-    nose.tools.eq_(db.test_files(4)[0], os.path.join(audio_path, 'a001.wav'))
+   nose.tools.eq_(db.test_files()[0], os.path.join(audio_path, 'a001.wav'))
+   nose.tools.eq_(db.test_files(1)[0], os.path.join(audio_path, 'a010.wav'))
+   nose.tools.eq_(db.test_files(2)[0], os.path.join(audio_path, 'a003.wav'))
+   nose.tools.eq_(db.test_files(3)[0], os.path.join(audio_path, 'a008.wav'))
+   nose.tools.eq_(db.test_files(4)[0], os.path.join(audio_path, 'a001.wav'))
 
-    nose.tools.eq_(db.eval().file_count, 24)
-    nose.tools.eq_(db.eval(1).file_count, 6)
-    nose.tools.eq_(db.eval(2).file_count, 6)
-    nose.tools.eq_(db.eval(3).file_count, 6)
-    nose.tools.eq_(db.eval(4).file_count, 6)
+   nose.tools.eq_(db.eval().file_count, 24)
+   nose.tools.eq_(db.eval(1).file_count, 6)
+   nose.tools.eq_(db.eval(2).file_count, 6)
+   nose.tools.eq_(db.eval(3).file_count, 6)
+   nose.tools.eq_(db.eval(4).file_count, 6)
 
-    nose.tools.eq_(db.eval_files()[0], os.path.join(audio_path, 'a001.wav'))
-    nose.tools.eq_(db.eval_files(1)[0], os.path.join(audio_path, 'a010.wav'))
-    nose.tools.eq_(db.eval_files(2)[0], os.path.join(audio_path, 'a003.wav'))
-    nose.tools.eq_(db.eval_files(3)[0], os.path.join(audio_path, 'a008.wav'))
-    nose.tools.eq_(db.eval_files(4)[0], os.path.join(audio_path, 'a001.wav'))
+   nose.tools.eq_(db.eval_files()[0], os.path.join(audio_path, 'a001.wav'))
+   nose.tools.eq_(db.eval_files(1)[0], os.path.join(audio_path, 'a010.wav'))
+   nose.tools.eq_(db.eval_files(2)[0], os.path.join(audio_path, 'a003.wav'))
+   nose.tools.eq_(db.eval_files(3)[0], os.path.join(audio_path, 'a008.wav'))
+   nose.tools.eq_(db.eval_files(4)[0], os.path.join(audio_path, 'a001.wav'))
 
-    nose.tools.eq_(set(db.train_files(1)).intersection(db.test_files(1)), set())
-    nose.tools.eq_(set(db.train_files(2)).intersection(db.test_files(2)), set())
-    nose.tools.eq_(set(db.train_files(3)).intersection(db.test_files(3)), set())
-    nose.tools.eq_(set(db.train_files(4)).intersection(db.test_files(4)), set())
+   nose.tools.eq_(set(db.train_files(1)).intersection(db.test_files(1)), set())
+   nose.tools.eq_(set(db.train_files(2)).intersection(db.test_files(2)), set())
+   nose.tools.eq_(set(db.train_files(3)).intersection(db.test_files(3)), set())
+   nose.tools.eq_(set(db.train_files(4)).intersection(db.test_files(4)), set())
 
-    nose.tools.eq_(db[0].filename, os.path.join(audio_path, 'a001.wav'))
-    nose.tools.eq_(db[0].scene_label, 'street')
-    nose.tools.eq_(db[0].event_label, 'people walking')
-    nose.tools.eq_(db[0].onset, 1.589213)
-    nose.tools.eq_(db[0].offset, 2.38382)
+   nose.tools.eq_(db[0].filename, os.path.join(audio_path, 'a001.wav'))
+   nose.tools.eq_(db[0].scene_label, 'street')
+   nose.tools.eq_(db[0].event_label, 'people walking')
+   nose.tools.eq_(db[0].onset, 1.589213)
+   nose.tools.eq_(db[0].offset, 2.38382)
 
-    nose.tools.eq_(len(db.meta), 659)
-    nose.tools.eq_(db.meta_count, 659)
+   nose.tools.eq_(len(db.meta), 659)
+   nose.tools.eq_(db.meta_count, 659)
+   nose.tools.eq_(db.scene_labels(), ['street'])
+   nose.tools.eq_(db.scene_label_count(), 1)
+   nose.tools.eq_(db.event_labels(), ['brakes squeaking',
+                                      'car',
+                                      'children',
+                                      'large vehicle',
+                                      'people speaking',
+                                      'people walking'])
 
-    nose.tools.eq_(db.scene_labels(), ['street'])
-    nose.tools.eq_(db.scene_label_count(), 1)
+   nose.tools.eq_(db.event_label_count(), 6)
+   nose.tools.eq_(db.check_filelist(), True)
 
-    nose.tools.eq_(db.event_labels(), ['brakes squeaking',
-                                       'car',
-                                       'children',
-                                       'large vehicle',
-                                       'people speaking',
-                                       'people walking'])
+   with dcase_util.utils.DisableLogger():
+       rand_train, rand_validation = db.validation_split(
+           fold=1,
+           validation_amount=0.5,
+           split_type='random',
+           verbose=False
+       )
 
-    nose.tools.eq_(db.event_label_count(), 6)
+   nose.tools.eq_(set(rand_train).intersection(rand_validation), set())
 
-    nose.tools.eq_(db.check_filelist(), True)
+   with dcase_util.utils.DisableLogger():
+       bal_train, bal_validation = db.validation_split(
+           fold=1,
+           validation_amount=0.5,
+           split_type='balanced',
+           iterations=10,
+           verbose=False
+       )
 
-    with dcase_util.utils.DisableLogger():
-        rand_train, rand_validation = db.validation_split(
-            fold=1,
-            validation_amount=0.5,
-            split_type='random',
-            verbose=False
-        )
-
-    nose.tools.eq_(set(rand_train).intersection(rand_validation), set())
-
-    with dcase_util.utils.DisableLogger():
-        bal_train, bal_validation = db.validation_split(
-            fold=1,
-            validation_amount=0.5,
-            split_type='balanced',
-            iterations=10,
-            verbose=False
-        )
-
-    nose.tools.eq_(set(bal_train).intersection(bal_validation), set())
-
-    nose.tools.eq_(db.folds(), [1, 2, 3, 4])
-    nose.tools.eq_(db.folds('full'), ['all_data'])
-
-    nose.tools.eq_(db.dataset_bytes(), 1276082461)
-    nose.tools.eq_(db.dataset_size_string(), '1.188 GB')
-    nose.tools.eq_(db.dataset_size_on_disk(), '642.2 KB')
+   nose.tools.eq_(set(bal_train).intersection(bal_validation), set())
+   nose.tools.eq_(db.folds(), [1, 2, 3, 4])
+   nose.tools.eq_(db.folds('full'), ['all_data'])
+   nose.tools.eq_(db.dataset_bytes(), 1276082461)
+   nose.tools.eq_(db.dataset_size_string(), '1.188 GB')
+   nose.tools.eq_(db.dataset_size_on_disk(), '642.2 KB')
 
 
 def test_TUTSoundEvents_2017_EvaluationSet():
-    db = dcase_util.datasets.TUTSoundEvents_2017_EvaluationSet(
-        included_content_types=['meta']
-    ).initialize()
+   db = dcase_util.datasets.TUTSoundEvents_2017_EvaluationSet(
+       included_content_types=['meta']
+   ).initialize()
 
-    # Cross-validation setup / Test
-    nose.tools.eq_(db.test().file_count, 8)
+   # Cross-validation setup / Test
+   nose.tools.eq_(db.test().file_count, 8)
 
-    nose.tools.eq_(db.eval().file_count, 8)
+   nose.tools.eq_(db.eval().file_count, 8)
 
-    nose.tools.eq_(len(db.meta), 247)
-    nose.tools.eq_(db.meta_count, 247)
+   nose.tools.eq_(len(db.meta), 247)
+   nose.tools.eq_(db.meta_count, 247)
 
-    nose.tools.eq_(db.scene_labels(), ['street'])
-    nose.tools.eq_(db.scene_label_count(), 1)
+   nose.tools.eq_(db.scene_labels(), ['street'])
+   nose.tools.eq_(db.scene_label_count(), 1)
 
-    nose.tools.eq_(db.event_labels(), ['brakes squeaking',
-                                       'car',
-                                       'children',
-                                       'large vehicle',
-                                       'people speaking',
-                                       'people walking'])
+   nose.tools.eq_(db.event_labels(), ['brakes squeaking',
+                                      'car',
+                                      'children',
+                                      'large vehicle',
+                                      'people speaking',
+                                      'people walking'])
 
-    nose.tools.eq_(db.event_label_count(), 6)
+   nose.tools.eq_(db.event_label_count(), 6)
 
-    nose.tools.eq_(db.check_filelist(), True)
+   nose.tools.eq_(db.check_filelist(), True)
 
-    nose.tools.eq_(db.folds(), ['all_data'])
-    nose.tools.eq_(db.folds('full'), ['all_data'])
+   nose.tools.eq_(db.folds(), ['all_data'])
+   nose.tools.eq_(db.folds('full'), ['all_data'])
 

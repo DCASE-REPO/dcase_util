@@ -3,21 +3,7 @@
 
 from __future__ import print_function, absolute_import
 
-import collections
-import hashlib
-import os
-import pickle
-import sys
-
-import numpy
-import yaml
-from six import iteritems
-from tqdm import tqdm
-
-from dcase_util.datasets import AcousticSceneDataset, SyntheticSoundEventDataset, SoundEventDataset
-from dcase_util.containers import MetaDataContainer, MetaDataItem, OneToOneMappingContainer, \
-    DictContainer, ParameterContainer
-from dcase_util.utils import Path
+from dcase_util.datasets import AcousticSceneDataset
 
 
 # =====================================================
@@ -255,7 +241,8 @@ class DCASE2018_Task5_DevelopmentSet(AcousticSceneDataset):
         ]
 
         super(DCASE2018_Task5_DevelopmentSet, self).__init__(**kwargs)
-		
+
+
 class DCASE2018_Task5_EvaluationSet(AcousticSceneDataset):
     """Task 5, Monitoring of domestic activities based on multi-channel acoustics, evaluation set
 

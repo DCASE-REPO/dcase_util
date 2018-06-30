@@ -3,6 +3,22 @@
 Release notes
 =============
 
+v0.2.4
+------
+
+**New features**
+
+* Add ``TUTUrbanAcousticScenes_2018_EvaluationSet`` and ``TUTUrbanAcousticScenes_2018_Mobile_EvaluationSet`` dataset classes
+* Add ``DCASE2018_Task5_EvaluationSet`` dataset class
+
+**Updates**
+
+* Update ``formatted_value`` method in ``FancyStringifier`` to have full coverage of float formats (float precision from 1 to 4).
+
+**Bug fixes**
+
+* Fix ``TUTRareSoundEvents_2017_EvaluationSet`` dataset class to have correct audio path
+
 v0.2.3
 ------
 

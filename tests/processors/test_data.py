@@ -68,7 +68,7 @@ def test_NormalizationProcessor():
         mean=data.stats['mean'], std=data.stats['std']
     )
     processed = normalizer.process(dcase_util.utils.Example.feature_container())
-    nose.tools.eq_(numpy.sum(numpy.std(processed.data, axis=1)), 40.0)
+    nose.tools.assert_almost_equal(numpy.sum(numpy.std(processed.data, axis=1)), 40.0)
 
 
 def test_RepositoryNormalizationProcessor():
@@ -81,8 +81,8 @@ def test_RepositoryNormalizationProcessor():
     )
     processed = normalizer.process(repo)
 
-    nose.tools.eq_(numpy.sum(numpy.std(processed['mel'][0].data, axis=1)), 40.0)
-    nose.tools.eq_(numpy.sum(numpy.std(processed['mfcc'][0].data, axis=1)), 20.0)
+    nose.tools.assert_almost_equals(numpy.sum(numpy.std(processed['mel'][0].data, axis=1)), 40.0)
+    nose.tools.assert_almost_equals(numpy.sum(numpy.std(processed['mfcc'][0].data, axis=1)), 20.0)
 
 
 def test_StackingProcessor():
