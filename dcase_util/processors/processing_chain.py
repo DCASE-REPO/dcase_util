@@ -106,6 +106,15 @@ class ProcessingChain(ListDictContainer):
                         processor_name=item['processor_name']
                     )
 
+                    from dcase_util.processors.processor import Processor
+                    if not issubclass(current_processor, Processor):
+                        message = '{name}: ProcessingChain items should be Processor classes, please check item [{item}].'.format(
+                            name=self.__class__.__name__,
+                            item=item['processor_name']
+                        )
+                        self.logger.exception(message)
+                        raise ValueError(message)
+
                     item.update(
                         {
                             'input_type': current_processor.input_type,
