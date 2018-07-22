@@ -90,6 +90,15 @@ def dataset_list(data_path='data', group=None):
             tag=str(data.tag_count()) if data.tag_count() else '',
         )
 
+    if not group or group == 'sound':
+        class_list = get_class_inheritors(SoundDataset)
+        class_list.sort(key=lambda x: x.__name__, reverse=False)
+
+        for dataset_class in class_list:
+            d = dataset_class(data_path=data_path)
+            if d.dataset_group != 'base class':
+                output += get_row(d)
+
     if not group or group == 'scene':
         class_list = get_class_inheritors(AcousticSceneDataset)
         class_list.sort(key=lambda x: x.__name__, reverse=False)
@@ -1812,6 +1821,12 @@ class Dataset(object):
         TextContainer([hash_value]).save(
             filename=os.path.join(self.local_path, self.filelisthash_filename)
         )
+
+
+class SoundDataset(Dataset):
+    """Sound dataset baseclass """
+    def __init__(self, *args, **kwargs):
+        super(SoundDataset, self).__init__(*args, **kwargs)
 
 
 class AcousticSceneDataset(Dataset):
