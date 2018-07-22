@@ -895,7 +895,9 @@ ProbabilityContainer
     ProbabilityContainer.append
     ProbabilityContainer.unique_files
     ProbabilityContainer.unique_labels
+    ProbabilityContainer.unique_indices
     ProbabilityContainer.filter
+    ProbabilityContainer.as_matrix
 
 Mixins
 ::::::
