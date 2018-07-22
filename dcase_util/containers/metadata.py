@@ -2072,6 +2072,7 @@ class MetaDataContainer(ListDictContainer):
             for item in self:
                 if item.onset is not None and item.offset is not None and item.event_label == event_label:
                     event_lengths[event_id] += item.offset - item.onset
+                if item.event_label == event_label:
                     event_counts[event_id] += 1
 
         tag_counts = numpy.zeros(len(tag_list))
@@ -2090,7 +2091,7 @@ class MetaDataContainer(ListDictContainer):
                 'event_label_list': event_label_list,
                 'length': event_lengths,
                 'count': event_counts,
-                'avg_length': event_lengths/event_counts
+                'avg_length': event_lengths/(event_counts + numpy.spacing(1))
             },
             'tags': {
                 'tag_list': tag_list,
