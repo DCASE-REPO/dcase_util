@@ -723,3 +723,66 @@ class ProbabilityContainer(ListDictContainer):
 
         return self
 
+    def as_matrix(self, label_list=None, filename=None, file_list=None, default_value=0):
+        """Get probabilities as data matrix.
+        If items has index defined, index is used to order columns. If items has filename, filename is used to order columns.
+
+        Parameters
+        ----------
+        label_list : list of str
+            List of labels. If none given, labels in the container are used in alphabetical order.
+            Default value None
+
+        filename : str
+            Filename to filter content. If none given, one given for class constructor is used.
+            Default value None
+
+        file_list : list of str
+            List of filenames to included in the matrix.
+            Default value None
+
+        default_value : numerical
+            Default value of the element in the matrix. Used in case there is no data for the element in the container.
+
+        Returns
+        -------
+        DataMatrix2DContainer
+
+        """
+
+        data = self.filter(
+            filename=filename,
+            file_list=file_list
+        )
+
+        if label_list is None:
+            label_list = data.unique_labels
+
+        indices = data.unique_indices
+
+        if file_list is None:
+            file_list = data.unique_files
+
+        if indices:
+            matrix = numpy.ones((len(label_list), len(indices))) * default_value
+            for index in indices:
+                current_column = data.filter(index=index)
+                for item in current_column:
+                    if item.label in label_list:
+                        matrix[label_list.index(item.label), index] = item.probability
+
+            from dcase_util.containers import DataMatrix2DContainer
+            return DataMatrix2DContainer(data=matrix)
+
+        elif file_list:
+            matrix = numpy.ones((len(label_list), len(file_list))) * default_value
+
+            for file_id, file in enumerate(file_list):
+                current_column = data.filter(filename=file)
+                for item in current_column:
+                    if item.label in label_list:
+                        matrix[label_list.index(item.label), file_id] = item.probability
+
+            from dcase_util.containers import DataMatrix2DContainer
+            return DataMatrix2DContainer(data=matrix)
+
