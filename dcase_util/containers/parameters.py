@@ -200,7 +200,7 @@ class AppParameterContainer(ParameterContainer):
                 structure[part_id] = '.'.join(split)
             self.path_structure[key] = structure
 
-            # translate key
+            # Translate key
             if key in self.section_labels:
                 new_key = self.section_labels[key]
                 self.path_structure[new_key] = self.path_structure.pop(key)
@@ -818,6 +818,7 @@ class AppParameterContainer(ParameterContainer):
         )
 
         if app_paths:
+            # Application paths are used
             for field, structure in iteritems(self.path_structure):
                 if field in app_paths:
                     if self.field_labels['BASE'] in app_paths:
