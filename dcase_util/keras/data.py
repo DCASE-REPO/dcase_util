@@ -447,6 +447,7 @@ def data_collector(item_list=None,
 
     target_format : str
         Meta data interpretation in the relation to the data items.
+        Possible values ['same', 'single_target_per_segment']
         Default value 'single_target_per_segment'
 
     verbose : bool
