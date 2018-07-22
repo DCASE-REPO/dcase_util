@@ -957,7 +957,7 @@ class Dataset(object):
         log.row_sep()
 
         for item in self.package_list:
-            if 'remote_file' in item:
+            if 'remote_file' in item and item['remote_file']:
                 remote_filename = os.path.split(item['remote_file'])[-1]
 
                 item_remote = copy.deepcopy(item)
@@ -1032,7 +1032,7 @@ class Dataset(object):
         )
 
         for item in item_progress:
-            if 'remote_file' in item:
+            if 'remote_file' in item and item['remote_file']:
                 # Download if remote file is set
                 remote_file = RemoteFile(**item)
                 if self.included_content_types is None or remote_file.is_content_type(
