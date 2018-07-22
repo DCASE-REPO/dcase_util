@@ -54,6 +54,7 @@ class MetaDataItem(dict):
         if 'offset' in self:
             self['offset'] = float(self['offset'])
 
+        # Event label assigned to the meta data item
         if 'event_label' in self and self.event_label:
             self['event_label'] = self['event_label'].strip()
             if self['event_label'].lower() == 'none':
@@ -903,7 +904,7 @@ class MetaDataContainer(ListDictContainer):
         Parameters
         ----------
         filename : str
-            Path to the event list in text format (csv). If none given, one given for class constructor is used.
+            Path to the meta data in text format (csv). If none given, one given for class constructor is used.
             Default value None
 
         fields : list of str, optional
