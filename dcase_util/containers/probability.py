@@ -158,6 +158,27 @@ class ProbabilityItem(dict):
         self['probability'] = float(value)
 
     @property
+    def index(self):
+        """item index
+
+        Returns
+        -------
+        int or None
+            index
+
+        """
+
+        if 'index' in self:
+            return self['index']
+        else:
+            return None
+
+    @index.setter
+    def index(self, value):
+        self['index'] = int(value)
+
+
+    @property
     def id(self):
         """Unique item identifier
 
