@@ -309,7 +309,49 @@ class ProbabilityContainer(ListDictContainer):
         labels.sort()
         return labels
 
-    def filter(self, filename=None, file_list=None, label=None):
+    @property
+    def unique_indices(self):
+        """Unique indices
+
+        Returns
+        -------
+        indices: list, shape=(n,)
+            Unique indices in numerical order
+
+        """
+
+        indices = []
+        for item in self:
+            if 'index' in item and item['index'] not in indices:
+                indices.append(item.index)
+
+        indices.sort()
+        return indices
+
+    def update(self, data):
+        """Replace content with given list
+
+        Parameters
+        ----------
+        data : list
+            New content
+
+        Returns
+        -------
+        self
+
+        """
+
+        super(ProbabilityContainer, self).update(data=data)
+
+        # Convert all items in the list to ProbabilityItem
+        for item_id in range(0, len(self)):
+            if not isinstance(self[item_id], self.item_class):
+                self[item_id] = self.item_class(self[item_id])
+
+        return self
+
+    def filter(self, filename=None, file_list=None, label=None, index=None):
         """Filter content
 
         Parameters
@@ -322,6 +364,9 @@ class ProbabilityContainer(ListDictContainer):
 
         label : str, optional
             Label to be matched
+
+        index : int, optional
+            Index to be matched
 
         Returns
         -------
@@ -348,6 +393,13 @@ class ProbabilityContainer(ListDictContainer):
 
             if label:
                 if item.label == label:
+                    matched.append(True)
+
+                else:
+                    matched.append(False)
+
+            if index is not None:
+                if item.index == index:
                     matched.append(True)
 
                 else:
