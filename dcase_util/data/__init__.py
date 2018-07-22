@@ -77,6 +77,27 @@ EventRollEncoder
     EventRollEncoder
     EventRollEncoder.encode
 
+LabelMatrixEncoder
+------------------
+
+*dcase_util.data.LabelMatrixEncoder*
+
+.. autosummary::
+    :toctree: generated/
+
+    LabelMatrixEncoder
+
+OneHotLabelEncoder
+------------------
+
+*dcase_util.data.OneHotLabelEncoder*
+
+.. autosummary::
+    :toctree: generated/
+
+    OneHotLabelEncoder
+    OneHotLabelEncoder.encode
+
 Data manipulators
 :::::::::::::::::
 

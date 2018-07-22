@@ -4,7 +4,7 @@
 from __future__ import print_function, absolute_import
 import numpy
 
-from dcase_util.containers import BinaryMatrix2DContainer
+from dcase_util.containers import BinaryMatrix2DContainer, DataMatrix2DContainer
 from dcase_util.ui import FancyStringifier
 
 
@@ -398,3 +398,149 @@ class EventRollEncoder(BinaryMatrixEncoder):
 
         self.data = event_roll
         return self
+
+
+class LabelMatrixEncoder(DataMatrix2DContainer):
+    """Label matrix encoder base class"""
+    def __init__(self, label_list=None, time_resolution=None, **kwargs):
+        """Constructor
+
+        Parameters
+        ----------
+        label_list : list or str
+            Label list
+            Default value None
+
+        time_resolution : float
+            Time resolution
+            Default value None
+
+        """
+
+        kwargs.update({
+            'time_resolution': time_resolution
+        })
+
+        self.label_list = label_list
+
+        super(LabelMatrixEncoder, self).__init__(**kwargs)
+
+        if not self.time_resolution:
+            message = '{name}: No time resolution set.'.format(name=self.__class__.__name__)
+            self.logger.exception(message)
+            raise ValueError(message)
+
+
+class OneHotLabelEncoder(LabelMatrixEncoder):
+    """One Hot label encoder class"""
+    def __init__(self, label_list=None, time_resolution=1.0, length_frames=1, length_seconds=None, **kwargs):
+        """Constructor
+
+        Parameters
+        ----------
+        label_list : list or str
+            Label list
+            Default value None
+
+        time_resolution : float
+            Time resolution
+            Default value 1.0
+
+        length_frames : int
+            length of binary matrix in frames
+            Default value 1
+
+        length_seconds : float
+            length of binary matrix in seconds
+            Default value None
+
+        """
+
+        kwargs.update({
+            'label_list': label_list,
+            'time_resolution': time_resolution
+        })
+
+        super(OneHotLabelEncoder, self).__init__(**kwargs)
+
+        self.length_frames = length_frames
+
+        if self.length_frames is None and length_seconds is not None:
+            self.length_frames = self._length_to_frames(length_seconds)
+
+        if not self.label_list:
+            message = '{name}: No label_list set.'.format(name=self.__class__.__name__)
+            self.logger.exception(message)
+            raise ValueError(message)
+
+    def __str__(self):
+        ui = FancyStringifier()
+
+        output = super(OneHotLabelEncoder, self).__str__()
+
+        output += ui.line(field='Data') + '\n'
+        output += ui.data(indent=4, field='data', value=self.data) + '\n'
+
+        output += ui.line(indent=4, field='Dimensions') + '\n'
+        output += ui.data(indent=6, field='time_axis', value=self.time_axis) + '\n'
+        output += ui.data(indent=6, field='data_axis', value=self.data_axis) + '\n'
+
+        output += ui.line(indent=4, field='Timing information') + '\n'
+        output += ui.data(indent=6, field='time_resolution', value=self.time_resolution, unit="sec") + '\n'
+
+        output += ui.line(field='Duration') + '\n'
+        output += ui.data(indent=6, field='Frames', value=self.length) + '\n'
+        if self.time_resolution:
+            output += ui.data(indent=6, field='Seconds', value=self._frame_to_time(frame_id=self.length), unit='sec') + '\n'
+
+        output += ui.line(indent=4, field='Labels') + '\n'
+        output += ui.data(indent=6, field='label_list', value=self.label_list) + '\n'
+
+        return output
+
+    def encode(self, label, length_frames=None, length_seconds=None):
+        """Generate one hot label matrix
+
+        Parameters
+        ----------
+        label : str
+            Class label to be hot
+
+        length_frames : int
+            length of label matrix in frames, use either this or length_seconds, if none set, one set in
+            constructor is used.
+            Default value None
+
+        length_seconds : float
+            length of label matrix in seconds, use either this or length_frames, if none set, one set in
+            constructor is used.
+            Default value None
+
+        Returns
+        -------
+        self
+
+        """
+
+        if length_frames is None and length_seconds is None:
+            length_frames = self.length_frames
+
+        elif length_seconds is not None:
+            length_frames = self._length_to_frames(length_seconds)
+
+        # Initialize binary matrix
+        label_matrix = numpy.ndarray((1, length_frames), dtype=object)
+
+        if label in self.label_list:
+            label_matrix[0, :] = label
+
+        else:
+            # Unknown channel label given
+            message = '{name}: Unknown label [{label}]'.format(name=self.__class__.__name__, label=label)
+            self.logger.exception(message)
+            raise ValueError(message)
+
+        self.data = label_matrix
+
+        return self
+
