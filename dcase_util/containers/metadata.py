@@ -1464,6 +1464,10 @@ class MetaDataContainer(ListDictContainer):
 
                     for row in csv_reader:
                         for cell_id, cell_data in enumerate(row):
+                            if decimal == 'comma':
+                                # Translate decimal comma into decimal point
+                                cell_data = float(cell_data.replace(',', '.'))
+
                             if is_int(cell_data):
                                 row[cell_id] = int(cell_data)
 
