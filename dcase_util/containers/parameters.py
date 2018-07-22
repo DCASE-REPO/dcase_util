@@ -194,10 +194,18 @@ class AppParameterContainer(ParameterContainer):
         for key, structure in iteritems(path_structure_tmp):
             for part_id, part in enumerate(structure):
                 split = part.split('.')
-                # Translate only first section level
+
+                # Translate two first levels
+                # First level with section_labels
                 if split[0] in self.section_labels:
                     split[0] = self.section_labels[split[0]]
+
+                # Second level with field_labels
+                if len(split) > 1 and split[1] in self.field_labels:
+                    split[1] = self.field_labels[split[1]]
+
                 structure[part_id] = '.'.join(split)
+
             self.path_structure[key] = structure
 
             # Translate key
@@ -1630,6 +1638,17 @@ class DCASEAppParameterContainer(AppParameterContainer):
 
                             # Inject feature extraction parameters to get correct hash value
                             item[self.field_labels['DEPENDENCY_PARAMETERS']] = dependency_parameters
+
+                        elif 'StackingProcessor' in item['processor_name']:
+                            recipe = self.get_path_translated(
+                                parameters=parameters,
+                                path=['FEATURE_STACKER', 'STACKING_RECIPE']
+                            )
+                            if recipe:
+                                if 'init_parameters' not in item:
+                                    item['init_parameters'] = {}
+
+                                item['init_parameters']['recipe'] = recipe
 
                         init_parameters = item.get('init_parameters', {})
                         if self.field_labels['ENABLE'] in init_parameters and init_parameters[self.field_labels['ENABLE']]:
