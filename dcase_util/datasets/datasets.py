@@ -39,7 +39,7 @@ def dataset_list(data_path='data', group=None):
         Multi line string containing dataset table
 
     """
-    line = '  {class_name:<42s} | {group:5s} | {remote_size:10s} | {local_present:6s} | {files:5s} | {scene:6s} | {event:6s} | {tag:4s}\n'
+    line = '  {class_name:<52s} | {group:5s} | {remote_size:10s} | {local_present:10s} | {files:5s} | {scene:6s} | {event:6s} | {tag:4s}\n'
     output = ''
     output += '  Dataset list\n'
     output += line.format(
