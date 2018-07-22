@@ -816,7 +816,7 @@ class MetaDataContainer(ListDictContainer):
 
         """
 
-        list.__init__(self, data)
+        super(MetaDataContainer, self).update(data=data)
 
         # Convert all items in the list to MetaDataItems
         for item_id in range(0, len(self)):
