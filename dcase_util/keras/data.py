@@ -488,14 +488,24 @@ def data_collector(item_list=None,
                     Y.append(meta.data[:, 0])
 
             elif target_format == 'same':
-                # Collect single target per sequence
-                Y.append(
-                    numpy.repeat(
-                        a=meta.data,
-                        repeats=data.length,
-                        axis=1
-                    ).T
-                )
+                # Collect same target per each element (frame)
+                if data.time_axis != meta.time_axis:
+                    Y.append(
+                        numpy.repeat(
+                            a=meta.data,
+                            repeats=data.length,
+                            axis=meta.time_axis
+                        ).T
+                    )
+
+                else:
+                    Y.append(
+                        numpy.repeat(
+                            a=meta.data,
+                            repeats=data.length,
+                            axis=meta.time_axis
+                        )
+                    )
 
         data_size = {}
 
