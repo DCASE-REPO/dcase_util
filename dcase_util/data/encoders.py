@@ -146,7 +146,7 @@ class OneHotEncoder(BinaryMatrixEncoder):
             binary_matrix[pos, :] = 1
 
         else:
-            # Unknown channel label given
+            # Unknown label given
             message = '{name}: Unknown label [{label}]'.format(name=self.__class__.__name__, label=label)
             self.logger.exception(message)
             raise ValueError(message)
@@ -263,7 +263,7 @@ class ManyHotEncoder(BinaryMatrixEncoder):
                 binary_matrix[pos, :] = 1
 
             else:
-                # Unknown channel label given
+                # Unknown label given
                 message = '{name}: Unknown label [{label}]'.format(name=self.__class__.__name__, label=label)
                 self.logger.exception(message)
                 raise ValueError(message)
