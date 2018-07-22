@@ -15,10 +15,10 @@ from six import iteritems
 from tqdm import tqdm
 
 
-from dcase_util.datasets import AcousticSceneDataset, SyntheticSoundEventDataset, SoundEventDataset
+from dcase_util.datasets import SoundDataset, AcousticSceneDataset, SyntheticSoundEventDataset, SoundEventDataset
 from dcase_util.containers import MetaDataContainer, MetaDataItem, OneToOneMappingContainer, \
-    DictContainer, ParameterContainer
-from dcase_util.utils import Path
+    DictContainer, ParameterContainer, AudioContainer
+from dcase_util.utils import Path, FileFormat
 
 # =====================================================
 # DCASE 2018
@@ -3801,3 +3801,291 @@ class TUT_SED_Synthetic_2016(SoundEventDataset):
 
         else:
             return None
+
+
+class DBR_Dataset(SoundDataset):
+    """DBR (Dog, Bird and Rain) dataset
+
+    """
+
+    def __init__(self,
+                 storage_name='dbr-dataset',
+                 data_path=None,
+                 included_content_types=None,
+                 **kwargs):
+        """
+        Constructor
+
+        Parameters
+        ----------
+
+        storage_name : str
+            Name to be used when storing dataset on disk
+            Default value 'dbr-dataset'
+
+        data_path : str
+            Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), 'dcase_util_datasets')
+            is used.
+            Default value None
+
+        included_content_types : list of str or str
+            Indicates what content type should be processed. One or multiple from ['all', 'audio', 'meta', 'code',
+            'documentation']. If None given, ['all'] is used. Parameter can be also comma separated string.
+            Default value None
+
+        """
+
+        kwargs['included_content_types'] = included_content_types
+        kwargs['data_path'] = data_path
+        kwargs['storage_name'] = storage_name
+        kwargs['dataset_group'] = 'event'
+        kwargs['dataset_meta'] = {
+            'authors': 'Ville-Veikko Eklund',
+            'title': 'DBR Dataset',
+            'url': 'https://zenodo.org/record/1069747',
+            'audio_source': 'Field recording',
+            'audio_type': 'Natural',
+            'recording_device_model': 'unknown',
+            'microphone_model': 'unknown',
+            'licence': 'free non-commercial'
+        }
+
+        kwargs['crossvalidation_folds'] = 4
+        kwargs['meta_filename'] = 'meta.csv'
+        kwargs['evaluation_setup_file_extension'] = 'csv'
+
+        source_url = 'https://zenodo.org/record/1069747/files/'
+        kwargs['package_list'] = [
+            {
+                'content_type': ['audio', 'meta'],
+                'remote_file': source_url + 'dbr-dataset.zip',
+                'remote_bytes': 653971085,
+                'remote_md5': '716f8e3c9a679519b027541d866a81a7',
+                'filename': 'dbr-dataset.zip'
+            }
+        ]
+        kwargs['audio_paths'] = ['audio']
+        super(DBR_Dataset, self).__init__(**kwargs)
+        self.audio_fs = 44100
+        self.audio_mono = True
+
+    def process_meta_item(self, item, absolute_path=True, **kwargs):
+        """Process single meta data item
+
+        Parameters
+        ----------
+        item :  MetaDataItem
+            Meta data item
+
+        absolute_path : bool
+            Convert file paths to be absolute
+            Default value True
+
+        """
+
+        if absolute_path:
+            item.filename = self.relative_to_absolute_path(item.filename)
+
+        else:
+            item.filename = self.absolute_to_relative_path(item.filename)
+
+        raw_path, raw_filename = os.path.split(item.filename)
+        item.identifier = os.path.splitext(raw_filename)[0]
+
+    def prepare(self):
+        """Prepare dataset for the usage.
+
+        Returns
+        -------
+        self
+
+        """
+
+        event_label_list = ['dog', 'bird', 'rain']
+
+        Path().makedirs(path=os.path.join(self.local_path, 'audio'))
+        # process audio, cut segments and make sampling rate and channel count uniform.
+        for event_label in event_label_list:
+            annotation_files = Path().file_list(path=os.path.join(self.local_path, event_label), extensions=['txt'])
+
+            for annotation_filename in annotation_files:
+                base_name = os.path.split(annotation_filename)[-1]
+                audio_filename_source = os.path.join(self.local_path, event_label, os.path.splitext(base_name)[0] + '.wav')
+
+                data = MetaDataContainer(filename=annotation_filename).load(
+                    file_format=FileFormat.CSV,
+                    fields=['onset', 'offset', 'class_id'],
+                    csv_header=False,
+                    decimal='comma'
+                )
+
+                for item in data:
+                    filename = '{base}.seg.{extension}'.format(
+                        base=os.path.splitext(base_name)[0],
+                        extension='wav'
+                    )
+                    audio_filename_target = os.path.join(self.local_path, 'audio', filename)
+                    if not os.path.exists(audio_filename_target):
+                        audio_data = AudioContainer().load(
+                            filename=audio_filename_source,
+                            fs=self.audio_fs,
+                            mono=self.audio_mono
+                        )
+
+                        audio_data.set_focus(start_seconds=item.onset, stop_seconds=item.offset)
+                        audio_data.freeze()
+                        audio_data.save(filename=audio_filename_target)
+
+        if not self.meta_container.exists():
+            meta_data = MetaDataContainer()
+            for event_label in event_label_list:
+                annotation_files = Path().file_list(path=os.path.join(self.local_path, event_label), extensions=['txt'])
+
+                for annotation_filename in annotation_files:
+                    data = MetaDataContainer(filename=annotation_filename).load(
+                        file_format=FileFormat.CSV,
+                        fields=['onset', 'offset', 'class_id'],
+                        csv_header=False,
+                        decimal='comma'
+                    )
+                    base_name = os.path.split(annotation_filename)[-1]
+                    filename = '{base}.seg.{extension}'.format(
+                        base=os.path.splitext(base_name)[0],
+                        extension='wav'
+                    )
+
+                    for item in data:
+                        item.filename = os.path.join('audio', filename)
+                        item.event_label = event_label
+
+                        del item['class_id']
+                        del item['onset']
+                        del item['offset']
+
+                        self.process_meta_item(
+                            item=item,
+                            absolute_path=False
+                        )
+
+                    meta_data += data
+
+            # Save meta
+            meta_data.save(filename=self.meta_file, fields=['filename', 'event_label', 'identifier'])
+
+            # Load meta and cross validation
+            self.load()
+
+        all_folds_found = True
+        for fold in self.folds():
+            train_filename = self.evaluation_setup_filename(
+                setup_part='train',
+                fold=fold
+            )
+
+            test_filename = self.evaluation_setup_filename(
+                setup_part='test',
+                fold=fold
+            )
+
+            if not os.path.isfile(train_filename):
+                all_folds_found = False
+
+            if not os.path.isfile(test_filename):
+                all_folds_found = False
+
+        if not all_folds_found:
+            Path().makedirs(
+                path=self.evaluation_setup_path
+            )
+
+            classes = []
+            files = []
+            for item in self.meta:
+                classes.append(item.event_label)
+                files.append(item.filename)
+
+            files = numpy.array(files)
+
+            from sklearn.model_selection import StratifiedShuffleSplit
+            sss = StratifiedShuffleSplit(
+                n_splits=self.crossvalidation_folds,
+                test_size=0.3,
+                random_state=0
+            )
+
+            fold = 1
+            for train_index, test_index in sss.split(X=numpy.zeros(len(classes)), y=classes):
+                train_files = files[train_index]
+                test_files = files[test_index]
+                train_filename = self.evaluation_setup_filename(
+                    setup_part='train',
+                    fold=fold
+                )
+
+                test_filename = self.evaluation_setup_filename(
+                    setup_part='test',
+                    fold=fold
+                )
+
+                eval_filename = self.evaluation_setup_filename(
+                    setup_part='evaluate',
+                    fold=fold
+                )
+
+                # Create meta containers and save them
+
+                # Train
+                train_meta = MetaDataContainer(
+                    filename=train_filename
+                )
+
+                for filename in train_files:
+                    train_meta += self.meta_container.filter(
+                        filename=filename
+                    )
+
+                for item in train_meta:
+                    item.filename = self.absolute_to_relative_path(item.filename)
+
+                train_meta.save(fields=['filename', 'event_label'])
+
+                # Test
+                test_meta = MetaDataContainer(
+                    filename=test_filename
+                )
+
+                for filename in test_files:
+                    test_meta.append(
+                        MetaDataItem(
+                            {
+                                'filename': self.absolute_to_relative_path(filename)
+                            }
+                        )
+                    )
+
+                for item in test_meta:
+                    item.filename = self.absolute_to_relative_path(item.filename)
+
+                test_meta.save(fields=['filename'])
+
+                # Evaluate
+                eval_meta = MetaDataContainer(
+                    filename=eval_filename
+                )
+
+                for filename in test_files:
+                    eval_meta += self.meta_container.filter(
+                        filename=filename
+                    )
+
+                for item in eval_meta:
+                    item.filename = self.absolute_to_relative_path(item.filename)
+
+                eval_meta.save(fields=['filename', 'event_label'])
+
+                fold += 1
+
+            # Load cross validation
+            self.load()
+
+        return self
