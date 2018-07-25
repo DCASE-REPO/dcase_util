@@ -14,3 +14,5 @@ from . import data
 from . import processors
 from . import tools
 from . import keras
+
+__version__ = '0.2.4'
