@@ -794,6 +794,8 @@ MetaDataContainer
     MetaDataContainer.filter
     MetaDataContainer.filter_time_segment
     MetaDataContainer.process_events
+    MetaDataContainer.map_events
+    MetaDataContainer.event_inactivity
     MetaDataContainer.add_time
     MetaDataContainer.stats
     MetaDataContainer.scene_stat_counts
