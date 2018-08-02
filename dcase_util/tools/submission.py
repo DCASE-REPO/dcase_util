@@ -100,6 +100,7 @@ class SubmissionChecker(ObjectContainer):
                 check_evaluation_dataset=True if self.mode == 'processed' else False
             )
             self.system_description(meta=meta['system']['description'])
+            self.system_complexity(meta=meta['system']['complexity'])
 
         if results1:
             self.system_output(output=results1)
@@ -654,6 +655,23 @@ class SubmissionChecker(ObjectContainer):
                 self.error_log.append('No system.description.training_data field')
 
         return self
+
+    def system_complexity(self, meta):
+        """Check system complexity meta data
+
+        Parameters
+        ----------
+        meta : dict
+            System meta data
+
+        Returns
+        -------
+        self
+
+        """
+
+        if 'total_parameters' not in meta:
+            self.error_log.append('No system.complexity.total_parameters field')
 
     def system_output(self, output, task=None, allow_placeholder_lines_in_output=None):
         """Check system result scores given in the meta data
