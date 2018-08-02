@@ -392,6 +392,10 @@ class MetaDataItem(dict):
     def onset(self, value):
         self['onset'] = float(value)
 
+        if 'event_onset' in self:
+            # Mirror onset to event_onset
+            self['event_onset'] = self['onset']
+
     @property
     def offset(self):
         """Offset
@@ -411,6 +415,10 @@ class MetaDataItem(dict):
     @offset.setter
     def offset(self, value):
         self['offset'] = float(value)
+
+        if 'event_offset' in self:
+            # Mirror onset to event_onset
+            self['event_offset'] = self['offset']
 
     @property
     def identifier(self):
