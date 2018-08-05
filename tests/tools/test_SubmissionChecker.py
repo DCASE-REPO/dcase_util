@@ -45,7 +45,7 @@ def test_submissionchecker_parameter_file():
         tmp.write('      label2:\n')
         tmp.write('        accuracy: 74.8\n')
         tmp.close()
-        data = sc.parameter_file(filename=tmp.name)
+        data, error_log = sc._parameter_file(filename=tmp.name)
 
         nose.tools.assert_dict_equal(
             data.get_path('results.development_dataset.class_wise'),

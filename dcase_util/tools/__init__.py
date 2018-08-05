@@ -33,13 +33,6 @@ SubmissionChecker class can be used to check DCASE challenge submission meta yam
 
     SubmissionChecker
     SubmissionChecker.process
-    SubmissionChecker.parameter_file
-    SubmissionChecker.system_output_file
-    SubmissionChecker.main_structure
-    SubmissionChecker.submission_info
-    SubmissionChecker.system_meta
-    SubmissionChecker.system_description
-    SubmissionChecker.system_output
 
 BibtexProcessor
 ^^^^^^^^^^^^^^^
