@@ -1648,6 +1648,14 @@ class TUTAcousticScenes_2017_FeaturesSet(AcousticSceneDataset):
 
         super(TUTAcousticScenes_2017_FeaturesSet, self).__init__(**kwargs)
 
+        self.feature_parameters = {
+            'win_length_seconds': 0.04,
+            'hop_length_seconds': 0.02,
+            'fs': 48000,
+            'data_axis': 0,
+            'time_axis': 1,
+        }
+
     def prepare(self):
         """Prepare dataset for the usage.
 
