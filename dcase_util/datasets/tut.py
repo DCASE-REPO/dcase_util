@@ -1571,6 +1571,298 @@ class TUTAcousticScenes_2017_EvaluationSet(AcousticSceneDataset):
         return self
 
 
+class TUTAcousticScenes_2017_FeaturesSet(AcousticSceneDataset):
+    """TUT Acoustic scenes 2017 features dataset
+    """
+
+    def __init__(self,
+                 storage_name='TUT-acoustic-scenes-2017-features',
+                 data_path=None,
+                 included_content_types=None,
+                 **kwargs):
+        """
+        Constructor
+
+        Parameters
+        ----------
+
+        storage_name : str
+            Name to be used when storing dataset on disk
+            Default value 'TUT-acoustic-scenes-2017-features'
+
+        data_path : str
+            Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), 'dcase_util_datasets')
+            is used.
+            Default value None
+
+        included_content_types : list of str or str
+            Indicates what content type should be processed. One or multiple from ['all', 'audio', 'features', 'meta', 'code',
+            'documentation']. If None given, ['all'] is used. Parameter can be also comma separated string.
+            Default value None
+
+        """
+
+        kwargs['included_content_types'] = included_content_types
+        kwargs['data_path'] = data_path
+        kwargs['storage_name'] = storage_name
+        kwargs['dataset_group'] = 'scene'
+        kwargs['dataset_meta'] = {
+            'authors': 'Annamaria Mesaros, Toni Heittola, and Tuomas Virtanen',
+            'title': 'TUT Acoustic Scenes 2017, features dataset',
+            'url': None,
+            'audio_source': 'Field recording',
+            'audio_type': 'Natural',
+            'recording_device_model': 'Roland Edirol R-09',
+            'microphone_model': 'Soundman OKM II Klassik/studio A3 electret microphone',
+            'licence': 'free non-commercial'
+        }
+        kwargs['crossvalidation_folds'] = 1
+
+        source_url = 'https://zenodo.org/record/1324390/files/'
+        kwargs['package_list'] = [
+            {
+                'content_type': 'documentation',
+                'remote_file': source_url + 'TUT-acoustic-scenes-2017-features.doc.zip',
+                'remote_bytes': 33513,
+                'remote_md5': 'bdbfd4a42a4d911c303cd27c28e22471',
+                'filename': 'TUT-acoustic-scenes-2017-features.doc.zip'
+            },
+            {
+                'content_type': 'meta',
+                'remote_file': source_url + 'TUT-acoustic-scenes-2017-features.meta.zip',
+                'remote_bytes': 59467,
+                'remote_md5': '78458855f531e98951c34c9e904b2fe9',
+                'filename': 'TUT-acoustic-scenes-2017-features.meta.zip'
+            },
+            {
+                'content_type': 'features',
+                'remote_file': source_url + 'TUT-acoustic-scenes-2017-features.features.zip',
+                'remote_bytes': 881979236,
+                'remote_md5': 'c9362bebb999afed363e563b19702f34',
+                'filename': 'TUT-acoustic-scenes-2017-features.features.zip'
+            }
+        ]
+        kwargs['audio_paths'] = []
+        kwargs['meta_filename'] = 'meta.csv'
+        kwargs['evaluation_setup_file_extension'] = 'csv'
+
+        super(TUTAcousticScenes_2017_FeaturesSet, self).__init__(**kwargs)
+
+        self.feature_parameters = {
+            'win_length_seconds': 0.04,
+            'hop_length_seconds': 0.02,
+            'fs': 48000,
+            'data_axis': 0,
+            'time_axis': 1,
+        }
+
+    def prepare(self):
+        """Prepare dataset for the usage.
+
+        Returns
+        -------
+        self
+
+        """
+
+        if 'features' in self.included_content_types or 'all' in self.included_content_types:
+            # Split features into segment wise files
+            train_segment_files_found = True
+            for segment_id in range(0, 4499):
+                segment_filename = os.path.join(self.local_path, 'features', 'X_train.npy','segment_{id}.npy'.format(id=segment_id))
+                if not os.path.isfile(segment_filename):
+                    train_segment_files_found = False
+
+            test_segment_files_found = True
+            for segment_id in range(0, 1499):
+                segment_filename = os.path.join(self.local_path, 'features', 'X_test.npy','segment_{id}.npy'.format(id=segment_id))
+                if not os.path.isfile(segment_filename):
+                    test_segment_files_found = False
+
+            if not train_segment_files_found:
+                Path().makedirs(
+                    path=os.path.join(self.local_path, 'features', 'X_train.npy')
+                )
+
+                X_train = numpy.load(os.path.join(self.local_path, 'X_train.npy'))
+                for segment_id in range(0, X_train.shape[0]):
+                    segment_filename = os.path.join(self.local_path, 'features', 'X_train.npy', 'segment_{id}.npy'.format(id=segment_id))
+                    if not os.path.isfile(segment_filename):
+                        numpy.save(
+                            file=segment_filename,
+                            arr=X_train[segment_id, :]
+                        )
+
+            if not test_segment_files_found:
+                Path().makedirs(
+                    path=os.path.join(self.local_path, 'features', 'X_test.npy')
+                )
+
+                X_test = numpy.load(os.path.join(self.local_path, 'X_test.npy'))
+                for segment_id in range(0, X_test.shape[0]):
+                    segment_filename = os.path.join(self.local_path, 'features', 'X_test.npy', 'segment_{id}.npy'.format(id=segment_id))
+                    if not os.path.isfile(segment_filename):
+                        numpy.save(
+                            file=segment_filename,
+                            arr=X_test[segment_id, :]
+                        )
+
+        if not self.meta_container.exists():
+            meta = MetaDataContainer()
+
+            if os.path.isfile(os.path.join(self.local_path, 'meta_train.csv')):
+                meta_train = MetaDataContainer().load(os.path.join(self.local_path, 'meta_train.csv'))
+                for item in meta_train:
+                    item['filename'] = os.path.join('features', 'X_train.npy', 'segment_{id}.npy'.format(id=item['id']))
+                    item['set_label'] = 'train'
+                    del item['id']
+                meta += meta_train
+
+            if os.path.isfile(os.path.join(self.local_path, 'y_test.csv')):
+                meta_test = MetaDataContainer().load(os.path.join(self.local_path, 'y_test.csv'))
+                for item in meta_test:
+                    item['filename'] = os.path.join('features', 'X_test.npy', 'segment_{id}.npy'.format(id=item['Id']))
+                    item['scene_label'] = item['Scene_label']
+                    item['identifier'] = 'Itest'
+                    item['set_label'] = 'test-'+item['Usage'].lower()
+                    del item['Id']
+                    del item['Scene_label']
+                    del item['Usage']
+                meta += meta_test
+
+            # Save meta
+            meta.save(filename=self.meta_file, fields=['filename', 'scene_label', 'set_label', 'identifier'])
+
+            # Load meta and cross validation
+            self.load()
+
+        all_folds_found = True
+        for fold in self.folds():
+            train_filename = self.evaluation_setup_filename(
+                setup_part='train',
+                fold=fold,
+                file_extension='csv'
+            )
+
+            test_filename = self.evaluation_setup_filename(
+                setup_part='test',
+                fold=fold,
+                file_extension='csv'
+            )
+
+            eval_filename = self.evaluation_setup_filename(
+                setup_part='evaluate',
+                fold=fold,
+                file_extension='csv'
+            )
+
+            if not os.path.isfile(train_filename):
+                all_folds_found = False
+
+            if not os.path.isfile(test_filename):
+                all_folds_found = False
+
+            if not os.path.isfile(eval_filename):
+                all_folds_found = False
+
+        if not all_folds_found:
+            Path().makedirs(
+                path=self.evaluation_setup_path
+            )
+            fold = 1
+            train_filename = self.evaluation_setup_filename(
+                setup_part='train',
+                fold=fold,
+                file_extension='csv'
+
+            )
+
+            test_filename = self.evaluation_setup_filename(
+                setup_part='test',
+                fold=fold,
+                file_extension='csv'
+            )
+
+            eval_filename = self.evaluation_setup_filename(
+                setup_part='evaluate',
+                fold=fold,
+                file_extension='csv'
+            )
+
+            # Train
+            train_meta = MetaDataContainer(
+                filename=train_filename
+            )
+            train_meta += self.meta_container.filter(set_label='train')
+            train_meta.save(fields=['filename', 'scene_label'])
+
+            # Test
+            test_meta = MetaDataContainer(
+                filename=test_filename
+            )
+
+            for item in self.meta_container.filter(set_label='test-public'):
+                test_meta.append(
+                    MetaDataItem(
+                        {
+                            'filename': item['filename']
+                        }
+                    )
+                )
+
+            for item in self.meta_container.filter(set_label='test-private'):
+                test_meta.append(
+                    MetaDataItem(
+                        {
+                            'filename': item['filename']
+                        }
+                    )
+                )
+
+            test_meta.save(fields=['filename'])
+
+            # Evaluate
+            eval_meta = MetaDataContainer(
+                filename=eval_filename
+            )
+            eval_meta += self.meta_container.filter(set_label='test-public')
+            eval_meta += self.meta_container.filter(set_label='test-private')
+
+            eval_meta.save(fields=['filename', 'scene_label'])
+
+            # Load meta and cross validation
+            self.load()
+
+        return self
+
+    def file_features(self, filename):
+        """Pre-calculated acoustic features for given file
+
+        Parameters
+        ----------
+        filename : str
+            File name
+
+        Returns
+        -------
+        numpy.ndarray
+            Matrix containing acoustic features
+
+        """
+
+        if os.path.isfile(filename):
+            return numpy.load(file=filename)
+
+        else:
+            message = '{name}: Feature file not found [{filename}]'.format(
+                name=self.__class__.__name__,
+                filename=filename
+            )
+
+            self.logger.exception(message)
+            raise IOError(message)
+
+
 class TUTRareSoundEvents_2017_DevelopmentSet(SyntheticSoundEventDataset):
     """TUT Acoustic scenes 2017 development dataset
 
