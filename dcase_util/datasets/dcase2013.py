@@ -13,7 +13,6 @@ from dcase_util.utils import Path
 
 
 class DCASE2013_Scenes_DevelopmentSet(AcousticSceneDataset):
-    #
     """DCASE2013 Acoustic scenes 2013 development dataset
 
     This dataset was used in DCASE2013 - Task 1, Acoustic scene classification
