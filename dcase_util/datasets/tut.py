@@ -1656,6 +1656,26 @@ class TUTAcousticScenes_2017_FeaturesSet(AcousticSceneDataset):
             'time_axis': 1,
         }
 
+    def process_meta_item(self, item, absolute_path=True, **kwargs):
+        """Process single meta data item
+
+        Parameters
+        ----------
+        item :  MetaDataItem
+            Meta data item
+
+        absolute_path : bool
+            Convert file paths to be absolute
+            Default value True
+
+        """
+
+        if absolute_path:
+            item.filename = self.relative_to_absolute_path(item.filename)
+
+        else:
+            item.filename = self.absolute_to_relative_path(item.filename)
+
     def prepare(self):
         """Prepare dataset for the usage.
 
@@ -1673,12 +1693,6 @@ class TUTAcousticScenes_2017_FeaturesSet(AcousticSceneDataset):
                 if not os.path.isfile(segment_filename):
                     train_segment_files_found = False
 
-            test_segment_files_found = True
-            for segment_id in range(0, 1499):
-                segment_filename = os.path.join(self.local_path, 'features', 'X_test.npy','segment_{id}.npy'.format(id=segment_id))
-                if not os.path.isfile(segment_filename):
-                    test_segment_files_found = False
-
             if not train_segment_files_found:
                 Path().makedirs(
                     path=os.path.join(self.local_path, 'features', 'X_train.npy')
@@ -1692,6 +1706,12 @@ class TUTAcousticScenes_2017_FeaturesSet(AcousticSceneDataset):
                             file=segment_filename,
                             arr=X_train[segment_id, :]
                         )
+
+            test_segment_files_found = True
+            for segment_id in range(0, 1499):
+                segment_filename = os.path.join(self.local_path, 'features', 'X_test.npy','segment_{id}.npy'.format(id=segment_id))
+                if not os.path.isfile(segment_filename):
+                    test_segment_files_found = False
 
             if not test_segment_files_found:
                 Path().makedirs(
@@ -1794,7 +1814,11 @@ class TUTAcousticScenes_2017_FeaturesSet(AcousticSceneDataset):
                 filename=train_filename
             )
             train_meta += self.meta_container.filter(set_label='train')
-            train_meta.save(fields=['filename', 'scene_label'])
+            
+            for item in train_meta:
+                item.filename = self.absolute_to_relative_path(item.filename)
+                
+            train_meta.save(fields=['filename', 'scene_label', 'identifier'])
 
             # Test
             test_meta = MetaDataContainer(
@@ -1805,7 +1829,7 @@ class TUTAcousticScenes_2017_FeaturesSet(AcousticSceneDataset):
                 test_meta.append(
                     MetaDataItem(
                         {
-                            'filename': item['filename']
+                            'filename': self.absolute_to_relative_path(item['filename'])
                         }
                     )
                 )
@@ -1814,7 +1838,7 @@ class TUTAcousticScenes_2017_FeaturesSet(AcousticSceneDataset):
                 test_meta.append(
                     MetaDataItem(
                         {
-                            'filename': item['filename']
+                            'filename': self.absolute_to_relative_path(item['filename'])
                         }
                     )
                 )
@@ -1827,8 +1851,11 @@ class TUTAcousticScenes_2017_FeaturesSet(AcousticSceneDataset):
             )
             eval_meta += self.meta_container.filter(set_label='test-public')
             eval_meta += self.meta_container.filter(set_label='test-private')
-
-            eval_meta.save(fields=['filename', 'scene_label'])
+            
+            for item in eval_meta:
+                item.filename = self.absolute_to_relative_path(item.filename)
+                
+            eval_meta.save(fields=['filename', 'scene_label', 'identifier'])
 
             # Load meta and cross validation
             self.load()
