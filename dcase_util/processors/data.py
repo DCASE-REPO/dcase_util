@@ -194,8 +194,11 @@ class SequencingProcessor(Processor):
     input_type = ProcessingChainItemType.DATA_CONTAINER  #: Input data type
     output_type = ProcessingChainItemType.DATA_CONTAINER  #: Output data type
 
-    def __init__(self, sequence_length=10, hop_length=None, padding=None, shift=0,
-                 shift_border='roll', required_data_amount_per_segment=0.9, **kwargs):
+    def __init__(self, sequence_length=10, hop_length=None,
+                 padding=None,
+                 shift_border='roll', shift=0,
+                 required_data_amount_per_segment=0.9,
+                 **kwargs):
         """__init__ method.
 
         Parameters
