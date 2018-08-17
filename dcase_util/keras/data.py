@@ -539,20 +539,20 @@ def data_collector(item_list=None,
                 X = numpy.dstack(X)
                 Y = numpy.dstack(Y)
 
-            if channel_dimension:
-                # Add channel dimension to the data
-                if channel_dimension == 'channels_first':
-                    X = numpy.expand_dims(X, axis=1)
-
-                elif channel_dimension == 'channels_last':
-                    X = numpy.expand_dims(X, axis=3)
-
             # Get data item size
             data_size = {
                 'data': X.shape[data.data_axis],
                 'time': X.shape[data.time_axis],
                 'sequence': X.shape[data.sequence_axis],
             }
+
+            if channel_dimension:
+                # Add channel dimension to the data
+                if channel_dimension == 'channels_first':
+                    X = numpy.expand_dims(X, axis=0)
+
+                elif channel_dimension == 'channels_last':
+                    X = numpy.expand_dims(X, axis=3)
 
         if verbose:
             data_shape = data.shape
