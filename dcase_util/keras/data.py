@@ -549,7 +549,7 @@ def data_collector(item_list=None,
             if channel_dimension:
                 # Add channel dimension to the data
                 if channel_dimension == 'channels_first':
-                    X = numpy.expand_dims(X, axis=0)
+                    X = numpy.expand_dims(X, axis=1)
 
                 elif channel_dimension == 'channels_last':
                     X = numpy.expand_dims(X, axis=3)
