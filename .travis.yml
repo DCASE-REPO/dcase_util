@@ -25,7 +25,6 @@ install:
     - "pip install nose"
     - "pip install scikit-learn"
     - "pip install librosa"
-    - "pip install 'joblib==0.11' --force-reinstall"
     - "python setup.py develop"
 
 # command to run tests
