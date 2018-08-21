@@ -1158,6 +1158,8 @@ class DCASEAppParameterContainer(AppParameterContainer):
             'FEATURE_PROCESSING_CHAIN_METHOD_PARAMETERS': 'feature_processing_chain_method_parameters',
             'DATA_PROCESSING_CHAIN': 'data_processing_chain',
             'DATA_PROCESSING_CHAIN_METHOD_PARAMETERS': 'data_processing_chain_method_parameters',
+            'DATA_PROCESSING_CHAIN2': 'data_processing_chain2',
+            'DATA_PROCESSING_CHAIN2_METHOD_PARAMETERS': 'data_processing_chain2_method_parameters',
             'META_PROCESSING_CHAIN': 'meta_processing_chain',
             'META_PROCESSING_CHAIN_METHOD_PARAMETERS': 'meta_processing_chain_method_parameters',
             'LEARNER': 'learner',
@@ -1185,6 +1187,8 @@ class DCASEAppParameterContainer(AppParameterContainer):
             'FEATURE_PROCESSING_CHAIN_METHOD_PARAMETERS',
             'DATA_PROCESSING_CHAIN',
             'DATA_PROCESSING_CHAIN_METHOD_PARAMETERS',
+            'DATA_PROCESSING_CHAIN2',
+            'DATA_PROCESSING_CHAIN2_METHOD_PARAMETERS',
             'META_PROCESSING_CHAIN',
             'META_PROCESSING_CHAIN_METHOD_PARAMETERS',
             'LEARNER',
@@ -1551,14 +1555,15 @@ class DCASEAppParameterContainer(AppParameterContainer):
 
                     data[self.field_labels['CHAIN']] = enabled_items
 
-    def _process_DATA_PROCESSING_CHAIN_METHOD_PARAMETERS(self, parameters):
+    def _process_DATA_PROCESSING_CHAIN_METHOD_PARAMETERS(self, parameters, section_method_parameters=None):
         """Process DATA_PROCESSING_CHAIN_METHOD_PARAMETERS section."""
 
         # Get section name for method parameters
-        section_method_parameters = self._method_parameter_section(
-            section=self.section_labels['DATA_PROCESSING_CHAIN'],
-            parameters=parameters
-        )
+        if section_method_parameters is None:
+            section_method_parameters = self._method_parameter_section(
+                section=self.section_labels['DATA_PROCESSING_CHAIN'],
+                parameters=parameters
+            )
 
         if section_method_parameters in parameters:
             # Change None feature parameter sections into empty dicts
@@ -1659,13 +1664,26 @@ class DCASEAppParameterContainer(AppParameterContainer):
 
                     data[self.field_labels['CHAIN']] = enabled_items
 
-    def _process_META_PROCESSING_CHAIN_METHOD_PARAMETERS(self, parameters):
+    def _process_DATA_PROCESSING_CHAIN2_METHOD_PARAMETERS(self, parameters):
+        """Process DATA_PROCESSING_CHAIN2_METHOD_PARAMETERS section."""
+
+        self._process_DATA_PROCESSING_CHAIN_METHOD_PARAMETERS(
+            parameters=parameters,
+            section_method_parameters=self._method_parameter_section(
+                section=self.section_labels['DATA_PROCESSING_CHAIN2'],
+                parameters=parameters
+            )
+        )
+
+    def _process_META_PROCESSING_CHAIN_METHOD_PARAMETERS(self, parameters, section_method_parameters=None):
+        """Process META__PROCESSING_CHAIN_METHOD_PARAMETERS section."""
 
         # Get section name for method parameters
-        section_method_parameters = self._method_parameter_section(
-            section=self.section_labels['META_PROCESSING_CHAIN'],
-            parameters=parameters
-        )
+        if section_method_parameters is None:
+            section_method_parameters = self._method_parameter_section(
+                section=self.section_labels['META_PROCESSING_CHAIN'],
+                parameters=parameters
+            )
 
         if section_method_parameters in parameters:
             # Change None feature parameter sections into empty dicts
@@ -1783,6 +1801,13 @@ class DCASEAppParameterContainer(AppParameterContainer):
                         parameters=parameters,
                         path=['RECOGNIZER']
                     )
+
+                if data.get_path('model.sets'):
+                    data['model']['set_parameters'] = []
+                    for set_id in data.get_path('model.sets'):
+                        data['model']['set_parameters'].append(
+                          self.get_set(set_id=set_id)
+                        )
 
     def _process_RECOGNIZER(self, parameters):
         """Process RECOGNIZER section."""
