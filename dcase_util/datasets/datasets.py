@@ -1151,15 +1151,16 @@ class Dataset(object):
         error_log = []
 
         meta_files = self.meta_container.unique_files
-        for filename in meta_files:
-            if not os.path.exists(filename):
-                error_log.append(
-                    error_message(
-                        error_class='Meta',
-                        type_label='Files',
-                        description='File does not exits [{filename}]'.format(filename=filename)
+        if 'audio' in self.included_content_types:
+            for filename in meta_files:
+                if not os.path.exists(filename):
+                    error_log.append(
+                        error_message(
+                            error_class='Meta',
+                            type_label='Files',
+                            description='File does not exits [{filename}]'.format(filename=filename)
+                        )
                     )
-                )
 
         if self.crossvalidation_folds:
             for fold in self.folds():
