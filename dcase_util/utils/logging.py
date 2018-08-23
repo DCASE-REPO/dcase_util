@@ -4,6 +4,7 @@
 from __future__ import print_function, absolute_import
 
 import os
+import sys
 import logging
 import logging.config
 import yaml
@@ -210,6 +211,16 @@ def setup_logging(parameters=None,
                 )
             except ImportError:
                 pass
+
+    # Function to handle uncaught expections
+    def handle_exception(exc_type, exc_value, exc_traceback):
+        if issubclass(exc_type, KeyboardInterrupt):
+            sys.__excepthook__(exc_type, exc_value, exc_traceback)
+            return
+
+        logger.error('Uncaught exception', exc_info=(exc_type, exc_value, exc_traceback))
+
+    sys.excepthook = handle_exception
 
 
 class DisableLogger(object):
