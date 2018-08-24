@@ -9,7 +9,7 @@ from dcase_util.ui import FancyStringifier
 from dcase_util.utils import SimpleMathStringEvaluator, setup_logging
 
 
-def create_sequential_model(model_parameter_list, input_shape=None, output_shape=None, constants=None):
+def create_sequential_model(model_parameter_list, input_shape=None, output_shape=None, constants=None, return_functional=False):
     """Create sequential Keras model
 
     Example parameters::
@@ -73,6 +73,10 @@ def create_sequential_model(model_parameter_list, input_shape=None, output_shape
     constants : dict or DictContainer
         Constants used in the model_parameter definitions.
         Default value None
+
+    return_functional : bool
+        Convert sequential model into function model.
+        Default value False
 
     Returns
     -------
@@ -221,6 +225,19 @@ def create_sequential_model(model_parameter_list, input_shape=None, output_shape
                 keras_model.add(layer_class(**dict(layer_setup.get('config'))))
             else:
                 keras_model.add(layer_class())
+
+    if return_functional:
+        from keras.layers import Input
+        from keras.models import Model
+        input_layer = Input(batch_shape=keras_model.layers[0].input_shape)
+        prev_layer = input_layer
+        for layer in keras_model.layers:
+            prev_layer = layer(prev_layer)
+
+        keras_model = Model(
+            inputs=[input_layer],
+            outputs=[prev_layer]
+        )
 
     return keras_model
 
