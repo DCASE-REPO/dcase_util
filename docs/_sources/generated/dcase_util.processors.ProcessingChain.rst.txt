@@ -61,7 +61,9 @@ dcase_util.processors.ProcessingChain
 
    .. autosummary::
    
+      ~ProcessingChain.bytes
       ~ProcessingChain.logger
+      ~ProcessingChain.md5
       ~ProcessingChain.valid_formats
       ~ProcessingChain.valid_input_types
       ~ProcessingChain.valid_output_types

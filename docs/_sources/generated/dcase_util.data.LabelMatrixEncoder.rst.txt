@@ -1,0 +1,59 @@
+dcase_util.data.LabelMatrixEncoder
+==================================
+
+.. currentmodule:: dcase_util.data
+
+.. autoclass:: LabelMatrixEncoder
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~LabelMatrixEncoder.__init__
+      ~LabelMatrixEncoder.change_axis
+      ~LabelMatrixEncoder.delimiter
+      ~LabelMatrixEncoder.detect_file_format
+      ~LabelMatrixEncoder.empty
+      ~LabelMatrixEncoder.exists
+      ~LabelMatrixEncoder.freeze
+      ~LabelMatrixEncoder.get_file_information
+      ~LabelMatrixEncoder.get_focused
+      ~LabelMatrixEncoder.get_frames
+      ~LabelMatrixEncoder.is_package
+      ~LabelMatrixEncoder.load
+      ~LabelMatrixEncoder.log
+      ~LabelMatrixEncoder.plot
+      ~LabelMatrixEncoder.push_processing_chain_item
+      ~LabelMatrixEncoder.reset_focus
+      ~LabelMatrixEncoder.save
+      ~LabelMatrixEncoder.set_focus
+      ~LabelMatrixEncoder.show
+      ~LabelMatrixEncoder.validate_format
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~LabelMatrixEncoder.T
+      ~LabelMatrixEncoder.bytes
+      ~LabelMatrixEncoder.data
+      ~LabelMatrixEncoder.focus_start
+      ~LabelMatrixEncoder.focus_stop
+      ~LabelMatrixEncoder.frames
+      ~LabelMatrixEncoder.length
+      ~LabelMatrixEncoder.logger
+      ~LabelMatrixEncoder.md5
+      ~LabelMatrixEncoder.shape
+      ~LabelMatrixEncoder.stats
+      ~LabelMatrixEncoder.valid_formats
+      ~LabelMatrixEncoder.vector_length
+   
+   

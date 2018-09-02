@@ -447,6 +447,7 @@ def data_collector(item_list=None,
 
     target_format : str
         Meta data interpretation in the relation to the data items.
+        Possible values ['same', 'single_target_per_segment']
         Default value 'single_target_per_segment'
 
     verbose : bool
@@ -487,14 +488,24 @@ def data_collector(item_list=None,
                     Y.append(meta.data[:, 0])
 
             elif target_format == 'same':
-                # Collect single target per sequence
-                Y.append(
-                    numpy.repeat(
-                        a=meta.data,
-                        repeats=data.length,
-                        axis=1
-                    ).T
-                )
+                # Collect same target per each element (frame)
+                if data.time_axis != meta.time_axis:
+                    Y.append(
+                        numpy.repeat(
+                            a=meta.data,
+                            repeats=data.length,
+                            axis=meta.time_axis
+                        ).T
+                    )
+
+                else:
+                    Y.append(
+                        numpy.repeat(
+                            a=meta.data,
+                            repeats=data.length,
+                            axis=meta.time_axis
+                        )
+                    )
 
         data_size = {}
 
@@ -528,6 +539,13 @@ def data_collector(item_list=None,
                 X = numpy.dstack(X)
                 Y = numpy.dstack(Y)
 
+            # Get data item size
+            data_size = {
+                'data': X.shape[data.data_axis],
+                'time': X.shape[data.time_axis],
+                'sequence': X.shape[data.sequence_axis],
+            }
+
             if channel_dimension:
                 # Add channel dimension to the data
                 if channel_dimension == 'channels_first':
@@ -535,13 +553,6 @@ def data_collector(item_list=None,
 
                 elif channel_dimension == 'channels_last':
                     X = numpy.expand_dims(X, axis=3)
-
-            # Get data item size
-            data_size = {
-                'data': X.shape[data.data_axis],
-                'time': X.shape[data.time_axis],
-                'sequence': X.shape[data.sequence_axis],
-            }
 
         if verbose:
             data_shape = data.shape

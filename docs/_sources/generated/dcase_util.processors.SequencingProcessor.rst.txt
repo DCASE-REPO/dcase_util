@@ -36,8 +36,10 @@ dcase_util.processors.SequencingProcessor
 
    .. autosummary::
    
+      ~SequencingProcessor.bytes
       ~SequencingProcessor.input_type
       ~SequencingProcessor.logger
+      ~SequencingProcessor.md5
       ~SequencingProcessor.output_type
       ~SequencingProcessor.valid_formats
    

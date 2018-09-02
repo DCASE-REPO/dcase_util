@@ -28,4 +28,10 @@ dcase_util.tools.BibtexProcessor
 
    
    
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~BibtexProcessor.logger
+   
    

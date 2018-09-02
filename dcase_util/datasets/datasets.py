@@ -18,7 +18,7 @@ from dcase_util.containers import DictContainer, ListDictContainer, TextContaine
 from dcase_util.files import RemoteFile, RemotePackage, File, Package
 from dcase_util.utils import get_byte_string, setup_logging, Path
 from dcase_util.utils import get_parameter_hash, get_class_inheritors
-from dcase_util.ui import FancyLogger
+from dcase_util.ui import FancyLogger, FancyStringifier
 
 
 def dataset_list(data_path='data', group=None):
@@ -39,7 +39,7 @@ def dataset_list(data_path='data', group=None):
         Multi line string containing dataset table
 
     """
-    line = '  {class_name:<42s} | {group:5s} | {remote_size:10s} | {local_present:6s} | {files:5s} | {scene:6s} | {event:6s} | {tag:4s}\n'
+    line = '  {class_name:<52s} | {group:5s} | {remote_size:10s} | {local_present:10s} | {files:5s} | {scene:6s} | {event:6s} | {tag:4s}\n'
     output = ''
     output += '  Dataset list\n'
     output += line.format(
@@ -89,6 +89,15 @@ def dataset_list(data_path='data', group=None):
             event=str(data.event_label_count()) if data.event_label_count() else '',
             tag=str(data.tag_count()) if data.tag_count() else '',
         )
+
+    if not group or group == 'sound':
+        class_list = get_class_inheritors(SoundDataset)
+        class_list.sort(key=lambda x: x.__name__, reverse=False)
+
+        for dataset_class in class_list:
+            d = dataset_class(data_path=data_path)
+            if d.dataset_group != 'base class':
+                output += get_row(d)
 
     if not group or group == 'scene':
         class_list = get_class_inheritors(AcousticSceneDataset)
@@ -319,7 +328,7 @@ class Dataset(object):
             Default value None
 
         included_content_types : list of str or str
-            Indicates what content type should be processed. One or multiple from ['all', 'audio', 'meta', 'code',
+            Indicates what content type should be processed. One or multiple from ['all', 'audio', 'features', 'meta', 'code',
             'documentation']. If None given, ['all'] is used. Parameter can be also comma separated string.
             Default value None
 
@@ -666,6 +675,9 @@ class Dataset(object):
             # Prepare meta data for the dataset class.
             self.prepare()
 
+            # Check meta data and cross validation setup
+            self.check_metadata()
+
             # Save new filelist hash to monitor change in the dataset.
             self._save_filelist_hash()
 
@@ -948,7 +960,7 @@ class Dataset(object):
         log.row_sep()
 
         for item in self.package_list:
-            if 'remote_file' in item:
+            if 'remote_file' in item and item['remote_file']:
                 remote_filename = os.path.split(item['remote_file'])[-1]
 
                 item_remote = copy.deepcopy(item)
@@ -1023,7 +1035,7 @@ class Dataset(object):
         )
 
         for item in item_progress:
-            if 'remote_file' in item:
+            if 'remote_file' in item and item['remote_file']:
                 # Download if remote file is set
                 remote_file = RemoteFile(**item)
                 if self.included_content_types is None or remote_file.is_content_type(
@@ -1117,6 +1129,182 @@ class Dataset(object):
 
         else:
             return False
+
+    def check_metadata(self):
+        """Checking meta data and cross-validation setup.
+
+        Returns
+        -------
+        self
+
+        """
+
+        def error_message(error_class='', type_label='', subtype_label='', description=''):
+
+            return u'{error_class} {type_label}  {subtype_label}  {message}'.format(
+                error_class=FancyStringifier().formatted_value(error_class, data_type='stf16').upper(),
+                type_label=FancyStringifier().formatted_value(type_label, data_type='stf10').upper(),
+                subtype_label=FancyStringifier().formatted_value(subtype_label, data_type='stf20'),
+                message=description
+            )
+
+        error_log = []
+
+        meta_files = self.meta_container.unique_files
+        if 'audio' in self.included_content_types:
+            for filename in meta_files:
+                if not os.path.exists(filename):
+                    error_log.append(
+                        error_message(
+                            error_class='Meta',
+                            type_label='Files',
+                            description='File does not exits [{filename}]'.format(filename=filename)
+                        )
+                    )
+
+        if self.crossvalidation_folds:
+            for fold in self.folds():
+
+                train = self.train(fold=fold)
+                if len(train) == 0:
+                    error_log.append(
+                        error_message(
+                            error_class='Fold['+str(fold)+']',
+                            type_label='Train set',
+                            description='Empty set'
+                        )
+                    )
+
+                for item in train:
+                    if 'filename' not in item:
+                        error_log.append(
+                            error_message(
+                                error_class='Fold['+str(fold)+']',
+                                type_label='Train set',
+                                description='Field missing [filename].'
+                            )
+                        )
+                    else:
+                        if item['filename'] not in meta_files:
+                            error_log.append(
+                                error_message(
+                                    error_class='Fold['+str(fold)+']',
+                                    type_label='Train set',
+                                    description='Filename not in meta [{filename}].'.format(filename=item['filename'])
+                                )
+                            )
+
+                test = self.test(fold=fold)
+                if len(test) == 0:
+                    error_log.append(
+                        error_message(
+                            error_class='Fold['+str(fold)+']',
+                            type_label='Test set',
+                            description='Empty set'
+                        )
+                    )
+
+                for item in test:
+                    if 'filename' not in item:
+                        error_log.append(
+                            error_message(
+                                error_class='Fold' + str(fold),
+                                type_label='Test set',
+                                description='Field missing [filename].'
+                            )
+                        )
+                    else:
+                        if item['filename'] not in meta_files:
+                            error_log.append(
+                                error_message(
+                                    error_class='Fold['+str(fold)+']',
+                                    type_label='Test set',
+                                    description='Filename not in meta [{filename}].'.format(filename=item['filename'])
+                                )
+                            )
+
+                eval = self.eval(fold=fold)
+                if len(eval) == 0:
+                    error_log.append(
+                        error_message(
+                            error_class='Fold['+str(fold)+']',
+                            type_label='Eval set',
+                            subtype_label='Empty set'
+                        )
+                    )
+
+                for item in eval:
+                    if 'filename' not in item:
+                        error_log.append(
+                            error_message(
+                                error_class='Fold['+str(fold)+']',
+                                type_label='Eval set',
+                                description='Field missing [filename].'
+                            )
+                        )
+                    else:
+                        if item['filename'] not in meta_files:
+                            error_log.append(
+                                error_message(
+                                    error_class='Fold['+str(fold)+']',
+                                    type_label='Eval set',
+                                    description='Filename not in meta [{filename}].'.format(filename=item['filename'])
+                                )
+                            )
+
+                train_test_intersection = list(set(train.unique_files) & set(test.unique_files))
+                if len(train_test_intersection):
+                    error_log.append(
+                        error_message(
+                            error_class='Fold['+str(fold)+']',
+                            type_label='Sets',
+                            description='Train and test sets intersects [{file_count} files common].'.format(file_count=len(train_test_intersection))
+                        )
+                    )
+
+                train_eval_intersection = list(set(train.unique_files) & set(eval.unique_files))
+                if len(train_eval_intersection):
+                    error_log.append(
+                        error_message(
+                            error_class='Fold['+str(fold)+']',
+                            type_label='Sets',
+                            description='Train and eval sets intersects [{file_count} files common].'.format(file_count=len(train_eval_intersection))
+                        )
+                    )
+
+                test_eval_intersection = list(set(test.unique_files) & set(eval.unique_files))
+                if len(eval.unique_files) != len(test.unique_files):
+                    error_log.append(
+                        error_message(
+                            error_class='Fold['+str(fold)+']',
+                            type_label='Sets',
+                            description='Test and eval sets have different amount of files [{test_files} != {eval_files}].'.format(
+                                test_files=len(test.unique_files),
+                                eval_files=len(eval.unique_files),
+                            )
+                        )
+                    )
+
+                if len(test_eval_intersection) != len(test.unique_files):
+                    error_log.append(
+                        error_message(
+                            error_class='Fold['+str(fold)+']',
+                            type_label='Sets',
+                            description='Test and eval sets have different files [{common_file_count} != {test_files} files common].'.format(
+                                common_file_count=len(test_eval_intersection),
+                                test_files=len(test.unique_files)
+                            )
+                        )
+                    )
+
+        if error_log:
+            message = 'Dataset errors:\n'
+            message += '\n'.join(error_log)
+
+            self.logger.exception(message)
+            raise ValueError(message)
+
+        return self
 
     def process_meta_item(self, item, absolute_path=True, **kwargs):
         """Process single meta data item
@@ -1812,6 +2000,12 @@ class Dataset(object):
         TextContainer([hash_value]).save(
             filename=os.path.join(self.local_path, self.filelisthash_filename)
         )
+
+
+class SoundDataset(Dataset):
+    """Sound dataset baseclass """
+    def __init__(self, *args, **kwargs):
+        super(SoundDataset, self).__init__(*args, **kwargs)
 
 
 class AcousticSceneDataset(Dataset):

@@ -39,9 +39,11 @@ dcase_util.processors.MfccAccelerationExtractorProcessor
 
    .. autosummary::
    
+      ~MfccAccelerationExtractorProcessor.bytes
       ~MfccAccelerationExtractorProcessor.input_type
       ~MfccAccelerationExtractorProcessor.label
       ~MfccAccelerationExtractorProcessor.logger
+      ~MfccAccelerationExtractorProcessor.md5
       ~MfccAccelerationExtractorProcessor.output_type
       ~MfccAccelerationExtractorProcessor.valid_formats
    

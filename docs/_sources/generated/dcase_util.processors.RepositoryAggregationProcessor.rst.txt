@@ -36,8 +36,10 @@ dcase_util.processors.RepositoryAggregationProcessor
 
    .. autosummary::
    
+      ~RepositoryAggregationProcessor.bytes
       ~RepositoryAggregationProcessor.input_type
       ~RepositoryAggregationProcessor.logger
+      ~RepositoryAggregationProcessor.md5
       ~RepositoryAggregationProcessor.output_type
       ~RepositoryAggregationProcessor.valid_formats
    

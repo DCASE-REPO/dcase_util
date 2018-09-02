@@ -2,7 +2,7 @@
 
 import os
 import tempfile
-
+import numpy
 import nose.tools
 
 from dcase_util.containers import MetaDataContainer
@@ -313,7 +313,10 @@ def test_filter_time_segment():
 
 
 def test_process_events():
-    meta = MetaDataContainer(content2).process_events(minimum_event_gap=0.5, minimum_event_length=1.0)
+    meta = MetaDataContainer(content2).process_events(
+        minimum_event_gap=0.5,
+        minimum_event_length=1.0
+    )
 
     nose.tools.eq_(len(meta), 3)
 
@@ -335,7 +338,10 @@ def test_process_events():
     nose.tools.eq_(meta[2].onset, 7.0)
     nose.tools.eq_(meta[2].offset, 8.0)
 
-    meta = MetaDataContainer(content2).process_events(minimum_event_gap=1.0, minimum_event_length=1.0)
+    meta = MetaDataContainer(content2).process_events(
+        minimum_event_gap=1.0,
+        minimum_event_length=1.0
+    )
 
     nose.tools.eq_(len(meta), 1)
     nose.tools.eq_(meta[0].filename, 'audio_001.wav')
@@ -343,6 +349,29 @@ def test_process_events():
     nose.tools.eq_(meta[0].event_label, 'speech')
     nose.tools.eq_(meta[0].onset, 1.5)
     nose.tools.eq_(meta[0].offset, 8.0)
+
+    meta = MetaDataContainer(
+        [
+            {
+                'filename': 'audio_001.wav',
+                'scene_label': 'office',
+                'event_label': 'mouse clicking',
+                'onset': 3.0,
+                'offset': 5.0,
+                'identifier': 'A001'
+            },
+            {
+                'filename': 'audio_001.wav',
+                'scene_label': 'office',
+                'event_label': 'mouse clicking',
+                'onset': 13.0,
+                'offset': 13.0,
+                'identifier': 'A001'
+            },
+        ]
+    ).process_events(minimum_event_gap=1.0, minimum_event_length=numpy.spacing(1))
+
+    nose.tools.eq_(len(meta), 1)
 
 
 def test_add_time_offset():
@@ -432,3 +461,51 @@ def test_intersection():
     intersection = data1.intersection(data2)
     nose.tools.eq_(len(intersection), 1)
     nose.tools.eq_(intersection[0].filename, 'audio_001.wav')
+
+
+def test_map_events():
+    meta = MetaDataContainer(content)
+    meta_mapped_1 = meta.map_events(
+        target_event_label='activity',
+        source_event_labels=['speech', 'printer']
+    )
+    nose.tools.eq_(len(meta_mapped_1), 4)
+
+    meta_mapped_2 = meta.map_events(
+        target_event_label='activity'
+    )
+    nose.tools.eq_(len(meta_mapped_2), 5)
+
+
+def test_event_inactivity():
+    meta = MetaDataContainer(content)
+    meta_inactivity = meta.event_inactivity()
+
+    nose.tools.eq_(len(meta_inactivity), 3)
+
+    meta = MetaDataContainer(
+        [
+            {
+                'filename': 'audio_001.wav',
+                'scene_label': 'office',
+                'event_label': 'mouse clicking',
+                'onset': 3.0,
+                'offset': 5.0,
+                'identifier': 'A001'
+            },
+            {
+                'filename': 'audio_001.wav',
+                'scene_label': 'office',
+                'event_label': 'mouse clicking',
+                'onset': 13.0,
+                'offset': 13.0,
+                'identifier': 'A001'
+            },
+        ]
+    )
+    meta_inactivity = meta.event_inactivity(duration_list={'audio_001.wav': 20.0})
+    nose.tools.eq_(meta_inactivity[0].onset, 0.00)
+    nose.tools.eq_(meta_inactivity[0].offset, 3.00)
+
+    nose.tools.eq_(meta_inactivity[1].onset, 5.00)
+    nose.tools.eq_(meta_inactivity[1].offset, 20.00)

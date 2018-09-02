@@ -36,7 +36,9 @@ dcase_util.data.Selector
 
    .. autosummary::
    
+      ~Selector.bytes
       ~Selector.logger
+      ~Selector.md5
       ~Selector.valid_formats
    
    

@@ -61,8 +61,10 @@ dcase_util.containers.OneToOneMappingContainer
 
    .. autosummary::
    
+      ~OneToOneMappingContainer.bytes
       ~OneToOneMappingContainer.flipped
       ~OneToOneMappingContainer.logger
+      ~OneToOneMappingContainer.md5
       ~OneToOneMappingContainer.valid_formats
    
    

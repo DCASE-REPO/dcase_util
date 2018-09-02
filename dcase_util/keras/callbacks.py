@@ -6,6 +6,7 @@ import numpy
 import os
 import collections
 import logging
+import datetime
 
 from dcase_util.ui import FancyStringifier, FancyLogger, FancyPrinter
 from dcase_util.utils import Timer, setup_logging
@@ -192,6 +193,8 @@ class ProgressLoggerCallback(BaseCallback):
         self.last_update_epoch = 0
 
         self.target = None
+        self.first_epoch = None
+        self.total_time = 0
 
     def on_train_begin(self, logs=None):
         if self.epochs is None:
@@ -210,30 +213,31 @@ class ProgressLoggerCallback(BaseCallback):
                 header2 = ['', self.loss, self.metric]
                 header3 = ['Epoch', 'Train', 'Val', 'Train', 'Val']
                 widths = [10, 13, 13, 13, 13]
-                sep = ['-', '-', '-', '-', '-']
                 for metric_label, metric_name in iteritems(self.external_metric_labels):
                     header2.append('')
                     header3.append(metric_name)
                     widths.append(15)
-                    sep.append('-')
 
                 header2.append('')
-                header3.append('time')
+                header3.append('Step time')
                 widths.append(17)
-                sep.append('-')
+
+                header2.append('')
+                header3.append('Remaining time')
+                widths.append(17)
 
                 output += self.ui.row(*header2) + '\n'
                 output += self.ui.row(*header3, widths=widths) + '\n'
-                output += self.ui.row(*sep)
+                output += self.ui.row_sep()
 
             else:
                 output += self.ui.row('', 'Loss', 'Metric', '', widths=[10, 26, 26, 17]) + '\n'
                 output += self.ui.row('', self.loss, self.metric, '') + '\n'
                 output += self.ui.row(
-                    'Epoch', 'Train', 'Val', 'Train', 'Val', 'Time',
-                    widths=[10, 13, 13, 13, 13, 17]
+                    'Epoch', 'Train', 'Val', 'Train', 'Val', 'Step time', 'Remaining time',
+                    widths=[10, 13, 13, 13, 13, 17, 17]
                 ) + '\n'
-                output += self.ui.row('-', '-', '-', '-', '-', '-')
+                output += self.ui.row_sep()
 
             self.output_target.line(output)
 
@@ -267,7 +271,12 @@ class ProgressLoggerCallback(BaseCallback):
 
     def on_epoch_end(self, epoch, logs=None):
         self.timer.stop()
+        self.total_time += self.timer.elapsed()
         self.epoch = epoch
+
+        if self.first_epoch is None:
+            # Store first epoch number
+            self.first_epoch = self.epoch
 
         logs = logs or {}
 
@@ -352,10 +361,20 @@ class ProgressLoggerCallback(BaseCallback):
                             types.append('float4')
 
                     data.append(value)
+
                 else:
                     data.append('')
 
+            # Add step time
             data.append(self.timer.get_string())
+            types.append('str')
+
+            # Add remaining time
+            average_time_per_epoch = self.total_time / float(self.epoch-(self.first_epoch-1))
+            remaining_time_seconds = datetime.timedelta(
+                seconds=(self.epochs - 1 - self.epoch) * average_time_per_epoch
+            )
+            data.append('-'+str(remaining_time_seconds).split('.', 2)[0])
             types.append('str')
 
             output = self.ui.row(*data, types=types)

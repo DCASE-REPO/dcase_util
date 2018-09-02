@@ -36,8 +36,10 @@ dcase_util.processors.RepositoryToMatrixProcessor
 
    .. autosummary::
    
+      ~RepositoryToMatrixProcessor.bytes
       ~RepositoryToMatrixProcessor.input_type
       ~RepositoryToMatrixProcessor.logger
+      ~RepositoryToMatrixProcessor.md5
       ~RepositoryToMatrixProcessor.output_type
       ~RepositoryToMatrixProcessor.valid_formats
    

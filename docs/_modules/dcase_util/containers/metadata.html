@@ -456,6 +456,8 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.MetaDataContainer.filter.html">dcase_util.containers.MetaDataContainer.filter</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.MetaDataContainer.filter_time_segment.html">dcase_util.containers.MetaDataContainer.filter_time_segment</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.MetaDataContainer.process_events.html">dcase_util.containers.MetaDataContainer.process_events</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.MetaDataContainer.map_events.html">dcase_util.containers.MetaDataContainer.map_events</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.MetaDataContainer.event_inactivity.html">dcase_util.containers.MetaDataContainer.event_inactivity</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.MetaDataContainer.add_time.html">dcase_util.containers.MetaDataContainer.add_time</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.MetaDataContainer.stats.html">dcase_util.containers.MetaDataContainer.stats</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.MetaDataContainer.scene_stat_counts.html">dcase_util.containers.MetaDataContainer.scene_stat_counts</a></li>
@@ -520,7 +522,9 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.ProbabilityContainer.append.html">dcase_util.containers.ProbabilityContainer.append</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.ProbabilityContainer.unique_files.html">dcase_util.containers.ProbabilityContainer.unique_files</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.ProbabilityContainer.unique_labels.html">dcase_util.containers.ProbabilityContainer.unique_labels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.ProbabilityContainer.unique_indices.html">dcase_util.containers.ProbabilityContainer.unique_indices</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.ProbabilityContainer.filter.html">dcase_util.containers.ProbabilityContainer.filter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.ProbabilityContainer.as_matrix.html">dcase_util.containers.ProbabilityContainer.as_matrix</a></li>
 </ul>
 </li>
 </ul>
@@ -587,6 +591,15 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../data.html#eventrollencoder">EventRollEncoder</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.data.EventRollEncoder.html">dcase_util.data.EventRollEncoder</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.data.EventRollEncoder.encode.html">dcase_util.data.EventRollEncoder.encode</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../data.html#labelmatrixencoder">LabelMatrixEncoder</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.data.LabelMatrixEncoder.html">dcase_util.data.LabelMatrixEncoder</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../data.html#onehotlabelencoder">OneHotLabelEncoder</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.data.OneHotLabelEncoder.html">dcase_util.data.OneHotLabelEncoder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.data.OneHotLabelEncoder.encode.html">dcase_util.data.OneHotLabelEncoder.encode</a></li>
 </ul>
 </li>
 </ul>
@@ -745,6 +758,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.AcousticSceneDataset.html">dcase_util.datasets.AcousticSceneDataset</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTAcousticScenes_2017_DevelopmentSet.html">dcase_util.datasets.TUTAcousticScenes_2017_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTAcousticScenes_2017_EvaluationSet.html">dcase_util.datasets.TUTAcousticScenes_2017_EvaluationSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTAcousticScenes_2017_FeaturesSet.html">dcase_util.datasets.TUTAcousticScenes_2017_FeaturesSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet.html">dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet.html">dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_DevelopmentSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_DevelopmentSet</a></li>
@@ -1079,6 +1093,11 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.EventRollEncodingProcessor.process.html">dcase_util.processors.EventRollEncodingProcessor.process</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../../../processors.html#onehotlabelencodingprocessor">OneHotLabelEncodingProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.OneHotLabelEncodingProcessor.html">dcase_util.processors.OneHotLabelEncodingProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.OneHotLabelEncodingProcessor.process.html">dcase_util.processors.OneHotLabelEncodingProcessor.process</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../../../processors.html#datashapingprocessor">DataShapingProcessor</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.DataShapingProcessor.html">dcase_util.processors.DataShapingProcessor</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.DataShapingProcessor.process.html">dcase_util.processors.DataShapingProcessor.process</a></li>
@@ -1360,13 +1379,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../tools.html#submissionchecker">SubmissionChecker</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.tools.SubmissionChecker.html">dcase_util.tools.SubmissionChecker</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.tools.SubmissionChecker.process.html">dcase_util.tools.SubmissionChecker.process</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.tools.SubmissionChecker.parameter_file.html">dcase_util.tools.SubmissionChecker.parameter_file</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.tools.SubmissionChecker.system_output_file.html">dcase_util.tools.SubmissionChecker.system_output_file</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.tools.SubmissionChecker.main_structure.html">dcase_util.tools.SubmissionChecker.main_structure</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.tools.SubmissionChecker.submission_info.html">dcase_util.tools.SubmissionChecker.submission_info</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.tools.SubmissionChecker.system_meta.html">dcase_util.tools.SubmissionChecker.system_meta</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.tools.SubmissionChecker.system_description.html">dcase_util.tools.SubmissionChecker.system_description</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.tools.SubmissionChecker.system_output.html">dcase_util.tools.SubmissionChecker.system_output</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../tools.html#bibtexprocessor">BibtexProcessor</a><ul>
@@ -1388,6 +1400,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-5">v0.2.5</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-4">v0.2.4</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-3">v0.2.3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-2">v0.2.2</a></li>
@@ -1523,6 +1536,7 @@
         <span class="k">if</span> <span class="s1">&#39;offset&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
             <span class="bp">self</span><span class="p">[</span><span class="s1">&#39;offset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="p">[</span><span class="s1">&#39;offset&#39;</span><span class="p">])</span>
 
+        <span class="c1"># Event label assigned to the meta data item</span>
         <span class="k">if</span> <span class="s1">&#39;event_label&#39;</span> <span class="ow">in</span> <span class="bp">self</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">event_label</span><span class="p">:</span>
             <span class="bp">self</span><span class="p">[</span><span class="s1">&#39;event_label&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="s1">&#39;event_label&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
             <span class="k">if</span> <span class="bp">self</span><span class="p">[</span><span class="s1">&#39;event_label&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;none&#39;</span><span class="p">:</span>
@@ -1860,6 +1874,10 @@
     <span class="k">def</span> <span class="nf">onset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="bp">self</span><span class="p">[</span><span class="s1">&#39;onset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
 
+        <span class="k">if</span> <span class="s1">&#39;event_onset&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+            <span class="c1"># Mirror onset to event_onset</span>
+            <span class="bp">self</span><span class="p">[</span><span class="s1">&#39;event_onset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="s1">&#39;onset&#39;</span><span class="p">]</span>
+
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">offset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Offset</span>
@@ -1879,6 +1897,10 @@
     <span class="nd">@offset</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">offset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="bp">self</span><span class="p">[</span><span class="s1">&#39;offset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="s1">&#39;event_offset&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+            <span class="c1"># Mirror onset to event_onset</span>
+            <span class="bp">self</span><span class="p">[</span><span class="s1">&#39;event_offset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="s1">&#39;offset&#39;</span><span class="p">]</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">identifier</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -2284,7 +2306,7 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="nb">list</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">MetaDataContainer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
 
         <span class="c1"># Convert all items in the list to MetaDataItems</span>
         <span class="k">for</span> <span class="n">item_id</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)):</span>
@@ -2372,7 +2394,7 @@
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        filename : str</span>
-<span class="sd">            Path to the event list in text format (csv). If none given, one given for class constructor is used.</span>
+<span class="sd">            Path to the meta data in text format (csv). If none given, one given for class constructor is used.</span>
 <span class="sd">            Default value None</span>
 
 <span class="sd">        fields : list of str, optional</span>
@@ -2932,6 +2954,10 @@
 
                     <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">csv_reader</span><span class="p">:</span>
                         <span class="k">for</span> <span class="n">cell_id</span><span class="p">,</span> <span class="n">cell_data</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
+                            <span class="k">if</span> <span class="n">decimal</span> <span class="o">==</span> <span class="s1">&#39;comma&#39;</span><span class="p">:</span>
+                                <span class="c1"># Translate decimal comma into decimal point</span>
+                                <span class="n">cell_data</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">cell_data</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">))</span>
+
                             <span class="k">if</span> <span class="n">is_int</span><span class="p">(</span><span class="n">cell_data</span><span class="p">):</span>
                                 <span class="n">row</span><span class="p">[</span><span class="n">cell_id</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">cell_data</span><span class="p">)</span>
 
@@ -3340,6 +3366,7 @@
                     <span class="k">if</span> <span class="n">minimum_event_length</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                         <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">offset</span> <span class="o">-</span> <span class="n">event</span><span class="o">.</span><span class="n">onset</span> <span class="o">&gt;=</span> <span class="n">minimum_event_length</span><span class="p">:</span>
                             <span class="n">event_results_1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+
                     <span class="k">else</span><span class="p">:</span>
                         <span class="n">event_results_1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
 
@@ -3361,6 +3388,7 @@
 
                             <span class="n">buffered_event_onset</span> <span class="o">=</span> <span class="n">event_results_1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">onset</span>
                             <span class="n">buffered_event_offset</span> <span class="o">=</span> <span class="n">event_results_1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">offset</span>
+
                         <span class="k">else</span><span class="p">:</span>
                             <span class="c1"># The gap between current event and the buffered is smaller than minimum event gap,</span>
                             <span class="c1"># extend the buffered event until the current offset</span>
@@ -3378,6 +3406,122 @@
                     <span class="n">processed_events</span> <span class="o">+=</span> <span class="n">event_results_1</span>
 
         <span class="k">return</span> <span class="n">MetaDataContainer</span><span class="p">(</span><span class="n">processed_events</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="MetaDataContainer.map_events"><a class="viewcode-back" href="../../../generated/dcase_util.containers.MetaDataContainer.map_events.html#dcase_util.containers.MetaDataContainer.map_events">[docs]</a>    <span class="k">def</span> <span class="nf">map_events</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target_event_label</span><span class="p">,</span> <span class="n">source_event_labels</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Map events with varying event labels into single target event label</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        target_event_label : str</span>
+<span class="sd">            Target event label</span>
+
+<span class="sd">        source_event_labels : list of str</span>
+<span class="sd">            Event labels to be processed. If none given, all events are merged</span>
+<span class="sd">            Default value None</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        MetaDataContainer</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">processed_events</span> <span class="o">=</span> <span class="n">MetaDataContainer</span><span class="p">()</span>
+        <span class="n">files</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">unique_files</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">files</span><span class="p">:</span>
+            <span class="n">files</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">source_event_labels</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">source_event_labels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">unique_event_labels</span>
+
+        <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">event_label</span> <span class="ow">in</span> <span class="n">source_event_labels</span><span class="p">:</span>
+                <span class="n">current_events_items</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span> <span class="n">event_label</span><span class="o">=</span><span class="n">event_label</span><span class="p">)</span>
+
+                <span class="c1"># Sort events</span>
+                <span class="n">current_events_items</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">current_events_items</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">k</span><span class="p">:</span> <span class="n">k</span><span class="o">.</span><span class="n">onset</span><span class="p">)</span>
+
+                <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">current_events_items</span><span class="p">:</span>
+                    <span class="n">item</span><span class="o">.</span><span class="n">event_label</span> <span class="o">=</span> <span class="n">target_event_label</span>
+
+                <span class="n">processed_events</span> <span class="o">+=</span> <span class="n">current_events_items</span>
+
+        <span class="k">return</span> <span class="n">processed_events</span></div>
+
+<div class="viewcode-block" id="MetaDataContainer.event_inactivity"><a class="viewcode-back" href="../../../generated/dcase_util.containers.MetaDataContainer.event_inactivity.html#dcase_util.containers.MetaDataContainer.event_inactivity">[docs]</a>    <span class="k">def</span> <span class="nf">event_inactivity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event_label</span><span class="o">=</span><span class="s1">&#39;inactivity&#39;</span><span class="p">,</span> <span class="n">source_event_labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">duration_list</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get inactivity segments between events as event list</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        event_label : str</span>
+<span class="sd">            Event label used for inactivity</span>
+
+<span class="sd">        source_event_labels : list of str</span>
+<span class="sd">            Event labels to be taken into account. If none given, all events are considered.</span>
+<span class="sd">            Default value None</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        MetaDataContainer</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">meta_flatten</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">map_events</span><span class="p">(</span><span class="n">target_event_label</span><span class="o">=</span><span class="s1">&#39;activity&#39;</span><span class="p">,</span> <span class="n">source_event_labels</span><span class="o">=</span><span class="n">source_event_labels</span><span class="p">)</span>
+        <span class="n">meta_flatten</span> <span class="o">=</span> <span class="n">meta_flatten</span><span class="o">.</span><span class="n">process_events</span><span class="p">(</span>
+            <span class="n">minimum_event_gap</span><span class="o">=</span><span class="n">numpy</span><span class="o">.</span><span class="n">spacing</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
+            <span class="n">minimum_event_length</span><span class="o">=</span><span class="n">numpy</span><span class="o">.</span><span class="n">spacing</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="n">inactivity_events</span> <span class="o">=</span> <span class="n">MetaDataContainer</span><span class="p">()</span>
+        <span class="n">files</span> <span class="o">=</span> <span class="n">meta_flatten</span><span class="o">.</span><span class="n">unique_files</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">files</span><span class="p">:</span>
+            <span class="n">files</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">duration_list</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">duration_list</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+            <span class="n">current_events_items</span> <span class="o">=</span> <span class="n">meta_flatten</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">)</span>
+            <span class="n">current_inactivity_events</span> <span class="o">=</span> <span class="n">MetaDataContainer</span><span class="p">()</span>
+            <span class="n">onset</span> <span class="o">=</span> <span class="mf">0.0</span>
+            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">current_events_items</span><span class="p">:</span>
+                <span class="n">current_onset</span> <span class="o">=</span> <span class="n">onset</span>
+                <span class="n">current_offset</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">onset</span>
+
+                <span class="n">current_inactivity_events</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="p">{</span>
+                        <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename</span><span class="p">,</span>
+                        <span class="s1">&#39;onset&#39;</span><span class="p">:</span> <span class="n">current_onset</span><span class="p">,</span>
+                        <span class="s1">&#39;offset&#39;</span><span class="p">:</span> <span class="n">current_offset</span><span class="p">,</span>
+                        <span class="s1">&#39;event_label&#39;</span><span class="p">:</span> <span class="n">event_label</span>
+                    <span class="p">}</span>
+                <span class="p">)</span>
+
+                <span class="n">onset</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">offset</span>
+
+            <span class="k">if</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">duration_list</span><span class="p">:</span>
+                <span class="n">file_duration</span> <span class="o">=</span> <span class="n">duration_list</span><span class="p">[</span><span class="n">filename</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">file_duration</span> <span class="o">=</span> <span class="n">current_events_items</span><span class="o">.</span><span class="n">max_offset</span>
+
+            <span class="n">current_inactivity_events</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="p">{</span>
+                    <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename</span><span class="p">,</span>
+                    <span class="s1">&#39;onset&#39;</span><span class="p">:</span> <span class="n">onset</span><span class="p">,</span>
+                    <span class="s1">&#39;offset&#39;</span><span class="p">:</span> <span class="n">file_duration</span><span class="p">,</span>
+                    <span class="s1">&#39;event_label&#39;</span><span class="p">:</span> <span class="n">event_label</span>
+                <span class="p">}</span>
+            <span class="p">)</span>
+
+            <span class="n">current_inactivity_events</span> <span class="o">=</span> <span class="n">current_inactivity_events</span><span class="o">.</span><span class="n">process_events</span><span class="p">(</span>
+                <span class="n">minimum_event_gap</span><span class="o">=</span><span class="n">numpy</span><span class="o">.</span><span class="n">spacing</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
+                <span class="n">minimum_event_length</span><span class="o">=</span><span class="n">numpy</span><span class="o">.</span><span class="n">spacing</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="p">)</span>
+
+            <span class="n">current_inactivity_events</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">current_inactivity_events</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">k</span><span class="p">:</span> <span class="n">k</span><span class="o">.</span><span class="n">onset</span><span class="p">)</span>
+
+            <span class="n">inactivity_events</span> <span class="o">+=</span> <span class="n">current_inactivity_events</span>
+
+        <span class="k">return</span> <span class="n">inactivity_events</span></div>
 
 <div class="viewcode-block" id="MetaDataContainer.add_time"><a class="viewcode-back" href="../../../generated/dcase_util.containers.MetaDataContainer.add_time.html#dcase_util.containers.MetaDataContainer.add_time">[docs]</a>    <span class="k">def</span> <span class="nf">add_time</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Add time offset to event onset and offset timestamps</span>
@@ -3536,6 +3680,7 @@
             <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">onset</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">item</span><span class="o">.</span><span class="n">offset</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">item</span><span class="o">.</span><span class="n">event_label</span> <span class="o">==</span> <span class="n">event_label</span><span class="p">:</span>
                     <span class="n">event_lengths</span><span class="p">[</span><span class="n">event_id</span><span class="p">]</span> <span class="o">+=</span> <span class="n">item</span><span class="o">.</span><span class="n">offset</span> <span class="o">-</span> <span class="n">item</span><span class="o">.</span><span class="n">onset</span>
+                <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">event_label</span> <span class="o">==</span> <span class="n">event_label</span><span class="p">:</span>
                     <span class="n">event_counts</span><span class="p">[</span><span class="n">event_id</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
 
         <span class="n">tag_counts</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tag_list</span><span class="p">))</span>
@@ -3554,7 +3699,7 @@
                 <span class="s1">&#39;event_label_list&#39;</span><span class="p">:</span> <span class="n">event_label_list</span><span class="p">,</span>
                 <span class="s1">&#39;length&#39;</span><span class="p">:</span> <span class="n">event_lengths</span><span class="p">,</span>
                 <span class="s1">&#39;count&#39;</span><span class="p">:</span> <span class="n">event_counts</span><span class="p">,</span>
-                <span class="s1">&#39;avg_length&#39;</span><span class="p">:</span> <span class="n">event_lengths</span><span class="o">/</span><span class="n">event_counts</span>
+                <span class="s1">&#39;avg_length&#39;</span><span class="p">:</span> <span class="n">event_lengths</span><span class="o">/</span><span class="p">(</span><span class="n">event_counts</span> <span class="o">+</span> <span class="n">numpy</span><span class="o">.</span><span class="n">spacing</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
             <span class="p">},</span>
             <span class="s1">&#39;tags&#39;</span><span class="p">:</span> <span class="p">{</span>
                 <span class="s1">&#39;tag_list&#39;</span><span class="p">:</span> <span class="n">tag_list</span><span class="p">,</span>

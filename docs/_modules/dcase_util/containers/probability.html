@@ -456,6 +456,8 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.MetaDataContainer.filter.html">dcase_util.containers.MetaDataContainer.filter</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.MetaDataContainer.filter_time_segment.html">dcase_util.containers.MetaDataContainer.filter_time_segment</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.MetaDataContainer.process_events.html">dcase_util.containers.MetaDataContainer.process_events</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.MetaDataContainer.map_events.html">dcase_util.containers.MetaDataContainer.map_events</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.MetaDataContainer.event_inactivity.html">dcase_util.containers.MetaDataContainer.event_inactivity</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.MetaDataContainer.add_time.html">dcase_util.containers.MetaDataContainer.add_time</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.MetaDataContainer.stats.html">dcase_util.containers.MetaDataContainer.stats</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.MetaDataContainer.scene_stat_counts.html">dcase_util.containers.MetaDataContainer.scene_stat_counts</a></li>
@@ -520,7 +522,9 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.ProbabilityContainer.append.html">dcase_util.containers.ProbabilityContainer.append</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.ProbabilityContainer.unique_files.html">dcase_util.containers.ProbabilityContainer.unique_files</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.ProbabilityContainer.unique_labels.html">dcase_util.containers.ProbabilityContainer.unique_labels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.ProbabilityContainer.unique_indices.html">dcase_util.containers.ProbabilityContainer.unique_indices</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.ProbabilityContainer.filter.html">dcase_util.containers.ProbabilityContainer.filter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.ProbabilityContainer.as_matrix.html">dcase_util.containers.ProbabilityContainer.as_matrix</a></li>
 </ul>
 </li>
 </ul>
@@ -587,6 +591,15 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../data.html#eventrollencoder">EventRollEncoder</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.data.EventRollEncoder.html">dcase_util.data.EventRollEncoder</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.data.EventRollEncoder.encode.html">dcase_util.data.EventRollEncoder.encode</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../data.html#labelmatrixencoder">LabelMatrixEncoder</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.data.LabelMatrixEncoder.html">dcase_util.data.LabelMatrixEncoder</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../data.html#onehotlabelencoder">OneHotLabelEncoder</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.data.OneHotLabelEncoder.html">dcase_util.data.OneHotLabelEncoder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.data.OneHotLabelEncoder.encode.html">dcase_util.data.OneHotLabelEncoder.encode</a></li>
 </ul>
 </li>
 </ul>
@@ -745,6 +758,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.AcousticSceneDataset.html">dcase_util.datasets.AcousticSceneDataset</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTAcousticScenes_2017_DevelopmentSet.html">dcase_util.datasets.TUTAcousticScenes_2017_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTAcousticScenes_2017_EvaluationSet.html">dcase_util.datasets.TUTAcousticScenes_2017_EvaluationSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTAcousticScenes_2017_FeaturesSet.html">dcase_util.datasets.TUTAcousticScenes_2017_FeaturesSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet.html">dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet.html">dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_DevelopmentSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_DevelopmentSet</a></li>
@@ -1079,6 +1093,11 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.EventRollEncodingProcessor.process.html">dcase_util.processors.EventRollEncodingProcessor.process</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../../../processors.html#onehotlabelencodingprocessor">OneHotLabelEncodingProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.OneHotLabelEncodingProcessor.html">dcase_util.processors.OneHotLabelEncodingProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.OneHotLabelEncodingProcessor.process.html">dcase_util.processors.OneHotLabelEncodingProcessor.process</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../../../processors.html#datashapingprocessor">DataShapingProcessor</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.DataShapingProcessor.html">dcase_util.processors.DataShapingProcessor</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.DataShapingProcessor.process.html">dcase_util.processors.DataShapingProcessor.process</a></li>
@@ -1360,13 +1379,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../tools.html#submissionchecker">SubmissionChecker</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.tools.SubmissionChecker.html">dcase_util.tools.SubmissionChecker</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.tools.SubmissionChecker.process.html">dcase_util.tools.SubmissionChecker.process</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.tools.SubmissionChecker.parameter_file.html">dcase_util.tools.SubmissionChecker.parameter_file</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.tools.SubmissionChecker.system_output_file.html">dcase_util.tools.SubmissionChecker.system_output_file</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.tools.SubmissionChecker.main_structure.html">dcase_util.tools.SubmissionChecker.main_structure</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.tools.SubmissionChecker.submission_info.html">dcase_util.tools.SubmissionChecker.submission_info</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.tools.SubmissionChecker.system_meta.html">dcase_util.tools.SubmissionChecker.system_meta</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.tools.SubmissionChecker.system_description.html">dcase_util.tools.SubmissionChecker.system_description</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.tools.SubmissionChecker.system_output.html">dcase_util.tools.SubmissionChecker.system_output</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../tools.html#bibtexprocessor">BibtexProcessor</a><ul>
@@ -1388,6 +1400,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-5">v0.2.5</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-4">v0.2.4</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-3">v0.2.3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-2">v0.2.2</a></li>
@@ -1475,11 +1488,11 @@
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">csv</span>
 <span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">from</span> <span class="nn">dcase_util.utils</span> <span class="k">import</span> <span class="n">posix_path</span><span class="p">,</span> <span class="n">get_parameter_hash</span><span class="p">,</span> <span class="n">FieldValidator</span>
-
+<span class="kn">import</span> <span class="nn">io</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">from</span> <span class="nn">dcase_util.utils</span> <span class="k">import</span> <span class="n">posix_path</span><span class="p">,</span> <span class="n">get_parameter_hash</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="p">,</span> <span class="n">setup_logging</span><span class="p">,</span> <span class="n">is_float</span><span class="p">,</span> <span class="n">is_int</span><span class="p">,</span> <span class="n">FileFormat</span>
 <span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="k">import</span> <span class="n">ListDictContainer</span>
 <span class="kn">from</span> <span class="nn">dcase_util.ui</span> <span class="k">import</span> <span class="n">FancyStringifier</span>
-<span class="kn">from</span> <span class="nn">dcase_util.utils</span> <span class="k">import</span> <span class="n">setup_logging</span><span class="p">,</span> <span class="n">FileFormat</span>
 
 
 <div class="viewcode-block" id="ProbabilityItem"><a class="viewcode-back" href="../../../generated/dcase_util.containers.ProbabilityItem.html#dcase_util.containers.ProbabilityItem">[docs]</a><span class="k">class</span> <span class="nc">ProbabilityItem</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
@@ -1627,6 +1640,27 @@
         <span class="bp">self</span><span class="p">[</span><span class="s1">&#39;probability&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
 
     <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;item index</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        int or None</span>
+<span class="sd">            index</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="s1">&#39;index&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="nd">@index</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+
+    <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Unique item identifier</span>
 
@@ -1680,7 +1714,7 @@
 
 <div class="viewcode-block" id="ProbabilityContainer"><a class="viewcode-back" href="../../../generated/dcase_util.containers.ProbabilityContainer.html#dcase_util.containers.ProbabilityContainer">[docs]</a><span class="k">class</span> <span class="nc">ProbabilityContainer</span><span class="p">(</span><span class="n">ListDictContainer</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Probability data container class, inherited from ListDictContainer.&quot;&quot;&quot;</span>
-    <span class="n">valid_formats</span> <span class="o">=</span> <span class="p">[</span><span class="n">FileFormat</span><span class="o">.</span><span class="n">CSV</span><span class="p">,</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">TXT</span><span class="p">]</span>  <span class="c1">#: Valid file formats</span>
+    <span class="n">valid_formats</span> <span class="o">=</span> <span class="p">[</span><span class="n">FileFormat</span><span class="o">.</span><span class="n">CSV</span><span class="p">,</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">TXT</span><span class="p">,</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">CPICKLE</span><span class="p">]</span>  <span class="c1">#: Valid file formats</span>
 
 <div class="viewcode-block" id="ProbabilityContainer.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.containers.ProbabilityContainer.html#dcase_util.containers.ProbabilityContainer.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">ProbabilityContainer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -1757,7 +1791,49 @@
         <span class="n">labels</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">labels</span>
 
-<div class="viewcode-block" id="ProbabilityContainer.filter"><a class="viewcode-back" href="../../../generated/dcase_util.containers.ProbabilityContainer.filter.html#dcase_util.containers.ProbabilityContainer.filter">[docs]</a>    <span class="k">def</span> <span class="nf">filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">file_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">unique_indices</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Unique indices</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        indices: list, shape=(n,)</span>
+<span class="sd">            Unique indices in numerical order</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">indices</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s1">&#39;index&#39;</span> <span class="ow">in</span> <span class="n">item</span> <span class="ow">and</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">indices</span><span class="p">:</span>
+                <span class="n">indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+
+        <span class="n">indices</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">indices</span>
+
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Replace content with given list</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        data : list</span>
+<span class="sd">            New content</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        self</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="nb">super</span><span class="p">(</span><span class="n">ProbabilityContainer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+
+        <span class="c1"># Convert all items in the list to ProbabilityItem</span>
+        <span class="k">for</span> <span class="n">item_id</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="p">[</span><span class="n">item_id</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">item_class</span><span class="p">):</span>
+                <span class="bp">self</span><span class="p">[</span><span class="n">item_id</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">item_class</span><span class="p">(</span><span class="bp">self</span><span class="p">[</span><span class="n">item_id</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="bp">self</span>
+
+<div class="viewcode-block" id="ProbabilityContainer.filter"><a class="viewcode-back" href="../../../generated/dcase_util.containers.ProbabilityContainer.filter.html#dcase_util.containers.ProbabilityContainer.filter">[docs]</a>    <span class="k">def</span> <span class="nf">filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">file_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Filter content</span>
 
 <span class="sd">        Parameters</span>
@@ -1770,6 +1846,9 @@
 
 <span class="sd">        label : str, optional</span>
 <span class="sd">            Label to be matched</span>
+
+<span class="sd">        index : int, optional</span>
+<span class="sd">            Index to be matched</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -1801,13 +1880,20 @@
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">matched</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 
+            <span class="k">if</span> <span class="n">index</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">index</span> <span class="o">==</span> <span class="n">index</span><span class="p">:</span>
+                    <span class="n">matched</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">matched</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
             <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">matched</span><span class="p">):</span>
                 <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">item</span><span class="p">))</span>
 
         <span class="k">return</span> <span class="n">ProbabilityContainer</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="ProbabilityContainer.load"><a class="viewcode-back" href="../../../generated/dcase_util.containers.ProbabilityContainer.load.html#dcase_util.containers.ProbabilityContainer.load">[docs]</a>    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Load probability list from delimited text file (csv-formatted)</span>
+<div class="viewcode-block" id="ProbabilityContainer.load"><a class="viewcode-back" href="../../../generated/dcase_util.containers.ProbabilityContainer.load.html#dcase_util.containers.ProbabilityContainer.load">[docs]</a>    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fields</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">csv_header</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">file_format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">decimal</span><span class="o">=</span><span class="s1">&#39;point&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Load probability list from file</span>
 
 <span class="sd">        Preferred delimiter is tab, however, other delimiters are supported automatically</span>
 <span class="sd">        (they are sniffed automatically).</span>
@@ -1819,7 +1905,28 @@
 <span class="sd">        ----------</span>
 <span class="sd">        filename : str</span>
 <span class="sd">            Path to the probability list in text format (csv). If none given, one given for class constructor is used.</span>
-<span class="sd">            Default value &quot;None&quot;</span>
+<span class="sd">            Default value None</span>
+
+<span class="sd">        fields : list of str, optional</span>
+<span class="sd">            List of column names. Used only for CSV formatted files.</span>
+<span class="sd">            Default value None</span>
+
+<span class="sd">        csv_header : bool, optional</span>
+<span class="sd">            Read field names from first line (header). Used only for CSV formatted files.</span>
+<span class="sd">            Default value True</span>
+
+<span class="sd">        file_format : FileFormat, optional</span>
+<span class="sd">            Forced file format, use this when there is a miss-match between file extension and file format.</span>
+<span class="sd">            Default value None</span>
+
+<span class="sd">        delimiter : str, optional</span>
+<span class="sd">            Forced data delimiter for csv format. If None given, automatic delimiter sniffer used. Use this when sniffer does not work.</span>
+<span class="sd">            Default value None</span>
+
+<span class="sd">        decimal : str</span>
+<span class="sd">            Decimal &#39;point&#39; or &#39;comma&#39;</span>
+<span class="sd">            Default value &#39;point&#39;</span>
+
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -1828,11 +1935,183 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
+        <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="n">row_format</span><span class="p">,</span> <span class="n">valid_formats</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">valid_format</span> <span class="ow">in</span> <span class="n">valid_formats</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">row_format</span> <span class="o">==</span> <span class="n">valid_format</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="kc">True</span>
+
+            <span class="k">return</span> <span class="kc">False</span>
+
         <span class="k">if</span> <span class="n">filename</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">format</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">detect_file_format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">file_format</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">detect_file_format</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">validate_format</span><span class="p">()</span>
 
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">file_format</span> <span class="ow">and</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">validate_label</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="n">file_format</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">format</span> <span class="o">=</span> <span class="n">file_format</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">format</span> <span class="ow">in</span> <span class="p">[</span><span class="n">FileFormat</span><span class="o">.</span><span class="n">TXT</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="n">decimal</span> <span class="o">==</span> <span class="s1">&#39;comma&#39;</span><span class="p">:</span>
+                    <span class="n">delimiter</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">delimiter</span><span class="p">(</span><span class="n">exclude_delimiters</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;,&#39;</span><span class="p">])</span>
+
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">delimiter</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">delimiter</span><span class="p">()</span>
+
+                <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="n">field_validator</span> <span class="o">=</span> <span class="n">FieldValidator</span><span class="p">()</span>
+                <span class="n">f</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;rt&#39;</span><span class="p">)</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="n">delimiter</span><span class="p">):</span>
+                        <span class="k">if</span> <span class="n">row</span><span class="p">:</span>
+                            <span class="n">row_format</span> <span class="o">=</span> <span class="p">[]</span>
+                            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">row</span><span class="p">:</span>
+                                <span class="n">row_format</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">field_validator</span><span class="o">.</span><span class="n">process</span><span class="p">(</span><span class="n">item</span><span class="p">))</span>
+
+                            <span class="k">for</span> <span class="n">item_id</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
+
+                                <span class="k">if</span> <span class="n">row_format</span><span class="p">[</span><span class="n">item_id</span><span class="p">]</span> <span class="o">==</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">:</span>
+                                    <span class="c1"># Translate decimal comma into decimal point</span>
+                                    <span class="n">row</span><span class="p">[</span><span class="n">item_id</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="n">item_id</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">))</span>
+
+                                <span class="k">elif</span> <span class="n">row_format</span><span class="p">[</span><span class="n">item_id</span><span class="p">]</span> <span class="ow">in</span> <span class="p">[</span><span class="n">FieldValidator</span><span class="o">.</span><span class="n">AUDIOFILE</span><span class="p">,</span>
+                                                             <span class="n">FieldValidator</span><span class="o">.</span><span class="n">DATAFILE</span><span class="p">,</span>
+                                                             <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">,</span>
+                                                             <span class="n">FieldValidator</span><span class="o">.</span><span class="n">ALPHA1</span><span class="p">,</span>
+                                                             <span class="n">FieldValidator</span><span class="o">.</span><span class="n">ALPHA2</span><span class="p">,</span>
+                                                             <span class="n">FieldValidator</span><span class="o">.</span><span class="n">LIST</span><span class="p">]:</span>
+
+                                    <span class="n">row</span><span class="p">[</span><span class="n">item_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="n">item_id</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+                            <span class="k">if</span> <span class="n">validate</span><span class="p">(</span><span class="n">row_format</span><span class="o">=</span><span class="n">row_format</span><span class="p">,</span>
+                                        <span class="n">valid_formats</span><span class="o">=</span><span class="p">[</span>
+                                            <span class="p">[</span><span class="n">FieldValidator</span><span class="o">.</span><span class="n">AUDIOFILE</span><span class="p">,</span>
+                                             <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">,</span>
+                                             <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">],</span>
+                                            <span class="p">[</span><span class="n">FieldValidator</span><span class="o">.</span><span class="n">AUDIOFILE</span><span class="p">,</span>
+                                             <span class="n">FieldValidator</span><span class="o">.</span><span class="n">ALPHA1</span><span class="p">,</span>
+                                             <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">],</span>
+                                            <span class="p">[</span><span class="n">FieldValidator</span><span class="o">.</span><span class="n">AUDIOFILE</span><span class="p">,</span>
+                                             <span class="n">FieldValidator</span><span class="o">.</span><span class="n">ALPHA2</span><span class="p">,</span>
+                                             <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">],</span>
+                                            <span class="p">[</span><span class="n">FieldValidator</span><span class="o">.</span><span class="n">DATAFILE</span><span class="p">,</span>
+                                             <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">,</span>
+                                             <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">],</span>
+                                            <span class="p">[</span><span class="n">FieldValidator</span><span class="o">.</span><span class="n">DATAFILE</span><span class="p">,</span>
+                                             <span class="n">FieldValidator</span><span class="o">.</span><span class="n">ALPHA1</span><span class="p">,</span>
+                                             <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">],</span>
+                                            <span class="p">[</span><span class="n">FieldValidator</span><span class="o">.</span><span class="n">DATAFILE</span><span class="p">,</span>
+                                             <span class="n">FieldValidator</span><span class="o">.</span><span class="n">ALPHA2</span><span class="p">,</span>
+                                             <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">]</span>
+                                        <span class="p">]):</span>
+                                <span class="c1"># Format: [file label probability]</span>
+                                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                                    <span class="bp">self</span><span class="o">.</span><span class="n">item_class</span><span class="p">({</span>
+                                        <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                                        <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                                        <span class="s1">&#39;probability&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                                    <span class="p">})</span>
+                                <span class="p">)</span>
+
+                            <span class="k">elif</span> <span class="n">validate</span><span class="p">(</span><span class="n">row_format</span><span class="o">=</span><span class="n">row_format</span><span class="p">,</span>
+                                          <span class="n">valid_formats</span><span class="o">=</span><span class="p">[</span>
+                                              <span class="p">[</span><span class="n">FieldValidator</span><span class="o">.</span><span class="n">AUDIOFILE</span><span class="p">,</span>
+                                               <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">,</span>
+                                               <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">,</span>
+                                               <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">],</span>
+                                              <span class="p">[</span><span class="n">FieldValidator</span><span class="o">.</span><span class="n">AUDIOFILE</span><span class="p">,</span>
+                                               <span class="n">FieldValidator</span><span class="o">.</span><span class="n">ALPHA1</span><span class="p">,</span>
+                                               <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">,</span>
+                                               <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">],</span>
+                                              <span class="p">[</span><span class="n">FieldValidator</span><span class="o">.</span><span class="n">AUDIOFILE</span><span class="p">,</span>
+                                               <span class="n">FieldValidator</span><span class="o">.</span><span class="n">ALPHA2</span><span class="p">,</span>
+                                               <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">,</span>
+                                               <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">],</span>
+                                              <span class="p">[</span><span class="n">FieldValidator</span><span class="o">.</span><span class="n">DATAFILE</span><span class="p">,</span>
+                                               <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">,</span>
+                                               <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">,</span>
+                                               <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">],</span>
+                                              <span class="p">[</span><span class="n">FieldValidator</span><span class="o">.</span><span class="n">DATAFILE</span><span class="p">,</span>
+                                               <span class="n">FieldValidator</span><span class="o">.</span><span class="n">ALPHA1</span><span class="p">,</span>
+                                               <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">,</span>
+                                               <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">],</span>
+                                              <span class="p">[</span><span class="n">FieldValidator</span><span class="o">.</span><span class="n">DATAFILE</span><span class="p">,</span>
+                                               <span class="n">FieldValidator</span><span class="o">.</span><span class="n">ALPHA2</span><span class="p">,</span>
+                                               <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">,</span>
+                                               <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">]</span>
+                                          <span class="p">]):</span>
+                                <span class="c1"># Format: [file label probability index]</span>
+                                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                                    <span class="bp">self</span><span class="o">.</span><span class="n">item_class</span><span class="p">({</span>
+                                        <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                                        <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                                        <span class="s1">&#39;probability&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                                        <span class="s1">&#39;index&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+                                    <span class="p">})</span>
+                                <span class="p">)</span>
+
+                            <span class="k">else</span><span class="p">:</span>
+                                <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Unknown row format [</span><span class="si">{row}</span><span class="s1">] [</span><span class="si">{row_format}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                                    <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                                    <span class="n">row</span><span class="o">=</span><span class="n">row</span><span class="p">,</span>
+                                    <span class="n">row_format</span><span class="o">=</span><span class="n">row_format</span>
+                                <span class="p">)</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+                                <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+                <span class="k">finally</span><span class="p">:</span>
+                    <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+                <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+                <span class="c1">#list.__init__(self, data)</span>
+
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">format</span> <span class="o">==</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">CSV</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">fields</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">csv_header</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Parameters fields or csv_header has to be set for CSV files.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                        <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+                    <span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">delimiter</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">decimal</span> <span class="o">==</span> <span class="s1">&#39;comma&#39;</span><span class="p">:</span>
+                        <span class="n">delimiter</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">delimiter</span><span class="p">(</span><span class="n">exclude_delimiters</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;,&#39;</span><span class="p">])</span>
+
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">delimiter</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">delimiter</span><span class="p">()</span>
+
+                <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                    <span class="n">csv_reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="n">delimiter</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">csv_header</span><span class="p">:</span>
+                        <span class="n">csv_fields</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">csv_reader</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="n">fields</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                            <span class="n">fields</span> <span class="o">=</span> <span class="n">csv_fields</span>
+
+                    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">csv_reader</span><span class="p">:</span>
+                        <span class="k">for</span> <span class="n">cell_id</span><span class="p">,</span> <span class="n">cell_data</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
+                            <span class="k">if</span> <span class="n">decimal</span> <span class="o">==</span> <span class="s1">&#39;comma&#39;</span><span class="p">:</span>
+                                <span class="c1"># Translate decimal comma into decimal point</span>
+                                <span class="n">cell_data</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">cell_data</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">))</span>
+
+                            <span class="k">if</span> <span class="n">is_int</span><span class="p">(</span><span class="n">cell_data</span><span class="p">):</span>
+                                <span class="n">row</span><span class="p">[</span><span class="n">cell_id</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">cell_data</span><span class="p">)</span>
+
+                            <span class="k">elif</span> <span class="n">is_float</span><span class="p">(</span><span class="n">cell_data</span><span class="p">):</span>
+                                <span class="n">row</span><span class="p">[</span><span class="n">cell_id</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">cell_data</span><span class="p">)</span>
+
+                        <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">fields</span><span class="p">,</span> <span class="n">row</span><span class="p">)))</span>
+
+                <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">format</span> <span class="o">==</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">CPICKLE</span><span class="p">:</span>
+                <span class="kn">from</span> <span class="nn">dcase_util.files</span> <span class="k">import</span> <span class="n">Serializer</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+                    <span class="n">data</span><span class="o">=</span><span class="n">Serializer</span><span class="o">.</span><span class="n">load_cpickle</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+                <span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
             <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: File not found [</span><span class="si">{file}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
                 <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
                 <span class="n">file</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span>
@@ -1840,68 +2119,32 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
             <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
-        <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">field_validator</span> <span class="o">=</span> <span class="n">FieldValidator</span><span class="p">()</span>
-
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;rt&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">delimiter</span><span class="p">()):</span>
-                <span class="k">if</span> <span class="n">row</span><span class="p">:</span>
-                    <span class="n">row_format</span> <span class="o">=</span> <span class="p">[]</span>
-                    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">row</span><span class="p">:</span>
-                        <span class="n">row_format</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">field_validator</span><span class="o">.</span><span class="n">process</span><span class="p">(</span><span class="n">item</span><span class="p">))</span>
-
-                    <span class="k">if</span> <span class="n">row_format</span> <span class="o">==</span> <span class="p">[</span><span class="n">FieldValidator</span><span class="o">.</span><span class="n">AUDIOFILE</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">STRING</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">]:</span>
-                        <span class="c1"># Format: [file label probability]</span>
-                        <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                            <span class="bp">self</span><span class="o">.</span><span class="n">item_class</span><span class="p">({</span>
-                                <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-                                <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
-                                <span class="s1">&#39;probability&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
-                            <span class="p">})</span>
-                        <span class="p">)</span>
-
-                    <span class="k">elif</span> <span class="n">row_format</span> <span class="o">==</span> <span class="p">[</span><span class="n">FieldValidator</span><span class="o">.</span><span class="n">AUDIOFILE</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">ALPHA1</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">]:</span>
-                        <span class="c1"># Format: [file label probability]</span>
-                        <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                            <span class="bp">self</span><span class="o">.</span><span class="n">item_class</span><span class="p">({</span>
-                                <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-                                <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
-                                <span class="s1">&#39;probability&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
-                            <span class="p">})</span>
-                        <span class="p">)</span>
-
-                    <span class="k">elif</span> <span class="n">row_format</span> <span class="o">==</span> <span class="p">[</span><span class="n">FieldValidator</span><span class="o">.</span><span class="n">AUDIOFILE</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">ALPHA2</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="o">.</span><span class="n">NUMBER</span><span class="p">]:</span>
-                        <span class="c1"># Format: [file label probability]</span>
-                        <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                            <span class="bp">self</span><span class="o">.</span><span class="n">item_class</span><span class="p">({</span>
-                                <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-                                <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
-                                <span class="s1">&#39;probability&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
-                            <span class="p">})</span>
-                        <span class="p">)</span>
-
-                    <span class="k">else</span><span class="p">:</span>
-                        <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Unknown row format [</span><span class="si">{row}</span><span class="s1">] [</span><span class="si">{row_format}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                            <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
-                            <span class="n">row</span><span class="o">=</span><span class="n">row</span><span class="p">,</span>
-                            <span class="n">row_format</span><span class="o">=</span><span class="n">row_format</span>
-                        <span class="p">)</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-                        <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-
-        <span class="nb">list</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span></div>
 
-<div class="viewcode-block" id="ProbabilityContainer.save"><a class="viewcode-back" href="../../../generated/dcase_util.containers.ProbabilityContainer.save.html#dcase_util.containers.ProbabilityContainer.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="ProbabilityContainer.save"><a class="viewcode-back" href="../../../generated/dcase_util.containers.ProbabilityContainer.save.html#dcase_util.containers.ProbabilityContainer.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fields</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">csv_header</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">file_format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span>  <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Save content to csv file</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        filename : str</span>
 <span class="sd">            Filename. If none given, one given for class constructor is used.</span>
+<span class="sd">            Default value None</span>
+
+<span class="sd">        fields : list of str</span>
+<span class="sd">            Fields in correct order, if none given all field in alphabetical order will be outputted. Used only for CSV formatted files.</span>
+<span class="sd">            Default value None</span>
+
+<span class="sd">        csv_header : bool</span>
+<span class="sd">            In case of CSV formatted file, first line will contain field names. Names are taken from fields parameter.</span>
+<span class="sd">            Default value True</span>
+
+<span class="sd">        file_format : FileFormat, optional</span>
+<span class="sd">            Forced file format, use this when there is a miss-match between file extension and file format.</span>
+<span class="sd">            Default value None</span>
 
 <span class="sd">        delimiter : str</span>
-<span class="sd">            Delimiter to be used</span>
+<span class="sd">            Delimiter to be used when saving data.</span>
+<span class="sd">            Default value &#39;\t&#39;</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -1911,16 +2154,119 @@
 
         <span class="k">if</span> <span class="n">filename</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">file_format</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">detect_file_format</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">validate_format</span><span class="p">()</span>
 
-        <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;wt&#39;</span><span class="p">)</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="n">delimiter</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
-                <span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">get_list</span><span class="p">())</span>
-        <span class="k">finally</span><span class="p">:</span>
-            <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">file_format</span> <span class="ow">and</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">validate_label</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="n">file_format</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">format</span> <span class="o">=</span> <span class="n">file_format</span>
 
-        <span class="k">return</span> <span class="bp">self</span></div></div>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">format</span> <span class="ow">in</span> <span class="p">[</span><span class="n">FileFormat</span><span class="o">.</span><span class="n">TXT</span><span class="p">]:</span>
+            <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;wt&#39;</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="n">delimiter</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+                    <span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">get_list</span><span class="p">())</span>
+
+            <span class="k">finally</span><span class="p">:</span>
+                <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">format</span> <span class="o">==</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">CSV</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">fields</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">fields</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+                <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+                    <span class="n">fields</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+                <span class="n">fields</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">fields</span><span class="p">))</span>
+
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">csv_file</span><span class="p">:</span>
+                <span class="n">csv_writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">csv_file</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="n">delimiter</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">csv_header</span><span class="p">:</span>
+                    <span class="n">csv_writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span>
+
+                <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+                    <span class="n">item_values</span> <span class="o">=</span> <span class="p">[]</span>
+                    <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">:</span>
+                        <span class="n">value</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="n">field</span><span class="p">]</span>
+                        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                            <span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;;&quot;</span>
+
+                        <span class="n">item_values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+                    <span class="n">csv_writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">item_values</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">format</span> <span class="o">==</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">CPICKLE</span><span class="p">:</span>
+            <span class="kn">from</span> <span class="nn">dcase_util.files</span> <span class="k">import</span> <span class="n">Serializer</span>
+            <span class="n">Serializer</span><span class="o">.</span><span class="n">save_cpickle</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Unknown format [</span><span class="si">{format}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="ProbabilityContainer.as_matrix"><a class="viewcode-back" href="../../../generated/dcase_util.containers.ProbabilityContainer.as_matrix.html#dcase_util.containers.ProbabilityContainer.as_matrix">[docs]</a>    <span class="k">def</span> <span class="nf">as_matrix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">file_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">default_value</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get probabilities as data matrix.</span>
+<span class="sd">        If items has index defined, index is used to order columns. If items has filename, filename is used to order columns.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        label_list : list of str</span>
+<span class="sd">            List of labels. If none given, labels in the container are used in alphabetical order.</span>
+<span class="sd">            Default value None</span>
+
+<span class="sd">        filename : str</span>
+<span class="sd">            Filename to filter content. If none given, one given for class constructor is used.</span>
+<span class="sd">            Default value None</span>
+
+<span class="sd">        file_list : list of str</span>
+<span class="sd">            List of filenames to included in the matrix.</span>
+<span class="sd">            Default value None</span>
+
+<span class="sd">        default_value : numerical</span>
+<span class="sd">            Default value of the element in the matrix. Used in case there is no data for the element in the container.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        DataMatrix2DContainer</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+            <span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span>
+            <span class="n">file_list</span><span class="o">=</span><span class="n">file_list</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">label_list</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">label_list</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">unique_labels</span>
+
+        <span class="n">indices</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">unique_indices</span>
+
+        <span class="k">if</span> <span class="n">file_list</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">file_list</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">unique_files</span>
+
+        <span class="k">if</span> <span class="n">indices</span><span class="p">:</span>
+            <span class="n">matrix</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">label_list</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">indices</span><span class="p">)))</span> <span class="o">*</span> <span class="n">default_value</span>
+            <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">indices</span><span class="p">:</span>
+                <span class="n">current_column</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">current_column</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">label</span> <span class="ow">in</span> <span class="n">label_list</span><span class="p">:</span>
+                        <span class="n">matrix</span><span class="p">[</span><span class="n">label_list</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">label</span><span class="p">),</span> <span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">probability</span>
+
+            <span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="k">import</span> <span class="n">DataMatrix2DContainer</span>
+            <span class="k">return</span> <span class="n">DataMatrix2DContainer</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">matrix</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">file_list</span><span class="p">:</span>
+            <span class="n">matrix</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">label_list</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">file_list</span><span class="p">)))</span> <span class="o">*</span> <span class="n">default_value</span>
+
+            <span class="k">for</span> <span class="n">file_id</span><span class="p">,</span> <span class="n">file</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">file_list</span><span class="p">):</span>
+                <span class="n">current_column</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">file</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">current_column</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">label</span> <span class="ow">in</span> <span class="n">label_list</span><span class="p">:</span>
+                        <span class="n">matrix</span><span class="p">[</span><span class="n">label_list</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">label</span><span class="p">),</span> <span class="n">file_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">probability</span>
+
+            <span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="k">import</span> <span class="n">DataMatrix2DContainer</span>
+            <span class="k">return</span> <span class="n">DataMatrix2DContainer</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">matrix</span><span class="p">)</span></div></div>
 
 </pre></div>
 

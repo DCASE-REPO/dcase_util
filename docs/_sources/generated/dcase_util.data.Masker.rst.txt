@@ -36,7 +36,9 @@ dcase_util.data.Masker
 
    .. autosummary::
    
+      ~Masker.bytes
       ~Masker.logger
+      ~Masker.md5
       ~Masker.valid_formats
    
    

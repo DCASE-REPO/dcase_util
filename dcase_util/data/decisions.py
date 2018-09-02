@@ -49,13 +49,44 @@ class DecisionEncoder(ObjectContainer):
         else:
             class_axis = 0
 
-        if isinstance(frame_decisions, numpy.ndarray) and len(frame_decisions.shape) == 2:
-            # We have matrix
-            frame_decisions = numpy.argmax(frame_decisions, axis=class_axis)
+        if numpy.issubdtype(frame_decisions.dtype, numpy.int64) or numpy.issubdtype(frame_decisions.dtype, numpy.bool):
+            if len(frame_decisions.shape) == 1:
+                # We have array, most likely single frame
+                return self.label_list[numpy.argmax(frame_decisions)]
 
-        counts = numpy.bincount(frame_decisions)
+            else:
+                if isinstance(frame_decisions, numpy.ndarray) and len(frame_decisions.shape) == 2:
+                    # We have matrix
+                    frame_decisions = numpy.argmax(frame_decisions, axis=class_axis)
 
-        return self.label_list[numpy.argmax(counts)]
+                counts = numpy.bincount(frame_decisions)
+
+                return self.label_list[numpy.argmax(counts)]
+
+        else:
+            # We have matrix with strings
+            if len(frame_decisions.shape) == 1:
+                labels, counts = numpy.unique(frame_decisions, return_counts=True)
+
+                majority_voted_label = labels[numpy.argmax(counts)]
+
+                if majority_voted_label in self.label_list:
+                    return majority_voted_label
+                else:
+                    message = '{name}: Label [{label}] not in label_list parameter given to class initializer.'.format(
+                        name=self.__class__.__name__,
+                        label=majority_voted_label
+                    )
+
+                    self.logger.exception(message)
+                    raise ValueError(message)
+            else:
+                message = '{name}: Majority voting not implemented for label matrix.'.format(
+                    name=self.__class__.__name__
+                )
+
+                self.logger.exception(message)
+                raise NotImplementedError(message)
 
     def many_hot(self, frame_decisions, label_list=None, time_axis=1):
         """Many hot

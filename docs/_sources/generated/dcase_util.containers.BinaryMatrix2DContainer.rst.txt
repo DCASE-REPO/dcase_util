@@ -44,12 +44,14 @@ dcase_util.containers.BinaryMatrix2DContainer
    .. autosummary::
    
       ~BinaryMatrix2DContainer.T
+      ~BinaryMatrix2DContainer.bytes
       ~BinaryMatrix2DContainer.data
       ~BinaryMatrix2DContainer.focus_start
       ~BinaryMatrix2DContainer.focus_stop
       ~BinaryMatrix2DContainer.frames
       ~BinaryMatrix2DContainer.length
       ~BinaryMatrix2DContainer.logger
+      ~BinaryMatrix2DContainer.md5
       ~BinaryMatrix2DContainer.shape
       ~BinaryMatrix2DContainer.stats
       ~BinaryMatrix2DContainer.valid_formats

@@ -36,8 +36,10 @@ dcase_util.processors.RepositoryFeatureExtractorProcessor
 
    .. autosummary::
    
+      ~RepositoryFeatureExtractorProcessor.bytes
       ~RepositoryFeatureExtractorProcessor.input_type
       ~RepositoryFeatureExtractorProcessor.logger
+      ~RepositoryFeatureExtractorProcessor.md5
       ~RepositoryFeatureExtractorProcessor.output_type
       ~RepositoryFeatureExtractorProcessor.valid_formats
    

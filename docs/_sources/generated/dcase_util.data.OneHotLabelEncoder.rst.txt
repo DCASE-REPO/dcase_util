@@ -1,0 +1,60 @@
+dcase_util.data.OneHotLabelEncoder
+==================================
+
+.. currentmodule:: dcase_util.data
+
+.. autoclass:: OneHotLabelEncoder
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~OneHotLabelEncoder.__init__
+      ~OneHotLabelEncoder.change_axis
+      ~OneHotLabelEncoder.delimiter
+      ~OneHotLabelEncoder.detect_file_format
+      ~OneHotLabelEncoder.empty
+      ~OneHotLabelEncoder.encode
+      ~OneHotLabelEncoder.exists
+      ~OneHotLabelEncoder.freeze
+      ~OneHotLabelEncoder.get_file_information
+      ~OneHotLabelEncoder.get_focused
+      ~OneHotLabelEncoder.get_frames
+      ~OneHotLabelEncoder.is_package
+      ~OneHotLabelEncoder.load
+      ~OneHotLabelEncoder.log
+      ~OneHotLabelEncoder.plot
+      ~OneHotLabelEncoder.push_processing_chain_item
+      ~OneHotLabelEncoder.reset_focus
+      ~OneHotLabelEncoder.save
+      ~OneHotLabelEncoder.set_focus
+      ~OneHotLabelEncoder.show
+      ~OneHotLabelEncoder.validate_format
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~OneHotLabelEncoder.T
+      ~OneHotLabelEncoder.bytes
+      ~OneHotLabelEncoder.data
+      ~OneHotLabelEncoder.focus_start
+      ~OneHotLabelEncoder.focus_stop
+      ~OneHotLabelEncoder.frames
+      ~OneHotLabelEncoder.length
+      ~OneHotLabelEncoder.logger
+      ~OneHotLabelEncoder.md5
+      ~OneHotLabelEncoder.shape
+      ~OneHotLabelEncoder.stats
+      ~OneHotLabelEncoder.valid_formats
+      ~OneHotLabelEncoder.vector_length
+   
+   

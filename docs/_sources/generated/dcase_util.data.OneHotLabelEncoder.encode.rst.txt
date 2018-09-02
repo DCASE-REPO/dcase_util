@@ -1,0 +1,6 @@
+dcase_util.data.OneHotLabelEncoder.encode
+=========================================
+
+.. currentmodule:: dcase_util.data
+
+.. automethod:: OneHotLabelEncoder.encode

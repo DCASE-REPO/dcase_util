@@ -162,7 +162,7 @@ class FancyStringifier(object):
         Valid data_type parameters:
 
         - auto
-        - str
+        - str or stf (fixed width string, padded with white space)
         - bool
         - float1, float2, float3, float4
         - float1_percentage, float2_percentage, float3_percentage, float4_percentage
@@ -313,7 +313,17 @@ class FancyStringifier(object):
                 if value and len(value) > value_width:
                     value = value[0:value_width - 2] + '..'
 
-                value = value
+        elif data_type.startswith('stf'):
+            value = str(value)
+
+            if len(data_type) > 3:
+                value_width = int(data_type[3:])
+
+                if value and len(value) > value_width:
+                    value = value[0:value_width - 2] + '..'
+
+                elif value and len(value) < value_width:
+                    value = value.ljust(value_width)
 
         return value
 
@@ -565,6 +575,7 @@ class FancyStringifier(object):
 
                     if cell_value and len(cell_value) > column_width:
                         cell_value = cell_value[0:column_width - 2] + '..'
+
                     row_data.append(cell_value)
 
                 elif cell_value is None:
@@ -695,10 +706,14 @@ class FancyStringifier(object):
         """
 
         row_list = []
-        for i in range(0, self.row_column_count):
-            row_list.append(separator_char)
+        if self.row_column_count:
+            for i in range(0, self.row_column_count):
+                row_list.append(separator_char)
 
-        return self.row(*row_list)
+            return self.row(*row_list)
+
+        else:
+            return ''
 
     def class_name(self, class_name):
         """Class name

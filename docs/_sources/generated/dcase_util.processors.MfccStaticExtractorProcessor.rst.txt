@@ -39,9 +39,11 @@ dcase_util.processors.MfccStaticExtractorProcessor
 
    .. autosummary::
    
+      ~MfccStaticExtractorProcessor.bytes
       ~MfccStaticExtractorProcessor.input_type
       ~MfccStaticExtractorProcessor.label
       ~MfccStaticExtractorProcessor.logger
+      ~MfccStaticExtractorProcessor.md5
       ~MfccStaticExtractorProcessor.output_type
       ~MfccStaticExtractorProcessor.valid_formats
    

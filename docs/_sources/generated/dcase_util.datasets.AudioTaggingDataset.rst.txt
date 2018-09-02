@@ -16,6 +16,7 @@ dcase_util.datasets.AudioTaggingDataset
       ~AudioTaggingDataset.__init__
       ~AudioTaggingDataset.absolute_to_relative_path
       ~AudioTaggingDataset.check_filelist
+      ~AudioTaggingDataset.check_metadata
       ~AudioTaggingDataset.dataset_bytes
       ~AudioTaggingDataset.dataset_size_on_disk
       ~AudioTaggingDataset.dataset_size_string

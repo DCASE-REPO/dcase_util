@@ -553,6 +553,15 @@ class DataContainer(ObjectContainer):
 
         return frame_id * self.time_resolution
 
+    def _length_to_frames(self, time):
+        return int(numpy.ceil(time * 1.0 / self.time_resolution))
+
+    def _onset_to_frames(self, onset):
+        return int(numpy.floor(onset * 1.0 / self.time_resolution))
+
+    def _offset_to_frames(self, offset):
+        return int(numpy.ceil(offset * 1.0 / self.time_resolution))
+
     def set_focus(self,
                   start=None, stop=None, duration=None,
                   start_seconds=None, stop_seconds=None, duration_seconds=None):
@@ -1954,15 +1963,6 @@ class BinaryMatrix2DContainer(DataMatrix2DContainer):
             ax.set_yticklabels(self.label_list)
 
         plt.show()
-
-    def _length_to_frames(self, time):
-        return int(numpy.ceil(time * 1.0 / self.time_resolution))
-
-    def _onset_to_frames(self, onset):
-        return int(numpy.floor(onset * 1.0 / self.time_resolution))
-
-    def _offset_to_frames(self, offset):
-        return int(numpy.ceil(offset * 1.0 / self.time_resolution))
 
 
 class DataRepository(RepositoryContainer):

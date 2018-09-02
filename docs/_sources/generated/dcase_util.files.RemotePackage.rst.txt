@@ -70,10 +70,12 @@ dcase_util.files.RemotePackage
 
    .. autosummary::
    
+      ~RemotePackage.bytes
       ~RemotePackage.local_bytes
       ~RemotePackage.local_md5
       ~RemotePackage.local_modified
       ~RemotePackage.logger
+      ~RemotePackage.md5
       ~RemotePackage.package_password
       ~RemotePackage.remote_bytes
       ~RemotePackage.remote_file

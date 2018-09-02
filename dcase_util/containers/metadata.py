@@ -54,6 +54,7 @@ class MetaDataItem(dict):
         if 'offset' in self:
             self['offset'] = float(self['offset'])
 
+        # Event label assigned to the meta data item
         if 'event_label' in self and self.event_label:
             self['event_label'] = self['event_label'].strip()
             if self['event_label'].lower() == 'none':
@@ -391,6 +392,10 @@ class MetaDataItem(dict):
     def onset(self, value):
         self['onset'] = float(value)
 
+        if 'event_onset' in self:
+            # Mirror onset to event_onset
+            self['event_onset'] = self['onset']
+
     @property
     def offset(self):
         """Offset
@@ -410,6 +415,10 @@ class MetaDataItem(dict):
     @offset.setter
     def offset(self, value):
         self['offset'] = float(value)
+
+        if 'event_offset' in self:
+            # Mirror onset to event_onset
+            self['event_offset'] = self['offset']
 
     @property
     def identifier(self):
@@ -815,7 +824,7 @@ class MetaDataContainer(ListDictContainer):
 
         """
 
-        list.__init__(self, data)
+        super(MetaDataContainer, self).update(data=data)
 
         # Convert all items in the list to MetaDataItems
         for item_id in range(0, len(self)):
@@ -903,7 +912,7 @@ class MetaDataContainer(ListDictContainer):
         Parameters
         ----------
         filename : str
-            Path to the event list in text format (csv). If none given, one given for class constructor is used.
+            Path to the meta data in text format (csv). If none given, one given for class constructor is used.
             Default value None
 
         fields : list of str, optional
@@ -1463,6 +1472,10 @@ class MetaDataContainer(ListDictContainer):
 
                     for row in csv_reader:
                         for cell_id, cell_data in enumerate(row):
+                            if decimal == 'comma':
+                                # Translate decimal comma into decimal point
+                                cell_data = float(cell_data.replace(',', '.'))
+
                             if is_int(cell_data):
                                 row[cell_id] = int(cell_data)
 
@@ -1871,6 +1884,7 @@ class MetaDataContainer(ListDictContainer):
                     if minimum_event_length is not None:
                         if event.offset - event.onset >= minimum_event_length:
                             event_results_1.append(event)
+
                     else:
                         event_results_1.append(event)
 
@@ -1892,6 +1906,7 @@ class MetaDataContainer(ListDictContainer):
 
                             buffered_event_onset = event_results_1[i].onset
                             buffered_event_offset = event_results_1[i].offset
+
                         else:
                             # The gap between current event and the buffered is smaller than minimum event gap,
                             # extend the buffered event until the current offset
@@ -1909,6 +1924,122 @@ class MetaDataContainer(ListDictContainer):
                     processed_events += event_results_1
 
         return MetaDataContainer(processed_events)
+
+    def map_events(self, target_event_label, source_event_labels=None):
+        """Map events with varying event labels into single target event label
+
+        Parameters
+        ----------
+        target_event_label : str
+            Target event label
+
+        source_event_labels : list of str
+            Event labels to be processed. If none given, all events are merged
+            Default value None
+
+        Returns
+        -------
+        MetaDataContainer
+
+        """
+
+        processed_events = MetaDataContainer()
+        files = self.unique_files
+        if not files:
+            files = [None]
+
+        if source_event_labels is None:
+            source_event_labels = self.unique_event_labels
+
+        for filename in files:
+            for event_label in source_event_labels:
+                current_events_items = self.filter(filename=filename, event_label=event_label)
+
+                # Sort events
+                current_events_items = sorted(current_events_items, key=lambda k: k.onset)
+
+                for item in current_events_items:
+                    item.event_label = target_event_label
+
+                processed_events += current_events_items
+
+        return processed_events
+
+    def event_inactivity(self, event_label='inactivity', source_event_labels=None, duration_list=None):
+        """Get inactivity segments between events as event list
+
+        Parameters
+        ----------
+        event_label : str
+            Event label used for inactivity
+
+        source_event_labels : list of str
+            Event labels to be taken into account. If none given, all events are considered.
+            Default value None
+
+        Returns
+        -------
+        MetaDataContainer
+
+        """
+
+        meta_flatten = self.map_events(target_event_label='activity', source_event_labels=source_event_labels)
+        meta_flatten = meta_flatten.process_events(
+            minimum_event_gap=numpy.spacing(1),
+            minimum_event_length=numpy.spacing(1)
+        )
+
+        inactivity_events = MetaDataContainer()
+        files = meta_flatten.unique_files
+        if not files:
+            files = [None]
+
+        if duration_list is None:
+            duration_list = {}
+
+        for filename in files:
+            current_events_items = meta_flatten.filter(filename=filename)
+            current_inactivity_events = MetaDataContainer()
+            onset = 0.0
+            for item in current_events_items:
+                current_onset = onset
+                current_offset = item.onset
+
+                current_inactivity_events.append(
+                    {
+                        'filename': filename,
+                        'onset': current_onset,
+                        'offset': current_offset,
+                        'event_label': event_label
+                    }
+                )
+
+                onset = item.offset
+
+            if filename in duration_list:
+                file_duration = duration_list[filename]
+            else:
+                file_duration = current_events_items.max_offset
+
+            current_inactivity_events.append(
+                {
+                    'filename': filename,
+                    'onset': onset,
+                    'offset': file_duration,
+                    'event_label': event_label
+                }
+            )
+
+            current_inactivity_events = current_inactivity_events.process_events(
+                minimum_event_gap=numpy.spacing(1),
+                minimum_event_length=numpy.spacing(1)
+            )
+
+            current_inactivity_events = sorted(current_inactivity_events, key=lambda k: k.onset)
+
+            inactivity_events += current_inactivity_events
+
+        return inactivity_events
 
     def add_time(self, time):
         """Add time offset to event onset and offset timestamps
@@ -2067,6 +2198,7 @@ class MetaDataContainer(ListDictContainer):
             for item in self:
                 if item.onset is not None and item.offset is not None and item.event_label == event_label:
                     event_lengths[event_id] += item.offset - item.onset
+                if item.event_label == event_label:
                     event_counts[event_id] += 1
 
         tag_counts = numpy.zeros(len(tag_list))
@@ -2085,7 +2217,7 @@ class MetaDataContainer(ListDictContainer):
                 'event_label_list': event_label_list,
                 'length': event_lengths,
                 'count': event_counts,
-                'avg_length': event_lengths/event_counts
+                'avg_length': event_lengths/(event_counts + numpy.spacing(1))
             },
             'tags': {
                 'tag_list': tag_list,

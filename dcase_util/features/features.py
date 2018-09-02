@@ -5,8 +5,71 @@ from __future__ import print_function, absolute_import
 import numpy
 import librosa
 import scipy
+import logging
+import importlib
 from dcase_util.containers import ContainerMixin
 from dcase_util.ui import FancyStringifier
+from dcase_util.utils import setup_logging, get_class_inheritors
+
+
+def feature_extractor_factory(feature_extractor_label, **kwargs):
+    """Function to get correct feature extractor class instance based on extractor label or class name.
+
+    Parameters
+    ----------
+    feature_extractor_label : str
+        Class name or extractor label
+
+    Raises
+    ------
+    NameError
+        Class does not exists
+
+    Returns
+    -------
+    Feature extractor class instance
+
+    """
+
+    try:
+        feature_extractor_class = None
+
+        # Get all classes inherited from FeatureExtractor
+        class_list = get_class_inheritors(FeatureExtractor)
+
+        # Search correct feature extractor
+        for item in class_list:
+            if str(item.__name__) == feature_extractor_label:
+                feature_extractor_class = getattr(
+                    importlib.import_module(str(item.__module__)),
+                    feature_extractor_label
+                )
+                break
+
+            elif hasattr(item, 'label') and item.label == feature_extractor_label and item.__name__.endswith('Extractor'):
+                feature_extractor_class = getattr(
+                    importlib.import_module(str(item.__module__)),
+                    item.__name__
+                )
+                break
+
+        # Valid feature extractor class not found, raise error
+        if not feature_extractor_class:
+            raise AttributeError
+
+    except AttributeError:
+
+        message = 'Invalid FeatureExtractor class name or extractor label given [{label}].'.format(
+            label=feature_extractor_label
+        )
+        logger = logging.getLogger(__name__)
+        if not logger.handlers:
+            setup_logging()
+
+        logger.exception(message)
+        raise AttributeError(message)
+
+    return feature_extractor_class(**dict(kwargs))
 
 
 class FeatureExtractor(ContainerMixin):

@@ -213,6 +213,17 @@ EventRollEncodingProcessor
     EventRollEncodingProcessor
     EventRollEncodingProcessor.process
 
+OneHotLabelEncodingProcessor
+----------------------------
+
+*dcase_util.processors.OneHotLabelEncodingProcessor*
+
+.. autosummary::
+    :toctree: generated/
+
+    OneHotLabelEncodingProcessor
+    OneHotLabelEncodingProcessor.process
+
 DataShapingProcessor
 --------------------
 
@@ -427,6 +438,7 @@ Processor
 from .processing_chain import *
 from .processor import *
 from .data import *
+from .encoders import *
 from .metadata import *
 from .audio import *
 from .features import *

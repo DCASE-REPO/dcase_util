@@ -36,8 +36,10 @@ dcase_util.processors.ManyHotEncodingProcessor
 
    .. autosummary::
    
+      ~ManyHotEncodingProcessor.bytes
       ~ManyHotEncodingProcessor.input_type
       ~ManyHotEncodingProcessor.logger
+      ~ManyHotEncodingProcessor.md5
       ~ManyHotEncodingProcessor.output_type
       ~ManyHotEncodingProcessor.valid_formats
    

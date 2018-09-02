@@ -456,6 +456,8 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.MetaDataContainer.filter.html">dcase_util.containers.MetaDataContainer.filter</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.MetaDataContainer.filter_time_segment.html">dcase_util.containers.MetaDataContainer.filter_time_segment</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.MetaDataContainer.process_events.html">dcase_util.containers.MetaDataContainer.process_events</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.MetaDataContainer.map_events.html">dcase_util.containers.MetaDataContainer.map_events</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.MetaDataContainer.event_inactivity.html">dcase_util.containers.MetaDataContainer.event_inactivity</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.MetaDataContainer.add_time.html">dcase_util.containers.MetaDataContainer.add_time</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.MetaDataContainer.stats.html">dcase_util.containers.MetaDataContainer.stats</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.MetaDataContainer.scene_stat_counts.html">dcase_util.containers.MetaDataContainer.scene_stat_counts</a></li>
@@ -520,7 +522,9 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.ProbabilityContainer.append.html">dcase_util.containers.ProbabilityContainer.append</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.ProbabilityContainer.unique_files.html">dcase_util.containers.ProbabilityContainer.unique_files</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.ProbabilityContainer.unique_labels.html">dcase_util.containers.ProbabilityContainer.unique_labels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.ProbabilityContainer.unique_indices.html">dcase_util.containers.ProbabilityContainer.unique_indices</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.ProbabilityContainer.filter.html">dcase_util.containers.ProbabilityContainer.filter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.ProbabilityContainer.as_matrix.html">dcase_util.containers.ProbabilityContainer.as_matrix</a></li>
 </ul>
 </li>
 </ul>
@@ -587,6 +591,15 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../data.html#eventrollencoder">EventRollEncoder</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.data.EventRollEncoder.html">dcase_util.data.EventRollEncoder</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.data.EventRollEncoder.encode.html">dcase_util.data.EventRollEncoder.encode</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../data.html#labelmatrixencoder">LabelMatrixEncoder</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.data.LabelMatrixEncoder.html">dcase_util.data.LabelMatrixEncoder</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../data.html#onehotlabelencoder">OneHotLabelEncoder</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.data.OneHotLabelEncoder.html">dcase_util.data.OneHotLabelEncoder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.data.OneHotLabelEncoder.encode.html">dcase_util.data.OneHotLabelEncoder.encode</a></li>
 </ul>
 </li>
 </ul>
@@ -745,6 +758,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.AcousticSceneDataset.html">dcase_util.datasets.AcousticSceneDataset</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTAcousticScenes_2017_DevelopmentSet.html">dcase_util.datasets.TUTAcousticScenes_2017_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTAcousticScenes_2017_EvaluationSet.html">dcase_util.datasets.TUTAcousticScenes_2017_EvaluationSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTAcousticScenes_2017_FeaturesSet.html">dcase_util.datasets.TUTAcousticScenes_2017_FeaturesSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet.html">dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet.html">dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_DevelopmentSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_DevelopmentSet</a></li>
@@ -1079,6 +1093,11 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.EventRollEncodingProcessor.process.html">dcase_util.processors.EventRollEncodingProcessor.process</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../../../processors.html#onehotlabelencodingprocessor">OneHotLabelEncodingProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.OneHotLabelEncodingProcessor.html">dcase_util.processors.OneHotLabelEncodingProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.OneHotLabelEncodingProcessor.process.html">dcase_util.processors.OneHotLabelEncodingProcessor.process</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../../../processors.html#datashapingprocessor">DataShapingProcessor</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.DataShapingProcessor.html">dcase_util.processors.DataShapingProcessor</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.processors.DataShapingProcessor.process.html">dcase_util.processors.DataShapingProcessor.process</a></li>
@@ -1360,13 +1379,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../tools.html#submissionchecker">SubmissionChecker</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.tools.SubmissionChecker.html">dcase_util.tools.SubmissionChecker</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.tools.SubmissionChecker.process.html">dcase_util.tools.SubmissionChecker.process</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.tools.SubmissionChecker.parameter_file.html">dcase_util.tools.SubmissionChecker.parameter_file</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.tools.SubmissionChecker.system_output_file.html">dcase_util.tools.SubmissionChecker.system_output_file</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.tools.SubmissionChecker.main_structure.html">dcase_util.tools.SubmissionChecker.main_structure</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.tools.SubmissionChecker.submission_info.html">dcase_util.tools.SubmissionChecker.submission_info</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.tools.SubmissionChecker.system_meta.html">dcase_util.tools.SubmissionChecker.system_meta</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.tools.SubmissionChecker.system_description.html">dcase_util.tools.SubmissionChecker.system_description</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.tools.SubmissionChecker.system_output.html">dcase_util.tools.SubmissionChecker.system_output</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../tools.html#bibtexprocessor">BibtexProcessor</a><ul>
@@ -1388,6 +1400,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-5">v0.2.5</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-4">v0.2.4</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-3">v0.2.3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-2">v0.2.2</a></li>
@@ -1487,7 +1500,7 @@
 <span class="kn">from</span> <span class="nn">dcase_util.files</span> <span class="k">import</span> <span class="n">RemoteFile</span><span class="p">,</span> <span class="n">RemotePackage</span><span class="p">,</span> <span class="n">File</span><span class="p">,</span> <span class="n">Package</span>
 <span class="kn">from</span> <span class="nn">dcase_util.utils</span> <span class="k">import</span> <span class="n">get_byte_string</span><span class="p">,</span> <span class="n">setup_logging</span><span class="p">,</span> <span class="n">Path</span>
 <span class="kn">from</span> <span class="nn">dcase_util.utils</span> <span class="k">import</span> <span class="n">get_parameter_hash</span><span class="p">,</span> <span class="n">get_class_inheritors</span>
-<span class="kn">from</span> <span class="nn">dcase_util.ui</span> <span class="k">import</span> <span class="n">FancyLogger</span>
+<span class="kn">from</span> <span class="nn">dcase_util.ui</span> <span class="k">import</span> <span class="n">FancyLogger</span><span class="p">,</span> <span class="n">FancyStringifier</span>
 
 
 <div class="viewcode-block" id="dataset_list"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.dataset_list.html#dcase_util.datasets.dataset_list">[docs]</a><span class="k">def</span> <span class="nf">dataset_list</span><span class="p">(</span><span class="n">data_path</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -1508,7 +1521,7 @@
 <span class="sd">        Multi line string containing dataset table</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">line</span> <span class="o">=</span> <span class="s1">&#39;  </span><span class="si">{class_name:&lt;42s}</span><span class="s1"> | </span><span class="si">{group:5s}</span><span class="s1"> | </span><span class="si">{remote_size:10s}</span><span class="s1"> | </span><span class="si">{local_present:6s}</span><span class="s1"> | </span><span class="si">{files:5s}</span><span class="s1"> | </span><span class="si">{scene:6s}</span><span class="s1"> | </span><span class="si">{event:6s}</span><span class="s1"> | </span><span class="si">{tag:4s}</span><span class="se">\n</span><span class="s1">&#39;</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="s1">&#39;  </span><span class="si">{class_name:&lt;52s}</span><span class="s1"> | </span><span class="si">{group:5s}</span><span class="s1"> | </span><span class="si">{remote_size:10s}</span><span class="s1"> | </span><span class="si">{local_present:10s}</span><span class="s1"> | </span><span class="si">{files:5s}</span><span class="s1"> | </span><span class="si">{scene:6s}</span><span class="s1"> | </span><span class="si">{event:6s}</span><span class="s1"> | </span><span class="si">{tag:4s}</span><span class="se">\n</span><span class="s1">&#39;</span>
     <span class="n">output</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
     <span class="n">output</span> <span class="o">+=</span> <span class="s1">&#39;  Dataset list</span><span class="se">\n</span><span class="s1">&#39;</span>
     <span class="n">output</span> <span class="o">+=</span> <span class="n">line</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
@@ -1558,6 +1571,15 @@
             <span class="n">event</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">event_label_count</span><span class="p">())</span> <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">event_label_count</span><span class="p">()</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
             <span class="n">tag</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">tag_count</span><span class="p">())</span> <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">tag_count</span><span class="p">()</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
         <span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">group</span> <span class="ow">or</span> <span class="n">group</span> <span class="o">==</span> <span class="s1">&#39;sound&#39;</span><span class="p">:</span>
+        <span class="n">class_list</span> <span class="o">=</span> <span class="n">get_class_inheritors</span><span class="p">(</span><span class="n">SoundDataset</span><span class="p">)</span>
+        <span class="n">class_list</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">dataset_class</span> <span class="ow">in</span> <span class="n">class_list</span><span class="p">:</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="n">dataset_class</span><span class="p">(</span><span class="n">data_path</span><span class="o">=</span><span class="n">data_path</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">d</span><span class="o">.</span><span class="n">dataset_group</span> <span class="o">!=</span> <span class="s1">&#39;base class&#39;</span><span class="p">:</span>
+                <span class="n">output</span> <span class="o">+=</span> <span class="n">get_row</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">group</span> <span class="ow">or</span> <span class="n">group</span> <span class="o">==</span> <span class="s1">&#39;scene&#39;</span><span class="p">:</span>
         <span class="n">class_list</span> <span class="o">=</span> <span class="n">get_class_inheritors</span><span class="p">(</span><span class="n">AcousticSceneDataset</span><span class="p">)</span>
@@ -1788,7 +1810,7 @@
 <span class="sd">            Default value None</span>
 
 <span class="sd">        included_content_types : list of str or str</span>
-<span class="sd">            Indicates what content type should be processed. One or multiple from [&#39;all&#39;, &#39;audio&#39;, &#39;meta&#39;, &#39;code&#39;,</span>
+<span class="sd">            Indicates what content type should be processed. One or multiple from [&#39;all&#39;, &#39;audio&#39;, &#39;features&#39;, &#39;meta&#39;, &#39;code&#39;,</span>
 <span class="sd">            &#39;documentation&#39;]. If None given, [&#39;all&#39;] is used. Parameter can be also comma separated string.</span>
 <span class="sd">            Default value None</span>
 
@@ -2135,6 +2157,9 @@
             <span class="c1"># Prepare meta data for the dataset class.</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">prepare</span><span class="p">()</span>
 
+            <span class="c1"># Check meta data and cross validation setup</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">check_metadata</span><span class="p">()</span>
+
             <span class="c1"># Save new filelist hash to monitor change in the dataset.</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_save_filelist_hash</span><span class="p">()</span>
 
@@ -2417,7 +2442,7 @@
         <span class="n">log</span><span class="o">.</span><span class="n">row_sep</span><span class="p">()</span>
 
         <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">package_list</span><span class="p">:</span>
-            <span class="k">if</span> <span class="s1">&#39;remote_file&#39;</span> <span class="ow">in</span> <span class="n">item</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s1">&#39;remote_file&#39;</span> <span class="ow">in</span> <span class="n">item</span> <span class="ow">and</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;remote_file&#39;</span><span class="p">]:</span>
                 <span class="n">remote_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;remote_file&#39;</span><span class="p">])[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 
                 <span class="n">item_remote</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
@@ -2492,7 +2517,7 @@
         <span class="p">)</span>
 
         <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">item_progress</span><span class="p">:</span>
-            <span class="k">if</span> <span class="s1">&#39;remote_file&#39;</span> <span class="ow">in</span> <span class="n">item</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s1">&#39;remote_file&#39;</span> <span class="ow">in</span> <span class="n">item</span> <span class="ow">and</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;remote_file&#39;</span><span class="p">]:</span>
                 <span class="c1"># Download if remote file is set</span>
                 <span class="n">remote_file</span> <span class="o">=</span> <span class="n">RemoteFile</span><span class="p">(</span><span class="o">**</span><span class="n">item</span><span class="p">)</span>
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">included_content_types</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">remote_file</span><span class="o">.</span><span class="n">is_content_type</span><span class="p">(</span>
@@ -2586,6 +2611,182 @@
 
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">False</span></div>
+
+    <span class="k">def</span> <span class="nf">check_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Checking meta data and cross-validation setup.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        self</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">def</span> <span class="nf">error_message</span><span class="p">(</span><span class="n">error_class</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">type_label</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">subtype_label</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+
+            <span class="k">return</span> <span class="sa">u</span><span class="s1">&#39;</span><span class="si">{error_class}</span><span class="s1"> </span><span class="si">{type_label}</span><span class="s1">  </span><span class="si">{subtype_label}</span><span class="s1">  </span><span class="si">{message}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">error_class</span><span class="o">=</span><span class="n">FancyStringifier</span><span class="p">()</span><span class="o">.</span><span class="n">formatted_value</span><span class="p">(</span><span class="n">error_class</span><span class="p">,</span> <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;stf16&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span>
+                <span class="n">type_label</span><span class="o">=</span><span class="n">FancyStringifier</span><span class="p">()</span><span class="o">.</span><span class="n">formatted_value</span><span class="p">(</span><span class="n">type_label</span><span class="p">,</span> <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;stf10&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span>
+                <span class="n">subtype_label</span><span class="o">=</span><span class="n">FancyStringifier</span><span class="p">()</span><span class="o">.</span><span class="n">formatted_value</span><span class="p">(</span><span class="n">subtype_label</span><span class="p">,</span> <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;stf20&#39;</span><span class="p">),</span>
+                <span class="n">message</span><span class="o">=</span><span class="n">description</span>
+            <span class="p">)</span>
+
+        <span class="n">error_log</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="n">meta_files</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta_container</span><span class="o">.</span><span class="n">unique_files</span>
+        <span class="k">if</span> <span class="s1">&#39;audio&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">included_content_types</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">meta_files</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+                    <span class="n">error_log</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                        <span class="n">error_message</span><span class="p">(</span>
+                            <span class="n">error_class</span><span class="o">=</span><span class="s1">&#39;Meta&#39;</span><span class="p">,</span>
+                            <span class="n">type_label</span><span class="o">=</span><span class="s1">&#39;Files&#39;</span><span class="p">,</span>
+                            <span class="n">description</span><span class="o">=</span><span class="s1">&#39;File does not exits [</span><span class="si">{filename}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">)</span>
+                        <span class="p">)</span>
+                    <span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">crossvalidation_folds</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">fold</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">folds</span><span class="p">():</span>
+
+                <span class="n">train</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">fold</span><span class="o">=</span><span class="n">fold</span><span class="p">)</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">train</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">error_log</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                        <span class="n">error_message</span><span class="p">(</span>
+                            <span class="n">error_class</span><span class="o">=</span><span class="s1">&#39;Fold[&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">fold</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;]&#39;</span><span class="p">,</span>
+                            <span class="n">type_label</span><span class="o">=</span><span class="s1">&#39;Train set&#39;</span><span class="p">,</span>
+                            <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Empty set&#39;</span>
+                        <span class="p">)</span>
+                    <span class="p">)</span>
+
+                <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">train</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="s1">&#39;filename&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">item</span><span class="p">:</span>
+                        <span class="n">error_log</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                            <span class="n">error_message</span><span class="p">(</span>
+                                <span class="n">error_class</span><span class="o">=</span><span class="s1">&#39;Fold[&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">fold</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;]&#39;</span><span class="p">,</span>
+                                <span class="n">type_label</span><span class="o">=</span><span class="s1">&#39;Train set&#39;</span><span class="p">,</span>
+                                <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Field missing [filename].&#39;</span>
+                            <span class="p">)</span>
+                        <span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;filename&#39;</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">meta_files</span><span class="p">:</span>
+                            <span class="n">error_log</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                                <span class="n">error_message</span><span class="p">(</span>
+                                    <span class="n">error_class</span><span class="o">=</span><span class="s1">&#39;Fold[&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">fold</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;]&#39;</span><span class="p">,</span>
+                                    <span class="n">type_label</span><span class="o">=</span><span class="s1">&#39;Train set&#39;</span><span class="p">,</span>
+                                    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Filename not in meta [</span><span class="si">{filename}</span><span class="s1">].&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;filename&#39;</span><span class="p">])</span>
+                                <span class="p">)</span>
+                            <span class="p">)</span>
+
+                <span class="n">test</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="n">fold</span><span class="o">=</span><span class="n">fold</span><span class="p">)</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">test</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">error_log</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                        <span class="n">error_message</span><span class="p">(</span>
+                            <span class="n">error_class</span><span class="o">=</span><span class="s1">&#39;Fold[&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">fold</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;]&#39;</span><span class="p">,</span>
+                            <span class="n">type_label</span><span class="o">=</span><span class="s1">&#39;Test set&#39;</span><span class="p">,</span>
+                            <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Empty set&#39;</span>
+                        <span class="p">)</span>
+                    <span class="p">)</span>
+
+                <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">test</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="s1">&#39;filename&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">item</span><span class="p">:</span>
+                        <span class="n">error_log</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                            <span class="n">error_message</span><span class="p">(</span>
+                                <span class="n">error_class</span><span class="o">=</span><span class="s1">&#39;Fold&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">fold</span><span class="p">),</span>
+                                <span class="n">type_label</span><span class="o">=</span><span class="s1">&#39;Test set&#39;</span><span class="p">,</span>
+                                <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Field missing [filename].&#39;</span>
+                            <span class="p">)</span>
+                        <span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;filename&#39;</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">meta_files</span><span class="p">:</span>
+                            <span class="n">error_log</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                                <span class="n">error_message</span><span class="p">(</span>
+                                    <span class="n">error_class</span><span class="o">=</span><span class="s1">&#39;Fold[&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">fold</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;]&#39;</span><span class="p">,</span>
+                                    <span class="n">type_label</span><span class="o">=</span><span class="s1">&#39;Test set&#39;</span><span class="p">,</span>
+                                    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Filename not in meta [</span><span class="si">{filename}</span><span class="s1">].&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;filename&#39;</span><span class="p">])</span>
+                                <span class="p">)</span>
+                            <span class="p">)</span>
+
+                <span class="nb">eval</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">fold</span><span class="o">=</span><span class="n">fold</span><span class="p">)</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nb">eval</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">error_log</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                        <span class="n">error_message</span><span class="p">(</span>
+                            <span class="n">error_class</span><span class="o">=</span><span class="s1">&#39;Fold[&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">fold</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;]&#39;</span><span class="p">,</span>
+                            <span class="n">type_label</span><span class="o">=</span><span class="s1">&#39;Eval set&#39;</span><span class="p">,</span>
+                            <span class="n">subtype_label</span><span class="o">=</span><span class="s1">&#39;Empty set&#39;</span>
+                        <span class="p">)</span>
+                    <span class="p">)</span>
+
+                <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">eval</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="s1">&#39;filename&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">item</span><span class="p">:</span>
+                        <span class="n">error_log</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                            <span class="n">error_message</span><span class="p">(</span>
+                                <span class="n">error_class</span><span class="o">=</span><span class="s1">&#39;Fold[&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">fold</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;]&#39;</span><span class="p">,</span>
+                                <span class="n">type_label</span><span class="o">=</span><span class="s1">&#39;Eval set&#39;</span><span class="p">,</span>
+                                <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Field missing [filename].&#39;</span>
+                            <span class="p">)</span>
+                        <span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;filename&#39;</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">meta_files</span><span class="p">:</span>
+                            <span class="n">error_log</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                                <span class="n">error_message</span><span class="p">(</span>
+                                    <span class="n">error_class</span><span class="o">=</span><span class="s1">&#39;Fold[&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">fold</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;]&#39;</span><span class="p">,</span>
+                                    <span class="n">type_label</span><span class="o">=</span><span class="s1">&#39;Eval set&#39;</span><span class="p">,</span>
+                                    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Filename not in meta [</span><span class="si">{filename}</span><span class="s1">].&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;filename&#39;</span><span class="p">])</span>
+                                <span class="p">)</span>
+                            <span class="p">)</span>
+
+                <span class="n">train_test_intersection</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">train</span><span class="o">.</span><span class="n">unique_files</span><span class="p">)</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span><span class="n">test</span><span class="o">.</span><span class="n">unique_files</span><span class="p">))</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_test_intersection</span><span class="p">):</span>
+                    <span class="n">error_log</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                        <span class="n">error_message</span><span class="p">(</span>
+                            <span class="n">error_class</span><span class="o">=</span><span class="s1">&#39;Fold[&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">fold</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;]&#39;</span><span class="p">,</span>
+                            <span class="n">type_label</span><span class="o">=</span><span class="s1">&#39;Sets&#39;</span><span class="p">,</span>
+                            <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Train and test sets intersects [</span><span class="si">{file_count}</span><span class="s1"> files common].&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">file_count</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">train_test_intersection</span><span class="p">))</span>
+                        <span class="p">)</span>
+                    <span class="p">)</span>
+
+                <span class="n">train_eval_intersection</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">train</span><span class="o">.</span><span class="n">unique_files</span><span class="p">)</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span><span class="nb">eval</span><span class="o">.</span><span class="n">unique_files</span><span class="p">))</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_eval_intersection</span><span class="p">):</span>
+                    <span class="n">error_log</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                        <span class="n">error_message</span><span class="p">(</span>
+                            <span class="n">error_class</span><span class="o">=</span><span class="s1">&#39;Fold[&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">fold</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;]&#39;</span><span class="p">,</span>
+                            <span class="n">type_label</span><span class="o">=</span><span class="s1">&#39;Sets&#39;</span><span class="p">,</span>
+                            <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Train and eval sets intersects [</span><span class="si">{file_count}</span><span class="s1"> files common].&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">file_count</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">train_eval_intersection</span><span class="p">))</span>
+                        <span class="p">)</span>
+                    <span class="p">)</span>
+
+                <span class="n">test_eval_intersection</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">test</span><span class="o">.</span><span class="n">unique_files</span><span class="p">)</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span><span class="nb">eval</span><span class="o">.</span><span class="n">unique_files</span><span class="p">))</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nb">eval</span><span class="o">.</span><span class="n">unique_files</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">test</span><span class="o">.</span><span class="n">unique_files</span><span class="p">):</span>
+                    <span class="n">error_log</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                        <span class="n">error_message</span><span class="p">(</span>
+                            <span class="n">error_class</span><span class="o">=</span><span class="s1">&#39;Fold[&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">fold</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;]&#39;</span><span class="p">,</span>
+                            <span class="n">type_label</span><span class="o">=</span><span class="s1">&#39;Sets&#39;</span><span class="p">,</span>
+                            <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Test and eval sets have different amount of files [</span><span class="si">{test_files}</span><span class="s1"> != </span><span class="si">{eval_files}</span><span class="s1">].&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                                <span class="n">test_files</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">test</span><span class="o">.</span><span class="n">unique_files</span><span class="p">),</span>
+                                <span class="n">eval_files</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="nb">eval</span><span class="o">.</span><span class="n">unique_files</span><span class="p">),</span>
+                            <span class="p">)</span>
+                        <span class="p">)</span>
+                    <span class="p">)</span>
+
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">test_eval_intersection</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">test</span><span class="o">.</span><span class="n">unique_files</span><span class="p">):</span>
+                    <span class="n">error_log</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                        <span class="n">error_message</span><span class="p">(</span>
+                            <span class="n">error_class</span><span class="o">=</span><span class="s1">&#39;Fold[&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">fold</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;]&#39;</span><span class="p">,</span>
+                            <span class="n">type_label</span><span class="o">=</span><span class="s1">&#39;Sets&#39;</span><span class="p">,</span>
+                            <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Test and eval sets have different files [</span><span class="si">{common_file_count}</span><span class="s1"> != </span><span class="si">{test_files}</span><span class="s1"> files common].&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                                <span class="n">common_file_count</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">test_eval_intersection</span><span class="p">),</span>
+                                <span class="n">test_files</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">test</span><span class="o">.</span><span class="n">unique_files</span><span class="p">)</span>
+                            <span class="p">)</span>
+                        <span class="p">)</span>
+                    <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">error_log</span><span class="p">:</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;Dataset errors:</span><span class="se">\n</span><span class="s1">&#39;</span>
+            <span class="n">message</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">error_log</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span>
 
 <div class="viewcode-block" id="Dataset.process_meta_item"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.process_meta_item.html#dcase_util.datasets.Dataset.process_meta_item">[docs]</a>    <span class="k">def</span> <span class="nf">process_meta_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="n">absolute_path</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Process single meta data item</span>
@@ -3281,6 +3482,12 @@
         <span class="n">TextContainer</span><span class="p">([</span><span class="n">hash_value</span><span class="p">])</span><span class="o">.</span><span class="n">save</span><span class="p">(</span>
             <span class="n">filename</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">local_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">filelisthash_filename</span><span class="p">)</span>
         <span class="p">)</span></div>
+
+
+<span class="k">class</span> <span class="nc">SoundDataset</span><span class="p">(</span><span class="n">Dataset</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Sound dataset baseclass &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">SoundDataset</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="AcousticSceneDataset"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.AcousticSceneDataset.html#dcase_util.datasets.AcousticSceneDataset">[docs]</a><span class="k">class</span> <span class="nc">AcousticSceneDataset</span><span class="p">(</span><span class="n">Dataset</span><span class="p">):</span>

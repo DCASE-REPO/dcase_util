@@ -457,6 +457,8 @@
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.MetaDataContainer.filter.html">dcase_util.containers.MetaDataContainer.filter</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.MetaDataContainer.filter_time_segment.html">dcase_util.containers.MetaDataContainer.filter_time_segment</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.MetaDataContainer.process_events.html">dcase_util.containers.MetaDataContainer.process_events</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.MetaDataContainer.map_events.html">dcase_util.containers.MetaDataContainer.map_events</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.MetaDataContainer.event_inactivity.html">dcase_util.containers.MetaDataContainer.event_inactivity</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.MetaDataContainer.add_time.html">dcase_util.containers.MetaDataContainer.add_time</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.MetaDataContainer.stats.html">dcase_util.containers.MetaDataContainer.stats</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.MetaDataContainer.scene_stat_counts.html">dcase_util.containers.MetaDataContainer.scene_stat_counts</a></li>
@@ -521,7 +523,9 @@
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.ProbabilityContainer.append.html">dcase_util.containers.ProbabilityContainer.append</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.ProbabilityContainer.unique_files.html">dcase_util.containers.ProbabilityContainer.unique_files</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.ProbabilityContainer.unique_labels.html">dcase_util.containers.ProbabilityContainer.unique_labels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.ProbabilityContainer.unique_indices.html">dcase_util.containers.ProbabilityContainer.unique_indices</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.ProbabilityContainer.filter.html">dcase_util.containers.ProbabilityContainer.filter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.ProbabilityContainer.as_matrix.html">dcase_util.containers.ProbabilityContainer.as_matrix</a></li>
 </ul>
 </li>
 </ul>
@@ -588,6 +592,15 @@
 <li class="toctree-l3"><a class="reference internal" href="data.html#eventrollencoder">EventRollEncoder</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.data.EventRollEncoder.html">dcase_util.data.EventRollEncoder</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.data.EventRollEncoder.encode.html">dcase_util.data.EventRollEncoder.encode</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="data.html#labelmatrixencoder">LabelMatrixEncoder</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.data.LabelMatrixEncoder.html">dcase_util.data.LabelMatrixEncoder</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="data.html#onehotlabelencoder">OneHotLabelEncoder</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.data.OneHotLabelEncoder.html">dcase_util.data.OneHotLabelEncoder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.data.OneHotLabelEncoder.encode.html">dcase_util.data.OneHotLabelEncoder.encode</a></li>
 </ul>
 </li>
 </ul>
@@ -746,6 +759,7 @@
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.AcousticSceneDataset.html">dcase_util.datasets.AcousticSceneDataset</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.TUTAcousticScenes_2017_DevelopmentSet.html">dcase_util.datasets.TUTAcousticScenes_2017_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.TUTAcousticScenes_2017_EvaluationSet.html">dcase_util.datasets.TUTAcousticScenes_2017_EvaluationSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.TUTAcousticScenes_2017_FeaturesSet.html">dcase_util.datasets.TUTAcousticScenes_2017_FeaturesSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet.html">dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet.html">dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_DevelopmentSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_DevelopmentSet</a></li>
@@ -1080,6 +1094,11 @@
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.EventRollEncodingProcessor.process.html">dcase_util.processors.EventRollEncodingProcessor.process</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="processors.html#onehotlabelencodingprocessor">OneHotLabelEncodingProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.OneHotLabelEncodingProcessor.html">dcase_util.processors.OneHotLabelEncodingProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.OneHotLabelEncodingProcessor.process.html">dcase_util.processors.OneHotLabelEncodingProcessor.process</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="processors.html#datashapingprocessor">DataShapingProcessor</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.DataShapingProcessor.html">dcase_util.processors.DataShapingProcessor</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.DataShapingProcessor.process.html">dcase_util.processors.DataShapingProcessor.process</a></li>
@@ -1361,13 +1380,6 @@
 <li class="toctree-l2"><a class="reference internal" href="tools.html#submissionchecker">SubmissionChecker</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.tools.SubmissionChecker.html">dcase_util.tools.SubmissionChecker</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.tools.SubmissionChecker.process.html">dcase_util.tools.SubmissionChecker.process</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.tools.SubmissionChecker.parameter_file.html">dcase_util.tools.SubmissionChecker.parameter_file</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.tools.SubmissionChecker.system_output_file.html">dcase_util.tools.SubmissionChecker.system_output_file</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.tools.SubmissionChecker.main_structure.html">dcase_util.tools.SubmissionChecker.main_structure</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.tools.SubmissionChecker.submission_info.html">dcase_util.tools.SubmissionChecker.submission_info</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.tools.SubmissionChecker.system_meta.html">dcase_util.tools.SubmissionChecker.system_meta</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.tools.SubmissionChecker.system_description.html">dcase_util.tools.SubmissionChecker.system_description</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.tools.SubmissionChecker.system_output.html">dcase_util.tools.SubmissionChecker.system_output</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="tools.html#bibtexprocessor">BibtexProcessor</a><ul>
@@ -1389,6 +1401,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#v0-2-5">v0.2.5</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#v0-2-4">v0.2.4</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#v0-2-3">v0.2.3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#v0-2-2">v0.2.2</a></li>
@@ -1467,12 +1480,49 @@
             
   <div class="section" id="release-notes">
 <span id="changelog"></span><h1>Release notes<a class="headerlink" href="#release-notes" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="v0-2-5">
+<h2>v0.2.5<a class="headerlink" href="#v0-2-5" title="Permalink to this headline">¶</a></h2>
+<p><strong>New features</strong></p>
+<ul class="simple">
+<li>Add <code class="docutils literal"><span class="pre">SoundDataset</span></code> base class.</li>
+<li>Add <code class="docutils literal"><span class="pre">feature_extractor_factory</span></code> to get feature extractor class based on feature label.</li>
+<li>Add <code class="docutils literal"><span class="pre">OneHotLabelEncoder</span></code> label based encoder.</li>
+<li>Add <code class="docutils literal"><span class="pre">OneHotLabelEncodingProcessor</span></code> class.</li>
+<li>Add <code class="docutils literal"><span class="pre">DBR_Dataset</span></code> class.</li>
+<li>Add <code class="docutils literal"><span class="pre">map_events</span></code> method to <code class="docutils literal"><span class="pre">MetaDataContainer</span></code> to map multiple event labels into single target event label.</li>
+<li>Add <code class="docutils literal"><span class="pre">event_inactivity</span></code> method to <code class="docutils literal"><span class="pre">MetaDataContainer</span></code> to get inactivity segments between events.</li>
+<li>Add <code class="docutils literal"><span class="pre">__version__</span></code> variable to the module.</li>
+<li>Add <code class="docutils literal"><span class="pre">check_installation</span></code> function to check module installation.</li>
+<li>Add <code class="docutils literal"><span class="pre">TUTAcousticScenes_2017_FeaturesSet</span></code> dataset class.</li>
+<li>Add <code class="docutils literal"><span class="pre">check_metadata</span></code> method to dataset classes to double check meta and cross-validation setups automatically during the dataset initialization.</li>
+</ul>
+<p><strong>Updates</strong></p>
+<ul class="simple">
+<li>Update <code class="docutils literal"><span class="pre">ProcessingChain</span></code> to verify that all items in the chain are instances of <code class="docutils literal"><span class="pre">Processor</span></code> class.</li>
+<li>Update <code class="docutils literal"><span class="pre">ProbabilityItem</span></code> to have index property.</li>
+<li>Update <code class="docutils literal"><span class="pre">ProbabilityContainer</span></code> to support pickle saving and loading.</li>
+<li>Update <code class="docutils literal"><span class="pre">ProbabilityContainer</span></code> to have <code class="docutils literal"><span class="pre">as_matrix</span></code> method.</li>
+<li>Update <code class="docutils literal"><span class="pre">majority_vote</span></code> method in <code class="docutils literal"><span class="pre">DecisionEncoder</span></code> to be more generic (works with both labels and class IDs).</li>
+<li>Move processor classes related to encoding into separate file.</li>
+<li>Update <code class="docutils literal"><span class="pre">load</span></code> method in <code class="docutils literal"><span class="pre">MetaDataContainer</span></code> to translate between decimal comma and point.</li>
+<li>Update <code class="docutils literal"><span class="pre">data_collector</span></code> function to be more generic.</li>
+<li>Update <code class="docutils literal"><span class="pre">formatted_value</span></code> method in <code class="docutils literal"><span class="pre">FancyStringifier</span></code> to support fixed length strings (<code class="docutils literal"><span class="pre">stf</span></code>).</li>
+<li>Refactor <code class="docutils literal"><span class="pre">SubmissionChecker</span></code> to be more flexible.</li>
+<li>Update <code class="docutils literal"><span class="pre">DCASEAppParameterContainer</span></code> to support secondary data processing chain.</li>
+<li>Update <code class="docutils literal"><span class="pre">create_sequential_model</span></code> function to return optionally functional API Keras model instead of default Keras sequential model.</li>
+<li>Update <code class="docutils literal"><span class="pre">ProgressLoggerCallback</span></code> to print estimate of the remaining model learning time.</li>
+</ul>
+<p><strong>Bug fixes</strong></p>
+<ul class="simple">
+<li>Fix dataset class when no <code class="docutils literal"><span class="pre">remote_file</span></code> is set</li>
+</ul>
+</div>
 <div class="section" id="v0-2-4">
 <h2>v0.2.4<a class="headerlink" href="#v0-2-4" title="Permalink to this headline">¶</a></h2>
 <p><strong>New features</strong></p>
 <ul class="simple">
-<li>Add <code class="docutils literal"><span class="pre">TUTUrbanAcousticScenes_2018_EvaluationSet</span></code> and <code class="docutils literal"><span class="pre">TUTUrbanAcousticScenes_2018_Mobile_EvaluationSet</span></code> dataset classes</li>
-<li>Add <code class="docutils literal"><span class="pre">DCASE2018_Task5_EvaluationSet</span></code> dataset class</li>
+<li>Add <code class="docutils literal"><span class="pre">TUTUrbanAcousticScenes_2018_EvaluationSet</span></code> and <code class="docutils literal"><span class="pre">TUTUrbanAcousticScenes_2018_Mobile_EvaluationSet</span></code> dataset classes.</li>
+<li>Add <code class="docutils literal"><span class="pre">DCASE2018_Task5_EvaluationSet</span></code> dataset class.</li>
 </ul>
 <p><strong>Updates</strong></p>
 <ul class="simple">
@@ -1480,19 +1530,19 @@
 </ul>
 <p><strong>Bug fixes</strong></p>
 <ul class="simple">
-<li>Fix <code class="docutils literal"><span class="pre">TUTRareSoundEvents_2017_EvaluationSet</span></code> dataset class to have correct audio path</li>
+<li>Fix <code class="docutils literal"><span class="pre">TUTRareSoundEvents_2017_EvaluationSet</span></code> dataset class to have correct audio path.</li>
 </ul>
 </div>
 <div class="section" id="v0-2-3">
 <h2>v0.2.3<a class="headerlink" href="#v0-2-3" title="Permalink to this headline">¶</a></h2>
 <p><strong>New features</strong></p>
 <ul class="simple">
-<li>Add <code class="docutils literal"><span class="pre">AudioWritingProcessor</span></code> and <code class="docutils literal"><span class="pre">MonoAudioWritingProcessor</span></code> processor classes</li>
-<li>Add <code class="docutils literal"><span class="pre">FeatureWritingProcessor</span></code> and <code class="docutils literal"><span class="pre">RepositoryFeatureWritingProcessor</span></code> processor classes</li>
+<li>Add <code class="docutils literal"><span class="pre">AudioWritingProcessor</span></code> and <code class="docutils literal"><span class="pre">MonoAudioWritingProcessor</span></code> processor classes.</li>
+<li>Add <code class="docutils literal"><span class="pre">FeatureWritingProcessor</span></code> and <code class="docutils literal"><span class="pre">RepositoryFeatureWritingProcessor</span></code> processor classes.</li>
 </ul>
 <p><strong>Bug fixes</strong></p>
 <ul class="simple">
-<li>Fix <code class="docutils literal"><span class="pre">DataRepository</span></code> not to have internal variables in the <code class="docutils literal"><span class="pre">__dict__</span></code> after loading container from disk</li>
+<li>Fix <code class="docutils literal"><span class="pre">DataRepository</span></code> not to have internal variables in the <code class="docutils literal"><span class="pre">__dict__</span></code> after loading container from disk.</li>
 </ul>
 </div>
 <div class="section" id="v0-2-2">
@@ -1500,112 +1550,112 @@
 <p>In this version external dependencies of this module are minimized. External modules required for non-core functionality is not anymore included in the setup.py, and not automatically installed. Once user uses functionality requiring these rarely used external modules and module is not found, ImportError is raised with instructions to install correct module through pip. All module requirements are still available in <code class="docutils literal"><span class="pre">requirements.txt</span></code>.</p>
 <p><strong>New features</strong></p>
 <ul class="simple">
-<li>Add <code class="docutils literal"><span class="pre">unique_source_labels</span></code> property to <code class="docutils literal"><span class="pre">MetaDataContainer</span></code></li>
-<li>Add <code class="docutils literal"><span class="pre">file_format</span></code> parameter to load and save method for <code class="docutils literal"><span class="pre">ListContainer</span></code> and <code class="docutils literal"><span class="pre">DictContainer</span></code> to force specific file format</li>
-<li>Add  <code class="docutils literal"><span class="pre">label_list</span></code> parameter to <code class="docutils literal"><span class="pre">ManyHotEncodingProcessor</span></code></li>
-<li>Add <code class="docutils literal"><span class="pre">DatasetPacker</span></code> class to make DCASE styled dataset packages</li>
-<li>Add <code class="docutils literal"><span class="pre">dataset_exists</span></code> helper function to check Dataset classes</li>
-<li>Add multi-channel audio example <code class="docutils literal"><span class="pre">audio_container_ch4</span></code></li>
-<li>Add <code class="docutils literal"><span class="pre">TUTUrbanAcousticScenes_2018_LeaderboardSet</span></code> and <code class="docutils literal"><span class="pre">TUTUrbanAcousticScenes_2018_Mobile_LeaderboardSet</span></code> dataset classes</li>
+<li>Add <code class="docutils literal"><span class="pre">unique_source_labels</span></code> property to <code class="docutils literal"><span class="pre">MetaDataContainer</span></code>.</li>
+<li>Add <code class="docutils literal"><span class="pre">file_format</span></code> parameter to load and save method for <code class="docutils literal"><span class="pre">ListContainer</span></code> and <code class="docutils literal"><span class="pre">DictContainer</span></code> to force specific file format.</li>
+<li>Add  <code class="docutils literal"><span class="pre">label_list</span></code> parameter to <code class="docutils literal"><span class="pre">ManyHotEncodingProcessor</span></code>.</li>
+<li>Add <code class="docutils literal"><span class="pre">DatasetPacker</span></code> class to make DCASE styled dataset packages.</li>
+<li>Add <code class="docutils literal"><span class="pre">dataset_exists</span></code> helper function to check Dataset classes.</li>
+<li>Add multi-channel audio example <code class="docutils literal"><span class="pre">audio_container_ch4</span></code>.</li>
+<li>Add <code class="docutils literal"><span class="pre">TUTUrbanAcousticScenes_2018_LeaderboardSet</span></code> and <code class="docutils literal"><span class="pre">TUTUrbanAcousticScenes_2018_Mobile_LeaderboardSet</span></code> dataset classes.</li>
 </ul>
 <p><strong>Updates</strong></p>
 <ul class="simple">
-<li>Update <code class="docutils literal"><span class="pre">Dataset</span></code> class handle also non-text file meta files by introducing parameter <code class="docutils literal"><span class="pre">evaluation_setup_file_extension</span></code></li>
-<li>Update package list handling in <code class="docutils literal"><span class="pre">Dataset</span></code> to support custom package extraction parameters by extra parameter <code class="docutils literal"><span class="pre">package_extract_parameters</span></code></li>
-<li>Update <code class="docutils literal"><span class="pre">pad</span></code> method in <code class="docutils literal"><span class="pre">AudioContainer</span></code> to work with multi-channel audio</li>
-<li>Update <code class="docutils literal"><span class="pre">compress</span></code> method to produce split packages only if size limit is met</li>
-<li>Update <code class="docutils literal"><span class="pre">compress</span></code> method to return package filenames</li>
-<li>Update <code class="docutils literal"><span class="pre">DCASE2018_Task5_DevelopmentSet</span></code> dataset</li>
+<li>Update <code class="docutils literal"><span class="pre">Dataset</span></code> class handle also non-text file meta files by introducing parameter <code class="docutils literal"><span class="pre">evaluation_setup_file_extension</span></code>.</li>
+<li>Update package list handling in <code class="docutils literal"><span class="pre">Dataset</span></code> to support custom package extraction parameters by extra parameter <code class="docutils literal"><span class="pre">package_extract_parameters</span></code>.</li>
+<li>Update <code class="docutils literal"><span class="pre">pad</span></code> method in <code class="docutils literal"><span class="pre">AudioContainer</span></code> to work with multi-channel audio.</li>
+<li>Update <code class="docutils literal"><span class="pre">compress</span></code> method to produce split packages only if size limit is met.</li>
+<li>Update <code class="docutils literal"><span class="pre">compress</span></code> method to return package filenames.</li>
+<li>Update <code class="docutils literal"><span class="pre">DCASE2018_Task5_DevelopmentSet</span></code> dataset.</li>
 </ul>
 </div>
 <div class="section" id="v0-2-1">
 <h2>v0.2.1<a class="headerlink" href="#v0-2-1" title="Permalink to this headline">¶</a></h2>
 <p><strong>New features</strong></p>
 <ul class="simple">
-<li>Add <code class="docutils literal"><span class="pre">md5</span></code> and <code class="docutils literal"><span class="pre">bytes</span></code> properties to FileMixin</li>
-<li>Add two level hierarchical balancing to <code class="docutils literal"><span class="pre">validation_files_balanced</span></code> method in <code class="docutils literal"><span class="pre">AcousticSceneDataset</span></code></li>
-<li>Add <code class="docutils literal"><span class="pre">TUTUrbanAcousticScenes_2018_DevelopmentSet</span></code> and <code class="docutils literal"><span class="pre">TUTUrbanAcousticScenes_2018_Mobile_DevelopmentSet</span></code> datasets</li>
-<li>Add <code class="docutils literal"><span class="pre">float1_ci</span></code>, <code class="docutils literal"><span class="pre">float2_ci</span></code>, <code class="docutils literal"><span class="pre">float1_ci_bracket</span></code>, <code class="docutils literal"><span class="pre">float2_ci_bracket</span></code>, <code class="docutils literal"><span class="pre">float1_percentage+ci</span></code> and <code class="docutils literal"><span class="pre">float2_percentage+ci</span></code> value types to <code class="docutils literal"><span class="pre">formatted_value</span></code> method in <code class="docutils literal"><span class="pre">FancyStringifier</span></code></li>
-<li>Add <code class="docutils literal"><span class="pre">get_set</span></code> method to <code class="docutils literal"><span class="pre">AppParameterContainer</span></code></li>
-<li>Add <code class="docutils literal"><span class="pre">data_collector</span></code> function to collect data and meta</li>
+<li>Add <code class="docutils literal"><span class="pre">md5</span></code> and <code class="docutils literal"><span class="pre">bytes</span></code> properties to FileMixin.</li>
+<li>Add two level hierarchical balancing to <code class="docutils literal"><span class="pre">validation_files_balanced</span></code> method in <code class="docutils literal"><span class="pre">AcousticSceneDataset</span></code>.</li>
+<li>Add <code class="docutils literal"><span class="pre">TUTUrbanAcousticScenes_2018_DevelopmentSet</span></code> and <code class="docutils literal"><span class="pre">TUTUrbanAcousticScenes_2018_Mobile_DevelopmentSet</span></code> datasets.</li>
+<li>Add <code class="docutils literal"><span class="pre">float1_ci</span></code>, <code class="docutils literal"><span class="pre">float2_ci</span></code>, <code class="docutils literal"><span class="pre">float1_ci_bracket</span></code>, <code class="docutils literal"><span class="pre">float2_ci_bracket</span></code>, <code class="docutils literal"><span class="pre">float1_percentage+ci</span></code> and <code class="docutils literal"><span class="pre">float2_percentage+ci</span></code> value types to <code class="docutils literal"><span class="pre">formatted_value</span></code> method in <code class="docutils literal"><span class="pre">FancyStringifier</span></code>.</li>
+<li>Add <code class="docutils literal"><span class="pre">get_set</span></code> method to <code class="docutils literal"><span class="pre">AppParameterContainer</span></code>.</li>
+<li>Add <code class="docutils literal"><span class="pre">data_collector</span></code> function to collect data and meta.</li>
 </ul>
 <p><strong>Updates</strong></p>
 <ul class="simple">
-<li>Update <code class="docutils literal"><span class="pre">debug_packages</span></code> method in <code class="docutils literal"><span class="pre">Dataset</span></code> to provide more information</li>
-<li>Update validation subset generation methods (<code class="docutils literal"><span class="pre">validation_split</span></code>, <code class="docutils literal"><span class="pre">validation_files_dataset</span></code>, <code class="docutils literal"><span class="pre">validation_files_random</span></code>, and <code class="docutils literal"><span class="pre">validation_files_balanced</span></code>)  method in <code class="docutils literal"><span class="pre">Dataset</span></code>, <code class="docutils literal"><span class="pre">AcousticSceneDataset</span></code>, <code class="docutils literal"><span class="pre">SoundEventDataset</span></code>, and <code class="docutils literal"><span class="pre">AudioTaggingDataset</span></code> to allow external processing of meta data before processing through <code class="docutils literal"><span class="pre">training_meta</span></code> parameter</li>
-<li>Update <code class="docutils literal"><span class="pre">filter</span></code> method in <code class="docutils literal"><span class="pre">ListDictContainer</span></code> to allow filtering based on list of values</li>
-<li>Update <code class="docutils literal"><span class="pre">set_label</span></code> property to <code class="docutils literal"><span class="pre">MetaDataItem</span></code></li>
-<li>Update <code class="docutils literal"><span class="pre">filter</span></code> method in <code class="docutils literal"><span class="pre">MetaDataContainer</span></code> to use <code class="docutils literal"><span class="pre">filter</span></code> method from parent class</li>
-<li>Update example applications to use current API</li>
-<li>Update random seed setting for TensorFlow in <code class="docutils literal"><span class="pre">setup_keras</span></code> function</li>
-<li>Update <code class="docutils literal"><span class="pre">dataset_factory</span></code> to handle dataset classes defined outside dcase_util</li>
+<li>Update <code class="docutils literal"><span class="pre">debug_packages</span></code> method in <code class="docutils literal"><span class="pre">Dataset</span></code> to provide more information.</li>
+<li>Update validation subset generation methods (<code class="docutils literal"><span class="pre">validation_split</span></code>, <code class="docutils literal"><span class="pre">validation_files_dataset</span></code>, <code class="docutils literal"><span class="pre">validation_files_random</span></code>, and <code class="docutils literal"><span class="pre">validation_files_balanced</span></code>)  method in <code class="docutils literal"><span class="pre">Dataset</span></code>, <code class="docutils literal"><span class="pre">AcousticSceneDataset</span></code>, <code class="docutils literal"><span class="pre">SoundEventDataset</span></code>, and <code class="docutils literal"><span class="pre">AudioTaggingDataset</span></code> to allow external processing of meta data before processing through <code class="docutils literal"><span class="pre">training_meta</span></code> parameter.</li>
+<li>Update <code class="docutils literal"><span class="pre">filter</span></code> method in <code class="docutils literal"><span class="pre">ListDictContainer</span></code> to allow filtering based on list of values.</li>
+<li>Update <code class="docutils literal"><span class="pre">set_label</span></code> property to <code class="docutils literal"><span class="pre">MetaDataItem</span></code>.</li>
+<li>Update <code class="docutils literal"><span class="pre">filter</span></code> method in <code class="docutils literal"><span class="pre">MetaDataContainer</span></code> to use <code class="docutils literal"><span class="pre">filter</span></code> method from parent class.</li>
+<li>Update example applications to use current API.</li>
+<li>Update random seed setting for TensorFlow in <code class="docutils literal"><span class="pre">setup_keras</span></code> function.</li>
+<li>Update <code class="docutils literal"><span class="pre">dataset_factory</span></code> to handle dataset classes defined outside dcase_util.</li>
 </ul>
 <p><strong>Bug fixes</strong></p>
 <ul class="simple">
-<li>Fix <code class="docutils literal"><span class="pre">load_from_youtube</span></code> method in <code class="docutils literal"><span class="pre">AudioContainer</span></code></li>
-<li>Fix example applications to work on Windows (Python 3.6)</li>
+<li>Fix <code class="docutils literal"><span class="pre">load_from_youtube</span></code> method in <code class="docutils literal"><span class="pre">AudioContainer</span></code>.</li>
+<li>Fix example applications to work on Windows (Python 3.6).</li>
 </ul>
 </div>
 <div class="section" id="v0-2-0">
 <h2>v0.2.0<a class="headerlink" href="#v0-2-0" title="Permalink to this headline">¶</a></h2>
 <p><strong>New features</strong></p>
 <ul class="simple">
-<li>Add <code class="docutils literal"><span class="pre">row_reset</span></code> and <code class="docutils literal"><span class="pre">row_sep</span></code> helper methods to <code class="docutils literal"><span class="pre">FancyStringifier</span></code>, <code class="docutils literal"><span class="pre">FancyLogger</span></code>, and <code class="docutils literal"><span class="pre">FancyPrinter</span></code> classes</li>
+<li>Add <code class="docutils literal"><span class="pre">row_reset</span></code> and <code class="docutils literal"><span class="pre">row_sep</span></code> helper methods to <code class="docutils literal"><span class="pre">FancyStringifier</span></code>, <code class="docutils literal"><span class="pre">FancyLogger</span></code>, and <code class="docutils literal"><span class="pre">FancyPrinter</span></code> classes.</li>
 </ul>
 <p><strong>Updates</strong></p>
 <ul class="simple">
 <li>Update <code class="docutils literal"><span class="pre">download</span></code> method in <code class="docutils literal"><span class="pre">RemoteFile</span></code> to be more robust when encounter SSL problems.</li>
 <li>Update <code class="docutils literal"><span class="pre">AppParameterContainer</span></code> to handle <code class="docutils literal"><span class="pre">FEATURE_PROCESSING_CHAIN</span></code>, <code class="docutils literal"><span class="pre">DATA_PROCESSING_CHAIN</span></code>.</li>
 <li>Update <code class="docutils literal"><span class="pre">filter</span></code> method in <code class="docutils literal"><span class="pre">MetaDataContainer</span></code> to accept <code class="docutils literal"><span class="pre">source_label</span></code> and <code class="docutils literal"><span class="pre">source_label_list</span></code> parameters.</li>
-<li>Update <code class="docutils literal"><span class="pre">DCASE2018_Task5_DevelopmentSet</span></code></li>
+<li>Update <code class="docutils literal"><span class="pre">DCASE2018_Task5_DevelopmentSet</span></code>.</li>
 </ul>
 <p><strong>Bug fixes</strong></p>
 <ul class="simple">
 <li>Fix <code class="docutils literal"><span class="pre">construct_path</span></code> method in <code class="docutils literal"><span class="pre">ApplicationPaths</span></code> to work in Windows as well.</li>
-<li>Fix path creation in <code class="docutils literal"><span class="pre">AppParameterContainer</span></code></li>
+<li>Fix path creation in <code class="docutils literal"><span class="pre">AppParameterContainer</span></code>.</li>
 </ul>
 </div>
 <div class="section" id="v0-1-9">
 <h2>v0.1.9<a class="headerlink" href="#v0-1-9" title="Permalink to this headline">¶</a></h2>
 <p><strong>New features</strong></p>
 <ul class="simple">
-<li>Add new processors <code class="docutils literal"><span class="pre">FeatureReadingProcessor</span></code>, <code class="docutils literal"><span class="pre">DataShapingProcessor</span></code>, <code class="docutils literal"><span class="pre">RepositoryAggregationProcessor</span></code>, <code class="docutils literal"><span class="pre">RepositorySequencingProcessor</span></code>, and  <code class="docutils literal"><span class="pre">RepositoryToMatrixProcessor</span></code></li>
-<li>Add extract method to <code class="docutils literal"><span class="pre">SpectralFeatureExtractor</span></code></li>
-<li>Add automatic conversion of numeric fields when loading CSV data to <code class="docutils literal"><span class="pre">ListDictContainer</span></code></li>
-<li>Add filter and get_field_unique methods to <code class="docutils literal"><span class="pre">ListDictContainer</span></code></li>
-<li>Add MP4 to valid audio formats for <code class="docutils literal"><span class="pre">AudioContainer</span></code></li>
-<li>Add general path modification method (<code class="docutils literal"><span class="pre">Path.modify</span></code>)</li>
-<li>Add Keras profile <code class="docutils literal"><span class="pre">cuda0_fast</span></code></li>
-<li>Add Keras utility to create optimizer instance (<em class="xref py py-obj">create_optimizer</em>)</li>
-<li>Add <code class="docutils literal"><span class="pre">DCASE2018_Task5_DevelopmentSet</span></code> and <code class="docutils literal"><span class="pre">DCASE2013_Scenes_EvaluationSet</span></code> datasets</li>
-<li>Add <code class="docutils literal"><span class="pre">DataMatrix4DContainer</span></code></li>
-<li>Add <code class="docutils literal"><span class="pre">plot`</span> <span class="pre">method</span> <span class="pre">to</span> <span class="pre">``DataMatrix3DContainer</span></code></li>
-<li>Add support for a new annotation format for tags [filename][tab][tags] in <code class="docutils literal"><span class="pre">MetaDataContainer</span></code></li>
-<li>Add zero padding to <code class="docutils literal"><span class="pre">Sequencer</span></code></li>
-<li>Add header field override in <em class="xref py py-obj">load</em> method of <code class="docutils literal"><span class="pre">MetaDataContainer</span></code></li>
-<li>Add support for new compressed audio formats (OGG, MP3) in <code class="docutils literal"><span class="pre">AudioContainer</span></code></li>
-<li>Add <code class="docutils literal"><span class="pre">segments</span></code> method in <code class="docutils literal"><span class="pre">AudioContainer</span></code> to split signal into non-overlapping segments with optionally skipped regions</li>
-<li>Add <code class="docutils literal"><span class="pre">pad</span></code> method in <code class="docutils literal"><span class="pre">AudioContainer</span></code> to pad signal into given length</li>
-<li>Add <code class="docutils literal"><span class="pre">compress</span></code> method in <code class="docutils literal"><span class="pre">PackageMixin</span></code></li>
-<li>Add <code class="docutils literal"><span class="pre">Package</span></code> class to handle local compressed file packages</li>
-<li>Add <code class="docutils literal"><span class="pre">change_axis</span></code> method to <code class="docutils literal"><span class="pre">DataMatrix2DContainer</span></code>, <code class="docutils literal"><span class="pre">DataMatrix3DContainer</span></code>, and <code class="docutils literal"><span class="pre">DataMatrix4DContainer</span></code></li>
-<li>Add <code class="docutils literal"><span class="pre">KerasDataSequence</span></code> class for data generation through processing chain</li>
-<li>Add support for data and meta processing chains to <code class="docutils literal"><span class="pre">DCASEAppParameterContainer</span></code></li>
-<li>Add <code class="docutils literal"><span class="pre">many_hot</span></code> method in <code class="docutils literal"><span class="pre">DecisionEncoder</span></code></li>
+<li>Add new processors <code class="docutils literal"><span class="pre">FeatureReadingProcessor</span></code>, <code class="docutils literal"><span class="pre">DataShapingProcessor</span></code>, <code class="docutils literal"><span class="pre">RepositoryAggregationProcessor</span></code>, <code class="docutils literal"><span class="pre">RepositorySequencingProcessor</span></code>, and  <code class="docutils literal"><span class="pre">RepositoryToMatrixProcessor</span></code>.</li>
+<li>Add extract method to <code class="docutils literal"><span class="pre">SpectralFeatureExtractor</span></code>.</li>
+<li>Add automatic conversion of numeric fields when loading CSV data to <code class="docutils literal"><span class="pre">ListDictContainer</span></code>.</li>
+<li>Add filter and get_field_unique methods to <code class="docutils literal"><span class="pre">ListDictContainer</span></code>.</li>
+<li>Add MP4 to valid audio formats for <code class="docutils literal"><span class="pre">AudioContainer</span></code>.</li>
+<li>Add general path modification method (<code class="docutils literal"><span class="pre">Path.modify</span></code>).</li>
+<li>Add Keras profile <code class="docutils literal"><span class="pre">cuda0_fast</span></code>.</li>
+<li>Add Keras utility to create optimizer instance (<em class="xref py py-obj">create_optimizer</em>).</li>
+<li>Add <code class="docutils literal"><span class="pre">DCASE2018_Task5_DevelopmentSet</span></code> and <code class="docutils literal"><span class="pre">DCASE2013_Scenes_EvaluationSet</span></code> datasets.</li>
+<li>Add <code class="docutils literal"><span class="pre">DataMatrix4DContainer</span></code>.</li>
+<li>Add <code class="docutils literal"><span class="pre">plot`</span> <span class="pre">method</span> <span class="pre">to</span> <span class="pre">``DataMatrix3DContainer</span></code>.</li>
+<li>Add support for a new annotation format for tags [filename][tab][tags] in <code class="docutils literal"><span class="pre">MetaDataContainer</span></code>.</li>
+<li>Add zero padding to <code class="docutils literal"><span class="pre">Sequencer</span></code>.</li>
+<li>Add header field override in <em class="xref py py-obj">load</em> method of <code class="docutils literal"><span class="pre">MetaDataContainer</span></code>.</li>
+<li>Add support for new compressed audio formats (OGG, MP3) in <code class="docutils literal"><span class="pre">AudioContainer</span></code>.</li>
+<li>Add <code class="docutils literal"><span class="pre">segments</span></code> method in <code class="docutils literal"><span class="pre">AudioContainer</span></code> to split signal into non-overlapping segments with optionally skipped regions.</li>
+<li>Add <code class="docutils literal"><span class="pre">pad</span></code> method in <code class="docutils literal"><span class="pre">AudioContainer</span></code> to pad signal into given length.</li>
+<li>Add <code class="docutils literal"><span class="pre">compress</span></code> method in <code class="docutils literal"><span class="pre">PackageMixin</span></code>.</li>
+<li>Add <code class="docutils literal"><span class="pre">Package</span></code> class to handle local compressed file packages.</li>
+<li>Add <code class="docutils literal"><span class="pre">change_axis</span></code> method to <code class="docutils literal"><span class="pre">DataMatrix2DContainer</span></code>, <code class="docutils literal"><span class="pre">DataMatrix3DContainer</span></code>, and <code class="docutils literal"><span class="pre">DataMatrix4DContainer</span></code>.</li>
+<li>Add <code class="docutils literal"><span class="pre">KerasDataSequence</span></code> class for data generation through processing chain.</li>
+<li>Add support for data and meta processing chains to <code class="docutils literal"><span class="pre">DCASEAppParameterContainer</span></code>.</li>
+<li>Add <code class="docutils literal"><span class="pre">many_hot</span></code> method in <code class="docutils literal"><span class="pre">DecisionEncoder</span></code>.</li>
 </ul>
 <p><strong>Updates</strong></p>
 <ul class="simple">
-<li>Update <code class="docutils literal"><span class="pre">TUTRareSoundEvents_2017_DevelopmentSet</span></code> and <code class="docutils literal"><span class="pre">TUTRareSoundEvents_2017_EvaluationSet</span></code> datasets</li>
-<li>Update Keras utility <code class="docutils literal"><span class="pre">model_summary_string</span></code> to use by default standard method from Keras</li>
-<li>Update <code class="docutils literal"><span class="pre">FeatureRepository</span></code> API to be aligned with Container classes</li>
-<li>Update <code class="docutils literal"><span class="pre">Sequencer</span></code>, <code class="docutils literal"><span class="pre">SequencingProcessor</span></code>, and <code class="docutils literal"><span class="pre">RepositorySequencingProcessor</span></code> API</li>
-<li>Update <code class="docutils literal"><span class="pre">AppParameterContainer</span></code> to allow change of active set even after <code class="docutils literal"><span class="pre">process</span></code> method has been called</li>
-<li>Update mechanism to store meta information about chain item when data is processed using processing chain</li>
+<li>Update <code class="docutils literal"><span class="pre">TUTRareSoundEvents_2017_DevelopmentSet</span></code> and <code class="docutils literal"><span class="pre">TUTRareSoundEvents_2017_EvaluationSet</span></code> datasets.</li>
+<li>Update Keras utility <code class="docutils literal"><span class="pre">model_summary_string</span></code> to use by default standard method from Keras.</li>
+<li>Update <code class="docutils literal"><span class="pre">FeatureRepository</span></code> API to be aligned with Container classes.</li>
+<li>Update <code class="docutils literal"><span class="pre">Sequencer</span></code>, <code class="docutils literal"><span class="pre">SequencingProcessor</span></code>, and <code class="docutils literal"><span class="pre">RepositorySequencingProcessor</span></code> API.</li>
+<li>Update <code class="docutils literal"><span class="pre">AppParameterContainer</span></code> to allow change of active set even after <code class="docutils literal"><span class="pre">process</span></code> method has been called.</li>
+<li>Update mechanism to store meta information about chain item when data is processed using processing chain.</li>
 </ul>
 <p><strong>Bug fixes</strong></p>
 <ul class="simple">
-<li>Fix <code class="docutils literal"><span class="pre">save</span></code> method in <code class="docutils literal"><span class="pre">MetaDataContainer</span></code> when saving with tags in CSV format</li>
-<li>Fix many methods to give more appropriate error messages</li>
+<li>Fix <code class="docutils literal"><span class="pre">save</span></code> method in <code class="docutils literal"><span class="pre">MetaDataContainer</span></code> when saving with tags in CSV format.</li>
+<li>Fix many methods to give more appropriate error messages.</li>
 </ul>
 <p>API changes and compatibility</p>
 <ul class="simple">
@@ -1625,51 +1675,51 @@
 <h2>v0.1.8<a class="headerlink" href="#v0-1-8" title="Permalink to this headline">¶</a></h2>
 <p><strong>New features</strong></p>
 <ul class="simple">
-<li>Add new formats for <code class="docutils literal"><span class="pre">MetaDataContainer</span></code> (cpickle, CSV)</li>
-<li>Add forced file formats when reading and saving containers</li>
-<li>Add Keras setup function</li>
-<li>Add frame splitting method into <code class="docutils literal"><span class="pre">AudioContainer</span></code></li>
+<li>Add new formats for <code class="docutils literal"><span class="pre">MetaDataContainer</span></code> (cpickle, CSV).</li>
+<li>Add forced file formats when reading and saving containers.</li>
+<li>Add Keras setup function.</li>
+<li>Add frame splitting method into <code class="docutils literal"><span class="pre">AudioContainer</span></code>.</li>
 </ul>
 <p><strong>Bug fixes</strong></p>
 <ul class="simple">
-<li>Fix unicode string support when printing container information</li>
-<li>Fix data contamination through data references while manipulating data</li>
-<li>Some minor bug fixes</li>
+<li>Fix unicode string support when printing container information.</li>
+<li>Fix data contamination through data references while manipulating data.</li>
+<li>Some minor bug fixes.</li>
 </ul>
 </div>
 <div class="section" id="v0-1-7">
 <h2>v0.1.7<a class="headerlink" href="#v0-1-7" title="Permalink to this headline">¶</a></h2>
 <p><strong>New features</strong></p>
 <ul class="simple">
-<li>Add intersection method for <code class="docutils literal"><span class="pre">MetaDataContainer</span></code></li>
+<li>Add intersection method for <code class="docutils literal"><span class="pre">MetaDataContainer</span></code>.</li>
 </ul>
 <p><strong>Updates</strong></p>
 <ul class="simple">
-<li>Update dataset class API (e.g. copy returned metadata prevent accidental manipulation, uniform method names)</li>
+<li>Update dataset class API (e.g. copy returned metadata prevent accidental manipulation, uniform method names).</li>
 </ul>
 <p><strong>Bug fixes</strong></p>
 <ul class="simple">
 <li>Fix data sequencing when overlapping sequencing is used.</li>
-<li>Fix datasets <code class="docutils literal"><span class="pre">CHiMEHome_DomesticAudioTag_DevelopmentSet</span></code>, <code class="docutils literal"><span class="pre">TUTAcousticScenes_2017_EvaluationSet</span></code>, and <code class="docutils literal"><span class="pre">TUTSoundEvents_2017_EvaluationSet</span></code></li>
+<li>Fix datasets <code class="docutils literal"><span class="pre">CHiMEHome_DomesticAudioTag_DevelopmentSet</span></code>, <code class="docutils literal"><span class="pre">TUTAcousticScenes_2017_EvaluationSet</span></code>, and <code class="docutils literal"><span class="pre">TUTSoundEvents_2017_EvaluationSet</span></code>.</li>
 </ul>
 </div>
 <div class="section" id="v0-1-6">
 <h2>v0.1.6<a class="headerlink" href="#v0-1-6" title="Permalink to this headline">¶</a></h2>
 <p><strong>New features</strong></p>
 <ul class="simple">
-<li>Add <code class="docutils literal"><span class="pre">CHiMEHome_DomesticAudioTag_EvaluationSet</span></code> dataset</li>
+<li>Add <code class="docutils literal"><span class="pre">CHiMEHome_DomesticAudioTag_EvaluationSet</span></code> dataset.</li>
 </ul>
 <p><strong>Updates</strong></p>
 <ul class="simple">
-<li>Update example audio to be 16-bit audio file in wav-format instead of FLAC used earlier</li>
-<li>Update <code class="docutils literal"><span class="pre">ProbabilityContainer</span></code> API to be more compatible with <code class="docutils literal"><span class="pre">MetaDataContainer</span></code></li>
-<li>Update <code class="docutils literal"><span class="pre">MetaDataItem</span></code> to be compatible with field naming used previously in DCASE baseline systems</li>
-<li>Update ui utilities</li>
+<li>Update example audio to be 16-bit audio file in wav-format instead of FLAC used earlier.</li>
+<li>Update <code class="docutils literal"><span class="pre">ProbabilityContainer</span></code> API to be more compatible with <code class="docutils literal"><span class="pre">MetaDataContainer</span></code>.</li>
+<li>Update <code class="docutils literal"><span class="pre">MetaDataItem</span></code> to be compatible with field naming used previously in DCASE baseline systems.</li>
+<li>Update ui utilities.</li>
 </ul>
 <p><strong>Bug fixes</strong></p>
 <ul class="simple">
-<li>Fix audio reading when target sampling rate is not set</li>
-<li>Some minor bug fixes</li>
+<li>Fix audio reading when target sampling rate is not set.</li>
+<li>Some minor bug fixes.</li>
 </ul>
 </div>
 <div class="section" id="v0-1-5">

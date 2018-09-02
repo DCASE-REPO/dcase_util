@@ -21,6 +21,8 @@ dcase_util.ui.FancyLogger
       ~FancyLogger.info
       ~FancyLogger.line
       ~FancyLogger.row
+      ~FancyLogger.row_reset
+      ~FancyLogger.row_sep
       ~FancyLogger.section_header
       ~FancyLogger.sep
       ~FancyLogger.sub_header

@@ -1,6 +1,0 @@
-dcase_util.tools.SubmissionChecker.parameter_file
-=================================================
-
-.. currentmodule:: dcase_util.tools
-
-.. automethod:: SubmissionChecker.parameter_file

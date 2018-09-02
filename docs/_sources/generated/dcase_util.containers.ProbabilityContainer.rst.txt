@@ -15,6 +15,7 @@ dcase_util.containers.ProbabilityContainer
    
       ~ProbabilityContainer.__init__
       ~ProbabilityContainer.append
+      ~ProbabilityContainer.as_matrix
       ~ProbabilityContainer.count
       ~ProbabilityContainer.delimiter
       ~ProbabilityContainer.detect_file_format
@@ -50,8 +51,11 @@ dcase_util.containers.ProbabilityContainer
 
    .. autosummary::
    
+      ~ProbabilityContainer.bytes
       ~ProbabilityContainer.logger
+      ~ProbabilityContainer.md5
       ~ProbabilityContainer.unique_files
+      ~ProbabilityContainer.unique_indices
       ~ProbabilityContainer.unique_labels
       ~ProbabilityContainer.valid_formats
    

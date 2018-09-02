@@ -45,7 +45,9 @@ dcase_util.containers.TextContainer
 
    .. autosummary::
    
+      ~TextContainer.bytes
       ~TextContainer.logger
+      ~TextContainer.md5
       ~TextContainer.valid_formats
    
    

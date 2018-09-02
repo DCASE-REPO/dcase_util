@@ -458,6 +458,8 @@
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.filter.html">dcase_util.containers.MetaDataContainer.filter</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.filter_time_segment.html">dcase_util.containers.MetaDataContainer.filter_time_segment</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.process_events.html">dcase_util.containers.MetaDataContainer.process_events</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.map_events.html">dcase_util.containers.MetaDataContainer.map_events</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.event_inactivity.html">dcase_util.containers.MetaDataContainer.event_inactivity</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.add_time.html">dcase_util.containers.MetaDataContainer.add_time</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.stats.html">dcase_util.containers.MetaDataContainer.stats</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.scene_stat_counts.html">dcase_util.containers.MetaDataContainer.scene_stat_counts</a></li>
@@ -522,7 +524,9 @@
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ProbabilityContainer.append.html">dcase_util.containers.ProbabilityContainer.append</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ProbabilityContainer.unique_files.html">dcase_util.containers.ProbabilityContainer.unique_files</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ProbabilityContainer.unique_labels.html">dcase_util.containers.ProbabilityContainer.unique_labels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ProbabilityContainer.unique_indices.html">dcase_util.containers.ProbabilityContainer.unique_indices</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ProbabilityContainer.filter.html">dcase_util.containers.ProbabilityContainer.filter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ProbabilityContainer.as_matrix.html">dcase_util.containers.ProbabilityContainer.as_matrix</a></li>
 </ul>
 </li>
 </ul>
@@ -589,6 +593,15 @@
 <li class="toctree-l3"><a class="reference internal" href="../data.html#eventrollencoder">EventRollEncoder</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.data.EventRollEncoder.html">dcase_util.data.EventRollEncoder</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.data.EventRollEncoder.encode.html">dcase_util.data.EventRollEncoder.encode</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../data.html#labelmatrixencoder">LabelMatrixEncoder</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.LabelMatrixEncoder.html">dcase_util.data.LabelMatrixEncoder</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../data.html#onehotlabelencoder">OneHotLabelEncoder</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.OneHotLabelEncoder.html">dcase_util.data.OneHotLabelEncoder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.OneHotLabelEncoder.encode.html">dcase_util.data.OneHotLabelEncoder.encode</a></li>
 </ul>
 </li>
 </ul>
@@ -747,6 +760,7 @@
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.AcousticSceneDataset.html">dcase_util.datasets.AcousticSceneDataset</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTAcousticScenes_2017_DevelopmentSet.html">dcase_util.datasets.TUTAcousticScenes_2017_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTAcousticScenes_2017_EvaluationSet.html">dcase_util.datasets.TUTAcousticScenes_2017_EvaluationSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTAcousticScenes_2017_FeaturesSet.html">dcase_util.datasets.TUTAcousticScenes_2017_FeaturesSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet.html">dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet.html">dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTUrbanAcousticScenes_2018_DevelopmentSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_DevelopmentSet</a></li>
@@ -1081,6 +1095,11 @@
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.EventRollEncodingProcessor.process.html">dcase_util.processors.EventRollEncodingProcessor.process</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../processors.html#onehotlabelencodingprocessor">OneHotLabelEncodingProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.OneHotLabelEncodingProcessor.html">dcase_util.processors.OneHotLabelEncodingProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.OneHotLabelEncodingProcessor.process.html">dcase_util.processors.OneHotLabelEncodingProcessor.process</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../processors.html#datashapingprocessor">DataShapingProcessor</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.DataShapingProcessor.html">dcase_util.processors.DataShapingProcessor</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.DataShapingProcessor.process.html">dcase_util.processors.DataShapingProcessor.process</a></li>
@@ -1362,13 +1381,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../tools.html#submissionchecker">SubmissionChecker</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.tools.SubmissionChecker.html">dcase_util.tools.SubmissionChecker</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.tools.SubmissionChecker.process.html">dcase_util.tools.SubmissionChecker.process</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dcase_util.tools.SubmissionChecker.parameter_file.html">dcase_util.tools.SubmissionChecker.parameter_file</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dcase_util.tools.SubmissionChecker.system_output_file.html">dcase_util.tools.SubmissionChecker.system_output_file</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dcase_util.tools.SubmissionChecker.main_structure.html">dcase_util.tools.SubmissionChecker.main_structure</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dcase_util.tools.SubmissionChecker.submission_info.html">dcase_util.tools.SubmissionChecker.submission_info</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dcase_util.tools.SubmissionChecker.system_meta.html">dcase_util.tools.SubmissionChecker.system_meta</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dcase_util.tools.SubmissionChecker.system_description.html">dcase_util.tools.SubmissionChecker.system_description</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dcase_util.tools.SubmissionChecker.system_output.html">dcase_util.tools.SubmissionChecker.system_output</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../tools.html#bibtexprocessor">BibtexProcessor</a><ul>
@@ -1390,6 +1402,8 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-5">v0.2.5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-4">v0.2.4</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-3">v0.2.3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-2">v0.2.2</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-1">v0.2.1</a></li>
@@ -1509,59 +1523,65 @@
 <tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">empty</span></code>()</td>
 <td>Check if file is empty</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="dcase_util.containers.MetaDataContainer.event_stat_counts.html#dcase_util.containers.MetaDataContainer.event_stat_counts" title="dcase_util.containers.MetaDataContainer.event_stat_counts"><code class="xref py py-obj docutils literal"><span class="pre">event_stat_counts</span></code></a>()</td>
+<tr class="row-odd"><td><a class="reference internal" href="dcase_util.containers.MetaDataContainer.event_inactivity.html#dcase_util.containers.MetaDataContainer.event_inactivity" title="dcase_util.containers.MetaDataContainer.event_inactivity"><code class="xref py py-obj docutils literal"><span class="pre">event_inactivity</span></code></a>([event_label,&nbsp;...])</td>
+<td>Get inactivity segments between events as event list</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="dcase_util.containers.MetaDataContainer.event_stat_counts.html#dcase_util.containers.MetaDataContainer.event_stat_counts" title="dcase_util.containers.MetaDataContainer.event_stat_counts"><code class="xref py py-obj docutils literal"><span class="pre">event_stat_counts</span></code></a>()</td>
 <td>Event count statistics</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">exists</span></code>()</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">exists</span></code>()</td>
 <td>Checks that file exists</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">extend</span></code></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">extend</span></code></td>
 <td>L.extend(iterable) &#8211; extend list by appending elements from the iterable</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="dcase_util.containers.MetaDataContainer.filter.html#dcase_util.containers.MetaDataContainer.filter" title="dcase_util.containers.MetaDataContainer.filter"><code class="xref py py-obj docutils literal"><span class="pre">filter</span></code></a>([filename,&nbsp;file_list,&nbsp;scene_label,&nbsp;...])</td>
+<tr class="row-odd"><td><a class="reference internal" href="dcase_util.containers.MetaDataContainer.filter.html#dcase_util.containers.MetaDataContainer.filter" title="dcase_util.containers.MetaDataContainer.filter"><code class="xref py py-obj docutils literal"><span class="pre">filter</span></code></a>([filename,&nbsp;file_list,&nbsp;scene_label,&nbsp;...])</td>
 <td>Filter content</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="dcase_util.containers.MetaDataContainer.filter_time_segment.html#dcase_util.containers.MetaDataContainer.filter_time_segment" title="dcase_util.containers.MetaDataContainer.filter_time_segment"><code class="xref py py-obj docutils literal"><span class="pre">filter_time_segment</span></code></a>([start,&nbsp;stop,&nbsp;duration,&nbsp;...])</td>
+<tr class="row-even"><td><a class="reference internal" href="dcase_util.containers.MetaDataContainer.filter_time_segment.html#dcase_util.containers.MetaDataContainer.filter_time_segment" title="dcase_util.containers.MetaDataContainer.filter_time_segment"><code class="xref py py-obj docutils literal"><span class="pre">filter_time_segment</span></code></a>([start,&nbsp;stop,&nbsp;duration,&nbsp;...])</td>
 <td>Filter time segment</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">get_dump_content</span></code>(data)</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">get_dump_content</span></code>(data)</td>
 <td>Clean internal content for saving</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">get_field</span></code>(field_name[,&nbsp;skip_items_without_field])</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">get_field</span></code>(field_name[,&nbsp;skip_items_without_field])</td>
 <td>Get all data from field.</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">get_field_unique</span></code>(field_name)</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">get_field_unique</span></code>(field_name)</td>
 <td>Get unique data from field.</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">get_file_information</span></code>()</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">get_file_information</span></code>()</td>
 <td>Get file information, filename</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="dcase_util.containers.MetaDataContainer.get_string.html#dcase_util.containers.MetaDataContainer.get_string" title="dcase_util.containers.MetaDataContainer.get_string"><code class="xref py py-obj docutils literal"><span class="pre">get_string</span></code></a>([show_data,&nbsp;show_stats])</td>
+<tr class="row-odd"><td><a class="reference internal" href="dcase_util.containers.MetaDataContainer.get_string.html#dcase_util.containers.MetaDataContainer.get_string" title="dcase_util.containers.MetaDataContainer.get_string"><code class="xref py py-obj docutils literal"><span class="pre">get_string</span></code></a>([show_data,&nbsp;show_stats])</td>
 <td>Get content in string format</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">index</span></code>((value,&nbsp;[start,&nbsp;...)</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">index</span></code>((value,&nbsp;[start,&nbsp;...)</td>
 <td>Raises ValueError if the value is not present.</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">insert</span></code></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">insert</span></code></td>
 <td>L.insert(index, object) &#8211; insert object before index</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="dcase_util.containers.MetaDataContainer.intersection.html#dcase_util.containers.MetaDataContainer.intersection" title="dcase_util.containers.MetaDataContainer.intersection"><code class="xref py py-obj docutils literal"><span class="pre">intersection</span></code></a>(second_metadata)</td>
+<tr class="row-even"><td><a class="reference internal" href="dcase_util.containers.MetaDataContainer.intersection.html#dcase_util.containers.MetaDataContainer.intersection" title="dcase_util.containers.MetaDataContainer.intersection"><code class="xref py py-obj docutils literal"><span class="pre">intersection</span></code></a>(second_metadata)</td>
 <td>Intersection of two meta containers</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="dcase_util.containers.MetaDataContainer.intersection_report.html#dcase_util.containers.MetaDataContainer.intersection_report" title="dcase_util.containers.MetaDataContainer.intersection_report"><code class="xref py py-obj docutils literal"><span class="pre">intersection_report</span></code></a>(second_metadata)</td>
+<tr class="row-odd"><td><a class="reference internal" href="dcase_util.containers.MetaDataContainer.intersection_report.html#dcase_util.containers.MetaDataContainer.intersection_report" title="dcase_util.containers.MetaDataContainer.intersection_report"><code class="xref py py-obj docutils literal"><span class="pre">intersection_report</span></code></a>(second_metadata)</td>
 <td>Intersection report for two meta containers</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">is_package</span></code>([filename])</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">is_package</span></code>([filename])</td>
 <td>Determine if the file is compressed package.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="dcase_util.containers.MetaDataContainer.load.html#dcase_util.containers.MetaDataContainer.load" title="dcase_util.containers.MetaDataContainer.load"><code class="xref py py-obj docutils literal"><span class="pre">load</span></code></a>([filename,&nbsp;fields,&nbsp;csv_header,&nbsp;...])</td>
+<tr class="row-odd"><td><a class="reference internal" href="dcase_util.containers.MetaDataContainer.load.html#dcase_util.containers.MetaDataContainer.load" title="dcase_util.containers.MetaDataContainer.load"><code class="xref py py-obj docutils literal"><span class="pre">load</span></code></a>([filename,&nbsp;fields,&nbsp;csv_header,&nbsp;...])</td>
 <td>Load event list from delimited text file (csv-formatted)</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="dcase_util.containers.MetaDataContainer.log.html#dcase_util.containers.MetaDataContainer.log" title="dcase_util.containers.MetaDataContainer.log"><code class="xref py py-obj docutils literal"><span class="pre">log</span></code></a>([level,&nbsp;show_data,&nbsp;show_stats])</td>
+<tr class="row-even"><td><a class="reference internal" href="dcase_util.containers.MetaDataContainer.log.html#dcase_util.containers.MetaDataContainer.log" title="dcase_util.containers.MetaDataContainer.log"><code class="xref py py-obj docutils literal"><span class="pre">log</span></code></a>([level,&nbsp;show_data,&nbsp;show_stats])</td>
 <td>Log container content</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="dcase_util.containers.MetaDataContainer.log_all.html#dcase_util.containers.MetaDataContainer.log_all" title="dcase_util.containers.MetaDataContainer.log_all"><code class="xref py py-obj docutils literal"><span class="pre">log_all</span></code></a>([level])</td>
+<tr class="row-odd"><td><a class="reference internal" href="dcase_util.containers.MetaDataContainer.log_all.html#dcase_util.containers.MetaDataContainer.log_all" title="dcase_util.containers.MetaDataContainer.log_all"><code class="xref py py-obj docutils literal"><span class="pre">log_all</span></code></a>([level])</td>
 <td>Log container content with all meta data items.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="dcase_util.containers.MetaDataContainer.map_events.html#dcase_util.containers.MetaDataContainer.map_events" title="dcase_util.containers.MetaDataContainer.map_events"><code class="xref py py-obj docutils literal"><span class="pre">map_events</span></code></a>(target_event_label[,&nbsp;...])</td>
+<td>Map events with varying event labels into single target event label</td>
 </tr>
 <tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">pop</span></code>(...)</td>
 <td>Raises IndexError if list is empty or index is out of range.</td>
@@ -1623,23 +1643,29 @@
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="dcase_util.containers.MetaDataContainer.event_count.html#dcase_util.containers.MetaDataContainer.event_count" title="dcase_util.containers.MetaDataContainer.event_count"><code class="xref py py-obj docutils literal"><span class="pre">event_count</span></code></a></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">bytes</span></code></td>
+<td>File size in bytes</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="dcase_util.containers.MetaDataContainer.event_count.html#dcase_util.containers.MetaDataContainer.event_count" title="dcase_util.containers.MetaDataContainer.event_count"><code class="xref py py-obj docutils literal"><span class="pre">event_count</span></code></a></td>
 <td>Number of events</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="dcase_util.containers.MetaDataContainer.event_label_count.html#dcase_util.containers.MetaDataContainer.event_label_count" title="dcase_util.containers.MetaDataContainer.event_label_count"><code class="xref py py-obj docutils literal"><span class="pre">event_label_count</span></code></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="dcase_util.containers.MetaDataContainer.event_label_count.html#dcase_util.containers.MetaDataContainer.event_label_count" title="dcase_util.containers.MetaDataContainer.event_label_count"><code class="xref py py-obj docutils literal"><span class="pre">event_label_count</span></code></a></td>
 <td>Number of unique event labels</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="dcase_util.containers.MetaDataContainer.file_count.html#dcase_util.containers.MetaDataContainer.file_count" title="dcase_util.containers.MetaDataContainer.file_count"><code class="xref py py-obj docutils literal"><span class="pre">file_count</span></code></a></td>
+<tr class="row-even"><td><a class="reference internal" href="dcase_util.containers.MetaDataContainer.file_count.html#dcase_util.containers.MetaDataContainer.file_count" title="dcase_util.containers.MetaDataContainer.file_count"><code class="xref py py-obj docutils literal"><span class="pre">file_count</span></code></a></td>
 <td>Number of files</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="dcase_util.containers.MetaDataContainer.identifier_count.html#dcase_util.containers.MetaDataContainer.identifier_count" title="dcase_util.containers.MetaDataContainer.identifier_count"><code class="xref py py-obj docutils literal"><span class="pre">identifier_count</span></code></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="dcase_util.containers.MetaDataContainer.identifier_count.html#dcase_util.containers.MetaDataContainer.identifier_count" title="dcase_util.containers.MetaDataContainer.identifier_count"><code class="xref py py-obj docutils literal"><span class="pre">identifier_count</span></code></a></td>
 <td>Number of unique identifiers</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">logger</span></code></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">logger</span></code></td>
 <td>Logger instance</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="dcase_util.containers.MetaDataContainer.max_offset.html#dcase_util.containers.MetaDataContainer.max_offset" title="dcase_util.containers.MetaDataContainer.max_offset"><code class="xref py py-obj docutils literal"><span class="pre">max_offset</span></code></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="dcase_util.containers.MetaDataContainer.max_offset.html#dcase_util.containers.MetaDataContainer.max_offset" title="dcase_util.containers.MetaDataContainer.max_offset"><code class="xref py py-obj docutils literal"><span class="pre">max_offset</span></code></a></td>
 <td>Find the offset (end-time) of last event</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">md5</span></code></td>
+<td>Checksum for file.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="dcase_util.containers.MetaDataContainer.scene_label_count.html#dcase_util.containers.MetaDataContainer.scene_label_count" title="dcase_util.containers.MetaDataContainer.scene_label_count"><code class="xref py py-obj docutils literal"><span class="pre">scene_label_count</span></code></a></td>
 <td>Number of unique scene labels</td>
@@ -1659,10 +1685,13 @@
 <tr class="row-even"><td><a class="reference internal" href="dcase_util.containers.MetaDataContainer.unique_scene_labels.html#dcase_util.containers.MetaDataContainer.unique_scene_labels" title="dcase_util.containers.MetaDataContainer.unique_scene_labels"><code class="xref py py-obj docutils literal"><span class="pre">unique_scene_labels</span></code></a></td>
 <td>Unique scene labels</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="dcase_util.containers.MetaDataContainer.unique_tags.html#dcase_util.containers.MetaDataContainer.unique_tags" title="dcase_util.containers.MetaDataContainer.unique_tags"><code class="xref py py-obj docutils literal"><span class="pre">unique_tags</span></code></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="dcase_util.containers.MetaDataContainer.unique_source_labels.html#dcase_util.containers.MetaDataContainer.unique_source_labels" title="dcase_util.containers.MetaDataContainer.unique_source_labels"><code class="xref py py-obj docutils literal"><span class="pre">unique_source_labels</span></code></a></td>
+<td>Unique source labels</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="dcase_util.containers.MetaDataContainer.unique_tags.html#dcase_util.containers.MetaDataContainer.unique_tags" title="dcase_util.containers.MetaDataContainer.unique_tags"><code class="xref py py-obj docutils literal"><span class="pre">unique_tags</span></code></a></td>
 <td>Unique tags</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">valid_formats</span></code></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">valid_formats</span></code></td>
 <td>Valid file formats</td>
 </tr>
 </tbody>

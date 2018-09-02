@@ -38,7 +38,9 @@ dcase_util.data.Normalizer
 
    .. autosummary::
    
+      ~Normalizer.bytes
       ~Normalizer.logger
+      ~Normalizer.md5
       ~Normalizer.mean
       ~Normalizer.std
       ~Normalizer.valid_formats
