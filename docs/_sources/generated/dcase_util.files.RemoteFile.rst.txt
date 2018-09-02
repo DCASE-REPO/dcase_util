@@ -68,10 +68,12 @@ dcase_util.files.RemoteFile
 
    .. autosummary::
    
+      ~RemoteFile.bytes
       ~RemoteFile.local_bytes
       ~RemoteFile.local_md5
       ~RemoteFile.local_modified
       ~RemoteFile.logger
+      ~RemoteFile.md5
       ~RemoteFile.remote_bytes
       ~RemoteFile.remote_file
       ~RemoteFile.remote_modified

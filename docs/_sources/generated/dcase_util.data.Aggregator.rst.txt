@@ -35,7 +35,9 @@ dcase_util.data.Aggregator
 
    .. autosummary::
    
+      ~Aggregator.bytes
       ~Aggregator.logger
+      ~Aggregator.md5
       ~Aggregator.valid_formats
       ~Aggregator.valid_method
    

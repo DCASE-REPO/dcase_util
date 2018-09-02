@@ -1,6 +1,0 @@
-dcase_util.tools.SubmissionChecker.submission_info
-==================================================
-
-.. currentmodule:: dcase_util.tools
-
-.. automethod:: SubmissionChecker.submission_info

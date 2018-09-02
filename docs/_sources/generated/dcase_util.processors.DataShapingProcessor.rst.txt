@@ -36,8 +36,10 @@ dcase_util.processors.DataShapingProcessor
 
    .. autosummary::
    
+      ~DataShapingProcessor.bytes
       ~DataShapingProcessor.input_type
       ~DataShapingProcessor.logger
+      ~DataShapingProcessor.md5
       ~DataShapingProcessor.output_type
       ~DataShapingProcessor.valid_formats
    

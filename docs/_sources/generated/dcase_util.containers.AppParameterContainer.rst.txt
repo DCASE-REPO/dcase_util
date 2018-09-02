@@ -31,6 +31,7 @@ dcase_util.containers.AppParameterContainer
       ~AppParameterContainer.get_leaf_path_list
       ~AppParameterContainer.get_path
       ~AppParameterContainer.get_path_translated
+      ~AppParameterContainer.get_set
       ~AppParameterContainer.has_key
       ~AppParameterContainer.is_package
       ~AppParameterContainer.items
@@ -70,7 +71,9 @@ dcase_util.containers.AppParameterContainer
 
    .. autosummary::
    
+      ~AppParameterContainer.bytes
       ~AppParameterContainer.logger
+      ~AppParameterContainer.md5
       ~AppParameterContainer.valid_formats
    
    

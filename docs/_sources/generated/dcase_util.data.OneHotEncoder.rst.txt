@@ -45,12 +45,14 @@ dcase_util.data.OneHotEncoder
    .. autosummary::
    
       ~OneHotEncoder.T
+      ~OneHotEncoder.bytes
       ~OneHotEncoder.data
       ~OneHotEncoder.focus_start
       ~OneHotEncoder.focus_stop
       ~OneHotEncoder.frames
       ~OneHotEncoder.length
       ~OneHotEncoder.logger
+      ~OneHotEncoder.md5
       ~OneHotEncoder.shape
       ~OneHotEncoder.stats
       ~OneHotEncoder.valid_formats

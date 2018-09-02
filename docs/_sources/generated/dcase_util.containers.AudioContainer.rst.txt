@@ -47,6 +47,7 @@ dcase_util.containers.AudioContainer
 
    .. autosummary::
    
+      ~AudioContainer.bytes
       ~AudioContainer.channels
       ~AudioContainer.data
       ~AudioContainer.duration_ms
@@ -61,6 +62,7 @@ dcase_util.containers.AudioContainer
       ~AudioContainer.length
       ~AudioContainer.loaded
       ~AudioContainer.logger
+      ~AudioContainer.md5
       ~AudioContainer.shape
       ~AudioContainer.streams
       ~AudioContainer.valid_formats

@@ -36,8 +36,10 @@ dcase_util.processors.MetadataReadingProcessor
 
    .. autosummary::
    
+      ~MetadataReadingProcessor.bytes
       ~MetadataReadingProcessor.input_type
       ~MetadataReadingProcessor.logger
+      ~MetadataReadingProcessor.md5
       ~MetadataReadingProcessor.output_type
       ~MetadataReadingProcessor.valid_formats
    

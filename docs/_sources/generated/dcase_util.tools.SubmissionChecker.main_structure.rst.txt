@@ -1,6 +1,0 @@
-dcase_util.tools.SubmissionChecker.main_structure
-=================================================
-
-.. currentmodule:: dcase_util.tools
-
-.. automethod:: SubmissionChecker.main_structure

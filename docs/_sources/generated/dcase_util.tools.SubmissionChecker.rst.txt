@@ -22,17 +22,9 @@ dcase_util.tools.SubmissionChecker
       ~SubmissionChecker.is_package
       ~SubmissionChecker.load
       ~SubmissionChecker.log
-      ~SubmissionChecker.main_structure
-      ~SubmissionChecker.parameter_file
       ~SubmissionChecker.process
       ~SubmissionChecker.save
       ~SubmissionChecker.show
-      ~SubmissionChecker.submission_authors
-      ~SubmissionChecker.submission_info
-      ~SubmissionChecker.system_description
-      ~SubmissionChecker.system_meta
-      ~SubmissionChecker.system_output
-      ~SubmissionChecker.system_output_file
       ~SubmissionChecker.validate_format
    
    
@@ -43,7 +35,9 @@ dcase_util.tools.SubmissionChecker
 
    .. autosummary::
    
+      ~SubmissionChecker.bytes
       ~SubmissionChecker.logger
+      ~SubmissionChecker.md5
       ~SubmissionChecker.valid_formats
    
    

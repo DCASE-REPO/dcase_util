@@ -36,8 +36,10 @@ dcase_util.processors.AggregationProcessor
 
    .. autosummary::
    
+      ~AggregationProcessor.bytes
       ~AggregationProcessor.input_type
       ~AggregationProcessor.logger
+      ~AggregationProcessor.md5
       ~AggregationProcessor.output_type
       ~AggregationProcessor.valid_formats
    

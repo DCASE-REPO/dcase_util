@@ -36,8 +36,10 @@ dcase_util.processors.RepositorySequencingProcessor
 
    .. autosummary::
    
+      ~RepositorySequencingProcessor.bytes
       ~RepositorySequencingProcessor.input_type
       ~RepositorySequencingProcessor.logger
+      ~RepositorySequencingProcessor.md5
       ~RepositorySequencingProcessor.output_type
       ~RepositorySequencingProcessor.valid_formats
    

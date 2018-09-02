@@ -16,6 +16,7 @@ dcase_util.datasets.DCASE2018_Task5_EvaluationSet
       ~DCASE2018_Task5_EvaluationSet.__init__
       ~DCASE2018_Task5_EvaluationSet.absolute_to_relative_path
       ~DCASE2018_Task5_EvaluationSet.check_filelist
+      ~DCASE2018_Task5_EvaluationSet.check_metadata
       ~DCASE2018_Task5_EvaluationSet.dataset_bytes
       ~DCASE2018_Task5_EvaluationSet.dataset_size_on_disk
       ~DCASE2018_Task5_EvaluationSet.dataset_size_string

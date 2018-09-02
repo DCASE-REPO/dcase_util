@@ -54,6 +54,7 @@ dcase_util.containers.MetaDataItem
       ~MetaDataItem.offset
       ~MetaDataItem.onset
       ~MetaDataItem.scene_label
+      ~MetaDataItem.set_label
       ~MetaDataItem.source_label
       ~MetaDataItem.tags
    

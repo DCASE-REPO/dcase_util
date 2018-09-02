@@ -41,12 +41,14 @@ dcase_util.containers.DataArrayContainer
 
    .. autosummary::
    
+      ~DataArrayContainer.bytes
       ~DataArrayContainer.data
       ~DataArrayContainer.focus_start
       ~DataArrayContainer.focus_stop
       ~DataArrayContainer.frames
       ~DataArrayContainer.length
       ~DataArrayContainer.logger
+      ~DataArrayContainer.md5
       ~DataArrayContainer.shape
       ~DataArrayContainer.stats
       ~DataArrayContainer.valid_formats

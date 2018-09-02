@@ -60,7 +60,9 @@ dcase_util.containers.RepositoryContainer
 
    .. autosummary::
    
+      ~RepositoryContainer.bytes
       ~RepositoryContainer.logger
+      ~RepositoryContainer.md5
       ~RepositoryContainer.valid_formats
    
    

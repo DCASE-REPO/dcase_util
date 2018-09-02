@@ -36,8 +36,10 @@ dcase_util.processors.FeatureExtractorProcessor
 
    .. autosummary::
    
+      ~FeatureExtractorProcessor.bytes
       ~FeatureExtractorProcessor.input_type
       ~FeatureExtractorProcessor.logger
+      ~FeatureExtractorProcessor.md5
       ~FeatureExtractorProcessor.output_type
       ~FeatureExtractorProcessor.valid_formats
    

@@ -36,8 +36,10 @@ dcase_util.processors.NormalizationProcessor
 
    .. autosummary::
    
+      ~NormalizationProcessor.bytes
       ~NormalizationProcessor.input_type
       ~NormalizationProcessor.logger
+      ~NormalizationProcessor.md5
       ~NormalizationProcessor.output_type
       ~NormalizationProcessor.valid_formats
    

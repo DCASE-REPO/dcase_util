@@ -38,7 +38,9 @@ dcase_util.data.DecisionEncoder
 
    .. autosummary::
    
+      ~DecisionEncoder.bytes
       ~DecisionEncoder.logger
+      ~DecisionEncoder.md5
       ~DecisionEncoder.valid_formats
    
    

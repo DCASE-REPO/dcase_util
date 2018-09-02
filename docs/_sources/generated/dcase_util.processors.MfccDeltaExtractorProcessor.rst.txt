@@ -39,9 +39,11 @@ dcase_util.processors.MfccDeltaExtractorProcessor
 
    .. autosummary::
    
+      ~MfccDeltaExtractorProcessor.bytes
       ~MfccDeltaExtractorProcessor.input_type
       ~MfccDeltaExtractorProcessor.label
       ~MfccDeltaExtractorProcessor.logger
+      ~MfccDeltaExtractorProcessor.md5
       ~MfccDeltaExtractorProcessor.output_type
       ~MfccDeltaExtractorProcessor.valid_formats
    

@@ -16,6 +16,7 @@ dcase_util.datasets.TUTSoundEvents_2017_EvaluationSet
       ~TUTSoundEvents_2017_EvaluationSet.__init__
       ~TUTSoundEvents_2017_EvaluationSet.absolute_to_relative_path
       ~TUTSoundEvents_2017_EvaluationSet.check_filelist
+      ~TUTSoundEvents_2017_EvaluationSet.check_metadata
       ~TUTSoundEvents_2017_EvaluationSet.dataset_bytes
       ~TUTSoundEvents_2017_EvaluationSet.dataset_size_on_disk
       ~TUTSoundEvents_2017_EvaluationSet.dataset_size_string

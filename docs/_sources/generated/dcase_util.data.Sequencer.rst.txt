@@ -36,7 +36,9 @@ dcase_util.data.Sequencer
 
    .. autosummary::
    
+      ~Sequencer.bytes
       ~Sequencer.logger
+      ~Sequencer.md5
       ~Sequencer.valid_formats
    
    

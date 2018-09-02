@@ -1,0 +1,74 @@
+dcase_util.datasets.TUTAcousticScenes_2017_FeaturesSet
+======================================================
+
+.. currentmodule:: dcase_util.datasets
+
+.. autoclass:: TUTAcousticScenes_2017_FeaturesSet
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~TUTAcousticScenes_2017_FeaturesSet.__init__
+      ~TUTAcousticScenes_2017_FeaturesSet.absolute_to_relative_path
+      ~TUTAcousticScenes_2017_FeaturesSet.check_filelist
+      ~TUTAcousticScenes_2017_FeaturesSet.check_metadata
+      ~TUTAcousticScenes_2017_FeaturesSet.dataset_bytes
+      ~TUTAcousticScenes_2017_FeaturesSet.dataset_size_on_disk
+      ~TUTAcousticScenes_2017_FeaturesSet.dataset_size_string
+      ~TUTAcousticScenes_2017_FeaturesSet.debug_packages
+      ~TUTAcousticScenes_2017_FeaturesSet.download_packages
+      ~TUTAcousticScenes_2017_FeaturesSet.eval
+      ~TUTAcousticScenes_2017_FeaturesSet.eval_files
+      ~TUTAcousticScenes_2017_FeaturesSet.evaluation_setup_filename
+      ~TUTAcousticScenes_2017_FeaturesSet.event_label_count
+      ~TUTAcousticScenes_2017_FeaturesSet.event_labels
+      ~TUTAcousticScenes_2017_FeaturesSet.extract_packages
+      ~TUTAcousticScenes_2017_FeaturesSet.file_error_meta
+      ~TUTAcousticScenes_2017_FeaturesSet.file_features
+      ~TUTAcousticScenes_2017_FeaturesSet.file_meta
+      ~TUTAcousticScenes_2017_FeaturesSet.folds
+      ~TUTAcousticScenes_2017_FeaturesSet.initialize
+      ~TUTAcousticScenes_2017_FeaturesSet.load
+      ~TUTAcousticScenes_2017_FeaturesSet.load_crossvalidation_data
+      ~TUTAcousticScenes_2017_FeaturesSet.load_meta
+      ~TUTAcousticScenes_2017_FeaturesSet.log
+      ~TUTAcousticScenes_2017_FeaturesSet.prepare
+      ~TUTAcousticScenes_2017_FeaturesSet.process_meta_item
+      ~TUTAcousticScenes_2017_FeaturesSet.relative_to_absolute_path
+      ~TUTAcousticScenes_2017_FeaturesSet.scene_label_count
+      ~TUTAcousticScenes_2017_FeaturesSet.scene_labels
+      ~TUTAcousticScenes_2017_FeaturesSet.show
+      ~TUTAcousticScenes_2017_FeaturesSet.tag_count
+      ~TUTAcousticScenes_2017_FeaturesSet.tags
+      ~TUTAcousticScenes_2017_FeaturesSet.test
+      ~TUTAcousticScenes_2017_FeaturesSet.test_files
+      ~TUTAcousticScenes_2017_FeaturesSet.train
+      ~TUTAcousticScenes_2017_FeaturesSet.train_files
+      ~TUTAcousticScenes_2017_FeaturesSet.validation_files_balanced
+      ~TUTAcousticScenes_2017_FeaturesSet.validation_files_dataset
+      ~TUTAcousticScenes_2017_FeaturesSet.validation_files_random
+      ~TUTAcousticScenes_2017_FeaturesSet.validation_split
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~TUTAcousticScenes_2017_FeaturesSet.audio_file_count
+      ~TUTAcousticScenes_2017_FeaturesSet.audio_files
+      ~TUTAcousticScenes_2017_FeaturesSet.error_meta
+      ~TUTAcousticScenes_2017_FeaturesSet.error_meta_count
+      ~TUTAcousticScenes_2017_FeaturesSet.fold_count
+      ~TUTAcousticScenes_2017_FeaturesSet.logger
+      ~TUTAcousticScenes_2017_FeaturesSet.meta
+      ~TUTAcousticScenes_2017_FeaturesSet.meta_count
+   
+   

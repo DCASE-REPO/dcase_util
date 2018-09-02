@@ -36,8 +36,10 @@ dcase_util.processors.FeatureReadingProcessor
 
    .. autosummary::
    
+      ~FeatureReadingProcessor.bytes
       ~FeatureReadingProcessor.input_type
       ~FeatureReadingProcessor.logger
+      ~FeatureReadingProcessor.md5
       ~FeatureReadingProcessor.output_type
       ~FeatureReadingProcessor.valid_formats
    

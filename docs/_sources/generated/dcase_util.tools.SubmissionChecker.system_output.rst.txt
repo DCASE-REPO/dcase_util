@@ -1,6 +1,0 @@
-dcase_util.tools.SubmissionChecker.system_output
-================================================
-
-.. currentmodule:: dcase_util.tools
-
-.. automethod:: SubmissionChecker.system_output
