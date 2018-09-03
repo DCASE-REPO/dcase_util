@@ -35,7 +35,9 @@ dcase_util.data.Stacker
 
    .. autosummary::
    
+      ~Stacker.bytes
       ~Stacker.logger
+      ~Stacker.md5
       ~Stacker.valid_formats
    
    

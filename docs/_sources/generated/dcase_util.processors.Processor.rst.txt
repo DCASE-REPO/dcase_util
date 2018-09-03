@@ -36,7 +36,9 @@ dcase_util.processors.Processor
 
    .. autosummary::
    
+      ~Processor.bytes
       ~Processor.logger
+      ~Processor.md5
       ~Processor.valid_formats
    
    

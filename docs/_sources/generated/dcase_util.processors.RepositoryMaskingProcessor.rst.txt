@@ -36,8 +36,10 @@ dcase_util.processors.RepositoryMaskingProcessor
 
    .. autosummary::
    
+      ~RepositoryMaskingProcessor.bytes
       ~RepositoryMaskingProcessor.input_type
       ~RepositoryMaskingProcessor.logger
+      ~RepositoryMaskingProcessor.md5
       ~RepositoryMaskingProcessor.output_type
       ~RepositoryMaskingProcessor.valid_formats
    

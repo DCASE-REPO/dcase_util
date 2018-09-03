@@ -16,6 +16,7 @@ dcase_util.datasets.TUTUrbanAcousticScenes_2018_LeaderboardSet
       ~TUTUrbanAcousticScenes_2018_LeaderboardSet.__init__
       ~TUTUrbanAcousticScenes_2018_LeaderboardSet.absolute_to_relative_path
       ~TUTUrbanAcousticScenes_2018_LeaderboardSet.check_filelist
+      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.check_metadata
       ~TUTUrbanAcousticScenes_2018_LeaderboardSet.dataset_bytes
       ~TUTUrbanAcousticScenes_2018_LeaderboardSet.dataset_size_on_disk
       ~TUTUrbanAcousticScenes_2018_LeaderboardSet.dataset_size_string

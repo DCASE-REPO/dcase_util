@@ -43,6 +43,7 @@ dcase_util.containers.FeatureContainer
    .. autosummary::
    
       ~FeatureContainer.T
+      ~FeatureContainer.bytes
       ~FeatureContainer.data
       ~FeatureContainer.focus_start
       ~FeatureContainer.focus_stop
@@ -50,6 +51,7 @@ dcase_util.containers.FeatureContainer
       ~FeatureContainer.hop_length_seconds
       ~FeatureContainer.length
       ~FeatureContainer.logger
+      ~FeatureContainer.md5
       ~FeatureContainer.shape
       ~FeatureContainer.stats
       ~FeatureContainer.valid_formats

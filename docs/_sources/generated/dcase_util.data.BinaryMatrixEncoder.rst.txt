@@ -44,12 +44,14 @@ dcase_util.data.BinaryMatrixEncoder
    .. autosummary::
    
       ~BinaryMatrixEncoder.T
+      ~BinaryMatrixEncoder.bytes
       ~BinaryMatrixEncoder.data
       ~BinaryMatrixEncoder.focus_start
       ~BinaryMatrixEncoder.focus_stop
       ~BinaryMatrixEncoder.frames
       ~BinaryMatrixEncoder.length
       ~BinaryMatrixEncoder.logger
+      ~BinaryMatrixEncoder.md5
       ~BinaryMatrixEncoder.shape
       ~BinaryMatrixEncoder.stats
       ~BinaryMatrixEncoder.valid_formats

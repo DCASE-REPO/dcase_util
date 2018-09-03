@@ -16,6 +16,7 @@ dcase_util.datasets.DCASE2018_Task5_DevelopmentSet
       ~DCASE2018_Task5_DevelopmentSet.__init__
       ~DCASE2018_Task5_DevelopmentSet.absolute_to_relative_path
       ~DCASE2018_Task5_DevelopmentSet.check_filelist
+      ~DCASE2018_Task5_DevelopmentSet.check_metadata
       ~DCASE2018_Task5_DevelopmentSet.dataset_bytes
       ~DCASE2018_Task5_DevelopmentSet.dataset_size_on_disk
       ~DCASE2018_Task5_DevelopmentSet.dataset_size_string

@@ -37,9 +37,11 @@ dcase_util.processors.ZeroCrossingRateExtractorProcessor
 
    .. autosummary::
    
+      ~ZeroCrossingRateExtractorProcessor.bytes
       ~ZeroCrossingRateExtractorProcessor.input_type
       ~ZeroCrossingRateExtractorProcessor.label
       ~ZeroCrossingRateExtractorProcessor.logger
+      ~ZeroCrossingRateExtractorProcessor.md5
       ~ZeroCrossingRateExtractorProcessor.output_type
       ~ZeroCrossingRateExtractorProcessor.valid_formats
    

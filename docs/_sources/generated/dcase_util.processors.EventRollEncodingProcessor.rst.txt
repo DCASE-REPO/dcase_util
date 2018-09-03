@@ -36,8 +36,10 @@ dcase_util.processors.EventRollEncodingProcessor
 
    .. autosummary::
    
+      ~EventRollEncodingProcessor.bytes
       ~EventRollEncodingProcessor.input_type
       ~EventRollEncodingProcessor.logger
+      ~EventRollEncodingProcessor.md5
       ~EventRollEncodingProcessor.output_type
       ~EventRollEncodingProcessor.valid_formats
    

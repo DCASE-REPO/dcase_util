@@ -38,7 +38,9 @@ dcase_util.data.ProbabilityEncoder
 
    .. autosummary::
    
+      ~ProbabilityEncoder.bytes
       ~ProbabilityEncoder.logger
+      ~ProbabilityEncoder.md5
       ~ProbabilityEncoder.valid_formats
    
    

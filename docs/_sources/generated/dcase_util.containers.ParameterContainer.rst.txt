@@ -60,7 +60,9 @@ dcase_util.containers.ParameterContainer
 
    .. autosummary::
    
+      ~ParameterContainer.bytes
       ~ParameterContainer.logger
+      ~ParameterContainer.md5
       ~ParameterContainer.valid_formats
    
    

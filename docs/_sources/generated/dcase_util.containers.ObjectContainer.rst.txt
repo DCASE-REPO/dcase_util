@@ -34,7 +34,9 @@ dcase_util.containers.ObjectContainer
 
    .. autosummary::
    
+      ~ObjectContainer.bytes
       ~ObjectContainer.logger
+      ~ObjectContainer.md5
       ~ObjectContainer.valid_formats
    
    

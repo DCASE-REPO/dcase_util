@@ -46,6 +46,7 @@ dcase_util.containers.ProbabilityItem
    
       ~ProbabilityItem.filename
       ~ProbabilityItem.id
+      ~ProbabilityItem.index
       ~ProbabilityItem.label
       ~ProbabilityItem.logger
       ~ProbabilityItem.probability

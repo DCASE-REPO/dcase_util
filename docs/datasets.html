@@ -457,6 +457,8 @@
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.MetaDataContainer.filter.html">dcase_util.containers.MetaDataContainer.filter</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.MetaDataContainer.filter_time_segment.html">dcase_util.containers.MetaDataContainer.filter_time_segment</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.MetaDataContainer.process_events.html">dcase_util.containers.MetaDataContainer.process_events</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.MetaDataContainer.map_events.html">dcase_util.containers.MetaDataContainer.map_events</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.MetaDataContainer.event_inactivity.html">dcase_util.containers.MetaDataContainer.event_inactivity</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.MetaDataContainer.add_time.html">dcase_util.containers.MetaDataContainer.add_time</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.MetaDataContainer.stats.html">dcase_util.containers.MetaDataContainer.stats</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.MetaDataContainer.scene_stat_counts.html">dcase_util.containers.MetaDataContainer.scene_stat_counts</a></li>
@@ -521,7 +523,9 @@
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.ProbabilityContainer.append.html">dcase_util.containers.ProbabilityContainer.append</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.ProbabilityContainer.unique_files.html">dcase_util.containers.ProbabilityContainer.unique_files</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.ProbabilityContainer.unique_labels.html">dcase_util.containers.ProbabilityContainer.unique_labels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.ProbabilityContainer.unique_indices.html">dcase_util.containers.ProbabilityContainer.unique_indices</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.ProbabilityContainer.filter.html">dcase_util.containers.ProbabilityContainer.filter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.ProbabilityContainer.as_matrix.html">dcase_util.containers.ProbabilityContainer.as_matrix</a></li>
 </ul>
 </li>
 </ul>
@@ -588,6 +592,15 @@
 <li class="toctree-l3"><a class="reference internal" href="data.html#eventrollencoder">EventRollEncoder</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.data.EventRollEncoder.html">dcase_util.data.EventRollEncoder</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.data.EventRollEncoder.encode.html">dcase_util.data.EventRollEncoder.encode</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="data.html#labelmatrixencoder">LabelMatrixEncoder</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.data.LabelMatrixEncoder.html">dcase_util.data.LabelMatrixEncoder</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="data.html#onehotlabelencoder">OneHotLabelEncoder</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.data.OneHotLabelEncoder.html">dcase_util.data.OneHotLabelEncoder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.data.OneHotLabelEncoder.encode.html">dcase_util.data.OneHotLabelEncoder.encode</a></li>
 </ul>
 </li>
 </ul>
@@ -746,6 +759,7 @@
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.AcousticSceneDataset.html">dcase_util.datasets.AcousticSceneDataset</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.TUTAcousticScenes_2017_DevelopmentSet.html">dcase_util.datasets.TUTAcousticScenes_2017_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.TUTAcousticScenes_2017_EvaluationSet.html">dcase_util.datasets.TUTAcousticScenes_2017_EvaluationSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.TUTAcousticScenes_2017_FeaturesSet.html">dcase_util.datasets.TUTAcousticScenes_2017_FeaturesSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet.html">dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet.html">dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_DevelopmentSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_DevelopmentSet</a></li>
@@ -1080,6 +1094,11 @@
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.EventRollEncodingProcessor.process.html">dcase_util.processors.EventRollEncodingProcessor.process</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="processors.html#onehotlabelencodingprocessor">OneHotLabelEncodingProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.OneHotLabelEncodingProcessor.html">dcase_util.processors.OneHotLabelEncodingProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.OneHotLabelEncodingProcessor.process.html">dcase_util.processors.OneHotLabelEncodingProcessor.process</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="processors.html#datashapingprocessor">DataShapingProcessor</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.DataShapingProcessor.html">dcase_util.processors.DataShapingProcessor</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.DataShapingProcessor.process.html">dcase_util.processors.DataShapingProcessor.process</a></li>
@@ -1361,13 +1380,6 @@
 <li class="toctree-l2"><a class="reference internal" href="tools.html#submissionchecker">SubmissionChecker</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.tools.SubmissionChecker.html">dcase_util.tools.SubmissionChecker</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.tools.SubmissionChecker.process.html">dcase_util.tools.SubmissionChecker.process</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.tools.SubmissionChecker.parameter_file.html">dcase_util.tools.SubmissionChecker.parameter_file</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.tools.SubmissionChecker.system_output_file.html">dcase_util.tools.SubmissionChecker.system_output_file</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.tools.SubmissionChecker.main_structure.html">dcase_util.tools.SubmissionChecker.main_structure</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.tools.SubmissionChecker.submission_info.html">dcase_util.tools.SubmissionChecker.submission_info</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.tools.SubmissionChecker.system_meta.html">dcase_util.tools.SubmissionChecker.system_meta</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.tools.SubmissionChecker.system_description.html">dcase_util.tools.SubmissionChecker.system_description</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.tools.SubmissionChecker.system_output.html">dcase_util.tools.SubmissionChecker.system_output</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="tools.html#bibtexprocessor">BibtexProcessor</a><ul>
@@ -1389,6 +1401,8 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-2-5">v0.2.5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-2-4">v0.2.4</a></li>
 <li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-2-3">v0.2.3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-2-2">v0.2.2</a></li>
 <li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-2-1">v0.2.1</a></li>
@@ -1671,34 +1685,37 @@
 <tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.datasets.TUTAcousticScenes_2017_EvaluationSet.html#dcase_util.datasets.TUTAcousticScenes_2017_EvaluationSet" title="dcase_util.datasets.TUTAcousticScenes_2017_EvaluationSet"><code class="xref py py-obj docutils literal"><span class="pre">TUTAcousticScenes_2017_EvaluationSet</span></code></a>([...])</td>
 <td>TUT Acoustic scenes 2017 evaluation dataset</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet.html#dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet" title="dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet"><code class="xref py py-obj docutils literal"><span class="pre">TUTAcousticScenes_2016_DevelopmentSet</span></code></a>([...])</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.datasets.TUTAcousticScenes_2017_FeaturesSet.html#dcase_util.datasets.TUTAcousticScenes_2017_FeaturesSet" title="dcase_util.datasets.TUTAcousticScenes_2017_FeaturesSet"><code class="xref py py-obj docutils literal"><span class="pre">TUTAcousticScenes_2017_FeaturesSet</span></code></a>([...])</td>
+<td>TUT Acoustic scenes 2017 features dataset</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet.html#dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet" title="dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet"><code class="xref py py-obj docutils literal"><span class="pre">TUTAcousticScenes_2016_DevelopmentSet</span></code></a>([...])</td>
 <td>TUT Acoustic scenes 2016 development dataset</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet.html#dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet" title="dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet"><code class="xref py py-obj docutils literal"><span class="pre">TUTAcousticScenes_2016_EvaluationSet</span></code></a>([...])</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet.html#dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet" title="dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet"><code class="xref py py-obj docutils literal"><span class="pre">TUTAcousticScenes_2016_EvaluationSet</span></code></a>([...])</td>
 <td>TUT Acoustic scenes 2016 evaluation dataset</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_DevelopmentSet.html#dcase_util.datasets.TUTUrbanAcousticScenes_2018_DevelopmentSet" title="dcase_util.datasets.TUTUrbanAcousticScenes_2018_DevelopmentSet"><code class="xref py py-obj docutils literal"><span class="pre">TUTUrbanAcousticScenes_2018_DevelopmentSet</span></code></a>([...])</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_DevelopmentSet.html#dcase_util.datasets.TUTUrbanAcousticScenes_2018_DevelopmentSet" title="dcase_util.datasets.TUTUrbanAcousticScenes_2018_DevelopmentSet"><code class="xref py py-obj docutils literal"><span class="pre">TUTUrbanAcousticScenes_2018_DevelopmentSet</span></code></a>([...])</td>
 <td>TUT Urban Acoustic Scenes 2018 Development dataset</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_LeaderboardSet.html#dcase_util.datasets.TUTUrbanAcousticScenes_2018_LeaderboardSet" title="dcase_util.datasets.TUTUrbanAcousticScenes_2018_LeaderboardSet"><code class="xref py py-obj docutils literal"><span class="pre">TUTUrbanAcousticScenes_2018_LeaderboardSet</span></code></a>([...])</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_LeaderboardSet.html#dcase_util.datasets.TUTUrbanAcousticScenes_2018_LeaderboardSet" title="dcase_util.datasets.TUTUrbanAcousticScenes_2018_LeaderboardSet"><code class="xref py py-obj docutils literal"><span class="pre">TUTUrbanAcousticScenes_2018_LeaderboardSet</span></code></a>([...])</td>
 <td>TUT Urban Acoustic Scenes 2018 Leaderboard dataset</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_EvaluationSet.html#dcase_util.datasets.TUTUrbanAcousticScenes_2018_EvaluationSet" title="dcase_util.datasets.TUTUrbanAcousticScenes_2018_EvaluationSet"><code class="xref py py-obj docutils literal"><span class="pre">TUTUrbanAcousticScenes_2018_EvaluationSet</span></code></a>([...])</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_EvaluationSet.html#dcase_util.datasets.TUTUrbanAcousticScenes_2018_EvaluationSet" title="dcase_util.datasets.TUTUrbanAcousticScenes_2018_EvaluationSet"><code class="xref py py-obj docutils literal"><span class="pre">TUTUrbanAcousticScenes_2018_EvaluationSet</span></code></a>([...])</td>
 <td>TUT Urban Acoustic Scenes 2018 Evaluation dataset</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_DevelopmentSet.html#dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_DevelopmentSet" title="dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_DevelopmentSet"><code class="xref py py-obj docutils literal"><span class="pre">TUTUrbanAcousticScenes_2018_Mobile_DevelopmentSet</span></code></a>([...])</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_DevelopmentSet.html#dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_DevelopmentSet" title="dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_DevelopmentSet"><code class="xref py py-obj docutils literal"><span class="pre">TUTUrbanAcousticScenes_2018_Mobile_DevelopmentSet</span></code></a>([...])</td>
 <td>TUT Urban Acoustic Scenes 2018 Mobile Development dataset</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_LeaderboardSet.html#dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_LeaderboardSet" title="dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_LeaderboardSet"><code class="xref py py-obj docutils literal"><span class="pre">TUTUrbanAcousticScenes_2018_Mobile_LeaderboardSet</span></code></a>([...])</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_LeaderboardSet.html#dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_LeaderboardSet" title="dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_LeaderboardSet"><code class="xref py py-obj docutils literal"><span class="pre">TUTUrbanAcousticScenes_2018_Mobile_LeaderboardSet</span></code></a>([...])</td>
 <td>TUT Urban Acoustic Scenes 2018 Mobile Leaderboard dataset</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_EvaluationSet.html#dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_EvaluationSet" title="dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_EvaluationSet"><code class="xref py py-obj docutils literal"><span class="pre">TUTUrbanAcousticScenes_2018_Mobile_EvaluationSet</span></code></a>([...])</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_EvaluationSet.html#dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_EvaluationSet" title="dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_EvaluationSet"><code class="xref py py-obj docutils literal"><span class="pre">TUTUrbanAcousticScenes_2018_Mobile_EvaluationSet</span></code></a>([...])</td>
 <td>TUT Urban Acoustic Scenes 2018 Mobile Evaluation dataset</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.datasets.DCASE2018_Task5_DevelopmentSet.html#dcase_util.datasets.DCASE2018_Task5_DevelopmentSet" title="dcase_util.datasets.DCASE2018_Task5_DevelopmentSet"><code class="xref py py-obj docutils literal"><span class="pre">DCASE2018_Task5_DevelopmentSet</span></code></a>([...])</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.datasets.DCASE2018_Task5_DevelopmentSet.html#dcase_util.datasets.DCASE2018_Task5_DevelopmentSet" title="dcase_util.datasets.DCASE2018_Task5_DevelopmentSet"><code class="xref py py-obj docutils literal"><span class="pre">DCASE2018_Task5_DevelopmentSet</span></code></a>([...])</td>
 <td>Task 5, Monitoring of domestic activities based on multi-channel acoustics, development set</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.datasets.DCASE2018_Task5_EvaluationSet.html#dcase_util.datasets.DCASE2018_Task5_EvaluationSet" title="dcase_util.datasets.DCASE2018_Task5_EvaluationSet"><code class="xref py py-obj docutils literal"><span class="pre">DCASE2018_Task5_EvaluationSet</span></code></a>([...])</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.datasets.DCASE2018_Task5_EvaluationSet.html#dcase_util.datasets.DCASE2018_Task5_EvaluationSet" title="dcase_util.datasets.DCASE2018_Task5_EvaluationSet"><code class="xref py py-obj docutils literal"><span class="pre">DCASE2018_Task5_EvaluationSet</span></code></a>([...])</td>
 <td>Task 5, Monitoring of domestic activities based on multi-channel acoustics, evaluation set</td>
 </tr>
 </tbody>

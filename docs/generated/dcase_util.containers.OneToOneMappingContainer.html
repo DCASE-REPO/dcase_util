@@ -458,6 +458,8 @@
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.filter.html">dcase_util.containers.MetaDataContainer.filter</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.filter_time_segment.html">dcase_util.containers.MetaDataContainer.filter_time_segment</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.process_events.html">dcase_util.containers.MetaDataContainer.process_events</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.map_events.html">dcase_util.containers.MetaDataContainer.map_events</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.event_inactivity.html">dcase_util.containers.MetaDataContainer.event_inactivity</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.add_time.html">dcase_util.containers.MetaDataContainer.add_time</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.stats.html">dcase_util.containers.MetaDataContainer.stats</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.MetaDataContainer.scene_stat_counts.html">dcase_util.containers.MetaDataContainer.scene_stat_counts</a></li>
@@ -522,7 +524,9 @@
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ProbabilityContainer.append.html">dcase_util.containers.ProbabilityContainer.append</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ProbabilityContainer.unique_files.html">dcase_util.containers.ProbabilityContainer.unique_files</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ProbabilityContainer.unique_labels.html">dcase_util.containers.ProbabilityContainer.unique_labels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ProbabilityContainer.unique_indices.html">dcase_util.containers.ProbabilityContainer.unique_indices</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ProbabilityContainer.filter.html">dcase_util.containers.ProbabilityContainer.filter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.ProbabilityContainer.as_matrix.html">dcase_util.containers.ProbabilityContainer.as_matrix</a></li>
 </ul>
 </li>
 </ul>
@@ -589,6 +593,15 @@
 <li class="toctree-l3"><a class="reference internal" href="../data.html#eventrollencoder">EventRollEncoder</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.data.EventRollEncoder.html">dcase_util.data.EventRollEncoder</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.data.EventRollEncoder.encode.html">dcase_util.data.EventRollEncoder.encode</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../data.html#labelmatrixencoder">LabelMatrixEncoder</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.LabelMatrixEncoder.html">dcase_util.data.LabelMatrixEncoder</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../data.html#onehotlabelencoder">OneHotLabelEncoder</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.OneHotLabelEncoder.html">dcase_util.data.OneHotLabelEncoder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.data.OneHotLabelEncoder.encode.html">dcase_util.data.OneHotLabelEncoder.encode</a></li>
 </ul>
 </li>
 </ul>
@@ -747,6 +760,7 @@
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.AcousticSceneDataset.html">dcase_util.datasets.AcousticSceneDataset</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTAcousticScenes_2017_DevelopmentSet.html">dcase_util.datasets.TUTAcousticScenes_2017_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTAcousticScenes_2017_EvaluationSet.html">dcase_util.datasets.TUTAcousticScenes_2017_EvaluationSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTAcousticScenes_2017_FeaturesSet.html">dcase_util.datasets.TUTAcousticScenes_2017_FeaturesSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet.html">dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet.html">dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTUrbanAcousticScenes_2018_DevelopmentSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_DevelopmentSet</a></li>
@@ -1081,6 +1095,11 @@
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.EventRollEncodingProcessor.process.html">dcase_util.processors.EventRollEncodingProcessor.process</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../processors.html#onehotlabelencodingprocessor">OneHotLabelEncodingProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.OneHotLabelEncodingProcessor.html">dcase_util.processors.OneHotLabelEncodingProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.OneHotLabelEncodingProcessor.process.html">dcase_util.processors.OneHotLabelEncodingProcessor.process</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../processors.html#datashapingprocessor">DataShapingProcessor</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.DataShapingProcessor.html">dcase_util.processors.DataShapingProcessor</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.DataShapingProcessor.process.html">dcase_util.processors.DataShapingProcessor.process</a></li>
@@ -1362,13 +1381,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../tools.html#submissionchecker">SubmissionChecker</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.tools.SubmissionChecker.html">dcase_util.tools.SubmissionChecker</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.tools.SubmissionChecker.process.html">dcase_util.tools.SubmissionChecker.process</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dcase_util.tools.SubmissionChecker.parameter_file.html">dcase_util.tools.SubmissionChecker.parameter_file</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dcase_util.tools.SubmissionChecker.system_output_file.html">dcase_util.tools.SubmissionChecker.system_output_file</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dcase_util.tools.SubmissionChecker.main_structure.html">dcase_util.tools.SubmissionChecker.main_structure</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dcase_util.tools.SubmissionChecker.submission_info.html">dcase_util.tools.SubmissionChecker.submission_info</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dcase_util.tools.SubmissionChecker.system_meta.html">dcase_util.tools.SubmissionChecker.system_meta</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dcase_util.tools.SubmissionChecker.system_description.html">dcase_util.tools.SubmissionChecker.system_description</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dcase_util.tools.SubmissionChecker.system_output.html">dcase_util.tools.SubmissionChecker.system_output</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../tools.html#bibtexprocessor">BibtexProcessor</a><ul>
@@ -1390,6 +1402,8 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-5">v0.2.5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-4">v0.2.4</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-3">v0.2.3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-2">v0.2.2</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-1">v0.2.1</a></li>
@@ -1611,11 +1625,17 @@
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="dcase_util.containers.OneToOneMappingContainer.flipped.html#dcase_util.containers.OneToOneMappingContainer.flipped" title="dcase_util.containers.OneToOneMappingContainer.flipped"><code class="xref py py-obj docutils literal"><span class="pre">flipped</span></code></a></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">bytes</span></code></td>
+<td>File size in bytes</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="dcase_util.containers.OneToOneMappingContainer.flipped.html#dcase_util.containers.OneToOneMappingContainer.flipped" title="dcase_util.containers.OneToOneMappingContainer.flipped"><code class="xref py py-obj docutils literal"><span class="pre">flipped</span></code></a></td>
 <td>Exchange map key and value pairs.</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">logger</span></code></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">logger</span></code></td>
 <td>Logger instance</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">md5</span></code></td>
+<td>Checksum for file.</td>
 </tr>
 <tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">valid_formats</span></code></td>
 <td>Valid file formats</td>

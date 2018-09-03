@@ -16,6 +16,7 @@ dcase_util.utils.Example
       ~Example.__init__
       ~Example.acoustic_scene_audio_filename
       ~Example.audio_container
+      ~Example.audio_container_ch4
       ~Example.audio_filename
       ~Example.event_metadata_container
       ~Example.feature_container

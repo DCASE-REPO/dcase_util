@@ -30,6 +30,8 @@ dcase_util.containers.FileMixin
 
    .. autosummary::
    
+      ~FileMixin.bytes
       ~FileMixin.logger
+      ~FileMixin.md5
    
    

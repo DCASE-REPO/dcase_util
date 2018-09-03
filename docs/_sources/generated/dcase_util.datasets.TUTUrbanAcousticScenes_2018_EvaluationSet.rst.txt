@@ -16,6 +16,7 @@ dcase_util.datasets.TUTUrbanAcousticScenes_2018_EvaluationSet
       ~TUTUrbanAcousticScenes_2018_EvaluationSet.__init__
       ~TUTUrbanAcousticScenes_2018_EvaluationSet.absolute_to_relative_path
       ~TUTUrbanAcousticScenes_2018_EvaluationSet.check_filelist
+      ~TUTUrbanAcousticScenes_2018_EvaluationSet.check_metadata
       ~TUTUrbanAcousticScenes_2018_EvaluationSet.dataset_bytes
       ~TUTUrbanAcousticScenes_2018_EvaluationSet.dataset_size_on_disk
       ~TUTUrbanAcousticScenes_2018_EvaluationSet.dataset_size_string

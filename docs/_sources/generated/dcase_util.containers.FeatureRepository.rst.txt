@@ -65,8 +65,10 @@ dcase_util.containers.FeatureRepository
 
    .. autosummary::
    
+      ~FeatureRepository.bytes
       ~FeatureRepository.labels
       ~FeatureRepository.logger
+      ~FeatureRepository.md5
       ~FeatureRepository.valid_formats
    
    

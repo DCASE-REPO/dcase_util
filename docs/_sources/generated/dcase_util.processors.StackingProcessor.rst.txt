@@ -36,8 +36,10 @@ dcase_util.processors.StackingProcessor
 
    .. autosummary::
    
+      ~StackingProcessor.bytes
       ~StackingProcessor.input_type
       ~StackingProcessor.logger
+      ~StackingProcessor.md5
       ~StackingProcessor.output_type
       ~StackingProcessor.valid_formats
    

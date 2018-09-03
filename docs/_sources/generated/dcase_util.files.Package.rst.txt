@@ -37,7 +37,9 @@ dcase_util.files.Package
 
    .. autosummary::
    
+      ~Package.bytes
       ~Package.logger
+      ~Package.md5
       ~Package.package_password
       ~Package.valid_formats
    

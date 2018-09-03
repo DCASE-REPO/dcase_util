@@ -36,8 +36,10 @@ dcase_util.processors.OneHotEncodingProcessor
 
    .. autosummary::
    
+      ~OneHotEncodingProcessor.bytes
       ~OneHotEncodingProcessor.input_type
       ~OneHotEncodingProcessor.logger
+      ~OneHotEncodingProcessor.md5
       ~OneHotEncodingProcessor.output_type
       ~OneHotEncodingProcessor.valid_formats
    

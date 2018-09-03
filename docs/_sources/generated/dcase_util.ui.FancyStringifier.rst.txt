@@ -20,6 +20,8 @@ dcase_util.ui.FancyStringifier
       ~FancyStringifier.formatted_value
       ~FancyStringifier.line
       ~FancyStringifier.row
+      ~FancyStringifier.row_reset
+      ~FancyStringifier.row_sep
       ~FancyStringifier.section_header
       ~FancyStringifier.sep
       ~FancyStringifier.sub_header

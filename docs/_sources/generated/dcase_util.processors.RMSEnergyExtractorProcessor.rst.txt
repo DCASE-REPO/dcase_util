@@ -39,9 +39,11 @@ dcase_util.processors.RMSEnergyExtractorProcessor
 
    .. autosummary::
    
+      ~RMSEnergyExtractorProcessor.bytes
       ~RMSEnergyExtractorProcessor.input_type
       ~RMSEnergyExtractorProcessor.label
       ~RMSEnergyExtractorProcessor.logger
+      ~RMSEnergyExtractorProcessor.md5
       ~RMSEnergyExtractorProcessor.output_type
       ~RMSEnergyExtractorProcessor.valid_formats
    

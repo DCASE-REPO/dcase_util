@@ -16,6 +16,7 @@ dcase_util.datasets.AcousticSceneDataset
       ~AcousticSceneDataset.__init__
       ~AcousticSceneDataset.absolute_to_relative_path
       ~AcousticSceneDataset.check_filelist
+      ~AcousticSceneDataset.check_metadata
       ~AcousticSceneDataset.dataset_bytes
       ~AcousticSceneDataset.dataset_size_on_disk
       ~AcousticSceneDataset.dataset_size_string

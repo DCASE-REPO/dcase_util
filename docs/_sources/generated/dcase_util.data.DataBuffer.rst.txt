@@ -38,9 +38,11 @@ dcase_util.data.DataBuffer
 
    .. autosummary::
    
+      ~DataBuffer.bytes
       ~DataBuffer.count
       ~DataBuffer.full
       ~DataBuffer.logger
+      ~DataBuffer.md5
       ~DataBuffer.valid_formats
    
    

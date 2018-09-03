@@ -456,6 +456,8 @@
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.MetaDataContainer.filter.html">dcase_util.containers.MetaDataContainer.filter</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.MetaDataContainer.filter_time_segment.html">dcase_util.containers.MetaDataContainer.filter_time_segment</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.MetaDataContainer.process_events.html">dcase_util.containers.MetaDataContainer.process_events</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.MetaDataContainer.map_events.html">dcase_util.containers.MetaDataContainer.map_events</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.MetaDataContainer.event_inactivity.html">dcase_util.containers.MetaDataContainer.event_inactivity</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.MetaDataContainer.add_time.html">dcase_util.containers.MetaDataContainer.add_time</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.MetaDataContainer.stats.html">dcase_util.containers.MetaDataContainer.stats</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.MetaDataContainer.scene_stat_counts.html">dcase_util.containers.MetaDataContainer.scene_stat_counts</a></li>
@@ -520,7 +522,9 @@
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.ProbabilityContainer.append.html">dcase_util.containers.ProbabilityContainer.append</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.ProbabilityContainer.unique_files.html">dcase_util.containers.ProbabilityContainer.unique_files</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.ProbabilityContainer.unique_labels.html">dcase_util.containers.ProbabilityContainer.unique_labels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.ProbabilityContainer.unique_indices.html">dcase_util.containers.ProbabilityContainer.unique_indices</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.ProbabilityContainer.filter.html">dcase_util.containers.ProbabilityContainer.filter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.ProbabilityContainer.as_matrix.html">dcase_util.containers.ProbabilityContainer.as_matrix</a></li>
 </ul>
 </li>
 </ul>
@@ -587,6 +591,15 @@
 <li class="toctree-l3"><a class="reference internal" href="data.html#eventrollencoder">EventRollEncoder</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.data.EventRollEncoder.html">dcase_util.data.EventRollEncoder</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.data.EventRollEncoder.encode.html">dcase_util.data.EventRollEncoder.encode</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="data.html#labelmatrixencoder">LabelMatrixEncoder</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.data.LabelMatrixEncoder.html">dcase_util.data.LabelMatrixEncoder</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="data.html#onehotlabelencoder">OneHotLabelEncoder</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.data.OneHotLabelEncoder.html">dcase_util.data.OneHotLabelEncoder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.data.OneHotLabelEncoder.encode.html">dcase_util.data.OneHotLabelEncoder.encode</a></li>
 </ul>
 </li>
 </ul>
@@ -745,6 +758,7 @@
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.AcousticSceneDataset.html">dcase_util.datasets.AcousticSceneDataset</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.TUTAcousticScenes_2017_DevelopmentSet.html">dcase_util.datasets.TUTAcousticScenes_2017_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.TUTAcousticScenes_2017_EvaluationSet.html">dcase_util.datasets.TUTAcousticScenes_2017_EvaluationSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.TUTAcousticScenes_2017_FeaturesSet.html">dcase_util.datasets.TUTAcousticScenes_2017_FeaturesSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet.html">dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet.html">dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_DevelopmentSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_DevelopmentSet</a></li>
@@ -1079,6 +1093,11 @@
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.EventRollEncodingProcessor.process.html">dcase_util.processors.EventRollEncodingProcessor.process</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="processors.html#onehotlabelencodingprocessor">OneHotLabelEncodingProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.OneHotLabelEncodingProcessor.html">dcase_util.processors.OneHotLabelEncodingProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.OneHotLabelEncodingProcessor.process.html">dcase_util.processors.OneHotLabelEncodingProcessor.process</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="processors.html#datashapingprocessor">DataShapingProcessor</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.DataShapingProcessor.html">dcase_util.processors.DataShapingProcessor</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.processors.DataShapingProcessor.process.html">dcase_util.processors.DataShapingProcessor.process</a></li>
@@ -1360,13 +1379,6 @@
 <li class="toctree-l2"><a class="reference internal" href="tools.html#submissionchecker">SubmissionChecker</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.tools.SubmissionChecker.html">dcase_util.tools.SubmissionChecker</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.tools.SubmissionChecker.process.html">dcase_util.tools.SubmissionChecker.process</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.tools.SubmissionChecker.parameter_file.html">dcase_util.tools.SubmissionChecker.parameter_file</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.tools.SubmissionChecker.system_output_file.html">dcase_util.tools.SubmissionChecker.system_output_file</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.tools.SubmissionChecker.main_structure.html">dcase_util.tools.SubmissionChecker.main_structure</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.tools.SubmissionChecker.submission_info.html">dcase_util.tools.SubmissionChecker.submission_info</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.tools.SubmissionChecker.system_meta.html">dcase_util.tools.SubmissionChecker.system_meta</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.tools.SubmissionChecker.system_description.html">dcase_util.tools.SubmissionChecker.system_description</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.tools.SubmissionChecker.system_output.html">dcase_util.tools.SubmissionChecker.system_output</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="tools.html#bibtexprocessor">BibtexProcessor</a><ul>
@@ -1388,6 +1400,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-2-5">v0.2.5</a></li>
 <li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-2-4">v0.2.4</a></li>
 <li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-2-3">v0.2.3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-2-2">v0.2.2</a></li>
@@ -1559,6 +1572,8 @@
 </li>
         <li><a href="generated/dcase_util.data.EventRollEncoder.html#dcase_util.data.EventRollEncoder.__init__">(dcase_util.data.EventRollEncoder method)</a>
 </li>
+        <li><a href="generated/dcase_util.data.LabelMatrixEncoder.html#dcase_util.data.LabelMatrixEncoder.__init__">(dcase_util.data.LabelMatrixEncoder method)</a>
+</li>
         <li><a href="generated/dcase_util.data.ManyHotEncoder.html#dcase_util.data.ManyHotEncoder.__init__">(dcase_util.data.ManyHotEncoder method)</a>
 </li>
         <li><a href="generated/dcase_util.data.Masker.html#dcase_util.data.Masker.__init__">(dcase_util.data.Masker method)</a>
@@ -1566,6 +1581,8 @@
         <li><a href="generated/dcase_util.data.Normalizer.html#dcase_util.data.Normalizer.__init__">(dcase_util.data.Normalizer method)</a>
 </li>
         <li><a href="generated/dcase_util.data.OneHotEncoder.html#dcase_util.data.OneHotEncoder.__init__">(dcase_util.data.OneHotEncoder method)</a>
+</li>
+        <li><a href="generated/dcase_util.data.OneHotLabelEncoder.html#dcase_util.data.OneHotLabelEncoder.__init__">(dcase_util.data.OneHotLabelEncoder method)</a>
 </li>
         <li><a href="generated/dcase_util.data.ProbabilityEncoder.html#dcase_util.data.ProbabilityEncoder.__init__">(dcase_util.data.ProbabilityEncoder method)</a>
 </li>
@@ -1602,6 +1619,8 @@
         <li><a href="generated/dcase_util.datasets.TUTAcousticScenes_2017_DevelopmentSet.html#dcase_util.datasets.TUTAcousticScenes_2017_DevelopmentSet.__init__">(dcase_util.datasets.TUTAcousticScenes_2017_DevelopmentSet method)</a>
 </li>
         <li><a href="generated/dcase_util.datasets.TUTAcousticScenes_2017_EvaluationSet.html#dcase_util.datasets.TUTAcousticScenes_2017_EvaluationSet.__init__">(dcase_util.datasets.TUTAcousticScenes_2017_EvaluationSet method)</a>
+</li>
+        <li><a href="generated/dcase_util.datasets.TUTAcousticScenes_2017_FeaturesSet.html#dcase_util.datasets.TUTAcousticScenes_2017_FeaturesSet.__init__">(dcase_util.datasets.TUTAcousticScenes_2017_FeaturesSet method)</a>
 </li>
         <li><a href="generated/dcase_util.datasets.TUTRareSoundEvents_2017_DevelopmentSet.html#dcase_util.datasets.TUTRareSoundEvents_2017_DevelopmentSet.__init__">(dcase_util.datasets.TUTRareSoundEvents_2017_DevelopmentSet method)</a>
 </li>
@@ -1707,6 +1726,8 @@
 </li>
         <li><a href="generated/dcase_util.processors.OneHotEncodingProcessor.html#dcase_util.processors.OneHotEncodingProcessor.__init__">(dcase_util.processors.OneHotEncodingProcessor method)</a>
 </li>
+        <li><a href="generated/dcase_util.processors.OneHotLabelEncodingProcessor.html#dcase_util.processors.OneHotLabelEncodingProcessor.__init__">(dcase_util.processors.OneHotLabelEncodingProcessor method)</a>
+</li>
         <li><a href="generated/dcase_util.processors.ProcessingChain.html#dcase_util.processors.ProcessingChain.__init__">(dcase_util.processors.ProcessingChain method)</a>
 </li>
         <li><a href="generated/dcase_util.processors.ProcessingChainItem.html#dcase_util.processors.ProcessingChainItem.__init__">(dcase_util.processors.ProcessingChainItem method)</a>
@@ -1806,19 +1827,21 @@
 </li>
       <li><a href="generated/dcase_util.data.Aggregator.html#dcase_util.data.Aggregator">Aggregator (class in dcase_util.data)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="generated/dcase_util.containers.MetaDataContainer.append.html#dcase_util.containers.MetaDataContainer.append">append() (dcase_util.containers.MetaDataContainer method)</a>
 
       <ul>
         <li><a href="generated/dcase_util.containers.ProbabilityContainer.append.html#dcase_util.containers.ProbabilityContainer.append">(dcase_util.containers.ProbabilityContainer method)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="generated/dcase_util.utils.ApplicationPaths.html#dcase_util.utils.ApplicationPaths">ApplicationPaths (class in dcase_util.utils)</a>
 </li>
       <li><a href="generated/dcase_util.containers.AppParameterContainer.html#dcase_util.containers.AppParameterContainer">AppParameterContainer (class in dcase_util.containers)</a>
 </li>
       <li><a href="generated/dcase_util.utils.argument_file_exists.html#dcase_util.utils.argument_file_exists">argument_file_exists() (in module dcase_util.utils)</a>
+</li>
+      <li><a href="generated/dcase_util.containers.ProbabilityContainer.as_matrix.html#dcase_util.containers.ProbabilityContainer.as_matrix">as_matrix() (dcase_util.containers.ProbabilityContainer method)</a>
 </li>
       <li><a href="generated/dcase_util.utils.Example.audio_container.html#dcase_util.utils.Example.audio_container">audio_container() (dcase_util.utils.Example class method)</a>
 </li>
@@ -2077,6 +2100,8 @@
 </li>
         <li><a href="generated/dcase_util.data.OneHotEncoder.encode.html#dcase_util.data.OneHotEncoder.encode">(dcase_util.data.OneHotEncoder method)</a>
 </li>
+        <li><a href="generated/dcase_util.data.OneHotLabelEncoder.encode.html#dcase_util.data.OneHotLabelEncoder.encode">(dcase_util.data.OneHotLabelEncoder method)</a>
+</li>
       </ul></li>
       <li><a href="glossary.html#term-encoder"><strong>Encoder</strong></a>
 </li>
@@ -2102,6 +2127,8 @@
 </li>
       <li><a href="generated/dcase_util.containers.MetaDataContainer.event_count.html#dcase_util.containers.MetaDataContainer.event_count">event_count (dcase_util.containers.MetaDataContainer attribute)</a>
 </li>
+      <li><a href="generated/dcase_util.containers.MetaDataContainer.event_inactivity.html#dcase_util.containers.MetaDataContainer.event_inactivity">event_inactivity() (dcase_util.containers.MetaDataContainer method)</a>
+</li>
       <li><a href="generated/dcase_util.containers.MetaDataItem.event_label.html#dcase_util.containers.MetaDataItem.event_label">event_label (dcase_util.containers.MetaDataItem attribute)</a>
 </li>
       <li><a href="generated/dcase_util.containers.MetaDataContainer.event_label_count.html#dcase_util.containers.MetaDataContainer.event_label_count">event_label_count (dcase_util.containers.MetaDataContainer attribute)</a>
@@ -2112,14 +2139,14 @@
         <li><a href="generated/dcase_util.datasets.SoundEventDataset.event_label_count.html#dcase_util.datasets.SoundEventDataset.event_label_count">(dcase_util.datasets.SoundEventDataset method)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="generated/dcase_util.datasets.Dataset.event_labels.html#dcase_util.datasets.Dataset.event_labels">event_labels() (dcase_util.datasets.Dataset method)</a>
 
       <ul>
         <li><a href="generated/dcase_util.datasets.SoundEventDataset.event_labels.html#dcase_util.datasets.SoundEventDataset.event_labels">(dcase_util.datasets.SoundEventDataset method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="generated/dcase_util.utils.Example.event_metadata_container.html#dcase_util.utils.Example.event_metadata_container">event_metadata_container() (dcase_util.utils.Example class method)</a>
 </li>
       <li><a href="generated/dcase_util.containers.MetaDataContainer.event_stat_counts.html#dcase_util.containers.MetaDataContainer.event_stat_counts">event_stat_counts() (dcase_util.containers.MetaDataContainer method)</a>
@@ -2470,6 +2497,8 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="generated/dcase_util.containers.ProbabilityItem.label.html#dcase_util.containers.ProbabilityItem.label">label (dcase_util.containers.ProbabilityItem attribute)</a>
 </li>
+      <li><a href="generated/dcase_util.data.LabelMatrixEncoder.html#dcase_util.data.LabelMatrixEncoder">LabelMatrixEncoder (class in dcase_util.data)</a>
+</li>
       <li><a href="generated/dcase_util.containers.AudioContainer.length.html#dcase_util.containers.AudioContainer.length">length (dcase_util.containers.AudioContainer attribute)</a>
 
       <ul>
@@ -2562,10 +2591,10 @@
 </li>
       <li><a href="generated/dcase_util.files.Serializer.load_marshal.html#dcase_util.files.Serializer.load_marshal">load_marshal() (dcase_util.files.Serializer class method)</a>
 </li>
-      <li><a href="generated/dcase_util.datasets.Dataset.load_meta.html#dcase_util.datasets.Dataset.load_meta">load_meta() (dcase_util.datasets.Dataset method)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/dcase_util.datasets.Dataset.load_meta.html#dcase_util.datasets.Dataset.load_meta">load_meta() (dcase_util.datasets.Dataset method)</a>
+</li>
       <li><a href="generated/dcase_util.files.Serializer.load_msgpack.html#dcase_util.files.Serializer.load_msgpack">load_msgpack() (dcase_util.files.Serializer class method)</a>
 </li>
       <li><a href="generated/dcase_util.files.Serializer.load_yaml.html#dcase_util.files.Serializer.load_yaml">load_yaml() (dcase_util.files.Serializer class method)</a>
@@ -2676,8 +2705,6 @@
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="generated/dcase_util.tools.SubmissionChecker.main_structure.html#dcase_util.tools.SubmissionChecker.main_structure">main_structure() (dcase_util.tools.SubmissionChecker method)</a>
-</li>
       <li><a href="generated/dcase_util.data.DecisionEncoder.majority_vote.html#dcase_util.data.DecisionEncoder.majority_vote">majority_vote() (dcase_util.data.DecisionEncoder method)</a>
 </li>
       <li><a href="generated/dcase_util.utils.Path.makedirs.html#dcase_util.utils.Path.makedirs">makedirs() (dcase_util.utils.Path method)</a>
@@ -2689,6 +2716,8 @@
       <li><a href="generated/dcase_util.processors.ManyHotEncodingProcessor.html#dcase_util.processors.ManyHotEncodingProcessor">ManyHotEncodingProcessor (class in dcase_util.processors)</a>
 </li>
       <li><a href="generated/dcase_util.containers.OneToOneMappingContainer.map.html#dcase_util.containers.OneToOneMappingContainer.map">map() (dcase_util.containers.OneToOneMappingContainer method)</a>
+</li>
+      <li><a href="generated/dcase_util.containers.MetaDataContainer.map_events.html#dcase_util.containers.MetaDataContainer.map_events">map_events() (dcase_util.containers.MetaDataContainer method)</a>
 </li>
       <li><a href="generated/dcase_util.data.Masker.mask.html#dcase_util.data.Masker.mask">mask() (dcase_util.data.Masker method)</a>
 </li>
@@ -2770,9 +2799,13 @@
 </li>
       <li><a href="generated/dcase_util.data.OneHotEncoder.html#dcase_util.data.OneHotEncoder">OneHotEncoder (class in dcase_util.data)</a>
 </li>
+      <li><a href="generated/dcase_util.processors.OneHotEncodingProcessor.html#dcase_util.processors.OneHotEncodingProcessor">OneHotEncodingProcessor (class in dcase_util.processors)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="generated/dcase_util.processors.OneHotEncodingProcessor.html#dcase_util.processors.OneHotEncodingProcessor">OneHotEncodingProcessor (class in dcase_util.processors)</a>
+      <li><a href="generated/dcase_util.data.OneHotLabelEncoder.html#dcase_util.data.OneHotLabelEncoder">OneHotLabelEncoder (class in dcase_util.data)</a>
+</li>
+      <li><a href="generated/dcase_util.processors.OneHotLabelEncodingProcessor.html#dcase_util.processors.OneHotLabelEncodingProcessor">OneHotLabelEncodingProcessor (class in dcase_util.processors)</a>
 </li>
       <li><a href="generated/dcase_util.containers.OneToOneMappingContainer.html#dcase_util.containers.OneToOneMappingContainer">OneToOneMappingContainer (class in dcase_util.containers)</a>
 </li>
@@ -2804,8 +2837,6 @@
         <li><a href="generated/dcase_util.data.BinaryMatrixEncoder.pad.html#dcase_util.data.BinaryMatrixEncoder.pad">(dcase_util.data.BinaryMatrixEncoder method)</a>
 </li>
       </ul></li>
-      <li><a href="generated/dcase_util.tools.SubmissionChecker.parameter_file.html#dcase_util.tools.SubmissionChecker.parameter_file">parameter_file() (dcase_util.tools.SubmissionChecker method)</a>
-</li>
       <li><a href="generated/dcase_util.containers.ParameterContainer.html#dcase_util.containers.ParameterContainer">ParameterContainer (class in dcase_util.containers)</a>
 </li>
       <li><a href="generated/dcase_util.containers.ParameterListContainer.html#dcase_util.containers.ParameterListContainer">ParameterListContainer (class in dcase_util.containers)</a>
@@ -2886,6 +2917,8 @@
         <li><a href="generated/dcase_util.processors.NormalizationProcessor.process.html#dcase_util.processors.NormalizationProcessor.process">(dcase_util.processors.NormalizationProcessor method)</a>
 </li>
         <li><a href="generated/dcase_util.processors.OneHotEncodingProcessor.process.html#dcase_util.processors.OneHotEncodingProcessor.process">(dcase_util.processors.OneHotEncodingProcessor method)</a>
+</li>
+        <li><a href="generated/dcase_util.processors.OneHotLabelEncodingProcessor.process.html#dcase_util.processors.OneHotLabelEncodingProcessor.process">(dcase_util.processors.OneHotLabelEncodingProcessor method)</a>
 </li>
         <li><a href="generated/dcase_util.processors.ProcessingChain.process.html#dcase_util.processors.ProcessingChain.process">(dcase_util.processors.ProcessingChain method)</a>
 </li>
@@ -3226,6 +3259,8 @@
 </li>
       <li><a href="generated/dcase_util.utils.setup_logging.html#dcase_util.utils.setup_logging">setup_logging (in module dcase_util.utils)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="generated/dcase_util.containers.AudioContainer.shape.html#dcase_util.containers.AudioContainer.shape">shape (dcase_util.containers.AudioContainer attribute)</a>
 
       <ul>
@@ -3236,8 +3271,6 @@
         <li><a href="generated/dcase_util.containers.DataMatrix2DContainer.shape.html#dcase_util.containers.DataMatrix2DContainer.shape">(dcase_util.containers.DataMatrix2DContainer attribute)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="generated/dcase_util.containers.AudioContainer.show.html#dcase_util.containers.AudioContainer.show">show() (dcase_util.containers.AudioContainer method)</a>
 
       <ul>
@@ -3350,21 +3383,11 @@
         <li><a href="generated/dcase_util.ui.FancyStringifier.sub_header.html#dcase_util.ui.FancyStringifier.sub_header">(dcase_util.ui.FancyStringifier method)</a>
 </li>
       </ul></li>
-      <li><a href="generated/dcase_util.tools.SubmissionChecker.submission_info.html#dcase_util.tools.SubmissionChecker.submission_info">submission_info() (dcase_util.tools.SubmissionChecker method)</a>
-</li>
       <li><a href="generated/dcase_util.tools.SubmissionChecker.html#dcase_util.tools.SubmissionChecker">SubmissionChecker (class in dcase_util.tools)</a>
 </li>
       <li><a href="generated/dcase_util.tools.BibtexProcessor.submissions_fancy.html#dcase_util.tools.BibtexProcessor.submissions_fancy">submissions_fancy() (dcase_util.tools.BibtexProcessor static method)</a>
 </li>
       <li><a href="generated/dcase_util.utils.SuppressStdoutAndStderr.html#dcase_util.utils.SuppressStdoutAndStderr">SuppressStdoutAndStderr (class in dcase_util.utils)</a>
-</li>
-      <li><a href="generated/dcase_util.tools.SubmissionChecker.system_description.html#dcase_util.tools.SubmissionChecker.system_description">system_description() (dcase_util.tools.SubmissionChecker method)</a>
-</li>
-      <li><a href="generated/dcase_util.tools.SubmissionChecker.system_meta.html#dcase_util.tools.SubmissionChecker.system_meta">system_meta() (dcase_util.tools.SubmissionChecker method)</a>
-</li>
-      <li><a href="generated/dcase_util.tools.SubmissionChecker.system_output.html#dcase_util.tools.SubmissionChecker.system_output">system_output() (dcase_util.tools.SubmissionChecker method)</a>
-</li>
-      <li><a href="generated/dcase_util.tools.SubmissionChecker.system_output_file.html#dcase_util.tools.SubmissionChecker.system_output_file">system_output_file() (dcase_util.tools.SubmissionChecker method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -3418,10 +3441,10 @@
       </ul></li>
       <li><a href="generated/dcase_util.containers.MetaDataContainer.to_event_roll.html#dcase_util.containers.MetaDataContainer.to_event_roll">to_event_roll() (dcase_util.containers.MetaDataContainer method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="generated/dcase_util.files.FileLock.touch.html#dcase_util.files.FileLock.touch">touch() (dcase_util.files.FileLock method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="generated/dcase_util.datasets.Dataset.train.html#dcase_util.datasets.Dataset.train">train() (dcase_util.datasets.Dataset method)</a>
 
       <ul>
@@ -3439,6 +3462,8 @@
       <li><a href="generated/dcase_util.datasets.TUTAcousticScenes_2017_DevelopmentSet.html#dcase_util.datasets.TUTAcousticScenes_2017_DevelopmentSet">TUTAcousticScenes_2017_DevelopmentSet (class in dcase_util.datasets)</a>
 </li>
       <li><a href="generated/dcase_util.datasets.TUTAcousticScenes_2017_EvaluationSet.html#dcase_util.datasets.TUTAcousticScenes_2017_EvaluationSet">TUTAcousticScenes_2017_EvaluationSet (class in dcase_util.datasets)</a>
+</li>
+      <li><a href="generated/dcase_util.datasets.TUTAcousticScenes_2017_FeaturesSet.html#dcase_util.datasets.TUTAcousticScenes_2017_FeaturesSet">TUTAcousticScenes_2017_FeaturesSet (class in dcase_util.datasets)</a>
 </li>
       <li><a href="generated/dcase_util.datasets.TUTRareSoundEvents_2017_DevelopmentSet.html#dcase_util.datasets.TUTRareSoundEvents_2017_DevelopmentSet">TUTRareSoundEvents_2017_DevelopmentSet (class in dcase_util.datasets)</a>
 </li>
@@ -3480,10 +3505,12 @@
       </ul></li>
       <li><a href="generated/dcase_util.containers.MetaDataContainer.unique_identifiers.html#dcase_util.containers.MetaDataContainer.unique_identifiers">unique_identifiers (dcase_util.containers.MetaDataContainer attribute)</a>
 </li>
-      <li><a href="generated/dcase_util.containers.ProbabilityContainer.unique_labels.html#dcase_util.containers.ProbabilityContainer.unique_labels">unique_labels (dcase_util.containers.ProbabilityContainer attribute)</a>
+      <li><a href="generated/dcase_util.containers.ProbabilityContainer.unique_indices.html#dcase_util.containers.ProbabilityContainer.unique_indices">unique_indices (dcase_util.containers.ProbabilityContainer attribute)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/dcase_util.containers.ProbabilityContainer.unique_labels.html#dcase_util.containers.ProbabilityContainer.unique_labels">unique_labels (dcase_util.containers.ProbabilityContainer attribute)</a>
+</li>
       <li><a href="generated/dcase_util.containers.MetaDataContainer.unique_scene_labels.html#dcase_util.containers.MetaDataContainer.unique_scene_labels">unique_scene_labels (dcase_util.containers.MetaDataContainer attribute)</a>
 </li>
       <li><a href="generated/dcase_util.containers.MetaDataContainer.unique_source_labels.html#dcase_util.containers.MetaDataContainer.unique_source_labels">unique_source_labels (dcase_util.containers.MetaDataContainer attribute)</a>

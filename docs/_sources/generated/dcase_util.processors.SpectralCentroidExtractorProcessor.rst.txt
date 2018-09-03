@@ -39,9 +39,11 @@ dcase_util.processors.SpectralCentroidExtractorProcessor
 
    .. autosummary::
    
+      ~SpectralCentroidExtractorProcessor.bytes
       ~SpectralCentroidExtractorProcessor.input_type
       ~SpectralCentroidExtractorProcessor.label
       ~SpectralCentroidExtractorProcessor.logger
+      ~SpectralCentroidExtractorProcessor.md5
       ~SpectralCentroidExtractorProcessor.output_type
       ~SpectralCentroidExtractorProcessor.valid_formats
    

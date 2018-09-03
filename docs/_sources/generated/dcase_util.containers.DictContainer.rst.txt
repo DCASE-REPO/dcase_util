@@ -60,7 +60,9 @@ dcase_util.containers.DictContainer
 
    .. autosummary::
    
+      ~DictContainer.bytes
       ~DictContainer.logger
+      ~DictContainer.md5
       ~DictContainer.valid_formats
    
    

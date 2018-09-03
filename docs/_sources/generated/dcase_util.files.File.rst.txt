@@ -32,7 +32,9 @@ dcase_util.files.File
 
    .. autosummary::
    
+      ~File.bytes
       ~File.logger
+      ~File.md5
       ~File.valid_formats
    
    

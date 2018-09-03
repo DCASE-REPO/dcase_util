@@ -36,8 +36,10 @@ dcase_util.processors.AudioReadingProcessor
 
    .. autosummary::
    
+      ~AudioReadingProcessor.bytes
       ~AudioReadingProcessor.input_type
       ~AudioReadingProcessor.logger
+      ~AudioReadingProcessor.md5
       ~AudioReadingProcessor.output_type
       ~AudioReadingProcessor.valid_formats
    

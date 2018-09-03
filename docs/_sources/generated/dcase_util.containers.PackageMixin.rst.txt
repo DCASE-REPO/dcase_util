@@ -25,7 +25,9 @@ dcase_util.containers.PackageMixin
 
    .. autosummary::
    
+      ~PackageMixin.bytes
       ~PackageMixin.logger
+      ~PackageMixin.md5
       ~PackageMixin.package_password
    
    

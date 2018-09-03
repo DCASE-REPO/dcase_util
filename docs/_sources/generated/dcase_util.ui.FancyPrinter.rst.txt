@@ -21,6 +21,8 @@ dcase_util.ui.FancyPrinter
       ~FancyPrinter.info
       ~FancyPrinter.line
       ~FancyPrinter.row
+      ~FancyPrinter.row_reset
+      ~FancyPrinter.row_sep
       ~FancyPrinter.section_header
       ~FancyPrinter.sep
       ~FancyPrinter.sub_header

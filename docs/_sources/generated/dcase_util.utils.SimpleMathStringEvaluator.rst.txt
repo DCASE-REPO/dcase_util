@@ -20,4 +20,10 @@ dcase_util.utils.SimpleMathStringEvaluator
 
    
    
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~SimpleMathStringEvaluator.logger
+   
    

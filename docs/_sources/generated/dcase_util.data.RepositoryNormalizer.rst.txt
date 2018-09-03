@@ -38,7 +38,9 @@ dcase_util.data.RepositoryNormalizer
 
    .. autosummary::
    
+      ~RepositoryNormalizer.bytes
       ~RepositoryNormalizer.logger
+      ~RepositoryNormalizer.md5
       ~RepositoryNormalizer.valid_formats
    
    
