@@ -38,6 +38,9 @@ class Processor(ObjectContainer):
         self.input_type = d['input_type']
         self.output_type = d['output_type']
 
+    def __call__(self, *args, **kwargs):
+        return self.process(*args, **kwargs)
+
     @property
     def logger(self):
         """Logger instance"""
