@@ -169,7 +169,7 @@ def create_sequential_model(model_parameter_list, input_shape=None, output_shape
         # Get layer class
         try:
             layer_class = getattr(
-                importlib.import_module("keras.layers"),
+                importlib.import_module('keras.layers'),
                 layer_setup['class_name']
             )
 
@@ -346,10 +346,28 @@ def model_summary_string(keras_model, mode='keras'):
         for line in output_buffer:
             output += ui.line(line, indent=4) + '\n'
 
-    output += ui.line('') + '\n'
+    model_config = keras_model.get_config()
 
-    output += ui.data(indent=4, field='Input shape', value=keras_model.input_shape) + '\n'
-    output += ui.data(indent=4, field='Output shape', value=keras_model.output_shape) + '\n'
+    output += ui.line('') + '\n'
+    output += ui.line('Input', indent=4) + '\n'
+    output += ui.data(indent=6, field='Shape', value=keras_model.input_shape) + '\n'
+
+    output += ui.line('Output', indent=4) + '\n'
+    output += ui.data(indent=6, field='Shape', value=keras_model.output_shape) + '\n'
+
+    if isinstance(model_config, dict) and 'layers' in model_config:
+        output += ui.data(
+            indent=6,
+            field='Activation',
+            value=model_config['layers'][-1]['config'].get('activation')
+        ) + '\n'
+
+    elif isinstance(model_config, list):
+        output += ui.data(
+            indent=6,
+            field='Activation',
+            value=model_config[-1].get('config', {}).get('activation')
+        ) + '\n'
 
     return output
 
