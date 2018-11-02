@@ -16,7 +16,7 @@ def test_container():
             },
             'path': {
                 'external': {
-                    'log': 'test/'
+                    'log': 'test'
                 }
             },
             'feature_extraction': {
@@ -75,7 +75,7 @@ def test_container():
             },
             'directories': {
                 'external': {
-                    'log': 'test/'
+                    'log': 'test'
                 }
             },
             'feature_extraction': {
@@ -101,8 +101,10 @@ def test_container():
     nose.tools.eq_(param['feature_extraction']['_hash'], '7e5e46979cd59e83662703686acd8b82')
 
     nose.tools.eq_(param['feature_extraction']['stacking_formula'][0]['label'], 'mel')
-    nose.tools.eq_(param['directories']['external']['log'], os.path.join(tempfile.gettempdir(),
-                                                                         'dcase_util_app', 'test/'))
+    nose.tools.eq_(
+        param['directories']['external']['log'],
+        os.path.join(tempfile.gettempdir(), 'dcase_util_app', 'test')
+    )
 
     # 4
     param = dcase_util.containers.AppParameterContainer(
@@ -160,12 +162,12 @@ def test_container():
             'defaults': {
                 'path': {
                     'application': {
-                        'base': 'system/',
-                        'feature_extractor': 'feature_extractor/',
-                        'feature_normalizer': 'feature_normalizer/',
-                        'learner': 'learner/',
-                        'recognizer': 'recognizer/',
-                        'evaluator': 'evaluator/',
+                        'base': 'system',
+                        'feature_extractor': 'feature_extractor',
+                        'feature_normalizer': 'feature_normalizer',
+                        'learner': 'learner',
+                        'recognizer': 'recognizer',
+                        'evaluator': 'evaluator',
                     }
                 },
                 'general': {
@@ -209,10 +211,15 @@ def test_container():
     param.process(create_paths=True)
 
     nose.tools.eq_(param['general']['field1'], 100)
-    nose.tools.eq_(param['path']['application']['base'], os.path.join(tempfile.gettempdir(),
-                                                                      'dcase_util_app', 'system/'))
-    nose.tools.eq_(param['path']['application']['feature_extractor'],
-                   os.path.join(tempfile.gettempdir(), 'dcase_util_app', 'system', 'feature_extractor/'))
+    nose.tools.eq_(
+        param['path']['application']['base'],
+        os.path.join(tempfile.gettempdir(), 'dcase_util_app', 'system')
+    )
+
+    nose.tools.eq_(
+        param['path']['application']['feature_extractor'],
+        os.path.join(tempfile.gettempdir(), 'dcase_util_app', 'system', 'feature_extractor')
+    )
 
     nose.tools.eq_(param['feature_extractor2']['parameters']['n_mels'], 40)
 

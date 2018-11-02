@@ -90,7 +90,7 @@ def test_writing_reading():
         }
     ])
 
-    tmp = tempfile.NamedTemporaryFile('r+', suffix='.cpickle', dir='/tmp', delete=False)
+    tmp = tempfile.NamedTemporaryFile('r+', suffix='.cpickle', dir=tempfile.gettempdir(), delete=False)
     try:
         # Run the processing chain
         data = chain.process(
@@ -103,7 +103,11 @@ def test_writing_reading():
         nose.tools.eq_(data.shape, data_loaded.shape)
 
     finally:
-        os.unlink(tmp.name)
+        try:
+            tmp.close()
+            os.unlink(tmp.name)
+        except:
+            pass
 
     chain = dcase_util.processors.ProcessingChain([
         {
@@ -125,7 +129,7 @@ def test_writing_reading():
         }
     ])
 
-    tmp = tempfile.NamedTemporaryFile('r+', suffix='.cpickle', dir='/tmp', delete=False)
+    tmp = tempfile.NamedTemporaryFile('r+', suffix='.cpickle', dir=tempfile.gettempdir(), delete=False)
     try:
         # Run the processing chain
         repo = chain.process(
@@ -138,5 +142,9 @@ def test_writing_reading():
         nose.tools.eq_(repo.labels, repo_loaded.labels)
 
     finally:
-        os.unlink(tmp.name)
+        try:
+            tmp.close()
+            os.unlink(tmp.name)
+        except:
+            pass
 

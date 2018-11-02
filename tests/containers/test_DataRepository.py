@@ -62,7 +62,7 @@ def test_save_load():
     )
 
     # PICKLE
-    tmp = tempfile.NamedTemporaryFile('r+', suffix='.cpickle',  dir='/tmp', delete=False)
+    tmp = tempfile.NamedTemporaryFile('r+', suffix='.cpickle',  dir=tempfile.gettempdir(), delete=False)
     try:
         data_repository.save(filename=tmp.name)
         data_repository_loaded = dcase_util.containers.DataRepository().load(filename=tmp.name)
@@ -73,7 +73,11 @@ def test_save_load():
         nose.tools.eq_(data_repository_loaded.get_container(label='label1', stream_id='stream0'), {'data': 100})
 
     finally:
-        os.unlink(tmp.name)
+        try:
+            tmp.close()
+            os.unlink(tmp.name)
+        except:
+            pass
 
 
 def test_log():

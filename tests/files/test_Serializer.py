@@ -14,37 +14,57 @@ def test_Serializer():
     }
 
     s = Serializer()
-    tmp = tempfile.NamedTemporaryFile('r+', suffix='.yaml', dir='/tmp', delete=False)
+    tmp = tempfile.NamedTemporaryFile('r+', suffix='.yaml', dir=tempfile.gettempdir(), delete=False)
     try:
         s.save_yaml(filename=tmp.name, data=data)
         nose.tools.eq_(data, s.load_yaml(filename=tmp.name))
     finally:
-        os.unlink(tmp.name)
+        try:
+            tmp.close()
+            os.unlink(tmp.name)
+        except:
+            pass
 
-    tmp = tempfile.NamedTemporaryFile('r+', suffix='.cpickle', dir='/tmp', delete=False)
+    tmp = tempfile.NamedTemporaryFile('r+', suffix='.cpickle', dir=tempfile.gettempdir(), delete=False)
     try:
         s.save_cpickle(filename=tmp.name, data=data)
         nose.tools.eq_(data, s.load_cpickle(filename=tmp.name))
     finally:
-        os.unlink(tmp.name)
+        try:
+            tmp.close()
+            os.unlink(tmp.name)
+        except:
+            pass
 
-    tmp = tempfile.NamedTemporaryFile('r+', suffix='.json', dir='/tmp', delete=False)
+    tmp = tempfile.NamedTemporaryFile('r+', suffix='.json', dir=tempfile.gettempdir(), delete=False)
     try:
         s.save_json(filename=tmp.name, data=data)
         nose.tools.eq_(data, s.load_json(filename=tmp.name))
     finally:
-        os.unlink(tmp.name)
+        try:
+            tmp.close()
+            os.unlink(tmp.name)
+        except:
+            pass
 
-    tmp = tempfile.NamedTemporaryFile('r+', suffix='.msgpack', dir='/tmp', delete=False)
+    tmp = tempfile.NamedTemporaryFile('r+', suffix='.msgpack', dir=tempfile.gettempdir(), delete=False)
     try:
         s.save_msgpack(filename=tmp.name, data=data)
         nose.tools.eq_(data, s.load_msgpack(filename=tmp.name))
     finally:
-        os.unlink(tmp.name)
+        try:
+            tmp.close()
+            os.unlink(tmp.name)
+        except:
+            pass
 
-    tmp = tempfile.NamedTemporaryFile('r+', suffix='.marshal', dir='/tmp', delete=False)
+    tmp = tempfile.NamedTemporaryFile('r+', suffix='.marshal', dir=tempfile.gettempdir(), delete=False)
     try:
         s.save_marshal(filename=tmp.name, data=data)
         nose.tools.eq_(data, s.load_marshal(filename=tmp.name))
     finally:
-        os.unlink(tmp.name)
+        try:
+            tmp.close()
+            os.unlink(tmp.name)
+        except:
+            pass

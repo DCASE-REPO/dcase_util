@@ -368,7 +368,7 @@ def test_TUTAcousticScenes_2017_DevelopmentSet():
 
     nose.tools.eq_(
         db.absolute_to_relative_path(os.path.join(audio_path, 'b079_180_190.wav')),
-        'audio/b079_180_190.wav'
+        os.path.join('audio', 'b079_180_190.wav')
     )
 
     nose.tools.eq_(db.dataset_bytes(), 10700420548)

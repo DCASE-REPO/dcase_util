@@ -33,12 +33,12 @@ def test_container():
             'defaults': {
                 'path': {
                     'application': {
-                        'base': 'system/',
-                        'feature_extractor': 'feature_extractor/',
-                        'feature_normalizer': 'feature_normalizer/',
-                        'learner': 'learner/',
-                        'recognizer': 'recognizer/',
-                        'evaluator': 'evaluator/',
+                        'base': 'system',
+                        'feature_extractor': 'feature_extractor',
+                        'feature_normalizer': 'feature_normalizer',
+                        'learner': 'learner',
+                        'recognizer': 'recognizer',
+                        'evaluator': 'evaluator',
                     }
                 },
                 'logging': {
@@ -123,12 +123,18 @@ def test_container():
     nose.tools.eq_(param['general']['field1'], 100)
     nose.tools.eq_(
         param['path']['application']['base'],
-        os.path.join(tempfile.gettempdir(), 'dcase_util_app', 'system/')
+        os.path.join(tempfile.gettempdir(), 'dcase_util_app', 'system')
     )
-    nose.tools.eq_(param['path']['application']['feature_extractor']['mel'],
-                   os.path.join(tempfile.gettempdir(), 'dcase_util_app', 'system',
-                                'feature_extractor', 'feature_extractor_32f4f694c22356bd4529290397a41bda')
-                   )
+    nose.tools.eq_(
+        param['path']['application']['feature_extractor']['mel'],
+        os.path.join(
+            tempfile.gettempdir(),
+            'dcase_util_app',
+            'system',
+            'feature_extractor',
+            'feature_extractor_32f4f694c22356bd4529290397a41bda'
+        )
+    )
 
     nose.tools.eq_(param['feature_extractor']['hop_length_samples'], 882)
     nose.tools.eq_(param['feature_extractor']['parameters']['mel']['n_mels'], 40)
