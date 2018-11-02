@@ -3083,7 +3083,8 @@ class SoundEventDataset(Dataset):
                             validation_set_mae.append(
                                 mean_absolute_error(
                                     numpy.ones(len(current_validation_amount)) * validation_amount,
-                                    current_validation_amount)
+                                    current_validation_amount
+                                )
                             )
                             validation_set_event_amounts.append(validation_set_event_counts)
                             training_set_event_amounts.append(training_set_event_counts)
