@@ -4,6 +4,7 @@
 from __future__ import print_function, absolute_import
 import six
 import sys
+import os
 import copy
 import numpy
 import csv
@@ -41,8 +42,9 @@ class MetaDataItem(dict):
 
         # File target for the meta data item
         if 'filename' in self and isinstance(self['filename'], six.string_types):
-            # Keep file paths in unix format even under Windows
-            self['filename'] = posix_path(self['filename'])
+            if not os.path.isabs(self['filename']):
+                # Force relative file paths into unix format even under Windows
+                self['filename'] = posix_path(self['filename'])
 
         if 'filename_original' in self and isinstance(self['filename_original'], six.string_types):
             # Keep file paths in unix format even under Windows
@@ -309,8 +311,11 @@ class MetaDataItem(dict):
 
     @filename.setter
     def filename(self, value):
-        # Keep file paths in unix format even under Windows
-        self['filename'] = posix_path(value)
+        if not os.path.isabs(value):
+            # Force relative file paths into unix format even under Windows
+            value = posix_path(value)
+
+        self['filename'] = value
 
     @property
     def filename_original(self):
