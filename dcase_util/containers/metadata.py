@@ -52,15 +52,21 @@ class MetaDataItem(dict):
 
         # Meta data item timestamps: onset and offset
         if 'onset' in self:
-            self['onset'] = float(self['onset'])
+            if is_float(self['onset']):
+                self['onset'] = float(self['onset'])
+            else:
+                self['onset'] = None
 
         if 'offset' in self:
-            self['offset'] = float(self['offset'])
+            if is_float(self['offset']):
+                self['offset'] = float(self['offset'])
+            else:
+                self['offset'] = None
 
         # Event label assigned to the meta data item
-        if 'event_label' in self and self.event_label:
+        if 'event_label' in self:
             self['event_label'] = self['event_label'].strip()
-            if self['event_label'].lower() == 'none':
+            if self['event_label'].lower() == 'none' or self['event_label'] == '':
                 self['event_label'] = None
 
         # Acoustic scene label assigned to the meta data item
