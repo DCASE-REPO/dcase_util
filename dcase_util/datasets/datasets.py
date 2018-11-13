@@ -1881,7 +1881,16 @@ class Dataset(object):
 
         """
 
-        return os.path.abspath(os.path.expanduser(os.path.join(self.local_path, path)))
+        if path is None:
+            message = '{name}: Path is None.'.format(
+                name=self.__class__.__name__
+            )
+
+            self.logger.exception(message)
+            raise ValueError(message)
+
+        else:
+            return os.path.abspath(os.path.expanduser(os.path.join(self.local_path, path)))
 
     def absolute_to_relative_path(self, path):
         """Converts absolute path into relative path.
@@ -1898,11 +1907,20 @@ class Dataset(object):
 
         """
 
-        if path.startswith(os.path.abspath(self.local_path)):
-            return os.path.relpath(path, self.local_path)
+        if path is None:
+            message = '{name}: Path is None.'.format(
+                name=self.__class__.__name__
+            )
+
+            self.logger.exception(message)
+            raise ValueError(message)
 
         else:
-            return path
+            if path.startswith(os.path.abspath(self.local_path)):
+                return os.path.relpath(path, self.local_path)
+
+            else:
+                return path
 
     def dataset_bytes(self):
         """Total download size of the dataset in bytes.
