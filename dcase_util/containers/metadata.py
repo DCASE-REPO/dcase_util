@@ -1483,18 +1483,19 @@ class MetaDataContainer(ListDictContainer):
                             fields = csv_fields
 
                     for row in csv_reader:
-                        for cell_id, cell_data in enumerate(row):
-                            if decimal == 'comma':
-                                # Translate decimal comma into decimal point
-                                cell_data = float(cell_data.replace(',', '.'))
+                        if row:
+                            for cell_id, cell_data in enumerate(row):
+                                if decimal == 'comma':
+                                    # Translate decimal comma into decimal point
+                                    cell_data = float(cell_data.replace(',', '.'))
 
-                            if is_int(cell_data):
-                                row[cell_id] = int(cell_data)
+                                if is_int(cell_data):
+                                    row[cell_id] = int(cell_data)
 
-                            elif is_float(cell_data):
-                                row[cell_id] = float(cell_data)
+                                elif is_float(cell_data):
+                                    row[cell_id] = float(cell_data)
 
-                        data.append(dict(zip(fields, row)))
+                            data.append(dict(zip(fields, row)))
 
                 self.update(data=data)
 

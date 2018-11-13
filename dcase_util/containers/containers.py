@@ -1224,15 +1224,16 @@ class ListDictContainer(ListContainer):
                             fields = csv_fields
 
                     for row in csv_reader:
-                        if convert_numeric_fields:
-                            for cell_id, cell_data in enumerate(row):
-                                if is_int(cell_data):
-                                    row[cell_id] = int(cell_data)
+                        if row:
+                            if convert_numeric_fields:
+                                for cell_id, cell_data in enumerate(row):
+                                    if is_int(cell_data):
+                                        row[cell_id] = int(cell_data)
 
-                                elif is_float(cell_data):
-                                    row[cell_id] = float(cell_data)
+                                    elif is_float(cell_data):
+                                        row[cell_id] = float(cell_data)
 
-                        data.append(dict(zip(fields, row)))
+                            data.append(dict(zip(fields, row)))
 
                 list.__init__(self, data)
 
