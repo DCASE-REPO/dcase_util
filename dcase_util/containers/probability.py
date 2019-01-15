@@ -4,6 +4,7 @@
 from __future__ import print_function, absolute_import
 import copy
 import os
+import sys
 import csv
 import logging
 import io
@@ -608,18 +609,19 @@ class ProbabilityContainer(ListDictContainer):
                             fields = csv_fields
 
                     for row in csv_reader:
-                        for cell_id, cell_data in enumerate(row):
-                            if decimal == 'comma':
-                                # Translate decimal comma into decimal point
-                                cell_data = float(cell_data.replace(',', '.'))
+                        if row:
+                            for cell_id, cell_data in enumerate(row):
+                                if decimal == 'comma':
+                                    # Translate decimal comma into decimal point
+                                    cell_data = float(cell_data.replace(',', '.'))
 
-                            if is_int(cell_data):
-                                row[cell_id] = int(cell_data)
+                                if is_int(cell_data):
+                                    row[cell_id] = int(cell_data)
 
-                            elif is_float(cell_data):
-                                row[cell_id] = float(cell_data)
+                                elif is_float(cell_data):
+                                    row[cell_id] = float(cell_data)
 
-                        data.append(dict(zip(fields, row)))
+                            data.append(dict(zip(fields, row)))
 
                 self.update(data=data)
 
@@ -680,7 +682,13 @@ class ProbabilityContainer(ListDictContainer):
             self.format = file_format
 
         if self.format in [FileFormat.TXT]:
-            f = open(self.filename, 'wt')
+            # Make sure writing is using correct line endings to avoid extra empty lines
+            if sys.version_info[0] == 2:
+                f = open(self.filename, 'wbt')
+
+            elif sys.version_info[0] == 3:
+                f = open(self.filename, 'wt', newline='')
+
             try:
                 writer = csv.writer(f, delimiter=delimiter)
                 for item in self:
@@ -694,9 +702,17 @@ class ProbabilityContainer(ListDictContainer):
                 fields = set()
                 for item in self:
                     fields.update(list(item.keys()))
+
                 fields = sorted(list(fields))
 
-            with open(self.filename, 'w') as csv_file:
+            # Make sure writing is using correct line endings to avoid extra empty lines
+            if sys.version_info[0] == 2:
+                csv_file = open(self.filename, 'wb')
+
+            elif sys.version_info[0] == 3:
+                csv_file = open(self.filename, 'w', newline='')
+
+            try:
                 csv_writer = csv.writer(csv_file, delimiter=delimiter)
                 if csv_header:
                     csv_writer.writerow(fields)
@@ -711,6 +727,9 @@ class ProbabilityContainer(ListDictContainer):
                         item_values.append(value)
 
                     csv_writer.writerow(item_values)
+
+            finally:
+                csv_file.close()
 
         elif self.format == FileFormat.CPICKLE:
             from dcase_util.files import Serializer

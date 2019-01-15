@@ -12,6 +12,34 @@ from dcase_util.ui import FancyStringifier
 from dcase_util.utils import setup_logging, get_class_inheritors
 
 
+def feature_extractor_list():
+    """List of feature extractors available
+
+    Returns
+    -------
+    str
+        Multi line string containing extractor table
+
+    """
+
+
+    ui = FancyStringifier()
+    output = ''
+    output += ui.row('Class name', 'Feature label', 'Description', widths=[30, 20, 60]) + '\n'
+    output += ui.row_sep() + '\n'
+    class_list = get_class_inheritors(FeatureExtractor)
+    class_list.sort(key=lambda x: x.__name__, reverse=False)
+    for extractor_class in class_list:
+        if not extractor_class.__name__.endswith('Processor'):
+            e = extractor_class()
+            output += ui.row(
+                extractor_class.__name__,
+                e.label,
+                e.description
+            ) + '\n'
+
+    return output
+
 def feature_extractor_factory(feature_extractor_label, **kwargs):
     """Function to get correct feature extractor class instance based on extractor label or class name.
 
@@ -74,6 +102,9 @@ def feature_extractor_factory(feature_extractor_label, **kwargs):
 
 class FeatureExtractor(ContainerMixin):
     """Feature extractor base class"""
+    label = 'extractor_base'  #: Extractor label
+    description = 'Feature extractor base class' #: Extractor description
+
     def __init__(self, fs=44100, win_length_samples=None, hop_length_samples=None, win_length_seconds=0.04,
                  hop_length_seconds=0.02, **kwargs):
         """Constructor
@@ -174,6 +205,9 @@ class FeatureExtractor(ContainerMixin):
         self.win_length_seconds = d['win_length_seconds']
         self.hop_length_seconds = d['hop_length_seconds']
 
+    def __call__(self, *args, **kwargs):
+        return self.extract(*args, **kwargs)
+
     def extract(self, y):
         """Extract features for the audio signal (PLACEHOLDER).
 
@@ -193,6 +227,9 @@ class FeatureExtractor(ContainerMixin):
 
 class SpectralFeatureExtractor(FeatureExtractor):
     """Spectral feature extractor base class"""
+    label = 'spectrogram'  #: Extractor label
+    description = 'Spectral feature extractor base class (Librosa)'  #: Extractor description
+
     def __init__(self, spectrogram_type='magnitude', n_fft=2048, window_type='hamming_asymmetric', **kwargs):
         """Constructor
 
@@ -421,6 +458,7 @@ class SpectralFeatureExtractor(FeatureExtractor):
 class MelExtractor(SpectralFeatureExtractor):
     """Feature extractor class to extract mel band energy features"""
     label = 'mel'  #: Extractor label
+    description = 'Mel band energy (Librosa)'  #: Extractor description
 
     def __init__(self,
                  fs=44100,
@@ -608,6 +646,7 @@ class MelExtractor(SpectralFeatureExtractor):
 class MfccStaticExtractor(SpectralFeatureExtractor):
     """Feature extractor class to extract static MFCC features"""
     label = 'mfcc'  #: Extractor label
+    description = 'MFCC (Librosa)'  #: Extractor description
 
     def __init__(self,
                  fs=44100,
@@ -811,6 +850,7 @@ class MfccStaticExtractor(SpectralFeatureExtractor):
 class MfccDeltaExtractor(MfccStaticExtractor):
     """Feature extractor class to extract MFCC delta features"""
     label = 'mfcc_delta'  #: Extractor label
+    description = 'MFCC delta (Librosa)'  #: Extractor description
 
     def __init__(self,
                  fs=44100,
@@ -947,6 +987,7 @@ class MfccDeltaExtractor(MfccStaticExtractor):
 class MfccAccelerationExtractor(MfccStaticExtractor):
     """Feature extractor class to extract MFCC acceleration features"""
     label = 'mfcc_acceleration'  #: Extractor label
+    description = 'MFCC acceleration (Librosa)'  #: Extractor description
 
     def __init__(self, fs=44100,
                  win_length_samples=None, hop_length_samples=None, win_length_seconds=0.04, hop_length_seconds=0.02,
@@ -1082,6 +1123,7 @@ class MfccAccelerationExtractor(MfccStaticExtractor):
 class ZeroCrossingRateExtractor(FeatureExtractor):
     """Feature extractor class to extract zero crossing rate features"""
     label = 'zcr'  #: Extractor label
+    description = 'Zero crossing rate (Librosa)'  #: Extractor description
 
     def __init__(self,
                  fs=44100,
@@ -1183,6 +1225,7 @@ class ZeroCrossingRateExtractor(FeatureExtractor):
 class RMSEnergyExtractor(SpectralFeatureExtractor):
     """Feature extractor class to extract Root-mean-square energy features"""
     label = 'rmse'  #: Extractor label
+    description = 'Root-mean-square energy (Librosa)'  #: Extractor description
 
     def __init__(self,
                  fs=44100,
@@ -1307,6 +1350,7 @@ class RMSEnergyExtractor(SpectralFeatureExtractor):
 class SpectralCentroidExtractor(SpectralFeatureExtractor):
     """Feature extractor class to extract Centroid features"""
     label = 'centroid'  #: Extractor label
+    description = 'Centroid (Librosa)'  #: Extractor description
 
     def __init__(self,
                  fs=44100,

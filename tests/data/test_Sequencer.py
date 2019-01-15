@@ -143,7 +143,7 @@ def test_save():
     ])
     container = chain.process(filename=dcase_util.utils.Example.audio_filename())
 
-    tmp = tempfile.NamedTemporaryFile('r+', suffix='.cpickle', dir='/tmp', delete=False)
+    tmp = tempfile.NamedTemporaryFile('r+', suffix='.cpickle', dir=tempfile.gettempdir(), delete=False)
     try:
 
         sequencer = Sequencer(
@@ -157,7 +157,11 @@ def test_save():
         nose.tools.eq_(sequenced_data.data.shape, (40, 10, 50))
 
     finally:
-        os.unlink(tmp.name)
+        try:
+            tmp.close()
+            os.unlink(tmp.name)
+        except:
+            pass
 
 
 def test_log():

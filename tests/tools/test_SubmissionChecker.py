@@ -10,7 +10,7 @@ from dcase_util.tools import SubmissionChecker
 
 def test_submissionchecker_parameter_file():
     sc = SubmissionChecker(entry_label='Heittola_TUT_task1_1', class_labels=['label1', 'label2'], file_count=2)
-    tmp = tempfile.NamedTemporaryFile('r+', suffix='.yaml',  dir='/tmp', delete=False)
+    tmp = tempfile.NamedTemporaryFile('r+', suffix='.yaml',  dir=tempfile.gettempdir(), delete=False)
     try:
         tmp.write('submission:\n')
         tmp.write('  label: Heittola_TUT_task1_1\n')
@@ -53,5 +53,9 @@ def test_submissionchecker_parameter_file():
         )
 
     finally:
-        os.unlink(tmp.name)
+        try:
+            tmp.close()
+            os.unlink(tmp.name)
+        except:
+            pass
 

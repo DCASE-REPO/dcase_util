@@ -39,7 +39,7 @@ def test_FileMixin_formats():
 def test_FileMixin_delimiters():
     delimiters = [',', ';', '\t']
     for delimiter in delimiters:
-        tmp = tempfile.NamedTemporaryFile('r+', suffix='.txt', dir='/tmp', delete=False)
+        tmp = tempfile.NamedTemporaryFile('r+', suffix='.txt', dir=tempfile.gettempdir(), delete=False)
         try:
             tmp.write('0.5' + delimiter + '0.7\n')
             tmp.write('2.5' + delimiter + '2.7\n')
@@ -48,5 +48,9 @@ def test_FileMixin_delimiters():
             item = FileMixin(filename=tmp.name)
             nose.tools.eq_(item.delimiter(), delimiter)
         finally:
-            os.unlink(tmp.name)
+            try:
+                tmp.close()
+                os.unlink(tmp.name)
+            except:
+                pass
 

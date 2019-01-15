@@ -10,7 +10,7 @@ import os
 
 def test_load():
     # Txt
-    tmp = tempfile.NamedTemporaryFile('r+', suffix='.txt', prefix='prefix_', dir='/tmp', delete=False)
+    tmp = tempfile.NamedTemporaryFile('r+', suffix='.txt', prefix='prefix_', dir=tempfile.gettempdir(), delete=False)
     try:
         tmp.write('line1\n')
         tmp.write('line2\n')
@@ -21,7 +21,11 @@ def test_load():
 
         nose.tools.assert_list_equal(m, ['line1', 'line2', 'line3'])
     finally:
-        os.unlink(tmp.name)
+        try:
+            tmp.close()
+            os.unlink(tmp.name)
+        except:
+            pass
 
 
 def test_save():

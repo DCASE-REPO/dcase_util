@@ -37,6 +37,9 @@ class BinaryMatrixEncoder(BinaryMatrix2DContainer):
             self.logger.exception(message)
             raise ValueError(message)
 
+    def __call__(self, *args, **kwargs):
+        return self.encode(*args, **kwargs)
+
 
 class OneHotEncoder(BinaryMatrixEncoder):
     """One hot encoder class"""
@@ -429,6 +432,9 @@ class LabelMatrixEncoder(DataMatrix2DContainer):
             message = '{name}: No time resolution set.'.format(name=self.__class__.__name__)
             self.logger.exception(message)
             raise ValueError(message)
+
+    def __call__(self, *args, **kwargs):
+        return self.encode(*args, **kwargs)
 
 
 class OneHotLabelEncoder(LabelMatrixEncoder):

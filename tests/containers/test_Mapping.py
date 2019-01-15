@@ -32,7 +32,7 @@ def test_OneToOneMappingContainer():
 
     delimiters = [',', ';', '\t']
     for delimiter in delimiters:
-        tmp = tempfile.NamedTemporaryFile('r+', suffix='.txt', dir='/tmp', delete=False)
+        tmp = tempfile.NamedTemporaryFile('r+', suffix='.txt', dir=tempfile.gettempdir(), delete=False)
         try:
             tmp.write('key1' + delimiter + 'mapped1\n')
             tmp.write('key2' + delimiter + 'mapped2\n')
@@ -42,9 +42,13 @@ def test_OneToOneMappingContainer():
             nose.tools.eq_(m.map('key1'), 'mapped1')
             nose.tools.eq_(m.map('key2'), 'mapped2')
         finally:
-            os.unlink(tmp.name)
+            try:
+                tmp.close()
+                os.unlink(tmp.name)
+            except:
+                pass
 
-    tmp = tempfile.NamedTemporaryFile('r+', suffix='.txt', dir='/tmp', delete=False)
+    tmp = tempfile.NamedTemporaryFile('r+', suffix='.txt', dir=tempfile.gettempdir(), delete=False)
     try:
         m = OneToOneMappingContainer(
             {
@@ -62,7 +66,11 @@ def test_OneToOneMappingContainer():
         nose.tools.eq_(m_.map('key4'), 'mapped4')
         nose.tools.eq_(m_.map('key5', 'default'), 'default')
     finally:
-        os.unlink(tmp.name)
+        try:
+            tmp.close()
+            os.unlink(tmp.name)
+        except:
+            pass
 
 
 def test_save():

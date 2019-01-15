@@ -322,13 +322,16 @@ class EventRollEncodingProcessor(Processor):
 
         self.encoder = EventRollEncoder(**self.init_parameters)
 
-    def process(self, data=None, store_processing_chain=False, **kwargs):
+    def process(self, data=None, pad_length=None, store_processing_chain=False, **kwargs):
         """Encode metadata
 
         Parameters
         ----------
         data : MetaDataContainer
             Meta data to encode.
+
+        pad_length : int
+            Length to be padded
 
         store_processing_chain : bool
             Store processing chain to data container returned
@@ -374,6 +377,9 @@ class EventRollEncodingProcessor(Processor):
                 time_resolution=self.encoder.time_resolution,
                 processing_chain=processing_chain
             )
+
+            if pad_length:
+                container.pad(length=pad_length)
 
             return container
 

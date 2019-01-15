@@ -286,34 +286,46 @@ def test_save():
     a_out = dcase_util.utils.Example.audio_container()
 
     # 16 bit / wav
-    tmp = tempfile.NamedTemporaryFile('r+', suffix='.wav', prefix='16_', dir='/tmp', delete=False)
+    tmp = tempfile.NamedTemporaryFile('r+', suffix='.wav', prefix='16_', dir=tempfile.gettempdir(), delete=False)
     try:
         a_out.save(filename=tmp.name, bit_depth=16)
         a_in = dcase_util.containers.AudioContainer().load(filename=tmp.name)
         nose.tools.eq_(a_out.shape, a_in.shape)
         numpy.testing.assert_array_almost_equal(a_out.data, a_in.data, decimal=4)
     finally:
-        os.unlink(tmp.name)
+        try:
+            tmp.close()
+            os.unlink(tmp.name)
+        except:
+            pass
 
     # 24 bit / wav
-    tmp = tempfile.NamedTemporaryFile('r+', suffix='.wav', prefix='24_', dir='/tmp', delete=False)
+    tmp = tempfile.NamedTemporaryFile('r+', suffix='.wav', prefix='24_', dir=tempfile.gettempdir(), delete=False)
     try:
         a_out.save(filename=tmp.name, bit_depth=24)
         a_in = dcase_util.containers.AudioContainer().load(filename=tmp.name)
         nose.tools.eq_(a_out.shape, a_in.shape)
         numpy.testing.assert_array_almost_equal(a_out.data, a_in.data, decimal=5)
     finally:
-        os.unlink(tmp.name)
+        try:
+            tmp.close()
+            os.unlink(tmp.name)
+        except:
+            pass
 
     # 32 bit / wav
-    tmp = tempfile.NamedTemporaryFile('r+', suffix='.wav', prefix='32_', dir='/tmp', delete=False)
+    tmp = tempfile.NamedTemporaryFile('r+', suffix='.wav', prefix='32_', dir=tempfile.gettempdir(), delete=False)
     try:
         a_out.save(filename=tmp.name, bit_depth=32)
         a_in = dcase_util.containers.AudioContainer().load(filename=tmp.name)
         nose.tools.eq_(a_out.shape, a_in.shape)
         numpy.testing.assert_array_almost_equal(a_out.data, a_in.data, decimal=6)
     finally:
-        os.unlink(tmp.name)
+        try:
+            tmp.close()
+            os.unlink(tmp.name)
+        except:
+            pass
 
 
 def test_log():

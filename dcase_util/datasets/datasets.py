@@ -1652,7 +1652,11 @@ class Dataset(object):
             self.logger.exception(message)
             raise IOError(message)
 
-        training_files = sorted(list(set(self.train(fold=fold).unique_files) - set(validation_files)))
+        if training_meta is None:
+            training_files = sorted(list(set(self.train(fold=fold).unique_files) - set(validation_files)))
+
+        else:
+            training_files = sorted(list(set(training_meta.unique_files) - set(validation_files)))
 
         return training_files, validation_files
 
@@ -1877,7 +1881,16 @@ class Dataset(object):
 
         """
 
-        return os.path.abspath(os.path.expanduser(os.path.join(self.local_path, path)))
+        if path is None:
+            message = '{name}: Path is None.'.format(
+                name=self.__class__.__name__
+            )
+
+            self.logger.exception(message)
+            raise ValueError(message)
+
+        else:
+            return os.path.abspath(os.path.expanduser(os.path.join(self.local_path, path)))
 
     def absolute_to_relative_path(self, path):
         """Converts absolute path into relative path.
@@ -1894,11 +1907,20 @@ class Dataset(object):
 
         """
 
-        if path.startswith(os.path.abspath(self.local_path)):
-            return os.path.relpath(path, self.local_path)
+        if path is None:
+            message = '{name}: Path is None.'.format(
+                name=self.__class__.__name__
+            )
+
+            self.logger.exception(message)
+            raise ValueError(message)
 
         else:
-            return path
+            if path.startswith(os.path.abspath(self.local_path)):
+                return os.path.relpath(path, self.local_path)
+
+            else:
+                return path
 
     def dataset_bytes(self):
         """Total download size of the dataset in bytes.
@@ -2127,7 +2149,7 @@ class AcousticSceneDataset(Dataset):
 
         if balancing_mode == 'class':
             # Do the balance based on scene class only
-            for scene_id, scene_label in enumerate(self.scene_labels()):
+            for scene_id, scene_label in enumerate(training_meta.unique_scene_labels):
                 scene_files = training_meta.filter(scene_label=scene_label).unique_files
 
                 random.shuffle(scene_files, random.random)
@@ -2154,7 +2176,7 @@ class AcousticSceneDataset(Dataset):
                 raise AssertionError(message)
 
             # Do the balance based on scene class and identifier
-            for scene_id, scene_label in enumerate(self.scene_labels()):
+            for scene_id, scene_label in enumerate(training_meta.unique_scene_labels):
                 scene_meta = training_meta.filter(scene_label=scene_label)
 
                 data = {}
@@ -2343,7 +2365,7 @@ class AcousticSceneDataset(Dataset):
                     separators=[True, True, True]
                 )
                 log.row_sep()
-                for scene_id, scene_label in enumerate(self.scene_labels()):
+                for scene_id, scene_label in enumerate(training_meta.unique_scene_labels):
                     log.row(
                         scene_label,
                         amounts_full_items[scene_id],
@@ -2373,7 +2395,7 @@ class AcousticSceneDataset(Dataset):
                     separators=[True, False, True, False, True]
                 )
                 log.row_sep()
-                for scene_id, scene_label in enumerate(self.scene_labels()):
+                for scene_id, scene_label in enumerate(training_meta.unique_scene_labels):
                     log.row(
                         scene_label,
                         amounts_full_identifiers1[scene_id],
@@ -2407,7 +2429,7 @@ class AcousticSceneDataset(Dataset):
                     separators=[True, False, False, True, False, False, True]
                 )
                 log.row_sep()
-                for scene_id, scene_label in enumerate(self.scene_labels()):
+                for scene_id, scene_label in enumerate(training_meta.unique_scene_labels):
                     log.row(
                         scene_label,
                         amounts_full_identifiers1[scene_id],
@@ -3079,7 +3101,8 @@ class SoundEventDataset(Dataset):
                             validation_set_mae.append(
                                 mean_absolute_error(
                                     numpy.ones(len(current_validation_amount)) * validation_amount,
-                                    current_validation_amount)
+                                    current_validation_amount
+                                )
                             )
                             validation_set_event_amounts.append(validation_set_event_counts)
                             training_set_event_amounts.append(training_set_event_counts)

@@ -112,7 +112,7 @@ def test_container():
 def test_formats():
     delimiters = [',', ';', '\t']
     for delimiter in delimiters:
-        tmp = tempfile.NamedTemporaryFile('r+', suffix='.txt', dir='/tmp', delete=False)
+        tmp = tempfile.NamedTemporaryFile('r+', suffix='.txt', dir=tempfile.gettempdir(), delete=False)
         try:
             tmp.write('file1.wav' + delimiter + 'cat' + delimiter + '0.7\n')
             tmp.write('file1.wav' + delimiter + 'dog' + delimiter + '0.3\n')
@@ -140,24 +140,32 @@ def test_formats():
                 item_list.log()
 
         finally:
-            os.unlink(tmp.name)
+            try:
+                tmp.close()
+                os.unlink(tmp.name)
+            except:
+                pass
 
 
 @raises(IOError)
 def test_unknown_formats():
     with dcase_util.utils.DisableLogger():
-        tmp = tempfile.NamedTemporaryFile('r+', suffix='.txt', dir='/tmp', delete=False)
+        tmp = tempfile.NamedTemporaryFile('r+', suffix='.txt', dir=tempfile.gettempdir(), delete=False)
         try:
             tmp.write('file1.wav' + ',' + 'cat\n')
             tmp.close()
             item_list = ProbabilityContainer().load(filename=tmp.name)
 
         finally:
-            os.unlink(tmp.name)
+            try:
+                tmp.close()
+                os.unlink(tmp.name)
+            except:
+                pass
 
 
 def test_save():
-    tmp = tempfile.NamedTemporaryFile('r+', suffix='.txt', dir='/tmp', delete=False)
+    tmp = tempfile.NamedTemporaryFile('r+', suffix='.txt', dir=tempfile.gettempdir(), delete=False)
     try:
         item_list = ProbabilityContainer(
             [
@@ -193,9 +201,13 @@ def test_save():
         nose.tools.eq_(item_list[1].label, 'dog')
         nose.tools.eq_(item_list[1].probability, 0.234)
     finally:
-        os.unlink(tmp.name)
+        try:
+            tmp.close()
+            os.unlink(tmp.name)
+        except:
+            pass
 
-    tmp = tempfile.NamedTemporaryFile('r+', suffix='.txt', dir='/tmp', delete=False)
+    tmp = tempfile.NamedTemporaryFile('r+', suffix='.txt', dir=tempfile.gettempdir(), delete=False)
     try:
         item_list = ProbabilityContainer(
             [
@@ -231,7 +243,11 @@ def test_save():
         nose.tools.eq_(item_list[2].label, 'ca')
         nose.tools.eq_(item_list[2].probability, 0.123456789)
     finally:
-        os.unlink(tmp.name)
+        try:
+            tmp.close()
+            os.unlink(tmp.name)
+        except:
+            pass
 
 
 @raises(IOError)
