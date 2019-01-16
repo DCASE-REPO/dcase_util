@@ -972,11 +972,12 @@ class MetaDataContainer(ListDictContainer):
 
         if self.exists():
             if self.format in [FileFormat.TXT, FileFormat.ANN]:
-                if decimal == 'comma':
-                    delimiter = self.delimiter(exclude_delimiters=[','])
+                if delimiter is None:
+                    if decimal == 'comma':
+                        delimiter = self.delimiter(exclude_delimiters=[','])
 
-                else:
-                    delimiter = self.delimiter()
+                    else:
+                        delimiter = self.delimiter()
 
                 data = []
                 field_validator = FieldValidator()
