@@ -1508,8 +1508,8 @@ class AudioContainer(ContainerMixin, FileMixin):
                     # Go through skip segments and adjust segment start and stop to avoid segments
                     for item in skip_segments:
                         if item.active_within_segment(
-                                start=segment_start/float(self.fs),
-                                stop=segment_stop/float(self.fs)
+                            start=segment_start/float(self.fs),
+                            stop=segment_stop/float(self.fs)
                         ):
                             # Adjust segment start to avoid current skip segment
                             segment_start = int(self.fs * item.offset)
