@@ -1135,7 +1135,7 @@ class SubmissionChecker(ObjectContainer):
 
             for key in list(target_dict.keys()):
                 path = old_path + '.' + str(key)
-                if not dict2.has_key(key):
+                if key not in dict2:
                     key_errors.append(
                         self._meta_error_message(
                             type_label='Field',

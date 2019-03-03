@@ -241,6 +241,8 @@ class Dataset(object):
                  audio_paths=None,
                  default_audio_extension='wav',
                  reference_data_present=True,
+
+                 check_meta=True,
                  **kwargs):
         """Constructor
 
@@ -359,6 +361,7 @@ class Dataset(object):
         # Dataset meta
         if dataset_meta is None:
             dataset_meta = {}
+
         self.dataset_meta = DictContainer(dataset_meta)
 
         # Folder name for dataset
@@ -498,6 +501,9 @@ class Dataset(object):
 
         # Evaluation meta data for folds
         self.crossvalidation_data_eval = {}
+
+        # Flag to check meta
+        self.check_meta = check_meta
 
         # Load meta and cross-validation data in
         self.load()
@@ -676,7 +682,8 @@ class Dataset(object):
             self.prepare()
 
             # Check meta data and cross validation setup
-            self.check_metadata()
+            if self.check_meta:
+                self.check_metadata()
 
             # Save new filelist hash to monitor change in the dataset.
             self._save_filelist_hash()
