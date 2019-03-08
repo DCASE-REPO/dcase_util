@@ -2268,7 +2268,7 @@ class AcousticSceneDataset(Dataset):
                 raise AssertionError(message)
 
             # Do the balance based on scene class and two-level hierarchical identifier
-            for scene_id, scene_label in enumerate(self.scene_labels()):
+            for scene_id, scene_label in enumerate(training_meta.unique_scene_labels):
                 scene_meta = training_meta.filter(scene_label=scene_label)
 
                 data = DictContainer()
