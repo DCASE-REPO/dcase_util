@@ -504,6 +504,8 @@ class Dataset(object):
 
         # Flag to check meta
         self.check_meta = check_meta
+        if self.check_meta and not self.reference_data_present:
+            self.check_meta = False
 
         # Load meta and cross-validation data in
         self.load()
