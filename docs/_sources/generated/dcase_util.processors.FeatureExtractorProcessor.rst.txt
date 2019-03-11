@@ -1,5 +1,5 @@
-dcase_util.processors.FeatureExtractorProcessor
-===============================================
+dcase\_util\.processors\.FeatureExtractorProcessor
+==================================================
 
 .. currentmodule:: dcase_util.processors
 
@@ -31,16 +31,5 @@ dcase_util.processors.FeatureExtractorProcessor
    
 
    
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-   
-      ~FeatureExtractorProcessor.bytes
-      ~FeatureExtractorProcessor.input_type
-      ~FeatureExtractorProcessor.logger
-      ~FeatureExtractorProcessor.md5
-      ~FeatureExtractorProcessor.output_type
-      ~FeatureExtractorProcessor.valid_formats
    
    

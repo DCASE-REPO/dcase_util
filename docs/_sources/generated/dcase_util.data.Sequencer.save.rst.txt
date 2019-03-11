@@ -1,5 +1,5 @@
-dcase_util.data.Sequencer.save
-==============================
+dcase\_util\.data\.Sequencer\.save
+==================================
 
 .. currentmodule:: dcase_util.data
 

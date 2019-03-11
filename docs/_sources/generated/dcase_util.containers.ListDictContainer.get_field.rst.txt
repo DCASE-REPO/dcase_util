@@ -1,5 +1,5 @@
-dcase_util.containers.ListDictContainer.get_field
-=================================================
+dcase\_util\.containers\.ListDictContainer\.get\_field
+======================================================
 
 .. currentmodule:: dcase_util.containers
 

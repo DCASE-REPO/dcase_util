@@ -1,5 +1,5 @@
-dcase_util.data.BinaryMatrixEncoder.pad
-=======================================
+dcase\_util\.data\.BinaryMatrixEncoder\.pad
+===========================================
 
 .. currentmodule:: dcase_util.data
 

@@ -1,5 +1,5 @@
-dcase_util.containers.DictContainer.merge
-=========================================
+dcase\_util\.containers\.DictContainer\.merge
+=============================================
 
 .. currentmodule:: dcase_util.containers
 

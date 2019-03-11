@@ -756,17 +756,19 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../datasets.html#acousticscenedataset">AcousticSceneDataset</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.AcousticSceneDataset.html">dcase_util.datasets.AcousticSceneDataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet.html">dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet.html">dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTAcousticScenes_2017_DevelopmentSet.html">dcase_util.datasets.TUTAcousticScenes_2017_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTAcousticScenes_2017_EvaluationSet.html">dcase_util.datasets.TUTAcousticScenes_2017_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTAcousticScenes_2017_FeaturesSet.html">dcase_util.datasets.TUTAcousticScenes_2017_FeaturesSet</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet.html">dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet.html">dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_DevelopmentSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_LeaderboardSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_LeaderboardSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_EvaluationSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_DevelopmentSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_LeaderboardSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_LeaderboardSet</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_EvaluationSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_EvaluationSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TAUUrbanAcousticScenes_2019_DevelopmentSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_DevelopmentSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TAUUrbanAcousticScenes_2019_Mobile_DevelopmentSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_Mobile_DevelopmentSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_DevelopmentSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.DCASE2018_Task5_DevelopmentSet.html">dcase_util.datasets.DCASE2018_Task5_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.DCASE2018_Task5_EvaluationSet.html">dcase_util.datasets.DCASE2018_Task5_EvaluationSet</a></li>
 </ul>
@@ -1400,6 +1402,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-6">v0.2.6</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-5">v0.2.5</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-4">v0.2.4</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-3">v0.2.3</a></li>
@@ -1524,8 +1527,8 @@
             <span class="bp">cls</span><span class="o">.</span><span class="n">logger</span><span class="p">()</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
             <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
-    <span class="nd">@classmethod</span>
-<div class="viewcode-block" id="Serializer.load_yaml"><a class="viewcode-back" href="../../../generated/dcase_util.files.Serializer.load_yaml.html#dcase_util.files.Serializer.load_yaml">[docs]</a>    <span class="k">def</span> <span class="nf">load_yaml</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+<div class="viewcode-block" id="Serializer.load_yaml"><a class="viewcode-back" href="../../../generated/dcase_util.files.Serializer.load_yaml.html#dcase_util.files.Serializer.load_yaml">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">load_yaml</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Load YAML file</span>
 
 <span class="sd">        Parameters</span>
@@ -1569,8 +1572,8 @@
 
             <span class="k">return</span></div>
 
-    <span class="nd">@classmethod</span>
-<div class="viewcode-block" id="Serializer.load_cpickle"><a class="viewcode-back" href="../../../generated/dcase_util.files.Serializer.load_cpickle.html#dcase_util.files.Serializer.load_cpickle">[docs]</a>    <span class="k">def</span> <span class="nf">load_cpickle</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+<div class="viewcode-block" id="Serializer.load_cpickle"><a class="viewcode-back" href="../../../generated/dcase_util.files.Serializer.load_cpickle.html#dcase_util.files.Serializer.load_cpickle">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">load_cpickle</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Load CPICKLE file</span>
 
 <span class="sd">        Parameters</span>
@@ -1603,8 +1606,8 @@
 
         <span class="k">return</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">))</span></div>
 
-    <span class="nd">@classmethod</span>
-<div class="viewcode-block" id="Serializer.load_json"><a class="viewcode-back" href="../../../generated/dcase_util.files.Serializer.load_json.html#dcase_util.files.Serializer.load_json">[docs]</a>    <span class="k">def</span> <span class="nf">load_json</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+<div class="viewcode-block" id="Serializer.load_json"><a class="viewcode-back" href="../../../generated/dcase_util.files.Serializer.load_json.html#dcase_util.files.Serializer.load_json">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">load_json</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Load JSON file</span>
 
 <span class="sd">        Parameters</span>
@@ -1637,8 +1640,8 @@
 
         <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">))</span></div>
 
-    <span class="nd">@classmethod</span>
-<div class="viewcode-block" id="Serializer.load_msgpack"><a class="viewcode-back" href="../../../generated/dcase_util.files.Serializer.load_msgpack.html#dcase_util.files.Serializer.load_msgpack">[docs]</a>    <span class="k">def</span> <span class="nf">load_msgpack</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+<div class="viewcode-block" id="Serializer.load_msgpack"><a class="viewcode-back" href="../../../generated/dcase_util.files.Serializer.load_msgpack.html#dcase_util.files.Serializer.load_msgpack">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">load_msgpack</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Load MSGPACK file</span>
 
 <span class="sd">        Parameters</span>
@@ -1667,8 +1670,8 @@
 
         <span class="k">return</span> <span class="n">msgpack</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">),</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span></div>
 
-    <span class="nd">@classmethod</span>
-<div class="viewcode-block" id="Serializer.load_marshal"><a class="viewcode-back" href="../../../generated/dcase_util.files.Serializer.load_marshal.html#dcase_util.files.Serializer.load_marshal">[docs]</a>    <span class="k">def</span> <span class="nf">load_marshal</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+<div class="viewcode-block" id="Serializer.load_marshal"><a class="viewcode-back" href="../../../generated/dcase_util.files.Serializer.load_marshal.html#dcase_util.files.Serializer.load_marshal">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">load_marshal</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Load MARSHAL file</span>
 
 <span class="sd">        Parameters</span>
@@ -1697,8 +1700,8 @@
 
         <span class="k">return</span> <span class="n">marshal</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">))</span></div>
 
-    <span class="nd">@classmethod</span>
-<div class="viewcode-block" id="Serializer.save_yaml"><a class="viewcode-back" href="../../../generated/dcase_util.files.Serializer.save_yaml.html#dcase_util.files.Serializer.save_yaml">[docs]</a>    <span class="k">def</span> <span class="nf">save_yaml</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<div class="viewcode-block" id="Serializer.save_yaml"><a class="viewcode-back" href="../../../generated/dcase_util.files.Serializer.save_yaml.html#dcase_util.files.Serializer.save_yaml">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">save_yaml</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Save data into YAML file</span>
 
 <span class="sd">        Parameters</span>
@@ -1729,8 +1732,8 @@
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">outfile</span><span class="p">:</span>
             <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">yaml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">default_flow_style</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span></div>
 
-    <span class="nd">@classmethod</span>
-<div class="viewcode-block" id="Serializer.save_cpickle"><a class="viewcode-back" href="../../../generated/dcase_util.files.Serializer.save_cpickle.html#dcase_util.files.Serializer.save_cpickle">[docs]</a>    <span class="k">def</span> <span class="nf">save_cpickle</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<div class="viewcode-block" id="Serializer.save_cpickle"><a class="viewcode-back" href="../../../generated/dcase_util.files.Serializer.save_cpickle.html#dcase_util.files.Serializer.save_cpickle">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">save_cpickle</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Save data into CPICKLE file</span>
 
 <span class="sd">        Parameters</span>
@@ -1764,8 +1767,8 @@
 
         <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">),</span> <span class="n">protocol</span><span class="o">=</span><span class="n">pickle</span><span class="o">.</span><span class="n">HIGHEST_PROTOCOL</span><span class="p">)</span></div>
 
-    <span class="nd">@classmethod</span>
-<div class="viewcode-block" id="Serializer.save_json"><a class="viewcode-back" href="../../../generated/dcase_util.files.Serializer.save_json.html#dcase_util.files.Serializer.save_json">[docs]</a>    <span class="k">def</span> <span class="nf">save_json</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<div class="viewcode-block" id="Serializer.save_json"><a class="viewcode-back" href="../../../generated/dcase_util.files.Serializer.save_json.html#dcase_util.files.Serializer.save_json">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">save_json</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Save data into JSON file</span>
 
 <span class="sd">        Parameters</span>
@@ -1799,8 +1802,8 @@
 
         <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">))</span></div>
 
-    <span class="nd">@classmethod</span>
-<div class="viewcode-block" id="Serializer.save_msgpack"><a class="viewcode-back" href="../../../generated/dcase_util.files.Serializer.save_msgpack.html#dcase_util.files.Serializer.save_msgpack">[docs]</a>    <span class="k">def</span> <span class="nf">save_msgpack</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<div class="viewcode-block" id="Serializer.save_msgpack"><a class="viewcode-back" href="../../../generated/dcase_util.files.Serializer.save_msgpack.html#dcase_util.files.Serializer.save_msgpack">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">save_msgpack</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Save data into MSGPACK file</span>
 
 <span class="sd">        Parameters</span>
@@ -1830,8 +1833,8 @@
 
         <span class="n">msgpack</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">),</span> <span class="n">use_bin_type</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
 
-    <span class="nd">@classmethod</span>
-<div class="viewcode-block" id="Serializer.save_marshal"><a class="viewcode-back" href="../../../generated/dcase_util.files.Serializer.save_marshal.html#dcase_util.files.Serializer.save_marshal">[docs]</a>    <span class="k">def</span> <span class="nf">save_marshal</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<div class="viewcode-block" id="Serializer.save_marshal"><a class="viewcode-back" href="../../../generated/dcase_util.files.Serializer.save_marshal.html#dcase_util.files.Serializer.save_marshal">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">save_marshal</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Save data into MARSHAL file</span>
 
 <span class="sd">        Parameters</span>

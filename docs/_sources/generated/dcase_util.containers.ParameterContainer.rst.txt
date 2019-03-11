@@ -1,5 +1,5 @@
-dcase_util.containers.ParameterContainer
-========================================
+dcase\_util\.containers\.ParameterContainer
+===========================================
 
 .. currentmodule:: dcase_util.containers
 
@@ -55,14 +55,5 @@ dcase_util.containers.ParameterContainer
    
 
    
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-   
-      ~ParameterContainer.bytes
-      ~ParameterContainer.logger
-      ~ParameterContainer.md5
-      ~ParameterContainer.valid_formats
    
    

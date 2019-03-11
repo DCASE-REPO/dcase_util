@@ -1,5 +1,5 @@
-dcase_util.containers.AudioContainer.duration_sec
-=================================================
+dcase\_util\.containers\.AudioContainer\.duration\_sec
+======================================================
 
 .. currentmodule:: dcase_util.containers
 

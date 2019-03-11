@@ -113,17 +113,19 @@ Specialized classes inherited AcousticSceneDataset:
 .. autosummary::
     :toctree: generated/
 
+    TUTAcousticScenes_2016_DevelopmentSet
+    TUTAcousticScenes_2016_EvaluationSet
     TUTAcousticScenes_2017_DevelopmentSet
     TUTAcousticScenes_2017_EvaluationSet
     TUTAcousticScenes_2017_FeaturesSet
-    TUTAcousticScenes_2016_DevelopmentSet
-    TUTAcousticScenes_2016_EvaluationSet
     TUTUrbanAcousticScenes_2018_DevelopmentSet
     TUTUrbanAcousticScenes_2018_LeaderboardSet
     TUTUrbanAcousticScenes_2018_EvaluationSet
     TUTUrbanAcousticScenes_2018_Mobile_DevelopmentSet
     TUTUrbanAcousticScenes_2018_Mobile_LeaderboardSet
-    TUTUrbanAcousticScenes_2018_Mobile_EvaluationSet
+    TAUUrbanAcousticScenes_2019_DevelopmentSet
+    TAUUrbanAcousticScenes_2019_Mobile_DevelopmentSet
+    TAUUrbanAcousticScenes_2019_Openset_DevelopmentSet
     DCASE2018_Task5_DevelopmentSet
     DCASE2018_Task5_EvaluationSet
 

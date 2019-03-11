@@ -1,5 +1,5 @@
-dcase_util.processors.StackingProcessor
-=======================================
+dcase\_util\.processors\.StackingProcessor
+==========================================
 
 .. currentmodule:: dcase_util.processors
 
@@ -31,16 +31,5 @@ dcase_util.processors.StackingProcessor
    
 
    
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-   
-      ~StackingProcessor.bytes
-      ~StackingProcessor.input_type
-      ~StackingProcessor.logger
-      ~StackingProcessor.md5
-      ~StackingProcessor.output_type
-      ~StackingProcessor.valid_formats
    
    

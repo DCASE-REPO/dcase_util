@@ -1,5 +1,5 @@
-dcase_util.processors.FeatureReadingProcessor
-=============================================
+dcase\_util\.processors\.FeatureReadingProcessor
+================================================
 
 .. currentmodule:: dcase_util.processors
 
@@ -31,16 +31,5 @@ dcase_util.processors.FeatureReadingProcessor
    
 
    
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-   
-      ~FeatureReadingProcessor.bytes
-      ~FeatureReadingProcessor.input_type
-      ~FeatureReadingProcessor.logger
-      ~FeatureReadingProcessor.md5
-      ~FeatureReadingProcessor.output_type
-      ~FeatureReadingProcessor.valid_formats
    
    

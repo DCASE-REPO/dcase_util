@@ -1,5 +1,5 @@
-dcase_util.processors.MfccStaticExtractorProcessor
-==================================================
+dcase\_util\.processors\.MfccStaticExtractorProcessor
+=====================================================
 
 .. currentmodule:: dcase_util.processors
 
@@ -34,17 +34,5 @@ dcase_util.processors.MfccStaticExtractorProcessor
    
 
    
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-   
-      ~MfccStaticExtractorProcessor.bytes
-      ~MfccStaticExtractorProcessor.input_type
-      ~MfccStaticExtractorProcessor.label
-      ~MfccStaticExtractorProcessor.logger
-      ~MfccStaticExtractorProcessor.md5
-      ~MfccStaticExtractorProcessor.output_type
-      ~MfccStaticExtractorProcessor.valid_formats
    
    

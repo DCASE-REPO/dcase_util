@@ -1,5 +1,5 @@
-dcase_util.containers.DataMatrix2DContainer.focus_start
-=======================================================
+dcase\_util\.containers\.DataMatrix2DContainer\.focus\_start
+============================================================
 
 .. currentmodule:: dcase_util.containers
 

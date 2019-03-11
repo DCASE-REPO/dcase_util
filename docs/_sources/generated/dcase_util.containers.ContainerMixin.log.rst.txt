@@ -1,5 +1,5 @@
-dcase_util.containers.ContainerMixin.log
-========================================
+dcase\_util\.containers\.ContainerMixin\.log
+============================================
 
 .. currentmodule:: dcase_util.containers
 

@@ -1,5 +1,5 @@
-dcase_util.utils.get_file_hash
-==============================
+dcase\_util\.utils\.get\_file\_hash
+===================================
 
 .. currentmodule:: dcase_util.utils
 

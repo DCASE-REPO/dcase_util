@@ -1,5 +1,5 @@
-dcase_util.containers.AudioContainer.mixdown
-============================================
+dcase\_util\.containers\.AudioContainer\.mixdown
+================================================
 
 .. currentmodule:: dcase_util.containers
 

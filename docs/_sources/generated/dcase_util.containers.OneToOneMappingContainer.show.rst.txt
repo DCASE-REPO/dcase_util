@@ -1,5 +1,5 @@
-dcase_util.containers.OneToOneMappingContainer.show
-===================================================
+dcase\_util\.containers\.OneToOneMappingContainer\.show
+=======================================================
 
 .. currentmodule:: dcase_util.containers
 

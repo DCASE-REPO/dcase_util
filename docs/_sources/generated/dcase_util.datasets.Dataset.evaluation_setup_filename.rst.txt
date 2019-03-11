@@ -1,5 +1,5 @@
-dcase_util.datasets.Dataset.evaluation_setup_filename
-=====================================================
+dcase\_util\.datasets\.Dataset\.evaluation\_setup\_filename
+===========================================================
 
 .. currentmodule:: dcase_util.datasets
 

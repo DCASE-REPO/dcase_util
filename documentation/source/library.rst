@@ -24,7 +24,7 @@ Design principles:
 Author
 ======
 
-Initial version was written by Toni Heittola (`Audio Research Group / Tampere University of Technology <http://arg.cs.tut.fi/>`_) while preparing `DCASE2016 Challenge <https://github.com/TUT-ARG/DCASE2016-baseline-system-python>`_ and `DCASE2017 Challenge <https://github.com/TUT-ARG/DCASE2017-baseline-system>`_. Contact via `website <http://www.cs.tut.fi/~heittolt/>`_ and `github <https://github.com/toni-heittola>`_.
+Initial version was written by Toni Heittola (`Audio Research Group / Tampere University <http://arg.cs.tut.fi/>`_) while preparing `DCASE2016 Challenge <https://github.com/TUT-ARG/DCASE2016-baseline-system-python>`_ and `DCASE2017 Challenge <https://github.com/TUT-ARG/DCASE2017-baseline-system>`_. Contact via `website <http://www.cs.tut.fi/~heittolt/>`_ and `github <https://github.com/toni-heittola>`_.
 
 
 Contributing

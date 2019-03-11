@@ -1,5 +1,5 @@
-dcase_util.tools.BibtexProcessor
-================================
+dcase\_util\.tools\.BibtexProcessor
+===================================
 
 .. currentmodule:: dcase_util.tools
 
@@ -27,11 +27,5 @@ dcase_util.tools.BibtexProcessor
    
 
    
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-   
-      ~BibtexProcessor.logger
    
    

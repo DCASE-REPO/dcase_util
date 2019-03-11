@@ -1,5 +1,5 @@
-dcase_util.ui.FancyPrinter
-==========================
+dcase\_util\.ui\.FancyPrinter
+=============================
 
 .. currentmodule:: dcase_util.ui
 
@@ -32,11 +32,5 @@ dcase_util.ui.FancyPrinter
    
 
    
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-   
-      ~FancyPrinter.logger
    
    

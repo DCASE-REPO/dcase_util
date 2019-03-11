@@ -1,5 +1,5 @@
-dcase_util.data.ProbabilityEncoder.collapse_probabilities
-=========================================================
+dcase\_util\.data\.ProbabilityEncoder\.collapse\_probabilities
+==============================================================
 
 .. currentmodule:: dcase_util.data
 

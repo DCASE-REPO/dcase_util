@@ -1,5 +1,5 @@
-dcase_util.datasets.TUT_SED_Synthetic_2016
-==========================================
+dcase\_util\.datasets\.TUT\_SED\_Synthetic\_2016
+================================================
 
 .. currentmodule:: dcase_util.datasets
 
@@ -57,18 +57,5 @@ dcase_util.datasets.TUT_SED_Synthetic_2016
    
 
    
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-   
-      ~TUT_SED_Synthetic_2016.audio_file_count
-      ~TUT_SED_Synthetic_2016.audio_files
-      ~TUT_SED_Synthetic_2016.error_meta
-      ~TUT_SED_Synthetic_2016.error_meta_count
-      ~TUT_SED_Synthetic_2016.fold_count
-      ~TUT_SED_Synthetic_2016.logger
-      ~TUT_SED_Synthetic_2016.meta
-      ~TUT_SED_Synthetic_2016.meta_count
    
    

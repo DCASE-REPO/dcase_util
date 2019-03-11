@@ -1,5 +1,5 @@
-dcase_util.data.Aggregator.log
-==============================
+dcase\_util\.data\.Aggregator\.log
+==================================
 
 .. currentmodule:: dcase_util.data
 

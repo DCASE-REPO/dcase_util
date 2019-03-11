@@ -1,5 +1,5 @@
-dcase_util.containers.DataArrayContainer.reset_focus
-====================================================
+dcase\_util\.containers\.DataArrayContainer\.reset\_focus
+=========================================================
 
 .. currentmodule:: dcase_util.containers
 

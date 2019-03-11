@@ -1,5 +1,5 @@
-dcase_util.utils.FieldValidator.is_audiofile
-============================================
+dcase\_util\.utils\.FieldValidator\.is\_audiofile
+=================================================
 
 .. currentmodule:: dcase_util.utils
 

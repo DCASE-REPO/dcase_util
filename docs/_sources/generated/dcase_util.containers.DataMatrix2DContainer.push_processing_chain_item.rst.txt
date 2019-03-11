@@ -1,5 +1,5 @@
-dcase_util.containers.DataMatrix2DContainer.push_processing_chain_item
-======================================================================
+dcase\_util\.containers\.DataMatrix2DContainer\.push\_processing\_chain\_item
+=============================================================================
 
 .. currentmodule:: dcase_util.containers
 

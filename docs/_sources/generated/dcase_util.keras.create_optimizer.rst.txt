@@ -1,5 +1,5 @@
-dcase_util.keras.create_optimizer
-=================================
+dcase\_util\.keras\.create\_optimizer
+=====================================
 
 .. currentmodule:: dcase_util.keras
 

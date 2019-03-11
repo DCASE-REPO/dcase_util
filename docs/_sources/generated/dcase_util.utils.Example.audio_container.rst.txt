@@ -1,5 +1,5 @@
-dcase_util.utils.Example.audio_container
-========================================
+dcase\_util\.utils\.Example\.audio\_container
+=============================================
 
 .. currentmodule:: dcase_util.utils
 

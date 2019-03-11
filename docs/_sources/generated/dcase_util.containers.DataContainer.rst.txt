@@ -1,5 +1,5 @@
-dcase_util.containers.DataContainer
-===================================
+dcase\_util\.containers\.DataContainer
+======================================
 
 .. currentmodule:: dcase_util.containers
 
@@ -36,21 +36,5 @@ dcase_util.containers.DataContainer
    
 
    
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-   
-      ~DataContainer.bytes
-      ~DataContainer.data
-      ~DataContainer.focus_start
-      ~DataContainer.focus_stop
-      ~DataContainer.frames
-      ~DataContainer.length
-      ~DataContainer.logger
-      ~DataContainer.md5
-      ~DataContainer.shape
-      ~DataContainer.stats
-      ~DataContainer.valid_formats
    
    

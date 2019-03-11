@@ -1,5 +1,5 @@
-dcase_util.containers.ProbabilityContainer.unique_labels
-========================================================
+dcase\_util\.containers\.ProbabilityContainer\.unique\_labels
+=============================================================
 
 .. currentmodule:: dcase_util.containers
 

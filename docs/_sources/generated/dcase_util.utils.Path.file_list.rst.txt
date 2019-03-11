@@ -1,5 +1,5 @@
-dcase_util.utils.Path.file_list
-===============================
+dcase\_util\.utils\.Path\.file\_list
+====================================
 
 .. currentmodule:: dcase_util.utils
 

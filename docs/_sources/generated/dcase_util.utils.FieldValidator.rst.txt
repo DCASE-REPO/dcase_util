@@ -1,5 +1,5 @@
-dcase_util.utils.FieldValidator
-===============================
+dcase\_util\.utils\.FieldValidator
+==================================
 
 .. currentmodule:: dcase_util.utils
 
@@ -24,21 +24,5 @@ dcase_util.utils.FieldValidator
    
 
    
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-   
-      ~FieldValidator.ALPHA1
-      ~FieldValidator.ALPHA2
-      ~FieldValidator.AUDIOFILE
-      ~FieldValidator.DATAFILE
-      ~FieldValidator.EMPTY
-      ~FieldValidator.FILE
-      ~FieldValidator.LIST
-      ~FieldValidator.NUMBER
-      ~FieldValidator.STRING
-      ~FieldValidator.audio_file_extensions
-      ~FieldValidator.data_file_extensions
    
    

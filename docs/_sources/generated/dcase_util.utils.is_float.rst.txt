@@ -1,5 +1,5 @@
-dcase_util.utils.is_float
-=========================
+dcase\_util\.utils\.is\_float
+=============================
 
 .. currentmodule:: dcase_util.utils
 

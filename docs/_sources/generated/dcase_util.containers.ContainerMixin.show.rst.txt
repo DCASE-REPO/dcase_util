@@ -1,5 +1,5 @@
-dcase_util.containers.ContainerMixin.show
-=========================================
+dcase\_util\.containers\.ContainerMixin\.show
+=============================================
 
 .. currentmodule:: dcase_util.containers
 

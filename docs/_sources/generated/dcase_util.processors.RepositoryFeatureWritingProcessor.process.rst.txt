@@ -1,5 +1,5 @@
-dcase_util.processors.RepositoryFeatureWritingProcessor.process
-===============================================================
+dcase\_util\.processors\.RepositoryFeatureWritingProcessor\.process
+===================================================================
 
 .. currentmodule:: dcase_util.processors
 

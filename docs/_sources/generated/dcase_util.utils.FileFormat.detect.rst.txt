@@ -1,5 +1,5 @@
-dcase_util.utils.FileFormat.detect
-==================================
+dcase\_util\.utils\.FileFormat\.detect
+======================================
 
 .. currentmodule:: dcase_util.utils
 

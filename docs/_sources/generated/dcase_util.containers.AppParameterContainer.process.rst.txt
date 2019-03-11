@@ -1,5 +1,5 @@
-dcase_util.containers.AppParameterContainer.process
-===================================================
+dcase\_util\.containers\.AppParameterContainer\.process
+=======================================================
 
 .. currentmodule:: dcase_util.containers
 

@@ -1,5 +1,5 @@
-dcase_util.containers.DataMatrix2DContainer.get_focused
-=======================================================
+dcase\_util\.containers\.DataMatrix2DContainer\.get\_focused
+============================================================
 
 .. currentmodule:: dcase_util.containers
 

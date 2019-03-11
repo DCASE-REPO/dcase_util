@@ -1,5 +1,5 @@
-dcase_util.utils.Path
-=====================
+dcase\_util\.utils\.Path
+========================
 
 .. currentmodule:: dcase_util.utils
 
@@ -28,11 +28,5 @@ dcase_util.utils.Path
    
 
    
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-   
-      ~Path.logger
    
    

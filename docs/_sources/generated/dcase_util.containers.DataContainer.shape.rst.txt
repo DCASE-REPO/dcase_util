@@ -1,5 +1,5 @@
-dcase_util.containers.DataContainer.shape
-=========================================
+dcase\_util\.containers\.DataContainer\.shape
+=============================================
 
 .. currentmodule:: dcase_util.containers
 

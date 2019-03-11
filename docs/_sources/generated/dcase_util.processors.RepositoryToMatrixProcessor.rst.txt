@@ -1,5 +1,5 @@
-dcase_util.processors.RepositoryToMatrixProcessor
-=================================================
+dcase\_util\.processors\.RepositoryToMatrixProcessor
+====================================================
 
 .. currentmodule:: dcase_util.processors
 
@@ -31,16 +31,5 @@ dcase_util.processors.RepositoryToMatrixProcessor
    
 
    
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-   
-      ~RepositoryToMatrixProcessor.bytes
-      ~RepositoryToMatrixProcessor.input_type
-      ~RepositoryToMatrixProcessor.logger
-      ~RepositoryToMatrixProcessor.md5
-      ~RepositoryToMatrixProcessor.output_type
-      ~RepositoryToMatrixProcessor.valid_formats
    
    

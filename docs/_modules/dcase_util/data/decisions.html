@@ -756,17 +756,19 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../datasets.html#acousticscenedataset">AcousticSceneDataset</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.AcousticSceneDataset.html">dcase_util.datasets.AcousticSceneDataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet.html">dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet.html">dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTAcousticScenes_2017_DevelopmentSet.html">dcase_util.datasets.TUTAcousticScenes_2017_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTAcousticScenes_2017_EvaluationSet.html">dcase_util.datasets.TUTAcousticScenes_2017_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTAcousticScenes_2017_FeaturesSet.html">dcase_util.datasets.TUTAcousticScenes_2017_FeaturesSet</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet.html">dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet.html">dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_DevelopmentSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_LeaderboardSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_LeaderboardSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_EvaluationSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_DevelopmentSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_LeaderboardSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_LeaderboardSet</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_EvaluationSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_EvaluationSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TAUUrbanAcousticScenes_2019_DevelopmentSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_DevelopmentSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TAUUrbanAcousticScenes_2019_Mobile_DevelopmentSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_Mobile_DevelopmentSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_DevelopmentSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.DCASE2018_Task5_DevelopmentSet.html">dcase_util.datasets.DCASE2018_Task5_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.DCASE2018_Task5_EvaluationSet.html">dcase_util.datasets.DCASE2018_Task5_EvaluationSet</a></li>
 </ul>
@@ -1400,6 +1402,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-6">v0.2.6</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-5">v0.2.5</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-4">v0.2.4</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-3">v0.2.3</a></li>
@@ -1531,7 +1534,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">class_axis</span> <span class="o">=</span> <span class="mi">0</span>
 
-        <span class="k">if</span> <span class="n">numpy</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="n">frame_decisions</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span> <span class="ow">or</span> <span class="n">numpy</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="n">frame_decisions</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">bool</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">numpy</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="n">frame_decisions</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">signedinteger</span><span class="p">)</span> <span class="ow">or</span> <span class="n">numpy</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="n">frame_decisions</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">bool_</span><span class="p">):</span>
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">frame_decisions</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
                 <span class="c1"># We have array, most likely single frame</span>
                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_list</span><span class="p">[</span><span class="n">numpy</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">frame_decisions</span><span class="p">)]</span>

@@ -1,5 +1,5 @@
-dcase_util.datasets.SoundEventDataset.train
-===========================================
+dcase\_util\.datasets\.SoundEventDataset\.train
+===============================================
 
 .. currentmodule:: dcase_util.datasets
 
