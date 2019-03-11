@@ -1,5 +1,5 @@
-dcase_util.containers.AppParameterContainer.get_path_translated
-===============================================================
+dcase\_util\.containers\.AppParameterContainer\.get\_path\_translated
+=====================================================================
 
 .. currentmodule:: dcase_util.containers
 

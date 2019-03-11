@@ -1,5 +1,5 @@
-dcase_util.ui.FancyPrinter.debug
-================================
+dcase\_util\.ui\.FancyPrinter\.debug
+====================================
 
 .. currentmodule:: dcase_util.ui
 

@@ -1,5 +1,5 @@
-dcase_util.containers.TextContainer
-===================================
+dcase\_util\.containers\.TextContainer
+======================================
 
 .. currentmodule:: dcase_util.containers
 
@@ -40,14 +40,5 @@ dcase_util.containers.TextContainer
    
 
    
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-   
-      ~TextContainer.bytes
-      ~TextContainer.logger
-      ~TextContainer.md5
-      ~TextContainer.valid_formats
    
    

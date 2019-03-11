@@ -1,5 +1,5 @@
-dcase_util.containers.AudioContainer.get_focused
-================================================
+dcase\_util\.containers\.AudioContainer\.get\_focused
+=====================================================
 
 .. currentmodule:: dcase_util.containers
 

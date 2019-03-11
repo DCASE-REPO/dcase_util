@@ -1,5 +1,5 @@
-dcase_util.containers.MetaDataContainer.save
-============================================
+dcase\_util\.containers\.MetaDataContainer\.save
+================================================
 
 .. currentmodule:: dcase_util.containers
 

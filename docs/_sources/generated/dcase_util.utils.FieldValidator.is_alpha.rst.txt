@@ -1,5 +1,5 @@
-dcase_util.utils.FieldValidator.is_alpha
-========================================
+dcase\_util\.utils\.FieldValidator\.is\_alpha
+=============================================
 
 .. currentmodule:: dcase_util.utils
 

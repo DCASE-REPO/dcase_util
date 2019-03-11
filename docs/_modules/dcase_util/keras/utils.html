@@ -756,17 +756,19 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../datasets.html#acousticscenedataset">AcousticSceneDataset</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.AcousticSceneDataset.html">dcase_util.datasets.AcousticSceneDataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet.html">dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet.html">dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTAcousticScenes_2017_DevelopmentSet.html">dcase_util.datasets.TUTAcousticScenes_2017_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTAcousticScenes_2017_EvaluationSet.html">dcase_util.datasets.TUTAcousticScenes_2017_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTAcousticScenes_2017_FeaturesSet.html">dcase_util.datasets.TUTAcousticScenes_2017_FeaturesSet</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet.html">dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet.html">dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_DevelopmentSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_LeaderboardSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_LeaderboardSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_EvaluationSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_DevelopmentSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_LeaderboardSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_LeaderboardSet</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_EvaluationSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_EvaluationSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TAUUrbanAcousticScenes_2019_DevelopmentSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_DevelopmentSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TAUUrbanAcousticScenes_2019_Mobile_DevelopmentSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_Mobile_DevelopmentSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_DevelopmentSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.DCASE2018_Task5_DevelopmentSet.html">dcase_util.datasets.DCASE2018_Task5_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.DCASE2018_Task5_EvaluationSet.html">dcase_util.datasets.DCASE2018_Task5_EvaluationSet</a></li>
 </ul>
@@ -1400,6 +1402,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-6">v0.2.6</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-5">v0.2.5</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-4">v0.2.4</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-3">v0.2.3</a></li>
@@ -1763,38 +1766,44 @@
         <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;THEANO_FLAGS&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">flags</span><span class="p">)</span>
 
     <span class="k">elif</span> <span class="n">backend</span> <span class="o">==</span> <span class="s1">&#39;tensorflow&#39;</span><span class="p">:</span>
-        <span class="n">flags</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="c1"># Tensorflow setup</span>
         <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
             <span class="n">ui</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="s1">&#39;Tensorflow&#39;</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="n">print_indent</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
 
-        <span class="c1"># Set device</span>
-        <span class="k">if</span> <span class="n">device</span><span class="p">:</span>
-            <span class="n">flags</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;device=&#39;</span> <span class="o">+</span> <span class="n">device</span><span class="p">)</span>
-
-            <span class="c1"># In case of CPU disable visible GPU.</span>
-            <span class="k">if</span> <span class="n">device</span> <span class="o">==</span> <span class="s1">&#39;cpu&#39;</span><span class="p">:</span>
-                <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;CUDA_VISIBLE_DEVICES&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="c1"># In case of CPU, disable visible GPUs.</span>
+        <span class="k">if</span> <span class="n">device</span> <span class="o">==</span> <span class="s1">&#39;cpu&#39;</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;CUDA_VISIBLE_DEVICES&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
 
         <span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
         <span class="k">if</span> <span class="n">seed</span><span class="p">:</span>
+            <span class="c1"># Set random seed</span>
             <span class="n">tf</span><span class="o">.</span><span class="n">set_random_seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
 
         <span class="n">config</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">ConfigProto</span><span class="p">(</span>
             <span class="n">inter_op_parallelism_threads</span><span class="o">=</span><span class="n">BLAS_thread_count</span>
         <span class="p">)</span>
 
-        <span class="kn">from</span> <span class="nn">keras</span> <span class="k">import</span> <span class="n">backend</span> <span class="k">as</span> <span class="n">k</span>
-        <span class="n">session</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
-        <span class="n">k</span><span class="o">.</span><span class="n">set_session</span><span class="p">(</span><span class="n">session</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">SuppressStdoutAndStderr</span><span class="p">():</span>
+            <span class="kn">from</span> <span class="nn">keras</span> <span class="k">import</span> <span class="n">backend</span> <span class="k">as</span> <span class="n">k</span>
+            <span class="n">session</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+            <span class="n">k</span><span class="o">.</span><span class="n">set_session</span><span class="p">(</span><span class="n">session</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">flags</span><span class="p">:</span>
-                <span class="n">ui</span><span class="o">.</span><span class="n">data</span><span class="p">(</span>
-                    <span class="n">field</span><span class="o">=</span><span class="n">item</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span>
-                    <span class="n">value</span><span class="o">=</span><span class="n">item</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">],</span>
-                    <span class="n">indent</span><span class="o">=</span><span class="n">print_indent</span> <span class="o">+</span> <span class="mi">4</span>
-                <span class="p">)</span>
+            <span class="n">gpu_device_found</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">if</span> <span class="n">device</span> <span class="o">!=</span> <span class="s1">&#39;cpu&#39;</span><span class="p">:</span>
+                <span class="kn">from</span> <span class="nn">tensorflow.python.client</span> <span class="k">import</span> <span class="n">device_lib</span>
+                <span class="k">for</span> <span class="n">device_candidate</span> <span class="ow">in</span> <span class="n">device_lib</span><span class="o">.</span><span class="n">list_local_devices</span><span class="p">():</span>
+                    <span class="k">if</span> <span class="n">device_candidate</span><span class="o">.</span><span class="n">device_type</span> <span class="o">==</span> <span class="s1">&#39;GPU&#39;</span><span class="p">:</span>
+                        <span class="n">gpu_device_found</span> <span class="o">=</span> <span class="kc">True</span>
+
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">gpu_device_found</span><span class="p">:</span>
+                    <span class="n">device</span> <span class="o">=</span> <span class="s1">&#39;cpu (</span><span class="si">{original_device}</span><span class="s1"> was set but not found)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">original_device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+
+            <span class="n">ui</span><span class="o">.</span><span class="n">data</span><span class="p">(</span>
+                <span class="n">field</span><span class="o">=</span><span class="s1">&#39;Device&#39;</span><span class="p">,</span>
+                <span class="n">value</span><span class="o">=</span><span class="n">device</span><span class="p">,</span>
+                <span class="n">indent</span><span class="o">=</span><span class="n">print_indent</span> <span class="o">+</span> <span class="mi">4</span>
+            <span class="p">)</span>
 
     <span class="k">with</span> <span class="n">SuppressStdoutAndStderr</span><span class="p">():</span>
         <span class="c1"># Import keras and suppress backend announcement printed to stderr</span>

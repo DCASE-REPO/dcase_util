@@ -1,5 +1,5 @@
-dcase_util.datasets.AudioTaggingDataset
-=======================================
+dcase\_util\.datasets\.AudioTaggingDataset
+==========================================
 
 .. currentmodule:: dcase_util.datasets
 
@@ -57,18 +57,5 @@ dcase_util.datasets.AudioTaggingDataset
    
 
    
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-   
-      ~AudioTaggingDataset.audio_file_count
-      ~AudioTaggingDataset.audio_files
-      ~AudioTaggingDataset.error_meta
-      ~AudioTaggingDataset.error_meta_count
-      ~AudioTaggingDataset.fold_count
-      ~AudioTaggingDataset.logger
-      ~AudioTaggingDataset.meta
-      ~AudioTaggingDataset.meta_count
    
    

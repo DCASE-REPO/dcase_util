@@ -1,5 +1,5 @@
-dcase_util.features.ZeroCrossingRateExtractor
-=============================================
+dcase\_util\.features\.ZeroCrossingRateExtractor
+================================================
 
 .. currentmodule:: dcase_util.features
 
@@ -21,12 +21,5 @@ dcase_util.features.ZeroCrossingRateExtractor
    
 
    
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-   
-      ~ZeroCrossingRateExtractor.label
-      ~ZeroCrossingRateExtractor.logger
    
    

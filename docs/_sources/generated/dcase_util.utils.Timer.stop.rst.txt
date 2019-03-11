@@ -1,5 +1,5 @@
-dcase_util.utils.Timer.stop
-===========================
+dcase\_util\.utils\.Timer\.stop
+===============================
 
 .. currentmodule:: dcase_util.utils
 

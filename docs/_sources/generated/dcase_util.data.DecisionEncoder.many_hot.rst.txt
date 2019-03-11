@@ -1,5 +1,5 @@
-dcase_util.data.DecisionEncoder.many_hot
-========================================
+dcase\_util\.data\.DecisionEncoder\.many\_hot
+=============================================
 
 .. currentmodule:: dcase_util.data
 

@@ -1,5 +1,5 @@
-dcase_util.utils.FileFormat
-===========================
+dcase\_util\.utils\.FileFormat
+==============================
 
 .. currentmodule:: dcase_util.utils
 
@@ -21,55 +21,5 @@ dcase_util.utils.FileFormat
    
 
    
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-   
-      ~FileFormat.AAC
-      ~FileFormat.AC3
-      ~FileFormat.AIFF
-      ~FileFormat.AMR
-      ~FileFormat.ANN
-      ~FileFormat.AU
-      ~FileFormat.AVI
-      ~FileFormat.CPICKLE
-      ~FileFormat.CSV
-      ~FileFormat.FLAC
-      ~FileFormat.FLV
-      ~FileFormat.GIF
-      ~FileFormat.GZ
-      ~FileFormat.JPG
-      ~FileFormat.JSON
-      ~FileFormat.M4A
-      ~FileFormat.MARSHAL
-      ~FileFormat.META
-      ~FileFormat.MKA
-      ~FileFormat.MKV
-      ~FileFormat.MOV
-      ~FileFormat.MP3
-      ~FileFormat.MP4
-      ~FileFormat.MPG
-      ~FileFormat.MSGPACK
-      ~FileFormat.NUMPY
-      ~FileFormat.NUMPYZ
-      ~FileFormat.OGG
-      ~FileFormat.PDF
-      ~FileFormat.PNG
-      ~FileFormat.RA
-      ~FileFormat.RAR
-      ~FileFormat.RAW
-      ~FileFormat.SVG
-      ~FileFormat.TAR
-      ~FileFormat.TXT
-      ~FileFormat.UNKNOWN
-      ~FileFormat.VOC
-      ~FileFormat.WAV
-      ~FileFormat.WEBM
-      ~FileFormat.WMA
-      ~FileFormat.WMV
-      ~FileFormat.XML
-      ~FileFormat.YAML
-      ~FileFormat.ZIP
    
    

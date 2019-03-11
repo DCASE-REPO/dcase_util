@@ -1,5 +1,5 @@
-dcase_util.containers.AudioContainer.load_from_youtube
-======================================================
+dcase\_util\.containers\.AudioContainer\.load\_from\_youtube
+============================================================
 
 .. currentmodule:: dcase_util.containers
 

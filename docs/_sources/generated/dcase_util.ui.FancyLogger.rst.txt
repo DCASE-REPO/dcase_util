@@ -1,5 +1,5 @@
-dcase_util.ui.FancyLogger
-=========================
+dcase\_util\.ui\.FancyLogger
+============================
 
 .. currentmodule:: dcase_util.ui
 
@@ -32,11 +32,5 @@ dcase_util.ui.FancyLogger
    
 
    
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-   
-      ~FancyLogger.logger
    
    

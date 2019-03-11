@@ -1,5 +1,5 @@
-dcase_util.data.DataBuffer.full
-===============================
+dcase\_util\.data\.DataBuffer\.full
+===================================
 
 .. currentmodule:: dcase_util.data
 

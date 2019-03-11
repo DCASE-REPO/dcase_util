@@ -1,5 +1,5 @@
-dcase_util.features.ZeroCrossingRateExtractor.extract
-=====================================================
+dcase\_util\.features\.ZeroCrossingRateExtractor\.extract
+=========================================================
 
 .. currentmodule:: dcase_util.features
 

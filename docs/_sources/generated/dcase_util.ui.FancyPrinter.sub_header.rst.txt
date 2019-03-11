@@ -1,5 +1,5 @@
-dcase_util.ui.FancyPrinter.sub_header
-=====================================
+dcase\_util\.ui\.FancyPrinter\.sub\_header
+==========================================
 
 .. currentmodule:: dcase_util.ui
 

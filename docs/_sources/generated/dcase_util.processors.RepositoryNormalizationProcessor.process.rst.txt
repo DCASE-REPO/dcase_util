@@ -1,5 +1,5 @@
-dcase_util.processors.RepositoryNormalizationProcessor.process
-==============================================================
+dcase\_util\.processors\.RepositoryNormalizationProcessor\.process
+==================================================================
 
 .. currentmodule:: dcase_util.processors
 

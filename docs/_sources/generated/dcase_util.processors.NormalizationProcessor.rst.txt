@@ -1,5 +1,5 @@
-dcase_util.processors.NormalizationProcessor
-============================================
+dcase\_util\.processors\.NormalizationProcessor
+===============================================
 
 .. currentmodule:: dcase_util.processors
 
@@ -31,16 +31,5 @@ dcase_util.processors.NormalizationProcessor
    
 
    
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-   
-      ~NormalizationProcessor.bytes
-      ~NormalizationProcessor.input_type
-      ~NormalizationProcessor.logger
-      ~NormalizationProcessor.md5
-      ~NormalizationProcessor.output_type
-      ~NormalizationProcessor.valid_formats
    
    

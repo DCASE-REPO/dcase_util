@@ -1,5 +1,5 @@
-dcase_util.containers.AudioContainer.frames
-===========================================
+dcase\_util\.containers\.AudioContainer\.frames
+===============================================
 
 .. currentmodule:: dcase_util.containers
 

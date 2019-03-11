@@ -1,5 +1,5 @@
-dcase_util.utils.Example.feature_container
-==========================================
+dcase\_util\.utils\.Example\.feature\_container
+===============================================
 
 .. currentmodule:: dcase_util.utils
 

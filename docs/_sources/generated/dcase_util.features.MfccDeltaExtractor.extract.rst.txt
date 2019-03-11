@@ -1,5 +1,5 @@
-dcase_util.features.MfccDeltaExtractor.extract
-==============================================
+dcase\_util\.features\.MfccDeltaExtractor\.extract
+==================================================
 
 .. currentmodule:: dcase_util.features
 

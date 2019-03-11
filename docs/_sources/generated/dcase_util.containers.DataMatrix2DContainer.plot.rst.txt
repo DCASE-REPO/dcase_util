@@ -1,5 +1,5 @@
-dcase_util.containers.DataMatrix2DContainer.plot
-================================================
+dcase\_util\.containers\.DataMatrix2DContainer\.plot
+====================================================
 
 .. currentmodule:: dcase_util.containers
 

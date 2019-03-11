@@ -1,5 +1,5 @@
-dcase_util.processors.RepositoryMaskingProcessor
-================================================
+dcase\_util\.processors\.RepositoryMaskingProcessor
+===================================================
 
 .. currentmodule:: dcase_util.processors
 
@@ -31,16 +31,5 @@ dcase_util.processors.RepositoryMaskingProcessor
    
 
    
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-   
-      ~RepositoryMaskingProcessor.bytes
-      ~RepositoryMaskingProcessor.input_type
-      ~RepositoryMaskingProcessor.logger
-      ~RepositoryMaskingProcessor.md5
-      ~RepositoryMaskingProcessor.output_type
-      ~RepositoryMaskingProcessor.valid_formats
    
    

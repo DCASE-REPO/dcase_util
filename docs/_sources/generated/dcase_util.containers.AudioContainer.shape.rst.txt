@@ -1,5 +1,5 @@
-dcase_util.containers.AudioContainer.shape
-==========================================
+dcase\_util\.containers\.AudioContainer\.shape
+==============================================
 
 .. currentmodule:: dcase_util.containers
 

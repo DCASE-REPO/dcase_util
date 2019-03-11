@@ -1,5 +1,5 @@
-dcase_util.utils.is_int
-=======================
+dcase\_util\.utils\.is\_int
+===========================
 
 .. currentmodule:: dcase_util.utils
 

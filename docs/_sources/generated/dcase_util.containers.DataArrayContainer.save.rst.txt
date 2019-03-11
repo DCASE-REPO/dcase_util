@@ -1,5 +1,5 @@
-dcase_util.containers.DataArrayContainer.save
-=============================================
+dcase\_util\.containers\.DataArrayContainer\.save
+=================================================
 
 .. currentmodule:: dcase_util.containers
 

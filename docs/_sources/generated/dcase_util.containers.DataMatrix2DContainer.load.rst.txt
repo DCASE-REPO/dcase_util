@@ -1,5 +1,5 @@
-dcase_util.containers.DataMatrix2DContainer.load
-================================================
+dcase\_util\.containers\.DataMatrix2DContainer\.load
+====================================================
 
 .. currentmodule:: dcase_util.containers
 

@@ -756,17 +756,19 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../datasets.html#acousticscenedataset">AcousticSceneDataset</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.AcousticSceneDataset.html">dcase_util.datasets.AcousticSceneDataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet.html">dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet.html">dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTAcousticScenes_2017_DevelopmentSet.html">dcase_util.datasets.TUTAcousticScenes_2017_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTAcousticScenes_2017_EvaluationSet.html">dcase_util.datasets.TUTAcousticScenes_2017_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTAcousticScenes_2017_FeaturesSet.html">dcase_util.datasets.TUTAcousticScenes_2017_FeaturesSet</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet.html">dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet.html">dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_DevelopmentSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_LeaderboardSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_LeaderboardSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_EvaluationSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_DevelopmentSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_LeaderboardSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_LeaderboardSet</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_EvaluationSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_EvaluationSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TAUUrbanAcousticScenes_2019_DevelopmentSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_DevelopmentSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TAUUrbanAcousticScenes_2019_Mobile_DevelopmentSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_Mobile_DevelopmentSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_DevelopmentSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.DCASE2018_Task5_DevelopmentSet.html">dcase_util.datasets.DCASE2018_Task5_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.DCASE2018_Task5_EvaluationSet.html">dcase_util.datasets.DCASE2018_Task5_EvaluationSet</a></li>
 </ul>
@@ -1400,6 +1402,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-6">v0.2.6</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-5">v0.2.5</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-4">v0.2.4</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-3">v0.2.3</a></li>
@@ -1723,6 +1726,8 @@
                  <span class="n">audio_paths</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">default_audio_extension</span><span class="o">=</span><span class="s1">&#39;wav&#39;</span><span class="p">,</span>
                  <span class="n">reference_data_present</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+
+                 <span class="n">check_meta</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                  <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Constructor</span>
 
@@ -1841,6 +1846,7 @@
         <span class="c1"># Dataset meta</span>
         <span class="k">if</span> <span class="n">dataset_meta</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">dataset_meta</span> <span class="o">=</span> <span class="p">{}</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">dataset_meta</span> <span class="o">=</span> <span class="n">DictContainer</span><span class="p">(</span><span class="n">dataset_meta</span><span class="p">)</span>
 
         <span class="c1"># Folder name for dataset</span>
@@ -1980,6 +1986,11 @@
 
         <span class="c1"># Evaluation meta data for folds</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">crossvalidation_data_eval</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="c1"># Flag to check meta</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_meta</span> <span class="o">=</span> <span class="n">check_meta</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_meta</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">reference_data_present</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">check_meta</span> <span class="o">=</span> <span class="kc">False</span>
 
         <span class="c1"># Load meta and cross-validation data in</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">load</span><span class="p">()</span></div>
@@ -2158,7 +2169,8 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">prepare</span><span class="p">()</span>
 
             <span class="c1"># Check meta data and cross validation setup</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">check_metadata</span><span class="p">()</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_meta</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">check_metadata</span><span class="p">()</span>
 
             <span class="c1"># Save new filelist hash to monitor change in the dataset.</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_save_filelist_hash</span><span class="p">()</span>
@@ -2393,9 +2405,19 @@
 
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tags</span><span class="p">())</span></div>
 
-<div class="viewcode-block" id="Dataset.debug_packages"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.debug_packages.html#dcase_util.datasets.Dataset.debug_packages">[docs]</a>    <span class="k">def</span> <span class="nf">debug_packages</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Dataset.debug_packages"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.debug_packages.html#dcase_util.datasets.Dataset.debug_packages">[docs]</a>    <span class="k">def</span> <span class="nf">debug_packages</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">local_check</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">remote_check</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Debug remote packages associated to the dataset.</span>
 <span class="sd">        Use this to check remote file size and md5 hash when developing dataset class.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        local_check :  bool</span>
+<span class="sd">            Check local packages, calculate md5 hash and package size.</span>
+<span class="sd">            Default value True</span>
+
+<span class="sd">        remote_check : bool</span>
+<span class="sd">            Check remote package information and verify against information stored in the package_list (defined in the dataset class).</span>
+<span class="sd">            Default value True</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -2405,88 +2427,91 @@
 
         <span class="n">log</span> <span class="o">=</span> <span class="n">FancyLogger</span><span class="p">()</span>
         <span class="n">log</span><span class="o">.</span><span class="n">sub_header</span><span class="p">(</span><span class="s1">&#39;Debug packages&#39;</span><span class="p">)</span>
-        <span class="n">log</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="s1">&#39;Local&#39;</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-        <span class="n">log</span><span class="o">.</span><span class="n">row_reset</span><span class="p">()</span>
-        <span class="n">log</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="s1">&#39;package&#39;</span><span class="p">,</span> <span class="s1">&#39;local_md5&#39;</span><span class="p">,</span> <span class="s1">&#39;local_bytes&#39;</span><span class="p">,</span> <span class="n">widths</span><span class="o">=</span><span class="p">[</span><span class="mi">55</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">15</span><span class="p">])</span>
-        <span class="n">log</span><span class="o">.</span><span class="n">row_sep</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">local_check</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="s1">&#39;Local&#39;</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">row_reset</span><span class="p">()</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="s1">&#39;package&#39;</span><span class="p">,</span> <span class="s1">&#39;local_md5&#39;</span><span class="p">,</span> <span class="s1">&#39;local_bytes&#39;</span><span class="p">,</span> <span class="n">widths</span><span class="o">=</span><span class="p">[</span><span class="mi">65</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">15</span><span class="p">])</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">row_sep</span><span class="p">()</span>
 
-        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">package_list</span><span class="p">:</span>
-            <span class="n">file</span> <span class="o">=</span> <span class="n">File</span><span class="p">(</span><span class="o">**</span><span class="n">item</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">package_list</span><span class="p">:</span>
+                <span class="n">file</span> <span class="o">=</span> <span class="n">File</span><span class="p">(</span><span class="o">**</span><span class="n">item</span><span class="p">)</span>
 
-            <span class="k">if</span> <span class="n">file</span><span class="o">.</span><span class="n">is_package</span><span class="p">():</span>
-                <span class="n">package</span> <span class="o">=</span> <span class="n">Package</span><span class="p">(</span><span class="o">**</span><span class="n">item</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">package</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
-                    <span class="n">md5</span> <span class="o">=</span> <span class="n">package</span><span class="o">.</span><span class="n">md5</span>
-                    <span class="nb">bytes</span> <span class="o">=</span> <span class="n">package</span><span class="o">.</span><span class="n">bytes</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">md5</span> <span class="o">=</span> <span class="s1">&#39;-- PACKAGE DOES NOT EXISTS --&#39;</span>
-                    <span class="nb">bytes</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-
-            <span class="k">elif</span> <span class="n">file</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
-                <span class="n">md5</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">md5</span>
-                <span class="nb">bytes</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">bytes</span>
-
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">md5</span> <span class="o">=</span> <span class="s1">&#39;-- FILE DOES NOT EXISTS --&#39;</span>
-                <span class="nb">bytes</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-
-            <span class="n">log</span><span class="o">.</span><span class="n">row</span><span class="p">(</span>
-                <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;filename&#39;</span><span class="p">])[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
-                <span class="n">md5</span><span class="p">,</span>
-                <span class="nb">bytes</span>
-            <span class="p">)</span>
-
-        <span class="n">log</span><span class="o">.</span><span class="n">line</span><span class="p">()</span>
-        <span class="n">log</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="s1">&#39;Remote&#39;</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-        <span class="n">log</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="s1">&#39;package&#39;</span><span class="p">,</span> <span class="s1">&#39;remote_md5&#39;</span><span class="p">,</span> <span class="s1">&#39;remote_bytes&#39;</span><span class="p">,</span> <span class="s1">&#39;md5&#39;</span><span class="p">,</span> <span class="s1">&#39;size&#39;</span><span class="p">,</span> <span class="n">widths</span><span class="o">=</span><span class="p">[</span><span class="mi">55</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">])</span>
-        <span class="n">log</span><span class="o">.</span><span class="n">row_sep</span><span class="p">()</span>
-
-        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">package_list</span><span class="p">:</span>
-            <span class="k">if</span> <span class="s1">&#39;remote_file&#39;</span> <span class="ow">in</span> <span class="n">item</span> <span class="ow">and</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;remote_file&#39;</span><span class="p">]:</span>
-                <span class="n">remote_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;remote_file&#39;</span><span class="p">])[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-
-                <span class="n">item_remote</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
-                <span class="k">del</span> <span class="n">item_remote</span><span class="p">[</span><span class="s1">&#39;remote_md5&#39;</span><span class="p">]</span>
-                <span class="k">del</span> <span class="n">item_remote</span><span class="p">[</span><span class="s1">&#39;remote_bytes&#39;</span><span class="p">]</span>
-
-                <span class="n">remote_file</span> <span class="o">=</span> <span class="n">RemoteFile</span><span class="p">(</span><span class="o">**</span><span class="n">item_remote</span><span class="p">)</span>
-                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">included_content_types</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">remote_file</span><span class="o">.</span><span class="n">is_content_type</span><span class="p">(</span>
-                        <span class="n">content_type</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">included_content_types</span>
-                <span class="p">):</span>
-                    <span class="k">if</span> <span class="n">remote_file</span><span class="o">.</span><span class="n">remote_exists</span><span class="p">():</span>
-                        <span class="n">remote_file</span><span class="o">.</span><span class="n">remote_info</span><span class="p">()</span>
-
-                        <span class="k">if</span> <span class="s1">&#39;remote_md5&#39;</span> <span class="ow">in</span> <span class="n">item</span><span class="p">:</span>
-                            <span class="n">md5</span> <span class="o">=</span> <span class="n">remote_file</span><span class="o">.</span><span class="n">remote_md5</span>
-                            <span class="n">md5_status</span> <span class="o">=</span> <span class="s1">&#39;Dif&#39;</span> <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;remote_md5&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="n">remote_file</span><span class="o">.</span><span class="n">remote_md5</span> <span class="k">else</span> <span class="s1">&#39;OK&#39;</span>
-                        <span class="k">else</span><span class="p">:</span>
-                            <span class="n">md5</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-                            <span class="n">md5_status</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-
-                        <span class="nb">bytes</span> <span class="o">=</span> <span class="n">remote_file</span><span class="o">.</span><span class="n">remote_bytes</span>
-                        <span class="n">bytes_status</span> <span class="o">=</span> <span class="s1">&#39;Dif&#39;</span> <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;remote_bytes&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="n">remote_file</span><span class="o">.</span><span class="n">remote_bytes</span> <span class="k">else</span> <span class="s1">&#39;OK&#39;</span>
-
+                <span class="k">if</span> <span class="n">file</span><span class="o">.</span><span class="n">is_package</span><span class="p">():</span>
+                    <span class="n">package</span> <span class="o">=</span> <span class="n">Package</span><span class="p">(</span><span class="o">**</span><span class="n">item</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">package</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+                        <span class="n">md5</span> <span class="o">=</span> <span class="n">package</span><span class="o">.</span><span class="n">md5</span>
+                        <span class="nb">bytes</span> <span class="o">=</span> <span class="n">package</span><span class="o">.</span><span class="n">bytes</span>
                     <span class="k">else</span><span class="p">:</span>
-                        <span class="n">md5</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-                        <span class="n">md5_status</span> <span class="o">=</span> <span class="s1">&#39;Err&#39;</span>
+                        <span class="n">md5</span> <span class="o">=</span> <span class="s1">&#39;-- PACKAGE DOES NOT EXISTS --&#39;</span>
                         <span class="nb">bytes</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-                        <span class="n">bytes_status</span> <span class="o">=</span> <span class="s1">&#39;Err&#39;</span>
+
+                <span class="k">elif</span> <span class="n">file</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+                    <span class="n">md5</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">md5</span>
+                    <span class="nb">bytes</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">bytes</span>
 
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="n">md5</span> <span class="o">=</span> <span class="s1">&#39;SKIPPED&#39;</span>
-                    <span class="n">md5_status</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+                    <span class="n">md5</span> <span class="o">=</span> <span class="s1">&#39;-- FILE DOES NOT EXISTS --&#39;</span>
                     <span class="nb">bytes</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-                    <span class="n">bytes_status</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
 
                 <span class="n">log</span><span class="o">.</span><span class="n">row</span><span class="p">(</span>
-                    <span class="n">remote_filename</span><span class="p">,</span>
+                    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;filename&#39;</span><span class="p">])[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
                     <span class="n">md5</span><span class="p">,</span>
-                    <span class="nb">bytes</span><span class="p">,</span>
-                    <span class="n">md5_status</span><span class="p">,</span>
-                    <span class="n">bytes_status</span>
+                    <span class="nb">bytes</span>
                 <span class="p">)</span>
 
-        <span class="n">log</span><span class="o">.</span><span class="n">line</span><span class="p">()</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">line</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">remote_check</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="s1">&#39;Remote&#39;</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="s1">&#39;package&#39;</span><span class="p">,</span> <span class="s1">&#39;remote_md5&#39;</span><span class="p">,</span> <span class="s1">&#39;remote_bytes&#39;</span><span class="p">,</span> <span class="s1">&#39;md5&#39;</span><span class="p">,</span> <span class="s1">&#39;size&#39;</span><span class="p">,</span> <span class="n">widths</span><span class="o">=</span><span class="p">[</span><span class="mi">65</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">])</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">row_sep</span><span class="p">()</span>
+
+            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">package_list</span><span class="p">:</span>
+                <span class="k">if</span> <span class="s1">&#39;remote_file&#39;</span> <span class="ow">in</span> <span class="n">item</span> <span class="ow">and</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;remote_file&#39;</span><span class="p">]:</span>
+                    <span class="n">remote_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;remote_file&#39;</span><span class="p">])[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+                    <span class="n">item_remote</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+                    <span class="k">del</span> <span class="n">item_remote</span><span class="p">[</span><span class="s1">&#39;remote_md5&#39;</span><span class="p">]</span>
+                    <span class="k">del</span> <span class="n">item_remote</span><span class="p">[</span><span class="s1">&#39;remote_bytes&#39;</span><span class="p">]</span>
+
+                    <span class="n">remote_file</span> <span class="o">=</span> <span class="n">RemoteFile</span><span class="p">(</span><span class="o">**</span><span class="n">item_remote</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">included_content_types</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">remote_file</span><span class="o">.</span><span class="n">is_content_type</span><span class="p">(</span>
+                            <span class="n">content_type</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">included_content_types</span>
+                    <span class="p">):</span>
+                        <span class="k">if</span> <span class="n">remote_file</span><span class="o">.</span><span class="n">remote_exists</span><span class="p">():</span>
+                            <span class="n">remote_file</span><span class="o">.</span><span class="n">remote_info</span><span class="p">()</span>
+
+                            <span class="k">if</span> <span class="s1">&#39;remote_md5&#39;</span> <span class="ow">in</span> <span class="n">item</span><span class="p">:</span>
+                                <span class="n">md5</span> <span class="o">=</span> <span class="n">remote_file</span><span class="o">.</span><span class="n">remote_md5</span>
+                                <span class="n">md5_status</span> <span class="o">=</span> <span class="s1">&#39;Dif&#39;</span> <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;remote_md5&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="n">remote_file</span><span class="o">.</span><span class="n">remote_md5</span> <span class="k">else</span> <span class="s1">&#39;OK&#39;</span>
+                            <span class="k">else</span><span class="p">:</span>
+                                <span class="n">md5</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+                                <span class="n">md5_status</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+                            <span class="nb">bytes</span> <span class="o">=</span> <span class="n">remote_file</span><span class="o">.</span><span class="n">remote_bytes</span>
+                            <span class="n">bytes_status</span> <span class="o">=</span> <span class="s1">&#39;Dif&#39;</span> <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;remote_bytes&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="n">remote_file</span><span class="o">.</span><span class="n">remote_bytes</span> <span class="k">else</span> <span class="s1">&#39;OK&#39;</span>
+
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="n">md5</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+                            <span class="n">md5_status</span> <span class="o">=</span> <span class="s1">&#39;Err&#39;</span>
+                            <span class="nb">bytes</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+                            <span class="n">bytes_status</span> <span class="o">=</span> <span class="s1">&#39;Err&#39;</span>
+
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">md5</span> <span class="o">=</span> <span class="s1">&#39;SKIPPED&#39;</span>
+                        <span class="n">md5_status</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+                        <span class="nb">bytes</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+                        <span class="n">bytes_status</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+                    <span class="n">log</span><span class="o">.</span><span class="n">row</span><span class="p">(</span>
+                        <span class="n">remote_filename</span><span class="p">,</span>
+                        <span class="n">md5</span><span class="p">,</span>
+                        <span class="nb">bytes</span><span class="p">,</span>
+                        <span class="n">md5_status</span><span class="p">,</span>
+                        <span class="n">bytes_status</span>
+                    <span class="p">)</span>
+
+            <span class="n">log</span><span class="o">.</span><span class="n">line</span><span class="p">()</span>
 
         <span class="k">return</span> <span class="bp">self</span></div>
 
@@ -3134,7 +3159,11 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
             <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
-        <span class="n">training_files</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">fold</span><span class="o">=</span><span class="n">fold</span><span class="p">)</span><span class="o">.</span><span class="n">unique_files</span><span class="p">)</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">validation_files</span><span class="p">)))</span>
+        <span class="k">if</span> <span class="n">training_meta</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">training_files</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">fold</span><span class="o">=</span><span class="n">fold</span><span class="p">)</span><span class="o">.</span><span class="n">unique_files</span><span class="p">)</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">validation_files</span><span class="p">)))</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">training_files</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">training_meta</span><span class="o">.</span><span class="n">unique_files</span><span class="p">)</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">validation_files</span><span class="p">)))</span>
 
         <span class="k">return</span> <span class="n">training_files</span><span class="p">,</span> <span class="n">validation_files</span></div>
 
@@ -3359,7 +3388,16 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">local_path</span><span class="p">,</span> <span class="n">path</span><span class="p">)))</span></div>
+        <span class="k">if</span> <span class="n">path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Path is None.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+            <span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">local_path</span><span class="p">,</span> <span class="n">path</span><span class="p">)))</span></div>
 
 <div class="viewcode-block" id="Dataset.absolute_to_relative_path"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.absolute_to_relative_path.html#dcase_util.datasets.Dataset.absolute_to_relative_path">[docs]</a>    <span class="k">def</span> <span class="nf">absolute_to_relative_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Converts absolute path into relative path.</span>
@@ -3376,11 +3414,20 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">if</span> <span class="n">path</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">local_path</span><span class="p">)):</span>
-            <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">local_path</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Path is None.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+            <span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">path</span></div>
+            <span class="k">if</span> <span class="n">path</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">local_path</span><span class="p">)):</span>
+                <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">local_path</span><span class="p">)</span>
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">path</span></div>
 
 <div class="viewcode-block" id="Dataset.dataset_bytes"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.dataset_bytes.html#dcase_util.datasets.Dataset.dataset_bytes">[docs]</a>    <span class="k">def</span> <span class="nf">dataset_bytes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Total download size of the dataset in bytes.</span>
@@ -3609,7 +3656,7 @@
 
         <span class="k">if</span> <span class="n">balancing_mode</span> <span class="o">==</span> <span class="s1">&#39;class&#39;</span><span class="p">:</span>
             <span class="c1"># Do the balance based on scene class only</span>
-            <span class="k">for</span> <span class="n">scene_id</span><span class="p">,</span> <span class="n">scene_label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scene_labels</span><span class="p">()):</span>
+            <span class="k">for</span> <span class="n">scene_id</span><span class="p">,</span> <span class="n">scene_label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">training_meta</span><span class="o">.</span><span class="n">unique_scene_labels</span><span class="p">):</span>
                 <span class="n">scene_files</span> <span class="o">=</span> <span class="n">training_meta</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">scene_label</span><span class="o">=</span><span class="n">scene_label</span><span class="p">)</span><span class="o">.</span><span class="n">unique_files</span>
 
                 <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">scene_files</span><span class="p">,</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">)</span>
@@ -3636,7 +3683,7 @@
                 <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
             <span class="c1"># Do the balance based on scene class and identifier</span>
-            <span class="k">for</span> <span class="n">scene_id</span><span class="p">,</span> <span class="n">scene_label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scene_labels</span><span class="p">()):</span>
+            <span class="k">for</span> <span class="n">scene_id</span><span class="p">,</span> <span class="n">scene_label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">training_meta</span><span class="o">.</span><span class="n">unique_scene_labels</span><span class="p">):</span>
                 <span class="n">scene_meta</span> <span class="o">=</span> <span class="n">training_meta</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">scene_label</span><span class="o">=</span><span class="n">scene_label</span><span class="p">)</span>
 
                 <span class="n">data</span> <span class="o">=</span> <span class="p">{}</span>
@@ -3721,7 +3768,7 @@
                 <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
             <span class="c1"># Do the balance based on scene class and two-level hierarchical identifier</span>
-            <span class="k">for</span> <span class="n">scene_id</span><span class="p">,</span> <span class="n">scene_label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scene_labels</span><span class="p">()):</span>
+            <span class="k">for</span> <span class="n">scene_id</span><span class="p">,</span> <span class="n">scene_label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">training_meta</span><span class="o">.</span><span class="n">unique_scene_labels</span><span class="p">):</span>
                 <span class="n">scene_meta</span> <span class="o">=</span> <span class="n">training_meta</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">scene_label</span><span class="o">=</span><span class="n">scene_label</span><span class="p">)</span>
 
                 <span class="n">data</span> <span class="o">=</span> <span class="n">DictContainer</span><span class="p">()</span>
@@ -3825,7 +3872,7 @@
                     <span class="n">separators</span><span class="o">=</span><span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">]</span>
                 <span class="p">)</span>
                 <span class="n">log</span><span class="o">.</span><span class="n">row_sep</span><span class="p">()</span>
-                <span class="k">for</span> <span class="n">scene_id</span><span class="p">,</span> <span class="n">scene_label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scene_labels</span><span class="p">()):</span>
+                <span class="k">for</span> <span class="n">scene_id</span><span class="p">,</span> <span class="n">scene_label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">training_meta</span><span class="o">.</span><span class="n">unique_scene_labels</span><span class="p">):</span>
                     <span class="n">log</span><span class="o">.</span><span class="n">row</span><span class="p">(</span>
                         <span class="n">scene_label</span><span class="p">,</span>
                         <span class="n">amounts_full_items</span><span class="p">[</span><span class="n">scene_id</span><span class="p">],</span>
@@ -3855,7 +3902,7 @@
                     <span class="n">separators</span><span class="o">=</span><span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">]</span>
                 <span class="p">)</span>
                 <span class="n">log</span><span class="o">.</span><span class="n">row_sep</span><span class="p">()</span>
-                <span class="k">for</span> <span class="n">scene_id</span><span class="p">,</span> <span class="n">scene_label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scene_labels</span><span class="p">()):</span>
+                <span class="k">for</span> <span class="n">scene_id</span><span class="p">,</span> <span class="n">scene_label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">training_meta</span><span class="o">.</span><span class="n">unique_scene_labels</span><span class="p">):</span>
                     <span class="n">log</span><span class="o">.</span><span class="n">row</span><span class="p">(</span>
                         <span class="n">scene_label</span><span class="p">,</span>
                         <span class="n">amounts_full_identifiers1</span><span class="p">[</span><span class="n">scene_id</span><span class="p">],</span>
@@ -3889,7 +3936,7 @@
                     <span class="n">separators</span><span class="o">=</span><span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">]</span>
                 <span class="p">)</span>
                 <span class="n">log</span><span class="o">.</span><span class="n">row_sep</span><span class="p">()</span>
-                <span class="k">for</span> <span class="n">scene_id</span><span class="p">,</span> <span class="n">scene_label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scene_labels</span><span class="p">()):</span>
+                <span class="k">for</span> <span class="n">scene_id</span><span class="p">,</span> <span class="n">scene_label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">training_meta</span><span class="o">.</span><span class="n">unique_scene_labels</span><span class="p">):</span>
                     <span class="n">log</span><span class="o">.</span><span class="n">row</span><span class="p">(</span>
                         <span class="n">scene_label</span><span class="p">,</span>
                         <span class="n">amounts_full_identifiers1</span><span class="p">[</span><span class="n">scene_id</span><span class="p">],</span>
@@ -4561,7 +4608,8 @@
                             <span class="n">validation_set_mae</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                                 <span class="n">mean_absolute_error</span><span class="p">(</span>
                                     <span class="n">numpy</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">current_validation_amount</span><span class="p">))</span> <span class="o">*</span> <span class="n">validation_amount</span><span class="p">,</span>
-                                    <span class="n">current_validation_amount</span><span class="p">)</span>
+                                    <span class="n">current_validation_amount</span>
+                                <span class="p">)</span>
                             <span class="p">)</span>
                             <span class="n">validation_set_event_amounts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">validation_set_event_counts</span><span class="p">)</span>
                             <span class="n">training_set_event_amounts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">training_set_event_counts</span><span class="p">)</span>

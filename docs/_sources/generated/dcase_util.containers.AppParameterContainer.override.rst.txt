@@ -1,5 +1,5 @@
-dcase_util.containers.AppParameterContainer.override
-====================================================
+dcase\_util\.containers\.AppParameterContainer\.override
+========================================================
 
 .. currentmodule:: dcase_util.containers
 

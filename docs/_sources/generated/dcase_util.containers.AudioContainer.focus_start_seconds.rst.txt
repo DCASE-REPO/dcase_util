@@ -1,5 +1,5 @@
-dcase_util.containers.AudioContainer.focus_start_seconds
-========================================================
+dcase\_util\.containers\.AudioContainer\.focus\_start\_seconds
+==============================================================
 
 .. currentmodule:: dcase_util.containers
 

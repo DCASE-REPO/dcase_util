@@ -1,5 +1,5 @@
-dcase_util.containers.ProbabilityContainer
-==========================================
+dcase\_util\.containers\.ProbabilityContainer
+=============================================
 
 .. currentmodule:: dcase_util.containers
 
@@ -46,17 +46,5 @@ dcase_util.containers.ProbabilityContainer
    
 
    
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-   
-      ~ProbabilityContainer.bytes
-      ~ProbabilityContainer.logger
-      ~ProbabilityContainer.md5
-      ~ProbabilityContainer.unique_files
-      ~ProbabilityContainer.unique_indices
-      ~ProbabilityContainer.unique_labels
-      ~ProbabilityContainer.valid_formats
    
    

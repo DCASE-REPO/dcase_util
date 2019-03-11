@@ -1,0 +1,61 @@
+dcase\_util\.datasets\.TAUUrbanAcousticScenes\_2019\_DevelopmentSet
+===================================================================
+
+.. currentmodule:: dcase_util.datasets
+
+.. autoclass:: TAUUrbanAcousticScenes_2019_DevelopmentSet
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~TAUUrbanAcousticScenes_2019_DevelopmentSet.__init__
+      ~TAUUrbanAcousticScenes_2019_DevelopmentSet.absolute_to_relative_path
+      ~TAUUrbanAcousticScenes_2019_DevelopmentSet.check_filelist
+      ~TAUUrbanAcousticScenes_2019_DevelopmentSet.check_metadata
+      ~TAUUrbanAcousticScenes_2019_DevelopmentSet.dataset_bytes
+      ~TAUUrbanAcousticScenes_2019_DevelopmentSet.dataset_size_on_disk
+      ~TAUUrbanAcousticScenes_2019_DevelopmentSet.dataset_size_string
+      ~TAUUrbanAcousticScenes_2019_DevelopmentSet.debug_packages
+      ~TAUUrbanAcousticScenes_2019_DevelopmentSet.download_packages
+      ~TAUUrbanAcousticScenes_2019_DevelopmentSet.eval
+      ~TAUUrbanAcousticScenes_2019_DevelopmentSet.eval_files
+      ~TAUUrbanAcousticScenes_2019_DevelopmentSet.evaluation_setup_filename
+      ~TAUUrbanAcousticScenes_2019_DevelopmentSet.event_label_count
+      ~TAUUrbanAcousticScenes_2019_DevelopmentSet.event_labels
+      ~TAUUrbanAcousticScenes_2019_DevelopmentSet.extract_packages
+      ~TAUUrbanAcousticScenes_2019_DevelopmentSet.file_error_meta
+      ~TAUUrbanAcousticScenes_2019_DevelopmentSet.file_features
+      ~TAUUrbanAcousticScenes_2019_DevelopmentSet.file_meta
+      ~TAUUrbanAcousticScenes_2019_DevelopmentSet.folds
+      ~TAUUrbanAcousticScenes_2019_DevelopmentSet.initialize
+      ~TAUUrbanAcousticScenes_2019_DevelopmentSet.load
+      ~TAUUrbanAcousticScenes_2019_DevelopmentSet.load_crossvalidation_data
+      ~TAUUrbanAcousticScenes_2019_DevelopmentSet.load_meta
+      ~TAUUrbanAcousticScenes_2019_DevelopmentSet.log
+      ~TAUUrbanAcousticScenes_2019_DevelopmentSet.prepare
+      ~TAUUrbanAcousticScenes_2019_DevelopmentSet.process_meta_item
+      ~TAUUrbanAcousticScenes_2019_DevelopmentSet.relative_to_absolute_path
+      ~TAUUrbanAcousticScenes_2019_DevelopmentSet.scene_label_count
+      ~TAUUrbanAcousticScenes_2019_DevelopmentSet.scene_labels
+      ~TAUUrbanAcousticScenes_2019_DevelopmentSet.show
+      ~TAUUrbanAcousticScenes_2019_DevelopmentSet.tag_count
+      ~TAUUrbanAcousticScenes_2019_DevelopmentSet.tags
+      ~TAUUrbanAcousticScenes_2019_DevelopmentSet.test
+      ~TAUUrbanAcousticScenes_2019_DevelopmentSet.test_files
+      ~TAUUrbanAcousticScenes_2019_DevelopmentSet.train
+      ~TAUUrbanAcousticScenes_2019_DevelopmentSet.train_files
+      ~TAUUrbanAcousticScenes_2019_DevelopmentSet.validation_files_balanced
+      ~TAUUrbanAcousticScenes_2019_DevelopmentSet.validation_files_dataset
+      ~TAUUrbanAcousticScenes_2019_DevelopmentSet.validation_files_random
+      ~TAUUrbanAcousticScenes_2019_DevelopmentSet.validation_split
+   
+   
+
+   
+   
+   

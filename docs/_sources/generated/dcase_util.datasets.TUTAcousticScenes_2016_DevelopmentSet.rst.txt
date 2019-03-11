@@ -1,5 +1,5 @@
-dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet
-=========================================================
+dcase\_util\.datasets\.TUTAcousticScenes\_2016\_DevelopmentSet
+==============================================================
 
 .. currentmodule:: dcase_util.datasets
 
@@ -57,18 +57,5 @@ dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet
    
 
    
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-   
-      ~TUTAcousticScenes_2016_DevelopmentSet.audio_file_count
-      ~TUTAcousticScenes_2016_DevelopmentSet.audio_files
-      ~TUTAcousticScenes_2016_DevelopmentSet.error_meta
-      ~TUTAcousticScenes_2016_DevelopmentSet.error_meta_count
-      ~TUTAcousticScenes_2016_DevelopmentSet.fold_count
-      ~TUTAcousticScenes_2016_DevelopmentSet.logger
-      ~TUTAcousticScenes_2016_DevelopmentSet.meta
-      ~TUTAcousticScenes_2016_DevelopmentSet.meta_count
    
    

@@ -1,5 +1,5 @@
-dcase_util.ui.FancyStringifier.sub_header
-=========================================
+dcase\_util\.ui\.FancyStringifier\.sub\_header
+==============================================
 
 .. currentmodule:: dcase_util.ui
 

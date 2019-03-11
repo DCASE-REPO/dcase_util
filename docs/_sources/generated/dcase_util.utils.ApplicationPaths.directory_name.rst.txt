@@ -1,5 +1,5 @@
-dcase_util.utils.ApplicationPaths.directory_name
-================================================
+dcase\_util\.utils\.ApplicationPaths\.directory\_name
+=====================================================
 
 .. currentmodule:: dcase_util.utils
 

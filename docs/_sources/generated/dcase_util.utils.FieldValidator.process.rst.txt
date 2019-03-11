@@ -1,5 +1,5 @@
-dcase_util.utils.FieldValidator.process
-=======================================
+dcase\_util\.utils\.FieldValidator\.process
+===========================================
 
 .. currentmodule:: dcase_util.utils
 

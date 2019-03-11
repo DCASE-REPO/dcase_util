@@ -1,5 +1,5 @@
-dcase_util.containers.FileMixin.validate_format
-===============================================
+dcase\_util\.containers\.FileMixin\.validate\_format
+====================================================
 
 .. currentmodule:: dcase_util.containers
 

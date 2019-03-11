@@ -1,5 +1,5 @@
-dcase_util.containers.ProbabilityContainer.as_matrix
-====================================================
+dcase\_util\.containers\.ProbabilityContainer\.as\_matrix
+=========================================================
 
 .. currentmodule:: dcase_util.containers
 

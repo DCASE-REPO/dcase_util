@@ -1,5 +1,5 @@
-dcase_util.tools.BibtexProcessor.authors_fancy
-==============================================
+dcase\_util\.tools\.BibtexProcessor\.authors\_fancy
+===================================================
 
 .. currentmodule:: dcase_util.tools
 

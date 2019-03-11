@@ -1,5 +1,5 @@
-dcase_util.data.Selector.load
-=============================
+dcase\_util\.data\.Selector\.load
+=================================
 
 .. currentmodule:: dcase_util.data
 

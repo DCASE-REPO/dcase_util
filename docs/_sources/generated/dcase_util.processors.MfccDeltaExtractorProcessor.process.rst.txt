@@ -1,5 +1,5 @@
-dcase_util.processors.MfccDeltaExtractorProcessor.process
-=========================================================
+dcase\_util\.processors\.MfccDeltaExtractorProcessor\.process
+=============================================================
 
 .. currentmodule:: dcase_util.processors
 

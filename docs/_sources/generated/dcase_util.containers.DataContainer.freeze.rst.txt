@@ -1,5 +1,5 @@
-dcase_util.containers.DataContainer.freeze
-==========================================
+dcase\_util\.containers\.DataContainer\.freeze
+==============================================
 
 .. currentmodule:: dcase_util.containers
 

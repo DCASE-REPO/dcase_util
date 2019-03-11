@@ -1,5 +1,5 @@
-dcase_util.files.Package.exists
-===============================
+dcase\_util\.files\.Package\.exists
+===================================
 
 .. currentmodule:: dcase_util.files
 

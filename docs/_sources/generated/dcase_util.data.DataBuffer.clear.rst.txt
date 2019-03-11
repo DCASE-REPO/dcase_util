@@ -1,5 +1,5 @@
-dcase_util.data.DataBuffer.clear
-================================
+dcase\_util\.data\.DataBuffer\.clear
+====================================
 
 .. currentmodule:: dcase_util.data
 

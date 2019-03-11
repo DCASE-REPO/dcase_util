@@ -1,5 +1,5 @@
-dcase_util.containers.DataMatrix3DContainer
-===========================================
+dcase\_util\.containers\.DataMatrix3DContainer
+==============================================
 
 .. currentmodule:: dcase_util.containers
 
@@ -37,23 +37,5 @@ dcase_util.containers.DataMatrix3DContainer
    
 
    
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-   
-      ~DataMatrix3DContainer.T
-      ~DataMatrix3DContainer.bytes
-      ~DataMatrix3DContainer.data
-      ~DataMatrix3DContainer.focus_start
-      ~DataMatrix3DContainer.focus_stop
-      ~DataMatrix3DContainer.frames
-      ~DataMatrix3DContainer.length
-      ~DataMatrix3DContainer.logger
-      ~DataMatrix3DContainer.md5
-      ~DataMatrix3DContainer.shape
-      ~DataMatrix3DContainer.stats
-      ~DataMatrix3DContainer.valid_formats
-      ~DataMatrix3DContainer.vector_length
    
    

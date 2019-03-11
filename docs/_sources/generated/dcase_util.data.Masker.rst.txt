@@ -1,5 +1,5 @@
-dcase_util.data.Masker
-======================
+dcase\_util\.data\.Masker
+=========================
 
 .. currentmodule:: dcase_util.data
 
@@ -31,14 +31,5 @@ dcase_util.data.Masker
    
 
    
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-   
-      ~Masker.bytes
-      ~Masker.logger
-      ~Masker.md5
-      ~Masker.valid_formats
    
    

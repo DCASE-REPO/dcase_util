@@ -1,5 +1,5 @@
-dcase_util.tools.BibtexProcessor.affiliation_list
-=================================================
+dcase\_util\.tools\.BibtexProcessor\.affiliation\_list
+======================================================
 
 .. currentmodule:: dcase_util.tools
 

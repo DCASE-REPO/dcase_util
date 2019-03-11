@@ -1,5 +1,5 @@
-dcase_util.containers.AppParameterContainer.get_set
-===================================================
+dcase\_util\.containers\.AppParameterContainer\.get\_set
+========================================================
 
 .. currentmodule:: dcase_util.containers
 
