@@ -3,6 +3,40 @@
 Release notes
 =============
 
+v0.2.6
+------
+
+**New features**
+
+* Add ``TAUUrbanAcousticScenes_2019_DevelopmentSet``, ``TAUUrbanAcousticScenes_2019_Mobile_DevelopmentSet``, and ``TAUUrbanAcousticScenes_2019_Openset_DevelopmentSet`` datasets.
+* Add ``OneHotEncoder`` and ``OneHotEncodingProcessor`` to allow unknown labels.
+* Add automatic meta data check ups in datasets classes, and parameter to control it.
+* Add ``AudioSequencingProcessor``
+* Add ``feature_extractor_list`` to show all available feature extractors classes, and add description to all feature extraction classes.
+
+**Updates**
+
+* Update ``debug_packages`` method to allow better control which part of package_list is checked: remote or local.
+* Update ``data_collector`` to have generic data axis handling.
+* Update ``load`` method in ``ListDictContainer`` to skip empty rows in CSV files.
+* Update ``save`` method in ``ListDictContainer`` for TXT and CSV to avoid extra empty lines under Windows.
+* Update ``save`` method in ``MetaDataContainer`` for TXT and CSV to avoid extra empty lines under Windows.
+* Update ``relative_to_absolute_path`` and ``absolute_to_relative_path`` to give more informative error messages.
+* Update ``EventRollEncodingProcessor`` to support ``pad_length`` parameter.
+* Update unit tests to be cross-platform compatible (Linux / Windows)
+* Update ``SuppressStdoutAndStderr`` to be more robust
+* Update ``MetaDataItem`` to keep filename field to be posix path when relative path is used.
+* Update dtypes to be compatible with numpy v1.14
+* Update ``setup_keras`` to warn when GPU was not found.
+* Update ``model_summary_string`` to show activation function of the output layer.
+* Update all processors, encoders, and manipulators have __call__ magic class method.
+
+**Bug fixes**
+
+* Fix delimiter detection in ``load`` method in ``MetaDataContainer``
+* Fix ``MetaDataItem`` to better handle empty fields (onset, offset, and event_label).
+* Fix how ``validation_split`` and ``validation_files_dataset`` method uses ``training_meta`` parameter.
+
 v0.2.5
 ------
 
