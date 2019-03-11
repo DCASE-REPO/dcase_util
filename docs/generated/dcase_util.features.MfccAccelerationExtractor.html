@@ -758,17 +758,19 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../datasets.html#acousticscenedataset">AcousticSceneDataset</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.AcousticSceneDataset.html">dcase_util.datasets.AcousticSceneDataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet.html">dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet.html">dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTAcousticScenes_2017_DevelopmentSet.html">dcase_util.datasets.TUTAcousticScenes_2017_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTAcousticScenes_2017_EvaluationSet.html">dcase_util.datasets.TUTAcousticScenes_2017_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTAcousticScenes_2017_FeaturesSet.html">dcase_util.datasets.TUTAcousticScenes_2017_FeaturesSet</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet.html">dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet.html">dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTUrbanAcousticScenes_2018_DevelopmentSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTUrbanAcousticScenes_2018_LeaderboardSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_LeaderboardSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTUrbanAcousticScenes_2018_EvaluationSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_DevelopmentSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_LeaderboardSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_LeaderboardSet</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_EvaluationSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_EvaluationSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TAUUrbanAcousticScenes_2019_DevelopmentSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_DevelopmentSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TAUUrbanAcousticScenes_2019_Mobile_DevelopmentSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_Mobile_DevelopmentSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_DevelopmentSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.DCASE2018_Task5_DevelopmentSet.html">dcase_util.datasets.DCASE2018_Task5_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.DCASE2018_Task5_EvaluationSet.html">dcase_util.datasets.DCASE2018_Task5_EvaluationSet</a></li>
 </ul>
@@ -1402,6 +1404,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-6">v0.2.6</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-5">v0.2.5</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-4">v0.2.4</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-3">v0.2.3</a></li>
@@ -1520,7 +1523,7 @@ Default value 0.02</p>
 <p><strong>spectrogram_type</strong> : str</p>
 <blockquote>
 <div><p>Spectrogram type, magnitude or power spectrogram.
-Default value &#8216;magnitude&#8217;</p>
+Default value ‘magnitude’</p>
 </div></blockquote>
 <p><strong>n_fft</strong> : int</p>
 <blockquote>
@@ -1530,7 +1533,7 @@ Default value 2048</p>
 <p><strong>window_type</strong> : str</p>
 <blockquote>
 <div><p>Window function type.
-Default value &#8216;hamming_asymmetric&#8217;</p>
+Default value ‘hamming_asymmetric’</p>
 </div></blockquote>
 <p><strong>n_mels</strong> : int</p>
 <blockquote>
@@ -1612,7 +1615,7 @@ Default value 0.02</p>
 <p><strong>spectrogram_type</strong> : str</p>
 <blockquote>
 <div><p>Spectrogram type, magnitude or power spectrogram.
-Default value &#8216;magnitude&#8217;</p>
+Default value ‘magnitude’</p>
 </div></blockquote>
 <p><strong>n_fft</strong> : int</p>
 <blockquote>
@@ -1622,7 +1625,7 @@ Default value 2048</p>
 <p><strong>window_type</strong> : str</p>
 <blockquote>
 <div><p>Window function type.
-Default value &#8216;hamming_asymmetric&#8217;</p>
+Default value ‘hamming_asymmetric’</p>
 </div></blockquote>
 <p><strong>n_mels</strong> : int</p>
 <blockquote>
@@ -1677,13 +1680,13 @@ Default value 9</p>
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#dcase_util.features.MfccAccelerationExtractor.__init__" title="dcase_util.features.MfccAccelerationExtractor.__init__"><code class="xref py py-obj docutils literal"><span class="pre">__init__</span></code></a>([fs,&nbsp;win_length_samples,&nbsp;...])</td>
+<tr class="row-odd"><td><a class="reference internal" href="#dcase_util.features.MfccAccelerationExtractor.__init__" title="dcase_util.features.MfccAccelerationExtractor.__init__"><code class="xref py py-obj docutils literal"><span class="pre">__init__</span></code></a>([fs,&nbsp;win_length_samples,&nbsp;…])</td>
 <td>Constructor</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="dcase_util.features.MfccAccelerationExtractor.extract.html#dcase_util.features.MfccAccelerationExtractor.extract" title="dcase_util.features.MfccAccelerationExtractor.extract"><code class="xref py py-obj docutils literal"><span class="pre">extract</span></code></a>(y)</td>
 <td>Extract features for the audio signal.</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">get_spectrogram</span></code>(y[,&nbsp;n_fft,&nbsp;...])</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">get_spectrogram</span></code>(y[,&nbsp;n_fft,&nbsp;…])</td>
 <td>Spectrogram</td>
 </tr>
 <tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">get_window_function</span></code>(n[,&nbsp;window_type])</td>
@@ -1694,21 +1697,6 @@ Default value 9</p>
 </tr>
 <tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">show</span></code>()</td>
 <td>Print container content</td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Attributes</p>
-<table border="1" class="longtable docutils">
-<colgroup>
-<col width="10%" />
-<col width="90%" />
-</colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">label</span></code></td>
-<td>Extractor label</td>
-</tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">logger</span></code></td>
-<td>Logger instance</td>
 </tr>
 </tbody>
 </table>

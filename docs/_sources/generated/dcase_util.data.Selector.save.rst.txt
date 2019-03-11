@@ -1,5 +1,5 @@
-dcase_util.data.Selector.save
-=============================
+dcase\_util\.data\.Selector\.save
+=================================
 
 .. currentmodule:: dcase_util.data
 

@@ -4,6 +4,7 @@
 
 # Import all sub-modules
 from . import containers
+from . import containers as c
 from . import datasets
 from . import decorators
 from . import files
@@ -100,5 +101,6 @@ def check_installation():
 
     # Get system level requirements
     log.line('System')
-    ffmpeg_info = subprocess.check_output(['ffmpeg', '-version'])
+    ffmpeg_info = subprocess.check_output(['ffmpeg', '-version']).decode('utf-8')
+
     log.data(field='FFMPEG', value=ffmpeg_info)

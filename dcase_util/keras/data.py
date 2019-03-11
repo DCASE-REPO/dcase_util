@@ -524,6 +524,9 @@ def data_collector(item_list=None,
                 'data': X.shape[data.data_axis],
                 'time': X.shape[data.time_axis],
             }
+            data_axis = [None] * 2
+            data_axis[data.data_axis] = 'data'
+            data_axis[data.time_axis] = 'time'
 
         elif len(data.shape) == 3:
             # Stack collected data and meta correct way
@@ -545,24 +548,29 @@ def data_collector(item_list=None,
                 'time': X.shape[data.time_axis],
                 'sequence': X.shape[data.sequence_axis],
             }
+            data_axis = [None] * 3
+            data_axis[data.data_axis] = 'data'
+            data_axis[data.time_axis] = 'time'
+            data_axis[data.sequence_axis] = 'sequence'
 
             if channel_dimension:
                 # Add channel dimension to the data
                 if channel_dimension == 'channels_first':
                     X = numpy.expand_dims(X, axis=1)
-
+                    data_axis.insert(1, 'channel')
                 elif channel_dimension == 'channels_last':
                     X = numpy.expand_dims(X, axis=3)
+                    data_axis.insert(3, 'channel')
 
         if verbose:
             data_shape = data.shape
-            data_axis = {
+            data_axis_ = {
                 'time_axis': data.time_axis,
                 'data_axis': data.data_axis
             }
 
             if hasattr(data, 'sequence_axis'):
-                data_axis['sequence_axis'] = data.sequence_axis
+                data_axis_['sequence_axis'] = data.sequence_axis
 
             meta_shape = meta.shape
             meta_axis = {
@@ -594,20 +602,20 @@ def data_collector(item_list=None,
 
             logger.data(
                 field='Time',
-                value=data_shape[data_axis['time_axis']],
+                value=data_shape[data_axis_['time_axis']],
                 indent=print_indent + 4
             )
 
             logger.data(
                 field='Data',
-                value=data_shape[data_axis['data_axis']],
+                value=data_shape[data_axis_['data_axis']],
                 indent=print_indent + 4
             )
 
-            if 'sequence_axis' in data_axis:
+            if 'sequence_axis' in data_axis_:
                 logger.data(
                     field='Sequence',
-                    value=data_shape[data_axis['sequence_axis']],
+                    value=data_shape[data_axis_['sequence_axis']],
                     indent=print_indent + 4
                 )
 

@@ -5,6 +5,7 @@ from six import iteritems
 from builtins import str as text
 
 import os
+import sys
 import numpy
 import copy
 import csv
@@ -1223,15 +1224,16 @@ class ListDictContainer(ListContainer):
                             fields = csv_fields
 
                     for row in csv_reader:
-                        if convert_numeric_fields:
-                            for cell_id, cell_data in enumerate(row):
-                                if is_int(cell_data):
-                                    row[cell_id] = int(cell_data)
+                        if row:
+                            if convert_numeric_fields:
+                                for cell_id, cell_data in enumerate(row):
+                                    if is_int(cell_data):
+                                        row[cell_id] = int(cell_data)
 
-                                elif is_float(cell_data):
-                                    row[cell_id] = float(cell_data)
+                                    elif is_float(cell_data):
+                                        row[cell_id] = float(cell_data)
 
-                        data.append(dict(zip(fields, row)))
+                            data.append(dict(zip(fields, row)))
 
                 list.__init__(self, data)
 
@@ -1336,7 +1338,14 @@ class ListDictContainer(ListContainer):
 
                     fields = sorted(list(fields))
 
-                with open(self.filename, 'w') as csv_file:
+                # Make sure writing is using correct line endings to avoid extra empty lines
+                if sys.version_info[0] == 2:
+                    csv_file = open(self.filename, 'wb')
+
+                elif sys.version_info[0] == 3:
+                    csv_file = open(self.filename, 'w', newline='')
+
+                try:
                     csv_writer = csv.writer(csv_file, delimiter=delimiter)
                     if csv_header:
                         csv_writer.writerow(fields)
@@ -1347,6 +1356,9 @@ class ListDictContainer(ListContainer):
                             item_values.append(item[field])
 
                         csv_writer.writerow(item_values)
+
+                finally:
+                    csv_file.close()
 
             elif self.format == FileFormat.CPICKLE:
                 Serializer.save_cpickle(filename=self.filename, data=self)

@@ -1,5 +1,5 @@
-dcase_util.keras.setup_keras
-============================
+dcase\_util\.keras\.setup\_keras
+================================
 
 .. currentmodule:: dcase_util.keras
 

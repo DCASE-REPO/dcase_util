@@ -1,5 +1,5 @@
-dcase_util.containers.DataMatrix3DContainer.data
-================================================
+dcase\_util\.containers\.DataMatrix3DContainer\.data
+====================================================
 
 .. currentmodule:: dcase_util.containers
 

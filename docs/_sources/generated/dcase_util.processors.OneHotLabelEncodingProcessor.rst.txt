@@ -1,5 +1,5 @@
-dcase_util.processors.OneHotLabelEncodingProcessor
-==================================================
+dcase\_util\.processors\.OneHotLabelEncodingProcessor
+=====================================================
 
 .. currentmodule:: dcase_util.processors
 
@@ -31,16 +31,5 @@ dcase_util.processors.OneHotLabelEncodingProcessor
    
 
    
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-   
-      ~OneHotLabelEncodingProcessor.bytes
-      ~OneHotLabelEncodingProcessor.input_type
-      ~OneHotLabelEncodingProcessor.logger
-      ~OneHotLabelEncodingProcessor.md5
-      ~OneHotLabelEncodingProcessor.output_type
-      ~OneHotLabelEncodingProcessor.valid_formats
    
    

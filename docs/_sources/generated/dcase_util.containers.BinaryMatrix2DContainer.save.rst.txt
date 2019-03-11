@@ -1,5 +1,5 @@
-dcase_util.containers.BinaryMatrix2DContainer.save
-==================================================
+dcase\_util\.containers\.BinaryMatrix2DContainer\.save
+======================================================
 
 .. currentmodule:: dcase_util.containers
 

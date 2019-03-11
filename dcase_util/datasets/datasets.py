@@ -241,6 +241,8 @@ class Dataset(object):
                  audio_paths=None,
                  default_audio_extension='wav',
                  reference_data_present=True,
+
+                 check_meta=True,
                  **kwargs):
         """Constructor
 
@@ -359,6 +361,7 @@ class Dataset(object):
         # Dataset meta
         if dataset_meta is None:
             dataset_meta = {}
+
         self.dataset_meta = DictContainer(dataset_meta)
 
         # Folder name for dataset
@@ -498,6 +501,11 @@ class Dataset(object):
 
         # Evaluation meta data for folds
         self.crossvalidation_data_eval = {}
+
+        # Flag to check meta
+        self.check_meta = check_meta
+        if self.check_meta and not self.reference_data_present:
+            self.check_meta = False
 
         # Load meta and cross-validation data in
         self.load()
@@ -676,7 +684,8 @@ class Dataset(object):
             self.prepare()
 
             # Check meta data and cross validation setup
-            self.check_metadata()
+            if self.check_meta:
+                self.check_metadata()
 
             # Save new filelist hash to monitor change in the dataset.
             self._save_filelist_hash()
@@ -911,9 +920,19 @@ class Dataset(object):
 
         return len(self.tags())
 
-    def debug_packages(self):
+    def debug_packages(self, local_check=True, remote_check=True):
         """Debug remote packages associated to the dataset.
         Use this to check remote file size and md5 hash when developing dataset class.
+
+        Parameters
+        ----------
+        local_check :  bool
+            Check local packages, calculate md5 hash and package size.
+            Default value True
+
+        remote_check : bool
+            Check remote package information and verify against information stored in the package_list (defined in the dataset class).
+            Default value True
 
         Returns
         -------
@@ -923,88 +942,91 @@ class Dataset(object):
 
         log = FancyLogger()
         log.sub_header('Debug packages')
-        log.line('Local', indent=2)
-        log.row_reset()
-        log.row('package', 'local_md5', 'local_bytes', widths=[55, 35, 15])
-        log.row_sep()
+        if local_check:
+            log.line('Local', indent=2)
+            log.row_reset()
+            log.row('package', 'local_md5', 'local_bytes', widths=[65, 35, 15])
+            log.row_sep()
 
-        for item in self.package_list:
-            file = File(**item)
+            for item in self.package_list:
+                file = File(**item)
 
-            if file.is_package():
-                package = Package(**item)
-                if package.exists():
-                    md5 = package.md5
-                    bytes = package.bytes
-                else:
-                    md5 = '-- PACKAGE DOES NOT EXISTS --'
-                    bytes = ''
-
-            elif file.exists():
-                md5 = file.md5
-                bytes = file.bytes
-
-            else:
-                md5 = '-- FILE DOES NOT EXISTS --'
-                bytes = ''
-
-            log.row(
-                os.path.split(item['filename'])[-1],
-                md5,
-                bytes
-            )
-
-        log.line()
-        log.line('Remote', indent=2)
-        log.row('package', 'remote_md5', 'remote_bytes', 'md5', 'size', widths=[55, 35, 15, 6, 7])
-        log.row_sep()
-
-        for item in self.package_list:
-            if 'remote_file' in item and item['remote_file']:
-                remote_filename = os.path.split(item['remote_file'])[-1]
-
-                item_remote = copy.deepcopy(item)
-                del item_remote['remote_md5']
-                del item_remote['remote_bytes']
-
-                remote_file = RemoteFile(**item_remote)
-                if self.included_content_types is None or remote_file.is_content_type(
-                        content_type=self.included_content_types
-                ):
-                    if remote_file.remote_exists():
-                        remote_file.remote_info()
-
-                        if 'remote_md5' in item:
-                            md5 = remote_file.remote_md5
-                            md5_status = 'Dif' if item['remote_md5'] != remote_file.remote_md5 else 'OK'
-                        else:
-                            md5 = ''
-                            md5_status = ''
-
-                        bytes = remote_file.remote_bytes
-                        bytes_status = 'Dif' if item['remote_bytes'] != remote_file.remote_bytes else 'OK'
-
+                if file.is_package():
+                    package = Package(**item)
+                    if package.exists():
+                        md5 = package.md5
+                        bytes = package.bytes
                     else:
-                        md5 = ''
-                        md5_status = 'Err'
+                        md5 = '-- PACKAGE DOES NOT EXISTS --'
                         bytes = ''
-                        bytes_status = 'Err'
+
+                elif file.exists():
+                    md5 = file.md5
+                    bytes = file.bytes
 
                 else:
-                    md5 = 'SKIPPED'
-                    md5_status = ''
+                    md5 = '-- FILE DOES NOT EXISTS --'
                     bytes = ''
-                    bytes_status = ''
 
                 log.row(
-                    remote_filename,
+                    os.path.split(item['filename'])[-1],
                     md5,
-                    bytes,
-                    md5_status,
-                    bytes_status
+                    bytes
                 )
 
-        log.line()
+            log.line()
+
+        if remote_check:
+            log.line('Remote', indent=2)
+            log.row('package', 'remote_md5', 'remote_bytes', 'md5', 'size', widths=[65, 35, 15, 6, 7])
+            log.row_sep()
+
+            for item in self.package_list:
+                if 'remote_file' in item and item['remote_file']:
+                    remote_filename = os.path.split(item['remote_file'])[-1]
+
+                    item_remote = copy.deepcopy(item)
+                    del item_remote['remote_md5']
+                    del item_remote['remote_bytes']
+
+                    remote_file = RemoteFile(**item_remote)
+                    if self.included_content_types is None or remote_file.is_content_type(
+                            content_type=self.included_content_types
+                    ):
+                        if remote_file.remote_exists():
+                            remote_file.remote_info()
+
+                            if 'remote_md5' in item:
+                                md5 = remote_file.remote_md5
+                                md5_status = 'Dif' if item['remote_md5'] != remote_file.remote_md5 else 'OK'
+                            else:
+                                md5 = ''
+                                md5_status = ''
+
+                            bytes = remote_file.remote_bytes
+                            bytes_status = 'Dif' if item['remote_bytes'] != remote_file.remote_bytes else 'OK'
+
+                        else:
+                            md5 = ''
+                            md5_status = 'Err'
+                            bytes = ''
+                            bytes_status = 'Err'
+
+                    else:
+                        md5 = 'SKIPPED'
+                        md5_status = ''
+                        bytes = ''
+                        bytes_status = ''
+
+                    log.row(
+                        remote_filename,
+                        md5,
+                        bytes,
+                        md5_status,
+                        bytes_status
+                    )
+
+            log.line()
 
         return self
 
@@ -1652,7 +1674,11 @@ class Dataset(object):
             self.logger.exception(message)
             raise IOError(message)
 
-        training_files = sorted(list(set(self.train(fold=fold).unique_files) - set(validation_files)))
+        if training_meta is None:
+            training_files = sorted(list(set(self.train(fold=fold).unique_files) - set(validation_files)))
+
+        else:
+            training_files = sorted(list(set(training_meta.unique_files) - set(validation_files)))
 
         return training_files, validation_files
 
@@ -1877,7 +1903,16 @@ class Dataset(object):
 
         """
 
-        return os.path.abspath(os.path.expanduser(os.path.join(self.local_path, path)))
+        if path is None:
+            message = '{name}: Path is None.'.format(
+                name=self.__class__.__name__
+            )
+
+            self.logger.exception(message)
+            raise ValueError(message)
+
+        else:
+            return os.path.abspath(os.path.expanduser(os.path.join(self.local_path, path)))
 
     def absolute_to_relative_path(self, path):
         """Converts absolute path into relative path.
@@ -1894,11 +1929,20 @@ class Dataset(object):
 
         """
 
-        if path.startswith(os.path.abspath(self.local_path)):
-            return os.path.relpath(path, self.local_path)
+        if path is None:
+            message = '{name}: Path is None.'.format(
+                name=self.__class__.__name__
+            )
+
+            self.logger.exception(message)
+            raise ValueError(message)
 
         else:
-            return path
+            if path.startswith(os.path.abspath(self.local_path)):
+                return os.path.relpath(path, self.local_path)
+
+            else:
+                return path
 
     def dataset_bytes(self):
         """Total download size of the dataset in bytes.
@@ -2127,7 +2171,7 @@ class AcousticSceneDataset(Dataset):
 
         if balancing_mode == 'class':
             # Do the balance based on scene class only
-            for scene_id, scene_label in enumerate(self.scene_labels()):
+            for scene_id, scene_label in enumerate(training_meta.unique_scene_labels):
                 scene_files = training_meta.filter(scene_label=scene_label).unique_files
 
                 random.shuffle(scene_files, random.random)
@@ -2154,7 +2198,7 @@ class AcousticSceneDataset(Dataset):
                 raise AssertionError(message)
 
             # Do the balance based on scene class and identifier
-            for scene_id, scene_label in enumerate(self.scene_labels()):
+            for scene_id, scene_label in enumerate(training_meta.unique_scene_labels):
                 scene_meta = training_meta.filter(scene_label=scene_label)
 
                 data = {}
@@ -2239,7 +2283,7 @@ class AcousticSceneDataset(Dataset):
                 raise AssertionError(message)
 
             # Do the balance based on scene class and two-level hierarchical identifier
-            for scene_id, scene_label in enumerate(self.scene_labels()):
+            for scene_id, scene_label in enumerate(training_meta.unique_scene_labels):
                 scene_meta = training_meta.filter(scene_label=scene_label)
 
                 data = DictContainer()
@@ -2343,7 +2387,7 @@ class AcousticSceneDataset(Dataset):
                     separators=[True, True, True]
                 )
                 log.row_sep()
-                for scene_id, scene_label in enumerate(self.scene_labels()):
+                for scene_id, scene_label in enumerate(training_meta.unique_scene_labels):
                     log.row(
                         scene_label,
                         amounts_full_items[scene_id],
@@ -2373,7 +2417,7 @@ class AcousticSceneDataset(Dataset):
                     separators=[True, False, True, False, True]
                 )
                 log.row_sep()
-                for scene_id, scene_label in enumerate(self.scene_labels()):
+                for scene_id, scene_label in enumerate(training_meta.unique_scene_labels):
                     log.row(
                         scene_label,
                         amounts_full_identifiers1[scene_id],
@@ -2407,7 +2451,7 @@ class AcousticSceneDataset(Dataset):
                     separators=[True, False, False, True, False, False, True]
                 )
                 log.row_sep()
-                for scene_id, scene_label in enumerate(self.scene_labels()):
+                for scene_id, scene_label in enumerate(training_meta.unique_scene_labels):
                     log.row(
                         scene_label,
                         amounts_full_identifiers1[scene_id],
@@ -3079,7 +3123,8 @@ class SoundEventDataset(Dataset):
                             validation_set_mae.append(
                                 mean_absolute_error(
                                     numpy.ones(len(current_validation_amount)) * validation_amount,
-                                    current_validation_amount)
+                                    current_validation_amount
+                                )
                             )
                             validation_set_event_amounts.append(validation_set_event_counts)
                             training_set_event_amounts.append(training_set_event_counts)

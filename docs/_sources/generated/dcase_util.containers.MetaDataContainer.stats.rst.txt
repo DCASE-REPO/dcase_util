@@ -1,5 +1,5 @@
-dcase_util.containers.MetaDataContainer.stats
-=============================================
+dcase\_util\.containers\.MetaDataContainer\.stats
+=================================================
 
 .. currentmodule:: dcase_util.containers
 

@@ -1,5 +1,5 @@
-dcase_util.features.RMSEnergyExtractor
-======================================
+dcase\_util\.features\.RMSEnergyExtractor
+=========================================
 
 .. currentmodule:: dcase_util.features
 
@@ -23,12 +23,5 @@ dcase_util.features.RMSEnergyExtractor
    
 
    
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-   
-      ~RMSEnergyExtractor.label
-      ~RMSEnergyExtractor.logger
    
    

@@ -1,5 +1,5 @@
-dcase_util.data.OneHotLabelEncoder
-==================================
+dcase\_util\.data\.OneHotLabelEncoder
+=====================================
 
 .. currentmodule:: dcase_util.data
 
@@ -38,23 +38,5 @@ dcase_util.data.OneHotLabelEncoder
    
 
    
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-   
-      ~OneHotLabelEncoder.T
-      ~OneHotLabelEncoder.bytes
-      ~OneHotLabelEncoder.data
-      ~OneHotLabelEncoder.focus_start
-      ~OneHotLabelEncoder.focus_stop
-      ~OneHotLabelEncoder.frames
-      ~OneHotLabelEncoder.length
-      ~OneHotLabelEncoder.logger
-      ~OneHotLabelEncoder.md5
-      ~OneHotLabelEncoder.shape
-      ~OneHotLabelEncoder.stats
-      ~OneHotLabelEncoder.valid_formats
-      ~OneHotLabelEncoder.vector_length
    
    

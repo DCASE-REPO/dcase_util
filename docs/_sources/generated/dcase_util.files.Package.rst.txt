@@ -1,5 +1,5 @@
-dcase_util.files.Package
-========================
+dcase\_util\.files\.Package
+===========================
 
 .. currentmodule:: dcase_util.files
 
@@ -32,15 +32,5 @@ dcase_util.files.Package
    
 
    
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-   
-      ~Package.bytes
-      ~Package.logger
-      ~Package.md5
-      ~Package.package_password
-      ~Package.valid_formats
    
    

@@ -1,5 +1,5 @@
-dcase_util.containers.FeatureContainer
-======================================
+dcase\_util\.containers\.FeatureContainer
+=========================================
 
 .. currentmodule:: dcase_util.containers
 
@@ -37,24 +37,5 @@ dcase_util.containers.FeatureContainer
    
 
    
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-   
-      ~FeatureContainer.T
-      ~FeatureContainer.bytes
-      ~FeatureContainer.data
-      ~FeatureContainer.focus_start
-      ~FeatureContainer.focus_stop
-      ~FeatureContainer.frames
-      ~FeatureContainer.hop_length_seconds
-      ~FeatureContainer.length
-      ~FeatureContainer.logger
-      ~FeatureContainer.md5
-      ~FeatureContainer.shape
-      ~FeatureContainer.stats
-      ~FeatureContainer.valid_formats
-      ~FeatureContainer.vector_length
    
    

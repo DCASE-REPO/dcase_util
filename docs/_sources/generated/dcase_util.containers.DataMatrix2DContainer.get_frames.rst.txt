@@ -1,5 +1,5 @@
-dcase_util.containers.DataMatrix2DContainer.get_frames
-======================================================
+dcase\_util\.containers\.DataMatrix2DContainer\.get\_frames
+===========================================================
 
 .. currentmodule:: dcase_util.containers
 

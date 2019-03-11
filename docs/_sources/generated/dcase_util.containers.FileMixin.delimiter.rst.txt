@@ -1,5 +1,5 @@
-dcase_util.containers.FileMixin.delimiter
-=========================================
+dcase\_util\.containers\.FileMixin\.delimiter
+=============================================
 
 .. currentmodule:: dcase_util.containers
 

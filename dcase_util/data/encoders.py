@@ -37,10 +37,13 @@ class BinaryMatrixEncoder(BinaryMatrix2DContainer):
             self.logger.exception(message)
             raise ValueError(message)
 
+    def __call__(self, *args, **kwargs):
+        return self.encode(*args, **kwargs)
+
 
 class OneHotEncoder(BinaryMatrixEncoder):
     """One hot encoder class"""
-    def __init__(self, label_list=None, time_resolution=1.0, length_frames=1, length_seconds=None, **kwargs):
+    def __init__(self, label_list=None, time_resolution=1.0, length_frames=1, length_seconds=None, allow_unknown_labels=False, **kwargs):
         """Constructor
 
         Parameters
@@ -61,6 +64,10 @@ class OneHotEncoder(BinaryMatrixEncoder):
             length of binary matrix in seconds
             Default value None
 
+        allow_unknown_labels : bool
+            Allow unknown labels in the decoding. If False, labels not in the given label_list will produce an error.
+            Default value False
+
         """
 
         kwargs.update({
@@ -71,6 +78,7 @@ class OneHotEncoder(BinaryMatrixEncoder):
         super(OneHotEncoder, self).__init__(**kwargs)
 
         self.length_frames = length_frames
+        self.allow_unknown_labels = allow_unknown_labels
 
         if self.length_frames is None and length_seconds is not None:
             self.length_frames = self._length_to_frames(length_seconds)
@@ -145,7 +153,7 @@ class OneHotEncoder(BinaryMatrixEncoder):
             # Mark row to be hot
             binary_matrix[pos, :] = 1
 
-        else:
+        elif not self.allow_unknown_labels:
             # Unknown label given
             message = '{name}: Unknown label [{label}]'.format(name=self.__class__.__name__, label=label)
             self.logger.exception(message)
@@ -158,7 +166,7 @@ class OneHotEncoder(BinaryMatrixEncoder):
 
 class ManyHotEncoder(BinaryMatrixEncoder):
     """Many hot encoder class"""
-    def __init__(self, label_list=None, time_resolution=None, length_frames=None, length_seconds=None, **kwargs):
+    def __init__(self, label_list=None, time_resolution=None, length_frames=None, length_seconds=None, allow_unknown_labels=False, **kwargs):
         """Constructor
 
         Parameters
@@ -179,6 +187,10 @@ class ManyHotEncoder(BinaryMatrixEncoder):
             length of binary matrix in seconds
             Default value None
 
+        allow_unknown_labels : bool
+            Allow unknown labels in the decoding. If False, labels not in the given label_list will produce an error.
+            Default value False
+
         """
 
         kwargs.update({
@@ -189,6 +201,7 @@ class ManyHotEncoder(BinaryMatrixEncoder):
         super(ManyHotEncoder, self).__init__(**kwargs)
 
         self.length_frames = length_frames
+        self.allow_unknown_labels = allow_unknown_labels
 
         if self.length_frames is None and length_seconds is not None:
             self.length_frames = self._length_to_frames(length_seconds)
@@ -262,7 +275,7 @@ class ManyHotEncoder(BinaryMatrixEncoder):
                 # Mark row to be hot
                 binary_matrix[pos, :] = 1
 
-            else:
+            elif not self.allow_unknown_labels:
                 # Unknown label given
                 message = '{name}: Unknown label [{label}]'.format(name=self.__class__.__name__, label=label)
                 self.logger.exception(message)
@@ -429,6 +442,9 @@ class LabelMatrixEncoder(DataMatrix2DContainer):
             message = '{name}: No time resolution set.'.format(name=self.__class__.__name__)
             self.logger.exception(message)
             raise ValueError(message)
+
+    def __call__(self, *args, **kwargs):
+        return self.encode(*args, **kwargs)
 
 
 class OneHotLabelEncoder(LabelMatrixEncoder):

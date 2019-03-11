@@ -279,7 +279,7 @@ class DCASE2018_Task5_EvaluationSet(AcousticSceneDataset):
         kwargs['included_content_types'] = included_content_types
         kwargs['data_path'] = data_path
         kwargs['storage_name'] = storage_name
-        kwargs['reference_data_present'] = False
+        kwargs['reference_data_present'] = True
         kwargs['dataset_group'] = 'scene'
         kwargs['dataset_meta'] = {
             'authors': 'Gert Dekkers and Peter Karsmakers',
@@ -293,19 +293,19 @@ class DCASE2018_Task5_EvaluationSet(AcousticSceneDataset):
         }
         kwargs['crossvalidation_folds'] = None
 
-        source_url = 'https://zenodo.org/record/1291760/files/'
+        source_url = 'https://zenodo.org/record/1964758/files/'
         kwargs['package_list'] = [
             {
                 'content_type': 'documentation',
                 'remote_file': source_url + 'DCASE2018-task5-eval.doc.zip',
-                'remote_bytes': 60846,
+                'remote_bytes': 61735,
                 'remote_md5': '46bb9533c4ac74f65a959fa4c963d25f',
                 'filename': 'DCASE2018-task5-eval.doc.zip'
             },
             {
                 'content_type': 'meta',
                 'remote_file': source_url + 'DCASE2018-task5-eval.meta.zip',
-                'remote_bytes': 327240,
+                'remote_bytes': 1137185,
                 'remote_md5': '5256ade2443e80dc11ae8e816edaf664',
                 'filename': 'DCASE2018-task5-eval.meta.zip'
             },

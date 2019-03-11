@@ -1,5 +1,5 @@
-dcase_util.datasets.Dataset
-===========================
+dcase\_util\.datasets\.Dataset
+==============================
 
 .. currentmodule:: dcase_util.datasets
 
@@ -57,18 +57,5 @@ dcase_util.datasets.Dataset
    
 
    
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-   
-      ~Dataset.audio_file_count
-      ~Dataset.audio_files
-      ~Dataset.error_meta
-      ~Dataset.error_meta_count
-      ~Dataset.fold_count
-      ~Dataset.logger
-      ~Dataset.meta
-      ~Dataset.meta_count
    
    

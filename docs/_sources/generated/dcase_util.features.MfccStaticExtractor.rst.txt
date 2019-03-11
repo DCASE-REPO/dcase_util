@@ -1,5 +1,5 @@
-dcase_util.features.MfccStaticExtractor
-=======================================
+dcase\_util\.features\.MfccStaticExtractor
+==========================================
 
 .. currentmodule:: dcase_util.features
 
@@ -23,12 +23,5 @@ dcase_util.features.MfccStaticExtractor
    
 
    
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-   
-      ~MfccStaticExtractor.label
-      ~MfccStaticExtractor.logger
    
    

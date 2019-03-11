@@ -1,5 +1,5 @@
-dcase_util.utils.Path.file_count
-================================
+dcase\_util\.utils\.Path\.file\_count
+=====================================
 
 .. currentmodule:: dcase_util.utils
 

@@ -1,5 +1,5 @@
-dcase_util.files.Package.compress
-=================================
+dcase\_util\.files\.Package\.compress
+=====================================
 
 .. currentmodule:: dcase_util.files
 

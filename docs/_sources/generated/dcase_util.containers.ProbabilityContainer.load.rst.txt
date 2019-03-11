@@ -1,5 +1,5 @@
-dcase_util.containers.ProbabilityContainer.load
-===============================================
+dcase\_util\.containers\.ProbabilityContainer\.load
+===================================================
 
 .. currentmodule:: dcase_util.containers
 

@@ -1,5 +1,5 @@
-dcase_util.datasets.AcousticSceneDataset
-========================================
+dcase\_util\.datasets\.AcousticSceneDataset
+===========================================
 
 .. currentmodule:: dcase_util.datasets
 
@@ -57,18 +57,5 @@ dcase_util.datasets.AcousticSceneDataset
    
 
    
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-   
-      ~AcousticSceneDataset.audio_file_count
-      ~AcousticSceneDataset.audio_files
-      ~AcousticSceneDataset.error_meta
-      ~AcousticSceneDataset.error_meta_count
-      ~AcousticSceneDataset.fold_count
-      ~AcousticSceneDataset.logger
-      ~AcousticSceneDataset.meta
-      ~AcousticSceneDataset.meta_count
    
    

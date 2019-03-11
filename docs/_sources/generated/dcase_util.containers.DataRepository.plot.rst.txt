@@ -1,5 +1,5 @@
-dcase_util.containers.DataRepository.plot
-=========================================
+dcase\_util\.containers\.DataRepository\.plot
+=============================================
 
 .. currentmodule:: dcase_util.containers
 

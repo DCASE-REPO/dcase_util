@@ -1,5 +1,5 @@
-dcase_util.containers.AppParameterContainer.reset
-=================================================
+dcase\_util\.containers\.AppParameterContainer\.reset
+=====================================================
 
 .. currentmodule:: dcase_util.containers
 

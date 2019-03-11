@@ -1,5 +1,5 @@
-dcase_util.containers.ProbabilityItem
-=====================================
+dcase\_util\.containers\.ProbabilityItem
+========================================
 
 .. currentmodule:: dcase_util.containers
 
@@ -39,16 +39,5 @@ dcase_util.containers.ProbabilityItem
    
 
    
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-   
-      ~ProbabilityItem.filename
-      ~ProbabilityItem.id
-      ~ProbabilityItem.index
-      ~ProbabilityItem.label
-      ~ProbabilityItem.logger
-      ~ProbabilityItem.probability
    
    

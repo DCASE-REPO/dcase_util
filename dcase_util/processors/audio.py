@@ -3,9 +3,10 @@
 
 from __future__ import print_function, absolute_import
 import copy
+import numpy
 from dcase_util.containers import AudioContainer
-from dcase_util.processors import Processor, ProcessingChainItemType, ProcessingChain
-
+from dcase_util.processors import Processor, ProcessingChainItemType, ProcessingChain, SequencingProcessor
+from dcase_util.data import Sequencer
 
 class AudioReadingProcessor(Processor):
     input_type = ProcessingChainItemType.NONE  #: Input data type
@@ -326,3 +327,113 @@ class MonoAudioWritingProcessor(Processor):
             self.logger.exception(message)
             raise ValueError(message)
 
+
+class AudioSequencingProcessor(SequencingProcessor):
+    """Frame blocking processor"""
+    input_type = ProcessingChainItemType.AUDIO  #: Input data type
+    output_type = ProcessingChainItemType.DATA_CONTAINER  #: Output data type
+
+    def __init__(self, sequence_length=44100, hop_length=None,
+                 padding=None,
+                 shift_border='roll', shift=0,
+                 required_data_amount_per_segment=0.9,
+                 **kwargs):
+        """__init__ method.
+
+        Parameters
+        ----------
+        sequence_length : int
+            Sequence length
+            Default value 44100
+
+        hop_length : int
+            Hop value of when forming the sequence, if None then hop length equals to sequence_length (non-overlapping sequences).
+            Default value None
+
+        padding: str
+            How data is treated at the boundaries [None, 'zero', 'repeat']
+            Default value None
+
+        shift_border : string, ['roll', 'shift']
+            Sequence border handling when doing temporal shifting.
+            Default value roll
+
+        shift : int
+            Sequencing grid shift.
+            Default value 0
+
+        required_data_amount_per_segment : float [0,1]
+            Percentage of valid data items per segment there need to be for valid segment. Use this parameter to
+            filter out part of the non-full segments.
+            Default value 0.9
+
+        """
+
+        # Inject initialization parameters back to kwargs
+        kwargs.update(
+            {
+                'sequence_length': sequence_length,
+                'hop_length': hop_length,
+                'padding': padding,
+                'shift': shift,
+                'shift_border': shift_border,
+                'required_data_amount_per_segment': required_data_amount_per_segment
+            }
+        )
+
+        # Run super init to call init of mixins too
+        super(AudioSequencingProcessor, self).__init__(**kwargs)
+
+        self.sequencer = Sequencer(**self.init_parameters)
+
+    def process(self, data=None, store_processing_chain=False, **kwargs):
+        """Process
+
+        Parameters
+        ----------
+        data : DataContainer
+            Data
+
+        store_processing_chain : bool
+            Store processing chain to data container returned
+            Default value False
+
+        Returns
+        -------
+        DataMatrix3DContainer
+
+        """
+        from dcase_util.containers import AudioContainer, DataMatrix2DContainer
+
+        if isinstance(data, AudioContainer):
+            audio_data = data.data
+            if data.channels == 1:
+                audio_data = audio_data[numpy.newaxis, :]
+
+            # Do processing
+            container = self.sequencer.sequence(
+                data=DataMatrix2DContainer(audio_data, time_resolution=1/float(data.fs)),
+                **kwargs
+            )
+
+            if store_processing_chain:
+                # Get processing chain item
+                processing_chain_item = self.get_processing_chain_item()
+
+                # Update current processing parameters into chain item
+                processing_chain_item.update({
+                    'process_parameters': kwargs
+                })
+
+                # Push chain item into processing chain stored in the container
+                container.processing_chain.push_processor(**processing_chain_item)
+
+            return container
+
+        else:
+            message = '{name}: Wrong input data type, type required [{input_type}].'.format(
+                name=self.__class__.__name__,
+                input_type=self.input_type)
+
+            self.logger.exception(message)
+            raise ValueError(message)

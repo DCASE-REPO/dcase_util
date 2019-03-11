@@ -1,5 +1,5 @@
-dcase_util.datasets.Dataset.download_packages
-=============================================
+dcase\_util\.datasets\.Dataset\.download\_packages
+==================================================
 
 .. currentmodule:: dcase_util.datasets
 

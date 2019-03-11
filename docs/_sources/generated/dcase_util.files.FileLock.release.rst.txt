@@ -1,5 +1,5 @@
-dcase_util.files.FileLock.release
-=================================
+dcase\_util\.files\.FileLock\.release
+=====================================
 
 .. currentmodule:: dcase_util.files
 

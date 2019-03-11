@@ -1,5 +1,5 @@
-dcase_util.containers.AudioContainer.length
-===========================================
+dcase\_util\.containers\.AudioContainer\.length
+===============================================
 
 .. currentmodule:: dcase_util.containers
 

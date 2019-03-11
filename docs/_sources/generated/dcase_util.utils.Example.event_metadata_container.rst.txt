@@ -1,5 +1,5 @@
-dcase_util.utils.Example.event_metadata_container
-=================================================
+dcase\_util\.utils\.Example\.event\_metadata\_container
+=======================================================
 
 .. currentmodule:: dcase_util.utils
 

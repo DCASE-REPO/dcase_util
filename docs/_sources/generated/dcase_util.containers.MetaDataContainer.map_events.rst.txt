@@ -1,5 +1,5 @@
-dcase_util.containers.MetaDataContainer.map_events
-==================================================
+dcase\_util\.containers\.MetaDataContainer\.map\_events
+=======================================================
 
 .. currentmodule:: dcase_util.containers
 

@@ -1,5 +1,5 @@
-dcase_util.datasets.TUTUrbanAcousticScenes_2018_LeaderboardSet
-==============================================================
+dcase\_util\.datasets\.TUTUrbanAcousticScenes\_2018\_LeaderboardSet
+===================================================================
 
 .. currentmodule:: dcase_util.datasets
 
@@ -57,18 +57,5 @@ dcase_util.datasets.TUTUrbanAcousticScenes_2018_LeaderboardSet
    
 
    
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-   
-      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.audio_file_count
-      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.audio_files
-      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.error_meta
-      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.error_meta_count
-      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.fold_count
-      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.logger
-      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.meta
-      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.meta_count
    
    

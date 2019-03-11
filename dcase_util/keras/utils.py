@@ -281,38 +281,44 @@ def setup_keras(seed=None, profile=None,
         os.environ["THEANO_FLAGS"] = ','.join(flags)
 
     elif backend == 'tensorflow':
-        flags = []
         # Tensorflow setup
         if verbose:
             ui.line('Tensorflow', indent=print_indent + 2)
 
-        # Set device
-        if device:
-            flags.append('device=' + device)
-
-            # In case of CPU disable visible GPU.
-            if device == 'cpu':
-                os.environ["CUDA_VISIBLE_DEVICES"] = ''
+        # In case of CPU, disable visible GPUs.
+        if device == 'cpu':
+            os.environ["CUDA_VISIBLE_DEVICES"] = ''
 
         import tensorflow as tf
         if seed:
+            # Set random seed
             tf.set_random_seed(seed)
 
         config = tf.ConfigProto(
             inter_op_parallelism_threads=BLAS_thread_count
         )
 
-        from keras import backend as k
-        session = tf.Session(config=config)
-        k.set_session(session)
+        with SuppressStdoutAndStderr():
+            from keras import backend as k
+            session = tf.Session(config=config)
+            k.set_session(session)
 
         if verbose:
-            for item in flags:
-                ui.data(
-                    field=item.split('=')[0],
-                    value=item.split('=')[1],
-                    indent=print_indent + 4
-                )
+            gpu_device_found = False
+            if device != 'cpu':
+                from tensorflow.python.client import device_lib
+                for device_candidate in device_lib.list_local_devices():
+                    if device_candidate.device_type == 'GPU':
+                        gpu_device_found = True
+
+                if not gpu_device_found:
+                    device = 'cpu ({original_device} was set but not found)'.format(original_device=device)
+
+            ui.data(
+                field='Device',
+                value=device,
+                indent=print_indent + 4
+            )
 
     with SuppressStdoutAndStderr():
         # Import keras and suppress backend announcement printed to stderr

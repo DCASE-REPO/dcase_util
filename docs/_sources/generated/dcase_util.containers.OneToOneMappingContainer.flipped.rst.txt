@@ -1,5 +1,5 @@
-dcase_util.containers.OneToOneMappingContainer.flipped
-======================================================
+dcase\_util\.containers\.OneToOneMappingContainer\.flipped
+==========================================================
 
 .. currentmodule:: dcase_util.containers
 

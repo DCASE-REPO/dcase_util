@@ -1,5 +1,5 @@
-dcase_util.datasets.TUTSoundEvents_2016_DevelopmentSet
-======================================================
+dcase\_util\.datasets\.TUTSoundEvents\_2016\_DevelopmentSet
+===========================================================
 
 .. currentmodule:: dcase_util.datasets
 
@@ -57,18 +57,5 @@ dcase_util.datasets.TUTSoundEvents_2016_DevelopmentSet
    
 
    
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-   
-      ~TUTSoundEvents_2016_DevelopmentSet.audio_file_count
-      ~TUTSoundEvents_2016_DevelopmentSet.audio_files
-      ~TUTSoundEvents_2016_DevelopmentSet.error_meta
-      ~TUTSoundEvents_2016_DevelopmentSet.error_meta_count
-      ~TUTSoundEvents_2016_DevelopmentSet.fold_count
-      ~TUTSoundEvents_2016_DevelopmentSet.logger
-      ~TUTSoundEvents_2016_DevelopmentSet.meta
-      ~TUTSoundEvents_2016_DevelopmentSet.meta_count
    
    

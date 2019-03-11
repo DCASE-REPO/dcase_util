@@ -1,5 +1,5 @@
-dcase_util.containers.AudioContainer
-====================================
+dcase\_util\.containers\.AudioContainer
+=======================================
 
 .. currentmodule:: dcase_util.containers
 
@@ -42,29 +42,5 @@ dcase_util.containers.AudioContainer
    
 
    
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-   
-      ~AudioContainer.bytes
-      ~AudioContainer.channels
-      ~AudioContainer.data
-      ~AudioContainer.duration_ms
-      ~AudioContainer.duration_samples
-      ~AudioContainer.duration_sec
-      ~AudioContainer.empty
-      ~AudioContainer.focus_channel
-      ~AudioContainer.focus_start_samples
-      ~AudioContainer.focus_start_seconds
-      ~AudioContainer.focus_stop_samples
-      ~AudioContainer.focus_stop_seconds
-      ~AudioContainer.length
-      ~AudioContainer.loaded
-      ~AudioContainer.logger
-      ~AudioContainer.md5
-      ~AudioContainer.shape
-      ~AudioContainer.streams
-      ~AudioContainer.valid_formats
    
    

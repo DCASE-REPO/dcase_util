@@ -1,5 +1,5 @@
-dcase_util.containers.BinaryMatrix2DContainer.log
-=================================================
+dcase\_util\.containers\.BinaryMatrix2DContainer\.log
+=====================================================
 
 .. currentmodule:: dcase_util.containers
 

@@ -152,6 +152,9 @@ class Normalizer(ObjectContainer):
         # Finalize accumulated calculation
         self.finalize()
 
+    def __call__(self, *args, **kwargs):
+        return self.normalize(*args, **kwargs)
+
     def reset(self):
         """Reset internal variables.
         """
@@ -332,6 +335,9 @@ class RepositoryNormalizer(ObjectContainer):
         output += '\n'
 
         return output
+
+    def __call__(self, *args, **kwargs):
+        return self.normalize(*args, **kwargs)
 
     def reset(self):
         """Reset normalizers.
@@ -662,6 +668,9 @@ class Aggregator(ObjectContainer):
         self.win_length_frames = d['win_length_frames']
         self.hop_length_frames = d['hop_length_frames']
 
+    def __call__(self, *args, **kwargs):
+        return self.aggregate(*args, **kwargs)
+
     def aggregate(self, data=None, **kwargs):
         """Aggregate data
 
@@ -876,6 +885,9 @@ class Sequencer(ObjectContainer):
         self.shift_border = d['shift_border']
         self.required_data_amount_per_segment = d['required_data_amount_per_segment']
 
+    def __call__(self, *args, **kwargs):
+        return self.sequence(*args, **kwargs)
+
     def sequence(self, data, shift=None, **kwargs):
         """Convert 2D data matrix into sequence of specified length 2D matrices
 
@@ -1088,6 +1100,9 @@ class Stacker(ObjectContainer):
         self.recipe = d['recipe']
         self.hop = d['hop']
 
+    def __call__(self, *args, **kwargs):
+        return self.stack(*args, **kwargs)
+
     def stack(self, repository, **kwargs):
         """Vector creation based on recipe
 
@@ -1237,6 +1252,9 @@ class Selector(ObjectContainer):
         from dcase_util.containers import MetaDataContainer
         self.selection_events = MetaDataContainer()
 
+    def __call__(self, *args, **kwargs):
+        return self.select(*args, **kwargs)
+
     def set_mask(self, mask_events):
         """Set masking events
 
@@ -1316,6 +1334,9 @@ class Masker(ObjectContainer):
     def __setstate__(self, d):
         from dcase_util.containers import MetaDataContainer
         self.mask_events = MetaDataContainer()
+
+    def __call__(self, *args, **kwargs):
+        return self.mask(*args, **kwargs)
 
     def set_mask(self, mask_events):
         """Set masking events

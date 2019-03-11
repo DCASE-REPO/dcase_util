@@ -1,5 +1,5 @@
-dcase_util.containers.MetaDataContainer.get_string
-==================================================
+dcase\_util\.containers\.MetaDataContainer\.get\_string
+=======================================================
 
 .. currentmodule:: dcase_util.containers
 

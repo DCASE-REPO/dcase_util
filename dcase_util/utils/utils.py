@@ -5,6 +5,7 @@ from __future__ import print_function, absolute_import
 import six
 
 import os
+import sys
 import locale
 import logging
 import logging.config
@@ -156,43 +157,49 @@ def is_float(value):
 class SuppressStdoutAndStderr(object):
     """Context manager to suppress STDOUT and STDERR
 
-    A context manager for doing a "deep suppression" of stdout and stderr in
-    Python, i.e. will suppress all print, even if the print originates in a
-    compiled C/Fortran sub-function. This will not suppress raised exceptions, since exceptions are printed
-    to stderr just before a script exits, and after the context manager has
-    exited (at least, I think that is why it lets exceptions through).
+    A context manager for doing a deep suppression of stdout and stderr, i.e. will suppress all print,
+    even if the print originates in a compiled C/Fortran sub-function.
 
     After:
     http://stackoverflow.com/questions/11130156/suppress-stdout-stderr-print-from-python-functions
 
     """
 
-    def __init__(self):
-        # Open a pair of null files
-        self.null_fds = [os.open(os.devnull, os.O_RDWR) for x in range(2)]
-
-        # Save the actual stdout (1) and stderr (2) file descriptors.
-        self.save_fds = (os.dup(1), os.dup(2))
-
     def __enter__(self):
-        """Assign the null pointers to stdout and stderr.
-        """
+        self.stdout_null_file = open(os.devnull, 'w')
+        self.stderr_null_file = open(os.devnull, 'w')
 
-        os.dup2(self.null_fds[0], 1)
-        os.dup2(self.null_fds[1], 2)
+        self.stdout_fileno_undup_original = sys.stdout.fileno()
+        self.stderr_fileno_undup_original = sys.stderr.fileno()
+
+        self.stdout_fileno_original = os.dup (sys.stdout.fileno())
+        self.stderr_fileno_original = os.dup (sys.stderr.fileno())
+
+        self.stdout_original = sys.stdout
+        self.stderr_original = sys.stderr
+
+        # Assign stdout and stderr
+        os.dup2(self.stdout_null_file.fileno(), self.stdout_fileno_undup_original)
+        os.dup2(self.stderr_null_file.fileno(), self.stderr_fileno_undup_original)
+
+        sys.stdout = self.stdout_null_file
+        sys.stderr = self.stderr_null_file
+
+        return self
 
     def __exit__(self, *_):
-        """Re-assign the real stdout/stderr back
-        """
+        # Return stdout and stderr
+        sys.stdout = self.stdout_original
+        sys.stderr = self.stderr_original
 
-        # Re-assign the real stdout/stderr back to (1) and (2)
-        os.dup2(self.save_fds[0], 1)
-        os.dup2(self.save_fds[1], 2)
+        os.dup2(self.stdout_fileno_original, self.stdout_fileno_undup_original)
+        os.dup2(self.stderr_fileno_original, self.stderr_fileno_undup_original)
 
-        # Close the null files
-        os.close(self.null_fds[0])
-        os.close(self.null_fds[1])
+        os.close(self.stdout_fileno_original)
+        os.close(self.stderr_fileno_original)
 
+        self.stdout_null_file.close()
+        self.stderr_null_file.close()
 
 class VectorRecipeParser(object):
     def __init__(self, delimiters=None, default_stream=0, **kwargs):

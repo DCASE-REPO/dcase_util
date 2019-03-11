@@ -5,7 +5,7 @@ import os
 
 
 def test_MetadataReadingProcessor():
-    tmp = tempfile.NamedTemporaryFile('r+', suffix='.txt', dir='/tmp', delete=False)
+    tmp = tempfile.NamedTemporaryFile('r+', suffix='.txt', dir=tempfile.gettempdir(), delete=False)
     try:
         dcase_util.utils.Example.event_metadata_container().save(tmp.name)
 
@@ -38,4 +38,8 @@ def test_MetadataReadingProcessor():
         nose.tools.eq_(processed.file_count, 1)
 
     finally:
-        os.unlink(tmp.name)
+        try:
+            tmp.close()
+            os.unlink(tmp.name)
+        except:
+            pass

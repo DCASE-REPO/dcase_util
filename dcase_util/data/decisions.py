@@ -49,7 +49,7 @@ class DecisionEncoder(ObjectContainer):
         else:
             class_axis = 0
 
-        if numpy.issubdtype(frame_decisions.dtype, numpy.int64) or numpy.issubdtype(frame_decisions.dtype, numpy.bool):
+        if numpy.issubdtype(frame_decisions.dtype, numpy.signedinteger) or numpy.issubdtype(frame_decisions.dtype, numpy.bool_):
             if len(frame_decisions.shape) == 1:
                 # We have array, most likely single frame
                 return self.label_list[numpy.argmax(frame_decisions)]

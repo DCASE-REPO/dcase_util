@@ -1,5 +1,5 @@
-dcase_util.files.RemoteFile.download
-====================================
+dcase\_util\.files\.RemoteFile\.download
+========================================
 
 .. currentmodule:: dcase_util.files
 

@@ -1,5 +1,5 @@
-dcase_util.features.MfccAccelerationExtractor
-=============================================
+dcase\_util\.features\.MfccAccelerationExtractor
+================================================
 
 .. currentmodule:: dcase_util.features
 
@@ -23,12 +23,5 @@ dcase_util.features.MfccAccelerationExtractor
    
 
    
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-   
-      ~MfccAccelerationExtractor.label
-      ~MfccAccelerationExtractor.logger
    
    

@@ -1,5 +1,5 @@
-dcase_util.processors.MonoAudioReadingProcessor
-===============================================
+dcase\_util\.processors\.MonoAudioReadingProcessor
+==================================================
 
 .. currentmodule:: dcase_util.processors
 
@@ -31,16 +31,5 @@ dcase_util.processors.MonoAudioReadingProcessor
    
 
    
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-   
-      ~MonoAudioReadingProcessor.bytes
-      ~MonoAudioReadingProcessor.input_type
-      ~MonoAudioReadingProcessor.logger
-      ~MonoAudioReadingProcessor.md5
-      ~MonoAudioReadingProcessor.output_type
-      ~MonoAudioReadingProcessor.valid_formats
    
    

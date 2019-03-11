@@ -1,5 +1,5 @@
-dcase_util.containers.PackageMixin
-==================================
+dcase\_util\.containers\.PackageMixin
+=====================================
 
 .. currentmodule:: dcase_util.containers
 
@@ -20,14 +20,5 @@ dcase_util.containers.PackageMixin
    
 
    
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-   
-      ~PackageMixin.bytes
-      ~PackageMixin.logger
-      ~PackageMixin.md5
-      ~PackageMixin.package_password
    
    

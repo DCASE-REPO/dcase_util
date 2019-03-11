@@ -1,5 +1,5 @@
-dcase_util.data.RepositoryNormalizer
-====================================
+dcase\_util\.data\.RepositoryNormalizer
+=======================================
 
 .. currentmodule:: dcase_util.data
 
@@ -33,14 +33,5 @@ dcase_util.data.RepositoryNormalizer
    
 
    
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-   
-      ~RepositoryNormalizer.bytes
-      ~RepositoryNormalizer.logger
-      ~RepositoryNormalizer.md5
-      ~RepositoryNormalizer.valid_formats
    
    

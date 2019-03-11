@@ -1,5 +1,5 @@
-dcase_util.containers.MetaDataContainer.tag_count
-=================================================
+dcase\_util\.containers\.MetaDataContainer\.tag\_count
+======================================================
 
 .. currentmodule:: dcase_util.containers
 

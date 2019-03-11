@@ -1,5 +1,5 @@
-dcase_util.data.DataBuffer.get
-==============================
+dcase\_util\.data\.DataBuffer\.get
+==================================
 
 .. currentmodule:: dcase_util.data
 

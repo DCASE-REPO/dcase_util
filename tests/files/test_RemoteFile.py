@@ -3,11 +3,12 @@
 import nose.tools
 import tempfile
 import os
+import platform
 from dcase_util.files import RemoteFile
 
 
 def test_RemoteFile():
-    tmp = tempfile.NamedTemporaryFile('r+', suffix='.txt', dir='/tmp', delete=False)
+    tmp = tempfile.NamedTemporaryFile('r+', suffix='.txt', dir=tempfile.gettempdir(), delete=False)
     try:
         tmp.write('key1\n')
         tmp.write('key2\n')
@@ -16,9 +17,14 @@ def test_RemoteFile():
         r = RemoteFile(filename=tmp.name, content_type='documentation')
 
         nose.tools.eq_(r.local_exists(), True)
-        nose.tools.eq_(r.local_bytes, 10)
-        nose.tools.eq_(r.local_size_string(), '10 bytes')
-        nose.tools.eq_(r.local_md5, '2f34a55e73abe0ca5f39c43eed5aef70')
+        if platform.system() == 'Windows':
+            nose.tools.eq_(r.local_bytes, 12)
+            nose.tools.eq_(r.local_size_string(), '12 bytes')
+            nose.tools.eq_(r.local_md5, 'cd2ebbdc5e817b5f5fe79c38134320e8')
+        else:
+            nose.tools.eq_(r.local_bytes, 10)
+            nose.tools.eq_(r.local_size_string(), '10 bytes')
+            nose.tools.eq_(r.local_md5, '2f34a55e73abe0ca5f39c43eed5aef70')
 
         r = RemoteFile(filename=tmp.name, content_type='documentation')
         nose.tools.eq_(r.is_content_type(content_type='documentation'), True)
@@ -37,5 +43,9 @@ def test_RemoteFile():
         r = RemoteFile(filename=tmp.name)
         nose.tools.eq_(r.is_content_type(content_type=['all']), True)
     finally:
-        os.unlink(tmp.name)
+        try:
+            tmp.close()
+            os.unlink(tmp.name)
+        except:
+            pass
 

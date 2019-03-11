@@ -1,5 +1,5 @@
-dcase_util.containers.MetaDataContainer.to_event_roll
-=====================================================
+dcase\_util\.containers\.MetaDataContainer\.to\_event\_roll
+===========================================================
 
 .. currentmodule:: dcase_util.containers
 

@@ -1,5 +1,5 @@
-dcase_util.processors.AggregationProcessor
-==========================================
+dcase\_util\.processors\.AggregationProcessor
+=============================================
 
 .. currentmodule:: dcase_util.processors
 
@@ -31,16 +31,5 @@ dcase_util.processors.AggregationProcessor
    
 
    
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-   
-      ~AggregationProcessor.bytes
-      ~AggregationProcessor.input_type
-      ~AggregationProcessor.logger
-      ~AggregationProcessor.md5
-      ~AggregationProcessor.output_type
-      ~AggregationProcessor.valid_formats
    
    

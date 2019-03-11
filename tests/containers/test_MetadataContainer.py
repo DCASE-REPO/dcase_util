@@ -104,7 +104,7 @@ content3 = [
 def test_formats():
     delimiters = [',', ';', '\t']
     for delimiter in delimiters:
-        tmp = tempfile.NamedTemporaryFile('r+', suffix='.txt', dir='/tmp', delete=False)
+        tmp = tempfile.NamedTemporaryFile('r+', suffix='.txt', dir=tempfile.gettempdir(), delete=False)
         try:
             tmp.write('0.5' + delimiter + '0.7\n')
             tmp.write('2.5' + delimiter + '2.7\n')
@@ -115,9 +115,13 @@ def test_formats():
             nose.tools.eq_(item.offset, 0.7)
 
         finally:
-            os.unlink(tmp.name)
+            try:
+                tmp.close()
+                os.unlink(tmp.name)
+            except:
+                pass
 
-        tmp = tempfile.NamedTemporaryFile('r+', suffix='.txt',  dir='/tmp', delete=False)
+        tmp = tempfile.NamedTemporaryFile('r+', suffix='.txt',  dir=tempfile.gettempdir(), delete=False)
         try:
             tmp.write('0.5' + delimiter + '0.7' + delimiter + 'event\n')
             tmp.write('2.5' + delimiter + '2.7' + delimiter + 'event\n')
@@ -129,9 +133,13 @@ def test_formats():
             nose.tools.eq_(item.event_label, 'event')
 
         finally:
-            os.unlink(tmp.name)
+            try:
+                tmp.close()
+                os.unlink(tmp.name)
+            except:
+                pass
 
-        tmp = tempfile.NamedTemporaryFile('r+', suffix='.txt', dir='/tmp', delete=False)
+        tmp = tempfile.NamedTemporaryFile('r+', suffix='.txt', dir=tempfile.gettempdir(), delete=False)
         try:
             tmp.write('file.wav' + delimiter + 'scene' + delimiter + '0.5' + delimiter + '0.7' + delimiter + 'event\n')
             tmp.write('file.wav' + delimiter + 'scene' + delimiter + '0.5' + delimiter + '0.7' + delimiter + 'event\n')
@@ -145,9 +153,13 @@ def test_formats():
             nose.tools.eq_(item.scene_label, 'scene')
 
         finally:
-            os.unlink(tmp.name)
+            try:
+                tmp.close()
+                os.unlink(tmp.name)
+            except:
+                pass
 
-        tmp = tempfile.NamedTemporaryFile('r+', suffix='.txt', dir='/tmp', delete=False)
+        tmp = tempfile.NamedTemporaryFile('r+', suffix='.txt', dir=tempfile.gettempdir(), delete=False)
         try:
             tmp.write('file.wav' + delimiter + 'scene' + delimiter + '0.5' + delimiter + '0.7' + delimiter + 'event' + delimiter + 'm' + delimiter + 'a1\n')
             tmp.write('file.wav' + delimiter + 'scene' + delimiter + '0.5' + delimiter + '0.7' + delimiter + 'event' + delimiter + 'm' + delimiter + 'a2\n')
@@ -163,7 +175,11 @@ def test_formats():
             nose.tools.eq_(item.source_label, 'm')
 
         finally:
-            os.unlink(tmp.name)
+            try:
+                tmp.close()
+                os.unlink(tmp.name)
+            except:
+                pass
 
 
 def test_content():

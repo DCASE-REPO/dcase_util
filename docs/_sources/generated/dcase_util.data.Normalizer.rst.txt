@@ -1,5 +1,5 @@
-dcase_util.data.Normalizer
-==========================
+dcase\_util\.data\.Normalizer
+=============================
 
 .. currentmodule:: dcase_util.data
 
@@ -33,16 +33,5 @@ dcase_util.data.Normalizer
    
 
    
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-   
-      ~Normalizer.bytes
-      ~Normalizer.logger
-      ~Normalizer.md5
-      ~Normalizer.mean
-      ~Normalizer.std
-      ~Normalizer.valid_formats
    
    

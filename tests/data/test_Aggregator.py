@@ -339,7 +339,7 @@ def test_save():
         data=data
     )
 
-    tmp = tempfile.NamedTemporaryFile('r+', suffix='.cpickle', dir='/tmp', delete=False)
+    tmp = tempfile.NamedTemporaryFile('r+', suffix='.cpickle', dir=tempfile.gettempdir(), delete=False)
     try:
         agg = Aggregator(
             win_length_frames=2,
@@ -350,7 +350,11 @@ def test_save():
 
         numpy.testing.assert_array_equal(data_target, data_aggregated.data)
     finally:
-        os.unlink(tmp.name)
+        try:
+            tmp.close()
+            os.unlink(tmp.name)
+        except:
+            pass
 
 
 def test_log():

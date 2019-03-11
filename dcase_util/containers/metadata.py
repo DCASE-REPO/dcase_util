@@ -3,6 +3,8 @@
 
 from __future__ import print_function, absolute_import
 import six
+import sys
+import os
 import copy
 import numpy
 import csv
@@ -40,8 +42,9 @@ class MetaDataItem(dict):
 
         # File target for the meta data item
         if 'filename' in self and isinstance(self['filename'], six.string_types):
-            # Keep file paths in unix format even under Windows
-            self['filename'] = posix_path(self['filename'])
+            if not os.path.isabs(self['filename']):
+                # Force relative file paths into unix format even under Windows
+                self['filename'] = posix_path(self['filename'])
 
         if 'filename_original' in self and isinstance(self['filename_original'], six.string_types):
             # Keep file paths in unix format even under Windows
@@ -49,15 +52,21 @@ class MetaDataItem(dict):
 
         # Meta data item timestamps: onset and offset
         if 'onset' in self:
-            self['onset'] = float(self['onset'])
+            if is_float(self['onset']):
+                self['onset'] = float(self['onset'])
+            else:
+                self['onset'] = None
 
         if 'offset' in self:
-            self['offset'] = float(self['offset'])
+            if is_float(self['offset']):
+                self['offset'] = float(self['offset'])
+            else:
+                self['offset'] = None
 
         # Event label assigned to the meta data item
-        if 'event_label' in self and self.event_label:
+        if 'event_label' in self:
             self['event_label'] = self['event_label'].strip()
-            if self['event_label'].lower() == 'none':
+            if self['event_label'].lower() == 'none' or self['event_label'] == '':
                 self['event_label'] = None
 
         # Acoustic scene label assigned to the meta data item
@@ -308,8 +317,11 @@ class MetaDataItem(dict):
 
     @filename.setter
     def filename(self, value):
-        # Keep file paths in unix format even under Windows
-        self['filename'] = posix_path(value)
+        if not os.path.isabs(value):
+            # Force relative file paths into unix format even under Windows
+            value = posix_path(value)
+
+        self['filename'] = value
 
     @property
     def filename_original(self):
@@ -960,11 +972,12 @@ class MetaDataContainer(ListDictContainer):
 
         if self.exists():
             if self.format in [FileFormat.TXT, FileFormat.ANN]:
-                if decimal == 'comma':
-                    delimiter = self.delimiter(exclude_delimiters=[','])
+                if delimiter is None:
+                    if decimal == 'comma':
+                        delimiter = self.delimiter(exclude_delimiters=[','])
 
-                else:
-                    delimiter = self.delimiter()
+                    else:
+                        delimiter = self.delimiter()
 
                 data = []
                 field_validator = FieldValidator()
@@ -1471,18 +1484,19 @@ class MetaDataContainer(ListDictContainer):
                             fields = csv_fields
 
                     for row in csv_reader:
-                        for cell_id, cell_data in enumerate(row):
-                            if decimal == 'comma':
-                                # Translate decimal comma into decimal point
-                                cell_data = float(cell_data.replace(',', '.'))
+                        if row:
+                            for cell_id, cell_data in enumerate(row):
+                                if decimal == 'comma':
+                                    # Translate decimal comma into decimal point
+                                    cell_data = float(cell_data.replace(',', '.'))
 
-                            if is_int(cell_data):
-                                row[cell_id] = int(cell_data)
+                                if is_int(cell_data):
+                                    row[cell_id] = int(cell_data)
 
-                            elif is_float(cell_data):
-                                row[cell_id] = float(cell_data)
+                                elif is_float(cell_data):
+                                    row[cell_id] = float(cell_data)
 
-                        data.append(dict(zip(fields, row)))
+                            data.append(dict(zip(fields, row)))
 
                 self.update(data=data)
 
@@ -1548,7 +1562,13 @@ class MetaDataContainer(ListDictContainer):
             self.format = file_format
 
         if self.format in [FileFormat.TXT, FileFormat.ANN]:
-            f = open(self.filename, 'wt')
+            # Make sure writing is using correct line endings to avoid extra empty lines
+            if sys.version_info[0] == 2:
+                f = open(self.filename, 'wbt')
+
+            elif sys.version_info[0] == 3:
+                f = open(self.filename, 'wt', newline='')
+
             try:
                 writer = csv.writer(f, delimiter=delimiter)
                 for item in self:
@@ -1562,9 +1582,17 @@ class MetaDataContainer(ListDictContainer):
                 fields = set()
                 for item in self:
                     fields.update(list(item.keys()))
+
                 fields = sorted(list(fields))
 
-            with open(self.filename, 'w') as csv_file:
+            # Make sure writing is using correct line endings to avoid extra empty lines
+            if sys.version_info[0] == 2:
+                csv_file = open(self.filename, 'wb')
+
+            elif sys.version_info[0] == 3:
+                csv_file = open(self.filename, 'w', newline='')
+
+            try:
                 csv_writer = csv.writer(csv_file, delimiter=delimiter)
                 if csv_header:
                     csv_writer.writerow(fields)
@@ -1579,6 +1607,9 @@ class MetaDataContainer(ListDictContainer):
                         item_values.append(value)
 
                     csv_writer.writerow(item_values)
+
+            finally:
+                csv_file.close()
 
         elif self.format == FileFormat.CPICKLE:
             from dcase_util.files import Serializer

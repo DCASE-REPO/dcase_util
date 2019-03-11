@@ -1,5 +1,5 @@
-dcase_util.containers.AudioContainer.focus_stop_samples
-=======================================================
+dcase\_util\.containers\.AudioContainer\.focus\_stop\_samples
+=============================================================
 
 .. currentmodule:: dcase_util.containers
 

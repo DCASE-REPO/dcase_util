@@ -15,7 +15,7 @@ class OneHotEncodingProcessor(Processor):
     output_type = ProcessingChainItemType.DATA_CONTAINER  #: Output data type
 
     def __init__(self, label_list=None, focus_field='scene_label', time_resolution=1.0,
-                 length_frames=1, length_seconds=None,
+                 length_frames=1, length_seconds=None, allow_unknown_labels=False,
                  **kwargs):
         """Constructor
 
@@ -36,6 +36,10 @@ class OneHotEncodingProcessor(Processor):
         length_seconds : float > 0.0
             Length of encoded segment in seconds
 
+        allow_unknown_labels : bool
+            Allow unknown labels in the decoding. If False, labels not in the given label_list will produce an error.
+            Default value False
+
         """
 
         # Inject initialization parameters back to kwargs
@@ -44,7 +48,8 @@ class OneHotEncodingProcessor(Processor):
                 'label_list': label_list,
                 'time_resolution': time_resolution,
                 'length_frames': length_frames,
-                'length_seconds': length_seconds
+                'length_seconds': length_seconds,
+                'allow_unknown_labels': allow_unknown_labels
             }
         )
 
@@ -322,13 +327,16 @@ class EventRollEncodingProcessor(Processor):
 
         self.encoder = EventRollEncoder(**self.init_parameters)
 
-    def process(self, data=None, store_processing_chain=False, **kwargs):
+    def process(self, data=None, pad_length=None, store_processing_chain=False, **kwargs):
         """Encode metadata
 
         Parameters
         ----------
         data : MetaDataContainer
             Meta data to encode.
+
+        pad_length : int
+            Length to be padded
 
         store_processing_chain : bool
             Store processing chain to data container returned
@@ -374,6 +382,9 @@ class EventRollEncodingProcessor(Processor):
                 time_resolution=self.encoder.time_resolution,
                 processing_chain=processing_chain
             )
+
+            if pad_length:
+                container.pad(length=pad_length)
 
             return container
 

@@ -1,5 +1,5 @@
-dcase_util.containers.ObjectContainer.save
-==========================================
+dcase\_util\.containers\.ObjectContainer\.save
+==============================================
 
 .. currentmodule:: dcase_util.containers
 

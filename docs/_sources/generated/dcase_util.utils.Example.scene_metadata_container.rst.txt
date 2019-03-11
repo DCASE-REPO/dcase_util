@@ -1,5 +1,5 @@
-dcase_util.utils.Example.scene_metadata_container
-=================================================
+dcase\_util\.utils\.Example\.scene\_metadata\_container
+=======================================================
 
 .. currentmodule:: dcase_util.utils
 

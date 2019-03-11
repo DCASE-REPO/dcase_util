@@ -1,5 +1,5 @@
-dcase_util.containers.FileMixin.detect_file_format
-==================================================
+dcase\_util\.containers\.FileMixin\.detect\_file\_format
+========================================================
 
 .. currentmodule:: dcase_util.containers
 

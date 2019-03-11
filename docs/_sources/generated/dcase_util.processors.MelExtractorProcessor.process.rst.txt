@@ -1,5 +1,5 @@
-dcase_util.processors.MelExtractorProcessor.process
-===================================================
+dcase\_util\.processors\.MelExtractorProcessor\.process
+=======================================================
 
 .. currentmodule:: dcase_util.processors
 
