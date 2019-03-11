@@ -40,3 +40,4 @@ You can install all needed libraries by running::
 
     pip install -r requirements.txt
 
+**Note**: soundfile library is dependent on system level library ``libsndfile``. In Windows and OS X, this is automatically installed though pip installation. On Linux, you need to install it using Linux distribution's own package manager (e.g. ``sudo apt-get install libsndfile1``).
