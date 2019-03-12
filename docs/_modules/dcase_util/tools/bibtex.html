@@ -1402,6 +1402,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-7">v0.2.7</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-6">v0.2.6</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-5">v0.2.5</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-4">v0.2.4</a></li>
@@ -1537,8 +1538,8 @@
         <span class="n">key</span> <span class="o">=</span> <span class="n">authors</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;lastname&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">)</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)</span>
 
         <span class="c1"># Handle special characters</span>
-        <span class="n">key</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;ö&#39;</span><span class="p">,</span> <span class="s1">&#39;oe&#39;</span><span class="p">)</span>
-        <span class="n">key</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;ä&#39;</span><span class="p">,</span> <span class="s1">&#39;ae&#39;</span><span class="p">)</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">u&#39;ö&#39;</span><span class="p">,</span> <span class="s1">&#39;oe&#39;</span><span class="p">)</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">u&#39;ä&#39;</span><span class="p">,</span> <span class="s1">&#39;ae&#39;</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">keys</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">keys</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
@@ -1554,8 +1555,8 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">key</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">,</span> <span class="s1">&#39;ignore&#39;</span><span class="p">),</span> <span class="s1">&#39;utf-8&#39;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="BibtexProcessor.authors"><a class="viewcode-back" href="../../../generated/dcase_util.tools.BibtexProcessor.authors.html#dcase_util.tools.BibtexProcessor.authors">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">authors</span><span class="p">(</span><span class="n">authors</span><span class="p">):</span>
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="BibtexProcessor.authors"><a class="viewcode-back" href="../../../generated/dcase_util.tools.BibtexProcessor.authors.html#dcase_util.tools.BibtexProcessor.authors">[docs]</a>    <span class="k">def</span> <span class="nf">authors</span><span class="p">(</span><span class="n">authors</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Author list in format [lastname1], [firstname1] and [lastname2], [firstname2].</span>
 
 <span class="sd">        Parameters</span>
@@ -1716,8 +1717,8 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">affiliation_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="BibtexProcessor.submissions_fancy"><a class="viewcode-back" href="../../../generated/dcase_util.tools.BibtexProcessor.submissions_fancy.html#dcase_util.tools.BibtexProcessor.submissions_fancy">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">submissions_fancy</span><span class="p">(</span><span class="n">submissions</span><span class="p">,</span> <span class="n">css_class</span><span class="o">=</span><span class="s1">&#39;label label-primary&#39;</span><span class="p">):</span>
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="BibtexProcessor.submissions_fancy"><a class="viewcode-back" href="../../../generated/dcase_util.tools.BibtexProcessor.submissions_fancy.html#dcase_util.tools.BibtexProcessor.submissions_fancy">[docs]</a>    <span class="k">def</span> <span class="nf">submissions_fancy</span><span class="p">(</span><span class="n">submissions</span><span class="p">,</span> <span class="n">css_class</span><span class="o">=</span><span class="s1">&#39;label label-primary&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;HTML string with submission labels</span>
 
 <span class="sd">        Parameters</span>
@@ -1764,7 +1765,7 @@
 
         <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
             <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Unable to import titlecase module. You can install it with `pip install titlecase`.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span>
             <span class="p">)</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
@@ -1825,8 +1826,8 @@
         <span class="n">title</span> <span class="o">=</span> <span class="n">titlecase</span><span class="p">(</span><span class="n">title</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span> <span class="n">callback</span><span class="o">=</span><span class="n">abbreviations</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">title</span></div>
 
-<div class="viewcode-block" id="BibtexProcessor.abstract"><a class="viewcode-back" href="../../../generated/dcase_util.tools.BibtexProcessor.abstract.html#dcase_util.tools.BibtexProcessor.abstract">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">abstract</span><span class="p">(</span><span class="n">abstract</span><span class="p">):</span>
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="BibtexProcessor.abstract"><a class="viewcode-back" href="../../../generated/dcase_util.tools.BibtexProcessor.abstract.html#dcase_util.tools.BibtexProcessor.abstract">[docs]</a>    <span class="k">def</span> <span class="nf">abstract</span><span class="p">(</span><span class="n">abstract</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Process publication abstract.</span>
 
 <span class="sd">        Parameters</span>
@@ -1842,14 +1843,14 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">pairs</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="p">[</span><span class="sa">u</span><span class="s1">&#39;</span><span class="se">\xe2\x80\x93</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;-&#39;</span><span class="p">],</span>
-            <span class="p">[</span><span class="sa">u</span><span class="s1">&#39;</span><span class="se">\xe2\x80\x94</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;-&#39;</span><span class="p">],</span>
-            <span class="p">[</span><span class="sa">u</span><span class="s1">&#39;</span><span class="se">\xe2\x80\x99</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s2">&quot;&#39;&quot;</span><span class="p">],</span>
-            <span class="p">[</span><span class="sa">u</span><span class="s1">&#39;</span><span class="se">\xef\xac\x81</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;fi&#39;</span><span class="p">],</span>
-            <span class="p">[</span><span class="sa">u</span><span class="s1">&#39;</span><span class="se">\xe2\x80\x9d</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;&quot;&#39;</span><span class="p">],</span>
-            <span class="p">[</span><span class="sa">u</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;&#39;</span><span class="p">],</span>
-            <span class="p">[</span><span class="sa">u</span><span class="s1">&#39;\%&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;%&#39;</span><span class="p">],</span>
-            <span class="p">[</span><span class="sa">u</span><span class="s1">&#39;$&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;&#39;</span><span class="p">],</span>
+            <span class="p">[</span><span class="s1">u&#39;</span><span class="se">\xe2\x80\x93</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">u&#39;-&#39;</span><span class="p">],</span>
+            <span class="p">[</span><span class="s1">u&#39;</span><span class="se">\xe2\x80\x94</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">u&#39;-&#39;</span><span class="p">],</span>
+            <span class="p">[</span><span class="s1">u&#39;</span><span class="se">\xe2\x80\x99</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s2">u&quot;&#39;&quot;</span><span class="p">],</span>
+            <span class="p">[</span><span class="s1">u&#39;</span><span class="se">\xef\xac\x81</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">u&#39;fi&#39;</span><span class="p">],</span>
+            <span class="p">[</span><span class="s1">u&#39;</span><span class="se">\xe2\x80\x9d</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">u&#39;&quot;&#39;</span><span class="p">],</span>
+            <span class="p">[</span><span class="s1">u&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">u&#39;&#39;</span><span class="p">],</span>
+            <span class="p">[</span><span class="s1">u&#39;\%&#39;</span><span class="p">,</span> <span class="s1">u&#39;%&#39;</span><span class="p">],</span>
+            <span class="p">[</span><span class="s1">u&#39;$&#39;</span><span class="p">,</span> <span class="s1">u&#39;&#39;</span><span class="p">],</span>
         <span class="p">]</span>
 
         <span class="k">if</span> <span class="n">six</span><span class="o">.</span><span class="n">PY2</span><span class="p">:</span>
@@ -1862,7 +1863,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">logger</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">logger</span><span class="o">.</span><span class="n">handlers</span><span class="p">:</span>
             <span class="n">setup_logging</span><span class="p">()</span>
 

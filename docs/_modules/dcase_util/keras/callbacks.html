@@ -1402,6 +1402,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-7">v0.2.7</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-6">v0.2.6</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-5">v0.2.5</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-4">v0.2.4</a></li>
@@ -1524,7 +1525,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">logger</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">logger</span><span class="o">.</span><span class="n">handlers</span><span class="p">:</span>
             <span class="n">setup_logging</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">logger</span>
@@ -1627,13 +1628,13 @@
             <span class="s1">&#39;external_metric_labels&#39;</span><span class="p">:</span> <span class="n">external_metric_labels</span><span class="p">,</span>
         <span class="p">})</span>
 
-        <span class="nb">super</span><span class="p">(</span><span class="n">ProgressLoggerCallback</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ProgressLoggerCallback</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">metric</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">metric</span> <span class="o">=</span> <span class="n">metric</span>
 
         <span class="k">elif</span> <span class="n">callable</span><span class="p">(</span><span class="n">metric</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">metric</span> <span class="o">=</span> <span class="n">metric</span><span class="o">.</span><span class="vm">__name__</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">metric</span> <span class="o">=</span> <span class="n">metric</span><span class="o">.</span><span class="n">__name__</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">loss</span> <span class="o">=</span> <span class="n">loss</span>
 
@@ -1956,7 +1957,7 @@
             <span class="s1">&#39;loss&#39;</span><span class="p">:</span> <span class="n">loss</span><span class="p">,</span>
         <span class="p">})</span>
 
-        <span class="nb">super</span><span class="p">(</span><span class="n">ProgressPlotterCallback</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ProgressPlotterCallback</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span>
 
         <span class="k">if</span> <span class="n">filename</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -2398,7 +2399,7 @@
             <span class="s1">&#39;manual_update&#39;</span><span class="p">:</span> <span class="n">manual_update</span><span class="p">,</span>
         <span class="p">})</span>
 
-        <span class="nb">super</span><span class="p">(</span><span class="n">StopperCallback</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">StopperCallback</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">monitor</span> <span class="o">=</span> <span class="n">monitor</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">patience</span> <span class="o">=</span> <span class="n">patience</span>
@@ -2484,7 +2485,7 @@
             <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric_data</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">monitor</span><span class="p">][</span><span class="bp">self</span><span class="o">.</span><span class="n">epoch</span><span class="p">]</span>
             <span class="k">if</span> <span class="n">numpy</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">current</span><span class="p">):</span>
                 <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Metric to monitor is Nan, metric:[</span><span class="si">{metric}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                    <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                    <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span>
                     <span class="n">metric</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">monitor</span>
                 <span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
@@ -2574,7 +2575,7 @@
             <span class="s1">&#39;manual_update&#39;</span><span class="p">:</span> <span class="n">manual_update</span><span class="p">,</span>
         <span class="p">})</span>
 
-        <span class="nb">super</span><span class="p">(</span><span class="n">StasherCallback</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">StasherCallback</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">monitor</span> <span class="o">=</span> <span class="n">monitor</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">period</span> <span class="o">=</span> <span class="n">period</span>
@@ -2629,7 +2630,7 @@
                 <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric_data</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">monitor</span><span class="p">][</span><span class="bp">self</span><span class="o">.</span><span class="n">epoch</span><span class="p">]</span>
                 <span class="k">if</span> <span class="n">numpy</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">current</span><span class="p">):</span>
                     <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Metric to monitor is Nan, metric:[</span><span class="si">{metric}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                        <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                        <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span>
                         <span class="n">metric</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">monitor</span>
                     <span class="p">)</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>

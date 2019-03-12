@@ -1402,6 +1402,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-7">v0.2.7</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-6">v0.2.6</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-5">v0.2.5</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-4">v0.2.4</a></li>
@@ -1505,7 +1506,7 @@
 
 <div class="viewcode-block" id="ProcessingChainItem"><a class="viewcode-back" href="../../../generated/dcase_util.processors.ProcessingChainItem.html#dcase_util.processors.ProcessingChainItem">[docs]</a><span class="k">class</span> <span class="nc">ProcessingChainItem</span><span class="p">(</span><span class="n">DictContainer</span><span class="p">):</span>
 <div class="viewcode-block" id="ProcessingChainItem.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.processors.ProcessingChainItem.html#dcase_util.processors.ProcessingChainItem.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">ProcessingChainItem</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ProcessingChainItem</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">processor_class</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="c1"># Initialize processor class</span>
@@ -1540,7 +1541,7 @@
 
             <span class="k">except</span> <span class="ne">NameError</span><span class="p">:</span>
                 <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Processor class was not found [</span><span class="si">{processor_name}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                    <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                    <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span>
                     <span class="n">processor_name</span><span class="o">=</span><span class="n">processor_name</span>
                 <span class="p">)</span>
 
@@ -1576,12 +1577,12 @@
 
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">and</span> <span class="p">(</span><span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="nb">dict</span><span class="p">)):</span>
             <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: ProcessingChain should be initialized with list of dicts.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span>
             <span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
-        <span class="nb">super</span><span class="p">(</span><span class="n">ProcessingChain</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ProcessingChain</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="c1"># Make sure items are ProcessingChainItems and that their parameters are valid.</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1594,7 +1595,7 @@
                     <span class="kn">from</span> <span class="nn">dcase_util.processors.processor</span> <span class="k">import</span> <span class="n">Processor</span>
                     <span class="k">if</span> <span class="ow">not</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">current_processor</span><span class="p">,</span> <span class="n">Processor</span><span class="p">):</span>
                         <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: ProcessingChain items should be Processor classes, please check item [</span><span class="si">{item}</span><span class="s1">].&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                            <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                            <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span>
                             <span class="n">item</span><span class="o">=</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;processor_name&#39;</span><span class="p">]</span>
                         <span class="p">)</span>
                         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
@@ -1698,7 +1699,7 @@
         <span class="k">if</span> <span class="s1">&#39;input_type&#39;</span> <span class="ow">in</span> <span class="n">item</span><span class="p">:</span>
             <span class="k">if</span> <span class="nb">set</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;input_type&#39;</span><span class="p">])</span> <span class="o">&gt;</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">valid_input_types</span><span class="p">):</span>
                 <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Unknown process input type [</span><span class="si">{input_type}</span><span class="s1">] for processor [</span><span class="si">{processor_name}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                    <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                    <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span>
                     <span class="n">input_type</span><span class="o">=</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;input_type&#39;</span><span class="p">],</span>
                     <span class="n">processor_name</span><span class="o">=</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;processor_name&#39;</span><span class="p">],</span>
                 <span class="p">)</span>
@@ -1708,7 +1709,7 @@
         <span class="k">if</span> <span class="s1">&#39;output_type&#39;</span> <span class="ow">in</span> <span class="n">item</span><span class="p">:</span>
             <span class="k">if</span> <span class="nb">set</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;output_type&#39;</span><span class="p">])</span> <span class="o">&gt;</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">valid_output_types</span><span class="p">):</span>
                 <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Unknown process output type [</span><span class="si">{output_type}</span><span class="s1">] for processor [</span><span class="si">{processor_name}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                    <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                    <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span>
                     <span class="n">output_type</span><span class="o">=</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;output_type&#39;</span><span class="p">],</span>
                     <span class="n">processor_name</span><span class="o">=</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;processor_name&#39;</span><span class="p">],</span>
                 <span class="p">)</span>
@@ -1748,7 +1749,7 @@
         <span class="c1"># Make sure connecting types are same.</span>
         <span class="k">if</span> <span class="n">item1_processor</span><span class="o">.</span><span class="n">output_type</span> <span class="o">!=</span> <span class="n">item2_processor</span><span class="o">.</span><span class="n">input_type</span><span class="p">:</span>
             <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Chain connection invalid between items [</span><span class="si">{item1}</span><span class="s1">][</span><span class="si">{output_type}</span><span class="s1">] -&gt; [</span><span class="si">{item2}</span><span class="s1">][</span><span class="si">{input_type}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span>
                 <span class="n">item1</span><span class="o">=</span><span class="n">item1</span><span class="p">[</span><span class="s1">&#39;processor_name&#39;</span><span class="p">],</span>
                 <span class="n">item2</span><span class="o">=</span><span class="n">item1</span><span class="p">[</span><span class="s1">&#39;processor_name&#39;</span><span class="p">],</span>
                 <span class="n">output_type</span><span class="o">=</span><span class="n">item1_processor</span><span class="o">.</span><span class="n">output_type</span><span class="p">,</span>
@@ -1895,7 +1896,7 @@
 
         <span class="k">except</span> <span class="ne">NameError</span><span class="p">:</span>
             <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Processor class was not found [</span><span class="si">{processor_name}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span>
                 <span class="n">processor_name</span><span class="o">=</span><span class="n">processor_name</span>
             <span class="p">)</span>
 
@@ -1927,7 +1928,7 @@
 
         <span class="k">except</span> <span class="ne">NameError</span><span class="p">:</span>
             <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Processor class was not found [</span><span class="si">{processor_name}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span>
                 <span class="n">processor_name</span><span class="o">=</span><span class="n">processor_name</span>
             <span class="p">)</span>
 

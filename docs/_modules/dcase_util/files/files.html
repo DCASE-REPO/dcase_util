@@ -1402,6 +1402,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-7">v0.2.7</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-6">v0.2.6</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-5">v0.2.5</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-4">v0.2.4</a></li>
@@ -1514,10 +1515,10 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># Run FileMixin init</span>
-        <span class="n">FileMixin</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">FileMixin</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="c1"># Run super init to call init of mixins too</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">File</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">(</span><span class="n">File</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="File.load"><a class="viewcode-back" href="../../../generated/dcase_util.files.File.load.html#dcase_util.files.File.load">[docs]</a>    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Load file</span>
@@ -1582,12 +1583,12 @@
                 <span class="k">return</span> <span class="n">data</span>
 
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Unknown format [</span><span class="si">{format}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+                <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Unknown format [</span><span class="si">{format}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
                 <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: File does not exists [</span><span class="si">{file}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: File does not exists [</span><span class="si">{file}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
             <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></div>
 
@@ -1624,7 +1625,7 @@
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
             <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Filename is empty [</span><span class="si">{filename}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span>
                 <span class="n">filename</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span>
             <span class="p">)</span>
 
@@ -1656,7 +1657,7 @@
 
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Unknown format [</span><span class="si">{format}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                    <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                    <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span>
                     <span class="nb">format</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span>
                 <span class="p">)</span>
 
@@ -1696,7 +1697,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># Run super init to call init of mixins too</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">FileLock</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">FileLock</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">timeout</span> <span class="o">=</span> <span class="n">timeout</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">main_filename</span> <span class="o">=</span> <span class="n">filename</span>
@@ -1705,7 +1706,7 @@
     <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">ui</span> <span class="o">=</span> <span class="n">FancyStringifier</span><span class="p">()</span>
 
-        <span class="n">output</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">FileLock</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__str__</span><span class="p">()</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">FileLock</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__str__</span><span class="p">()</span>
 
         <span class="n">output</span> <span class="o">+=</span> <span class="n">ui</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">field</span><span class="o">=</span><span class="s1">&#39;main_filename&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">main_filename</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
         <span class="n">output</span> <span class="o">+=</span> <span class="n">ui</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">field</span><span class="o">=</span><span class="s1">&#39;lock_filename&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">lock_filename</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
@@ -1824,19 +1825,19 @@
 
 <div class="viewcode-block" id="Package.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.files.Package.html#dcase_util.files.Package.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="c1"># Run ContainerMixin init</span>
-        <span class="n">PackageMixin</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">PackageMixin</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_file_info</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_size_compressed</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_size_uncompressed</span> <span class="o">=</span> <span class="kc">None</span>
 
-        <span class="nb">super</span><span class="p">(</span><span class="n">Package</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Package</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">ui</span> <span class="o">=</span> <span class="n">FancyStringifier</span><span class="p">()</span>
 
         <span class="n">output</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-        <span class="n">output</span> <span class="o">+=</span> <span class="n">FancyStringifier</span><span class="p">()</span><span class="o">.</span><span class="n">class_name</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="n">output</span> <span class="o">+=</span> <span class="n">FancyStringifier</span><span class="p">()</span><span class="o">.</span><span class="n">class_name</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
 
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;filename&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">:</span>
             <span class="n">output</span> <span class="o">+=</span> <span class="n">FancyStringifier</span><span class="p">()</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">field</span><span class="o">=</span><span class="s1">&#39;filename&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>

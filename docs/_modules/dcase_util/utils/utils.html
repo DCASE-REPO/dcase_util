@@ -1402,6 +1402,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-7">v0.2.7</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-6">v0.2.6</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-5">v0.2.5</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-4">v0.2.4</a></li>
@@ -1591,14 +1592,14 @@
 <div class="viewcode-block" id="check_pkg_resources"><a class="viewcode-back" href="../../../generated/dcase_util.utils.check_pkg_resources.html#dcase_util.utils.check_pkg_resources">[docs]</a><span class="k">def</span> <span class="nf">check_pkg_resources</span><span class="p">(</span><span class="n">package_requirement</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="n">working_set</span> <span class="o">=</span> <span class="n">pkg_resources</span><span class="o">.</span><span class="n">WorkingSet</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">logger</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
 
     <span class="k">try</span><span class="p">:</span>
         <span class="n">working_set</span><span class="o">.</span><span class="n">require</span><span class="p">(</span><span class="n">package_requirement</span><span class="p">)</span>
 
     <span class="k">except</span> <span class="n">pkg_resources</span><span class="o">.</span><span class="n">VersionConflict</span><span class="p">:</span>
         <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Version conflict, update package [pip install </span><span class="si">{package_requirement}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-            <span class="n">name</span><span class="o">=</span><span class="vm">__name__</span><span class="p">,</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">__name__</span><span class="p">,</span>
             <span class="n">package_requirement</span><span class="o">=</span><span class="n">package_requirement</span>
         <span class="p">)</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
@@ -1606,7 +1607,7 @@
 
     <span class="k">except</span> <span class="n">pkg_resources</span><span class="o">.</span><span class="n">DistributionNotFound</span><span class="p">:</span>
         <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Package not found, install package [pip install </span><span class="si">{package_requirement}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-            <span class="n">name</span><span class="o">=</span><span class="vm">__name__</span><span class="p">,</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">__name__</span><span class="p">,</span>
             <span class="n">package_requirement</span><span class="o">=</span><span class="n">package_requirement</span>
         <span class="p">)</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>

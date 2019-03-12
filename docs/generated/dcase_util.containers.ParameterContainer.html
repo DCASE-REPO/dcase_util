@@ -1404,6 +1404,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-7">v0.2.7</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-6">v0.2.6</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-5">v0.2.5</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-4">v0.2.4</a></li>
@@ -1502,7 +1503,7 @@
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#dcase_util.containers.ParameterContainer.__init__" title="dcase_util.containers.ParameterContainer.__init__"><code class="xref py py-obj docutils literal"><span class="pre">__init__</span></code></a>(*args,&nbsp;**kwargs)</td>
+<tr class="row-odd"><td><a class="reference internal" href="#dcase_util.containers.ParameterContainer.__init__" title="dcase_util.containers.ParameterContainer.__init__"><code class="xref py py-obj docutils literal"><span class="pre">__init__</span></code></a>(\*args,&nbsp;\*\*kwargs)</td>
 <td></td>
 </tr>
 <tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">clear</span></code>(()&nbsp;-&gt;&nbsp;None.&nbsp;&nbsp;Remove&nbsp;all&nbsp;items&nbsp;from&nbsp;D.)</td>
@@ -1526,10 +1527,10 @@
 <tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">filter</span></code>([data,&nbsp;excluded_key_prefix])</td>
 <td>Filter nested dict</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">fromkeys</span></code>(…)</td>
-<td>v defaults to None.</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">fromkeys</span></code></td>
+<td>Returns a new dict with keys from iterable and values equal to value.</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">get</span></code>((k[,d])&nbsp;-&gt;&nbsp;D[k]&nbsp;if&nbsp;k&nbsp;in&nbsp;D,&nbsp;…)</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">get</span></code>((k[,d])&nbsp;-&gt;&nbsp;D[k]&nbsp;if&nbsp;k&nbsp;in&nbsp;D,&nbsp;...)</td>
 <td></td>
 </tr>
 <tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">get_dump_content</span></code>(data)</td>
@@ -1544,31 +1545,31 @@
 <tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">get_hash_for_path</span></code>([dotted_path])</td>
 <td>Get unique hash string for the data under given path.</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">get_leaf_path_list</span></code>([target_field,&nbsp;…])</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">get_leaf_path_list</span></code>([target_field,&nbsp;...])</td>
 <td>Get path list to all leaf node in the nested dict.</td>
 </tr>
 <tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">get_path</span></code>(path[,&nbsp;default,&nbsp;data])</td>
 <td>Get value from nested dict with dotted path</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">has_key</span></code>((k)&nbsp;-&gt;&nbsp;True&nbsp;if&nbsp;D&nbsp;has&nbsp;a&nbsp;key&nbsp;k,&nbsp;else&nbsp;False)</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">ParameterContainer.has_key</span></code></td>
 <td></td>
 </tr>
 <tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">is_package</span></code>([filename])</td>
 <td>Determine if the file is compressed package.</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">items</span></code>(()&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;D’s&nbsp;(key,&nbsp;value)&nbsp;pairs,&nbsp;…)</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">items</span></code>(...)</td>
 <td></td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">iteritems</span></code>(()&nbsp;-&gt;&nbsp;an&nbsp;iterator&nbsp;over&nbsp;the&nbsp;(key,&nbsp;…)</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">ParameterContainer.iteritems</span></code></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">iterkeys</span></code>(()&nbsp;-&gt;&nbsp;an&nbsp;iterator&nbsp;over&nbsp;the&nbsp;keys&nbsp;of&nbsp;D)</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">ParameterContainer.iterkeys</span></code></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">itervalues</span></code>(…)</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">ParameterContainer.itervalues</span></code></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">keys</span></code>(()&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;D’s&nbsp;keys)</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">keys</span></code>(...)</td>
 <td></td>
 </tr>
 <tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">load</span></code>([filename,&nbsp;file_format])</td>
@@ -1580,10 +1581,10 @@
 <tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">merge</span></code>(override[,&nbsp;target])</td>
 <td>Recursive dict merge</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">pop</span></code>((k[,d])&nbsp;-&gt;&nbsp;v,&nbsp;…)</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">pop</span></code>((k[,d])&nbsp;-&gt;&nbsp;v,&nbsp;...)</td>
 <td>If key is not found, d is returned if given, otherwise KeyError is raised</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">popitem</span></code>(()&nbsp;-&gt;&nbsp;(k,&nbsp;v),&nbsp;…)</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">popitem</span></code>(()&nbsp;-&gt;&nbsp;(k,&nbsp;v),&nbsp;...)</td>
 <td>2-tuple; but raise KeyError if D is empty.</td>
 </tr>
 <tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">save</span></code>([filename,&nbsp;file_format])</td>
@@ -1592,28 +1593,28 @@
 <tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">set_path</span></code>(path,&nbsp;new_value[,&nbsp;data])</td>
 <td>Set value in nested dict with dotted path</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">setdefault</span></code>((k[,d])&nbsp;-&gt;&nbsp;D.get(k,d),&nbsp;…)</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">setdefault</span></code>((k[,d])&nbsp;-&gt;&nbsp;D.get(k,d),&nbsp;...)</td>
 <td></td>
 </tr>
 <tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">show</span></code>()</td>
 <td>Print container content</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">update</span></code>(([E,&nbsp;…)</td>
-<td>If E present and has a .keys() method, does:     for k in E: D[k] = E[k]</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">update</span></code>(([E,&nbsp;...)</td>
+<td>If E is present and has a .keys() method, then does:  for k in E: D[k] = E[k]</td>
 </tr>
 <tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">validate_format</span></code>()</td>
 <td>Validate file format</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">values</span></code>(()&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;D’s&nbsp;values)</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">values</span></code>(...)</td>
 <td></td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">viewitems</span></code>(…)</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">ParameterContainer.viewitems</span></code></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">viewkeys</span></code>(…)</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">ParameterContainer.viewkeys</span></code></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">viewvalues</span></code>(…)</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">ParameterContainer.viewvalues</span></code></td>
 <td></td>
 </tr>
 </tbody>

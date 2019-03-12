@@ -1402,6 +1402,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-7">v0.2.7</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-6">v0.2.6</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-5">v0.2.5</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-4">v0.2.4</a></li>
@@ -1732,7 +1733,7 @@
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;audio_paths&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
             <span class="s1">&#39;audio&#39;</span>
         <span class="p">]</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">TAUUrbanAcousticScenes_2019_DevelopmentSet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">(</span><span class="n">TAUUrbanAcousticScenes_2019_DevelopmentSet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">process_meta_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="n">absolute_path</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Process single meta data item</span>
@@ -1855,6 +1856,7 @@
             <span class="s1">&#39;licence&#39;</span><span class="p">:</span> <span class="s1">&#39;free non-commercial&#39;</span>
         <span class="p">}</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;crossvalidation_folds&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;evaluation_setup_file_extension&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;csv&#39;</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;meta_filename&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;meta.csv&#39;</span>
 
         <span class="n">filename_base</span> <span class="o">=</span> <span class="s1">&#39;TAU-urban-acoustic-scenes-2019-mobile-development&#39;</span>
@@ -1956,7 +1958,7 @@
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;audio_paths&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
             <span class="s1">&#39;audio&#39;</span>
         <span class="p">]</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">TAUUrbanAcousticScenes_2019_Mobile_DevelopmentSet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">(</span><span class="n">TAUUrbanAcousticScenes_2019_Mobile_DevelopmentSet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">process_meta_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="n">absolute_path</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Process single meta data item</span>
@@ -2082,10 +2084,11 @@
             <span class="s1">&#39;licence&#39;</span><span class="p">:</span> <span class="s1">&#39;free non-commercial&#39;</span>
         <span class="p">}</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;crossvalidation_folds&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;evaluation_setup_file_extension&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;csv&#39;</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;meta_filename&#39;</span><span class="p">]</span> <span class="o">=</span><span class="s1">&#39;meta.csv&#39;</span>
 
         <span class="n">filename_base</span> <span class="o">=</span> <span class="s1">&#39;TAU-urban-acoustic-scenes-2019-openset-development&#39;</span>
-        <span class="n">source_url</span> <span class="o">=</span> <span class="s1">&#39;https://zenodo.org/record/2589340/files/&#39;</span>
+        <span class="n">source_url</span> <span class="o">=</span> <span class="s1">&#39;https://zenodo.org/record/2591503/files/&#39;</span>
 
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;package_list&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
             <span class="p">{</span>
@@ -2098,8 +2101,8 @@
             <span class="p">{</span>
                 <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;meta&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.meta.zip&#39;</span><span class="p">,</span>
-                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">93764</span><span class="p">,</span>
-                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;b26dcb0990ef630386e76235fa35d2be&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">179091</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;174da059848170d2d25c71aa09db1934&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.meta.zip&#39;</span>
             <span class="p">},</span>
             <span class="p">{</span>
@@ -2183,7 +2186,7 @@
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;audio_paths&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
             <span class="s1">&#39;audio&#39;</span>
         <span class="p">]</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">TAUUrbanAcousticScenes_2019_Openset_DevelopmentSet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">(</span><span class="n">TAUUrbanAcousticScenes_2019_Openset_DevelopmentSet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">process_meta_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="n">absolute_path</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Process single meta data item</span>
@@ -2427,7 +2430,7 @@
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;audio_paths&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
             <span class="s1">&#39;audio&#39;</span>
         <span class="p">]</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">TUTUrbanAcousticScenes_2018_DevelopmentSet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">(</span><span class="n">TUTUrbanAcousticScenes_2018_DevelopmentSet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">process_meta_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="n">absolute_path</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Process single meta data item</span>
@@ -2588,7 +2591,7 @@
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;audio_paths&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
             <span class="s1">&#39;audio&#39;</span>
         <span class="p">]</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">TUTUrbanAcousticScenes_2018_LeaderboardSet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">(</span><span class="n">TUTUrbanAcousticScenes_2018_LeaderboardSet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">process_meta_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="n">absolute_path</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Process single meta data item</span>
@@ -2774,7 +2777,7 @@
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;audio_paths&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
             <span class="s1">&#39;audio&#39;</span>
         <span class="p">]</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">TUTUrbanAcousticScenes_2018_EvaluationSet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">(</span><span class="n">TUTUrbanAcousticScenes_2018_EvaluationSet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">process_meta_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="n">absolute_path</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Process single meta data item</span>
@@ -2966,7 +2969,7 @@
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;audio_paths&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
             <span class="s1">&#39;audio&#39;</span>
         <span class="p">]</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">TUTUrbanAcousticScenes_2018_Mobile_DevelopmentSet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">(</span><span class="n">TUTUrbanAcousticScenes_2018_Mobile_DevelopmentSet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">process_meta_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="n">absolute_path</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Process single meta data item</span>
@@ -3130,7 +3133,7 @@
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;audio_paths&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
             <span class="s1">&#39;audio&#39;</span>
         <span class="p">]</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">TUTUrbanAcousticScenes_2018_Mobile_LeaderboardSet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">(</span><span class="n">TUTUrbanAcousticScenes_2018_Mobile_LeaderboardSet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">process_meta_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="n">absolute_path</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Process single meta data item</span>
@@ -3351,7 +3354,7 @@
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;audio_paths&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
             <span class="s1">&#39;audio&#39;</span>
         <span class="p">]</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">TUTUrbanAcousticScenes_2018_Mobile_EvaluationSet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">TUTUrbanAcousticScenes_2018_Mobile_EvaluationSet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">process_meta_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="n">absolute_path</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Process single meta data item</span>
@@ -3573,7 +3576,7 @@
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;audio_paths&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
             <span class="s1">&#39;audio&#39;</span>
         <span class="p">]</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">TUTAcousticScenes_2017_DevelopmentSet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">(</span><span class="n">TUTAcousticScenes_2017_DevelopmentSet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">process_meta_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="n">absolute_path</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Process single meta data item</span>
@@ -3735,7 +3738,7 @@
         <span class="p">]</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;audio_paths&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;audio&#39;</span><span class="p">]</span>
 
-        <span class="nb">super</span><span class="p">(</span><span class="n">TUTAcousticScenes_2017_EvaluationSet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">(</span><span class="n">TUTAcousticScenes_2017_EvaluationSet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">process_meta_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="n">absolute_path</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">filename_map</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Process single meta data item</span>
@@ -3884,7 +3887,7 @@
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;meta_filename&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;meta.csv&#39;</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;evaluation_setup_file_extension&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;csv&#39;</span>
 
-        <span class="nb">super</span><span class="p">(</span><span class="n">TUTAcousticScenes_2017_FeaturesSet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">TUTAcousticScenes_2017_FeaturesSet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">feature_parameters</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s1">&#39;win_length_seconds&#39;</span><span class="p">:</span> <span class="mf">0.04</span><span class="p">,</span>
@@ -4120,7 +4123,7 @@
 
         <span class="k">else</span><span class="p">:</span>
             <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Feature file not found [</span><span class="si">{filename}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span>
                 <span class="n">filename</span><span class="o">=</span><span class="n">filename</span>
             <span class="p">)</span>
 
@@ -4322,7 +4325,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">dcase_compatibility</span> <span class="o">=</span> <span class="n">dcase_compatibility</span>
 
         <span class="c1"># Initialize baseclass</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">TUTRareSoundEvents_2017_DevelopmentSet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">TUTRareSoundEvents_2017_DevelopmentSet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="c1"># Add code package to be downloaded always</span>
         <span class="k">if</span> <span class="s1">&#39;code&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">included_content_types</span> <span class="ow">or</span> <span class="s1">&#39;all&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">included_content_types</span><span class="p">:</span>
@@ -4652,7 +4655,7 @@
 
         <span class="k">else</span><span class="p">:</span>
             <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Unknown setup_part [</span><span class="si">{setup_part}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span>
                 <span class="n">setup_part</span><span class="o">=</span><span class="n">setup_part</span>
             <span class="p">)</span>
 
@@ -4908,7 +4911,7 @@
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;audio_paths&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s1">&#39;mixture_data&#39;</span><span class="p">,</span> <span class="s1">&#39;evaltest&#39;</span><span class="p">,</span> <span class="s1">&#39;bbb81504db15a03680a0044474633b67&#39;</span><span class="p">,</span> <span class="s1">&#39;audio&#39;</span><span class="p">)]</span>
 
         <span class="c1"># Initialize base class</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">TUTRareSoundEvents_2017_EvaluationSet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">(</span><span class="n">TUTRareSoundEvents_2017_EvaluationSet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">scene_labels</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;synthetic&#39;</span><span class="p">]</span>
@@ -5091,7 +5094,7 @@
 
         <span class="k">else</span><span class="p">:</span>
             <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Unknown setup_part [</span><span class="si">{setup_part}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span>
                 <span class="n">setup_part</span><span class="o">=</span><span class="n">setup_part</span>
             <span class="p">)</span>
 
@@ -5327,7 +5330,7 @@
             <span class="p">}</span>
         <span class="p">]</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;audio_paths&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;audio&#39;</span><span class="p">,</span> <span class="s1">&#39;street&#39;</span><span class="p">)]</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">TUTSoundEvents_2017_DevelopmentSet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">(</span><span class="n">TUTSoundEvents_2017_DevelopmentSet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">process_meta_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="n">absolute_path</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Process single meta data item</span>
@@ -5458,7 +5461,7 @@
             <span class="p">}</span>
         <span class="p">]</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;audio_paths&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;audio&#39;</span><span class="p">]</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">TUTSoundEvents_2017_EvaluationSet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">(</span><span class="n">TUTSoundEvents_2017_EvaluationSet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">scene_labels</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;street&#39;</span><span class="p">]</span>
@@ -5686,7 +5689,7 @@
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;audio_paths&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
             <span class="s1">&#39;audio&#39;</span>
         <span class="p">]</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">TUTAcousticScenes_2016_DevelopmentSet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">(</span><span class="n">TUTAcousticScenes_2016_DevelopmentSet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Prepare dataset for the usage.</span>
@@ -5838,7 +5841,7 @@
             <span class="p">}</span>
         <span class="p">]</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;audio_paths&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;audio&#39;</span><span class="p">]</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">TUTAcousticScenes_2016_EvaluationSet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">(</span><span class="n">TUTAcousticScenes_2016_EvaluationSet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">process_meta_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="n">absolute_path</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Process single meta data item</span>
@@ -5979,7 +5982,7 @@
             <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;audio&#39;</span><span class="p">,</span> <span class="s1">&#39;home&#39;</span><span class="p">),</span>
             <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;audio&#39;</span><span class="p">,</span> <span class="s1">&#39;residential_area&#39;</span><span class="p">)</span>
         <span class="p">]</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">TUTSoundEvents_2016_DevelopmentSet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">(</span><span class="n">TUTSoundEvents_2016_DevelopmentSet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">process_meta_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="n">absolute_path</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Process single meta data item</span>
@@ -6120,7 +6123,7 @@
             <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;audio&#39;</span><span class="p">,</span> <span class="s1">&#39;home&#39;</span><span class="p">),</span>
             <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;audio&#39;</span><span class="p">,</span> <span class="s1">&#39;residential_area&#39;</span><span class="p">)</span>
         <span class="p">]</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">TUTSoundEvents_2016_EvaluationSet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">(</span><span class="n">TUTSoundEvents_2016_EvaluationSet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">scene_labels</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;home&#39;</span><span class="p">,</span> <span class="s1">&#39;residential_area&#39;</span><span class="p">]</span>
@@ -6269,7 +6272,7 @@
             <span class="p">}</span>
         <span class="p">]</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;audio_paths&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;audio&#39;</span><span class="p">]</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">TUT_SED_Synthetic_2016</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">(</span><span class="n">TUT_SED_Synthetic_2016</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Prepare dataset for the usage.</span>
@@ -6422,7 +6425,7 @@
             <span class="p">}</span>
         <span class="p">]</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;audio_paths&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;audio&#39;</span><span class="p">]</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">DBR_Dataset</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">DBR_Dataset</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">audio_fs</span> <span class="o">=</span> <span class="mi">44100</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">audio_mono</span> <span class="o">=</span> <span class="kc">True</span>
 

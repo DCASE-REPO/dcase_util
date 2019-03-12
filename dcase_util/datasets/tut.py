@@ -370,6 +370,7 @@ class TAUUrbanAcousticScenes_2019_Mobile_DevelopmentSet(AcousticSceneDataset):
             'licence': 'free non-commercial'
         }
         kwargs['crossvalidation_folds'] = 1
+        kwargs['evaluation_setup_file_extension'] = 'csv'
         kwargs['meta_filename'] = 'meta.csv'
 
         filename_base = 'TAU-urban-acoustic-scenes-2019-mobile-development'
@@ -597,10 +598,11 @@ class TAUUrbanAcousticScenes_2019_Openset_DevelopmentSet(AcousticSceneDataset):
             'licence': 'free non-commercial'
         }
         kwargs['crossvalidation_folds'] = 1
+        kwargs['evaluation_setup_file_extension'] = 'csv'
         kwargs['meta_filename'] ='meta.csv'
 
         filename_base = 'TAU-urban-acoustic-scenes-2019-openset-development'
-        source_url = 'https://zenodo.org/record/2589340/files/'
+        source_url = 'https://zenodo.org/record/2591503/files/'
 
         kwargs['package_list'] = [
             {
@@ -613,8 +615,8 @@ class TAUUrbanAcousticScenes_2019_Openset_DevelopmentSet(AcousticSceneDataset):
             {
                 'content_type': 'meta',
                 'remote_file': source_url + filename_base + '.meta.zip',
-                'remote_bytes': 93764,
-                'remote_md5': 'b26dcb0990ef630386e76235fa35d2be',
+                'remote_bytes': 179091,
+                'remote_md5': '174da059848170d2d25c71aa09db1934',
                 'filename': filename_base + '.meta.zip'
             },
             {

@@ -1402,6 +1402,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-7">v0.2.7</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-6">v0.2.6</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-5">v0.2.5</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-4">v0.2.4</a></li>
@@ -1543,9 +1544,9 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># Run DictContainer init</span>
-        <span class="n">DictContainer</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">DictContainer</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-        <span class="nb">super</span><span class="p">(</span><span class="n">ParameterContainer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ParameterContainer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="c1"># Defaults</span>
         <span class="c1"># Map for field names</span>
@@ -1745,7 +1746,7 @@
         <span class="c1"># Check for empty parameter container</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Parameter container empty, cannot be process&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span>
             <span class="p">)</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
@@ -1784,7 +1785,7 @@
 
                 <span class="k">if</span> <span class="ow">not</span> <span class="n">active_set</span><span class="p">:</span>
                     <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: No valid active set given [</span><span class="si">{set_name}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                        <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                        <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span>
                         <span class="n">set_name</span><span class="o">=</span><span class="n">active_set_id</span>
                     <span class="p">)</span>
 
@@ -2051,7 +2052,7 @@
                         <span class="kn">import</span> <span class="nn">json</span>
                     <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
                         <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Unable to import json module&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                            <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+                            <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span>
                         <span class="p">)</span>
 
                         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
@@ -2061,7 +2062,7 @@
 
             <span class="k">except</span><span class="p">:</span>
                 <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Not JSON formatted string given&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                    <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+                    <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span>
                 <span class="p">)</span>
 
                 <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
@@ -2120,7 +2121,7 @@
 
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Invalid method for parameter field, </span><span class="si">{field}</span><span class="s1">-&gt;method=</span><span class="si">{method}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                        <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                        <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span>
                         <span class="n">field</span><span class="o">=</span><span class="n">section</span><span class="p">,</span>
                         <span class="n">method</span><span class="o">=</span><span class="n">parameters</span><span class="p">[</span><span class="n">section</span><span class="p">][</span><span class="bp">self</span><span class="o">.</span><span class="n">field_labels</span><span class="p">[</span><span class="s1">&#39;LABEL&#39;</span><span class="p">]]</span>
                     <span class="p">)</span>
@@ -2159,7 +2160,7 @@
 
                     <span class="k">else</span><span class="p">:</span>
                         <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Cannot find any parameters for the method in the recipe field, </span><span class="si">{field}</span><span class="s1">-&gt;recipe=</span><span class="si">{method}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                            <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                            <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span>
                             <span class="n">field</span><span class="o">=</span><span class="n">section</span><span class="p">,</span>
                             <span class="n">method</span><span class="o">=</span><span class="n">label</span>
                         <span class="p">)</span>
@@ -2340,7 +2341,7 @@
                             <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">iteritems</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
                                 <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">255</span><span class="p">:</span>
                                     <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Path potentially exceeds Windows path length limit (255) [</span><span class="si">{path}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                                        <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                                        <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span>
                                         <span class="n">path</span><span class="o">=</span><span class="n">p</span>
                                     <span class="p">)</span>
                                     <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
@@ -2525,7 +2526,7 @@
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">new_active_set</span><span class="p">:</span>
             <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: No valid set given [</span><span class="si">{set_name}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span>
                 <span class="n">set_name</span><span class="o">=</span><span class="n">set_id</span>
             <span class="p">)</span>
 
@@ -2624,7 +2625,7 @@
 <div class="viewcode-block" id="DCASEAppParameterContainer"><a class="viewcode-back" href="../../../generated/dcase_util.containers.DCASEAppParameterContainer.html#dcase_util.containers.DCASEAppParameterContainer">[docs]</a><span class="k">class</span> <span class="nc">DCASEAppParameterContainer</span><span class="p">(</span><span class="n">AppParameterContainer</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Parameter container class for DCASE application parameter files, inherited from AppParameterContainer.&quot;&quot;&quot;</span>
 <div class="viewcode-block" id="DCASEAppParameterContainer.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.containers.DCASEAppParameterContainer.html#dcase_util.containers.DCASEAppParameterContainer.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">DCASEAppParameterContainer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">DCASEAppParameterContainer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">default_section_labels</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
             <span class="s1">&#39;DATASET&#39;</span><span class="p">:</span> <span class="s1">&#39;dataset&#39;</span><span class="p">,</span>

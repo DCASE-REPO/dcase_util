@@ -1402,6 +1402,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-7">v0.2.7</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-6">v0.2.6</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-5">v0.2.5</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-4">v0.2.4</a></li>
@@ -1511,7 +1512,7 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="nb">dict</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
+        <span class="nb">dict</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
 
         <span class="c1"># Compatibility with old field names used in DCASE baseline system implementations 2016 and 2017</span>
         <span class="k">if</span> <span class="s1">&#39;file&#39;</span> <span class="ow">in</span> <span class="bp">self</span> <span class="ow">and</span> <span class="s1">&#39;filename&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
@@ -1590,7 +1591,7 @@
 
     <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">ui</span> <span class="o">=</span> <span class="n">FancyStringifier</span><span class="p">()</span>
-        <span class="n">output</span> <span class="o">=</span> <span class="n">ui</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="n">ui</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
 
         <span class="n">output</span> <span class="o">+=</span> <span class="n">ui</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">field</span><span class="o">=</span><span class="s1">&#39;Target&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
 
@@ -1658,11 +1659,11 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="kn">from</span> <span class="nn">dcase_util.ui</span> <span class="k">import</span> <span class="n">FancyLogger</span>
-        <span class="n">FancyLogger</span><span class="p">()</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="fm">__str__</span><span class="p">(),</span> <span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">)</span></div>
+        <span class="n">FancyLogger</span><span class="p">()</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__str__</span><span class="p">(),</span> <span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">)</span></div>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">logger</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">logger</span><span class="o">.</span><span class="n">handlers</span><span class="p">:</span>
             <span class="n">setup_logging</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">logger</span>
@@ -1778,7 +1779,7 @@
 
         <span class="k">else</span><span class="p">:</span>
             <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Invalid meta data format [</span><span class="si">{format}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span>
                 <span class="nb">format</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span>
             <span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
@@ -2056,7 +2057,7 @@
     <span class="n">valid_formats</span> <span class="o">=</span> <span class="p">[</span><span class="n">FileFormat</span><span class="o">.</span><span class="n">CSV</span><span class="p">,</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">TXT</span><span class="p">,</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">ANN</span><span class="p">,</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">CPICKLE</span><span class="p">]</span>  <span class="c1">#: Valid file formats</span>
 
 <div class="viewcode-block" id="MetaDataContainer.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.containers.MetaDataContainer.html#dcase_util.containers.MetaDataContainer.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">MetaDataContainer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">MetaDataContainer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">item_class</span> <span class="o">=</span> <span class="n">MetaDataItem</span>
 
         <span class="c1"># Convert all items in the list to MetaDataItems</span>
@@ -2071,7 +2072,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_string</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">super</span><span class="p">(</span><span class="n">MetaDataContainer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__add__</span><span class="p">(</span><span class="n">other</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">super</span><span class="p">(</span><span class="n">MetaDataContainer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__add__</span><span class="p">(</span><span class="n">other</span><span class="p">))</span>
 
 <div class="viewcode-block" id="MetaDataContainer.append"><a class="viewcode-back" href="../../../generated/dcase_util.containers.MetaDataContainer.append.html#dcase_util.containers.MetaDataContainer.append">[docs]</a>    <span class="k">def</span> <span class="nf">append</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Append item to the meta data list</span>
@@ -2091,7 +2092,7 @@
 
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">MetaDataItem</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
             <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Appending only MetaDataItem or dict allowed.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span>
             <span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
@@ -2934,7 +2935,7 @@
 
                             <span class="k">else</span><span class="p">:</span>
                                 <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Unknown row format [</span><span class="si">{format}</span><span class="s1">], row [</span><span class="si">{row}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                                    <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                                    <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span>
                                     <span class="nb">format</span><span class="o">=</span><span class="n">row_format</span><span class="p">,</span>
                                     <span class="n">row</span><span class="o">=</span><span class="n">row</span>
                                 <span class="p">)</span>
@@ -2948,7 +2949,7 @@
             <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">format</span> <span class="o">==</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">CSV</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">fields</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">csv_header</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                     <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Parameters fields or csv_header has to be set for CSV files.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                        <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+                        <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span>
                     <span class="p">)</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
                     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
@@ -2992,13 +2993,13 @@
                 <span class="p">)</span>
 
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Unknown format [</span><span class="si">{format}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+                <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Unknown format [</span><span class="si">{format}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
                 <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
         <span class="k">else</span><span class="p">:</span>
             <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: File not found [</span><span class="si">{filename}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span>
                 <span class="n">filename</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span>
             <span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
@@ -3101,7 +3102,7 @@
             <span class="n">Serializer</span><span class="o">.</span><span class="n">save_cpickle</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
 
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Unknown format [</span><span class="si">{format}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Unknown format [</span><span class="si">{format}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
             <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
@@ -3129,7 +3130,7 @@
         <span class="n">ui</span> <span class="o">=</span> <span class="n">FancyStringifier</span><span class="p">()</span>
 
         <span class="n">string_data</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-        <span class="n">string_data</span> <span class="o">+=</span> <span class="n">ui</span><span class="o">.</span><span class="n">class_name</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="n">string_data</span> <span class="o">+=</span> <span class="n">ui</span><span class="o">.</span><span class="n">class_name</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
 
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;filename&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">:</span>
             <span class="n">string_data</span> <span class="o">+=</span> <span class="n">ui</span><span class="o">.</span><span class="n">data</span><span class="p">(</span>
@@ -3617,14 +3618,14 @@
 
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">unique_files</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">filename</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Meta data contains items for multiple files. Please specify filename parameter.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span>
             <span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
         <span class="k">elif</span> <span class="n">filename</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">filename</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">unique_files</span><span class="p">:</span>
             <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Filename is not used in meta data items.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span>
             <span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
@@ -3832,7 +3833,7 @@
             <span class="k">return</span> <span class="n">event_roll</span>
 
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Meta data contains items for multiple files.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Meta data contains items for multiple files.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></div>
 
