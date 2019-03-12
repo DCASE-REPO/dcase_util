@@ -602,7 +602,7 @@ class TAUUrbanAcousticScenes_2019_Openset_DevelopmentSet(AcousticSceneDataset):
         kwargs['meta_filename'] ='meta.csv'
 
         filename_base = 'TAU-urban-acoustic-scenes-2019-openset-development'
-        source_url = 'https://zenodo.org/record/2589340/files/'
+        source_url = 'https://zenodo.org/record/2591503/files/'
 
         kwargs['package_list'] = [
             {
