@@ -3,6 +3,13 @@
 Release notes
 =============
 
+v0.2.7
+------
+
+**Updates**
+
+* Update ``TAUUrbanAcousticScenes_2019_Mobile_DevelopmentSet``, and ``TAUUrbanAcousticScenes_2019_Openset_DevelopmentSet`` datasets.
+
 v0.2.6
 ------
 

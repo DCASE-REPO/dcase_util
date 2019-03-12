@@ -1402,6 +1402,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-7">v0.2.7</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-6">v0.2.6</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-5">v0.2.5</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-4">v0.2.4</a></li>
@@ -1565,7 +1566,7 @@
             <span class="n">file_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">meta</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">line</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-            <span class="n">class_name</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+            <span class="n">class_name</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span>
             <span class="n">group</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">dataset_group</span><span class="p">,</span>
             <span class="n">remote_size</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">dataset_size_string</span><span class="p">(),</span>
             <span class="n">local_present</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">dataset_size_on_disk</span><span class="p">(),</span>
@@ -1577,7 +1578,7 @@
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">group</span> <span class="ow">or</span> <span class="n">group</span> <span class="o">==</span> <span class="s1">&#39;sound&#39;</span><span class="p">:</span>
         <span class="n">class_list</span> <span class="o">=</span> <span class="n">get_class_inheritors</span><span class="p">(</span><span class="n">SoundDataset</span><span class="p">)</span>
-        <span class="n">class_list</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">class_list</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">dataset_class</span> <span class="ow">in</span> <span class="n">class_list</span><span class="p">:</span>
             <span class="n">d</span> <span class="o">=</span> <span class="n">dataset_class</span><span class="p">(</span><span class="n">data_path</span><span class="o">=</span><span class="n">data_path</span><span class="p">)</span>
@@ -1586,7 +1587,7 @@
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">group</span> <span class="ow">or</span> <span class="n">group</span> <span class="o">==</span> <span class="s1">&#39;scene&#39;</span><span class="p">:</span>
         <span class="n">class_list</span> <span class="o">=</span> <span class="n">get_class_inheritors</span><span class="p">(</span><span class="n">AcousticSceneDataset</span><span class="p">)</span>
-        <span class="n">class_list</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">class_list</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">dataset_class</span> <span class="ow">in</span> <span class="n">class_list</span><span class="p">:</span>
             <span class="n">d</span> <span class="o">=</span> <span class="n">dataset_class</span><span class="p">(</span><span class="n">data_path</span><span class="o">=</span><span class="n">data_path</span><span class="p">)</span>
@@ -1595,7 +1596,7 @@
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">group</span> <span class="ow">or</span> <span class="n">group</span> <span class="o">==</span> <span class="s1">&#39;event&#39;</span><span class="p">:</span>
         <span class="n">class_list</span> <span class="o">=</span> <span class="n">get_class_inheritors</span><span class="p">(</span><span class="n">SoundEventDataset</span><span class="p">)</span>
-        <span class="n">class_list</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">class_list</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">dataset_class</span> <span class="ow">in</span> <span class="n">class_list</span><span class="p">:</span>
             <span class="n">d</span> <span class="o">=</span> <span class="n">dataset_class</span><span class="p">(</span><span class="n">data_path</span><span class="o">=</span><span class="n">data_path</span><span class="p">)</span>
@@ -1604,7 +1605,7 @@
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">group</span> <span class="ow">or</span> <span class="n">group</span> <span class="o">==</span> <span class="s1">&#39;tag&#39;</span><span class="p">:</span>
         <span class="n">class_list</span> <span class="o">=</span> <span class="n">get_class_inheritors</span><span class="p">(</span><span class="n">AudioTaggingDataset</span><span class="p">)</span>
-        <span class="n">class_list</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">class_list</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">dataset_class</span> <span class="ow">in</span> <span class="n">class_list</span><span class="p">:</span>
             <span class="n">d</span> <span class="o">=</span> <span class="n">dataset_class</span><span class="p">(</span><span class="n">data_path</span><span class="o">=</span><span class="n">data_path</span><span class="p">)</span>
@@ -1641,9 +1642,9 @@
 
         <span class="c1"># Search correct dataset</span>
         <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">class_list</span><span class="p">:</span>
-            <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span> <span class="o">==</span> <span class="n">dataset_class_name</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">__name__</span><span class="p">)</span> <span class="o">==</span> <span class="n">dataset_class_name</span><span class="p">:</span>
                 <span class="n">dataset_class</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span>
-                    <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="vm">__module__</span><span class="p">)),</span>
+                    <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">__module__</span><span class="p">)),</span>
                     <span class="n">dataset_class_name</span>
                 <span class="p">)</span>
                 <span class="k">break</span>
@@ -1657,7 +1658,7 @@
         <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;Invalid Dataset class given [</span><span class="si">{class_name}</span><span class="s1">].&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
             <span class="n">class_name</span><span class="o">=</span><span class="n">dataset_class_name</span>
         <span class="p">)</span>
-        <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">logger</span><span class="o">.</span><span class="n">handlers</span><span class="p">:</span>
             <span class="n">setup_logging</span><span class="p">()</span>
 
@@ -1686,7 +1687,7 @@
 
     <span class="c1"># Search correct dataset</span>
     <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">class_list</span><span class="p">:</span>
-        <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span> <span class="o">==</span> <span class="n">dataset_class_name</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">__name__</span><span class="p">)</span> <span class="o">==</span> <span class="n">dataset_class_name</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">True</span>
 
     <span class="k">return</span> <span class="kc">False</span></div>
@@ -1997,7 +1998,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">logger</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">logger</span><span class="o">.</span><span class="n">handlers</span><span class="p">:</span>
             <span class="n">setup_logging</span><span class="p">()</span>
 
@@ -2253,7 +2254,7 @@
 
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Meta file not found [</span><span class="si">{filename}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                    <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                    <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span>
                     <span class="n">filename</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">meta_container</span><span class="o">.</span><span class="n">filename</span>
                 <span class="p">)</span>
 
@@ -2298,7 +2299,7 @@
 
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Error meta file not found [</span><span class="si">{filename}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                    <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                    <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span>
                     <span class="n">filename</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">error_meta_file</span>
                 <span class="p">)</span>
 
@@ -2589,7 +2590,7 @@
                     <span class="k">else</span><span class="p">:</span>
                         <span class="c1"># Local file not present</span>
                         <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Local package does not exists [</span><span class="si">{filename}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                            <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                            <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span>
                             <span class="n">filename</span><span class="o">=</span><span class="n">remote_package</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span>
                         <span class="p">)</span>
                         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
@@ -2648,7 +2649,7 @@
 
         <span class="k">def</span> <span class="nf">error_message</span><span class="p">(</span><span class="n">error_class</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">type_label</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">subtype_label</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
 
-            <span class="k">return</span> <span class="sa">u</span><span class="s1">&#39;</span><span class="si">{error_class}</span><span class="s1"> </span><span class="si">{type_label}</span><span class="s1">  </span><span class="si">{subtype_label}</span><span class="s1">  </span><span class="si">{message}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="k">return</span> <span class="s1">u&#39;</span><span class="si">{error_class}</span><span class="s1"> </span><span class="si">{type_label}</span><span class="s1">  </span><span class="si">{subtype_label}</span><span class="s1">  </span><span class="si">{message}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
                 <span class="n">error_class</span><span class="o">=</span><span class="n">FancyStringifier</span><span class="p">()</span><span class="o">.</span><span class="n">formatted_value</span><span class="p">(</span><span class="n">error_class</span><span class="p">,</span> <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;stf16&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span>
                 <span class="n">type_label</span><span class="o">=</span><span class="n">FancyStringifier</span><span class="p">()</span><span class="o">.</span><span class="n">formatted_value</span><span class="p">(</span><span class="n">type_label</span><span class="p">,</span> <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;stf10&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span>
                 <span class="n">subtype_label</span><span class="o">=</span><span class="n">FancyStringifier</span><span class="p">()</span><span class="o">.</span><span class="n">formatted_value</span><span class="p">(</span><span class="n">subtype_label</span><span class="p">,</span> <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;stf20&#39;</span><span class="p">),</span>
@@ -2893,7 +2894,7 @@
 
         <span class="k">else</span><span class="p">:</span>
             <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Unknown setup_part [</span><span class="si">{setup_part}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span>
                 <span class="n">setup_part</span><span class="o">=</span><span class="n">setup_part</span>
             <span class="p">)</span>
 
@@ -3152,7 +3153,7 @@
 
         <span class="k">else</span><span class="p">:</span>
             <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Unknown split type [</span><span class="si">{split_type}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span>
                 <span class="n">split_type</span><span class="o">=</span><span class="n">split_type</span>
             <span class="p">)</span>
 
@@ -3172,7 +3173,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Dataset does not have fixed validation sets, use validation set generation to get sets&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-            <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+            <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
@@ -3260,7 +3261,7 @@
         <span class="sd">&quot;&quot;&quot;List of validation files randomly selecting while maintaining data balance.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Balanced validation set generation has not been implemented for dataset class.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-            <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+            <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
@@ -3390,7 +3391,7 @@
 
         <span class="k">if</span> <span class="n">path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Path is None.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span>
             <span class="p">)</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
@@ -3416,7 +3417,7 @@
 
         <span class="k">if</span> <span class="n">path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Path is None.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span>
             <span class="p">)</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
@@ -3534,13 +3535,13 @@
 <span class="k">class</span> <span class="nc">SoundDataset</span><span class="p">(</span><span class="n">Dataset</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Sound dataset baseclass &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">SoundDataset</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">SoundDataset</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="AcousticSceneDataset"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.AcousticSceneDataset.html#dcase_util.datasets.AcousticSceneDataset">[docs]</a><span class="k">class</span> <span class="nc">AcousticSceneDataset</span><span class="p">(</span><span class="n">Dataset</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Acoustic scene dataset baseclass &quot;&quot;&quot;</span>
 <div class="viewcode-block" id="AcousticSceneDataset.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.AcousticSceneDataset.html#dcase_util.datasets.AcousticSceneDataset.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">AcousticSceneDataset</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">(</span><span class="n">AcousticSceneDataset</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">validation_files_balanced</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                                   <span class="n">fold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">training_meta</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -3637,7 +3638,7 @@
 
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Multiple hierarchy levels detected in the identifiers. Use different balancing_mode.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                        <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+                        <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span>
                     <span class="p">)</span>
 
                     <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
@@ -3676,7 +3677,7 @@
             <span class="c1"># Check that we have identifiers present before going further</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">identifier_present</span><span class="p">:</span>
                 <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: No identifiers set for meta data items. Use different balancing_mode.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                    <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+                    <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span>
                 <span class="p">)</span>
 
                 <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
@@ -3745,7 +3746,7 @@
             <span class="c1"># Check that we have identifiers present, they are hierarchical, and the hierarchy level is two</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">identifier_present</span><span class="p">:</span>
                 <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: No identifiers set for meta data items. Use different balancing_mode.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                    <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+                    <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span>
                 <span class="p">)</span>
 
                 <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
@@ -3753,7 +3754,7 @@
 
             <span class="k">if</span> <span class="ow">not</span> <span class="n">identifier_hierarchical</span><span class="p">:</span>
                 <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: No hierarchical identifiers set for meta data items. Use different balancing_mode.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                    <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+                    <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span>
                 <span class="p">)</span>
 
                 <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
@@ -3761,7 +3762,7 @@
 
             <span class="k">if</span> <span class="n">identifier_hierarchy_level</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
                 <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Hierarchy level of identifiers is not two. Use different balancing_mode.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                    <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+                    <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span>
                 <span class="p">)</span>
 
                 <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
@@ -3967,7 +3968,7 @@
 <div class="viewcode-block" id="SoundEventDataset"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.SoundEventDataset.html#dcase_util.datasets.SoundEventDataset">[docs]</a><span class="k">class</span> <span class="nc">SoundEventDataset</span><span class="p">(</span><span class="n">Dataset</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Sound event dataset baseclass&quot;&quot;&quot;</span>
 <div class="viewcode-block" id="SoundEventDataset.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.SoundEventDataset.html#dcase_util.datasets.SoundEventDataset.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">SoundEventDataset</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">(</span><span class="n">SoundEventDataset</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">load_crossvalidation_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Load cross-validation into the container.</span>
@@ -4624,7 +4625,7 @@
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Validation setup creation was not successful! Could not find a set with &#39;</span> \
                               <span class="s1">&#39;examples for each event class in both training and validation.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+                                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span>
                               <span class="p">)</span>
 
                     <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
@@ -4721,7 +4722,7 @@
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Validation setup creation was not successful! Could not find a set with &#39;</span> \
                               <span class="s1">&#39;examples for each event class in both training and validation.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                        <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+                        <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span>
                     <span class="p">)</span>
 
                     <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
@@ -4777,7 +4778,7 @@
 <span class="k">class</span> <span class="nc">SyntheticSoundEventDataset</span><span class="p">(</span><span class="n">SoundEventDataset</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Synthetic sound event dataset baseclass&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">SyntheticSoundEventDataset</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">SyntheticSoundEventDataset</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Initialize the dataset, download, extract files and prepare the dataset for the usage.</span>
@@ -4809,7 +4810,7 @@
 <div class="viewcode-block" id="AudioTaggingDataset"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.AudioTaggingDataset.html#dcase_util.datasets.AudioTaggingDataset">[docs]</a><span class="k">class</span> <span class="nc">AudioTaggingDataset</span><span class="p">(</span><span class="n">Dataset</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Audio tag dataset baseclass&quot;&quot;&quot;</span>
 <div class="viewcode-block" id="AudioTaggingDataset.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.AudioTaggingDataset.html#dcase_util.datasets.AudioTaggingDataset.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">AudioTaggingDataset</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">(</span><span class="n">AudioTaggingDataset</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">validation_files_random</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                                 <span class="n">fold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">training_meta</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -5057,7 +5058,7 @@
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Validation setup creation was not successful! Could not find a set with &#39;</span> \
                               <span class="s1">&#39;examples for each tag class in both training and validation.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                        <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+                        <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span>
                     <span class="p">)</span>
 
                     <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
@@ -5154,7 +5155,7 @@
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Validation setup creation was not successful! Could not find a set with &#39;</span> \
                               <span class="s1">&#39;examples for each tag class in both training and validation.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                        <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+                        <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span>
                     <span class="p">)</span>
 
                     <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
