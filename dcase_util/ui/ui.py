@@ -715,7 +715,7 @@ class FancyStringifier(object):
         else:
             return ''
 
-    def class_name(self, class_name):
+    def class_name(self, class_name, indent=0):
         """Class name
 
         Parameters
@@ -723,13 +723,710 @@ class FancyStringifier(object):
         class_name : str
             Class name
 
+        indent : int
+            Amount of indention used for the line
+            Default value 0
+
         Returns
         -------
         str
 
         """
 
-        return class_name + " :: Class"
+        return ' ' * indent + class_name + " :: Class"
+
+
+class FancyHTMLStringifier(FancyStringifier):
+    """Fancy UI to produce HTML output
+    """
+
+    def __init__(self):
+        super(FancyHTMLStringifier, self).__init__()
+        self.row_reset()
+        self.row_highlight_flag = False
+        self.row_highlight_style = 'background-color: #F1F1F1;'
+        self.row_highlight_style_alt = 'background-color: #F9F9F9;'
+        self.indent_factor = 10
+
+    def get_margin(self, indent=0, include_style_attribute=True):
+        """Get margin css style definition
+
+        Parameters
+        ----------
+        indent : int
+            Amount of indention used for the line
+            Default value 2
+
+        include_style_attribute : bool
+            Include "style=" in the returned string
+            Default True
+
+        Returns
+        -------
+        str
+
+        """
+
+        if include_style_attribute:
+            return ' style="margin-left:' + str(indent * self.indent_factor) + 'px" '
+        else:
+            return 'margin-left:' + str(indent * self.indent_factor) + 'px;'
+
+    def line(self, field=None, indent=2):
+        """Line
+
+        Parameters
+        ----------
+        field : str
+            Data field name
+            Default value None
+
+        indent : int
+            Amount of indention used for the line
+            Default value 2
+
+        Returns
+        -------
+        str
+
+        """
+
+        indent_px = indent * self.indent_factor
+
+        lines = field.split('\n')
+
+        if self.row_highlight_flag:
+            bg = self.row_highlight_style
+        else:
+            bg = ''
+
+        html = ''
+        for line_id, line in enumerate(lines):
+            html += '<div style="'
+            html += 'display:grid;overflow-y:hidden;grid-template-columns:600px;grid-gap:0px;'
+            html += 'margin-top:-2px;margin-bottom:-2px;padding-left:' + str(indent_px) + 'px;' + bg
+            html += '">'
+
+            html += '<div style="padding:2px;font-size:100%;font-weight:bold">'
+            html += str(line)
+            html += '</div>'
+
+            html += '</div>'
+
+        # Flip row highlighting flag
+        self.row_highlight_flag = not self.row_highlight_flag
+
+        return html
+
+    def title(self, text, tag='h1'):
+        """Title
+
+        Parameters
+        ----------
+        text : str
+            Title text
+
+        tag : str
+            HTML tag used for the title
+            Default value "h1"
+
+        Returns
+        -------
+        str
+
+        """
+
+        return '<' + tag + '>' + text + '</' + tag + '>' + '\n'
+
+    def section_header(self, text, indent=0, tag='h2'):
+        """Section header
+
+        Parameters
+        ----------
+        text : str
+            Section header text
+
+        indent : int
+            Amount of indention used for the line
+            Default value 0
+
+        tag : str
+            HTML tag used for the title
+            Default value "h2"
+
+        Returns
+        -------
+        str
+
+        """
+
+        return '<' + tag + ' style="border-bottom: 2px solid #666;' + self.get_margin(
+            indent=indent,
+            include_style_attribute=False
+        ) + '">' + text + '</' + tag + '>' + '\n'
+
+    def sub_header(self, text='', indent=0, tag='h3'):
+        """Sub header
+
+        Parameters
+        ----------
+        text : str, optional
+            Footer text
+
+        indent : int
+            Amount of indention used for the line
+            Default value 0
+
+        tag : str
+            HTML tag used for the title
+            Default value "h3"
+
+        Returns
+        -------
+        str
+
+        """
+
+        return '<' + tag + self.get_margin(indent=indent) + '>' + text + '</' + tag + '>' + '\n'
+
+    def sep(self, length=40, indent=0, height=4):
+        """Horizontal separator
+
+        Parameters
+        ----------
+        length : int
+            Length of separator
+            Default value 40
+
+        indent : int
+            Amount of indention used for the line
+            Default value 0
+
+        height : int
+            Separator line height in pixels
+            Default value 4
+
+        Returns
+        -------
+        str
+
+        """
+
+        return '<hr style="' + self.get_margin(indent=indent,
+                                               include_style_attribute=False) + 'border-top-width: ' + str(
+            height) + 'px;background-color:transparent;" width="' + str(length) + '%">'
+
+    def foot(self, text='DONE', time=None, item_count=None, indent=2):
+        """Footer
+
+        Parameters
+        ----------
+        text : str, optional
+            Footer text
+            Default value 'DONE'
+
+        time : str or float, optional
+            Elapsed time as string or float (as seconds)
+            Default value None
+
+        item_count : int, optional
+            Item count
+            Default value None
+
+        indent : int
+            Amount of indention used for the line
+            Default value 2
+
+        Returns
+        -------
+        str
+
+        """
+
+        output = '{text:10s} '.format(text=text)
+
+        if time:
+            if isinstance(time, six.string_types):
+                output += '[{time:<14s}] '.format(time=time)
+
+            elif isinstance(time, float):
+                output += '[{time:<14s}] '.format(time=str(datetime.timedelta(seconds=time)))
+
+        if item_count:
+            output += '[{items:<d} items] '.format(items=item_count)
+
+            if time and isinstance(time, float):
+                output += '[{item_time:<14s} per item]'.format(
+                    item_time=str(datetime.timedelta(seconds=time / float(item_count)))
+                )
+
+        return '<div ' + self.get_margin(indent=indent) + '>' + output + '</div>'
+
+    def data(self, field=None, value=None, unit=None, indent=2):
+        """Data line
+
+        Parameters
+        ----------
+        field : str
+            Data field name
+            Default value None
+
+        value : str, bool, int, float, list or dict
+            Data value
+            Default value None
+
+        unit : str
+            Data value unit
+            Default value None
+
+        indent : int
+            Amount of indention used for the line
+            Default value 2
+
+        Returns
+        -------
+        str
+
+        """
+
+        value = self.formatted_value(value=value)
+
+        if value is None or value == 'None':
+            value = ''
+            unit = None
+
+        lines = value.split('\n')
+        columns = [290, 10, 300]
+        indent_px = indent * self.indent_factor
+        columns[0] -= indent_px
+        columns[2] += indent_px
+
+        if self.row_highlight_flag:
+            bg = self.row_highlight_style
+        else:
+            bg = self.row_highlight_style_alt
+
+        # Container
+        html = ''
+        html += '<div style="display:grid;grid-template-columns:' + str(columns[0]) + 'px ' + str(
+            columns[1]) + 'px ' + str(columns[2]) + 'px;grid-gap:0px;padding-left:' + str(indent_px) + 'px;' + bg + '">'
+
+        # Field
+        html += '<div style="font-weight:bold;padding-left:4px;">'
+        html += str(field)
+        html += '</div>'
+
+        # Separator
+
+        html += '<div>'
+        if value:
+            html += ':'
+        html += '</div>'
+
+        # Value + unit
+        if len(lines) > 1:
+            html += '<div>'
+            html += lines[0]
+            html += '</div>'
+
+            for i in range(1, len(lines)):
+                html += '<div></div>'
+                html += '<div></div>'
+                html += '<div>'
+                html += lines[i]
+                html += '</div>'
+
+        else:
+            html += '<div>'
+            html += self.formatted_value(value) + ' '
+            html += '<span class="text-muted">' + str(unit) + '</span>' if unit else ''
+            html += '</div>'
+
+        html += '</div>'  # Container
+
+        # Flip row highlighting flag
+        self.row_highlight_flag = not self.row_highlight_flag
+
+        return html
+
+    def row(self, *args, **kwargs):
+        """Table row
+
+        Parameters
+        ----------
+        args : various
+            Data for columns
+
+        indent : int
+            Amount of indention used for the row. If None given, value from previous method call is used.
+
+        widths : list of int
+            Column widths. If None given, value from previous method call is used.
+
+        types : list of str
+            Column data types, see `formatted_value` method more. If None given, value from previous
+            method call is used.
+
+        separators : list of bool
+            Column vertical separators. If None given, value from previous method call is used.
+
+        Returns
+        -------
+        str
+
+        """
+
+        if kwargs.get('indent'):
+            self.row_indent = kwargs.get('indent')
+
+        if kwargs.get('widths'):
+            self.row_column_widths = kwargs.get('widths')
+
+        if kwargs.get('types'):
+            self.row_data_types = kwargs.get('types')
+
+        if kwargs.get('separators'):
+            self.row_column_separators = kwargs.get('separators')
+
+        self.row_column_count = len(args)
+
+        if self.row_highlight_flag:
+            bg = 'background-color: #EEE;'
+        else:
+            bg = ''
+
+        html = ''
+        grid_template_columns = []
+        for column_id, column_data in enumerate(args):
+            if column_id < len(self.row_column_widths):
+                column_width = self.row_column_widths[column_id] * 5
+            else:
+                column_width = 15 * 5
+
+            grid_template_columns.append(str(column_width) + 'px')
+        grid_template_columns = ' '.join(grid_template_columns)
+
+        html += '<div style="'
+        html += 'display:grid;grid-template-columns:' + grid_template_columns + ';grid-gap:0px;'
+        html += 'margin-top:-6px;margin-bottom:-6px;' + self.get_margin(indent=self.row_indent,
+                                                                        include_style_attribute=False)
+        html += '">'
+
+        for column_id, column_data in enumerate(args):
+            if column_id < len(self.row_data_types):
+                data_type = self.row_data_types[column_id]
+            else:
+                data_type = 'auto'
+
+            if column_id < len(self.row_column_widths):
+                column_width = self.row_column_widths[column_id] * 5
+            else:
+                column_width = 15 * 5
+
+            column_data = self.formatted_value(column_data, data_type=data_type)
+
+            if column_id < len(self.row_column_separators) and self.row_column_separators[column_id]:
+                sep = 'border-right: 2px solid #333;'
+            else:
+                sep = ''
+
+            html += '<div style="padding:2px;' + bg + sep + '">'
+            if isinstance(column_data, int):
+                html += str(column_data)
+
+            elif isinstance(column_data, six.string_types):
+                if len(column_data) > column_width and column_data != '-':
+                    column_data = column_data[0:(column_width - 2)] + '..'
+
+                elif column_data == '-':
+                    column_data = column_width * column_data[0]
+
+                html += str(column_data)
+
+            html += '</div>'
+
+        html += '</div>'  # Container
+
+        # Flip row highlighting flag
+        self.row_highlight_flag = not self.row_highlight_flag
+
+        return html
+
+    def row_reset(self):
+        """Reset table row formatting
+
+        Returns
+        -------
+        self
+
+        """
+
+        self.row_highlight_flag = False
+        self.row_column_widths = []
+        self.row_data_types = []
+        self.row_indent = 0
+        self.row_column_separators = []
+        self.row_column_count = None
+
+        return self
+
+    def row_sep(self, **kwargs):
+        """Table separator row
+
+        Returns
+        -------
+        str
+
+        """
+
+        html = ''
+
+        grid_template_columns = []
+        for column_id in range(0, self.row_column_count):
+            if column_id < len(self.row_column_widths):
+                column_width = self.row_column_widths[column_id] * 5
+            else:
+                column_width = 15 * 5
+
+            grid_template_columns.append(str(column_width) + 'px')
+
+        grid_template_columns = ' '.join(grid_template_columns)
+        html += '<div style="'
+        html += 'display:grid;grid-template-columns:' + grid_template_columns + ';grid-gap:0px;'
+        html += 'margin-top:-4px;margin-bottom:0px;height:2px;' + self.get_margin(
+            indent=self.row_indent, include_style_attribute=False
+        )
+        html += '">'
+
+        for i in range(0, self.row_column_count):
+            html += '<div style="padding:0px;margin:0px;background-color:#333;">'
+            html += '</div>'
+
+        html += '</div>'  # Container
+
+        return html
+
+    def table(self, cell_data=None, column_headers=None, column_types=None,
+              column_separators=None, row_separators=None, indent=0):
+        """Data table
+
+        Parameters
+        ----------
+        cell_data : list of list
+            Cell data in format [ [cell(col1,row1), cell(col1,row2), cell(col1,row3)],
+            [cell(col2,row1), cell(col2,row2), cell(col2,row3)] ]
+            Default value None
+
+        column_headers : list of str
+            Column headers in list, if None given column numbers are used
+            Default value None
+
+        column_types : list of str
+            Column data types, if None given type is determined automatically.
+            Possible values: ['int', 'float1', 'float2', 'float3', 'float4', 'str10', 'str20']]
+            Default value None
+
+        column_separators : list of int
+            Column ids where to place separation lines. Line is placed on the right of the indicated column.
+            Default value None
+
+        row_separators : list of int
+            Row ids where to place separation lines. Line is place after indicated row.
+            Default value None
+
+        indent : int
+            Amount of indention used for the line
+            Default value 0
+
+        Returns
+        -------
+        str
+
+        """
+
+        if cell_data is None:
+            cell_data = []
+
+        if column_headers is None:
+            column_headers = []
+
+        if column_types is None:
+            column_types = []
+
+        if column_separators is None:
+            column_separators = []
+
+        if row_separators is None:
+            row_separators = []
+
+        if len(cell_data) != len(column_headers):
+            # Generate generic column titles
+            for column_id, column_data in enumerate(cell_data):
+                if column_id >= len(column_headers):
+                    column_headers.append('Col #{:d}'.format(column_id))
+
+        if len(cell_data) != len(column_types):
+            # Generate generic column types
+            for column_id, column_data in enumerate(cell_data):
+                if column_id >= len(column_types) or column_types[column_id] == 'auto':
+                    row_data = cell_data[column_id]
+
+                    if all(isinstance(x, int) for x in row_data):
+                        data_type = 'int'
+
+                    elif all(isinstance(x, float) for x in row_data):
+                        data_type = 'float2'
+
+                    elif all(isinstance(x, six.string_types) for x in row_data):
+                        data_type = 'str20'
+
+                    else:
+                        data_type = 'str20'
+
+                    column_types.append(data_type)
+
+        thead = '<thead style="border-bottom: 0px solid transparent;">'
+        thead += '<tr>'
+        for column_id, (data, header, data_type) in enumerate(zip(cell_data, column_headers, column_types)):
+            align = 'text-align:right;'
+            if data_type.startswith('str'):
+                if len(data_type) > 3:
+                    column_width = int(data_type[3:])
+
+                else:
+                    column_width = 8
+                align = 'text-align:left;'
+                column_template = '{0:<' + str(column_width) + 's} '
+
+            elif data_type.startswith('float') or data_type.startswith('int'):
+                column_width = 6
+                if len(column_headers[column_id]) > column_width:
+                    column_width = len(column_headers[column_id])
+
+                column_template = '{0:>' + str(column_width) + 's} '
+
+            else:
+                message = '{name}: Unknown column type [{data_type}].'.format(
+                    name=self.__class__.__name__,
+                    data_type=data_type
+                )
+                self.logger.exception(message)
+                raise ValueError(message)
+
+            sep = 'border-bottom:2px solid #333;'
+            if column_id in column_separators:
+                sep += 'border-right:2px solid #333;'
+
+            thead += '<th style="width:' + str(column_width * 10) + 'px;' + sep + align + '">'
+
+            thead += column_template.format(column_headers[column_id])
+            thead += '</th>'
+
+        thead += '<th style="border-bottom:0px solid transparent;"></th>'
+        thead += '</tr>'
+        thead += '</thead>'
+
+        html = ''
+        html += '<table class="table table-striped table-condensed" style="width:auto;' + self.get_margin(
+            indent=indent,
+            include_style_attribute=False
+        ) + '">'
+
+        html += thead
+        html += '<tbody>'
+
+        for row_id, tmp in enumerate(cell_data[0]):
+            html += '<tr>'
+
+            for column_id, (column_data, data_type) in enumerate(zip(cell_data, column_types)):
+                align = 'text-align:right;'
+                if data_type.startswith('str'):
+                    align = 'text-align:left;'
+
+                style = ''
+                if row_id in row_separators:
+                    style += 'border-top:2px solid #333;'
+
+                if column_id in column_separators:
+                    style += 'border-right:2px solid #333;'
+
+                html += '<td style="' + style + align + '">'
+
+                cell_value = column_data[row_id]
+                if data_type == 'auto':
+                    if isinstance(cell_value, int):
+                        data_type = 'int'
+
+                    elif isinstance(cell_value, float):
+                        data_type = 'float2'
+
+                    elif isinstance(cell_value, six.string_types):
+                        data_type = 'str10'
+
+                    else:
+                        data_type = 'str10'
+
+                if data_type == 'float1' and is_float(cell_value):
+                    html += '{:6.1f}'.format(int(cell_value))
+
+                elif data_type == 'float2' and is_float(cell_value):
+                    html += '{:6.2f}'.format(int(cell_value))
+
+                elif data_type == 'float3' and is_float(cell_value):
+                    html += '{:6.3f}'.format(int(cell_value))
+
+                elif data_type == 'float4' and is_float(cell_value):
+                    html += '{:6.4f}'.format(int(cell_value))
+
+                elif data_type == 'int' and is_int(cell_value):
+                    html += '{:d}'.format(int(cell_value))
+
+                elif data_type.startswith('str'):
+                    if len(data_type) > 3:
+                        column_width = int(data_type[3:])
+                    else:
+                        column_width = 10
+
+                    if cell_value is None:
+                        cell_value = '-'
+
+                    if cell_value and len(cell_value) > column_width:
+                        cell_value = cell_value[0:column_width - 2] + '..'
+
+                    html += cell_value
+
+                elif cell_value is None:
+                    html += '-'
+
+                html += '</td>'
+            html += '</tr>'
+
+        html += '</tbody>'
+        html += '</table>'
+
+        return html
+
+    def class_name(self, class_name, indent=0):
+        """Class name
+
+        Parameters
+        ----------
+        class_name : str
+            Class name
+
+        indent : int
+            Amount of indention used for the line
+            Default value 0
+
+        Returns
+        -------
+        str
+
+        """
+
+        return '<div class="label label-primary" ' \
+               'style="margin-bottom:5px;margin-top:5px;display:inline-block;' + self.get_margin(
+            indent=indent, include_style_attribute=False) + '">' + class_name + '</div>'
 
 
 class FancyLogger(object):
@@ -1333,4 +2030,85 @@ class FancyPrinter(FancyLogger):
 
             else:
                 print(' ' * indent + line)
+
+
+class FancyHTMLPrinter(FancyLogger):
+    """Printer class for rich HTML formatted output in IPython/Jupyter
+    """
+
+    def __init__(self, colors=True):
+        """Constructor
+
+        Parameters
+        ----------
+        colors : bool
+            Using colors or not
+            Default value True
+
+        Returns
+        -------
+        nothing
+
+        """
+
+        super(FancyHTMLPrinter, self).__init__()
+
+        self.ui = FancyHTMLStringifier()
+
+        self.colors = colors
+
+        self.levels = {
+            'info': None, 
+            'debug': 'alert alert-block alert-info',
+            'warning': 'alert alert-block alert-warning',
+            'warn': 'alert alert-block alert-warning',
+            'error': 'alert alert-block alert-danger',
+        }
+
+    def line(self, data='', indent=0, level='info'):
+        """Generic line logger
+        Multiple lines are split and logged separately
+
+        Parameters
+        ----------
+        data : str or list, optional
+            String or list of strings
+            Default value ''
+
+        indent : int
+            Amount of indention used for the line
+            Default value 0
+
+        level : str
+            Logging level, one of [info, debug, warning, warn, error]
+            Default value 'info'
+
+        Returns
+        -------
+        nothing
+
+        """
+        from IPython.core.display import display, HTML
+
+        if isinstance(data, six.string_types):
+            lines = data.split('\n')
+
+        elif isinstance(data, list):
+            lines = data
+
+        else:
+            message = '{name}: Unknown data type [{data}].'.format(
+                name=self.__class__.__name__,
+                data=data
+            )
+            self.logger.exception(message)
+            raise ValueError(message)
+
+        for line in lines:
+            if line:
+                if level in self.levels and self.levels[level]:
+                    display(HTML('<div class="'+self.levels[level]+'">' + line + '</div>'))
+
+                else:
+                    display(HTML(line))
 

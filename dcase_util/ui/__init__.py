@@ -165,6 +165,32 @@ Output::
     FancyPrinter.debug
     FancyPrinter.error
 
+FancyHTMLPrinter
+----------------
+
+*dcase_util.processors.FancyHTMLPrinter*
+
+This class provides rich HTML formatted output printing in IPython/Jupyter.
+
+.. autosummary::
+    :toctree: generated/
+
+    FancyHTMLPrinter
+    FancyHTMLPrinter.line
+    FancyHTMLPrinter.row
+    FancyHTMLPrinter.row_reset
+    FancyHTMLPrinter.row_sep
+    FancyHTMLPrinter.title
+    FancyHTMLPrinter.section_header
+    FancyHTMLPrinter.sub_header
+    FancyHTMLPrinter.foot
+    FancyHTMLPrinter.data
+    FancyHTMLPrinter.sep
+    FancyHTMLPrinter.table
+    FancyHTMLPrinter.info
+    FancyHTMLPrinter.debug
+    FancyHTMLPrinter.error
+
 FancyStringifier
 ----------------
 
@@ -189,6 +215,31 @@ This class can be used to produce uniformly formatted output strings.
     FancyStringifier.row_reset
     FancyStringifier.row_sep
     FancyStringifier.class_name
+
+FancyHTMLStringifier
+--------------------
+
+*dcase_util.processors.FancyHTMLStringifier*
+
+This class can be used to produce HTML formatted output strings.
+
+.. autosummary::
+    :toctree: generated/
+
+    FancyHTMLStringifier
+    FancyHTMLStringifier.title
+    FancyHTMLStringifier.section_header
+    FancyHTMLStringifier.sub_header
+    FancyHTMLStringifier.foot
+    FancyHTMLStringifier.line
+    FancyHTMLStringifier.formatted_value
+    FancyHTMLStringifier.data
+    FancyHTMLStringifier.sep
+    FancyHTMLStringifier.table
+    FancyHTMLStringifier.row
+    FancyHTMLStringifier.row_reset
+    FancyHTMLStringifier.row_sep
+    FancyHTMLStringifier.class_name
 
 """
 
