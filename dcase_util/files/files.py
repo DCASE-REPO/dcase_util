@@ -217,14 +217,33 @@ class FileLock(ObjectContainer):
         self.main_filename = filename
         self.lock_filename = filename + '.' + lock_file_extension
 
-    def __str__(self):
-        ui = FancyStringifier()
+    def to_string(self, ui=None, indent=0):
+        """Get container information in a string
 
-        output = super(FileLock, self).__str__()
+        Parameters
+        ----------
+        ui : FancyStringifier or FancyHTMLStringifier
+            Stringifier class
+            Default value FancyStringifier
 
-        output += ui.data(field='main_filename', value=self.main_filename) + '\n'
-        output += ui.data(field='lock_filename', value=self.lock_filename) + '\n'
-        output += ui.data(field='timeout', value=self.timeout, unit='sec') + '\n'
+        indent : int
+            Amount of indention used
+            Default value 0
+
+        Returns
+        -------
+        str
+
+        """
+
+        if ui is None:
+            ui = FancyStringifier()
+
+        output = super(FileLock, self).to_string(ui=ui, indent=indent)
+
+        output += ui.data(field='main_filename', value=self.main_filename, indent=indent) + '\n'
+        output += ui.data(field='lock_filename', value=self.lock_filename, indent=indent) + '\n'
+        output += ui.data(field='timeout', value=self.timeout, unit='sec', indent=indent) + '\n'
 
         return output
 
@@ -347,45 +366,64 @@ class Package(ObjectContainer, PackageMixin):
 
         super(Package, self).__init__(*args, **kwargs)
 
-    def __str__(self):
-        ui = FancyStringifier()
+    def to_string(self, ui=None, indent=0):
+        """Get container information in a string
+
+        Parameters
+        ----------
+        ui : FancyStringifier or FancyHTMLStringifier
+            Stringifier class
+            Default value FancyStringifier
+
+        indent : int
+            Amount of indention used
+            Default value 0
+
+        Returns
+        -------
+        str
+
+        """
+
+        if ui is None:
+            ui = FancyStringifier()
 
         output = ''
-        output += FancyStringifier().class_name(self.__class__.__name__) + '\n'
+        output += ui.class_name(self.__class__.__name__, indent=indent) + '\n'
 
         if hasattr(self, 'filename') and self.filename:
-            output += FancyStringifier().data(field='filename', value=self.filename) + '\n'
+            output += ui.data(field='filename', value=self.filename, indent=indent) + '\n'
 
         if self._file_info is None:
             self.get_info()
 
-        output += ui.line('Size', indent=2) + '\n'
+        output += ui.line('Size', indent=indent) + '\n'
 
-        output += FancyStringifier().data(
+        output += ui.data(
             field='Uncompressed',
             value=get_byte_string(self._size_uncompressed),
-            indent=4
+            indent=indent + 2
         ) + '\n'
 
         if self.format == FileFormat.ZIP:
-            output += FancyStringifier().data(
+            output += ui.data(
                 field='Compressed',
                 value=get_byte_string(self._size_compressed),
-                indent=4
+                indent=indent + 2
             ) + '\n'
 
-            output += FancyStringifier().data(
+            output += ui.data(
                 field='Ratio',
                 value=self._size_compressed/float(self._size_uncompressed) * 100,
                 unit='%',
-                indent=4
+                indent=indent + 2
             ) + '\n'
 
-        output += ui.line('Files', indent=2) + '\n'
-        output += FancyStringifier().data(
+        output += ui.line('Files', indent=indent) + '\n'
+        output += ui.data(
             field='Count',
             value=len(self._file_info),
-            indent=4
+            indent=indent + 2
         ) + '\n'
 
         return output

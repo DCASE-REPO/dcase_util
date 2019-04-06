@@ -13,7 +13,7 @@ import json
 import hashlib
 
 from dcase_util.containers import ContainerMixin, FileMixin
-from dcase_util.ui import FancyStringifier
+from dcase_util.ui import FancyStringifier, FancyHTMLStringifier
 from dcase_util.utils import is_float, is_int, FileFormat
 
 
@@ -29,15 +29,6 @@ class ObjectContainer(ContainerMixin, FileMixin):
         FileMixin.__init__(self, *args, **kwargs)
 
         super(ObjectContainer, self).__init__(*args, **kwargs)
-
-    def __str__(self):
-        output = ''
-        output += FancyStringifier().class_name(self.__class__.__name__) + '\n'
-
-        if hasattr(self, 'filename') and self.filename:
-            output += FancyStringifier().data(field='filename', value=self.filename) + '\n'
-
-        return output
 
     def load(self, filename=None):
         """Load file
@@ -181,14 +172,35 @@ class DictContainer(dict, ContainerMixin, FileMixin):
     def __setstate__(self, d):
         super(DictContainer, self).__setstate__(d)
 
-    def __str__(self):
+    def to_string(self, ui=None, indent=0):
+        """Get container information in a string
+
+        Parameters
+        ----------
+        ui : FancyStringifier or FancyHTMLStringifier
+            Stringifier class
+            Default value FancyStringifier
+
+        indent : int
+            Amount of indent
+            Default value 0
+
+        Returns
+        -------
+        str
+
+        """
+
+        if ui is None:
+            ui = FancyStringifier()
+
         output = ''
-        output += FancyStringifier().class_name(self.__class__.__name__) + '\n'
+        output += ui.class_name(self.__class__.__name__, indent=indent) + '\n'
 
         if hasattr(self, 'filename') and self.filename:
-            output += FancyStringifier().data(field='filename', value=self.filename) + '\n'
+            output += ui.data(field='filename', value=self.filename, indent=indent) + '\n'
 
-        output += self._walk_and_show(self, depth=1)
+        output += self._walk_and_show(self, depth=0, ui=ui, indent=indent)
 
         return output
 
@@ -681,7 +693,7 @@ class DictContainer(dict, ContainerMixin, FileMixin):
                     # We have reached leaf
                     yield current_path_list + [key]
 
-    def _walk_and_show(self, d, depth=0):
+    def _walk_and_show(self, d, depth=0, ui=None, indent=0):
         """Recursive dict walk to get string of the content nicely formatted
 
         Parameters
@@ -693,71 +705,133 @@ class DictContainer(dict, ContainerMixin, FileMixin):
             Depth of walk, string is indented with this
             Default value 0
 
+        ui : FancyStringifier or FancyHTMLStringifier
+            Stringifier class
+            Default value FancyStringifier
+
+        indent : int
+            Amount of indent
+            Default value 0
+
         Returns
         -------
         str
 
         """
 
+        if ui is None:
+            ui = FancyStringifier()
+
         output = u''
-        indent = 2
-        header_width = 35 - depth*indent
+        indent_increase = 2
 
         for k, v in sorted(d.items(), key=lambda x: x[0]):
             k = text(k)
             if isinstance(v, dict):
-                output += u''.ljust(depth * indent) + k + '\n'
-                output += self._walk_and_show(v, depth + 1)
+                output += ui.data(field=k, indent=indent + depth * indent_increase) + '\n'
+                output += self._walk_and_show(d=v, depth=depth + 1, ui=ui, indent=indent)
 
             else:
                 if isinstance(v, numpy.ndarray):
                     # Numpy array or matrix
                     shape = v.shape
                     if len(shape) == 1:
-                        output += u''.ljust(depth * indent)
-                        output += k.ljust(header_width) + ' : ' + "array (%d)" % (v.shape[0]) + '\n'
+                        output += ui.data(
+                            field=k,
+                            value="array (%d)" % (v.shape[0]),
+                            indent=indent + depth * indent_increase
+                        ) + '\n'
 
                     elif len(shape) == 2:
-                        output += u''.ljust(depth * indent)
-                        output += k.ljust(header_width) + ' : ' + "matrix (%d,%d)" % (v.shape[0], v.shape[1]) + '\n'
+                        output += ui.data(
+                            field=k,
+                            value="matrix (%d, %d)" % (v.shape[0], v.shape[1]),
+                            indent=indent + depth * indent_increase
+                        ) + '\n'
 
                     elif len(shape) == 3:
-                        output += u''.ljust(depth * indent)
-                        output += k.ljust(header_width) + ' : ' + "matrix (%d,%d,%d)" % (v.shape[0], v.shape[1], v.shape[2]) + '\n'
+                        output += ui.data(
+                            field=k,
+                            value="matrix (%d, %d, %d)" % (v.shape[0], v.shape[1], v.shape[2]),
+                            indent=indent + depth * indent_increase
+                        ) + '\n'
 
                     elif len(shape) == 4:
-                        output += u''.ljust(depth * indent)
-                        output += k.ljust(header_width) + ' : ' + "matrix (%d,%d,%d,%d)" % (v.shape[0], v.shape[1], v.shape[2], v.shape[3]) + '\n'
+                        output += ui.data(
+                            field=k,
+                            value="matrix (%d, %d, %d, %d)" % (v.shape[0], v.shape[1], v.shape[2], v.shape[3]),
+                            indent=indent + depth * indent_increase
+                        ) + '\n'
 
                 elif isinstance(v, list) and len(v) and isinstance(v[0], str):
-                    output += u''.ljust(depth * indent) + k.ljust(header_width) + ' : ' + "list (%d)\n" % len(v)
+                    output += ui.data(
+                        field=k,
+                        value="list (%d)" % len(v),
+                        indent=indent + depth * indent_increase
+                    ) + '\n'
 
                     for item_id, item in enumerate(v):
-                        output += u''.ljust((depth + 1) * indent)
-                        output += ('[' + text(item_id) + ']').ljust(header_width-indent) + ' : ' + text(item) + '\n'
+                        output += ui.data(
+                            field='[' + text(item_id) + ']',
+                            value=item,
+                            indent=indent + (depth+1) * indent_increase
+                        ) + '\n'
 
                 elif isinstance(v, list) and len(v) and isinstance(v[0], numpy.ndarray):
                     # List of arrays
-                    output += u''.ljust(depth * indent) + k.ljust(header_width) + ' : ' + "list (%d)\n" % len(v)
+                    output += ui.data(
+                        field=k,
+                        value="list (%d)" % len(v),
+                        indent=indent + depth * indent_increase
+                    ) + '\n'
+
                     for item_id, item in enumerate(v):
                         if len(item.shape) == 1:
-                            output += u''.ljust((depth+1) * indent)
-                            output += ('[' + text(item_id) + ']').ljust(header_width-indent) + ' : ' + "array (%d)" % (item.shape[0]) + '\n'
+                            output += ui.data(
+                                field='[' + text(item_id) + ']',
+                                value="array (%d)" % (item.shape[0]),
+                                indent=indent + (depth + 1) * indent_increase
+                            ) + '\n'
 
                         elif len(item.shape) == 2:
-                            output += u''.ljust((depth+1) * indent)
-                            output += ('[' + text(item_id) + ']').ljust(header_width-indent) + ' : ' + "matrix (%d,%d)" % (item.shape[0], item.shape[1]) + '\n'
+                            output += ui.data(
+                                field='[' + text(item_id) + ']',
+                                value="matrix (%d, %d)" % (item.shape[0], item.shape[1]),
+                                indent=indent + (depth + 1) * indent_increase
+                            ) + '\n'
+
+                        elif len(item.shape) == 3:
+                            output += ui.data(
+                                field='[' + text(item_id) + ']',
+                                value="matrix (%d, %d, %d)" % (item.shape[0], item.shape[1], item.shape[2]),
+                                indent=indent + (depth + 1) * indent_increase
+                            ) + '\n'
+
+                        elif len(item.shape) == 4:
+                            output += ui.data(
+                                field='[' + text(item_id) + ']',
+                                value="matrix (%d, %d, %d, %d)" % (item.shape[0], item.shape[1], item.shape[2], item.shape[3]),
+                                indent=indent + (depth + 1) * indent_increase
+                            ) + '\n'
 
                 elif isinstance(v, list) and len(v) and isinstance(v[0], dict):
-                    output += u''.ljust(depth * indent)
-                    output += k.ljust(header_width) + ' : ' + "list (%d)\n" % len(v)
+                    output += ui.data(
+                        field=k,
+                        value="list (%d)" % len(v),
+                        indent=indent + depth * indent_increase
+                    ) + '\n'
 
                     for item_id, item in enumerate(v):
-                        output += u''.ljust((depth + 1) * indent) + '[' + text(item_id) + ']' + '\n'
-                        output += self._walk_and_show(item, depth + 2)
+                        output += ui.data(
+                            field='[' + text(item_id) + ']',
+                            value='',
+                            indent=indent + (depth + 1) * indent_increase
+                        ) + '\n'
+
+                        output += self._walk_and_show(d=item, depth=depth + 2, ui=ui, indent=indent)
 
                 else:
-                    output += u''.ljust(depth * indent) + k.ljust(header_width) + ' : ' + text(v) + '\n'
+                    output += ui.data(field=k, value=v, indent=indent + depth*indent_increase) + '\n'
 
         return output
 
@@ -882,15 +956,36 @@ class ListContainer(list, ContainerMixin, FileMixin):
         # Run list init
         list.__init__(self, *args)
 
-    def __str__(self):
+    def to_string(self, ui=None, indent=0):
+        """Get container information in a string
+
+        Parameters
+        ----------
+        ui : FancyStringifier or FancyHTMLStringifier
+            Stringifier class
+            Default value FancyStringifier
+
+        indent : int
+            Amount of indent
+            Default value 0
+
+        Returns
+        -------
+        str
+
+        """
+
+        if ui is None:
+            ui = FancyStringifier()
+
         output = ''
-        output += FancyStringifier().class_name(self.__class__.__name__) + '\n'
+        output += ui.class_name(self.__class__.__name__, indent=indent) + '\n'
 
         if hasattr(self, 'filename') and self.filename:
-            output += FancyStringifier().data(field='filename', value=self.filename) + '\n'
+            output += ui.data(field='filename', value=self.filename, indent=indent) + '\n'
 
         for item_id, item in enumerate(self):
-            output += '[' + str(item_id) + ']' + '  ' + str(item) + '\n'
+            output += ui.data(field='[' + str(item_id) + ']', value=str(item), indent=indent) + '\n'
 
         return output
 
@@ -1110,18 +1205,37 @@ class ListDictContainer(ListContainer):
         for item_id, item in enumerate(self):
             self[item_id] = DictContainer(item)
 
-    def __str__(self):
-        ui = FancyStringifier()
+    def to_string(self, ui=None, indent=0):
+        """Get container information in a string
+
+        Parameters
+        ----------
+        ui : FancyStringifier or FancyHTMLStringifier
+            Stringifier class
+            Default value FancyStringifier
+
+        indent : int
+            Amount of indent
+            Default value 0
+
+        Returns
+        -------
+        str
+
+        """
+
+        if ui is None:
+            ui = FancyStringifier()
 
         output = ''
-        output += FancyStringifier().class_name(self.__class__.__name__) + '\n'
+        output += ui.class_name(self.__class__.__name__, indent=indent) + '\n'
 
         if hasattr(self, 'filename') and self.filename:
-            output += FancyStringifier().data(field='filename', value=self.filename) + '\n'
+            output += ui.data(field='filename', value=self.filename) + '\n'
 
         for item_id, item in enumerate(self):
-            output += ui.line('[' + str(item_id) + ']', indent=0) + '\n'
-            output += ui.line(str(DictContainer(item)), indent=3) + '\n'
+            output += ui.line(field='[' + str(item_id) + ']', indent=indent) + '\n'
+            output += DictContainer(item).to_string(ui=ui, indent=indent + 1) + '\n'
 
         return output
 

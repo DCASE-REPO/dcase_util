@@ -8,9 +8,8 @@ import sys
 import time
 import socket
 import validators
-from tqdm import tqdm
 
-from dcase_util.utils import get_byte_string, get_file_hash, FileFormat
+from dcase_util.utils import get_byte_string, get_file_hash, FileFormat, is_jupyter
 from dcase_util.ui import FancyStringifier
 from dcase_util.containers import DictContainer, PackageMixin
 
@@ -101,32 +100,44 @@ class RemoteFile(DictContainer):
                         self.logger.exception(message)
                         raise ValueError(message)
 
-    def __str__(self):
-        """File information
+    def to_string(self, ui=None, indent=0):
+        """Get container information in a string
+
+        Parameters
+        ----------
+        ui : FancyStringifier or FancyHTMLStringifier
+            Stringifier class
+            Default value FancyStringifier
+
+        indent : int
+            Amount of indention used
+            Default value 0
 
         Returns
         -------
         str
 
         """
-        ui = FancyStringifier()
+
+        if ui is None:
+            ui = FancyStringifier()
 
         output = ''
-        output += ui.title(text=self.__class__.__name__) + '\n'
-        output += ui.data(field='Content type', value=self.content_type) + '\n'
+        output += ui.class_name(self.__class__.__name__, indent=indent) + '\n'
+        output += ui.data(field='Content type', value=self.content_type, indent=indent) + '\n'
 
-        output += ui.line(field='Local') + '\n'
-        output += ui.data(indent=4, field='filename', value=self.filename) + '\n'
-        output += ui.data(indent=4, field='local_md5', value=self.local_md5) + '\n'
-        output += ui.data(indent=4, field='Exists', value='Yes' if self.local_exists() else 'No') + '\n'
-        output += ui.data(indent=4, field='Size', value=self.local_size_string()) + '\n'
+        output += ui.line(field='Local', indent=indent) + '\n'
+        output += ui.data(indent=indent + 2, field='filename', value=self.filename) + '\n'
+        output += ui.data(indent=indent + 2, field='local_md5', value=self.local_md5) + '\n'
+        output += ui.data(indent=indent + 2, field='Exists', value='Yes' if self.local_exists() else 'No') + '\n'
+        output += ui.data(indent=indent + 2, field='Size', value=self.local_size_string()) + '\n'
 
         if self._remote_file is not None:
-            output += ui.line(field='Remote') + '\n'
-            output += ui.data(indent=4, field='remote_file', value=self.remote_file) + '\n'
-            output += ui.data(indent=4, field='remote_md5', value=self.remote_md5) + '\n'
-            output += ui.data(indent=4, field='Exists', value='Yes' if self.remote_exists() else 'No') + '\n'
-            output += ui.data(indent=4, field='Size', value=self.remote_size_string()) + '\n'
+            output += ui.line(field='Remote', indent=indent) + '\n'
+            output += ui.data(indent=indent + 2, field='remote_file', value=self.remote_file) + '\n'
+            output += ui.data(indent=indent + 2, field='remote_md5', value=self.remote_md5) + '\n'
+            output += ui.data(indent=indent + 2, field='Exists', value='Yes' if self.remote_exists() else 'No') + '\n'
+            output += ui.data(indent=indent + 2, field='Size', value=self.remote_size_string()) + '\n'
 
         return output
 
@@ -387,6 +398,11 @@ class RemoteFile(DictContainer):
         self
 
         """
+
+        if is_jupyter():
+            from tqdm import tqdm_notebook as tqdm
+        else:
+            from tqdm import tqdm
 
         try:
             if self.local_changed():

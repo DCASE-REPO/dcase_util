@@ -6,11 +6,9 @@ from __future__ import print_function, absolute_import
 import os
 import sys
 
-from tqdm import tqdm
-
 from dcase_util.datasets import SoundEventDataset
 from dcase_util.containers import MetaDataContainer, MetaDataItem, ListDictContainer, AudioContainer
-from dcase_util.utils import Path
+from dcase_util.utils import Path, is_jupyter
 
 
 class DCASE2017_Task4tagging_DevelopmentSet(SoundEventDataset):
@@ -136,6 +134,11 @@ class DCASE2017_Task4tagging_DevelopmentSet(SoundEventDataset):
         self
 
         """
+
+        if is_jupyter():
+            from tqdm import tqdm_notebook as tqdm
+        else:
+            from tqdm import tqdm
 
         # Make sure audio directory exists
         Path().makedirs(path=os.path.join(self.local_path, 'audio'))

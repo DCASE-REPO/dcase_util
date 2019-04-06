@@ -11,8 +11,9 @@ import csv
 import logging
 import io
 from dcase_util.containers import ListDictContainer
-from dcase_util.utils import posix_path, get_parameter_hash, FieldValidator, setup_logging, is_float, is_int, FileFormat
-from dcase_util.ui import FancyStringifier
+from dcase_util.utils import posix_path, get_parameter_hash, FieldValidator, \
+    setup_logging, is_float, is_int, is_jupyter, FileFormat
+from dcase_util.ui import FancyStringifier,  FancyHTMLStringifier
 
 
 class MetaDataItem(dict):
@@ -104,58 +105,125 @@ class MetaDataItem(dict):
             self['tags'].sort()
 
     def __str__(self):
-        ui = FancyStringifier()
-        output = ui.title(text=self.__class__.__name__) + '\n'
+        return self.to_string()
 
-        output += ui.line(field='Target') + '\n'
+    def to_string(self, ui=None, indent=0):
+        """Get container information in a string
 
-        if self.filename:
-            output += ui.data(indent=4, field='filename', value=self.filename) + '\n'
+        Parameters
+        ----------
+        ui : FancyStringifier or FancyHTMLStringifier
+            Stringifier class
+            Default value FancyStringifier
 
-        if self.filename_original:
-            output += ui.data(indent=4, field='filename_original', value=self.filename_original) + '\n'
-
-        if self.identifier:
-            output += ui.data(indent=4, field='identifier', value=self.identifier) + '\n'
-
-        if self.source_label:
-            output += ui.data(indent=4, field='source_label', value=self.source_label) + '\n'
-
-        if self.set_label:
-            output += ui.data(indent=4, field='set_label', value=self.set_label) + '\n'
-
-        if self.onset is not None:
-            output += ui.data(indent=4, field='onset', value=self.onset, unit='sec') + '\n'
-
-        if self.offset is not None:
-            output += ui.data(indent=4, field='offset', value=self.offset, unit='sec') + '\n'
-
-        if self.scene_label is not None or self.event_label is not None or self.tags is not None:
-            output += ui.line(field='Meta data') + '\n'
-
-        if self.scene_label:
-            output += ui.data(indent=4, field='scene_label', value=self.scene_label) + '\n'
-
-        if self.event_label:
-            output += ui.data(indent=4, field='event_label', value=self.event_label) + '\n'
-
-        if self.tags:
-            output += ui.data(indent=4, field='tags', value=self.tags) + '\n'
-
-        output += ui.line(field='Item') + '\n'
-        output += ui.data(indent=4, field='id', value=self.id) + '\n'
-        return output
-
-    def show(self):
-        """Print container content
+        indent : int
+            Amount of indent
+            Default value 0
 
         Returns
         -------
-        self
+        str
 
         """
 
-        print(self)
+        if ui is None:
+            ui = FancyStringifier()
+
+        output = ''
+        output += ui.class_name(self.__class__.__name__, indent=indent) + '\n'
+        output += ui.line(field='Target', indent=indent) + '\n'
+
+        if self.filename:
+            output += ui.data(indent=indent + 2, field='filename', value=self.filename) + '\n'
+
+        if self.filename_original:
+            output += ui.data(indent=indent + 2, field='filename_original', value=self.filename_original) + '\n'
+
+        if self.identifier:
+            output += ui.data(indent=indent + 2, field='identifier', value=self.identifier) + '\n'
+
+        if self.source_label:
+            output += ui.data(indent=indent + 2, field='source_label', value=self.source_label) + '\n'
+
+        if self.set_label:
+            output += ui.data(indent=indent + 2, field='set_label', value=self.set_label) + '\n'
+
+        if self.onset is not None:
+            output += ui.data(indent=indent + 2, field='onset', value=self.onset, unit='sec') + '\n'
+
+        if self.offset is not None:
+            output += ui.data(indent=indent + 2, field='offset', value=self.offset, unit='sec') + '\n'
+
+        if self.scene_label is not None or self.event_label is not None or self.tags is not None:
+            output += ui.line(field='Meta data', indent=indent) + '\n'
+
+        if self.scene_label:
+            output += ui.data(indent=indent + 2, field='scene_label', value=self.scene_label) + '\n'
+
+        if self.event_label:
+            output += ui.data(indent=indent + 2, field='event_label', value=self.event_label) + '\n'
+
+        if self.tags:
+            output += ui.data(indent=indent + 2, field='tags', value=self.tags) + '\n'
+
+        output += ui.line(field='Item', indent=indent) + '\n'
+        output += ui.data(indent=indent + 2, field='id', value=self.id) + '\n'
+        return output
+
+    def to_html(self, indent=0):
+        """Get container information in a HTML formatted string
+
+        Parameters
+        ----------
+        indent : int
+            Amount of indent
+            Default value 0
+
+        Returns
+        -------
+        str
+
+        """
+
+        return self.to_string(ui=FancyHTMLStringifier(), indent=indent)
+
+    def show(self, mode='auto', indent=0):
+        """Print container content
+
+        If called inside Jupyter notebook, HTML formatted version is shown.
+
+        Parameters
+        ----------
+        mode : str
+            Output type, possible values ['auto', 'print', 'html']. 'html' will work in Jupyter notebook only.
+            Default value 'auto'
+
+        indent : int
+            Amount of indent
+            Default value 0
+
+        Returns
+        -------
+        Nothing
+
+        """
+
+        if mode == 'auto' and is_jupyter():
+            mode = 'html'
+
+        else:
+            mode = 'print'
+
+        if mode == 'html' and is_jupyter():
+            from IPython.core.display import display, HTML
+            display(
+                HTML(
+                    self.to_html(indent=indent)
+                )
+            )
+
+        elif mode == 'print':
+            print(self.to_string(indent=indent))
 
     def log(self, level='info'):
         """Log container content
@@ -583,7 +651,160 @@ class MetaDataContainer(ListDictContainer):
         self.processing_chain = ProcessingChain()
 
     def __str__(self):
-        return self.get_string()
+        return self.to_string()
+
+    def to_string(self, ui=None, indent=0, show_data=True, show_stats=True):
+        """Get container information in a string
+
+        Parameters
+        ----------
+        ui : FancyStringifier or FancyHTMLStringifier
+            Stringifier class
+            Default value FancyStringifier
+
+        indent : int
+            Amount of indent
+            Default value 0
+
+        show_data : bool
+            Include data
+            Default value True
+
+        show_stats : bool
+            Include scene and event statistics
+            Default value True
+
+        Returns
+        -------
+        str
+
+        """
+
+        if ui is None:
+            ui = FancyStringifier()
+
+        output = ''
+        output += ui.class_name(self.__class__.__name__) + '\n'
+
+        if hasattr(self, 'filename') and self.filename:
+            output += ui.data(
+                field='Filename',
+                value=self.filename,
+                indent=indent
+            ) + '\n'
+
+        output += ui.data(field='Items', value=len(self), indent=indent) + '\n'
+        output += ui.line(field='Unique', indent=indent) + '\n'
+        output += ui.data(indent=indent + 2, field='Files', value=len(self.unique_files)) + '\n'
+        output += ui.data(indent=indent + 2, field='Scene labels', value=len(self.unique_scene_labels)) + '\n'
+        output += ui.data(indent=indent + 2, field='Event labels', value=len(self.unique_event_labels)) + '\n'
+        output += ui.data(indent=indent + 2, field='Tags', value=len(self.unique_tags)) + '\n'
+        output += ui.data(indent=indent + 2, field='Identifiers', value=len(self.unique_identifiers)) + '\n'
+        output += ui.data(indent=indent + 2, field='Source labels', value=len(self.unique_source_labels)) + '\n'
+        output += '\n'
+
+        if show_data:
+            output += ui.line('Meta data', indent=indent) + '\n'
+
+            cell_data = [[], [], [], [], [], [], []]
+
+            for row_id, item in enumerate(self):
+                cell_data[0].append(item.filename)
+                cell_data[1].append(item.onset)
+                cell_data[2].append(item.offset)
+                cell_data[3].append(item.scene_label)
+                cell_data[4].append(item.event_label)
+                cell_data[5].append(','.join(item.tags) if item.tags else '-')
+                cell_data[6].append(item.identifier if item.tags else '-')
+
+            output += ui.table(
+                cell_data=cell_data,
+                column_headers=['Source', 'Onset', 'Offset', 'Scene', 'Event', 'Tags', 'Identifier'],
+                column_types=['str20', 'float2', 'float2', 'str15', 'str15', 'str15', 'str5'],
+                indent=indent + 2
+            )
+            output += '\n'
+
+        if show_stats:
+            stats = self.stats()
+            if 'scenes' in stats and 'scene_label_list' in stats['scenes'] and stats['scenes']['scene_label_list']:
+                output += ui.line('Scene statistics', indent=indent) + '\n'
+
+                cell_data = [[], [], []]
+
+                for scene_id, scene_label in enumerate(stats['scenes']['scene_label_list']):
+                    cell_data[0].append(scene_label)
+                    cell_data[1].append(int(stats['scenes']['count'][scene_id]))
+                    cell_data[2].append(int(stats['scenes']['identifiers'][scene_id]))
+
+                output += ui.table(
+                    cell_data=cell_data,
+                    column_headers=['Scene label', 'Count', 'Identifiers'],
+                    column_types=['str20', 'int', 'int'],
+                    indent=indent + 2
+                )
+                output += '\n'
+
+            if 'events' in stats and 'event_label_list' in stats['events'] and stats['events']['event_label_list']:
+                output += ui.line('Event statistics', indent=indent) + '\n'
+
+                cell_data = [[], [], [], []]
+
+                for event_id, event_label in enumerate(stats['events']['event_label_list']):
+                    cell_data[0].append(event_label)
+                    cell_data[1].append(int(stats['events']['count'][event_id]))
+                    cell_data[2].append(stats['events']['length'][event_id])
+                    cell_data[3].append(stats['events']['avg_length'][event_id])
+
+                output += ui.table(
+                    cell_data=cell_data,
+                    column_headers=['Event label', 'Count', 'Tot. Length', 'Avg. Length'],
+                    column_types=['str20', 'int', 'float2', 'float2'],
+                    indent=indent + 2
+                ) + '\n'
+
+            if 'tags' in stats and 'tag_list' in stats['tags'] and stats['tags']['tag_list']:
+                output += ui.line('Tag statistics', indent=indent) + '\n'
+
+                cell_data = [[], []]
+
+                for tag_id, tag in enumerate(stats['tags']['tag_list']):
+                    cell_data[0].append(tag)
+                    cell_data[1].append(int(stats['tags']['count'][tag_id]))
+
+                output += ui.table(
+                    cell_data=cell_data,
+                    column_headers=['Tag', 'Count'],
+                    column_types=['str20', 'int'],
+                    indent=indent + 2
+                ) + '\n'
+
+        return output
+
+    def to_html(self, indent=0, show_data=True, show_stats=True):
+        """Get container information in a HTML formatted string
+
+        Parameters
+        ----------
+        indent : int
+            Amount of indent
+            Default value 0
+
+        show_data : bool
+            Include data
+            Default value True
+
+        show_stats : bool
+            Include scene and event statistics
+            Default value True
+
+        Returns
+        -------
+        str
+
+        """
+
+        return self.to_string(ui=FancyHTMLStringifier(), indent=indent, show_data=show_data, show_stats=show_stats)
 
     def __add__(self, other):
         return self.update(super(MetaDataContainer, self).__add__(other))
@@ -865,7 +1086,7 @@ class MetaDataContainer(ListDictContainer):
 
         """
 
-        self.ui.line(self.get_string(show_data=show_data, show_stats=show_stats), level=level)
+        self.ui.line(self.to_string(show_data=show_data, show_stats=show_stats), level=level)
 
     def log_all(self, level='info'):
         """Log container content with all meta data items.
@@ -873,11 +1094,21 @@ class MetaDataContainer(ListDictContainer):
 
         self.log(level=level, show_data=True, show_stats=True)
 
-    def show(self, show_data=False, show_stats=True):
+    def show(self, mode='auto', indent=0, show_data=False, show_stats=True):
         """Print container content
+
+        If called inside Jupyter notebook, HTML formatted version is shown.
 
         Parameters
         ----------
+        mode : str
+            Output type, possible values ['auto', 'print', 'html']. 'html' will work in Jupyter notebook only.
+            Default value 'auto'
+
+        indent : int
+            Amount of indent
+            Default value 0
+
         show_data : bool
             Include data
             Default value True
@@ -888,17 +1119,47 @@ class MetaDataContainer(ListDictContainer):
 
         Returns
         -------
-            Nothing
+        Nothing
 
         """
 
-        print(self.get_string(show_data=show_data, show_stats=show_stats))
+        if mode == 'auto' and is_jupyter():
+            mode = 'html'
 
-    def show_all(self):
+        else:
+            mode = 'print'
+
+        if mode == 'html' and is_jupyter():
+            from IPython.core.display import display, HTML
+            display(
+                HTML(
+                    self.to_html(indent=indent, show_data=show_data, show_stats=show_stats)
+                )
+            )
+
+        elif mode == 'print':
+            print(self.to_string(indent=indent, show_data=show_data, show_stats=show_stats))
+
+    def show_all(self, mode='auto', indent=0):
         """Print container content with all meta data items.
+
+        Parameters
+        ----------
+        mode : str
+            Output type, possible values ['auto', 'print', 'html']. 'html' will work in Jupyter notebook only.
+            Default value 'auto'
+
+        indent : int
+            Amount of indent
+            Default value 0
+
+        Returns
+        -------
+        Nothing
+
         """
 
-        self.show(show_data=True, show_stats=True)
+        self.show(mode=mode, indent=indent, show_data=True, show_stats=True)
 
     def load(self, filename=None, fields=None, csv_header=True, file_format=None, delimiter=None, decimal='point'):
         """Load event list from delimited text file (csv-formatted)
@@ -1622,124 +1883,6 @@ class MetaDataContainer(ListDictContainer):
             raise IOError(message)
 
         return self
-
-    def get_string(self, show_data=True, show_stats=True):
-        """Get content in string format
-
-        Parameters
-        ----------
-        show_data : bool
-            Include data
-            Default value True
-
-        show_stats : bool
-            Include scene and event statistics
-            Default value True
-
-        Returns
-        -------
-        str
-            Multi-line string
-
-        """
-        ui = FancyStringifier()
-
-        string_data = ''
-        string_data += ui.class_name(self.__class__.__name__) + '\n'
-
-        if hasattr(self, 'filename') and self.filename:
-            string_data += ui.data(
-                field='Filename',
-                value=self.filename
-            ) + '\n'
-
-        string_data += ui.data(field='Items', value=len(self)) + '\n'
-        string_data += ui.line(field='Unique') + '\n'
-        string_data += ui.data(indent=4, field='Files', value=len(self.unique_files)) + '\n'
-        string_data += ui.data(indent=4, field='Scene labels', value=len(self.unique_scene_labels)) + '\n'
-        string_data += ui.data(indent=4, field='Event labels', value=len(self.unique_event_labels)) + '\n'
-        string_data += ui.data(indent=4, field='Tags', value=len(self.unique_tags)) + '\n'
-        string_data += ui.data(indent=4, field='Identifiers', value=len(self.unique_identifiers)) + '\n'
-        string_data += ui.data(indent=4, field='Source labels', value=len(self.unique_source_labels)) + '\n'
-        string_data += '\n'
-
-        if show_data:
-            string_data += ui.line('Meta data', indent=2) + '\n'
-
-            cell_data = [[], [], [], [], [], [], []]
-
-            for row_id, item in enumerate(self):
-                cell_data[0].append(item.filename)
-                cell_data[1].append(item.onset)
-                cell_data[2].append(item.offset)
-                cell_data[3].append(item.scene_label)
-                cell_data[4].append(item.event_label)
-                cell_data[5].append(','.join(item.tags) if item.tags else '-')
-                cell_data[6].append(item.identifier if item.tags else '-')
-
-            string_data += ui.table(
-                cell_data=cell_data,
-                column_headers=['Source', 'Onset', 'Offset', 'Scene', 'Event', 'Tags', 'Identifier'],
-                column_types=['str20', 'float2', 'float2', 'str15', 'str15', 'str15', 'str5'],
-                indent=8
-            )
-            string_data += '\n'
-
-        if show_stats:
-            stats = self.stats()
-            if 'scenes' in stats and 'scene_label_list' in stats['scenes'] and stats['scenes']['scene_label_list']:
-                string_data += ui.line('Scene statistics', indent=2) + '\n'
-
-                cell_data = [[], [], []]
-
-                for scene_id, scene_label in enumerate(stats['scenes']['scene_label_list']):
-                    cell_data[0].append(scene_label)
-                    cell_data[1].append(int(stats['scenes']['count'][scene_id]))
-                    cell_data[2].append(int(stats['scenes']['identifiers'][scene_id]))
-
-                string_data += ui.table(
-                    cell_data=cell_data,
-                    column_headers=['Scene label', 'Count', 'Identifiers'],
-                    column_types=['str20', 'int', 'int'],
-                    indent=8
-                )
-                string_data += '\n'
-
-            if 'events' in stats and 'event_label_list' in stats['events'] and stats['events']['event_label_list']:
-                string_data += ui.line('Event statistics', indent=2) + '\n'
-
-                cell_data = [[], [], [], []]
-
-                for event_id, event_label in enumerate(stats['events']['event_label_list']):
-                    cell_data[0].append(event_label)
-                    cell_data[1].append(int(stats['events']['count'][event_id]))
-                    cell_data[2].append(stats['events']['length'][event_id])
-                    cell_data[3].append(stats['events']['avg_length'][event_id])
-
-                string_data += ui.table(
-                    cell_data=cell_data,
-                    column_headers=['Event label', 'Count', 'Tot. Length', 'Avg. Length'],
-                    column_types=['str20', 'int', 'float2', 'float2'],
-                    indent=8
-                ) + '\n'
-
-            if 'tags' in stats and 'tag_list' in stats['tags'] and stats['tags']['tag_list']:
-                string_data += ui.line('Tag statistics', indent=2) + '\n'
-
-                cell_data = [[], []]
-
-                for tag_id, tag in enumerate(stats['tags']['tag_list']):
-                    cell_data[0].append(tag)
-                    cell_data[1].append(int(stats['tags']['count'][tag_id]))
-
-                string_data += ui.table(
-                    cell_data=cell_data,
-                    column_headers=['Tag', 'Count'],
-                    column_types=['str20', 'int'],
-                    indent=8
-                ) + '\n'
-
-        return string_data
 
     def filter(self,
                filename=None,

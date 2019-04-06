@@ -239,35 +239,54 @@ class DataContainer(ObjectContainer):
 
         return self.length
 
-    def __str__(self):
-        ui = FancyStringifier()
+    def to_string(self, ui=None, indent=0):
+        """Get container information in a string
 
-        output = super(DataContainer, self).__str__()
+        Parameters
+        ----------
+        ui : FancyStringifier or FancyHTMLStringifier
+            Stringifier class
+            Default value FancyStringifier
+
+        indent : int
+            Amount of indent
+            Default value 0
+
+        Returns
+        -------
+        str
+
+        """
+
+        if ui is None:
+            ui = FancyStringifier()
+
+        output = super(DataContainer, self).to_string(ui=ui, indent=indent)
 
         output += ui.line(field='Data') + '\n'
         output += ui.data(
-            indent=4,
+            indent=indent + 4,
             field='data',
             value=self.data
         ) + '\n'
 
         output += ui.line(
-            indent=4,
+            indent=indent + 4,
             field='Dimensions'
         ) + '\n'
         output += ui.data(
-            indent=6,
+            indent=indent + 6,
             field='time_axis',
             value=self.time_axis
         ) + '\n'
 
         output += ui.line(
-            indent=4,
+            indent=indent + 4,
             field='Timing information'
         ) + '\n'
 
         output += ui.data(
-            indent=6,
+            indent=indent + 6,
             field='time_resolution',
             value=self.time_resolution,
             unit="sec"
@@ -275,47 +294,47 @@ class DataContainer(ObjectContainer):
 
         output += ui.line(field='Meta') + '\n'
         output += ui.data(
-            indent=4,
+            indent=indent + 4,
             field='stats',
             value='Calculated' if self._stats is not None else '-'
         ) + '\n'
 
         output += ui.data(
-            indent=4,
+            indent=indent + 4,
             field='metadata',
             value=self.metadata if self.metadata else '-'
         ) + '\n'
 
         output += ui.data(
-            indent=4,
+            indent=indent + 4,
             field='processing_chain',
             value=self.processing_chain if self.processing_chain else '-'
         ) + '\n'
 
         output += ui.line(field='Duration') + '\n'
         output += ui.data(
-            indent=4,
+            indent=indent + 4,
             field='Frames',
             value=self.length
         ) + '\n'
 
         if self.time_resolution:
             output += ui.data(
-                indent=4,
+                indent=indent + 4,
                 field='Seconds',
                 value=self._frame_to_time(frame_id=self.length),
                 unit='sec'
             ) + '\n'
 
         if self._focus_start is not None and self._focus_stop is not None:
-            output += ui.line(field='Focus segment') + '\n'
+            output += ui.line(field='Focus segment', indent=indent) + '\n'
             output += ui.line(
-                indent=4,
+                indent=indent + 4,
                 field='Duration'
             ) + '\n'
 
             output += ui.data(
-                indent=6,
+                indent=indent + 6,
                 field='Index',
                 value=self._focus_stop - self._focus_start
             ) + '\n'
@@ -328,34 +347,34 @@ class DataContainer(ObjectContainer):
                 ) + '\n'
 
             output += ui.line(
-                indent=4,
+                indent=indent + 4,
                 field='Start'
             ) + '\n'
 
             output += ui.data(
-                indent=6,
+                indent=indent + 6,
                 field='Index',
                 value=self._focus_start
             ) + '\n'
 
             if self.time_resolution:
                 output += ui.data(
-                    indent=6,
+                    indent=indent + 6,
                     field='Seconds',
                     value=self._frame_to_time(frame_id=self._focus_start),
                     unit='sec'
                 ) + '\n'
 
-            output += ui.line(indent=4, field='Stop') + '\n'
+            output += ui.line(indent=indent + 4, field='Stop') + '\n'
             output += ui.data(
-                indent=6,
+                indent=indent + 6,
                 field='Index',
                 value=self._focus_stop
             ) + '\n'
 
             if self.time_resolution:
                 output += ui.data(
-                    indent=6,
+                    indent=indent + 6,
                     field='Seconds',
                     value=self._frame_to_time(frame_id=self._focus_stop),
                     unit='sec'
@@ -842,16 +861,35 @@ class DataMatrix2DContainer(DataContainer):
         self.data_axis = d['data_axis']
         self.time_axis = d['time_axis']
 
-    def __str__(self):
-        ui = FancyStringifier()
+    def to_string(self, ui=None, indent=0):
+        """Get container information in a string
 
-        output = super(DataMatrix2DContainer, self).__str__()
+        Parameters
+        ----------
+        ui : FancyStringifier or FancyHTMLStringifier
+            Stringifier class
+            Default value FancyStringifier
 
-        output += ui.line(field='Data') + '\n'
+        indent : int
+            Amount of indent
+            Default value 0
 
-        output += ui.line(indent=4, field='Dimensions') + '\n'
-        output += ui.data(indent=6, field='time_axis', value=self.time_axis) + '\n'
-        output += ui.data(indent=6, field='data_axis', value=self.data_axis) + '\n'
+        Returns
+        -------
+        str
+
+        """
+
+        if ui is None:
+            ui = FancyStringifier()
+
+        output = super(DataMatrix2DContainer, self).to_string(ui=ui, indent=indent)
+
+        output += ui.line(field='Data', indent=indent) + '\n'
+
+        output += ui.line(indent=indent + 2, field='Dimensions') + '\n'
+        output += ui.data(indent=indent + 4, field='time_axis', value=self.time_axis) + '\n'
+        output += ui.data(indent=indent + 4, field='data_axis', value=self.data_axis) + '\n'
 
         return output
 
@@ -1183,16 +1221,36 @@ class DataMatrix3DContainer(DataMatrix2DContainer):
         super(DataMatrix3DContainer, self).__setstate__(d)
         self.sequence_axis = d['sequence_axis']
 
-    def __str__(self):
-        ui = FancyStringifier()
+    def to_string(self, ui=None, indent=0):
+        """Get container information in a string
 
-        output = super(DataMatrix2DContainer, self).__str__()
+        Parameters
+        ----------
+        ui : FancyStringifier or FancyHTMLStringifier
+            Stringifier class
+            Default value FancyStringifier
 
-        output += ui.line(field='Data') + '\n'
-        output += ui.line(indent=4, field='Dimensions') + '\n'
-        output += ui.data(indent=6, field='time_axis', value=self.time_axis) + '\n'
-        output += ui.data(indent=6, field='data_axis', value=self.data_axis) + '\n'
-        output += ui.data(indent=6, field='sequence_axis', value=self.sequence_axis) + '\n'
+        indent : int
+            Amount of indent
+            Default value 0
+
+        Returns
+        -------
+        str
+
+        """
+
+        if ui is None:
+            ui = FancyStringifier()
+
+        output = super(DataMatrix3DContainer, self).to_string(ui=ui, indent=indent)
+
+        output += ui.line(field='Data', indent=indent) + '\n'
+
+        output += ui.line(indent=indent + 2, field='Dimensions') + '\n'
+        output += ui.data(indent=indent + 4, field='time_axis', value=self.time_axis) + '\n'
+        output += ui.data(indent=indent + 4, field='data_axis', value=self.data_axis) + '\n'
+        output += ui.data(indent=indent + 4, field='sequence_axis', value=self.sequence_axis) + '\n'
 
         return output
 
@@ -1482,17 +1540,37 @@ class DataMatrix4DContainer(DataMatrix3DContainer):
         super(DataMatrix4DContainer, self).__setstate__(d)
         self.channel_axis = d['channel_axis']
 
-    def __str__(self):
-        ui = FancyStringifier()
+    def to_string(self, ui=None, indent=0):
+        """Get container information in a string
 
-        output = super(DataMatrix4DContainer, self).__str__()
+        Parameters
+        ----------
+        ui : FancyStringifier or FancyHTMLStringifier
+            Stringifier class
+            Default value FancyStringifier
 
-        output += ui.line(field='Data') + '\n'
-        output += ui.line(indent=4, field='Dimensions') + '\n'
-        output += ui.data(indent=6, field='time_axis', value=self.time_axis) + '\n'
-        output += ui.data(indent=6, field='data_axis', value=self.data_axis) + '\n'
-        output += ui.data(indent=6, field='sequence_axis', value=self.sequence_axis) + '\n'
-        output += ui.data(indent=6, field='channel_axis', value=self.channel_axis) + '\n'
+        indent : int
+            Amount of indent
+            Default value 0
+
+        Returns
+        -------
+        str
+
+        """
+
+        if ui is None:
+            ui = FancyStringifier()
+
+        output = super(DataMatrix4DContainer, self).to_string(ui=ui, indent=indent)
+
+        output += ui.line(field='Data', indent=indent) + '\n'
+
+        output += ui.line(indent=indent + 2, field='Dimensions') + '\n'
+        output += ui.data(indent=indent + 4, field='time_axis', value=self.time_axis) + '\n'
+        output += ui.data(indent=indent + 4, field='data_axis', value=self.data_axis) + '\n'
+        output += ui.data(indent=indent + 4, field='sequence_axis', value=self.sequence_axis) + '\n'
+        output += ui.data(indent=indent + 4, field='channel_axis', value=self.channel_axis) + '\n'
 
         return output
 
@@ -1837,13 +1915,32 @@ class BinaryMatrix2DContainer(DataMatrix2DContainer):
 
         self.label_list = d['label_list']
 
-    def __str__(self):
-        ui = FancyStringifier()
+    def to_string(self, ui=None, indent=0):
+        """Get container information in a string
 
-        output = super(BinaryMatrix2DContainer, self).__str__()
+        Parameters
+        ----------
+        ui : FancyStringifier or FancyHTMLStringifier
+            Stringifier class
+            Default value FancyStringifier
 
-        output += ui.line(field='Labels') + '\n'
-        output += ui.data(indent=4, field='label_list', value=self.label_list) + '\n'
+        indent : int
+            Amount of indent
+            Default value 0
+
+        Returns
+        -------
+        str
+
+        """
+
+        if ui is None:
+            ui = FancyStringifier()
+
+        output = super(BinaryMatrix2DContainer, self).to_string(ui=ui, indent=indent)
+
+        output += ui.line(field='Labels', indent=indent) + '\n'
+        output += ui.data(indent=indent + 2, field='label_list', value=self.label_list) + '\n'
 
         return output
 
@@ -2034,46 +2131,66 @@ class DataRepository(RepositoryContainer):
         del d['processing_chain']
         del d['item_class']
 
-    def __str__(self):
-        ui = FancyStringifier()
+    def to_string(self, ui=None, indent=0):
+        """Get container information in a string
+
+        Parameters
+        ----------
+        ui : FancyStringifier or FancyHTMLStringifier
+            Stringifier class
+            Default value FancyStringifier
+
+        indent : int
+            Amount of indent
+            Default value 0
+
+        Returns
+        -------
+        str
+
+        """
+
+        if ui is None:
+            ui = FancyStringifier()
 
         output = ''
-        output += ui.class_name(self.__class__.__name__) + '\n'
+        output += ui.class_name(self.__class__.__name__, indent=indent) + '\n'
 
         if hasattr(self, 'filename') and self.filename:
             output += ui.data(
                 field='filename',
-                value=self.filename
+                value=self.filename,
+                indent=indent
             ) + '\n'
 
-        output += ui.line(field='Repository info') + '\n'
+        output += ui.line(field='Repository info', indent=indent) + '\n'
 
         if hasattr(self, 'item_class') and self.item_class:
             output += ui.data(
-                indent=4,
+                indent=indent + 2,
                 field='Item class',
                 value=self.item_class.__name__
             ) + '\n'
 
         output += ui.data(
-            indent=4,
+            indent=indent + 2,
             field='Item count',
             value=len(self)
         ) + '\n'
 
         output += ui.data(
-            indent=4,
+            indent=indent + 2,
             field='Labels',
             value=list(self.keys())
         ) + '\n'
 
-        output += ui.line(field='Content') + '\n'
+        output += ui.line(field='Content', indent=indent) + '\n'
         for label, label_data in iteritems(self):
             if label_data:
                 if isinstance(label_data, dict):
                     for stream_id, stream_data in iteritems(label_data):
                         output += ui.data(
-                            indent=4,
+                            indent=indent + 2,
                             field='['+str(label)+']' + '[' + str(stream_id) + ']',
                             value=stream_data
                         ) + '\n'

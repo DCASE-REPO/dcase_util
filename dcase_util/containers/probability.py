@@ -9,9 +9,10 @@ import csv
 import logging
 import io
 import numpy
-from dcase_util.utils import posix_path, get_parameter_hash, FieldValidator, setup_logging, is_float, is_int, FileFormat
+from dcase_util.utils import posix_path, get_parameter_hash, FieldValidator, setup_logging, \
+    is_float, is_int, is_jupyter, FileFormat
 from dcase_util.containers import ListDictContainer
-from dcase_util.ui import FancyStringifier
+from dcase_util.ui import FancyStringifier, FancyHTMLStringifier
 
 
 class ProbabilityItem(dict):
@@ -42,21 +43,62 @@ class ProbabilityItem(dict):
             self['probability'] = float(self['probability'])
 
     def __str__(self):
-        ui = FancyStringifier()
-        output = ui.class_name(self.__class__.__name__) + '\n'
-        output += ui.line(field='Meta') + '\n'
+        return self.to_string()
+
+    def to_string(self, ui=None, indent=0):
+        """Get container information in a string
+
+        Parameters
+        ----------
+        ui : FancyStringifier or FancyHTMLStringifier
+            Stringifier class
+            Default value FancyStringifier
+
+        indent : int
+            Amount of indent
+            Default value 0
+
+        Returns
+        -------
+        str
+
+        """
+
+        if ui is None:
+            ui = FancyStringifier()
+
+        output = ''
+        output += ui.class_name(self.__class__.__name__, indent=indent) + '\n'
+        output += ui.line(field='Meta', indent=indent) + '\n'
         if self.filename:
-            output += ui.data(indent=4, field='filename', value=self.filename) + '\n'
+            output += ui.data(indent=indent+2, field='filename', value=self.filename) + '\n'
 
         if self.label:
-            output += ui.data(indent=4, field='label', value=self.label) + '\n'
+            output += ui.data(indent=indent+2, field='label', value=self.label) + '\n'
 
         if self.probability is not None:
-            output += ui.data(indent=4, field='probability', value=self.probability) + '\n'
+            output += ui.data(indent=indent+2, field='probability', value=self.probability) + '\n'
 
-        output += ui.line(field='Item') + '\n'
-        output += ui.data(indent=4, field='id', value=self.id) + '\n'
+        output += ui.line(field='Item', indent=indent) + '\n'
+        output += ui.data(indent=indent+2, field='id', value=self.id) + '\n'
         return output
+
+    def to_html(self, indent=0):
+        """Get container information in a HTML formatted string
+
+        Parameters
+        ----------
+        indent : int
+            Amount of indent
+            Default value 0
+
+        Returns
+        -------
+        str
+
+        """
+
+        return self.to_string(ui=FancyHTMLStringifier(), indent=indent)
 
     @property
     def logger(self):
@@ -66,17 +108,43 @@ class ProbabilityItem(dict):
 
         return logger
 
-    def show(self):
+    def show(self, mode='auto', indent=0):
         """Print container content
+
+        If called inside Jupyter notebook, HTML formatted version is shown.
+
+        Parameters
+        ----------
+        mode : str
+            Output type, possible values ['auto', 'print', 'html']. 'html' will work in Jupyter notebook only.
+            Default value 'auto'
+
+        indent : int
+            Amount of indent
+            Default value 0
 
         Returns
         -------
         Nothing
 
         """
-        print(self)
 
-        return self
+        if mode == 'auto' and is_jupyter():
+            mode = 'html'
+
+        else:
+            mode = 'print'
+
+        if mode == 'html' and is_jupyter():
+            from IPython.core.display import display, HTML
+            display(
+                HTML(
+                    self.to_html(indent=indent)
+                )
+            )
+
+        elif mode == 'print':
+            print(self.to_string(indent=indent))
 
     def log(self, level='info'):
         """Log container content

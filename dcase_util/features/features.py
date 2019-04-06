@@ -169,21 +169,41 @@ class FeatureExtractor(ContainerMixin):
             self.logger.exception(message)
             raise ValueError(message)
 
-    def __str__(self):
-        ui = FancyStringifier()
+    def to_string(self, ui=None, indent=0):
+        """Get container information in a string
+
+        Parameters
+        ----------
+        ui : FancyStringifier or FancyHTMLStringifier
+            Stringifier class
+            Default value FancyStringifier
+
+        indent : int
+            Amount of indention used
+            Default value 0
+
+        Returns
+        -------
+        str
+
+        """
+
+        if ui is None:
+            ui = FancyStringifier()
+
         output = ''
-        output += FancyStringifier().class_name(self.__class__.__name__) + '\n'
+        output += ui.class_name(self.__class__.__name__, indent=indent) + '\n'
 
         if hasattr(self, 'filename') and self.filename:
-            output += FancyStringifier().data(field='filename', value=self.filename) + '\n'
+            output += FancyStringifier().data(field='filename', value=self.filename, indent=indent) + '\n'
 
-        output += ui.data(field='fs', value=self.fs) + '\n'
-        output += ui.line(field='Frame blocking') + '\n'
-        output += ui.data(indent=4, field='hop_length_samples', value=self.hop_length_samples) + '\n'
-        output += ui.data(indent=4, field='hop_length_seconds', value=self.hop_length_seconds, unit='sec') + '\n'
+        output += ui.data(field='fs', value=self.fs, indent=indent) + '\n'
+        output += ui.line(field='Frame blocking', indent=indent) + '\n'
+        output += ui.data(indent=indent + 2, field='hop_length_samples', value=self.hop_length_samples) + '\n'
+        output += ui.data(indent=indent + 2, field='hop_length_seconds', value=self.hop_length_seconds, unit='sec') + '\n'
 
-        output += ui.data(indent=4, field='win_length_samples', value=self.win_length_samples) + '\n'
-        output += ui.data(indent=4, field='win_length_seconds', value=self.win_length_seconds, unit='sec') + '\n'
+        output += ui.data(indent=indent + 2, field='win_length_samples', value=self.win_length_samples) + '\n'
+        output += ui.data(indent=indent + 2, field='win_length_seconds', value=self.win_length_seconds, unit='sec') + '\n'
 
         return output
 
@@ -279,14 +299,34 @@ class SpectralFeatureExtractor(FeatureExtractor):
             window_type=self.window_type
         )
 
-    def __str__(self):
-        ui = FancyStringifier()
-        output = super(SpectralFeatureExtractor, self).__str__()
+    def to_string(self, ui=None, indent=0):
+        """Get container information in a string
 
-        output += ui.line(field='Spectrogram') + '\n'
-        output += ui.data(indent=4, field='spectrogram_type', value=self.spectrogram_type) + '\n'
-        output += ui.data(indent=4, field='n_fft', value=self.n_fft) + '\n'
-        output += ui.data(indent=4, field='window_type', value=self.window_type) + '\n'
+        Parameters
+        ----------
+        ui : FancyStringifier or FancyHTMLStringifier
+            Stringifier class
+            Default value FancyStringifier
+
+        indent : int
+            Amount of indention used
+            Default value 0
+
+        Returns
+        -------
+        str
+
+        """
+
+        if ui is None:
+            ui = FancyStringifier()
+
+        output = super(SpectralFeatureExtractor, self).to_string(ui=ui, indent=indent)
+
+        output += ui.line(field='Spectrogram', indent=indent) + '\n'
+        output += ui.data(indent=indent + 2, field='spectrogram_type', value=self.spectrogram_type) + '\n'
+        output += ui.data(indent=indent + 2, field='n_fft', value=self.n_fft) + '\n'
+        output += ui.data(indent=indent + 2, field='window_type', value=self.window_type) + '\n'
 
         return output
 
@@ -564,17 +604,37 @@ class MelExtractor(SpectralFeatureExtractor):
         if self.normalize_mel_bands:
             self.mel_basis /= numpy.max(self.mel_basis, axis=-1)[:, None]
 
-    def __str__(self):
-        ui = FancyStringifier()
-        output = super(MelExtractor, self).__str__()
+    def to_string(self, ui=None, indent=0):
+        """Get container information in a string
 
-        output += ui.line(field='Mel') + '\n'
-        output += ui.data(indent=4, field='n_mels', value=self.n_mels) + '\n'
-        output += ui.data(indent=4, field='fmin', value=self.fmin) + '\n'
-        output += ui.data(indent=4, field='fmax', value=self.fmax) + '\n'
-        output += ui.data(indent=4, field='normalize_mel_bands', value=self.normalize_mel_bands) + '\n'
-        output += ui.data(indent=4, field='htk', value=self.htk) + '\n'
-        output += ui.data(indent=4, field='logarithmic', value=self.logarithmic) + '\n'
+        Parameters
+        ----------
+        ui : FancyStringifier or FancyHTMLStringifier
+            Stringifier class
+            Default value FancyStringifier
+
+        indent : int
+            Amount of indention used
+            Default value 0
+
+        Returns
+        -------
+        str
+
+        """
+
+        if ui is None:
+            ui = FancyStringifier()
+
+        output = super(MelExtractor, self).to_string(ui=ui, indent=indent)
+
+        output += ui.line(field='Mel', indent=indent) + '\n'
+        output += ui.data(indent=indent + 2, field='n_mels', value=self.n_mels) + '\n'
+        output += ui.data(indent=indent + 2, field='fmin', value=self.fmin) + '\n'
+        output += ui.data(indent=indent + 2, field='fmax', value=self.fmax) + '\n'
+        output += ui.data(indent=indent + 2, field='normalize_mel_bands', value=self.normalize_mel_bands) + '\n'
+        output += ui.data(indent=indent + 2, field='htk', value=self.htk) + '\n'
+        output += ui.data(indent=indent + 2, field='logarithmic', value=self.logarithmic) + '\n'
 
         return output
 
@@ -759,17 +819,37 @@ class MfccStaticExtractor(SpectralFeatureExtractor):
         if self.normalize_mel_bands:
             self.mel_basis /= numpy.max(self.mel_basis, axis=-1)[:, None]
 
-    def __str__(self):
-        ui = FancyStringifier()
-        output = super(MfccStaticExtractor, self).__str__()
+    def to_string(self, ui=None, indent=0):
+        """Get container information in a string
 
-        output += ui.line(field='MFCC') + '\n'
-        output += ui.data(indent=4, field='n_mels', value=self.n_mels) + '\n'
-        output += ui.data(indent=4, field='fmin', value=self.fmin) + '\n'
-        output += ui.data(indent=4, field='fmax', value=self.fmax) + '\n'
-        output += ui.data(indent=4, field='normalize_mel_bands', value=self.normalize_mel_bands) + '\n'
-        output += ui.data(indent=4, field='htk', value=self.htk) + '\n'
-        output += ui.data(indent=4, field='n_mfcc', value=self.n_mfcc) + '\n'
+        Parameters
+        ----------
+        ui : FancyStringifier or FancyHTMLStringifier
+            Stringifier class
+            Default value FancyStringifier
+
+        indent : int
+            Amount of indention used
+            Default value 0
+
+        Returns
+        -------
+        str
+
+        """
+
+        if ui is None:
+            ui = FancyStringifier()
+
+        output = super(MfccStaticExtractor, self).to_string(ui=ui, indent=indent)
+
+        output += ui.line(field='MFCC', indent=indent) + '\n'
+        output += ui.data(indent=indent + 2, field='n_mels', value=self.n_mels) + '\n'
+        output += ui.data(indent=indent + 2, field='fmin', value=self.fmin) + '\n'
+        output += ui.data(indent=indent + 2, field='fmax', value=self.fmax) + '\n'
+        output += ui.data(indent=indent + 2, field='normalize_mel_bands', value=self.normalize_mel_bands) + '\n'
+        output += ui.data(indent=indent + 2, field='htk', value=self.htk) + '\n'
+        output += ui.data(indent=indent + 2, field='n_mfcc', value=self.n_mfcc) + '\n'
 
         return output
 
@@ -957,13 +1037,32 @@ class MfccDeltaExtractor(MfccStaticExtractor):
 
         self.width = width
 
-    def __str__(self):
-        ui = FancyStringifier()
-        output = super(MfccDeltaExtractor, self).__str__()
+    def to_string(self, ui=None, indent=0):
+        """Get container information in a string
 
-        output += ui.line(field='Delta') + '\n'
-        output += ui.data(indent=4, field='width', value=self.width) + '\n'
+        Parameters
+        ----------
+        ui : FancyStringifier or FancyHTMLStringifier
+            Stringifier class
+            Default value FancyStringifier
 
+        indent : int
+            Amount of indention used
+            Default value 0
+
+        Returns
+        -------
+        str
+
+        """
+
+        if ui is None:
+            ui = FancyStringifier()
+
+        output = super(MfccDeltaExtractor, self).to_string(ui=ui, indent=indent)
+
+        output += ui.line(field='Delta', indent=indent) + '\n'
+        output += ui.data(indent=indent + 2, field='width', value=self.width) + '\n'
         return output
 
     def extract(self, y):
@@ -1093,13 +1192,32 @@ class MfccAccelerationExtractor(MfccStaticExtractor):
 
         self.width = width
 
-    def __str__(self):
-        ui = FancyStringifier()
-        output = super(MfccAccelerationExtractor, self).__str__()
+    def to_string(self, ui=None, indent=0):
+        """Get container information in a string
 
-        output += ui.line(field='Acceleration') + '\n'
-        output += ui.data(indent=4, field='width', value=self.width) + '\n'
+        Parameters
+        ----------
+        ui : FancyStringifier or FancyHTMLStringifier
+            Stringifier class
+            Default value FancyStringifier
 
+        indent : int
+            Amount of indention used
+            Default value 0
+
+        Returns
+        -------
+        str
+
+        """
+
+        if ui is None:
+            ui = FancyStringifier()
+
+        output = super(MfccAccelerationExtractor, self).to_string(ui=ui, indent=indent)
+
+        output += ui.line(field='Acceleration', indent=indent) + '\n'
+        output += ui.data(indent=indent + 2, field='width', value=self.width) + '\n'
         return output
 
     def extract(self, y):
@@ -1174,12 +1292,32 @@ class ZeroCrossingRateExtractor(FeatureExtractor):
 
         self.center = center
 
-    def __str__(self):
-        ui = FancyStringifier()
-        output = super(ZeroCrossingRateExtractor, self).__str__()
+    def to_string(self, ui=None, indent=0):
+        """Get container information in a string
 
-        output += ui.line(field='ZCR') + '\n'
-        output += ui.data(indent=4, field='center', value=self.center) + '\n'
+        Parameters
+        ----------
+        ui : FancyStringifier or FancyHTMLStringifier
+            Stringifier class
+            Default value FancyStringifier
+
+        indent : int
+            Amount of indention used
+            Default value 0
+
+        Returns
+        -------
+        str
+
+        """
+
+        if ui is None:
+            ui = FancyStringifier()
+
+        output = super(ZeroCrossingRateExtractor, self).to_string(ui=ui, indent=indent)
+
+        output += ui.line(field='ZCR', indent=indent) + '\n'
+        output += ui.data(indent=indent + 2, field='center', value=self.center) + '\n'
 
         return output
 
@@ -1296,12 +1434,32 @@ class RMSEnergyExtractor(SpectralFeatureExtractor):
         self.spectrogram_type = 'magnitude'
         self.center = center
 
-    def __str__(self):
-        ui = FancyStringifier()
-        output = super(RMSEnergyExtractor, self).__str__()
+    def to_string(self, ui=None, indent=0):
+        """Get container information in a string
 
-        output += ui.line(field='RMSEnergy') + '\n'
-        output += ui.data(indent=4, field='center', value=self.center) + '\n'
+        Parameters
+        ----------
+        ui : FancyStringifier or FancyHTMLStringifier
+            Stringifier class
+            Default value FancyStringifier
+
+        indent : int
+            Amount of indention used
+            Default value 0
+
+        Returns
+        -------
+        str
+
+        """
+
+        if ui is None:
+            ui = FancyStringifier()
+
+        output = super(RMSEnergyExtractor, self).to_string(ui=ui, indent=indent)
+
+        output += ui.line(field='RMSEnergy', indent=indent) + '\n'
+        output += ui.data(indent=indent + 2, field='center', value=self.center) + '\n'
 
         return output
 
@@ -1421,12 +1579,32 @@ class SpectralCentroidExtractor(SpectralFeatureExtractor):
         self.spectrogram_type = 'magnitude'
         self.center = center
 
-    def __str__(self):
-        ui = FancyStringifier()
-        output = super(SpectralCentroidExtractor, self).__str__()
+    def to_string(self, ui=None, indent=0):
+        """Get container information in a string
 
-        output += ui.line(field='SpectralCentroid') + '\n'
-        output += ui.data(indent=4, field='center', value=self.center) + '\n'
+        Parameters
+        ----------
+        ui : FancyStringifier or FancyHTMLStringifier
+            Stringifier class
+            Default value FancyStringifier
+
+        indent : int
+            Amount of indention used
+            Default value 0
+
+        Returns
+        -------
+        str
+
+        """
+
+        if ui is None:
+            ui = FancyStringifier()
+
+        output = super(SpectralCentroidExtractor, self).to_string(ui=ui, indent=indent)
+
+        output += ui.line(field='SpectralCentroid', indent=indent) + '\n'
+        output += ui.data(indent=indent + 2, field='center', value=self.center) + '\n'
 
         return output
 

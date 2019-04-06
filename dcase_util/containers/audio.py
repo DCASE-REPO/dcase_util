@@ -9,12 +9,11 @@ import soundfile
 import tempfile
 import numpy
 import librosa
-from tqdm import tqdm
 from six.moves.http_client import BadStatusLine
 
 from dcase_util.containers import ContainerMixin, FileMixin
-from dcase_util.ui.ui import FancyStringifier
-from dcase_util.utils import FileFormat, is_int
+from dcase_util.ui.ui import FancyStringifier, FancyHTMLStringifier
+from dcase_util.utils import FileFormat, Path, is_int, is_jupyter
 
 
 class AudioContainer(ContainerMixin, FileMixin):
@@ -112,69 +111,95 @@ class AudioContainer(ContainerMixin, FileMixin):
         self.focus_stop = d['_focus_stop']
         self.focus_channel = d['_focus_channel']
 
-    def __str__(self):
+    def to_string(self, ui=None, indent=0):
+        """Get container information in a string
+
+        Parameters
+        ----------
+        ui : FancyStringifier or FancyHTMLStringifier
+            Stringifier class
+            Default value FancyStringifier
+
+        indent : int
+            Amount of indent
+            Default value 0
+
+        Returns
+        -------
+        str
+
+        """
+
+        if ui is None:
+            ui = FancyStringifier()
+
         output = ''
-        ui = FancyStringifier()
-        output += ui.class_name(self.__class__.__name__) + '\n'
+        output += ui.class_name(self.__class__.__name__, indent=indent) + '\n'
         if self.filename:
             output += ui.data(
                 field='Filename',
-                value=self.filename
+                value=self.filename,
+                indent=indent
             ) + '\n'
 
             if self.filetype_info and self.filetype_info.values:
                 output += ui.data(
                     field='Format',
-                    value=self.format + ' (' + ', '.join(self.filetype_info.values()) + ')'
+                    value=self.format + ' (' + ', '.join(self.filetype_info.values()) + ')',
+                    indent=indent
                 ) + '\n'
 
             else:
-                output += ui.data(field='Format', value=self.format) + '\n'
+                output += ui.data(field='Format', value=self.format, indent=indent) + '\n'
 
             output += ui.data(
                 field='Synced',
-                value='Yes' if self.data_synced_with_file else 'No'
+                value='Yes' if self.data_synced_with_file else 'No',
+                indent=indent
             ) + '\n'
 
         output += ui.data(
             field='Sampling rate',
-            value=str(self.fs), unit='hz'
+            value=str(self.fs),
+            unit='hz',
+            indent=indent
         ) + '\n'
 
         output += ui.data(
             field='Channels',
-            value=str(self.channels)
+            value=str(self.channels),
+            indent=indent
         ) + '\n'
 
-        output += ui.line(field='Duration') + '\n'
+        output += ui.line(field='Duration', indent=indent) + '\n'
         output += ui.data(
-            indent=4,
+            indent=indent + 2,
             field='Seconds',
             value=self.duration_sec,
             unit='sec'
         ) + '\n'
 
         output += ui.data(
-            indent=4,
+            indent=indent + 2,
             field='Milliseconds',
             value=self.duration_ms,
             unit='ms'
         ) + '\n'
 
         output += ui.data(
-            indent=4,
+            indent=indent + 2,
             field='Samples',
             value=self.duration_samples,
             unit='samples'
         ) + '\n'
 
         if self._focus_channel is not None or self._focus_start is not None or self._focus_stop is not None:
-            output += ui.line(field='Focus segment') + '\n'
+            output += ui.line(field='Focus segment', indent=indent) + '\n'
             if self.focus_channel is not None:
                 if self.channels == 2:
                     if self._focus_channel == 0:
                         output += ui.data(
-                            indent=4,
+                            indent=indent + 4,
                             field='Channel',
                             value='{channel} [{label}]'.format(
                                 channel=self._focus_channel,
@@ -184,7 +209,7 @@ class AudioContainer(ContainerMixin, FileMixin):
 
                     elif self._focus_channel == 1:
                         output += ui.data(
-                            indent=4,
+                            indent=indent + 4,
                             field='Channel',
                             value='{channel} [{label}]'.format(
                                 channel=self._focus_channel,
@@ -194,62 +219,62 @@ class AudioContainer(ContainerMixin, FileMixin):
 
                 else:
                     output += ui.data(
-                        indent=4,
+                        indent=indent + 4,
                         field='Channel',
                         value=self._focus_channel
                     ) + '\n'
 
             output += ui.line(
-                indent=4,
+                indent=indent + 2,
                 field='Duration'
             ) + '\n'
 
             output += ui.data(
-                indent=6,
+                indent=indent + 4,
                 field='Seconds',
                 value=self.focus_stop_seconds - self.focus_start_seconds,
                 unit='sec'
             ) + '\n'
 
             output += ui.data(
-                indent=6,
+                indent=indent + 4,
                 field='Samples',
                 value=self.focus_stop_samples - self.focus_start_samples,
                 unit='sec'
             ) + '\n'
 
             output += ui.line(
-                indent=4,
+                indent=indent + 2,
                 field='Start point'
             ) + '\n'
 
             output += ui.data(
-                indent=6,
+                indent=indent + 4,
                 field='Seconds',
                 value=self.focus_start_seconds,
                 unit='sec') + '\n'
 
             output += ui.data(
-                indent=6,
+                indent=indent + 4,
                 field='Samples',
                 value=self.focus_start_samples,
                 unit='samples'
             ) + '\n'
 
             output += ui.line(
-                indent=4,
+                indent=indent + 2,
                 field='Stop point'
             ) + '\n'
 
             output += ui.data(
-                indent=6,
+                indent=indent + 4,
                 field='Seconds',
                 value=self.focus_stop_seconds,
                 unit='sec'
             ) + '\n'
 
             output += ui.data(
-                indent=6,
+                indent=indent + 4,
                 field='Samples',
                 value=self.focus_stop_samples,
                 unit='samples'
@@ -1013,6 +1038,11 @@ class AudioContainer(ContainerMixin, FileMixin):
         self
 
         """
+
+        if is_jupyter():
+            from tqdm import tqdm_notebook as tqdm
+        else:
+            from tqdm import tqdm
 
         def progress_hook(t):
             """Wraps tqdm instance. Don't forget to close() or __exit__()

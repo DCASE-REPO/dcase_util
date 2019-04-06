@@ -12,12 +12,10 @@ import numpy
 import tempfile
 import copy
 import importlib
-from tqdm import tqdm
 
 from dcase_util.containers import DictContainer, ListDictContainer, TextContainer, MetaDataContainer
 from dcase_util.files import RemoteFile, RemotePackage, File, Package
-from dcase_util.utils import get_byte_string, setup_logging, Path
-from dcase_util.utils import get_parameter_hash, get_class_inheritors
+from dcase_util.utils import get_byte_string, setup_logging, Path, is_jupyter, get_parameter_hash, get_class_inheritors
 from dcase_util.ui import FancyLogger, FancyStringifier
 
 
@@ -1044,6 +1042,11 @@ class Dataset(object):
 
         """
 
+        if is_jupyter():
+            from tqdm import tqdm_notebook as tqdm
+        else:
+            from tqdm import tqdm
+
         # Create the dataset path if does not exist
         Path().makedirs(path=self.local_path)
 
@@ -1080,6 +1083,11 @@ class Dataset(object):
         self
 
         """
+
+        if is_jupyter():
+            from tqdm import tqdm_notebook as tqdm
+        else:
+            from tqdm import tqdm
 
         item_progress = tqdm(
             self.package_list,
@@ -2106,6 +2114,11 @@ class AcousticSceneDataset(Dataset):
 
         """
 
+        if is_jupyter():
+            from tqdm import tqdm_notebook as tqdm
+        else:
+            from tqdm import tqdm
+
         random.seed(seed)
 
         if training_meta is None:
@@ -3021,6 +3034,11 @@ class SoundEventDataset(Dataset):
 
         """
 
+        if is_jupyter():
+            from tqdm import tqdm_notebook as tqdm
+        else:
+            from tqdm import tqdm
+
         from sklearn.metrics import mean_absolute_error
 
         random.seed(seed)
@@ -3460,6 +3478,11 @@ class AudioTaggingDataset(Dataset):
             List containing all files assigned for validation
 
         """
+
+        if is_jupyter():
+            from tqdm import tqdm_notebook as tqdm
+        else:
+            from tqdm import tqdm
 
         from sklearn.metrics import mean_absolute_error
 
