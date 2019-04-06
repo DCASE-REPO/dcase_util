@@ -1107,8 +1107,15 @@ class DataMatrix2DContainer(DataContainer):
 
         return self
 
-    def plot(self):
+    def plot(self, show_color_bar=False):
         """Visualize data matrix.
+
+        Parameters
+        ----------
+
+        show_color_bar : bool
+            Show color bar next to plot.
+            Default value False
 
         Returns
         -------
@@ -1118,7 +1125,7 @@ class DataMatrix2DContainer(DataContainer):
 
         from librosa.display import specshow
         import matplotlib.pyplot as plt
-        plt.figure()
+        plt.figure(figsize=(10, 5))
 
         data = self.get_focused()
         if self.time_axis == 0:
@@ -1140,8 +1147,9 @@ class DataMatrix2DContainer(DataContainer):
             hop_length=1
         )
 
-        # Add color bar
-        plt.colorbar()
+        if show_color_bar:
+            # Add color bar
+            plt.colorbar()
 
         # Add filename to first subplot
         if hasattr(self, 'filename') and self.filename:
@@ -1422,10 +1430,10 @@ class DataMatrix3DContainer(DataMatrix2DContainer):
             from librosa.display import specshow
             import matplotlib.pyplot as plt
             if plot:
-                plt.figure()
+                plt.figure(figsize=(10, 10))
 
             for sequence_id in range(data.shape[self.sequence_axis]):
-                plt.subplot(data.shape[self.sequence_axis], 1, sequence_id + 1)
+                ax = plt.subplot(data.shape[self.sequence_axis], 1, sequence_id + 1)
                 current_data = data[:, :, sequence_id]
                 if self.time_axis == 0:
                     # Make sure time is on x-axis
@@ -1435,6 +1443,7 @@ class DataMatrix3DContainer(DataMatrix2DContainer):
                 if self.time_resolution:
                     sr = int(1.0 / float(self.time_resolution))
                     x_axis = 'time'
+
                 else:
                     sr = 1.0
                     x_axis = None
@@ -1452,16 +1461,20 @@ class DataMatrix3DContainer(DataMatrix2DContainer):
                     # Add color bar
                     plt.colorbar()
 
-            # Add filename to first subplot
-            if show_filename and hasattr(self, 'filename') and self.filename:
-                plt.title(self.filename)
+                if sequence_id < data.shape[self.sequence_axis]-1:
+                    ax.axes.get_xaxis().set_visible(False)
+
+                # Add filename to first subplot
+                if show_filename and hasattr(self, 'filename') and self.filename:
+                    plt.title(self.filename)
+                    show_filename = False
 
             if plot:
                 plt.tight_layout()
                 plt.show()
 
         else:
-            # TODO find method visualize deep matrices.
+            # TODO find method to visualize deep matrices.
             message = '{name}: Matrix is too deep, plot-method not yet implemented.'.format(
                 name=self.__class__.__name__
             )
@@ -1779,7 +1792,7 @@ class DataMatrix4DContainer(DataMatrix3DContainer):
             import matplotlib.pyplot as plt
 
             if plot:
-                plt.figure()
+                plt.figure(figsize=(10, 5))
 
             rows_count = data.shape[self.channel_axis]
             for sequence_id in range(data.shape[self.sequence_axis]):
@@ -1802,6 +1815,7 @@ class DataMatrix4DContainer(DataMatrix3DContainer):
                             data.shape[self.sequence_axis],
                             index
                         )
+
                     if self.sequence_axis == 0 and self.channel_axis == 1:
                         current_data = data[sequence_id, channel_id, :, :]
 
@@ -1817,6 +1831,14 @@ class DataMatrix4DContainer(DataMatrix3DContainer):
                     elif self.sequence_axis == 2 and self.channel_axis == 3:
                         current_data = data[:, :, sequence_id, channel_id]
 
+                    else:
+                        message = '{name}: Unknown data axes'.format(
+                            name=self.__class__.__name__
+                        )
+
+                        self.logger.exception(message)
+                        raise ValueError(message)
+
                     # Plot feature matrix
                     ax = specshow(
                         data=current_data,
@@ -1824,14 +1846,15 @@ class DataMatrix4DContainer(DataMatrix3DContainer):
                         sr=1,
                         hop_length=1
                     )
+
                     if rows_count == 1:
                         if channel_id != data.shape[self.channel_axis] - 1:
                             ax.tick_params(
                                 axis='x',
                                 which='both',
-                                bottom='off',
-                                top='off',
-                                labelbottom='off'
+                                bottom=False,
+                                top=False,
+                                labelbottom=False
                             )
                             plt.xlabel('')
                     else:
@@ -1839,9 +1862,9 @@ class DataMatrix4DContainer(DataMatrix3DContainer):
                             ax.tick_params(
                                 axis='x',
                                 which='both',
-                                bottom='off',
-                                top='off',
-                                labelbottom='off'
+                                bottom=False,
+                                top=False,
+                                labelbottom=False
                             )
                             plt.xlabel('')
 
@@ -2011,7 +2034,7 @@ class BinaryMatrix2DContainer(DataMatrix2DContainer):
             binary_matrix = binary_matrix.T
 
         if binary_matrix is not None and data_container is not None:
-            plt.subplots(2, 1)
+            plt.subplots(2, 1, figsize=(10, 5))
 
             # Features
             ax1 = plt.subplot(2, 1, 1)
@@ -2043,7 +2066,7 @@ class BinaryMatrix2DContainer(DataMatrix2DContainer):
             plt.ylabel('Data')
 
         elif binary_matrix is not None and data_container is None:
-            plt.subplots(1, 1)
+            plt.subplots(1, 1, figsize=(10, 5))
             ax = plt.subplot(1, 1, 1)
             # Binary matrix
             ax.yaxis.set_label_position("right")
@@ -2055,9 +2078,10 @@ class BinaryMatrix2DContainer(DataMatrix2DContainer):
                 cmap=plt.cm.gray_r
             )
 
-            y_ticks = numpy.arange(0, len(self.label_list)) + 0.5
-            ax.set_yticks(y_ticks)
-            ax.set_yticklabels(self.label_list)
+            if self.label_list:
+                y_ticks = numpy.arange(0, len(self.label_list)) + 0.5
+                ax.set_yticks(y_ticks)
+                ax.set_yticklabels(self.label_list)
 
         plt.show()
 
