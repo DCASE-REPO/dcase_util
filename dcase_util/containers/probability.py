@@ -865,8 +865,8 @@ class ProbabilityContainer(ListDictContainer):
         elif file_list:
             matrix = numpy.ones((len(label_list), len(file_list))) * default_value
 
-            for file_id, file in enumerate(file_list):
-                current_column = data.filter(filename=file)
+            for file_id, filename in enumerate(file_list):
+                current_column = data.filter(filename=filename)
                 for item in current_column:
                     if item.label in label_list:
                         matrix[label_list.index(item.label), file_id] = item.probability
