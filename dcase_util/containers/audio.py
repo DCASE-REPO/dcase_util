@@ -1698,7 +1698,9 @@ class AudioContainer(ContainerMixin, FileMixin):
         import matplotlib.pyplot as plt
         from librosa.display import waveplot
         if plot:
-            plt.figure()
+            plt.figure(figsize=(10, 5))
+
+        title = Path(self.filename).shorten()
 
         if self.channels > 1:
             # Plotting for multi-channel audio
@@ -1722,7 +1724,7 @@ class AudioContainer(ContainerMixin, FileMixin):
                 plt.ylabel('Channel {channel:d}'.format(channel=channel_id))
                 if channel_id == 0 and show_filename:
                     if self.filename:
-                        plt.title(self.filename)
+                        plt.title(title)
 
                 if channel_id+1 != self.channels:
                     plt.xlabel('')
@@ -1742,7 +1744,7 @@ class AudioContainer(ContainerMixin, FileMixin):
             plt.ylabel('Channel {channel:d}'.format(channel=0))
 
             if self.filename and show_filename:
-                plt.title(self.filename)
+                plt.title(title)
 
         if plot:
             plt.show()
@@ -1791,7 +1793,9 @@ class AudioContainer(ContainerMixin, FileMixin):
         import matplotlib.pyplot as plt
 
         if plot:
-            plt.figure()
+            plt.figure(figsize=(10, 5))
+
+        title = Path(self.filename).shorten()
 
         if self.channels > 1:
             for channel_id, channel_data in enumerate(self.get_focused()):
@@ -1848,7 +1852,7 @@ class AudioContainer(ContainerMixin, FileMixin):
 
                 plt.ylabel('Channel {channel:d}'.format(channel=channel_id))
                 if channel_id == 0 and self.filename:
-                    plt.title(self.filename)
+                    plt.title(title)
 
         else:
             channel_id = 0
@@ -1910,7 +1914,7 @@ class AudioContainer(ContainerMixin, FileMixin):
 
             plt.ylabel('Channel {channel:d}'.format(channel=channel_id))
             if show_filename and channel_id == 0:
-                plt.title(self.filename)
+                plt.title(title)
 
         if plot:
             plt.show()
