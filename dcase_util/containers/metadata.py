@@ -306,7 +306,8 @@ class MetaDataItem(dict):
         fields = list(self.keys())
 
         # Select only valid fields
-        valid_fields = ['event_label', 'filename', 'offset', 'onset', 'scene_label', 'identifier', 'source_label', 'tags']
+        valid_fields = ['event_label', 'filename', 'offset', 'onset',
+                        'scene_label', 'identifier', 'source_label', 'tags']
         fields = list(set(fields).intersection(valid_fields))
         fields.sort()
 
@@ -2185,6 +2186,11 @@ class MetaDataContainer(ListDictContainer):
             Event labels to be taken into account. If none given, all events are considered.
             Default value None
 
+        duration_list : dict
+            Dictionary where filename is a key and value is the total duration of the file.
+            If none given, max event offset is used to get file length.
+            Default value None
+
         Returns
         -------
         MetaDataContainer
@@ -2641,6 +2647,10 @@ class MetaDataContainer(ListDictContainer):
 
         process_parameters : dict, optional
             Parameters for the process method of the Processor
+            Default value None
+
+        preprocessing_callbacks : list of dicts
+            Callbacks used for preprocessing
             Default value None
 
         input_type : ProcessingChainItemType
