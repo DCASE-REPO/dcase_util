@@ -727,10 +727,31 @@ class DataContainer(ObjectContainer):
         self
 
         """
-
         import matplotlib.pyplot as plt
-        plt.figure()
-        plt.plot(self.get_focused())
+        from librosa.core import frames_to_time
+        from librosa.display import TimeFormatter
+        plt.figure(figsize=(10, 5))
+
+        # Plot feature matrix
+        if self.time_resolution:
+            sr = int(1.0 / float(self.time_resolution))
+            x_axis = 'time'
+        else:
+            sr = 1.0
+            x_axis = None
+
+        y = self.get_focused()[0]
+        locs = frames_to_time(frames=numpy.arange(len(y)), sr=sr, hop_length=1)
+
+        plt.plot(locs, y)
+        axes = plt.gca()
+
+        axes.set_xlim([locs.min(), locs.max()])
+        if x_axis == 'time':
+            axes.xaxis.set_major_formatter(TimeFormatter(lag=False))
+            axes.xaxis.set_label_text('Time')
+        elif x_axis is None or x_axis in ['off', 'none']:
+            axes.set_xticks([])
 
         # Add filename to first subplot
         if self.filename:
