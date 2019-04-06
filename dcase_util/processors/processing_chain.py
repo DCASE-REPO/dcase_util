@@ -306,17 +306,22 @@ class ProcessingChain(ListDictContainer):
 
         init_parameters : dict
             Processor initialization parameters
+            Default value None
 
         process_parameters : dict
             Parameters for the process method
+            Default value None
 
         preprocessing_callbacks : list of dicts
+            Default value None
 
         input_type : ProcessingChainItemType
             Input data type of the processor
+            Default value None
 
         output_type : ProcessingChainItemType
             Output data type of the processor
+            Default value None
 
         Returns
         -------

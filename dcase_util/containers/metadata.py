@@ -1531,7 +1531,8 @@ class MetaDataContainer(ListDictContainer):
             Default value None
 
         fields : list of str
-            Fields in correct order, if none given all field in alphabetical order will be outputted. Used only for CSV formatted files.
+            Fields in correct order, if none given all field in alphabetical order will be outputted.
+            Used only for CSV formatted files.
             Default value None
 
         csv_header : bool

@@ -40,6 +40,7 @@ def feature_extractor_list():
 
     return output
 
+
 def feature_extractor_factory(feature_extractor_label, **kwargs):
     """Function to get correct feature extractor class instance based on extractor label or class name.
 

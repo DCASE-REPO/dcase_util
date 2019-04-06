@@ -178,7 +178,6 @@ class ProbabilityItem(dict):
     def index(self, value):
         self['index'] = int(value)
 
-
     @property
     def id(self):
         """Unique item identifier
@@ -439,7 +438,8 @@ class ProbabilityContainer(ListDictContainer):
             Default value None
 
         delimiter : str, optional
-            Forced data delimiter for csv format. If None given, automatic delimiter sniffer used. Use this when sniffer does not work.
+            Forced data delimiter for csv format. If None given, automatic delimiter sniffer used.
+            Use this when sniffer does not work.
             Default value None
 
         decimal : str
@@ -583,7 +583,6 @@ class ProbabilityContainer(ListDictContainer):
                     f.close()
 
                 self.update(data=data)
-                #list.__init__(self, data)
 
             elif self.format == FileFormat.CSV:
                 if fields is None and csv_header is None:
@@ -651,7 +650,8 @@ class ProbabilityContainer(ListDictContainer):
             Default value None
 
         fields : list of str
-            Fields in correct order, if none given all field in alphabetical order will be outputted. Used only for CSV formatted files.
+            Fields in correct order, if none given all field in alphabetical order will be outputted.
+            Used only for CSV formatted files.
             Default value None
 
         csv_header : bool
@@ -744,7 +744,8 @@ class ProbabilityContainer(ListDictContainer):
 
     def as_matrix(self, label_list=None, filename=None, file_list=None, default_value=0):
         """Get probabilities as data matrix.
-        If items has index defined, index is used to order columns. If items has filename, filename is used to order columns.
+        If items has index defined, index is used to order columns.
+        If items has filename, filename is used to order columns.
 
         Parameters
         ----------

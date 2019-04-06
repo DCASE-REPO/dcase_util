@@ -129,6 +129,18 @@ def check_pkg_resources(package_requirement, logger=None):
 
 
 def is_int(value):
+    """Check if given value is integer
+
+    Parameters
+    ----------
+    value : variable
+
+    Returns
+    -------
+    bool
+
+    """
+
     if value is not None:
         try:
             int(value)
@@ -142,6 +154,18 @@ def is_int(value):
 
 
 def is_float(value):
+    """Check if given value is float
+
+    Parameters
+    ----------
+    value : variable
+
+    Returns
+    -------
+    bool
+
+    """
+
     if value is not None:
         try:
             float(value)
@@ -252,7 +276,8 @@ class VectorRecipeParser(object):
                     detail_parts = label.split(self.delimiters['detail'])
                     label = detail_parts[0].strip()
 
-                    # Default values, used when only extractor is defined e.g. [extractor (string)]; [extractor (string)]
+                    # Default values, used when only extractor is
+                    # defined e.g. [extractor (string)]; [extractor (string)]
                     vector_index_structure = {
                         'stream': self.default_stream,
                         'selection': False,
@@ -276,6 +301,7 @@ class VectorRecipeParser(object):
                             vector_index_structure['stop'] = int(vector_indexing[1].strip()) + 1
                             vector_index_structure['full'] = False
                             vector_index_structure['selection'] = False
+
                         else:
                             vector_indexing = vector_indexing_string.split(self.delimiters['vector'])
                             if len(vector_indexing) > 1:
@@ -283,6 +309,7 @@ class VectorRecipeParser(object):
                                 vector_index_structure['full'] = False
                                 vector_index_structure['selection'] = True
                                 vector_index_structure['vector'] = a
+
                             else:
                                 vector_index_structure['stream'] = int(vector_indexing[0])
                                 vector_index_structure['full'] = True
@@ -292,6 +319,7 @@ class VectorRecipeParser(object):
                             'label': label,
                             'vector-index': vector_index_structure,
                         }
+
                     else:
                         current_data = {
                             'label': label,

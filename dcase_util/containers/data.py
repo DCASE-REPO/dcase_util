@@ -1778,7 +1778,7 @@ class DataMatrix4DContainer(DataMatrix3DContainer):
                 plt.show()
 
         else:
-            # TODO find method visualize deep matrices.
+            # TODO find method to visualize deep matrices.
             message = '{name}: Matrix is too deep, plot-method not yet implemented.'.format(
                 name=self.__class__.__name__
             )
@@ -2347,6 +2347,10 @@ class DataRepository(RepositoryContainer):
 
         process_parameters : dict, optional
             Parameters for the process method of the Processor
+            Default value None
+
+        preprocessing_callbacks : list of dicts
+            Callbacks used for preprocessing
             Default value None
 
         input_type : ProcessingChainItemType

@@ -467,6 +467,7 @@ class PackageMixin(object):
                             prefix = prefix_
 
                         prefix = '/'.join(prefix) + '/'
+
                     offset = len(prefix)
 
                 # Start extraction
@@ -563,7 +564,8 @@ class PackageMixin(object):
             Default value None
 
         file_list : list of dict
-            List of files to be included to the package. Item format {'source': 'file1.txt', 'target': 'folder1/file1.txt'}.
+            List of files to be included to the package.
+            Item format {'source': 'file1.txt', 'target': 'folder1/file1.txt'}.
             Default value None
 
         size_limit : int
@@ -657,6 +659,7 @@ class PackageMixin(object):
         else:
             base, extension = os.path.splitext(self.filename)
             filename_template = base + '.{package_id}' + extension
+            package = None
 
             # Initialize package
             package_id = 1

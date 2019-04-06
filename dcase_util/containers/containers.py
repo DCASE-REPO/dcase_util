@@ -1148,7 +1148,8 @@ class ListDictContainer(ListContainer):
 
         return None
 
-    def load(self, filename=None, fields=None, csv_header=True, file_format=None, delimiter=None, convert_numeric_fields=True):
+    def load(self, filename=None, fields=None, csv_header=True, file_format=None,
+             delimiter=None, convert_numeric_fields=True):
         """Load file
 
         Parameters
@@ -1166,11 +1167,13 @@ class ListDictContainer(ListContainer):
             Default value True
 
         file_format : FileFormat, optional
-            Forced file format, use this when there is a miss-match between file extension and file format.
+            Forced file format, use this when there is
+            a miss-match between file extension and file format.
             Default value None
 
         delimiter : str, optional
-            Forced data delimiter for csv format. If None given, automatic delimiter sniffer used. Use this when sniffer does not work.
+            Forced data delimiter for csv format. If None given,
+            automatic delimiter sniffer used. Use this when sniffer does not work.
             Default value None
 
         convert_numeric_fields : bool, optional
