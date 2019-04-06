@@ -156,7 +156,8 @@ class FancyStringifier(object):
 
         return '\n'.join(lines)
 
-    def formatted_value(self, value, data_type='auto'):
+    @staticmethod
+    def formatted_value(value, data_type='auto'):
         """Format value into string.
 
         Valid data_type parameters:
