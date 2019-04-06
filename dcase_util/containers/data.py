@@ -406,6 +406,10 @@ class DataContainer(ObjectContainer):
             Parameters for the process method of the Processor
             Default value None
 
+        preprocessing_callbacks : list of dicts
+            Callbacks used for preprocessing
+            Default value None
+
         input_type : ProcessingChainItemType
             Input data type
             Default value None
