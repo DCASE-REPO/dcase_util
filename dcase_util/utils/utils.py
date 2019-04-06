@@ -201,6 +201,7 @@ class SuppressStdoutAndStderr(object):
         self.stdout_null_file.close()
         self.stderr_null_file.close()
 
+
 class VectorRecipeParser(object):
     def __init__(self, delimiters=None, default_stream=0, **kwargs):
 
