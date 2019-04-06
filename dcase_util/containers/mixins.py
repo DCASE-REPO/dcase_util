@@ -687,11 +687,11 @@ class PackageMixin(object):
             files = Path(path=path).file_list(recursive=True)
             file_list = []
 
-            for file in files:
+            for filename in files:
                 file_list.append(
                     {
-                        'source': file,
-                        'target': os.path.relpath(file)
+                        'source': filename,
+                        'target': os.path.relpath(filename)
                     }
                 )
 
