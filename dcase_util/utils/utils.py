@@ -178,6 +178,38 @@ def is_float(value):
         return False
 
 
+def is_jupyter():
+    """Check if code is run in Jupyter (Jupyter notebook, Jupyter console, or ipython qtconsole).
+
+    Returns
+    -------
+    bool
+
+    """
+
+    try:
+        from IPython import get_ipython
+        shell = get_ipython().__class__.__name__
+        if shell == 'ZMQInteractiveShell':
+            # Jupyter notebook, Jupyter console, or qtconsole
+            return True
+
+        elif shell == 'google.colab._shell':
+            # Google Colab
+            return True
+
+        elif shell == 'TerminalInteractiveShell':
+            # Normal terminal console with IPython
+            return False
+
+        else:
+            return False
+
+    except NameError:
+        # Normal python interpreter
+        return False
+
+
 class SuppressStdoutAndStderr(object):
     """Context manager to suppress STDOUT and STDERR
 
