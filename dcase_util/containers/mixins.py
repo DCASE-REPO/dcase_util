@@ -9,9 +9,8 @@ import logging
 import csv
 import zipfile
 import tarfile
-from tqdm import tqdm
-from dcase_util.utils import setup_logging, FileFormat, Path, get_file_hash
-from dcase_util.ui import FancyLogger
+from dcase_util.utils import setup_logging, FileFormat, Path, get_file_hash, is_jupyter
+from dcase_util.ui import FancyLogger, FancyStringifier, FancyHTMLStringifier
 
 
 class ContainerMixin(object):
@@ -36,6 +35,12 @@ class ContainerMixin(object):
     def __setstate__(self, d):
         self.ui = FancyLogger()
 
+    def __str__(self):
+        return self.to_string()
+
+    def _repr_html_(self):
+        return self.to_html()
+
     @property
     def logger(self):
         """Logger instance"""
@@ -45,8 +50,24 @@ class ContainerMixin(object):
             setup_logging()
         return logger
 
-    def show(self):
+    def show(self, mode='auto', indent=0, visualize=False):
         """Print container content
+
+        If called inside Jupyter notebook HTML formatted version is shown.
+
+        Parameters
+        ----------
+        mode : str
+            Output type, possible values ['auto', 'print', 'html']. 'html' will work only in Jupyter notebook
+            Default value 'auto'
+
+        indent : int
+            Amount of indent
+            Default value 0
+
+        visualize : bool
+            Visualize container data if class has plot method
+            Default value False
 
         Returns
         -------
@@ -54,7 +75,73 @@ class ContainerMixin(object):
 
         """
 
-        print(self)
+        if mode == 'auto' and is_jupyter():
+            mode = 'html'
+
+        else:
+            mode = 'print'
+
+        if mode == 'html' and is_jupyter():
+            from IPython.core.display import display, HTML
+            display(
+                HTML(
+                    self.to_html(indent=indent)
+                )
+            )
+
+            if visualize and hasattr(self, 'plot'):
+                # If class has plot method use it to visualize the content
+                self.plot()
+
+        elif mode == 'print':
+            print(self.to_string(indent=indent))
+
+    def to_string(self, ui=None, indent=0):
+        """Get container information in a string
+
+        Parameters
+        ----------
+        ui : FancyStringifier or FancyHTMLStringifier
+            Stringifier class
+            Default value FancyStringifier
+
+        indent : int
+            Amount of indent
+            Default value 0
+
+        Returns
+        -------
+        str
+
+        """
+
+        if ui is None:
+            ui = FancyStringifier()
+
+        output = ''
+        output += ui.class_name(self.__class__.__name__, indent=indent) + '\n'
+
+        if hasattr(self, 'filename') and self.filename:
+            output += ui.data(field='filename', value=self.filename, indent=indent) + '\n'
+
+        return output
+
+    def to_html(self, indent=0):
+        """Get container information in a HTML formatted string
+
+        Parameters
+        ----------
+        indent : int
+            Amount of indent
+            Default value 0
+
+        Returns
+        -------
+        str
+
+        """
+
+        return self.to_string(ui=FancyHTMLStringifier(), indent=indent)
 
     def log(self, level='info'):
         """Log container content
@@ -445,10 +532,17 @@ class PackageMixin(object):
 
         """
 
+        if is_jupyter():
+            from tqdm import tqdm_notebook as tqdm
+        else:
+            from tqdm import tqdm
+
         if target_path is None:
             target_path = os.path.split(self.filename)[0]
 
         Path(target_path).create()
+
+        offset = 0
 
         if self.format == FileFormat.ZIP:
             with zipfile.ZipFile(self.filename, "r") as z:
@@ -578,6 +672,11 @@ class PackageMixin(object):
             Filenames of created packages
 
         """
+
+        if is_jupyter():
+            from tqdm import tqdm_notebook as tqdm
+        else:
+            from tqdm import tqdm
 
         if filename is not None:
             self.filename = filename
