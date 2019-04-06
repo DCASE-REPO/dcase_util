@@ -1828,7 +1828,7 @@ class MetaDataContainer(ListDictContainer):
             if sys.version_info[0] == 2:
                 f = open(self.filename, 'wbt')
 
-            elif sys.version_info[0] == 3:
+            elif sys.version_info[0] >= 3:
                 f = open(self.filename, 'wt', newline='')
 
             try:
@@ -1851,7 +1851,7 @@ class MetaDataContainer(ListDictContainer):
             if sys.version_info[0] == 2:
                 csv_file = open(self.filename, 'wb')
 
-            elif sys.version_info[0] == 3:
+            elif sys.version_info[0] >= 3:
                 csv_file = open(self.filename, 'w', newline='')
 
             try:
