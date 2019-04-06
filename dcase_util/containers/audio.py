@@ -1807,6 +1807,14 @@ class AudioContainer(ContainerMixin, FileMixin):
                 elif spec_type.startswith('cqt'):
                     D = librosa.core.amplitude_to_db(librosa.cqt(channel_data.ravel(), sr=self.fs), ref=numpy.max)
 
+                else:
+                    message = '{name}: Unknown spec_type given for plot_spec'.format(
+                        name=self.__class__.__name__
+                    )
+
+                    self.logger.exception(message)
+                    raise ValueError(message)
+
                 if spec_type == 'linear':
                     specshow(
                         data=D,
@@ -1868,6 +1876,14 @@ class AudioContainer(ContainerMixin, FileMixin):
                     librosa.cqt(self.get_focused().ravel(), sr=self.fs),
                     ref=numpy.max
                 )
+
+            else:
+                message = '{name}: Unknown spec_type given'.format(
+                    name=self.__class__.__name__
+                )
+
+                self.logger.exception(message)
+                raise ValueError(message)
 
             if spec_type == 'linear':
                 specshow(
