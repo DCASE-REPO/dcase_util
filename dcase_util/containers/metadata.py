@@ -1272,6 +1272,20 @@ class MetaDataContainer(ListDictContainer):
                                             [FieldValidator.AUDIOFILE,
                                              FieldValidator.EMPTY],
                                             [FieldValidator.DATAFILE,
+                                             FieldValidator.EMPTY],
+                                            [FieldValidator.AUDIOFILE,
+                                             FieldValidator.EMPTY,
+                                             FieldValidator.EMPTY],
+                                            [FieldValidator.DATAFILE,
+                                             FieldValidator.EMPTY,
+                                             FieldValidator.EMPTY],
+                                            [FieldValidator.AUDIOFILE,
+                                             FieldValidator.EMPTY,
+                                             FieldValidator.EMPTY,
+                                             FieldValidator.EMPTY],
+                                            [FieldValidator.DATAFILE,
+                                             FieldValidator.EMPTY,
+                                             FieldValidator.EMPTY,
                                              FieldValidator.EMPTY]
                                         ]):
 
@@ -1293,6 +1307,25 @@ class MetaDataContainer(ListDictContainer):
                                     self.item_class({
                                         'onset': row[0],
                                         'offset': row[1]
+                                    })
+                                )
+
+                            elif validate(row_format=row_format,
+                                          valid_formats=[
+                                              [FieldValidator.AUDIOFILE,
+                                               FieldValidator.NUMBER,
+                                               FieldValidator.NUMBER],
+                                              [FieldValidator.DATAFILE,
+                                               FieldValidator.NUMBER,
+                                               FieldValidator.NUMBER]
+                                          ]):
+
+                                # Format: [file onset offset]
+                                data.append(
+                                    self.item_class({
+                                        'filename': row[0],
+                                        'onset': row[1],
+                                        'offset': row[2]
                                     })
                                 )
 
