@@ -1752,7 +1752,7 @@ class AudioContainer(ContainerMixin, FileMixin):
         return self
 
     def plot_spec(self, spec_type='log', hop_length=512, cmap='magma',
-                  show_filename=True, show_colorbar=True, plot=True):
+                  show_filename=True, show_colorbar=False, plot=True):
         """Visualize audio data as spectrogram.
 
         Parameters
@@ -1776,7 +1776,7 @@ class AudioContainer(ContainerMixin, FileMixin):
 
         show_colorbar : bool
             Show color bar next to plot.
-            Default value True
+            Default value False
 
         plot : bool
             If true, figure is shown automatically. Set to False if collecting multiple plots into same
