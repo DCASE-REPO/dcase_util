@@ -655,7 +655,7 @@ class MelExtractor(SpectralFeatureExtractor):
         output += ui.line(field='Mel', indent=indent) + '\n'
         output += ui.data(indent=indent + 2, field='n_mels', value=self.n_mels) + '\n'
         output += ui.data(indent=indent + 2, field='fmin', value=self.fmin) + '\n'
-        output += ui.data(indent=indent + 2, field='fmax', value=self.fmax) + '\n'
+        output += ui.data(indent=indent + 2, field='fmax', value=self.fmax if self.fmax is not None else 'None') + '\n'
         output += ui.data(indent=indent + 2, field='normalize_mel_bands', value=self.normalize_mel_bands) + '\n'
         output += ui.data(indent=indent + 2, field='htk', value=self.htk) + '\n'
         output += ui.data(indent=indent + 2, field='logarithmic', value=self.logarithmic) + '\n'
