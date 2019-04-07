@@ -745,8 +745,8 @@ class FancyHTMLStringifier(FancyStringifier):
         super(FancyHTMLStringifier, self).__init__()
         self.row_reset()
         self.row_highlight_flag = False
-        self.row_highlight_style = 'background-color: #F1F1F1;'
-        self.row_highlight_style_alt = 'background-color: #F9F9F9;'
+        self.row_highlight_style = 'background-color: #F1F1F166;'
+        self.row_highlight_style_alt = 'background-color: #F9F9F966;'
         self.indent_factor = 10
 
     def get_margin(self, indent=0, include_style_attribute=True):
@@ -804,7 +804,7 @@ class FancyHTMLStringifier(FancyStringifier):
         html = ''
         for line_id, line in enumerate(lines):
             html += '<div style="'
-            html += 'display:grid;overflow-y:hidden;grid-template-columns:600px;grid-gap:0px;'
+            html += 'display:grid;overflow-y:hidden;grid-template-columns:auto;grid-gap:0px;'
             html += 'margin-top:-2px;margin-bottom:-2px;padding-left:' + str(indent_px) + 'px;' + bg
             html += '">'
 
@@ -993,14 +993,12 @@ class FancyHTMLStringifier(FancyStringifier):
         value = self.formatted_value(value=value)
 
         if value is None or value == 'None':
-            value = ''
             unit = None
 
         lines = value.split('\n')
-        columns = [290, 10, 300]
+        columns = [290, 10, 'auto']
         indent_px = indent * self.indent_factor
         columns[0] -= indent_px
-        columns[2] += indent_px
 
         if self.row_highlight_flag:
             bg = self.row_highlight_style
@@ -1010,7 +1008,7 @@ class FancyHTMLStringifier(FancyStringifier):
         # Container
         html = ''
         html += '<div style="display:grid;grid-template-columns:' + str(columns[0]) + 'px ' + str(
-            columns[1]) + 'px ' + str(columns[2]) + 'px;grid-gap:0px;padding-left:' + str(indent_px) + 'px;' + bg + '">'
+            columns[1]) + 'px ' + str(columns[2]) + ';grid-gap:0px;padding-left:' + str(indent_px) + 'px;' + bg + '">'
 
         # Field
         html += '<div style="font-weight:bold;padding-left:4px;">'
@@ -1105,12 +1103,13 @@ class FancyHTMLStringifier(FancyStringifier):
                 column_width = 15 * 5
 
             grid_template_columns.append(str(column_width) + 'px')
+
         grid_template_columns = ' '.join(grid_template_columns)
 
         html += '<div style="'
         html += 'display:grid;grid-template-columns:' + grid_template_columns + ';grid-gap:0px;'
-        html += 'margin-top:-6px;margin-bottom:-6px;' + self.get_margin(indent=self.row_indent,
-                                                                        include_style_attribute=False)
+        html += 'margin-top: -6px; margin-bottom: -6px;'
+        html += self.get_margin(indent=self.row_indent, include_style_attribute=False)
         html += '">'
 
         for column_id, column_data in enumerate(args):
@@ -1186,6 +1185,7 @@ class FancyHTMLStringifier(FancyStringifier):
         for column_id in range(0, self.row_column_count):
             if column_id < len(self.row_column_widths):
                 column_width = self.row_column_widths[column_id] * 5
+
             else:
                 column_width = 15 * 5
 
@@ -1194,7 +1194,7 @@ class FancyHTMLStringifier(FancyStringifier):
         grid_template_columns = ' '.join(grid_template_columns)
         html += '<div style="'
         html += 'display:grid;grid-template-columns:' + grid_template_columns + ';grid-gap:0px;'
-        html += 'margin-top:-4px;margin-bottom:0px;height:2px;' + self.get_margin(
+        html += 'margin-top:-4px;margin-bottom:-3px;height:2px;' + self.get_margin(
             indent=self.row_indent, include_style_attribute=False
         )
         html += '">'
@@ -1328,7 +1328,7 @@ class FancyHTMLStringifier(FancyStringifier):
         thead += '</thead>'
 
         html = ''
-        html += '<table class="table table-striped table-condensed" style="width:auto;' + self.get_margin(
+        html += '<table class="table table-striped" style="font-size:110%;width:auto;' + self.get_margin(
             indent=indent,
             include_style_attribute=False
         ) + '">'
