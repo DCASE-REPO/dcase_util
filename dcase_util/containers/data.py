@@ -723,18 +723,28 @@ class DataContainer(ObjectContainer):
 
         return data[::frame_hop]
 
-    def plot(self):
+    def plot(self, figsize=None):
         """Visualize data array.
+
+        Parameters
+        ----------
+        figsize : tuple
+            Size of the figure. If None given, default size (10,5) is used.
+            Default value None
 
         Returns
         -------
         self
 
         """
+
+        if figsize is None:
+            figsize = (10, 5)
+
         import matplotlib.pyplot as plt
         from librosa.core import frames_to_time
         from librosa.display import TimeFormatter
-        plt.figure(figsize=(10, 5))
+        plt.figure(figsize=figsize)
 
         # Plot feature matrix
         if self.time_resolution:
@@ -1132,7 +1142,7 @@ class DataMatrix2DContainer(DataContainer):
 
         return self
 
-    def plot(self, show_color_bar=False):
+    def plot(self, show_color_bar=False, figsize=None):
         """Visualize data matrix.
 
         Parameters
@@ -1142,15 +1152,22 @@ class DataMatrix2DContainer(DataContainer):
             Show color bar next to plot.
             Default value False
 
+        figsize : tuple
+            Size of the figure. If None given, default size (10,5) is used.
+            Default value None
+
         Returns
         -------
         self
 
         """
 
+        if figsize is None:
+            figsize = (10, 5)
+
         from librosa.display import specshow
         import matplotlib.pyplot as plt
-        plt.figure(figsize=(10, 5))
+        plt.figure(figsize=figsize)
 
         data = self.get_focused()
         if self.time_axis == 0:
@@ -1424,7 +1441,7 @@ class DataMatrix3DContainer(DataMatrix2DContainer):
 
         return self
 
-    def plot(self, show_color_bar=False, show_filename=True, plot=True):
+    def plot(self, show_color_bar=False, show_filename=True, plot=True, figsize=None):
         """Plot data
 
         Parameters
@@ -1443,11 +1460,18 @@ class DataMatrix3DContainer(DataMatrix2DContainer):
             outside this method.
             Default value True
 
+        figsize : tuple
+            Size of the figure. If None given, default size (10,10) is used.
+            Default value None
+
         Returns
         -------
         self
 
         """
+
+        if figsize is None:
+            figsize = (10, 10)
 
         data = self.get_focused()
 
@@ -1455,7 +1479,7 @@ class DataMatrix3DContainer(DataMatrix2DContainer):
             from librosa.display import specshow
             import matplotlib.pyplot as plt
             if plot:
-                plt.figure(figsize=(10, 10))
+                plt.figure(figsize=figsize)
 
             for sequence_id in range(data.shape[self.sequence_axis]):
                 ax = plt.subplot(data.shape[self.sequence_axis], 1, sequence_id + 1)
@@ -1785,7 +1809,7 @@ class DataMatrix4DContainer(DataMatrix3DContainer):
 
         return self
 
-    def plot(self, show_color_bar=False, show_filename=True, plot=True):
+    def plot(self, show_color_bar=False, show_filename=True, plot=True, figsize=None):
         """Plot data
 
         Parameters
@@ -1804,11 +1828,18 @@ class DataMatrix4DContainer(DataMatrix3DContainer):
             outside this method.
             Default value True
 
+        figsize : tuple
+            Size of the figure. If None given, default size (10,5) is used.
+            Default value None
+
         Returns
         -------
         self
 
         """
+
+        if figsize is None:
+            figsize = (10, 5)
 
         data = self.get_focused()
 
@@ -1817,7 +1848,7 @@ class DataMatrix4DContainer(DataMatrix3DContainer):
             import matplotlib.pyplot as plt
 
             if plot:
-                plt.figure(figsize=(10, 5))
+                plt.figure(figsize=figsize)
 
             rows_count = data.shape[self.channel_axis]
             for sequence_id in range(data.shape[self.sequence_axis]):
@@ -2030,7 +2061,7 @@ class BinaryMatrix2DContainer(DataMatrix2DContainer):
 
         return self
 
-    def plot(self, binary_matrix=None, data_container=None):
+    def plot(self, binary_matrix=None, data_container=None, figsize=None):
         """Visualize binary matrix, and optionally synced data matrix.
 
         For example, this can be used to visualize sound event activity along with the acoustic features.
@@ -2039,15 +2070,24 @@ class BinaryMatrix2DContainer(DataMatrix2DContainer):
         ----------
         binary_matrix : numpy.ndarray
             Binary matrix, if None given internal data used.
+            Default value None
 
         data_container : DataContainer
             Extra data matrix to be shown along with binary matrix.
-             
+            Default value None
+
+        figsize : tuple
+            Size of the figure. If None given, default size (10,5) is used.
+            Default value None
+
         Returns
         -------
         None
 
         """
+
+        if figsize is None:
+            figsize = (10, 5)
 
         import matplotlib.pyplot as plt
         from librosa.display import specshow
@@ -2059,7 +2099,7 @@ class BinaryMatrix2DContainer(DataMatrix2DContainer):
             binary_matrix = binary_matrix.T
 
         if binary_matrix is not None and data_container is not None:
-            plt.subplots(2, 1, figsize=(10, 5))
+            plt.subplots(2, 1, figsize=figsize)
 
             # Features
             ax1 = plt.subplot(2, 1, 1)
@@ -2091,7 +2131,7 @@ class BinaryMatrix2DContainer(DataMatrix2DContainer):
             plt.ylabel('Data')
 
         elif binary_matrix is not None and data_container is None:
-            plt.subplots(1, 1, figsize=(10, 5))
+            plt.subplots(1, 1, figsize=figsize)
             ax = plt.subplot(1, 1, 1)
             # Binary matrix
             ax.yaxis.set_label_position("right")
@@ -2241,7 +2281,7 @@ class DataRepository(RepositoryContainer):
                         output += ui.data(
                             indent=indent + 2,
                             field='['+str(label)+']' + '[' + str(stream_id) + ']',
-                            value=stream_data
+                            value=stream_data.to_string(ui=ui)
                         ) + '\n'
 
         output += '\n'
@@ -2544,7 +2584,7 @@ class DataRepository(RepositoryContainer):
 
         return self
 
-    def plot(self, plot=True):
+    def plot(self, plot=True, figsize=None):
         """Visualize data stored in the repository.
 
         plot : bool
@@ -2552,11 +2592,18 @@ class DataRepository(RepositoryContainer):
             outside this method.
             Default value True
 
+        figsize : tuple
+            Size of the figure. If None given, default size (10,10) is used.
+            Default value None
+
         Returns
         -------
         self
 
         """
+
+        if figsize is None:
+            figsize = (10, 10)
 
         from librosa.display import specshow
         import matplotlib.pyplot as plt
@@ -2570,7 +2617,7 @@ class DataRepository(RepositoryContainer):
         labels.sort()
 
         if plot:
-            plt.figure()
+            plt.figure(figsize=figsize)
 
         for label_id, label in enumerate(self.labels):
             for stream_id in self.stream_ids(label):
