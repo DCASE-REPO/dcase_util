@@ -75,13 +75,19 @@ class ContainerMixin(object):
 
         """
 
-        if mode == 'auto' and is_jupyter():
-            mode = 'html'
+        if mode == 'auto':
+            if is_jupyter():
+                mode = 'html'
+            else:
+                mode = 'print'
 
-        else:
-            mode = 'print'
+        if mode not in ['html', 'print']:
+            # Unknown mode given
+            message = '{name}: Unknown mode [{mode}]'.format(name=self.__class__.__name__, mode=mode)
+            self.logger.exception(message)
+            raise ValueError(message)
 
-        if mode == 'html' and is_jupyter():
+        if mode == 'html':
             from IPython.core.display import display, HTML
             display(
                 HTML(
