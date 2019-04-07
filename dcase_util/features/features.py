@@ -8,12 +8,18 @@ import scipy
 import logging
 import importlib
 from dcase_util.containers import ContainerMixin
-from dcase_util.ui import FancyStringifier
-from dcase_util.utils import setup_logging, get_class_inheritors
+from dcase_util.ui import FancyStringifier, FancyHTMLStringifier
+from dcase_util.utils import setup_logging, get_class_inheritors, is_jupyter
 
 
-def feature_extractor_list():
+def feature_extractor_list(display=True):
     """List of feature extractors available
+
+    Parameters
+    ----------
+    display : bool
+        Display list immediately, otherwise return string
+        Default value True
 
     Returns
     -------
@@ -22,23 +28,41 @@ def feature_extractor_list():
 
     """
 
-
-    ui = FancyStringifier()
-    output = ''
-    output += ui.row('Class name', 'Feature label', 'Description', widths=[30, 20, 60]) + '\n'
-    output += ui.row_sep() + '\n'
     class_list = get_class_inheritors(FeatureExtractor)
     class_list.sort(key=lambda x: x.__name__, reverse=False)
+    class_names = []
+    labels = []
+    descriptions = []
     for extractor_class in class_list:
         if not extractor_class.__name__.endswith('Processor'):
             e = extractor_class()
-            output += ui.row(
-                extractor_class.__name__,
-                e.label,
-                e.description
-            ) + '\n'
+            class_names.append(extractor_class.__name__)
+            labels.append(e.label)
+            descriptions.append(e.description)
 
-    return output
+    if is_jupyter():
+        ui = FancyHTMLStringifier()
+
+    else:
+        ui = FancyStringifier()
+
+    output = ui.table(
+        cell_data=[class_names, labels, descriptions],
+        column_headers=['Class name', 'Feature label', 'Description'],
+        column_types=['str30', 'str20', 'str50'],
+        column_separators=[0, 1]
+    )
+
+    if display:
+        if is_jupyter():
+            from IPython.core.display import display, HTML
+            display(HTML(output))
+
+        else:
+            print(output)
+
+    else:
+        return output
 
 
 def feature_extractor_factory(feature_extractor_label, **kwargs):
