@@ -38,9 +38,6 @@ class ContainerMixin(object):
     def __str__(self):
         return self.to_string()
 
-    def _repr_html_(self):
-        return self.to_html()
-
     @property
     def logger(self):
         """Logger instance"""
