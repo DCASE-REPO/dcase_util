@@ -1654,7 +1654,7 @@ class AudioContainer(ContainerMixin, FileMixin):
             self.plot_spec(**kwargs)
 
     def plot_wave(self, x_axis='time', max_points=50000.0, offset=0.0, color='#333333', alpha=1.0,
-                  show_filename=True, plot=True):
+                  show_filename=True, plot=True, figsize=None):
         """Visualize audio data as waveform.
 
         Parameters
@@ -1689,23 +1689,30 @@ class AudioContainer(ContainerMixin, FileMixin):
             outside this method.
             Default value True
 
+        figsize : tuple
+            Size of the figure. If None given, default size (10,5) is used.
+            Default value None
+
         Returns
         -------
         self
 
         """
 
+        if figsize is None:
+            figsize = (10, 5)
+
         import matplotlib.pyplot as plt
         from librosa.display import waveplot
         if plot:
-            plt.figure(figsize=(10, 5))
+            plt.figure(figsize=figsize)
 
         title = Path(self.filename).shorten()
 
         if self.channels > 1:
             # Plotting for multi-channel audio
             for channel_id, channel_data in enumerate(self.get_focused()):
-                plt.subplot(self.channels, 1, channel_id + 1)
+                ax = plt.subplot(self.channels, 1, channel_id + 1)
                 if channel_id + 1 != self.channels:
                     current_x_axis = None
                 else:
@@ -1727,7 +1734,7 @@ class AudioContainer(ContainerMixin, FileMixin):
                         plt.title(title)
 
                 if channel_id+1 != self.channels:
-                    plt.xlabel('')
+                    ax.axes.get_xaxis().set_visible(False)
 
         else:
             # Plotting for single channel audio
@@ -1749,10 +1756,8 @@ class AudioContainer(ContainerMixin, FileMixin):
         if plot:
             plt.show()
 
-        return self
-
     def plot_spec(self, spec_type='log', hop_length=512, cmap='magma',
-                  show_filename=True, show_colorbar=False, plot=True):
+                  show_filename=True, show_colorbar=False, plot=True, figsize=None):
         """Visualize audio data as spectrogram.
 
         Parameters
@@ -1783,23 +1788,30 @@ class AudioContainer(ContainerMixin, FileMixin):
             figure outside this method.
             Default value True
 
+        figsize : tuple
+            Size of the figure. If None given, default size (10,5) is used.
+            Default value None
+
         Returns
         -------
         self
 
         """
 
+        if figsize is None:
+            figsize = (10, 5)
+
         from librosa.display import specshow
         import matplotlib.pyplot as plt
 
         if plot:
-            plt.figure(figsize=(10, 5))
+            plt.figure(figsize=figsize)
 
         title = Path(self.filename).shorten()
 
         if self.channels > 1:
             for channel_id, channel_data in enumerate(self.get_focused()):
-                plt.subplot(self.channels, 1, channel_id+1)
+                ax = plt.subplot(self.channels, 1, channel_id+1)
 
                 if spec_type in ['linear', 'log']:
                     D = librosa.core.amplitude_to_db(numpy.abs(librosa.stft(channel_data.ravel())) ** 2, ref=numpy.max)
@@ -1861,6 +1873,9 @@ class AudioContainer(ContainerMixin, FileMixin):
                 plt.ylabel('Channel {channel:d}'.format(channel=channel_id))
                 if channel_id == 0 and self.filename:
                     plt.title(title)
+
+                if channel_id+1 != self.channels:
+                    ax.axes.get_xaxis().set_visible(False)
 
         else:
             channel_id = 0
