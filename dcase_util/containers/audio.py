@@ -493,6 +493,7 @@ class AudioContainer(ContainerMixin, FileMixin):
 
         if isinstance(self._data, numpy.ndarray) and len(self._data) > 0:
             return True
+
         else:
             return False
 
@@ -509,6 +510,7 @@ class AudioContainer(ContainerMixin, FileMixin):
 
         if self.loaded:
             return self._data.shape
+
         else:
             return None
 
@@ -589,10 +591,13 @@ class AudioContainer(ContainerMixin, FileMixin):
         if self.loaded:
             if len(self.data.shape) == 2:
                 return self._data.shape[self.channel_axis]
+
             elif len(self.data.shape) == 1:
                 return 1
+
             else:
                 return 0
+
         else:
             return 0
 
@@ -1096,6 +1101,7 @@ class AudioContainer(ContainerMixin, FileMixin):
             tmp_file.close()
 
             download_progress_bar = None
+
             if not silent:
                 # Create download progress bar
                 download_progress_bar = tqdm(
@@ -1108,6 +1114,7 @@ class AudioContainer(ContainerMixin, FileMixin):
                     ascii=self.use_ascii_progress_bar
                 )
                 callback = progress_hook(download_progress_bar)
+
             else:
                 callback = None
 
@@ -1191,6 +1198,7 @@ class AudioContainer(ContainerMixin, FileMixin):
 
                 max_value = max(abs(channel_data)) + headroom
                 channel_data /= max_value
+
         else:
             mean_value = numpy.mean(self._data)
             self._data -= mean_value
@@ -1475,6 +1483,7 @@ class AudioContainer(ContainerMixin, FileMixin):
                         hop_length=hop_length
                     )
                 )
+
             return numpy.array(data)
 
     def segments(self,
@@ -1622,6 +1631,7 @@ class AudioContainer(ContainerMixin, FileMixin):
                         pad_width=(0, length-self.length),
                         mode='constant'
                     )
+
                 else:
                     self._data = numpy.pad(
                         array=self._data,
@@ -1715,6 +1725,7 @@ class AudioContainer(ContainerMixin, FileMixin):
                 ax = plt.subplot(self.channels, 1, channel_id + 1)
                 if channel_id + 1 != self.channels:
                     current_x_axis = None
+
                 else:
                     current_x_axis = x_axis
 
