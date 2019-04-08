@@ -169,13 +169,11 @@ class Path(object):
         if path is None:
             path = self.path
 
-        from pathlib import Path as pathlib_path
-        path_shorten = str(pathlib_path(*pathlib_path(path).parts[-part_count:]))
-
-        if len(path) > len(path_shorten):
-            path_shorten = '.....' + path_shorten
-
-        return path_shorten
+        parts = path.split(os.sep)
+        if len(parts) > part_count:
+            return '.....' + os.path.join(*parts[-part_count:])
+        else:
+            return path
 
     def file_list(self, path=None, recursive=True, extensions=None,
                   case_sensitive=False, absolute_paths=False, offset=0, limit=None):
