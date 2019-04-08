@@ -16,10 +16,10 @@ import importlib
 from dcase_util.containers import DictContainer, ListDictContainer, TextContainer, MetaDataContainer
 from dcase_util.files import RemoteFile, RemotePackage, File, Package
 from dcase_util.utils import get_byte_string, setup_logging, Path, is_jupyter, get_parameter_hash, get_class_inheritors
-from dcase_util.ui import FancyLogger, FancyStringifier
+from dcase_util.ui import FancyLogger, FancyStringifier, FancyHTMLStringifier
 
 
-def dataset_list(data_path='data', group=None):
+def dataset_list(data_path='data', group=None, display=True):
     """List of datasets available
 
     Parameters
@@ -30,6 +30,11 @@ def dataset_list(data_path='data', group=None):
 
     group : str
         Group label for the datasets, currently supported ['scene', 'event', 'tag']
+        Default value None
+
+    display : bool
+        Display list immediately, otherwise return string
+        Default value True
 
     Returns
     -------
@@ -37,56 +42,25 @@ def dataset_list(data_path='data', group=None):
         Multi line string containing dataset table
 
     """
-    line = '  {class_name:<52s} | {group:5s} | {remote_size:10s} | {local_present:10s} | {files:5s} | {scene:6s} | {event:6s} | {tag:4s}\n'
+
+    if is_jupyter():
+        ui = FancyHTMLStringifier()
+
+    else:
+        ui = FancyStringifier()
+
+    table_data = {
+        'class_name': [],
+        'group': [],
+        'remote_size': [],
+        'local_present': [],
+        'files': [],
+        'scene': [],
+        'event': [],
+        'tag': []
+    }
+
     output = ''
-    output += '  Dataset list\n'
-    output += line.format(
-        class_name='Class Name',
-        group='Group',
-        remote_size='Remote',
-        local_present='Local',
-        files='Audio',
-        scene='Scenes',
-        event='Events',
-        tag='Tags'
-    )
-    output += line.format(
-        class_name='-' * 42,
-        group='-' * 5,
-        remote_size='-' * 10,
-        local_present='-' * 6,
-        files='-' * 5,
-        scene='-' * 6,
-        event='-' * 6,
-        tag='-' * 4
-    )
-
-    def get_empty_row():
-        return line.format(
-            class_name='',
-            group='',
-            remote_size='',
-            local_present='',
-            files='',
-            scene='',
-            event=''
-        )
-
-    def get_row(data):
-        file_count = 0
-        if data.meta_container.exists():
-            file_count = len(data.meta)
-
-        return line.format(
-            class_name=data.__class__.__name__,
-            group=data.dataset_group,
-            remote_size=data.dataset_size_string(),
-            local_present=data.dataset_size_on_disk(),
-            files=str(file_count) if file_count else '',
-            scene=str(data.scene_label_count()) if data.scene_label_count() else '',
-            event=str(data.event_label_count()) if data.event_label_count() else '',
-            tag=str(data.tag_count()) if data.tag_count() else '',
-        )
 
     if not group or group == 'sound':
         class_list = get_class_inheritors(SoundDataset)
@@ -95,7 +69,19 @@ def dataset_list(data_path='data', group=None):
         for dataset_class in class_list:
             d = dataset_class(data_path=data_path)
             if d.dataset_group != 'base class':
-                output += get_row(d)
+                table_data['class_name'].append(d.__class__.__name__)
+                table_data['group'].append(d.dataset_group)
+                table_data['remote_size'].append(d.dataset_size_string())
+                table_data['local_present'].append(d.dataset_size_on_disk())
+                if d.meta_container.exists():
+                    file_count = len(d.meta)
+                else:
+                    file_count = ''
+
+                table_data['files'].append(str(file_count))
+                table_data['scene'].append(str(d.scene_label_count()) if d.scene_label_count() else '')
+                table_data['event'].append(str(d.event_label_count()) if d.event_label_count() else '')
+                table_data['tag'].append(str(d.tag_count()) if d.tag_count() else '')
 
     if not group or group == 'scene':
         class_list = get_class_inheritors(AcousticSceneDataset)
@@ -104,7 +90,19 @@ def dataset_list(data_path='data', group=None):
         for dataset_class in class_list:
             d = dataset_class(data_path=data_path)
             if d.dataset_group != 'base class':
-                output += get_row(d)
+                table_data['class_name'].append(d.__class__.__name__)
+                table_data['group'].append(d.dataset_group)
+                table_data['remote_size'].append(d.dataset_size_string())
+                table_data['local_present'].append(d.dataset_size_on_disk())
+                if d.meta_container.exists():
+                    file_count = len(d.meta)
+                else:
+                    file_count = ''
+
+                table_data['files'].append(str(file_count))
+                table_data['scene'].append(str(d.scene_label_count()) if d.scene_label_count() else '')
+                table_data['event'].append(str(d.event_label_count()) if d.event_label_count() else '')
+                table_data['tag'].append(str(d.tag_count()) if d.tag_count() else '')
 
     if not group or group == 'event':
         class_list = get_class_inheritors(SoundEventDataset)
@@ -113,7 +111,19 @@ def dataset_list(data_path='data', group=None):
         for dataset_class in class_list:
             d = dataset_class(data_path=data_path)
             if d.dataset_group != 'base class':
-                output += get_row(d)
+                table_data['class_name'].append(d.__class__.__name__)
+                table_data['group'].append(d.dataset_group)
+                table_data['remote_size'].append(d.dataset_size_string())
+                table_data['local_present'].append(d.dataset_size_on_disk())
+                if d.meta_container.exists():
+                    file_count = len(d.meta)
+                else:
+                    file_count = ''
+
+                table_data['files'].append(str(file_count))
+                table_data['scene'].append(str(d.scene_label_count()) if d.scene_label_count() else '')
+                table_data['event'].append(str(d.event_label_count()) if d.event_label_count() else '')
+                table_data['tag'].append(str(d.tag_count()) if d.tag_count() else '')
 
     if not group or group == 'tag':
         class_list = get_class_inheritors(AudioTaggingDataset)
@@ -122,9 +132,39 @@ def dataset_list(data_path='data', group=None):
         for dataset_class in class_list:
             d = dataset_class(data_path=data_path)
             if d.dataset_group != 'base class':
-                output += get_row(d)
+                table_data['class_name'].append(d.__class__.__name__)
+                table_data['group'].append(d.dataset_group)
+                table_data['remote_size'].append(d.dataset_size_string())
+                table_data['local_present'].append(d.dataset_size_on_disk())
+                if d.meta_container.exists():
+                    file_count = len(d.meta)
+                else:
+                    file_count = ''
 
-    return output
+                table_data['files'].append(str(file_count))
+                table_data['scene'].append(str(d.scene_label_count()) if d.scene_label_count() else '')
+                table_data['event'].append(str(d.event_label_count()) if d.event_label_count() else '')
+                table_data['tag'].append(str(d.tag_count()) if d.tag_count() else '')
+
+    output += ui.line('Dataset list') +'\n'
+    output += ui.table(
+        cell_data=[table_data['class_name'], table_data['group'], table_data['remote_size'], table_data['local_present'], table_data['files'], table_data['scene'], table_data['event'], table_data['tag']],
+        column_headers=['Class name', 'Group', 'Remote', 'Local', 'Audio', 'Scenes', 'Events', 'Tags'],
+        column_types=['str52', 'str5', 'str10', 'str10', 'str5', 'str6', 'str6', 'str4'],
+        column_separators=[0, 1, 2, 3, 4, 5, 6],
+        indent=2
+    )
+
+    if display:
+        if is_jupyter():
+            from IPython.core.display import display, HTML
+            display(HTML(output))
+
+        else:
+            print(output)
+
+    else:
+        return output
 
 
 def dataset_factory(dataset_class_name, **kwargs):
