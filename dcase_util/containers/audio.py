@@ -1719,7 +1719,7 @@ class AudioContainer(ContainerMixin, FileMixin):
 
         title = Path(self.filename).shorten()
 
-        if self.channels > 1:
+        if self.channels > 1 and len(self.get_focused().shape) > 1:
             # Plotting for multi-channel audio
             for channel_id, channel_data in enumerate(self.get_focused()):
                 ax = plt.subplot(self.channels, 1, channel_id + 1)
