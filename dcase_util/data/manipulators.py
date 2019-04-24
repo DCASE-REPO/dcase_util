@@ -282,6 +282,62 @@ class Normalizer(ObjectContainer):
         elif isinstance(data, numpy.ndarray):
             return (data - self.mean) / self.std
 
+    def plot(self, plot=True, figsize=None):
+        """Visualize normalization factors.
+
+        Parameters
+        ----------
+
+        plot : bool
+            If true, figure is shown automatically. Set to False if collecting multiple plots into same figure
+            outside this method.
+            Default value True
+
+        figsize : tuple
+            Size of the figure. If None given, default size (10,5) is used.
+            Default value None
+
+        Returns
+        -------
+        self
+
+        """
+
+        if figsize is None:
+            figsize = (10, 5)
+
+        import matplotlib.pyplot as plt
+
+        if plot:
+            plt.figure(figsize=figsize)
+
+        # Add filename to first subplot
+        if hasattr(self, 'filename') and self.filename:
+            plt.title(self.filename)
+
+        upper = (self.mean + self.std).reshape(-1)
+        lower = (self.mean - self.std).reshape(-1)
+
+        plt.fill_between(range(self.mean.shape[0]), lower, upper, facecolor='grey', alpha=0.1, step='mid')
+
+        plt.errorbar(
+            x=range(self.mean.shape[0]),
+            y=self.mean.reshape(-1),
+            yerr=self.std.reshape(-1),
+            linestyle='None',
+            marker='s',
+            elinewidth=0.5,
+            capsize=4,
+            capthick=1,
+            color='black',
+        )
+        plt.ylabel('Value')
+        plt.xlabel('Index')
+        plt.tight_layout()
+
+        if plot:
+            plt.show()
+
 
 class RepositoryNormalizer(ObjectContainer):
     """Data repository normalizer"""
