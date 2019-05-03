@@ -1222,14 +1222,104 @@ class StasherCallback(BaseCallback):
             'metric_value': self.best,
         }
 
+    def to_string(self, ui=None, indent=0):
+        """Get information in a string
+
+        Parameters
+        ----------
+        ui : FancyStringifier or FancyHTMLStringifier
+            Stringifier class
+            Default value FancyStringifier
+
+        indent : int
+            Amount of indent
+            Default value 0
+
+        Returns
+        -------
+        str
+
+        """
+
+        if ui is None:
+            ui = FancyStringifier()
+
+        output = ''
+        output += ui.class_name(self.__class__.__name__, indent=indent) + '\n'
+        output += ui.data(field='Best model weights at epoch', value=self.best_model_epoch, indent=indent) + '\n'
+        output += ui.data(field='Metric type', value=self.monitor, indent=indent+2) + '\n'
+        output += ui.data(field='Metric value', value=self.best, indent=indent+2) + '\n'
+        output += ui.line()
+
+        return output
+
+    def to_html(self, indent=0):
+        """Get information in a HTML formatted string
+
+        Parameters
+        ----------
+        indent : int
+            Amount of indent
+            Default value 0
+
+        Returns
+        -------
+        str
+
+        """
+
+        return self.to_string(ui=FancyHTMLStringifier(), indent=indent)
+
     def log(self):
         """Print information about the best model into logging interface
         """
 
-        self.logger.info('  Best model weights at epoch[{epoch:d}]'.format(epoch=self.best_model_epoch))
-        self.logger.info('    metric[{metric}]={best}'.format(
-                metric=self.monitor,
-                best='{:4.4f}'.format(self.best)
-            )
-        )
+        lines = self.to_string(indent=2).split('\n')
+        for line in lines:
+            self.logger.info(line)
+
         self.logger.info('  ')
+
+    def show(self, mode='auto', indent=0):
+        """Print information about the best model
+
+        If called inside Jupyter notebook HTML formatted version is shown.
+
+        Parameters
+        ----------
+        mode : str
+            Output type, possible values ['auto', 'print', 'html']. 'html' will work only in Jupyter notebook
+            Default value 'auto'
+
+        indent : int
+            Amount of indent
+            Default value 0
+
+        Returns
+        -------
+        Nothing
+
+        """
+
+        if mode == 'auto':
+            if is_jupyter():
+                mode = 'html'
+            else:
+                mode = 'print'
+
+        if mode not in ['html', 'print']:
+            # Unknown mode given
+            message = '{name}: Unknown mode [{mode}]'.format(name=self.__class__.__name__, mode=mode)
+            self.logger.exception(message)
+            raise ValueError(message)
+
+        if mode == 'html':
+            from IPython.core.display import display, HTML
+            display(
+                HTML(
+                    self.to_html(indent=indent)
+                )
+            )
+
+        elif mode == 'print':
+            print(self.to_string(indent=indent))
