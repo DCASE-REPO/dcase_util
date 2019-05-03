@@ -723,11 +723,16 @@ class DataContainer(ObjectContainer):
 
         return data[::frame_hop]
 
-    def plot(self, figsize=None):
+    def plot(self, plot=True, figsize=None):
         """Visualize data array.
 
         Parameters
         ----------
+        plot : bool
+            If true, figure is shown automatically. Set to False if collecting multiple plots into same figure
+            outside this method.
+            Default value True
+
         figsize : tuple
             Size of the figure. If None given, default size (10,5) is used.
             Default value None
@@ -744,7 +749,9 @@ class DataContainer(ObjectContainer):
         import matplotlib.pyplot as plt
         from librosa.core import frames_to_time
         from librosa.display import TimeFormatter
-        plt.figure(figsize=figsize)
+
+        if plot:
+            plt.figure(figsize=figsize)
 
         # Plot feature matrix
         if self.time_resolution:
@@ -771,8 +778,9 @@ class DataContainer(ObjectContainer):
         if self.filename:
             plt.title(self.filename)
 
-        plt.tight_layout()
-        plt.show()
+        if plot:
+            plt.tight_layout()
+            plt.show()
 
 
 class DataArrayContainer(DataContainer):
@@ -1142,11 +1150,16 @@ class DataMatrix2DContainer(DataContainer):
 
         return self
 
-    def plot(self, show_color_bar=False, figsize=None):
+    def plot(self, plot=True, show_color_bar=False, figsize=None):
         """Visualize data matrix.
 
         Parameters
         ----------
+
+        plot : bool
+            If true, figure is shown automatically. Set to False if collecting multiple plots into same figure
+            outside this method.
+            Default value True
 
         show_color_bar : bool
             Show color bar next to plot.
@@ -1167,7 +1180,9 @@ class DataMatrix2DContainer(DataContainer):
 
         from librosa.display import specshow
         import matplotlib.pyplot as plt
-        plt.figure(figsize=figsize)
+
+        if plot:
+            plt.figure(figsize=figsize)
 
         data = self.get_focused()
         if self.time_axis == 0:
@@ -1197,8 +1212,9 @@ class DataMatrix2DContainer(DataContainer):
         if hasattr(self, 'filename') and self.filename:
             plt.title(self.filename)
 
-        plt.tight_layout()
-        plt.show()
+        if plot:
+            plt.tight_layout()
+            plt.show()
 
 
 class DataMatrix3DContainer(DataMatrix2DContainer):
