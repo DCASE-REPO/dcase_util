@@ -7,6 +7,7 @@ import six
 import logging
 import numpy
 import datetime
+import re
 from dcase_util.utils import setup_logging, is_float, is_int
 
 
@@ -746,11 +747,13 @@ class FancyHTMLStringifier(FancyStringifier):
 
     def __init__(self):
         super(FancyHTMLStringifier, self).__init__()
+        self.indent_factor = 10
+
         self.row_reset()
         self.row_highlight_flag = False
         self.row_highlight_style = 'background-color: #F1F1F166;'
         self.row_highlight_style_alt = 'background-color: #F9F9F966;'
-        self.indent_factor = 10
+        self.row_item_width_factor = 8
 
     def get_margin(self, indent=0, include_style_attribute=True):
         """Get margin css style definition
@@ -796,8 +799,10 @@ class FancyHTMLStringifier(FancyStringifier):
         """
 
         indent_px = indent * self.indent_factor
-
-        lines = field.split('\n')
+        if field is not None:
+            lines = field.split('\n')
+        else:
+            lines = ['&nbsp;']
 
         if self.row_highlight_flag:
             bg = self.row_highlight_style
@@ -806,12 +811,9 @@ class FancyHTMLStringifier(FancyStringifier):
 
         html = ''
         for line_id, line in enumerate(lines):
-            html += '<div style="'
-            html += 'display:grid;overflow-y:hidden;grid-template-columns:auto;grid-gap:0px;'
-            html += 'margin-top:-2px;margin-bottom:-2px;padding-left:' + str(indent_px) + 'px;' + bg
-            html += '">'
+            html += '<div class="row clearfix" style="' +bg + '">'
 
-            html += '<div style="padding:2px;font-size:100%;font-weight:bold">'
+            html += '<div class="col-md-12" style="padding:2px;font-size:100%;font-weight:bold">'
             html += str(line)
             html += '</div>'
 
@@ -999,47 +1001,43 @@ class FancyHTMLStringifier(FancyStringifier):
             unit = None
 
         lines = value.split('\n')
-        columns = [290, 10, 'auto']
         indent_px = indent * self.indent_factor
-        columns[0] -= indent_px
 
         if self.row_highlight_flag:
             bg = self.row_highlight_style
         else:
             bg = self.row_highlight_style_alt
 
+        col1 = 'col-md-4 col-xs-6'
+        col2 = 'col-md-8 col-xs-6'
+
         # Container
         html = ''
-        html += '<div style="display:grid;grid-template-columns:' + str(columns[0]) + 'px ' + str(
-            columns[1]) + 'px ' + str(columns[2]) + ';grid-gap:0px;padding-left:' + str(indent_px) + 'px;' + bg + '">'
+        html += '<div class="row row-no-gutters clearfix" '
+        html += 'style="' + bg + '">'
 
         # Field
-        html += '<div style="font-weight:bold;padding-left:4px;">'
+        html += '<div class="' + col1 + '" '
+        html += 'style="padding-left:' + str(indent_px) + 'px;"'
+        html += '>'
         html += str(field)
-        html += '</div>'
-
-        # Separator
-
-        html += '<div>'
-        if value:
-            html += ':'
+        html += '<span class="pull-right text-muted" style="padding-right:5px;">:</span>'
         html += '</div>'
 
         # Value + unit
         if len(lines) > 1:
-            html += '<div>'
+            html += '<div class="' + col2 + '">'
             html += lines[0]
             html += '</div>'
 
             for i in range(1, len(lines)):
-                html += '<div></div>'
-                html += '<div></div>'
-                html += '<div>'
+                html += '<div class="' + col1 + '"></div>'
+                html += '<div class="' + col2 + '">'
                 html += lines[i]
                 html += '</div>'
 
         else:
-            html += '<div>'
+            html += '<div class="' + col2 + '">'
             html += self.formatted_value(value) + ' '
             html += '<span class="text-muted">' + str(unit) + '</span>' if unit else ''
             html += '</div>'
@@ -1101,17 +1099,18 @@ class FancyHTMLStringifier(FancyStringifier):
         grid_template_columns = []
         for column_id, column_data in enumerate(args):
             if column_id < len(self.row_column_widths):
-                column_width = self.row_column_widths[column_id] * 5
+                column_width = int(self.row_column_widths[column_id] * self.row_item_width_factor)
             else:
-                column_width = 15 * 5
+                column_width = int(15 * self.row_item_width_factor)
 
             grid_template_columns.append(str(column_width) + 'px')
 
         grid_template_columns = ' '.join(grid_template_columns)
 
         html += '<div style="'
+        html += 'font-size: 110%;'
         html += 'display:grid;grid-template-columns:' + grid_template_columns + ';grid-gap:0px;'
-        html += 'margin-top: -6px; margin-bottom: -6px;'
+        html += 'margin-top: -4px; margin-bottom: -4px;'
         html += self.get_margin(indent=self.row_indent, include_style_attribute=False)
         html += '">'
 
@@ -1122,9 +1121,9 @@ class FancyHTMLStringifier(FancyStringifier):
                 data_type = 'auto'
 
             if column_id < len(self.row_column_widths):
-                column_width = self.row_column_widths[column_id] * 5
+                column_width = int(self.row_column_widths[column_id] * self.row_item_width_factor)
             else:
-                column_width = 15 * 5
+                column_width = int(15 * self.row_item_width_factor)
 
             column_data = self.formatted_value(column_data, data_type=data_type)
 
@@ -1187,10 +1186,10 @@ class FancyHTMLStringifier(FancyStringifier):
         grid_template_columns = []
         for column_id in range(0, self.row_column_count):
             if column_id < len(self.row_column_widths):
-                column_width = self.row_column_widths[column_id] * 5
+                column_width = int(self.row_column_widths[column_id] * self.row_item_width_factor)
 
             else:
-                column_width = 15 * 5
+                column_width = int(15 * self.row_item_width_factor)
 
             grid_template_columns.append(str(column_width) + 'px')
 
@@ -1211,7 +1210,7 @@ class FancyHTMLStringifier(FancyStringifier):
         return html
 
     def table(self, cell_data=None, column_headers=None, column_types=None,
-              column_separators=None, row_separators=None, indent=0):
+              column_separators=None, row_separators=None, indent=0, scaling=110, table_css_class='table-striped table-condensed'):
         """Data table
 
         Parameters
@@ -1241,6 +1240,14 @@ class FancyHTMLStringifier(FancyStringifier):
         indent : int
             Amount of indention used for the line
             Default value 0
+
+        scaling : int
+            Percentage to change the size of the table
+            Default value None
+
+        table_css_class : str
+            CSS classes to be added to the resulting table
+            Default value "table-striped table-condensed"
 
         Returns
         -------
@@ -1300,14 +1307,11 @@ class FancyHTMLStringifier(FancyStringifier):
                 else:
                     column_width = 8
                 align = 'text-align:left;'
-                column_template = '{0:<' + str(column_width) + 's} '
 
             elif data_type.startswith('float') or data_type.startswith('int'):
                 column_width = 6
                 if len(column_headers[column_id]) > column_width:
                     column_width = len(column_headers[column_id])
-
-                column_template = '{0:>' + str(column_width) + 's} '
 
             else:
                 message = '{name}: Unknown column type [{data_type}].'.format(
@@ -1323,15 +1327,14 @@ class FancyHTMLStringifier(FancyStringifier):
 
             thead += '<th style="width:' + str(column_width * 10) + 'px;' + sep + align + '">'
 
-            thead += column_template.format(column_headers[column_id])
+            thead += column_headers[column_id]
             thead += '</th>'
 
-        thead += '<th style="border-bottom:0px solid transparent;"></th>'
         thead += '</tr>'
         thead += '</thead>'
 
         html = ''
-        html += '<table class="table table-striped" style="font-size:110%;width:auto;' + self.get_margin(
+        html += '<table class="table '+table_css_class+'" style="font-size:'+str(scaling)+'%;width:auto;margin-top:0em;' + self.get_margin(
             indent=indent,
             include_style_attribute=False
         ) + '">'
@@ -1371,16 +1374,16 @@ class FancyHTMLStringifier(FancyStringifier):
                         data_type = 'str10'
 
                 if data_type == 'float1' and is_float(cell_value):
-                    html += '{:6.1f}'.format(int(cell_value))
+                    html += '{:6.1f}'.format(float(cell_value))
 
                 elif data_type == 'float2' and is_float(cell_value):
-                    html += '{:6.2f}'.format(int(cell_value))
+                    html += '{:6.2f}'.format(float(cell_value))
 
                 elif data_type == 'float3' and is_float(cell_value):
-                    html += '{:6.3f}'.format(int(cell_value))
+                    html += '{:6.3f}'.format(float(cell_value))
 
                 elif data_type == 'float4' and is_float(cell_value):
-                    html += '{:6.4f}'.format(int(cell_value))
+                    html += '{:6.4f}'.format(float(cell_value))
 
                 elif data_type == 'int' and is_int(cell_value):
                     html += '{:d}'.format(int(cell_value))
@@ -1394,7 +1397,8 @@ class FancyHTMLStringifier(FancyStringifier):
                     if cell_value is None:
                         cell_value = '-'
 
-                    if cell_value and len(cell_value) > column_width:
+                    cell_value_stripped = re.sub(re.compile('<.*?>'), '', cell_value)
+                    if cell_value and len(cell_value_stripped) > column_width:
                         cell_value = cell_value[0:column_width - 2] + '..'
 
                     html += cell_value
