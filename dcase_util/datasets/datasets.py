@@ -2437,97 +2437,103 @@ class AcousticSceneDataset(Dataset):
                 amounts_validation_ratio[scene_id] = current_scene_validation_amount[best_set_id] * 100
 
         if verbose:
-            log = FancyLogger()
-            log.sub_header('Validation set for fold [{fold}] / balanced'.format(fold=fold), indent=2)
-            log.data(
+            if is_jupyter():
+                ui = FancyHTMLStringifier()
+
+            else:
+                ui = FancyStringifier()
+            lines = []
+
+            lines.append(ui.sub_header('Validation set for fold [{fold}] / balanced'.format(fold=fold), indent=2))
+            lines.append(ui.data(
                 field='Balancing mode',
                 value=balancing_mode,
                 indent=4
-            )
-            log.line()
-            log.row_reset()
+            ))
+            lines.append(ui.line())
+            ui.row_reset()
 
             if balancing_mode == 'class':
-                log.row(
+                lines.append(ui.row(
                     '', 'Full training set', 'Selected validation subset', '',
-                    widths=[20, 30, 30, 15],
+                    widths=[30, 30, 30, 15],
                     types=['str', 'str', 'str'],
                     separators=[True, True, True],
                     indent=4
-                )
-                log.row(
+                ))
+                lines.append(ui.row(
                     'Scene label', 'Items', 'Items', 'Ratio (%)',
-                    widths=[20, 30, 30, 15],
+                    widths=[30, 30, 30, 15],
                     types=['str20', 'int', 'int', 'float1_percentage'],
                     separators=[True, True, True]
-                )
-                log.row_sep()
+                ))
+                lines.append(ui.row_sep())
                 for scene_id, scene_label in enumerate(training_meta.unique_scene_labels):
-                    log.row(
+                    lines.append(ui.row(
                         scene_label,
                         amounts_full_items[scene_id],
                         amounts_validation_items[scene_id],
                         amounts_validation_ratio[scene_id],
-                    )
-                log.row_sep()
-                log.row(
+                    ))
+                lines.append(ui.row_sep())
+                lines.append(ui.row(
                     'Overall',
                     numpy.sum(amounts_full_items),
                     numpy.sum(amounts_validation_items),
                     numpy.sum(amounts_validation_items) / float(numpy.sum(amounts_full_items)) * 100.0
-                )
+                ))
             
             elif balancing_mode == 'identifier':
-                log.row(
+                lines.append(ui.row(
                     '', 'Full training set', 'Selected validation subset', '',
-                    widths=[20, 30, 30, 15],
+                    widths=[30, 30, 30, 15],
                     types=['str', 'str', 'str'],
                     separators=[True, True, True],
                     indent=4
-                )
-                log.row(
+                ))
+                lines.append(ui.row(
                     'Scene label', 'Identifiers', 'Items', 'Identifiers', 'Items', 'Ratio (%)',
-                    widths=[20, 15, 15, 15, 15, 15],
+                    widths=[30, 15, 15, 15, 15, 15],
                     types=['str20', 'int', 'int', 'int', 'int', 'float1_percentage'],
                     separators=[True, False, True, False, True]
-                )
-                log.row_sep()
+                ))
+                lines.append(ui.row_sep())
                 for scene_id, scene_label in enumerate(training_meta.unique_scene_labels):
-                    log.row(
+                    lines.append(ui.row(
                         scene_label,
                         amounts_full_identifiers1[scene_id],
                         amounts_full_items[scene_id],
                         amounts_validation_identifiers1[scene_id],
                         amounts_validation_items[scene_id],
                         amounts_validation_ratio[scene_id],
-                    )
-                log.row_sep()
-                log.row(
+                    ))
+                lines.append(ui.row_sep())
+                lines.append(ui.row(
                     'Overall',
                     numpy.sum(amounts_full_identifiers1),
                     numpy.sum(amounts_full_items),
                     numpy.sum(amounts_validation_identifiers1),
                     numpy.sum(amounts_validation_items),
                     numpy.sum(amounts_validation_items) / float(numpy.sum(amounts_full_items)) * 100.0
-                )
+                ))
 
             elif balancing_mode == 'identifier_two_level_hierarchy':
-                log.row(
+                lines.append(ui.row(
                     '', 'Full training set', 'Selected validation subset', '',
-                    widths=[20, 30, 30, 15],
+                    widths=[30, 30, 30, 15],
                     types=['str', 'str', 'str'],
                     separators=[True, True, True],
                     indent=4
-                )
-                log.row(
+                ))
+                lines.append(ui.row(
                     'Scene label', 'Id1', 'Id2', 'Items', 'Id1', 'Id2', 'Items', 'Ratio (%)',
-                    widths=[20, 7, 8, 15, 7, 8, 15, 15],
+                    widths=[30, 7, 8, 15, 7, 8, 15, 15],
                     types=['str20', 'int', 'int', 'int', 'int', 'int', 'int', 'float1_percentage'],
                     separators=[True, False, False, True, False, False, True]
-                )
-                log.row_sep()
+                ))
+                lines.append(ui.row_sep())
                 for scene_id, scene_label in enumerate(training_meta.unique_scene_labels):
-                    log.row(
+                    lines.append(ui.row(
                         scene_label,
                         amounts_full_identifiers1[scene_id],
                         amounts_full_identifiers2[scene_id],
@@ -2536,9 +2542,9 @@ class AcousticSceneDataset(Dataset):
                         amounts_validation_identifiers2[scene_id],
                         amounts_validation_items[scene_id],
                         amounts_validation_ratio[scene_id],
-                    )
-                log.row_sep()
-                log.row(
+                    ))
+                lines.append(ui.row_sep())
+                lines.append(ui.row(
                     'Overall',
                     numpy.sum(amounts_full_identifiers1),
                     numpy.sum(amounts_full_identifiers2),
@@ -2547,9 +2553,17 @@ class AcousticSceneDataset(Dataset):
                     numpy.sum(amounts_validation_identifiers2),
                     numpy.sum(amounts_validation_items),
                     numpy.sum(amounts_validation_items) / float(numpy.sum(amounts_full_items)) * 100.0
-                )
+                ))
 
-            log.line()
+            lines.append(ui.line())
+            output = ''.join(lines)
+            if is_jupyter():
+                from IPython.core.display import display, HTML
+                display(HTML(output))
+
+            else:
+                log = FancyLogger()
+                log.line(lines)
 
         return validation_files
 
