@@ -5,8 +5,8 @@ import logging
 import os
 import numpy
 import random
-from dcase_util.ui import FancyLogger
-from dcase_util.utils import SuppressStdoutAndStderr, setup_logging
+from dcase_util.ui import FancyLogger, FancyHTMLPrinter
+from dcase_util.utils import SuppressStdoutAndStderr, setup_logging, is_jupyter
 from dcase_util.decorators import RunOnce
 
 @RunOnce
@@ -147,7 +147,12 @@ def setup_keras(seed=None, profile=None,
         logger().exception(message)
         raise AttributeError(message)
 
-    ui = FancyLogger()
+    if is_jupyter():
+        ui = FancyHTMLPrinter()
+
+    else:
+        ui = FancyLogger()
+
     if verbose:
         ui.sub_header('Keras setup', indent=print_indent)
 
@@ -268,7 +273,7 @@ def setup_keras(seed=None, profile=None,
                 flags.append('deterministic=default')
 
         if verbose:
-            ui.line('Theano', indent=print_indent + 2)
+            ui.data('Theano', '', indent=print_indent + 2)
 
             for item in flags:
                 ui.data(
@@ -283,7 +288,7 @@ def setup_keras(seed=None, profile=None,
     elif backend == 'tensorflow':
         # Tensorflow setup
         if verbose:
-            ui.line('Tensorflow', indent=print_indent + 2)
+            ui.data('Tensorflow', '', indent=print_indent + 2)
 
         # In case of CPU, disable visible GPUs.
         if device == 'cpu':
