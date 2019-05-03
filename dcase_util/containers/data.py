@@ -2077,13 +2077,18 @@ class BinaryMatrix2DContainer(DataMatrix2DContainer):
 
         return self
 
-    def plot(self, binary_matrix=None, data_container=None, figsize=None):
+    def plot(self, plot=True, binary_matrix=None, data_container=None, figsize=None, binary_panel_title='Binary matrix', data_panel_title='Data'):
         """Visualize binary matrix, and optionally synced data matrix.
 
         For example, this can be used to visualize sound event activity along with the acoustic features.
 
         Parameters
         ----------
+        plot : bool
+            If true, figure is shown automatically. Set to False if collecting multiple plots into same figure
+            outside this method.
+            Default value True
+
         binary_matrix : numpy.ndarray
             Binary matrix, if None given internal data used.
             Default value None
@@ -2115,11 +2120,11 @@ class BinaryMatrix2DContainer(DataMatrix2DContainer):
             binary_matrix = binary_matrix.T
 
         if binary_matrix is not None and data_container is not None:
-            plt.subplots(2, 1, figsize=figsize)
+            fig, axes = plt.subplots(2, 1, figsize=figsize)
+            fig.subplots_adjust(top=1.0, bottom=0.0, right=1.0, hspace=0.05, wspace=0.00)
 
             # Features
             ax1 = plt.subplot(2, 1, 1)
-            ax1.yaxis.set_label_position("right")
             specshow(
                 binary_matrix,
                 x_axis='time',
@@ -2130,41 +2135,51 @@ class BinaryMatrix2DContainer(DataMatrix2DContainer):
 
             y_ticks = numpy.arange(0, len(self.label_list)) + 0.5
             ax1.set_yticks(y_ticks)
-            ax1.set_yticklabels(self.label_list)
-
-            plt.ylabel('Binary matrix')
+            ax1.set_yticklabels(self.label_list, fontsize=20)
+            ax1.get_xaxis().set_visible(False)
+            ax1.yaxis.set_label_position("right")
+            plt.ylabel(binary_panel_title, fontsize=20, fontweight='bold')
 
             # Binary matrix
             ax2 = plt.subplot(2, 1, 2)
-            ax2.yaxis.set_label_position("right")
+
             specshow(
                 data_container.data,
                 x_axis='time',
                 sr=int(1 / float(data_container.hop_length_seconds)),
                 hop_length=1
             )
-
-            plt.ylabel('Data')
+            ax2.yaxis.set_label_position("right")
+            plt.ylabel(data_panel_title, fontsize=20, fontweight='bold')
 
         elif binary_matrix is not None and data_container is None:
-            plt.subplots(1, 1, figsize=figsize)
-            ax = plt.subplot(1, 1, 1)
+            if plot:
+                plt.figure(figsize=figsize)
+
             # Binary matrix
-            ax.yaxis.set_label_position("right")
-            specshow(
+            if self.time_resolution:
+                sr = int(1.0 / float(self.time_resolution))
+                x_axis = 'time'
+            else:
+                sr = 1.0
+                x_axis = None
+
+            ax = specshow(
                 binary_matrix,
-                x_axis='time',
-                sr=int(1 / float(self.time_resolution)),
+                x_axis=x_axis,
+                sr=sr,
                 hop_length=1,
                 cmap=plt.cm.gray_r
             )
 
             if self.label_list:
+                ax.yaxis.set_label_position("right")
                 y_ticks = numpy.arange(0, len(self.label_list)) + 0.5
                 ax.set_yticks(y_ticks)
                 ax.set_yticklabels(self.label_list)
 
-        plt.show()
+        if plot:
+            plt.show()
 
 
 class DataRepository(RepositoryContainer):
