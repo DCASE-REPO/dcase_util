@@ -149,7 +149,10 @@ class FancyStringifier(object):
 
         """
 
-        lines = field.split('\n')
+        if field is not None:
+            lines = field.split('\n')
+        else:
+            lines = ['']
 
         for line_id, line in enumerate(lines):
             lines[line_id] = ' ' * indent + '{field:}'.format(field=line)
