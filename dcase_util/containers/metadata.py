@@ -660,7 +660,7 @@ class MetaDataContainer(ListDictContainer):
     def __str__(self):
         return self.to_string()
 
-    def to_string(self, ui=None, indent=0, show_data=True, show_stats=True):
+    def to_string(self, ui=None, indent=0, show_info=True, show_data=True, show_stats=True):
         """Get container information in a string
 
         Parameters
@@ -672,6 +672,10 @@ class MetaDataContainer(ListDictContainer):
         indent : int
             Amount of indent
             Default value 0
+
+        show_info : bool
+            Include basic info about the container
+            Default value True
 
         show_data : bool
             Include data
@@ -691,24 +695,26 @@ class MetaDataContainer(ListDictContainer):
             ui = FancyStringifier()
 
         output = ''
-        output += ui.class_name(self.__class__.__name__) + '\n'
 
-        if hasattr(self, 'filename') and self.filename:
-            output += ui.data(
-                field='Filename',
-                value=self.filename,
-                indent=indent
-            ) + '\n'
+        if show_info:
+            output += ui.class_name(self.__class__.__name__) + '\n'
 
-        output += ui.data(field='Items', value=len(self), indent=indent) + '\n'
-        output += ui.line(field='Unique', indent=indent) + '\n'
-        output += ui.data(indent=indent + 2, field='Files', value=len(self.unique_files)) + '\n'
-        output += ui.data(indent=indent + 2, field='Scene labels', value=len(self.unique_scene_labels)) + '\n'
-        output += ui.data(indent=indent + 2, field='Event labels', value=len(self.unique_event_labels)) + '\n'
-        output += ui.data(indent=indent + 2, field='Tags', value=len(self.unique_tags)) + '\n'
-        output += ui.data(indent=indent + 2, field='Identifiers', value=len(self.unique_identifiers)) + '\n'
-        output += ui.data(indent=indent + 2, field='Source labels', value=len(self.unique_source_labels)) + '\n'
-        output += '\n'
+            if hasattr(self, 'filename') and self.filename:
+                output += ui.data(
+                    field='Filename',
+                    value=self.filename,
+                    indent=indent
+                ) + '\n'
+
+            output += ui.data(field='Items', value=len(self), indent=indent) + '\n'
+            output += ui.line(field='Unique', indent=indent) + '\n'
+            output += ui.data(indent=indent + 2, field='Files', value=len(self.unique_files)) + '\n'
+            output += ui.data(indent=indent + 2, field='Scene labels', value=len(self.unique_scene_labels)) + '\n'
+            output += ui.data(indent=indent + 2, field='Event labels', value=len(self.unique_event_labels)) + '\n'
+            output += ui.data(indent=indent + 2, field='Tags', value=len(self.unique_tags)) + '\n'
+            output += ui.data(indent=indent + 2, field='Identifiers', value=len(self.unique_identifiers)) + '\n'
+            output += ui.data(indent=indent + 2, field='Source labels', value=len(self.unique_source_labels)) + '\n'
+            output += '\n'
 
         if show_data:
             output += ui.line('Meta data', indent=indent) + '\n'
@@ -788,7 +794,7 @@ class MetaDataContainer(ListDictContainer):
 
         return output
 
-    def to_html(self, indent=0, show_data=True, show_stats=True):
+    def to_html(self, indent=0, show_info=True, show_data=True, show_stats=True):
         """Get container information in a HTML formatted string
 
         Parameters
@@ -796,6 +802,10 @@ class MetaDataContainer(ListDictContainer):
         indent : int
             Amount of indent
             Default value 0
+
+        show_info : bool
+            Include basic info about the container
+            Default value True
 
         show_data : bool
             Include data
@@ -811,7 +821,7 @@ class MetaDataContainer(ListDictContainer):
 
         """
 
-        return self.to_string(ui=FancyHTMLStringifier(), indent=indent, show_data=show_data, show_stats=show_stats)
+        return self.to_string(ui=FancyHTMLStringifier(), indent=indent, show_info=show_info, show_data=show_data, show_stats=show_stats)
 
     def __add__(self, other):
         return self.update(super(MetaDataContainer, self).__add__(other))
@@ -1101,7 +1111,7 @@ class MetaDataContainer(ListDictContainer):
 
         self.log(level=level, show_data=True, show_stats=True)
 
-    def show(self, mode='auto', indent=0, show_data=False, show_stats=True):
+    def show(self, mode='auto', indent=0, show_info=True, show_data=False, show_stats=True):
         """Print container content
 
         If called inside Jupyter notebook, HTML formatted version is shown.
@@ -1115,6 +1125,10 @@ class MetaDataContainer(ListDictContainer):
         indent : int
             Amount of indent
             Default value 0
+
+        show_info : bool
+            Include basic info about the container
+            Default value True
 
         show_data : bool
             Include data
@@ -1146,12 +1160,12 @@ class MetaDataContainer(ListDictContainer):
             from IPython.core.display import display, HTML
             display(
                 HTML(
-                    self.to_html(indent=indent, show_data=show_data, show_stats=show_stats)
+                    self.to_html(indent=indent, show_info=show_info, show_data=show_data, show_stats=show_stats)
                 )
             )
 
         elif mode == 'print':
-            print(self.to_string(indent=indent, show_data=show_data, show_stats=show_stats))
+            print(self.to_string(indent=indent, show_info=show_info, show_data=show_data, show_stats=show_stats))
 
     def show_all(self, mode='auto', indent=0):
         """Print container content with all meta data items.
