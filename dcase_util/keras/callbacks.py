@@ -8,8 +8,8 @@ import collections
 import logging
 import datetime
 
-from dcase_util.ui import FancyStringifier, FancyLogger, FancyPrinter
-from dcase_util.utils import Timer, setup_logging
+from dcase_util.ui import FancyStringifier, FancyHTMLStringifier, FancyLogger, FancyPrinter, FancyHTMLPrinter
+from dcase_util.utils import Timer, setup_logging, is_jupyter
 
 
 class BaseCallback(object):
@@ -127,7 +127,7 @@ class ProgressLoggerCallback(BaseCallback):
             Default value 1
 
         output_type : str
-            Output type, either 'logging' or 'console'
+            Output type, either 'logging', 'console', or 'notebook'
             Default value 'logging'
 
         show_timing : bool
@@ -171,6 +171,10 @@ class ProgressLoggerCallback(BaseCallback):
 
         elif self.output_type == 'console':
             self.output_target = FancyPrinter()
+
+        elif self.output_type == 'notebook':
+            self.output_target = FancyHTMLPrinter()
+            self.ui = FancyHTMLStringifier()
 
         self.seen = 0
         self.log_values = []
