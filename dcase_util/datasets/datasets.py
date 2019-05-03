@@ -730,21 +730,43 @@ class Dataset(object):
 
         return self
 
-    def show(self):
-        """Print dataset information."""
-        DictContainer(self.dataset_meta).show()
-        self.meta_container.show(
-            show_data=False,
-            show_stats=True
-        )
+    def show(self, mode='auto', show_meta=True):
+        """Show dataset information.
 
-    def log(self):
+        Parameters
+        ----------
+        mode : str
+            Output type, possible values ['auto', 'print', 'html']. 'html' will work in Jupyter notebook only.
+            Default value 'auto'
+
+        show_meta : bool
+            Include statistics of meta data
+            Default value True
+
+        Returns
+        -------
+        str
+
+        """
+
+        DictContainer(self.dataset_meta).show(mode=mode)
+
+        if show_meta:
+            self.meta_container.show(
+                mode=mode,
+                show_data=False,
+                show_stats=True
+            )
+
+    def log(self, show_meta=True):
         """Log dataset information."""
         DictContainer(self.dataset_meta).log()
-        self.meta_container.log(
-            show_data=False,
-            show_stats=True
-        )
+
+        if show_meta:
+            self.meta_container.log(
+                show_data=False,
+                show_stats=True
+            )
 
     @property
     def audio_files(self):
