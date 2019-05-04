@@ -2091,7 +2091,8 @@ class BinaryMatrix2DContainer(DataMatrix2DContainer):
 
         return self
 
-    def plot(self, plot=True, binary_matrix=None, data_container=None, figsize=None, binary_panel_title='Binary matrix', data_panel_title='Data'):
+    def plot(self, plot=True, binary_matrix=None, data_container=None, figsize=None,
+             binary_panel_title='Binary matrix', data_panel_title='Data', panel_title_position='right'):
         """Visualize binary matrix, and optionally synced data matrix.
 
         For example, this can be used to visualize sound event activity along with the acoustic features.
@@ -2114,6 +2115,18 @@ class BinaryMatrix2DContainer(DataMatrix2DContainer):
         figsize : tuple
             Size of the figure. If None given, default size (10,5) is used.
             Default value None
+
+        binary_panel_title : str
+            Binary panel title (ylabel for first subplot)
+            Default value "Binary matrix"
+
+        data_panel_title : str
+            Data panel title (ylabel for second subplot)
+            Default value "Data"
+
+        panel_title_position : str
+            Panel title position ['left', 'right']
+            Default value "right"
 
         Returns
         -------
@@ -2151,8 +2164,8 @@ class BinaryMatrix2DContainer(DataMatrix2DContainer):
             ax1.set_yticks(y_ticks)
             ax1.set_yticklabels(self.label_list, fontsize=20)
             ax1.get_xaxis().set_visible(False)
-            ax1.yaxis.set_label_position("right")
-            plt.ylabel(binary_panel_title, fontsize=20, fontweight='bold')
+            ax1.yaxis.set_label_position(panel_title_position)
+            plt.ylabel(binary_panel_title, fontsize=20)
 
             # Binary matrix
             ax2 = plt.subplot(2, 1, 2)
@@ -2163,8 +2176,9 @@ class BinaryMatrix2DContainer(DataMatrix2DContainer):
                 sr=int(1 / float(data_container.hop_length_seconds)),
                 hop_length=1
             )
-            ax2.yaxis.set_label_position("right")
-            plt.ylabel(data_panel_title, fontsize=20, fontweight='bold')
+            ax2.yaxis.set_label_position(panel_title_position)
+            plt.ylabel(data_panel_title, fontsize=20)
+            plt.xlabel('Time', fontsize=20)
 
         elif binary_matrix is not None and data_container is None:
             if plot:
