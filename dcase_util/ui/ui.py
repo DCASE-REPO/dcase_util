@@ -2120,3 +2120,71 @@ class FancyHTMLPrinter(FancyLogger):
                 else:
                     display(HTML(line))
 
+    def table(self, cell_data=None, column_headers=None, column_types=None, column_separators=None,
+              row_separators=None, indent=0, level='info', scaling=110, table_css_class='table-striped table-condensed'):
+        """Data table
+
+        Parameters
+        ----------
+        cell_data : list of list
+            Cell data in format [ [cell(col1,row1), cell(col1,row2), cell(col1,row3)],
+            [cell(col2,row1), cell(col2,row2), cell(col2,row3)] ]
+            Default value None
+
+        column_headers : list of str
+            Column headers in list, if None given column numbers are used
+            Default value None
+
+        column_types : list of str
+            Column data types, if None given type is determined automatically.
+            Possible values: ['int', 'float1', 'float2', 'float3', 'float4', 'str10', 'str20']]
+            Default value None
+
+        column_separators : list of int
+            Column ids where to place separation lines. Line is placed on the right of the indicated column.
+            Default value None
+
+        row_separators : list of int
+            Row ids where to place separation lines. Line is place after indicated row.
+            Default value None
+
+        indent : int
+            Amount of indention used for the line
+            Default value 0
+
+        level : str
+            Logging level, one of [info,debug,warning,warn,error]
+            Default value 'info'
+
+        scaling : int
+            Percentage to change the size of the table
+            Default value None
+
+        table_css_class : str
+            CSS classes to be added to the resulting table
+            Default value "table-striped table-condensed"
+
+        Returns
+        -------
+        nothing
+
+        See Also
+        --------
+        dcase_util.ui.FancyUI.table
+        dcase_util.ui.FancyPrinter.table
+
+        """
+
+        self.line(
+            self.ui.table(
+                cell_data=cell_data,
+                column_headers=column_headers,
+                column_types=column_types,
+                column_separators=column_separators,
+                row_separators=row_separators,
+                indent=indent,
+                scaling=scaling,
+                table_css_class=table_css_class
+            ),
+            level=level
+        )
