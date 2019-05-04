@@ -1150,7 +1150,7 @@ class DataMatrix2DContainer(DataContainer):
 
         return self
 
-    def plot(self, plot=True, show_color_bar=False, figsize=None):
+    def plot(self, plot=True, show_color_bar=False, figsize=None, xlabel=None, ylabel=None):
         """Visualize data matrix.
 
         Parameters
@@ -1167,6 +1167,14 @@ class DataMatrix2DContainer(DataContainer):
 
         figsize : tuple
             Size of the figure. If None given, default size (10,5) is used.
+            Default value None
+
+        xlabel : str
+            Label for X axis
+            Default value None
+
+        ylabel : str
+            Label for Y axis
             Default value None
 
         Returns
@@ -1211,6 +1219,12 @@ class DataMatrix2DContainer(DataContainer):
         # Add filename to first subplot
         if hasattr(self, 'filename') and self.filename:
             plt.title(self.filename)
+
+        if ylabel:
+            plt.ylabel(ylabel, fontsize=16)
+
+        if xlabel:
+            plt.xlabel(xlabel, fontsize=16)
 
         if plot:
             plt.tight_layout()
