@@ -2091,8 +2091,9 @@ class BinaryMatrix2DContainer(DataMatrix2DContainer):
 
         return self
 
-    def plot(self, plot=True, binary_matrix=None, data_container=None, figsize=None,
-             binary_panel_title='Binary matrix', data_panel_title='Data', panel_title_position='right'):
+    def plot(self, plot=True, binary_matrix=None, data_container=None, figsize=None, panel_title=None,
+             binary_panel_title='Binary matrix', data_panel_title='Data', panel_title_position='right',
+             color='binary'):
         """Visualize binary matrix, and optionally synced data matrix.
 
         For example, this can be used to visualize sound event activity along with the acoustic features.
@@ -2116,6 +2117,10 @@ class BinaryMatrix2DContainer(DataMatrix2DContainer):
             Size of the figure. If None given, default size (10,5) is used.
             Default value None
 
+        panel_title :  str
+            Panel title (ylabel for first subplot)
+            Default value None
+
         binary_panel_title : str
             Binary panel title (ylabel for first subplot)
             Default value "Binary matrix"
@@ -2127,6 +2132,10 @@ class BinaryMatrix2DContainer(DataMatrix2DContainer):
         panel_title_position : str
             Panel title position ['left', 'right']
             Default value "right"
+
+        color : str
+            Color scheme used ['binary', 'gray', 'purple', 'blue', 'green', 'orange', 'red']
+            Default value 'binary'
 
         Returns
         -------
@@ -2146,6 +2155,26 @@ class BinaryMatrix2DContainer(DataMatrix2DContainer):
         if self.time_axis == 0:
             binary_matrix = binary_matrix.T
 
+        if color:
+            if color == 'binary':
+                cmap = plt.cm.binary
+            elif color == 'gray':
+                cmap = plt.cm.gray_r
+            elif color == 'purple':
+                cmap = plt.cm.Purples
+            elif color == 'blue':
+                cmap = plt.cm.Blues
+            elif color == 'green':
+                cmap = plt.cm.Greens
+            elif color == 'orange':
+                cmap = plt.cm.Oranges
+            elif color == 'red':
+                cmap = plt.cm.Reds
+            else:
+                cmap = plt.cm.binary
+        else:
+            cmap = plt.cm.binary
+
         if binary_matrix is not None and data_container is not None:
             fig, axes = plt.subplots(2, 1, figsize=figsize)
             fig.subplots_adjust(top=1.0, bottom=0.0, right=1.0, hspace=0.05, wspace=0.00)
@@ -2157,7 +2186,7 @@ class BinaryMatrix2DContainer(DataMatrix2DContainer):
                 x_axis='time',
                 sr=int(1 / float(self.time_resolution)),
                 hop_length=1,
-                cmap=plt.cm.gray_r
+                cmap=cmap
             )
 
             y_ticks = numpy.arange(0, len(self.label_list)) + 0.5
@@ -2197,14 +2226,21 @@ class BinaryMatrix2DContainer(DataMatrix2DContainer):
                 x_axis=x_axis,
                 sr=sr,
                 hop_length=1,
-                cmap=plt.cm.gray_r
+                cmap=cmap
             )
+
+            if panel_title:
+                ax.yaxis.set_label_position(panel_title_position)
+                plt.ylabel(panel_title, fontsize=20)
+
+            if self.time_resolution:
+                plt.xlabel('Time', fontsize=20)
 
             if self.label_list:
                 ax.yaxis.set_label_position("right")
                 y_ticks = numpy.arange(0, len(self.label_list)) + 0.5
                 ax.set_yticks(y_ticks)
-                ax.set_yticklabels(self.label_list)
+                ax.set_yticklabels(self.label_list, fontsize=20)
 
         if plot:
             plt.show()
