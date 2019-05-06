@@ -287,6 +287,7 @@ def model_summary_string(keras_model, mode='keras', show_parameters=True, displa
         layer_type_html_tags = {
             'InputLayer': '<span class="label label-default">{0:s}</span>',
             'Dense': '<span class="label label-primary">{0:s}</span>',
+            'TimeDistributed': '<span class="label label-primary">{0:s}</span>',
 
             'BatchNorm': '<span class="label label-default">{0:s}</span>',
             'Activation': '<span class="label label-default">{0:s}</span>',
@@ -318,6 +319,7 @@ def model_summary_string(keras_model, mode='keras', show_parameters=True, displa
             'CuDNNGRU': '<span class="label label-danger">{0:s}</span>',
             'LSTM': '<span class="label label-danger">{0:s}</span>',
             'CuDNNLSTM': '<span class="label label-danger">{0:s}</span>',
+            'Bidirectional': '<span class="label label-danger">{0:s}</span>'
         }
 
         import keras
