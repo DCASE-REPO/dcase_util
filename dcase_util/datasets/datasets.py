@@ -1090,7 +1090,7 @@ class Dataset(object):
 
         return self
 
-    def download_packages(self):
+    def download_packages(self, **kwargs):
         """Download dataset packages over the internet to the local path
 
         Raises
@@ -1117,8 +1117,8 @@ class Dataset(object):
             desc="{0: <25s}".format('Download packages'),
             file=sys.stdout,
             leave=False,
-            disable=self.disable_progress_bar,
-            ascii=self.use_ascii_progress_bar
+            disable=kwargs.get('disable_progress_bar', self.disable_progress_bar),
+            ascii=kwargs.get('use_ascii_progress_bar', self.use_ascii_progress_bar)
         )
 
         for item in item_progress:
@@ -1132,7 +1132,7 @@ class Dataset(object):
 
         return self
 
-    def extract_packages(self):
+    def extract_packages(self, **kwargs):
         """Extract the dataset packages
 
         Raises
@@ -1156,8 +1156,8 @@ class Dataset(object):
             desc="{0: <25s}".format('Extract packages'),
             file=sys.stdout,
             leave=False,
-            disable=self.disable_progress_bar,
-            ascii=self.use_ascii_progress_bar
+            disable=kwargs.get('disable_progress_bar', self.disable_progress_bar),
+            ascii=kwargs.get('use_ascii_progress_bar', self.use_ascii_progress_bar)
         )
 
         for item_id, item in enumerate(item_progress):
@@ -2288,8 +2288,8 @@ class AcousticSceneDataset(Dataset):
                     desc="{0: <25s}".format('Generate validation split candidates'),
                     file=sys.stdout,
                     leave=False,
-                    disable=self.disable_progress_bar,
-                    ascii=self.use_ascii_progress_bar
+                    disable=kwargs.get('disable_progress_bar', self.disable_progress_bar),
+                    ascii=kwargs.get('use_ascii_progress_bar', self.use_ascii_progress_bar)
                 )
 
                 for i in iteration_progress:
@@ -2376,8 +2376,8 @@ class AcousticSceneDataset(Dataset):
                     desc="{0: <25s}".format('Generate validation split candidates'),
                     file=sys.stdout,
                     leave=False,
-                    disable=self.disable_progress_bar,
-                    ascii=self.use_ascii_progress_bar
+                    disable=kwargs.get('disable_progress_bar', self.disable_progress_bar),
+                    ascii=kwargs.get('use_ascii_progress_bar', self.use_ascii_progress_bar)
                 )
 
                 identifier_first_level = list(data.keys())
@@ -3173,8 +3173,8 @@ class SoundEventDataset(Dataset):
                     desc="{0: <25s}".format('Generate validation split candidates'),
                     file=sys.stdout,
                     leave=False,
-                    disable=self.disable_progress_bar,
-                    ascii=self.use_ascii_progress_bar
+                    disable=kwargs.get('disable_progress_bar', self.disable_progress_bar),
+                    ascii=kwargs.get('use_ascii_progress_bar', self.use_ascii_progress_bar)
                 )
 
                 for i in iteration_progress:
@@ -3271,8 +3271,8 @@ class SoundEventDataset(Dataset):
                     desc="{0: <25s}".format('Generate validation split candidates'),
                     file=sys.stdout,
                     leave=False,
-                    disable=self.disable_progress_bar,
-                    ascii=self.use_ascii_progress_bar
+                    disable=kwargs.get('disable_progress_bar', self.disable_progress_bar),
+                    ascii=kwargs.get('use_ascii_progress_bar', self.use_ascii_progress_bar)
                 )
 
                 for i in iteration_progress:
@@ -3612,8 +3612,8 @@ class AudioTaggingDataset(Dataset):
                     desc="{0: <25s}".format('Generate validation split candidates'),
                     file=sys.stdout,
                     leave=False,
-                    disable=self.disable_progress_bar,
-                    ascii=self.use_ascii_progress_bar
+                    disable=kwargs.get('disable_progress_bar', self.disable_progress_bar),
+                    ascii=kwargs.get('use_ascii_progress_bar', self.use_ascii_progress_bar)
                 )
 
                 for i in iteration_progress:
@@ -3708,8 +3708,8 @@ class AudioTaggingDataset(Dataset):
                     desc="{0: <25s}".format('Generate validation split candidates'),
                     file=sys.stdout,
                     leave=False,
-                    disable=self.disable_progress_bar,
-                    ascii=self.use_ascii_progress_bar
+                    disable=kwargs.get('disable_progress_bar', self.disable_progress_bar),
+                    ascii=kwargs.get('use_ascii_progress_bar', self.use_ascii_progress_bar)
                 )
 
                 for i in iteration_progress:
