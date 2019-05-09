@@ -312,8 +312,10 @@ class MetaDataItem(dict):
         fields = list(self.keys())
 
         # Select only valid fields
+
         valid_fields = ['event_label', 'filename', 'offset', 'onset',
                         'scene_label', 'identifier', 'source_label', 'tags']
+
         fields = list(set(fields).intersection(valid_fields))
         fields.sort()
 
