@@ -1585,17 +1585,17 @@ class AudioContainer(ContainerMixin, FileMixin):
             length = int(self.fs * length_seconds)
 
         if self.length < length:
-            if type=='silence':
+            if type == 'silence':
                 if len(self.data.shape) == 1:
                     self._data = numpy.pad(
                         array=self._data,
-                        pad_width=(0,length-self.length),
+                        pad_width=(0, length-self.length),
                         mode='constant'
                     )
                 else:
                     self._data = numpy.pad(
                         array=self._data,
-                        pad_width=((0,0),(0,length-self.length)),
+                        pad_width=((0, 0), (0, length-self.length)),
                         mode='constant'
                     )
 

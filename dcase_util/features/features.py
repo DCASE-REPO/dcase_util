@@ -105,8 +105,9 @@ class FeatureExtractor(ContainerMixin):
     label = 'extractor_base'  #: Extractor label
     description = 'Feature extractor base class' #: Extractor description
 
-    def __init__(self, fs=44100, win_length_samples=None, hop_length_samples=None, win_length_seconds=0.04,
-                 hop_length_seconds=0.02, **kwargs):
+    def __init__(self, fs=44100,
+                 win_length_samples=None, hop_length_samples=None,
+                 win_length_seconds=0.04, hop_length_seconds=0.02, **kwargs):
         """Constructor
 
         Parameters
