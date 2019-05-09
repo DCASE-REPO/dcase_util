@@ -2373,11 +2373,19 @@ class DataRepository(RepositoryContainer):
             if label_data:
                 if isinstance(label_data, dict):
                     for stream_id, stream_data in iteritems(label_data):
-                        output += ui.data(
-                            indent=indent + 2,
-                            field='['+str(label)+']' + '[' + str(stream_id) + ']',
-                            value=stream_data.to_string(ui=ui)
-                        ) + '\n'
+                        if hasattr(stream_data, 'to_string'):
+                            output += ui.data(
+                                indent=indent + 2,
+                                field='['+str(label)+']' + '[' + str(stream_id) + ']',
+                                value=stream_data.to_string(ui=ui)
+                            ) + '\n'
+
+                        else:
+                            output += ui.data(
+                                indent=indent + 2,
+                                field='[' + str(label) + ']' + '[' + str(stream_id) + ']',
+                                value=stream_data
+                            ) + '\n'
 
         output += '\n'
 
