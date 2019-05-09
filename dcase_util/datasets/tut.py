@@ -319,6 +319,164 @@ class TAUUrbanAcousticScenes_2019_DevelopmentSet(AcousticSceneDataset):
         return self
 
 
+class TAUUrbanAcousticScenes_2019_LeaderboardSet(AcousticSceneDataset):
+    """TAU Urban Acoustic Scenes 2019 Leaderboard dataset
+
+    This dataset is used in DCASE2019 - Task 1, Acoustic scene classification / Subtask A / Public leaderboard
+
+    """
+
+    def __init__(self,
+                 storage_name='TAU-urban-acoustic-scenes-2019-leaderboard',
+                 data_path=None,
+                 included_content_types=None,
+                 **kwargs):
+        """
+        Constructor
+
+        Parameters
+        ----------
+
+        storage_name : str
+            Name to be used when storing dataset on disk
+            Default value 'TAU-urban-acoustic-scenes-2019-leaderboard'
+
+        data_path : str
+            Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), 'dcase_util_datasets')
+            is used.
+            Default value None
+
+        included_content_types : list of str or str
+            Indicates what content type should be processed. One or multiple from ['all', 'audio', 'meta', 'code',
+            'documentation']. If None given, ['all'] is used. Parameter can be also comma separated string.
+            Default value None
+
+        """
+
+        kwargs['included_content_types'] = included_content_types
+        kwargs['data_path'] = data_path
+        kwargs['storage_name'] = storage_name
+        kwargs['dataset_group'] = 'scene'
+        kwargs['dataset_meta'] = {
+            'authors': 'Toni Heittola, Annamaria Mesaros, and Tuomas Virtanen',
+            'title': 'TAU Urban Acoustic Scenes 2019, public leaderboard dataset',
+            'url': None,
+            'audio_source': 'Field recording',
+            'audio_type': 'Natural',
+            'recording_device_model': 'Zoom F8',
+            'microphone_model': 'Soundman OKM II Klassik/studio A3 electret microphone',
+            'licence': 'free non-commercial'
+        }
+        kwargs['reference_data_present'] = False
+        kwargs['crossvalidation_folds'] = 1
+        kwargs['meta_filename'] ='meta.csv'
+
+        filename_base = 'TAU-urban-acoustic-scenes-2019-leaderboard'
+        source_url = 'https://zenodo.org/record/2672993/files/'
+        kwargs['package_list'] = [
+            {
+                'content_type': 'documentation',
+                'remote_file': source_url + filename_base + '.doc.zip',
+                'remote_bytes': 7610,
+                'remote_md5': '826ede1a356e40ed6c80d873a0e10a70',
+                'filename': filename_base + '.doc.zip'
+            },
+            {
+                'content_type': 'meta',
+                'remote_file': source_url + filename_base + '.meta.zip',
+                'remote_bytes': 2943,
+                'remote_md5': 'fa3451868a2adf9d8a91882604a2d9b5',
+                'filename': filename_base + '.meta.zip'
+            },
+            {
+                'content_type': 'audio',
+                'remote_file': source_url + filename_base + '.audio.1.zip',
+                'remote_bytes': 1720302369,
+                'remote_md5': 'a5daa0df61c6fbc65b1e70f98d728ea3',
+                'filename': filename_base + '.audio.1.zip'
+            },
+            {
+                'content_type': 'audio',
+                'remote_file': source_url + filename_base + '.audio.2.zip',
+                'remote_bytes': 1256474601,
+                'remote_md5': 'c57c37a7ab6a32233583e39ec8cfafd5',
+                'filename': filename_base + '.audio.2.zip'
+            }
+        ]
+        kwargs['audio_paths'] = [
+            'audio'
+        ]
+        super(TAUUrbanAcousticScenes_2019_LeaderboardSet, self).__init__(**kwargs)
+
+    def process_meta_item(self, item, absolute_path=True, **kwargs):
+        """Process single meta data item
+
+        Parameters
+        ----------
+        item :  MetaDataItem
+            Meta data item
+
+        absolute_path : bool
+            Convert file paths to be absolute
+            Default value True
+
+        """
+
+        if absolute_path:
+            item.filename = self.relative_to_absolute_path(item.filename)
+
+        else:
+            item.filename = self.absolute_to_relative_path(item.filename)
+
+    def prepare(self):
+        """Prepare dataset for the usage.
+
+        Returns
+        -------
+        self
+
+        """
+
+        if not self.meta_container.exists() and self.reference_data_present:
+            meta_data = collections.OrderedDict()
+            for fold in self.folds():
+                # Read train files in
+                fold_data = MetaDataContainer(
+                    filename=self.evaluation_setup_filename(
+                        setup_part='train',
+                        fold=fold
+                    )
+                ).load()
+
+                # Read eval files in
+                fold_data += MetaDataContainer(
+                    filename=self.evaluation_setup_filename(
+                        setup_part='evaluate',
+                        fold=fold
+                    )
+                ).load()
+
+                # Process, make sure each file is included only once.
+                for item in fold_data:
+                    if item.filename not in meta_data:
+                        self.process_meta_item(
+                            item=item,
+                            absolute_path=False
+                        )
+
+                        meta_data[item.filename] = item
+
+            # Save meta
+            MetaDataContainer(list(meta_data.values())).save(
+                filename=self.meta_file
+            )
+
+            # Load meta and cross validation
+            self.load()
+
+        return self
+
+
 class TAUUrbanAcousticScenes_2019_Mobile_DevelopmentSet(AcousticSceneDataset):
     """TAU Urban Acoustic Scenes 2019 Mobile Development dataset
 
@@ -508,6 +666,158 @@ class TAUUrbanAcousticScenes_2019_Mobile_DevelopmentSet(AcousticSceneDataset):
         """
 
         if not self.meta_container.exists():
+            meta_data = collections.OrderedDict()
+            for fold in self.folds():
+                # Read train files in
+                fold_data = MetaDataContainer(
+                    filename=self.evaluation_setup_filename(
+                        setup_part='train',
+                        fold=fold
+                    )
+                ).load()
+
+                # Read eval files in
+                fold_data += MetaDataContainer(
+                    filename=self.evaluation_setup_filename(
+                        setup_part='evaluate',
+                        fold=fold
+                    )
+                ).load()
+
+                # Process, make sure each file is included only once.
+                for item in fold_data:
+                    if item.filename not in meta_data:
+                        self.process_meta_item(
+                            item=item,
+                            absolute_path=False
+                        )
+
+                        meta_data[item.filename] = item
+
+            # Save meta
+            MetaDataContainer(list(meta_data.values())).save(
+                filename=self.meta_file
+            )
+
+            # Load meta and cross validation
+            self.load()
+
+        return self
+
+
+class TAUUrbanAcousticScenes_2019_Mobile_LeaderboardSet(AcousticSceneDataset):
+    """TAU Urban Acoustic Scenes 2019 Mobile Leaderboard dataset
+
+    This dataset is used in DCASE2019 - Task 1, Acoustic scene classification / Subtask B / Leaderboard
+
+    """
+
+    def __init__(self,
+                 storage_name='TAU-urban-acoustic-scenes-2019-mobile-leaderboard',
+                 data_path=None,
+                 included_content_types=None,
+                 **kwargs):
+        """
+        Constructor
+
+        Parameters
+        ----------
+
+        storage_name : str
+            Name to be used when storing dataset on disk
+            Default value 'TAU-urban-acoustic-scenes-2019-mobile-leaderboard'
+
+        data_path : str
+            Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), 'dcase_util_datasets')
+            is used.
+            Default value None
+
+        included_content_types : list of str or str
+            Indicates what content type should be processed. One or multiple from ['all', 'audio', 'meta', 'code',
+            'documentation']. If None given, ['all'] is used. Parameter can be also comma separated string.
+            Default value None
+
+        """
+
+        kwargs['included_content_types'] = included_content_types
+        kwargs['data_path'] = data_path
+        kwargs['storage_name'] = storage_name
+        kwargs['dataset_group'] = 'scene'
+        kwargs['dataset_meta'] = {
+            'authors': 'Toni Heittola, Annamaria Mesaros, and Tuomas Virtanen',
+            'title': 'TAU Urban Acoustic Scenes 2019 Mobile, leaderboard dataset',
+            'url': None,
+            'audio_source': 'Field recording',
+            'audio_type': 'Natural',
+            'recording_device_model': 'Various',
+            'microphone_model': 'Various',
+            'licence': 'free non-commercial'
+        }
+        kwargs['reference_data_present'] = False
+        kwargs['crossvalidation_folds'] = 1
+        kwargs['meta_filename'] = 'meta.csv'
+        kwargs['check_meta'] = False
+
+        filename_base = 'TAU-urban-acoustic-scenes-2019-mobile-leaderboard'
+        source_url = 'https://zenodo.org/record/2673004/files/'
+        kwargs['package_list'] = [
+            {
+                'content_type': 'documentation',
+                'remote_file': source_url + filename_base + '.doc.zip',
+                'remote_bytes': 7996,
+                'remote_md5': 'afa38519cd0f46ca1522fc48530ea155',
+                'filename': filename_base + '.doc.zip'
+            },
+            {
+                'content_type': 'meta',
+                'remote_file': source_url + filename_base + '.meta.zip',
+                'remote_bytes': 2957,
+                'remote_md5': 'e03c790e5d4905e066a4443e48d61395',
+                'filename': filename_base + '.meta.zip'
+            },
+            {
+                'content_type': 'audio',
+                'remote_file': source_url + filename_base + '.audio.zip',
+                'remote_bytes': 1355731744,
+                'remote_md5': 'e16a2f1e2d29aa7d91d9d5a24e89afb4',
+                'filename': filename_base + '.audio.zip'
+            }
+        ]
+        kwargs['audio_paths'] = [
+            'audio'
+        ]
+        super(TAUUrbanAcousticScenes_2019_Mobile_LeaderboardSet, self).__init__(**kwargs)
+
+    def process_meta_item(self, item, absolute_path=True, **kwargs):
+        """Process single meta data item
+
+        Parameters
+        ----------
+        item :  MetaDataItem
+            Meta data item
+
+        absolute_path : bool
+            Convert file paths to be absolute
+            Default value True
+
+        """
+
+        if absolute_path:
+            item.filename = self.relative_to_absolute_path(item.filename)
+
+        else:
+            item.filename = self.absolute_to_relative_path(item.filename)
+
+    def prepare(self):
+        """Prepare dataset for the usage.
+
+        Returns
+        -------
+        self
+
+        """
+
+        if not self.meta_container.exists() and self.reference_data_present:
             meta_data = collections.OrderedDict()
             for fold in self.folds():
                 # Read train files in
@@ -771,6 +1081,157 @@ class TAUUrbanAcousticScenes_2019_Openset_DevelopmentSet(AcousticSceneDataset):
 
         return self
 
+
+class TAUUrbanAcousticScenes_2019_Openset_LeaderboardSet(AcousticSceneDataset):
+    """TAU Urban Acoustic Scenes 2019 Open set Leaderboard dataset
+
+    This dataset is used in DCASE2019 - Task 1, Acoustic scene classification / Subtask C / Leaderboard
+
+    """
+
+    def __init__(self,
+                 storage_name='TAU-urban-acoustic-scenes-2019-openset-leaderboard',
+                 data_path=None,
+                 included_content_types=None,
+                 **kwargs):
+        """
+        Constructor
+
+        Parameters
+        ----------
+
+        storage_name : str
+            Name to be used when storing dataset on disk
+            Default value 'TAU-urban-acoustic-scenes-2019-openset-leaderboard'
+
+        data_path : str
+            Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), 'dcase_util_datasets')
+            is used.
+            Default value None
+
+        included_content_types : list of str or str
+            Indicates what content type should be processed. One or multiple from ['all', 'audio', 'meta', 'code',
+            'documentation']. If None given, ['all'] is used. Parameter can be also comma separated string.
+            Default value None
+
+        """
+
+        kwargs['included_content_types'] = included_content_types
+        kwargs['data_path'] = data_path
+        kwargs['storage_name'] = storage_name
+        kwargs['dataset_group'] = 'scene'
+        kwargs['dataset_meta'] = {
+            'authors': 'Toni Heittola, Annamaria Mesaros, and Tuomas Virtanen',
+            'title': 'TAU Urban Acoustic Scenes 2019 Openset, leaderboard dataset',
+            'url': None,
+            'audio_source': 'Field recording',
+            'audio_type': 'Natural',
+            'recording_device_model': 'Zoom F8',
+            'microphone_model': 'Soundman OKM II Klassik/studio A3 electret microphone',
+            'licence': 'free non-commercial'
+        }
+        kwargs['reference_data_present'] = False
+        kwargs['crossvalidation_folds'] = 1
+        kwargs['meta_filename'] ='meta.csv'
+        kwargs['check_meta'] = False
+
+        filename_base = 'TAU-urban-acoustic-scenes-2019-openset-leaderboard'
+        source_url = 'https://zenodo.org/record/2673006/files/'
+        kwargs['package_list'] = [
+            {
+                'content_type': 'documentation',
+                'remote_file': source_url + filename_base + '.doc.zip',
+                'remote_bytes': 7741,
+                'remote_md5': 'fb85a875fb4379f6c1ef7502a6323957',
+                'filename': filename_base + '.doc.zip'
+            },
+            {
+                'content_type': 'meta',
+                'remote_file': source_url + filename_base + '.meta.zip',
+                'remote_bytes': 2959,
+                'remote_md5': 'df9711a4d6565118077a74b1faa6ce25',
+                'filename': filename_base + '.meta.zip'
+            },
+            {
+                'content_type': 'audio',
+                'remote_file': source_url + filename_base + '.audio.zip',
+                'remote_bytes': 1377552625,
+                'remote_md5': '5ab403c0176612b4abb1865a2c807787',
+                'filename': filename_base + '.audio.zip'
+            }
+        ]
+        kwargs['audio_paths'] = [
+            'audio'
+        ]
+        super(TAUUrbanAcousticScenes_2019_Openset_LeaderboardSet, self).__init__(**kwargs)
+
+    def process_meta_item(self, item, absolute_path=True, **kwargs):
+        """Process single meta data item
+
+        Parameters
+        ----------
+        item :  MetaDataItem
+            Meta data item
+
+        absolute_path : bool
+            Convert file paths to be absolute
+            Default value True
+
+        """
+
+        if absolute_path:
+            item.filename = self.relative_to_absolute_path(item.filename)
+
+        else:
+            item.filename = self.absolute_to_relative_path(item.filename)
+
+    def prepare(self):
+        """Prepare dataset for the usage.
+
+        Returns
+        -------
+        self
+
+        """
+
+        if not self.meta_container.exists() and self.reference_data_present:
+            meta_data = collections.OrderedDict()
+            for fold in self.folds():
+                # Read train files in
+                fold_data = MetaDataContainer(
+                    filename=self.evaluation_setup_filename(
+                        setup_part='train',
+                        fold=fold
+                    )
+                ).load()
+
+                # Read eval files in
+                fold_data += MetaDataContainer(
+                    filename=self.evaluation_setup_filename(
+                        setup_part='evaluate',
+                        fold=fold
+                    )
+                ).load()
+
+                # Process, make sure each file is included only once.
+                for item in fold_data:
+                    if item.filename not in meta_data:
+                        self.process_meta_item(
+                            item=item,
+                            absolute_path=False
+                        )
+
+                        meta_data[item.filename] = item
+
+            # Save meta
+            MetaDataContainer(list(meta_data.values())).save(
+                filename=self.meta_file
+            )
+
+            # Load meta and cross validation
+            self.load()
+
+        return self
 
 
 # =====================================================
