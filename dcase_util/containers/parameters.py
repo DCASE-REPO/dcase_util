@@ -621,7 +621,7 @@ class AppParameterContainer(ParameterContainer):
 
             # Inject method parameters
             if self.field_labels['LABEL'] in parameters[section]:
-                if (section_method_parameters in parameters and parameters[section][self.field_labels['LABEL']] in parameters[section_method_parameters]):
+                if section_method_parameters in parameters and parameters[section][self.field_labels['LABEL']] in parameters[section_method_parameters]:
                     self.set_path_translated(
                         parameters=parameters,
                         path=[section, 'PARAMETERS'],
