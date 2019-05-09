@@ -1016,6 +1016,7 @@ class Dataset(object):
                     if package.exists():
                         md5 = package.md5
                         bytes = package.bytes
+
                     else:
                         md5 = '-- PACKAGE DOES NOT EXISTS --'
                         bytes = ''
