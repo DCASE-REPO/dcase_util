@@ -129,6 +129,18 @@ def check_pkg_resources(package_requirement, logger=None):
 
 
 def is_int(value):
+    """Check if given value is integer
+
+    Parameters
+    ----------
+    value : variable
+
+    Returns
+    -------
+    bool
+
+    """
+
     if value is not None:
         try:
             int(value)
@@ -142,6 +154,18 @@ def is_int(value):
 
 
 def is_float(value):
+    """Check if given value is float
+
+    Parameters
+    ----------
+    value : variable
+
+    Returns
+    -------
+    bool
+
+    """
+
     if value is not None:
         try:
             float(value)
@@ -151,6 +175,38 @@ def is_float(value):
             return False
 
     else:
+        return False
+
+
+def is_jupyter():
+    """Check if code is run in Jupyter (Jupyter notebook, Jupyter console, or ipython qtconsole).
+
+    Returns
+    -------
+    bool
+
+    """
+
+    try:
+        from IPython import get_ipython
+        shell = get_ipython().__class__.__name__
+        if shell == 'ZMQInteractiveShell':
+            # Jupyter notebook, Jupyter console, or qtconsole
+            return True
+
+        elif shell == 'google.colab._shell':
+            # Google Colab
+            return True
+
+        elif shell == 'TerminalInteractiveShell':
+            # Normal terminal console with IPython
+            return False
+
+        else:
+            return False
+
+    except NameError:
+        # Normal python interpreter
         return False
 
 
@@ -166,40 +222,43 @@ class SuppressStdoutAndStderr(object):
     """
 
     def __enter__(self):
-        self.stdout_null_file = open(os.devnull, 'w')
-        self.stderr_null_file = open(os.devnull, 'w')
+        if not is_jupyter():  # Only redirect STDOUT and STDERR in console
+            self.stdout_null_file = open(os.devnull, 'w')
+            self.stderr_null_file = open(os.devnull, 'w')
 
-        self.stdout_fileno_undup_original = sys.stdout.fileno()
-        self.stderr_fileno_undup_original = sys.stderr.fileno()
+            self.stdout_fileno_undup_original = sys.stdout.fileno()
+            self.stderr_fileno_undup_original = sys.stderr.fileno()
 
-        self.stdout_fileno_original = os.dup (sys.stdout.fileno())
-        self.stderr_fileno_original = os.dup (sys.stderr.fileno())
+            self.stdout_fileno_original = os.dup (sys.stdout.fileno())
+            self.stderr_fileno_original = os.dup (sys.stderr.fileno())
 
-        self.stdout_original = sys.stdout
-        self.stderr_original = sys.stderr
+            self.stdout_original = sys.stdout
+            self.stderr_original = sys.stderr
 
-        # Assign stdout and stderr
-        os.dup2(self.stdout_null_file.fileno(), self.stdout_fileno_undup_original)
-        os.dup2(self.stderr_null_file.fileno(), self.stderr_fileno_undup_original)
+            # Assign stdout and stderr
+            os.dup2(self.stdout_null_file.fileno(), self.stdout_fileno_undup_original)
+            os.dup2(self.stderr_null_file.fileno(), self.stderr_fileno_undup_original)
 
-        sys.stdout = self.stdout_null_file
-        sys.stderr = self.stderr_null_file
+            sys.stdout = self.stdout_null_file
+            sys.stderr = self.stderr_null_file
 
         return self
 
     def __exit__(self, *_):
-        # Return stdout and stderr
-        sys.stdout = self.stdout_original
-        sys.stderr = self.stderr_original
+        if not is_jupyter():
+            # Return stdout and stderr
+            sys.stdout = self.stdout_original
+            sys.stderr = self.stderr_original
 
-        os.dup2(self.stdout_fileno_original, self.stdout_fileno_undup_original)
-        os.dup2(self.stderr_fileno_original, self.stderr_fileno_undup_original)
+            os.dup2(self.stdout_fileno_original, self.stdout_fileno_undup_original)
+            os.dup2(self.stderr_fileno_original, self.stderr_fileno_undup_original)
 
-        os.close(self.stdout_fileno_original)
-        os.close(self.stderr_fileno_original)
+            os.close(self.stdout_fileno_original)
+            os.close(self.stderr_fileno_original)
 
-        self.stdout_null_file.close()
-        self.stderr_null_file.close()
+            self.stdout_null_file.close()
+            self.stderr_null_file.close()
+
 
 class VectorRecipeParser(object):
     def __init__(self, delimiters=None, default_stream=0, **kwargs):
@@ -251,7 +310,8 @@ class VectorRecipeParser(object):
                     detail_parts = label.split(self.delimiters['detail'])
                     label = detail_parts[0].strip()
 
-                    # Default values, used when only extractor is defined e.g. [extractor (string)]; [extractor (string)]
+                    # Default values, used when only extractor is
+                    # defined e.g. [extractor (string)]; [extractor (string)]
                     vector_index_structure = {
                         'stream': self.default_stream,
                         'selection': False,
@@ -275,6 +335,7 @@ class VectorRecipeParser(object):
                             vector_index_structure['stop'] = int(vector_indexing[1].strip()) + 1
                             vector_index_structure['full'] = False
                             vector_index_structure['selection'] = False
+
                         else:
                             vector_indexing = vector_indexing_string.split(self.delimiters['vector'])
                             if len(vector_indexing) > 1:
@@ -282,6 +343,7 @@ class VectorRecipeParser(object):
                                 vector_index_structure['full'] = False
                                 vector_index_structure['selection'] = True
                                 vector_index_structure['vector'] = a
+
                             else:
                                 vector_index_structure['stream'] = int(vector_indexing[0])
                                 vector_index_structure['full'] = True
@@ -291,6 +353,7 @@ class VectorRecipeParser(object):
                             'label': label,
                             'vector-index': vector_index_structure,
                         }
+
                     else:
                         current_data = {
                             'label': label,

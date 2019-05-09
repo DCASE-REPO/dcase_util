@@ -147,6 +147,34 @@ class Path(object):
 
         return path.replace('/', os.path.sep)
 
+    def shorten(self, path=None, part_count=3):
+        """Shorten path into given parts length
+
+        Parameters
+        ----------
+        path : str
+            Path, if none given one given to class constructor is used.
+            Default value None
+
+        part_count : int
+            Count of path parts
+            Default value 3
+
+        Returns
+        -------
+        str
+
+        """
+
+        if path is None:
+            path = self.path
+
+        parts = path.split(os.sep)
+        if len(parts) > part_count:
+            return '.....' + os.path.join(*parts[-part_count:])
+        else:
+            return path
+
     def file_list(self, path=None, recursive=True, extensions=None,
                   case_sensitive=False, absolute_paths=False, offset=0, limit=None):
 

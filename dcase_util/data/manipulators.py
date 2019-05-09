@@ -67,15 +67,34 @@ class Normalizer(ObjectContainer):
         if isinstance(self._std, numpy.ndarray) and len(self._std.shape) == 1:
             self._std = self._std.reshape((-1, 1))
 
-    def __str__(self):
-        ui = FancyStringifier()
+    def to_string(self, ui=None, indent=0):
+        """Get container information in a string
 
-        output = super(Normalizer, self).__str__()
+        Parameters
+        ----------
+        ui : FancyStringifier or FancyHTMLStringifier
+            Stringifier class
+            Default value FancyStringifier
 
-        output += ui.data(field='Mean', value=self.mean) + '\n'
-        output += ui.data(field='Std', value=self.std) + '\n'
+        indent : int
+            Amount of indention used
+            Default value 0
 
-        output += ui.data(field='n', value=self.n) + '\n'
+        Returns
+        -------
+        str
+
+        """
+
+        if ui is None:
+            ui = FancyStringifier()
+
+        output = super(Normalizer, self).to_string(ui=ui, indent=indent)
+
+        output += ui.data(field='Mean', value=self.mean, indent=indent) + '\n'
+        output += ui.data(field='Std', value=self.std, indent=indent) + '\n'
+
+        output += ui.data(field='n', value=self.n, indent=indent) + '\n'
 
         return output
 
@@ -263,6 +282,62 @@ class Normalizer(ObjectContainer):
         elif isinstance(data, numpy.ndarray):
             return (data - self.mean) / self.std
 
+    def plot(self, plot=True, figsize=None):
+        """Visualize normalization factors.
+
+        Parameters
+        ----------
+
+        plot : bool
+            If true, figure is shown automatically. Set to False if collecting multiple plots into same figure
+            outside this method.
+            Default value True
+
+        figsize : tuple
+            Size of the figure. If None given, default size (10,5) is used.
+            Default value None
+
+        Returns
+        -------
+        self
+
+        """
+
+        if figsize is None:
+            figsize = (10, 5)
+
+        import matplotlib.pyplot as plt
+
+        if plot:
+            plt.figure(figsize=figsize)
+
+        # Add filename to first subplot
+        if hasattr(self, 'filename') and self.filename:
+            plt.title(self.filename)
+
+        upper = (self.mean + self.std).reshape(-1)
+        lower = (self.mean - self.std).reshape(-1)
+
+        plt.fill_between(range(self.mean.shape[0]), lower, upper, facecolor='grey', alpha=0.1, step='mid')
+
+        plt.errorbar(
+            x=range(self.mean.shape[0]),
+            y=self.mean.reshape(-1),
+            yerr=self.std.reshape(-1),
+            linestyle='None',
+            marker='s',
+            elinewidth=0.5,
+            capsize=4,
+            capthick=1,
+            color='black',
+        )
+        plt.ylabel('Value')
+        plt.xlabel('Index')
+        plt.tight_layout()
+
+        if plot:
+            plt.show()
+
 
 class RepositoryNormalizer(ObjectContainer):
     """Data repository normalizer"""
@@ -312,13 +387,32 @@ class RepositoryNormalizer(ObjectContainer):
     def __getitem__(self, label):
         return self.normalizers[label]
 
-    def __str__(self):
-        ui = FancyStringifier()
+    def to_string(self, ui=None, indent=0):
+        """Get container information in a string
 
-        output = super(RepositoryNormalizer, self).__str__()
+        Parameters
+        ----------
+        ui : FancyStringifier or FancyHTMLStringifier
+            Stringifier class
+            Default value FancyStringifier
+
+        indent : int
+            Amount of indention used
+            Default value 0
+
+        Returns
+        -------
+        str
+
+        """
+
+        if ui is None:
+            ui = FancyStringifier()
+
+        output = super(RepositoryNormalizer, self).to_string(ui=ui, indent=indent)
 
         output += ui.data(
-            indent=4,
+            indent=indent + 2,
             field='Labels',
             value=list(self.normalizers.keys())
         ) + '\n'
@@ -327,13 +421,12 @@ class RepositoryNormalizer(ObjectContainer):
         for label, label_data in iteritems(self.normalizers):
             if label_data:
                 output += ui.data(
-                    indent=4,
+                    indent=indent + 2,
                     field='['+str(label)+']',
                     value=label_data
                 ) + '\n'
 
         output += '\n'
-
         return output
 
     def __call__(self, *args, **kwargs):
@@ -646,12 +739,33 @@ class Aggregator(ObjectContainer):
             self.logger.exception(message)
             raise ValueError(message)
 
-    def __str__(self):
-        ui = FancyStringifier()
-        output = super(Aggregator, self).__str__()
-        output += ui.data(field='win_length_frames', value=self.win_length_frames) + '\n'
-        output += ui.data(field='hop_length_frames', value=self.hop_length_frames) + '\n'
-        output += ui.data(field='recipe', value=self.recipe) + '\n'
+    def to_string(self, ui=None, indent=0):
+        """Get container information in a string
+
+        Parameters
+        ----------
+        ui : FancyStringifier or FancyHTMLStringifier
+            Stringifier class
+            Default value FancyStringifier
+
+        indent : int
+            Amount of indention used
+            Default value 0
+
+        Returns
+        -------
+        str
+
+        """
+
+        if ui is None:
+            ui = FancyStringifier()
+
+        output = super(Aggregator, self).to_string(ui=ui, indent=indent)
+
+        output += ui.data(field='win_length_frames', value=self.win_length_frames, indent=indent) + '\n'
+        output += ui.data(field='hop_length_frames', value=self.hop_length_frames, indent=indent) + '\n'
+        output += ui.data(field='recipe', value=self.recipe, indent=indent) + '\n'
 
         return output
 
@@ -852,17 +966,37 @@ class Sequencer(ObjectContainer):
 
         self.required_data_amount_per_segment = required_data_amount_per_segment
 
-    def __str__(self):
-        ui = FancyStringifier()
+    def to_string(self, ui=None, indent=0):
+        """Get container information in a string
 
-        output = super(Sequencer, self).__str__()
-        output += ui.data(field='frames', value=self.sequence_length) + '\n'
-        output += ui.data(field='hop_length_frames', value=self.hop_length) + '\n'
-        output += ui.data(field='padding', value=self.padding) + '\n'
-        output += ui.data(field='required_data_amount_per_segment', value=self.required_data_amount_per_segment) + '\n'
-        output += ui.line(field='Shifting') + '\n'
-        output += ui.data(indent=4, field='shift', value=self.shift) + '\n'
-        output += ui.data(indent=4, field='shift_border', value=self.shift_border) + '\n'
+        Parameters
+        ----------
+        ui : FancyStringifier or FancyHTMLStringifier
+            Stringifier class
+            Default value FancyStringifier
+
+        indent : int
+            Amount of indention used
+            Default value 0
+
+        Returns
+        -------
+        str
+
+        """
+
+        if ui is None:
+            ui = FancyStringifier()
+
+        output = super(Sequencer, self).to_string(ui=ui, indent=indent)
+
+        output += ui.data(field='frames', value=self.sequence_length, indent=indent) + '\n'
+        output += ui.data(field='hop_length_frames', value=self.hop_length, indent=indent) + '\n'
+        output += ui.data(field='padding', value=self.padding, indent=indent) + '\n'
+        output += ui.data(field='required_data_amount_per_segment', value=self.required_data_amount_per_segment, indent=indent) + '\n'
+        output += ui.line(field='Shifting', indent=indent) + '\n'
+        output += ui.data(indent=indent + 2, field='shift', value=self.shift) + '\n'
+        output += ui.data(indent=indent + 2, field='shift_border', value=self.shift_border) + '\n'
 
         return output
 
@@ -1081,12 +1215,32 @@ class Stacker(ObjectContainer):
 
         self.hop = hop
 
-    def __str__(self):
-        ui = FancyStringifier()
+    def to_string(self, ui=None, indent=0):
+        """Get container information in a string
 
-        output = super(Stacker, self).__str__()
-        output += ui.data(field='recipe', value=self.recipe) + '\n'
-        output += ui.data(field='hop', value=self.hop) + '\n'
+        Parameters
+        ----------
+        ui : FancyStringifier or FancyHTMLStringifier
+            Stringifier class
+            Default value FancyStringifier
+
+        indent : int
+            Amount of indention used
+            Default value 0
+
+        Returns
+        -------
+        str
+
+        """
+
+        if ui is None:
+            ui = FancyStringifier()
+
+        output = super(Stacker, self).to_string(ui=ui, indent=indent)
+
+        output += ui.data(field='recipe', value=self.recipe, indent=indent) + '\n'
+        output += ui.data(field='hop', value=self.hop, indent=indent) + '\n'
 
         return output
 

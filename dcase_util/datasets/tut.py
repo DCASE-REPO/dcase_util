@@ -12,13 +12,11 @@ import sys
 import numpy
 import yaml
 from six import iteritems
-from tqdm import tqdm
-
 
 from dcase_util.datasets import SoundDataset, AcousticSceneDataset, SyntheticSoundEventDataset, SoundEventDataset
 from dcase_util.containers import MetaDataContainer, MetaDataItem, OneToOneMappingContainer, \
     DictContainer, ParameterContainer, AudioContainer
-from dcase_util.utils import Path, FileFormat
+from dcase_util.utils import Path, FileFormat, is_jupyter
 # Datasets released by Tampere University (TAU), formerly known as Tampere University of Technology (TUT).
 
 # =====================================================
@@ -2880,6 +2878,11 @@ class TUTRareSoundEvents_2017_DevelopmentSet(SyntheticSoundEventDataset):
         # Create init so we can call functions
         if os.path.exists(os.path.join(self.local_path, 'TUT_Rare_sound_events_mixture_synthesizer', '__init__.py')):
             open(os.path.join(self.local_path, 'TUT_Rare_sound_events_mixture_synthesizer', '__init__.py'), 'a').close()
+
+        if is_jupyter():
+            from tqdm import tqdm_notebook as tqdm
+        else:
+            from tqdm import tqdm
 
         # Add synth code to the search path
         sys.path.append(os.path.join(self.local_path, 'TUT_Rare_sound_events_mixture_synthesizer'))

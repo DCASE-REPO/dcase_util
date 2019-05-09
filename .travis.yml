@@ -25,6 +25,7 @@ install:
     - "pip install nose"
     - "pip install scikit-learn"
     - "pip install librosa"
+    - "pip install ipython"
     - "python setup.py develop"
 
 # command to run tests

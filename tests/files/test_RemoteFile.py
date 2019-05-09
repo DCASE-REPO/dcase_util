@@ -17,10 +17,12 @@ def test_RemoteFile():
         r = RemoteFile(filename=tmp.name, content_type='documentation')
 
         nose.tools.eq_(r.local_exists(), True)
+
         if platform.system() == 'Windows':
             nose.tools.eq_(r.local_bytes, 12)
             nose.tools.eq_(r.local_size_string(), '12 bytes')
             nose.tools.eq_(r.local_md5, 'cd2ebbdc5e817b5f5fe79c38134320e8')
+
         else:
             nose.tools.eq_(r.local_bytes, 10)
             nose.tools.eq_(r.local_size_string(), '10 bytes')
@@ -42,10 +44,13 @@ def test_RemoteFile():
 
         r = RemoteFile(filename=tmp.name)
         nose.tools.eq_(r.is_content_type(content_type=['all']), True)
+
     finally:
+
         try:
             tmp.close()
             os.unlink(tmp.name)
+
         except:
             pass
 

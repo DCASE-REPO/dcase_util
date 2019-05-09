@@ -69,7 +69,7 @@ class Serializer(object):
 
         try:
             with open(filename, 'r') as infile:
-                return yaml.load(infile)
+                return yaml.load(infile, Loader=yaml.FullLoader)
 
         except yaml.YAMLError as exc:
             cls.logger().error("Error while parsing YAML file [{file}]".format(file=filename))

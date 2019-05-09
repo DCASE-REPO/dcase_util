@@ -8,8 +8,8 @@ import collections
 import logging
 import datetime
 
-from dcase_util.ui import FancyStringifier, FancyLogger, FancyPrinter
-from dcase_util.utils import Timer, setup_logging
+from dcase_util.ui import FancyStringifier, FancyHTMLStringifier, FancyLogger, FancyPrinter, FancyHTMLPrinter
+from dcase_util.utils import Timer, setup_logging, is_jupyter
 
 
 class BaseCallback(object):
@@ -104,7 +104,7 @@ class ProgressLoggerCallback(BaseCallback):
 
     def __init__(self,
                  manual_update=False, epochs=None, external_metric_labels=None,
-                 metric=None, loss=None, manual_update_interval=1, output_type='logging',
+                 metric=None, loss=None, manual_update_interval=1, output_type='logging', show_timing=True,
                  **kwargs):
         """Constructor
 
@@ -127,8 +127,12 @@ class ProgressLoggerCallback(BaseCallback):
             Default value 1
 
         output_type : str
-            Output type, either 'logging' or 'console'
+            Output type, either 'logging', 'console', or 'notebook'
             Default value 'logging'
+
+        show_timing : bool
+            Show per epoch time and estimated time remaining
+            Default value True
 
         external_metric_labels : dict or OrderedDict
             Dictionary with {'metric_label': 'metric_name'}
@@ -156,7 +160,10 @@ class ProgressLoggerCallback(BaseCallback):
 
         self.output_type = output_type
 
+        self.show_timing = show_timing
+
         self.timer = Timer()
+
         self.ui = FancyStringifier()
 
         if self.output_type == 'logging':
@@ -164,6 +171,10 @@ class ProgressLoggerCallback(BaseCallback):
 
         elif self.output_type == 'console':
             self.output_target = FancyPrinter()
+
+        elif self.output_type == 'notebook':
+            self.output_target = FancyHTMLPrinter()
+            self.ui = FancyHTMLStringifier()
 
         self.seen = 0
         self.log_values = []
@@ -218,25 +229,34 @@ class ProgressLoggerCallback(BaseCallback):
                     header3.append(metric_name)
                     widths.append(15)
 
-                header2.append('')
-                header3.append('Step time')
-                widths.append(17)
+                if self.show_timing:
+                    header2.append('')
+                    header3.append('Step time')
+                    widths.append(20)
 
-                header2.append('')
-                header3.append('Remaining time')
-                widths.append(17)
+                    header2.append('')
+                    header3.append('Remaining time')
+                    widths.append(20)
 
                 output += self.ui.row(*header2) + '\n'
                 output += self.ui.row(*header3, widths=widths) + '\n'
                 output += self.ui.row_sep()
 
             else:
-                output += self.ui.row('', 'Loss', 'Metric', '', widths=[10, 26, 26, 17]) + '\n'
-                output += self.ui.row('', self.loss, self.metric, '') + '\n'
-                output += self.ui.row(
-                    'Epoch', 'Train', 'Val', 'Train', 'Val', 'Step time', 'Remaining time',
-                    widths=[10, 13, 13, 13, 13, 17, 17]
-                ) + '\n'
+                if self.show_timing:
+                    output += self.ui.row('', 'Loss', 'Metric', '', '', widths=[10, 36, 36, 16, 15]) + '\n'
+                    output += self.ui.row('', self.loss, self.metric, '') + '\n'
+                    output += self.ui.row(
+                        'Epoch', 'Train', 'Val', 'Train', 'Val', 'Step', 'Remaining',
+                        widths=[10, 18, 18, 18, 18, 16, 15]
+                    ) + '\n'
+                else:
+                    output += self.ui.row('', 'Loss', 'Metric', widths=[10, 36, 36]) + '\n'
+                    output += self.ui.row('', self.loss, self.metric) + '\n'
+                    output += self.ui.row(
+                        'Epoch', 'Train', 'Val', 'Train', 'Val',
+                        widths=[10, 18, 18, 18, 18]
+                    ) + '\n'
                 output += self.ui.row_sep()
 
             self.output_target.line(output)
@@ -365,17 +385,19 @@ class ProgressLoggerCallback(BaseCallback):
                 else:
                     data.append('')
 
-            # Add step time
-            data.append(self.timer.get_string())
-            types.append('str')
+            if self.show_timing:
+                # Add step time
+                step_time = datetime.timedelta(seconds=self.timer.elapsed())
+                data.append(str(step_time)[:-3])
+                types.append('str')
 
-            # Add remaining time
-            average_time_per_epoch = self.total_time / float(self.epoch-(self.first_epoch-1))
-            remaining_time_seconds = datetime.timedelta(
-                seconds=(self.epochs - 1 - self.epoch) * average_time_per_epoch
-            )
-            data.append('-'+str(remaining_time_seconds).split('.', 2)[0])
-            types.append('str')
+                # Add remaining time
+                average_time_per_epoch = self.total_time / float(self.epoch-(self.first_epoch-1))
+                remaining_time_seconds = datetime.timedelta(
+                    seconds=(self.epochs - 1 - self.epoch) * average_time_per_epoch
+                )
+                data.append('-'+str(remaining_time_seconds).split('.', 2)[0])
+                types.append('str')
 
             output = self.ui.row(*data, types=types)
 
@@ -1200,14 +1222,104 @@ class StasherCallback(BaseCallback):
             'metric_value': self.best,
         }
 
+    def to_string(self, ui=None, indent=0):
+        """Get information in a string
+
+        Parameters
+        ----------
+        ui : FancyStringifier or FancyHTMLStringifier
+            Stringifier class
+            Default value FancyStringifier
+
+        indent : int
+            Amount of indent
+            Default value 0
+
+        Returns
+        -------
+        str
+
+        """
+
+        if ui is None:
+            ui = FancyStringifier()
+
+        output = ''
+        output += ui.class_name(self.__class__.__name__, indent=indent) + '\n'
+        output += ui.data(field='Best model weights at epoch', value=self.best_model_epoch, indent=indent) + '\n'
+        output += ui.data(field='Metric type', value=self.monitor, indent=indent+2) + '\n'
+        output += ui.data(field='Metric value', value=self.best, indent=indent+2) + '\n'
+        output += ui.line()
+
+        return output
+
+    def to_html(self, indent=0):
+        """Get information in a HTML formatted string
+
+        Parameters
+        ----------
+        indent : int
+            Amount of indent
+            Default value 0
+
+        Returns
+        -------
+        str
+
+        """
+
+        return self.to_string(ui=FancyHTMLStringifier(), indent=indent)
+
     def log(self):
         """Print information about the best model into logging interface
         """
 
-        self.logger.info('  Best model weights at epoch[{epoch:d}]'.format(epoch=self.best_model_epoch))
-        self.logger.info('    metric[{metric}]={best}'.format(
-                metric=self.monitor,
-                best='{:4.4f}'.format(self.best)
-            )
-        )
+        lines = self.to_string(indent=2).split('\n')
+        for line in lines:
+            self.logger.info(line)
+
         self.logger.info('  ')
+
+    def show(self, mode='auto', indent=0):
+        """Print information about the best model
+
+        If called inside Jupyter notebook HTML formatted version is shown.
+
+        Parameters
+        ----------
+        mode : str
+            Output type, possible values ['auto', 'print', 'html']. 'html' will work only in Jupyter notebook
+            Default value 'auto'
+
+        indent : int
+            Amount of indent
+            Default value 0
+
+        Returns
+        -------
+        Nothing
+
+        """
+
+        if mode == 'auto':
+            if is_jupyter():
+                mode = 'html'
+            else:
+                mode = 'print'
+
+        if mode not in ['html', 'print']:
+            # Unknown mode given
+            message = '{name}: Unknown mode [{mode}]'.format(name=self.__class__.__name__, mode=mode)
+            self.logger.exception(message)
+            raise ValueError(message)
+
+        if mode == 'html':
+            from IPython.core.display import display, HTML
+            display(
+                HTML(
+                    self.to_html(indent=indent)
+                )
+            )
+
+        elif mode == 'print':
+            print(self.to_string(indent=indent))

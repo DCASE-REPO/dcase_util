@@ -88,28 +88,47 @@ class OneHotEncoder(BinaryMatrixEncoder):
             self.logger.exception(message)
             raise ValueError(message)
 
-    def __str__(self):
-        ui = FancyStringifier()
+    def to_string(self, ui=None, indent=0):
+        """Get container information in a string
 
-        output = super(OneHotEncoder, self).__str__()
+        Parameters
+        ----------
+        ui : FancyStringifier or FancyHTMLStringifier
+            Stringifier class
+            Default value FancyStringifier
 
-        output += ui.line(field='Data') + '\n'
-        output += ui.data(indent=4, field='data', value=self.data) + '\n'
+        indent : int
+            Amount of indention used
+            Default value 0
 
-        output += ui.line(indent=4, field='Dimensions') + '\n'
-        output += ui.data(indent=6, field='time_axis', value=self.time_axis) + '\n'
-        output += ui.data(indent=6, field='data_axis', value=self.data_axis) + '\n'
+        Returns
+        -------
+        str
 
-        output += ui.line(indent=4, field='Timing information') + '\n'
-        output += ui.data(indent=6, field='time_resolution', value=self.time_resolution, unit="sec") + '\n'
+        """
 
-        output += ui.line(field='Duration') + '\n'
-        output += ui.data(indent=6, field='Frames', value=self.length) + '\n'
+        if ui is None:
+            ui = FancyStringifier()
+
+        output = super(OneHotEncoder, self).to_string(ui=ui, indent=indent)
+
+        output += ui.line(field='Data', indent=indent) + '\n'
+        output += ui.data(indent=indent + 2, field='data', value=self.data) + '\n'
+
+        output += ui.line(indent=indent + 2, field='Dimensions') + '\n'
+        output += ui.data(indent=indent + 4, field='time_axis', value=self.time_axis) + '\n'
+        output += ui.data(indent=indent + 4, field='data_axis', value=self.data_axis) + '\n'
+
+        output += ui.line(indent=indent + 2, field='Timing information') + '\n'
+        output += ui.data(indent=indent + 4, field='time_resolution', value=self.time_resolution, unit="sec") + '\n'
+
+        output += ui.line(field='Duration', indent=indent) + '\n'
+        output += ui.data(indent=indent + 4, field='Frames', value=self.length) + '\n'
         if self.time_resolution:
-            output += ui.data(indent=6, field='Seconds', value=self._frame_to_time(frame_id=self.length), unit='sec') + '\n'
+            output += ui.data(indent=indent + 4, field='Seconds', value=self._frame_to_time(frame_id=self.length), unit='sec') + '\n'
 
-        output += ui.line(indent=4, field='Labels') + '\n'
-        output += ui.data(indent=6, field='label_list', value=self.label_list) + '\n'
+        output += ui.line(indent=indent + 2, field='Labels') + '\n'
+        output += ui.data(indent=indent + 4, field='label_list', value=self.label_list) + '\n'
 
         return output
 
@@ -211,28 +230,47 @@ class ManyHotEncoder(BinaryMatrixEncoder):
             self.logger.exception(message)
             raise ValueError(message)
 
-    def __str__(self):
-        ui = FancyStringifier()
+    def to_string(self, ui=None, indent=0):
+        """Get container information in a string
 
-        output = super(ManyHotEncoder, self).__str__()
+        Parameters
+        ----------
+        ui : FancyStringifier or FancyHTMLStringifier
+            Stringifier class
+            Default value FancyStringifier
 
-        output += ui.line(field='Data') + '\n'
-        output += ui.data(indent=4, field='data', value=self.data) + '\n'
+        indent : int
+            Amount of indention used
+            Default value 0
 
-        output += ui.line(indent=4, field='Dimensions') + '\n'
-        output += ui.data(indent=6, field='time_axis', value=self.time_axis) + '\n'
-        output += ui.data(indent=6, field='data_axis', value=self.data_axis) + '\n'
+        Returns
+        -------
+        str
 
-        output += ui.line(indent=4, field='Timing information') + '\n'
-        output += ui.data(indent=6, field='time_resolution', value=self.time_resolution, unit="sec") + '\n'
+        """
 
-        output += ui.line(field='Duration') + '\n'
-        output += ui.data(indent=6, field='Frames', value=self.length) + '\n'
+        if ui is None:
+            ui = FancyStringifier()
+
+        output = super(ManyHotEncoder, self).to_string(ui=ui, indent=indent)
+
+        output += ui.line(field='Data', indent=indent) + '\n'
+        output += ui.data(indent=indent + 2, field='data', value=self.data) + '\n'
+
+        output += ui.line(indent=indent + 2, field='Dimensions') + '\n'
+        output += ui.data(indent=indent + 4, field='time_axis', value=self.time_axis) + '\n'
+        output += ui.data(indent=indent + 4, field='data_axis', value=self.data_axis) + '\n'
+
+        output += ui.line(indent=indent + 2, field='Timing information') + '\n'
+        output += ui.data(indent=indent + 4, field='time_resolution', value=self.time_resolution, unit="sec") + '\n'
+
+        output += ui.line(field='Duration', indent=indent) + '\n'
+        output += ui.data(indent=indent + 4, field='Frames', value=self.length) + '\n'
         if self.time_resolution:
-            output += ui.data(indent=6, field='Seconds', value=self._frame_to_time(frame_id=self.length), unit='sec') + '\n'
+            output += ui.data(indent=indent + 4, field='Seconds', value=self._frame_to_time(frame_id=self.length), unit='sec') + '\n'
 
-        output += ui.line(indent=4, field='Labels') + '\n'
-        output += ui.data(indent=6, field='label_list', value=self.label_list) + '\n'
+        output += ui.line(indent=indent + 2, field='Labels') + '\n'
+        output += ui.data(indent=indent + 4, field='label_list', value=self.label_list) + '\n'
 
         return output
 
@@ -324,29 +362,48 @@ class EventRollEncoder(BinaryMatrixEncoder):
             self.logger.exception(message)
             raise ValueError(message)
 
-    def __str__(self):
-        ui = FancyStringifier()
+    def to_string(self, ui=None, indent=0):
+        """Get container information in a string
 
-        output = super(EventRollEncoder, self).__str__()
+        Parameters
+        ----------
+        ui : FancyStringifier or FancyHTMLStringifier
+            Stringifier class
+            Default value FancyStringifier
 
-        output += ui.line(field='Data') + '\n'
-        output += ui.data(indent=4, field='data', value=self.data) + '\n'
+        indent : int
+            Amount of indention used
+            Default value 0
 
-        output += ui.line(indent=4, field='Dimensions') + '\n'
-        output += ui.data(indent=6, field='time_axis', value=self.time_axis) + '\n'
-        output += ui.data(indent=6, field='data_axis', value=self.data_axis) + '\n'
+        Returns
+        -------
+        str
 
-        output += ui.line(indent=4, field='Timing information') + '\n'
-        output += ui.data(indent=6, field='time_resolution', value=self.time_resolution, unit="sec") + '\n'
+        """
 
-        output += ui.line(field='Duration') + '\n'
-        output += ui.data(indent=6, field='Frames', value=self.length) + '\n'
+        if ui is None:
+            ui = FancyStringifier()
+
+        output = super(EventRollEncoder, self).to_string(ui=ui, indent=indent)
+
+        output += ui.line(field='Data', indent=indent) + '\n'
+        output += ui.data(indent=indent + 2, field='data', value=self.data) + '\n'
+
+        output += ui.line(indent=indent + 2, field='Dimensions') + '\n'
+        output += ui.data(indent=indent + 4, field='time_axis', value=self.time_axis) + '\n'
+        output += ui.data(indent=indent + 4, field='data_axis', value=self.data_axis) + '\n'
+
+        output += ui.line(indent=indent + 2, field='Timing information') + '\n'
+        output += ui.data(indent=indent + 4, field='time_resolution', value=self.time_resolution, unit="sec") + '\n'
+
+        output += ui.line(field='Duration', indent=indent) + '\n'
+        output += ui.data(indent=indent + 4, field='Frames', value=self.length) + '\n'
         if self.time_resolution:
-            output += ui.data(indent=6, field='Seconds', value=self._frame_to_time(frame_id=self.length), unit='sec') + '\n'
+            output += ui.data(indent=indent + 4, field='Seconds', value=self._frame_to_time(frame_id=self.length), unit='sec') + '\n'
 
-        output += ui.line(indent=4, field='Labels') + '\n'
-        output += ui.data(indent=6, field='Label list', value=self.label_list) + '\n'
-        output += ui.data(indent=6, field='label_field', value=self.label) + '\n'
+        output += ui.line(indent=indent + 2, field='Labels') + '\n'
+        output += ui.data(indent=indent + 4, field='Label list', value=self.label_list) + '\n'
+        output += ui.data(indent=indent + 4, field='label_field', value=self.label) + '\n'
 
         return output
 
@@ -489,28 +546,47 @@ class OneHotLabelEncoder(LabelMatrixEncoder):
             self.logger.exception(message)
             raise ValueError(message)
 
-    def __str__(self):
-        ui = FancyStringifier()
+    def to_string(self, ui=None, indent=0):
+        """Get container information in a string
 
-        output = super(OneHotLabelEncoder, self).__str__()
+        Parameters
+        ----------
+        ui : FancyStringifier or FancyHTMLStringifier
+            Stringifier class
+            Default value FancyStringifier
 
-        output += ui.line(field='Data') + '\n'
-        output += ui.data(indent=4, field='data', value=self.data) + '\n'
+        indent : int
+            Amount of indention used
+            Default value 0
 
-        output += ui.line(indent=4, field='Dimensions') + '\n'
-        output += ui.data(indent=6, field='time_axis', value=self.time_axis) + '\n'
-        output += ui.data(indent=6, field='data_axis', value=self.data_axis) + '\n'
+        Returns
+        -------
+        str
 
-        output += ui.line(indent=4, field='Timing information') + '\n'
-        output += ui.data(indent=6, field='time_resolution', value=self.time_resolution, unit="sec") + '\n'
+        """
 
-        output += ui.line(field='Duration') + '\n'
-        output += ui.data(indent=6, field='Frames', value=self.length) + '\n'
+        if ui is None:
+            ui = FancyStringifier()
+
+        output = super(OneHotLabelEncoder, self).to_string(ui=ui, indent=indent)
+
+        output += ui.line(field='Data', indent=indent) + '\n'
+        output += ui.data(indent=indent + 2, field='data', value=self.data) + '\n'
+
+        output += ui.line(indent=indent + 2, field='Dimensions') + '\n'
+        output += ui.data(indent=indent + 4, field='time_axis', value=self.time_axis) + '\n'
+        output += ui.data(indent=indent + 4, field='data_axis', value=self.data_axis) + '\n'
+
+        output += ui.line(indent=indent + 2, field='Timing information') + '\n'
+        output += ui.data(indent=indent + 4, field='time_resolution', value=self.time_resolution, unit="sec") + '\n'
+
+        output += ui.line(field='Duration', indent=indent) + '\n'
+        output += ui.data(indent=indent + 4, field='Frames', value=self.length) + '\n'
         if self.time_resolution:
-            output += ui.data(indent=6, field='Seconds', value=self._frame_to_time(frame_id=self.length), unit='sec') + '\n'
+            output += ui.data(indent=indent + 4, field='Seconds', value=self._frame_to_time(frame_id=self.length), unit='sec') + '\n'
 
-        output += ui.line(indent=4, field='Labels') + '\n'
-        output += ui.data(indent=6, field='label_list', value=self.label_list) + '\n'
+        output += ui.line(indent=indent + 2, field='Labels') + '\n'
+        output += ui.data(indent=indent + 4, field='label_list', value=self.label_list) + '\n'
 
         return output
 

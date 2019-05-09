@@ -9,9 +9,10 @@ import csv
 import logging
 import io
 import numpy
-from dcase_util.utils import posix_path, get_parameter_hash, FieldValidator, setup_logging, is_float, is_int, FileFormat
+from dcase_util.utils import posix_path, get_parameter_hash, FieldValidator, setup_logging, \
+    is_float, is_int, is_jupyter, FileFormat
 from dcase_util.containers import ListDictContainer
-from dcase_util.ui import FancyStringifier
+from dcase_util.ui import FancyStringifier, FancyHTMLStringifier
 
 
 class ProbabilityItem(dict):
@@ -42,21 +43,62 @@ class ProbabilityItem(dict):
             self['probability'] = float(self['probability'])
 
     def __str__(self):
-        ui = FancyStringifier()
-        output = ui.class_name(self.__class__.__name__) + '\n'
-        output += ui.line(field='Meta') + '\n'
+        return self.to_string()
+
+    def to_string(self, ui=None, indent=0):
+        """Get container information in a string
+
+        Parameters
+        ----------
+        ui : FancyStringifier or FancyHTMLStringifier
+            Stringifier class
+            Default value FancyStringifier
+
+        indent : int
+            Amount of indent
+            Default value 0
+
+        Returns
+        -------
+        str
+
+        """
+
+        if ui is None:
+            ui = FancyStringifier()
+
+        output = ''
+        output += ui.class_name(self.__class__.__name__, indent=indent) + '\n'
+        output += ui.line(field='Meta', indent=indent) + '\n'
         if self.filename:
-            output += ui.data(indent=4, field='filename', value=self.filename) + '\n'
+            output += ui.data(indent=indent+2, field='filename', value=self.filename) + '\n'
 
         if self.label:
-            output += ui.data(indent=4, field='label', value=self.label) + '\n'
+            output += ui.data(indent=indent+2, field='label', value=self.label) + '\n'
 
         if self.probability is not None:
-            output += ui.data(indent=4, field='probability', value=self.probability) + '\n'
+            output += ui.data(indent=indent+2, field='probability', value=self.probability) + '\n'
 
-        output += ui.line(field='Item') + '\n'
-        output += ui.data(indent=4, field='id', value=self.id) + '\n'
+        output += ui.line(field='Item', indent=indent) + '\n'
+        output += ui.data(indent=indent+2, field='id', value=self.id) + '\n'
         return output
+
+    def to_html(self, indent=0):
+        """Get container information in a HTML formatted string
+
+        Parameters
+        ----------
+        indent : int
+            Amount of indent
+            Default value 0
+
+        Returns
+        -------
+        str
+
+        """
+
+        return self.to_string(ui=FancyHTMLStringifier(), indent=indent)
 
     @property
     def logger(self):
@@ -66,17 +108,49 @@ class ProbabilityItem(dict):
 
         return logger
 
-    def show(self):
+    def show(self, mode='auto', indent=0):
         """Print container content
+
+        If called inside Jupyter notebook, HTML formatted version is shown.
+
+        Parameters
+        ----------
+        mode : str
+            Output type, possible values ['auto', 'print', 'html']. 'html' will work in Jupyter notebook only.
+            Default value 'auto'
+
+        indent : int
+            Amount of indent
+            Default value 0
 
         Returns
         -------
         Nothing
 
         """
-        print(self)
 
-        return self
+        if mode == 'auto':
+            if is_jupyter():
+                mode = 'html'
+            else:
+                mode = 'print'
+
+        if mode not in ['html', 'print']:
+            # Unknown mode given
+            message = '{name}: Unknown mode [{mode}]'.format(name=self.__class__.__name__, mode=mode)
+            self.logger.exception(message)
+            raise ValueError(message)
+
+        if mode == 'html':
+            from IPython.core.display import display, HTML
+            display(
+                HTML(
+                    self.to_html(indent=indent)
+                )
+            )
+
+        elif mode == 'print':
+            print(self.to_string(indent=indent))
 
     def log(self, level='info'):
         """Log container content
@@ -177,7 +251,6 @@ class ProbabilityItem(dict):
     @index.setter
     def index(self, value):
         self['index'] = int(value)
-
 
     @property
     def id(self):
@@ -439,7 +512,8 @@ class ProbabilityContainer(ListDictContainer):
             Default value None
 
         delimiter : str, optional
-            Forced data delimiter for csv format. If None given, automatic delimiter sniffer used. Use this when sniffer does not work.
+            Forced data delimiter for csv format. If None given, automatic delimiter sniffer used.
+            Use this when sniffer does not work.
             Default value None
 
         decimal : str
@@ -583,7 +657,6 @@ class ProbabilityContainer(ListDictContainer):
                     f.close()
 
                 self.update(data=data)
-                #list.__init__(self, data)
 
             elif self.format == FileFormat.CSV:
                 if fields is None and csv_header is None:
@@ -651,7 +724,8 @@ class ProbabilityContainer(ListDictContainer):
             Default value None
 
         fields : list of str
-            Fields in correct order, if none given all field in alphabetical order will be outputted. Used only for CSV formatted files.
+            Fields in correct order, if none given all field in alphabetical order will be outputted.
+            Used only for CSV formatted files.
             Default value None
 
         csv_header : bool
@@ -686,7 +760,7 @@ class ProbabilityContainer(ListDictContainer):
             if sys.version_info[0] == 2:
                 f = open(self.filename, 'wbt')
 
-            elif sys.version_info[0] == 3:
+            elif sys.version_info[0] >= 3:
                 f = open(self.filename, 'wt', newline='')
 
             try:
@@ -709,7 +783,7 @@ class ProbabilityContainer(ListDictContainer):
             if sys.version_info[0] == 2:
                 csv_file = open(self.filename, 'wb')
 
-            elif sys.version_info[0] == 3:
+            elif sys.version_info[0] >= 3:
                 csv_file = open(self.filename, 'w', newline='')
 
             try:
@@ -744,7 +818,8 @@ class ProbabilityContainer(ListDictContainer):
 
     def as_matrix(self, label_list=None, filename=None, file_list=None, default_value=0):
         """Get probabilities as data matrix.
-        If items has index defined, index is used to order columns. If items has filename, filename is used to order columns.
+        If items has index defined, index is used to order columns.
+        If items has filename, filename is used to order columns.
 
         Parameters
         ----------
@@ -796,8 +871,8 @@ class ProbabilityContainer(ListDictContainer):
         elif file_list:
             matrix = numpy.ones((len(label_list), len(file_list))) * default_value
 
-            for file_id, file in enumerate(file_list):
-                current_column = data.filter(filename=file)
+            for file_id, filename in enumerate(file_list):
+                current_column = data.filter(filename=filename)
                 for item in current_column:
                     if item.label in label_list:
                         matrix[label_list.index(item.label), file_id] = item.probability

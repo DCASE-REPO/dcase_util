@@ -12,16 +12,14 @@ import numpy
 import tempfile
 import copy
 import importlib
-from tqdm import tqdm
 
 from dcase_util.containers import DictContainer, ListDictContainer, TextContainer, MetaDataContainer
 from dcase_util.files import RemoteFile, RemotePackage, File, Package
-from dcase_util.utils import get_byte_string, setup_logging, Path
-from dcase_util.utils import get_parameter_hash, get_class_inheritors
-from dcase_util.ui import FancyLogger, FancyStringifier
+from dcase_util.utils import get_byte_string, setup_logging, Path, is_jupyter, get_parameter_hash, get_class_inheritors
+from dcase_util.ui import FancyLogger, FancyStringifier, FancyHTMLStringifier
 
 
-def dataset_list(data_path='data', group=None):
+def dataset_list(data_path='data', group=None, display=True):
     """List of datasets available
 
     Parameters
@@ -32,6 +30,11 @@ def dataset_list(data_path='data', group=None):
 
     group : str
         Group label for the datasets, currently supported ['scene', 'event', 'tag']
+        Default value None
+
+    display : bool
+        Display list immediately, otherwise return string
+        Default value True
 
     Returns
     -------
@@ -39,56 +42,25 @@ def dataset_list(data_path='data', group=None):
         Multi line string containing dataset table
 
     """
-    line = '  {class_name:<52s} | {group:5s} | {remote_size:10s} | {local_present:10s} | {files:5s} | {scene:6s} | {event:6s} | {tag:4s}\n'
+
+    if is_jupyter():
+        ui = FancyHTMLStringifier()
+
+    else:
+        ui = FancyStringifier()
+
+    table_data = {
+        'class_name': [],
+        'group': [],
+        'remote_size': [],
+        'local_present': [],
+        'files': [],
+        'scene': [],
+        'event': [],
+        'tag': []
+    }
+
     output = ''
-    output += '  Dataset list\n'
-    output += line.format(
-        class_name='Class Name',
-        group='Group',
-        remote_size='Remote',
-        local_present='Local',
-        files='Audio',
-        scene='Scenes',
-        event='Events',
-        tag='Tags'
-    )
-    output += line.format(
-        class_name='-' * 42,
-        group='-' * 5,
-        remote_size='-' * 10,
-        local_present='-' * 6,
-        files='-' * 5,
-        scene='-' * 6,
-        event='-' * 6,
-        tag='-' * 4
-    )
-
-    def get_empty_row():
-        return line.format(
-            class_name='',
-            group='',
-            remote_size='',
-            local_present='',
-            files='',
-            scene='',
-            event=''
-        )
-
-    def get_row(data):
-        file_count = 0
-        if data.meta_container.exists():
-            file_count = len(data.meta)
-
-        return line.format(
-            class_name=data.__class__.__name__,
-            group=data.dataset_group,
-            remote_size=data.dataset_size_string(),
-            local_present=data.dataset_size_on_disk(),
-            files=str(file_count) if file_count else '',
-            scene=str(data.scene_label_count()) if data.scene_label_count() else '',
-            event=str(data.event_label_count()) if data.event_label_count() else '',
-            tag=str(data.tag_count()) if data.tag_count() else '',
-        )
 
     if not group or group == 'sound':
         class_list = get_class_inheritors(SoundDataset)
@@ -97,7 +69,19 @@ def dataset_list(data_path='data', group=None):
         for dataset_class in class_list:
             d = dataset_class(data_path=data_path)
             if d.dataset_group != 'base class':
-                output += get_row(d)
+                table_data['class_name'].append(d.__class__.__name__)
+                table_data['group'].append(d.dataset_group)
+                table_data['remote_size'].append(d.dataset_size_string())
+                table_data['local_present'].append(d.dataset_size_on_disk())
+                if d.meta_container.exists():
+                    file_count = len(d.meta)
+                else:
+                    file_count = ''
+
+                table_data['files'].append(str(file_count))
+                table_data['scene'].append(str(d.scene_label_count()) if d.scene_label_count() else '')
+                table_data['event'].append(str(d.event_label_count()) if d.event_label_count() else '')
+                table_data['tag'].append(str(d.tag_count()) if d.tag_count() else '')
 
     if not group or group == 'scene':
         class_list = get_class_inheritors(AcousticSceneDataset)
@@ -106,7 +90,19 @@ def dataset_list(data_path='data', group=None):
         for dataset_class in class_list:
             d = dataset_class(data_path=data_path)
             if d.dataset_group != 'base class':
-                output += get_row(d)
+                table_data['class_name'].append(d.__class__.__name__)
+                table_data['group'].append(d.dataset_group)
+                table_data['remote_size'].append(d.dataset_size_string())
+                table_data['local_present'].append(d.dataset_size_on_disk())
+                if d.meta_container.exists():
+                    file_count = len(d.meta)
+                else:
+                    file_count = ''
+
+                table_data['files'].append(str(file_count))
+                table_data['scene'].append(str(d.scene_label_count()) if d.scene_label_count() else '')
+                table_data['event'].append(str(d.event_label_count()) if d.event_label_count() else '')
+                table_data['tag'].append(str(d.tag_count()) if d.tag_count() else '')
 
     if not group or group == 'event':
         class_list = get_class_inheritors(SoundEventDataset)
@@ -115,7 +111,19 @@ def dataset_list(data_path='data', group=None):
         for dataset_class in class_list:
             d = dataset_class(data_path=data_path)
             if d.dataset_group != 'base class':
-                output += get_row(d)
+                table_data['class_name'].append(d.__class__.__name__)
+                table_data['group'].append(d.dataset_group)
+                table_data['remote_size'].append(d.dataset_size_string())
+                table_data['local_present'].append(d.dataset_size_on_disk())
+                if d.meta_container.exists():
+                    file_count = len(d.meta)
+                else:
+                    file_count = ''
+
+                table_data['files'].append(str(file_count))
+                table_data['scene'].append(str(d.scene_label_count()) if d.scene_label_count() else '')
+                table_data['event'].append(str(d.event_label_count()) if d.event_label_count() else '')
+                table_data['tag'].append(str(d.tag_count()) if d.tag_count() else '')
 
     if not group or group == 'tag':
         class_list = get_class_inheritors(AudioTaggingDataset)
@@ -124,9 +132,39 @@ def dataset_list(data_path='data', group=None):
         for dataset_class in class_list:
             d = dataset_class(data_path=data_path)
             if d.dataset_group != 'base class':
-                output += get_row(d)
+                table_data['class_name'].append(d.__class__.__name__)
+                table_data['group'].append(d.dataset_group)
+                table_data['remote_size'].append(d.dataset_size_string())
+                table_data['local_present'].append(d.dataset_size_on_disk())
+                if d.meta_container.exists():
+                    file_count = len(d.meta)
+                else:
+                    file_count = ''
 
-    return output
+                table_data['files'].append(str(file_count))
+                table_data['scene'].append(str(d.scene_label_count()) if d.scene_label_count() else '')
+                table_data['event'].append(str(d.event_label_count()) if d.event_label_count() else '')
+                table_data['tag'].append(str(d.tag_count()) if d.tag_count() else '')
+
+    output += ui.line('Dataset list') +'\n'
+    output += ui.table(
+        cell_data=[table_data['class_name'], table_data['group'], table_data['remote_size'], table_data['local_present'], table_data['files'], table_data['scene'], table_data['event'], table_data['tag']],
+        column_headers=['Class name', 'Group', 'Remote', 'Local', 'Audio', 'Scenes', 'Events', 'Tags'],
+        column_types=['str52', 'str5', 'str10', 'str10', 'str5', 'str6', 'str6', 'str4'],
+        column_separators=[0, 1, 2, 3, 4, 5, 6],
+        indent=2
+    )
+
+    if display:
+        if is_jupyter():
+            from IPython.core.display import display, HTML
+            display(HTML(output))
+
+        else:
+            print(output)
+
+    else:
+        return output
 
 
 def dataset_factory(dataset_class_name, **kwargs):
@@ -692,21 +730,43 @@ class Dataset(object):
 
         return self
 
-    def show(self):
-        """Print dataset information."""
-        DictContainer(self.dataset_meta).show()
-        self.meta_container.show(
-            show_data=False,
-            show_stats=True
-        )
+    def show(self, mode='auto', show_meta=True):
+        """Show dataset information.
 
-    def log(self):
+        Parameters
+        ----------
+        mode : str
+            Output type, possible values ['auto', 'print', 'html']. 'html' will work in Jupyter notebook only.
+            Default value 'auto'
+
+        show_meta : bool
+            Include statistics of meta data
+            Default value True
+
+        Returns
+        -------
+        str
+
+        """
+
+        DictContainer(self.dataset_meta).show(mode=mode)
+
+        if show_meta:
+            self.meta_container.show(
+                mode=mode,
+                show_data=False,
+                show_stats=True
+            )
+
+    def log(self, show_meta=True):
         """Log dataset information."""
         DictContainer(self.dataset_meta).log()
-        self.meta_container.log(
-            show_data=False,
-            show_stats=True
-        )
+
+        if show_meta:
+            self.meta_container.log(
+                show_data=False,
+                show_stats=True
+            )
 
     @property
     def audio_files(self):
@@ -1030,7 +1090,7 @@ class Dataset(object):
 
         return self
 
-    def download_packages(self):
+    def download_packages(self, **kwargs):
         """Download dataset packages over the internet to the local path
 
         Raises
@@ -1044,6 +1104,11 @@ class Dataset(object):
 
         """
 
+        if is_jupyter():
+            from tqdm import tqdm_notebook as tqdm
+        else:
+            from tqdm import tqdm
+
         # Create the dataset path if does not exist
         Path().makedirs(path=self.local_path)
 
@@ -1052,8 +1117,8 @@ class Dataset(object):
             desc="{0: <25s}".format('Download packages'),
             file=sys.stdout,
             leave=False,
-            disable=self.disable_progress_bar,
-            ascii=self.use_ascii_progress_bar
+            disable=kwargs.get('disable_progress_bar', self.disable_progress_bar),
+            ascii=kwargs.get('use_ascii_progress_bar', self.use_ascii_progress_bar)
         )
 
         for item in item_progress:
@@ -1067,7 +1132,7 @@ class Dataset(object):
 
         return self
 
-    def extract_packages(self):
+    def extract_packages(self, **kwargs):
         """Extract the dataset packages
 
         Raises
@@ -1081,13 +1146,18 @@ class Dataset(object):
 
         """
 
+        if is_jupyter():
+            from tqdm import tqdm_notebook as tqdm
+        else:
+            from tqdm import tqdm
+
         item_progress = tqdm(
             self.package_list,
             desc="{0: <25s}".format('Extract packages'),
             file=sys.stdout,
             leave=False,
-            disable=self.disable_progress_bar,
-            ascii=self.use_ascii_progress_bar
+            disable=kwargs.get('disable_progress_bar', self.disable_progress_bar),
+            ascii=kwargs.get('use_ascii_progress_bar', self.use_ascii_progress_bar)
         )
 
         for item_id, item in enumerate(item_progress):
@@ -2106,6 +2176,11 @@ class AcousticSceneDataset(Dataset):
 
         """
 
+        if is_jupyter():
+            from tqdm import tqdm_notebook as tqdm
+        else:
+            from tqdm import tqdm
+
         random.seed(seed)
 
         if training_meta is None:
@@ -2213,8 +2288,8 @@ class AcousticSceneDataset(Dataset):
                     desc="{0: <25s}".format('Generate validation split candidates'),
                     file=sys.stdout,
                     leave=False,
-                    disable=self.disable_progress_bar,
-                    ascii=self.use_ascii_progress_bar
+                    disable=kwargs.get('disable_progress_bar', self.disable_progress_bar),
+                    ascii=kwargs.get('use_ascii_progress_bar', self.use_ascii_progress_bar)
                 )
 
                 for i in iteration_progress:
@@ -2301,8 +2376,8 @@ class AcousticSceneDataset(Dataset):
                     desc="{0: <25s}".format('Generate validation split candidates'),
                     file=sys.stdout,
                     leave=False,
-                    disable=self.disable_progress_bar,
-                    ascii=self.use_ascii_progress_bar
+                    disable=kwargs.get('disable_progress_bar', self.disable_progress_bar),
+                    ascii=kwargs.get('use_ascii_progress_bar', self.use_ascii_progress_bar)
                 )
 
                 identifier_first_level = list(data.keys())
@@ -2362,97 +2437,103 @@ class AcousticSceneDataset(Dataset):
                 amounts_validation_ratio[scene_id] = current_scene_validation_amount[best_set_id] * 100
 
         if verbose:
-            log = FancyLogger()
-            log.sub_header('Validation set for fold [{fold}] / balanced'.format(fold=fold), indent=2)
-            log.data(
+            if is_jupyter():
+                ui = FancyHTMLStringifier()
+
+            else:
+                ui = FancyStringifier()
+            lines = []
+
+            lines.append(ui.sub_header('Validation set for fold [{fold}] / balanced'.format(fold=fold), indent=2))
+            lines.append(ui.data(
                 field='Balancing mode',
                 value=balancing_mode,
                 indent=4
-            )
-            log.line()
-            log.row_reset()
+            ))
+            lines.append(ui.line())
+            ui.row_reset()
 
             if balancing_mode == 'class':
-                log.row(
+                lines.append(ui.row(
                     '', 'Full training set', 'Selected validation subset', '',
-                    widths=[20, 30, 30, 15],
+                    widths=[30, 30, 30, 15],
                     types=['str', 'str', 'str'],
                     separators=[True, True, True],
                     indent=4
-                )
-                log.row(
+                ))
+                lines.append(ui.row(
                     'Scene label', 'Items', 'Items', 'Ratio (%)',
-                    widths=[20, 30, 30, 15],
+                    widths=[30, 30, 30, 15],
                     types=['str20', 'int', 'int', 'float1_percentage'],
                     separators=[True, True, True]
-                )
-                log.row_sep()
+                ))
+                lines.append(ui.row_sep())
                 for scene_id, scene_label in enumerate(training_meta.unique_scene_labels):
-                    log.row(
+                    lines.append(ui.row(
                         scene_label,
                         amounts_full_items[scene_id],
                         amounts_validation_items[scene_id],
                         amounts_validation_ratio[scene_id],
-                    )
-                log.row_sep()
-                log.row(
+                    ))
+                lines.append(ui.row_sep())
+                lines.append(ui.row(
                     'Overall',
                     numpy.sum(amounts_full_items),
                     numpy.sum(amounts_validation_items),
                     numpy.sum(amounts_validation_items) / float(numpy.sum(amounts_full_items)) * 100.0
-                )
+                ))
             
             elif balancing_mode == 'identifier':
-                log.row(
+                lines.append(ui.row(
                     '', 'Full training set', 'Selected validation subset', '',
-                    widths=[20, 30, 30, 15],
+                    widths=[30, 30, 30, 15],
                     types=['str', 'str', 'str'],
                     separators=[True, True, True],
                     indent=4
-                )
-                log.row(
+                ))
+                lines.append(ui.row(
                     'Scene label', 'Identifiers', 'Items', 'Identifiers', 'Items', 'Ratio (%)',
-                    widths=[20, 15, 15, 15, 15, 15],
+                    widths=[30, 15, 15, 15, 15, 15],
                     types=['str20', 'int', 'int', 'int', 'int', 'float1_percentage'],
                     separators=[True, False, True, False, True]
-                )
-                log.row_sep()
+                ))
+                lines.append(ui.row_sep())
                 for scene_id, scene_label in enumerate(training_meta.unique_scene_labels):
-                    log.row(
+                    lines.append(ui.row(
                         scene_label,
                         amounts_full_identifiers1[scene_id],
                         amounts_full_items[scene_id],
                         amounts_validation_identifiers1[scene_id],
                         amounts_validation_items[scene_id],
                         amounts_validation_ratio[scene_id],
-                    )
-                log.row_sep()
-                log.row(
+                    ))
+                lines.append(ui.row_sep())
+                lines.append(ui.row(
                     'Overall',
                     numpy.sum(amounts_full_identifiers1),
                     numpy.sum(amounts_full_items),
                     numpy.sum(amounts_validation_identifiers1),
                     numpy.sum(amounts_validation_items),
                     numpy.sum(amounts_validation_items) / float(numpy.sum(amounts_full_items)) * 100.0
-                )
+                ))
 
             elif balancing_mode == 'identifier_two_level_hierarchy':
-                log.row(
+                lines.append(ui.row(
                     '', 'Full training set', 'Selected validation subset', '',
-                    widths=[20, 30, 30, 15],
+                    widths=[30, 30, 30, 15],
                     types=['str', 'str', 'str'],
                     separators=[True, True, True],
                     indent=4
-                )
-                log.row(
+                ))
+                lines.append(ui.row(
                     'Scene label', 'Id1', 'Id2', 'Items', 'Id1', 'Id2', 'Items', 'Ratio (%)',
-                    widths=[20, 7, 8, 15, 7, 8, 15, 15],
+                    widths=[30, 7, 8, 15, 7, 8, 15, 15],
                     types=['str20', 'int', 'int', 'int', 'int', 'int', 'int', 'float1_percentage'],
                     separators=[True, False, False, True, False, False, True]
-                )
-                log.row_sep()
+                ))
+                lines.append(ui.row_sep())
                 for scene_id, scene_label in enumerate(training_meta.unique_scene_labels):
-                    log.row(
+                    lines.append(ui.row(
                         scene_label,
                         amounts_full_identifiers1[scene_id],
                         amounts_full_identifiers2[scene_id],
@@ -2461,9 +2542,9 @@ class AcousticSceneDataset(Dataset):
                         amounts_validation_identifiers2[scene_id],
                         amounts_validation_items[scene_id],
                         amounts_validation_ratio[scene_id],
-                    )
-                log.row_sep()
-                log.row(
+                    ))
+                lines.append(ui.row_sep())
+                lines.append(ui.row(
                     'Overall',
                     numpy.sum(amounts_full_identifiers1),
                     numpy.sum(amounts_full_identifiers2),
@@ -2472,9 +2553,17 @@ class AcousticSceneDataset(Dataset):
                     numpy.sum(amounts_validation_identifiers2),
                     numpy.sum(amounts_validation_items),
                     numpy.sum(amounts_validation_items) / float(numpy.sum(amounts_full_items)) * 100.0
-                )
+                ))
 
-            log.line()
+            lines.append(ui.line())
+            output = ''.join(lines)
+            if is_jupyter():
+                from IPython.core.display import display, HTML
+                display(HTML(output))
+
+            else:
+                log = FancyLogger()
+                log.line(lines)
 
         return validation_files
 
@@ -3021,6 +3110,11 @@ class SoundEventDataset(Dataset):
 
         """
 
+        if is_jupyter():
+            from tqdm import tqdm_notebook as tqdm
+        else:
+            from tqdm import tqdm
+
         from sklearn.metrics import mean_absolute_error
 
         random.seed(seed)
@@ -3079,8 +3173,8 @@ class SoundEventDataset(Dataset):
                     desc="{0: <25s}".format('Generate validation split candidates'),
                     file=sys.stdout,
                     leave=False,
-                    disable=self.disable_progress_bar,
-                    ascii=self.use_ascii_progress_bar
+                    disable=kwargs.get('disable_progress_bar', self.disable_progress_bar),
+                    ascii=kwargs.get('use_ascii_progress_bar', self.use_ascii_progress_bar)
                 )
 
                 for i in iteration_progress:
@@ -3177,8 +3271,8 @@ class SoundEventDataset(Dataset):
                     desc="{0: <25s}".format('Generate validation split candidates'),
                     file=sys.stdout,
                     leave=False,
-                    disable=self.disable_progress_bar,
-                    ascii=self.use_ascii_progress_bar
+                    disable=kwargs.get('disable_progress_bar', self.disable_progress_bar),
+                    ascii=kwargs.get('use_ascii_progress_bar', self.use_ascii_progress_bar)
                 )
 
                 for i in iteration_progress:
@@ -3461,6 +3555,11 @@ class AudioTaggingDataset(Dataset):
 
         """
 
+        if is_jupyter():
+            from tqdm import tqdm_notebook as tqdm
+        else:
+            from tqdm import tqdm
+
         from sklearn.metrics import mean_absolute_error
 
         random.seed(seed)
@@ -3513,8 +3612,8 @@ class AudioTaggingDataset(Dataset):
                     desc="{0: <25s}".format('Generate validation split candidates'),
                     file=sys.stdout,
                     leave=False,
-                    disable=self.disable_progress_bar,
-                    ascii=self.use_ascii_progress_bar
+                    disable=kwargs.get('disable_progress_bar', self.disable_progress_bar),
+                    ascii=kwargs.get('use_ascii_progress_bar', self.use_ascii_progress_bar)
                 )
 
                 for i in iteration_progress:
@@ -3609,8 +3708,8 @@ class AudioTaggingDataset(Dataset):
                     desc="{0: <25s}".format('Generate validation split candidates'),
                     file=sys.stdout,
                     leave=False,
-                    disable=self.disable_progress_bar,
-                    ascii=self.use_ascii_progress_bar
+                    disable=kwargs.get('disable_progress_bar', self.disable_progress_bar),
+                    ascii=kwargs.get('use_ascii_progress_bar', self.use_ascii_progress_bar)
                 )
 
                 for i in iteration_progress:

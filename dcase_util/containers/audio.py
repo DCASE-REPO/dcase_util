@@ -9,12 +9,11 @@ import soundfile
 import tempfile
 import numpy
 import librosa
-from tqdm import tqdm
 from six.moves.http_client import BadStatusLine
 
 from dcase_util.containers import ContainerMixin, FileMixin
-from dcase_util.ui.ui import FancyStringifier
-from dcase_util.utils import FileFormat, is_int
+from dcase_util.ui.ui import FancyStringifier, FancyHTMLStringifier
+from dcase_util.utils import FileFormat, Path, is_int, is_jupyter
 
 
 class AudioContainer(ContainerMixin, FileMixin):
@@ -112,69 +111,95 @@ class AudioContainer(ContainerMixin, FileMixin):
         self.focus_stop = d['_focus_stop']
         self.focus_channel = d['_focus_channel']
 
-    def __str__(self):
+    def to_string(self, ui=None, indent=0):
+        """Get container information in a string
+
+        Parameters
+        ----------
+        ui : FancyStringifier or FancyHTMLStringifier
+            Stringifier class
+            Default value FancyStringifier
+
+        indent : int
+            Amount of indent
+            Default value 0
+
+        Returns
+        -------
+        str
+
+        """
+
+        if ui is None:
+            ui = FancyStringifier()
+
         output = ''
-        ui = FancyStringifier()
-        output += ui.class_name(self.__class__.__name__) + '\n'
+        output += ui.class_name(self.__class__.__name__, indent=indent) + '\n'
         if self.filename:
             output += ui.data(
                 field='Filename',
-                value=self.filename
+                value=self.filename,
+                indent=indent
             ) + '\n'
 
             if self.filetype_info and self.filetype_info.values:
                 output += ui.data(
                     field='Format',
-                    value=self.format + ' (' + ', '.join(self.filetype_info.values()) + ')'
+                    value=self.format + ' (' + ', '.join(self.filetype_info.values()) + ')',
+                    indent=indent
                 ) + '\n'
 
             else:
-                output += ui.data(field='Format', value=self.format) + '\n'
+                output += ui.data(field='Format', value=self.format, indent=indent) + '\n'
 
             output += ui.data(
                 field='Synced',
-                value='Yes' if self.data_synced_with_file else 'No'
+                value='Yes' if self.data_synced_with_file else 'No',
+                indent=indent
             ) + '\n'
 
         output += ui.data(
             field='Sampling rate',
-            value=str(self.fs), unit='hz'
+            value=str(self.fs),
+            unit='hz',
+            indent=indent
         ) + '\n'
 
         output += ui.data(
             field='Channels',
-            value=str(self.channels)
+            value=str(self.channels),
+            indent=indent
         ) + '\n'
 
-        output += ui.line(field='Duration') + '\n'
+        output += ui.line(field='Duration', indent=indent) + '\n'
         output += ui.data(
-            indent=4,
+            indent=indent + 2,
             field='Seconds',
             value=self.duration_sec,
             unit='sec'
         ) + '\n'
 
         output += ui.data(
-            indent=4,
+            indent=indent + 2,
             field='Milliseconds',
             value=self.duration_ms,
             unit='ms'
         ) + '\n'
 
         output += ui.data(
-            indent=4,
+            indent=indent + 2,
             field='Samples',
             value=self.duration_samples,
             unit='samples'
         ) + '\n'
 
         if self._focus_channel is not None or self._focus_start is not None or self._focus_stop is not None:
-            output += ui.line(field='Focus segment') + '\n'
+            output += ui.line(field='Focus segment', indent=indent) + '\n'
             if self.focus_channel is not None:
                 if self.channels == 2:
                     if self._focus_channel == 0:
                         output += ui.data(
-                            indent=4,
+                            indent=indent + 4,
                             field='Channel',
                             value='{channel} [{label}]'.format(
                                 channel=self._focus_channel,
@@ -184,7 +209,7 @@ class AudioContainer(ContainerMixin, FileMixin):
 
                     elif self._focus_channel == 1:
                         output += ui.data(
-                            indent=4,
+                            indent=indent + 4,
                             field='Channel',
                             value='{channel} [{label}]'.format(
                                 channel=self._focus_channel,
@@ -194,62 +219,62 @@ class AudioContainer(ContainerMixin, FileMixin):
 
                 else:
                     output += ui.data(
-                        indent=4,
+                        indent=indent + 4,
                         field='Channel',
                         value=self._focus_channel
                     ) + '\n'
 
             output += ui.line(
-                indent=4,
+                indent=indent + 2,
                 field='Duration'
             ) + '\n'
 
             output += ui.data(
-                indent=6,
+                indent=indent + 4,
                 field='Seconds',
                 value=self.focus_stop_seconds - self.focus_start_seconds,
                 unit='sec'
             ) + '\n'
 
             output += ui.data(
-                indent=6,
+                indent=indent + 4,
                 field='Samples',
                 value=self.focus_stop_samples - self.focus_start_samples,
                 unit='sec'
             ) + '\n'
 
             output += ui.line(
-                indent=4,
+                indent=indent + 2,
                 field='Start point'
             ) + '\n'
 
             output += ui.data(
-                indent=6,
+                indent=indent + 4,
                 field='Seconds',
                 value=self.focus_start_seconds,
                 unit='sec') + '\n'
 
             output += ui.data(
-                indent=6,
+                indent=indent + 4,
                 field='Samples',
                 value=self.focus_start_samples,
                 unit='samples'
             ) + '\n'
 
             output += ui.line(
-                indent=4,
+                indent=indent + 2,
                 field='Stop point'
             ) + '\n'
 
             output += ui.data(
-                indent=6,
+                indent=indent + 4,
                 field='Seconds',
                 value=self.focus_stop_seconds,
                 unit='sec'
             ) + '\n'
 
             output += ui.data(
-                indent=6,
+                indent=indent + 4,
                 field='Samples',
                 value=self.focus_stop_samples,
                 unit='samples'
@@ -468,6 +493,7 @@ class AudioContainer(ContainerMixin, FileMixin):
 
         if isinstance(self._data, numpy.ndarray) and len(self._data) > 0:
             return True
+
         else:
             return False
 
@@ -484,6 +510,7 @@ class AudioContainer(ContainerMixin, FileMixin):
 
         if self.loaded:
             return self._data.shape
+
         else:
             return None
 
@@ -564,10 +591,13 @@ class AudioContainer(ContainerMixin, FileMixin):
         if self.loaded:
             if len(self.data.shape) == 2:
                 return self._data.shape[self.channel_axis]
+
             elif len(self.data.shape) == 1:
                 return 1
+
             else:
                 return 0
+
         else:
             return 0
 
@@ -1014,6 +1044,11 @@ class AudioContainer(ContainerMixin, FileMixin):
 
         """
 
+        if is_jupyter():
+            from tqdm import tqdm_notebook as tqdm
+        else:
+            from tqdm import tqdm
+
         def progress_hook(t):
             """Wraps tqdm instance. Don't forget to close() or __exit__()
             the tqdm instance once you're done with it (easiest using `with` syntax).
@@ -1066,6 +1101,7 @@ class AudioContainer(ContainerMixin, FileMixin):
             tmp_file.close()
 
             download_progress_bar = None
+
             if not silent:
                 # Create download progress bar
                 download_progress_bar = tqdm(
@@ -1078,6 +1114,7 @@ class AudioContainer(ContainerMixin, FileMixin):
                     ascii=self.use_ascii_progress_bar
                 )
                 callback = progress_hook(download_progress_bar)
+
             else:
                 callback = None
 
@@ -1161,6 +1198,7 @@ class AudioContainer(ContainerMixin, FileMixin):
 
                 max_value = max(abs(channel_data)) + headroom
                 channel_data /= max_value
+
         else:
             mean_value = numpy.mean(self._data)
             self._data -= mean_value
@@ -1445,6 +1483,7 @@ class AudioContainer(ContainerMixin, FileMixin):
                         hop_length=hop_length
                     )
                 )
+
             return numpy.array(data)
 
     def segments(self,
@@ -1592,6 +1631,7 @@ class AudioContainer(ContainerMixin, FileMixin):
                         pad_width=(0, length-self.length),
                         mode='constant'
                     )
+
                 else:
                     self._data = numpy.pad(
                         array=self._data,
@@ -1624,7 +1664,7 @@ class AudioContainer(ContainerMixin, FileMixin):
             self.plot_spec(**kwargs)
 
     def plot_wave(self, x_axis='time', max_points=50000.0, offset=0.0, color='#333333', alpha=1.0,
-                  show_filename=True, plot=True):
+                  show_filename=True, plot=True, figsize=None):
         """Visualize audio data as waveform.
 
         Parameters
@@ -1659,23 +1699,33 @@ class AudioContainer(ContainerMixin, FileMixin):
             outside this method.
             Default value True
 
+        figsize : tuple
+            Size of the figure. If None given, default size (10,5) is used.
+            Default value None
+
         Returns
         -------
         self
 
         """
 
+        if figsize is None:
+            figsize = (10, 5)
+
         import matplotlib.pyplot as plt
         from librosa.display import waveplot
         if plot:
-            plt.figure()
+            plt.figure(figsize=figsize)
 
-        if self.channels > 1:
+        title = Path(self.filename).shorten()
+
+        if self.channels > 1 and len(self.get_focused().shape) > 1:
             # Plotting for multi-channel audio
             for channel_id, channel_data in enumerate(self.get_focused()):
-                plt.subplot(self.channels, 1, channel_id + 1)
+                ax = plt.subplot(self.channels, 1, channel_id + 1)
                 if channel_id + 1 != self.channels:
                     current_x_axis = None
+
                 else:
                     current_x_axis = x_axis
 
@@ -1692,10 +1742,10 @@ class AudioContainer(ContainerMixin, FileMixin):
                 plt.ylabel('Channel {channel:d}'.format(channel=channel_id))
                 if channel_id == 0 and show_filename:
                     if self.filename:
-                        plt.title(self.filename)
+                        plt.title(title)
 
                 if channel_id+1 != self.channels:
-                    plt.xlabel('')
+                    ax.axes.get_xaxis().set_visible(False)
 
         else:
             # Plotting for single channel audio
@@ -1712,15 +1762,13 @@ class AudioContainer(ContainerMixin, FileMixin):
             plt.ylabel('Channel {channel:d}'.format(channel=0))
 
             if self.filename and show_filename:
-                plt.title(self.filename)
+                plt.title(title)
 
         if plot:
             plt.show()
 
-        return self
-
     def plot_spec(self, spec_type='log', hop_length=512, cmap='magma',
-                  show_filename=True, show_colorbar=True, plot=True):
+                  show_filename=True, show_colorbar=False, plot=True, figsize=None):
         """Visualize audio data as spectrogram.
 
         Parameters
@@ -1744,12 +1792,16 @@ class AudioContainer(ContainerMixin, FileMixin):
 
         show_colorbar : bool
             Show color bar next to plot.
-            Default value True
+            Default value False
 
         plot : bool
             If true, figure is shown automatically. Set to False if collecting multiple plots into same
             figure outside this method.
             Default value True
+
+        figsize : tuple
+            Size of the figure. If None given, default size (10,5) is used.
+            Default value None
 
         Returns
         -------
@@ -1757,21 +1809,34 @@ class AudioContainer(ContainerMixin, FileMixin):
 
         """
 
+        if figsize is None:
+            figsize = (10, 5)
+
         from librosa.display import specshow
         import matplotlib.pyplot as plt
 
         if plot:
-            plt.figure()
+            plt.figure(figsize=figsize)
+
+        title = Path(self.filename).shorten()
 
         if self.channels > 1:
             for channel_id, channel_data in enumerate(self.get_focused()):
-                plt.subplot(self.channels, 1, channel_id+1)
+                ax = plt.subplot(self.channels, 1, channel_id+1)
 
                 if spec_type in ['linear', 'log']:
                     D = librosa.core.amplitude_to_db(numpy.abs(librosa.stft(channel_data.ravel())) ** 2, ref=numpy.max)
 
                 elif spec_type.startswith('cqt'):
                     D = librosa.core.amplitude_to_db(librosa.cqt(channel_data.ravel(), sr=self.fs), ref=numpy.max)
+
+                else:
+                    message = '{name}: Unknown spec_type given for plot_spec'.format(
+                        name=self.__class__.__name__
+                    )
+
+                    self.logger.exception(message)
+                    raise ValueError(message)
 
                 if spec_type == 'linear':
                     specshow(
@@ -1818,7 +1883,10 @@ class AudioContainer(ContainerMixin, FileMixin):
 
                 plt.ylabel('Channel {channel:d}'.format(channel=channel_id))
                 if channel_id == 0 and self.filename:
-                    plt.title(self.filename)
+                    plt.title(title)
+
+                if channel_id+1 != self.channels:
+                    ax.axes.get_xaxis().set_visible(False)
 
         else:
             channel_id = 0
@@ -1834,6 +1902,14 @@ class AudioContainer(ContainerMixin, FileMixin):
                     librosa.cqt(self.get_focused().ravel(), sr=self.fs),
                     ref=numpy.max
                 )
+
+            else:
+                message = '{name}: Unknown spec_type given'.format(
+                    name=self.__class__.__name__
+                )
+
+                self.logger.exception(message)
+                raise ValueError(message)
 
             if spec_type == 'linear':
                 specshow(
@@ -1880,7 +1956,7 @@ class AudioContainer(ContainerMixin, FileMixin):
 
             plt.ylabel('Channel {channel:d}'.format(channel=channel_id))
             if show_filename and channel_id == 0:
-                plt.title(self.filename)
+                plt.title(title)
 
         if plot:
             plt.show()

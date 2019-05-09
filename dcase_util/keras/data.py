@@ -153,19 +153,39 @@ def get_keras_data_sequence_class():
             else:
                 self.data_buffer = None
 
-        def __str__(self):
-            ui = FancyStringifier()
+        def to_string(self, ui=None, indent=0):
+            """Get container information in a string
+
+            Parameters
+            ----------
+            ui : FancyStringifier or FancyHTMLStringifier
+                Stringifier class
+                Default value FancyStringifier
+
+            indent : int
+                Amount of indention used
+                Default value 0
+
+            Returns
+            -------
+            str
+
+            """
+
+            if ui is None:
+                ui = FancyStringifier()
+
             output = ''
-            output += ui.class_name(self.__class__.__name__) + '\n'
+            output += ui.class_name(self.__class__.__name__, indent=indent) + '\n'
 
             output += ui.data(
-                indent=2,
+                indent=indent,
                 field='Batch size',
                 value=self.batch_size
             ) + '\n'
 
             output += ui.data(
-                indent=2,
+                indent=indent,
                 field='Epoch size',
                 value=len(self), unit='batches'
             ) + '\n'
@@ -173,49 +193,49 @@ def get_keras_data_sequence_class():
             shape = self.data_shape
             axis = self.data_axis
 
-            output += ui.data(field='Data item shape', value=shape) + '\n'
+            output += ui.data(field='Data item shape', value=shape, indent=indent) + '\n'
 
             output += ui.data(
-                indent=4,
+                indent=indent + 2,
                 field='Time',
                 value=shape[axis['time_axis']]
             ) + '\n'
 
             output += ui.data(
-                indent=4,
+                indent=indent + 2,
                 field='Data',
                 value=shape[axis['data_axis']]
             ) + '\n'
 
             if 'sequence_axis' in axis:
                 output += ui.data(
-                    indent=4,
+                    indent=indent + 2,
                     field='Sequence',
                     value=shape[axis['sequence_axis']]
                 ) + '\n'
 
             output += ui.data(
-                indent=4,
+                indent=indent + 2,
                 field='Axis',
                 value=axis
             ) + '\n'
 
             if self.buffer_size is not None:
-                output += ui.line(field='Buffer') + '\n'
+                output += ui.line(field='Buffer', indent=indent) + '\n'
                 output += ui.data(
-                    indent=4,
+                    indent=indent + 2,
                     field='buffer_size',
                     value=self.buffer_size,
                     unit='items'
                 ) + '\n'
                 output += ui.data(
-                    indent=4,
+                    indent=indent + 2,
                     field='buffer usage',
                     value=self.data_buffer.count,
                     unit='items'
                 ) + '\n'
                 output += ui.data(
-                    indent=4,
+                    indent=indent + 2,
                     field='buffer usage',
                     value=(self.data_buffer.count / float(self.buffer_size)) * 100,
                     unit='%'

@@ -33,16 +33,35 @@ class DataBuffer(ObjectContainer):
         self.data_buffer = collections.deque(maxlen=self.size)
         self.meta_buffer = collections.deque(maxlen=self.size)
 
-    def __str__(self):
-        ui = FancyStringifier()
+    def to_string(self, ui=None, indent=0):
+        """Get container information in a string
 
-        output = super(DataBuffer, self).__str__()
+        Parameters
+        ----------
+        ui : FancyStringifier or FancyHTMLStringifier
+            Stringifier class
+            Default value FancyStringifier
 
-        output += ui.data(field='size', value=self.size) + '\n'
-        output += ui.data(field='index', value=self.index) + '\n'
-        output += ui.line(field='Buffer') + '\n'
-        output += ui.data(indent=4, field='data_buffer', value=self.data_buffer) + '\n'
-        output += ui.data(indent=4, field='meta_buffer', value=self.meta_buffer) + '\n'
+        indent : int
+            Amount of indention used
+            Default value 0
+
+        Returns
+        -------
+        str
+
+        """
+
+        if ui is None:
+            ui = FancyStringifier()
+
+        output = super(DataBuffer, self).to_string(ui=ui, indent=indent)
+
+        output += ui.data(field='size', value=self.size, indent=indent) + '\n'
+        output += ui.data(field='index', value=self.index, indent=indent) + '\n'
+        output += ui.line(field='Buffer', indent=indent) + '\n'
+        output += ui.data(indent=indent + 2, field='data_buffer', value=self.data_buffer) + '\n'
+        output += ui.data(indent=indent + 2, field='meta_buffer', value=self.meta_buffer) + '\n'
 
         return output
 

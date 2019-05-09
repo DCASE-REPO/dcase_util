@@ -239,35 +239,54 @@ class DataContainer(ObjectContainer):
 
         return self.length
 
-    def __str__(self):
-        ui = FancyStringifier()
+    def to_string(self, ui=None, indent=0):
+        """Get container information in a string
 
-        output = super(DataContainer, self).__str__()
+        Parameters
+        ----------
+        ui : FancyStringifier or FancyHTMLStringifier
+            Stringifier class
+            Default value FancyStringifier
+
+        indent : int
+            Amount of indent
+            Default value 0
+
+        Returns
+        -------
+        str
+
+        """
+
+        if ui is None:
+            ui = FancyStringifier()
+
+        output = super(DataContainer, self).to_string(ui=ui, indent=indent)
 
         output += ui.line(field='Data') + '\n'
         output += ui.data(
-            indent=4,
+            indent=indent + 4,
             field='data',
             value=self.data
         ) + '\n'
 
         output += ui.line(
-            indent=4,
+            indent=indent + 4,
             field='Dimensions'
         ) + '\n'
         output += ui.data(
-            indent=6,
+            indent=indent + 6,
             field='time_axis',
             value=self.time_axis
         ) + '\n'
 
         output += ui.line(
-            indent=4,
+            indent=indent + 4,
             field='Timing information'
         ) + '\n'
 
         output += ui.data(
-            indent=6,
+            indent=indent + 6,
             field='time_resolution',
             value=self.time_resolution,
             unit="sec"
@@ -275,47 +294,47 @@ class DataContainer(ObjectContainer):
 
         output += ui.line(field='Meta') + '\n'
         output += ui.data(
-            indent=4,
+            indent=indent + 4,
             field='stats',
             value='Calculated' if self._stats is not None else '-'
         ) + '\n'
 
         output += ui.data(
-            indent=4,
+            indent=indent + 4,
             field='metadata',
             value=self.metadata if self.metadata else '-'
         ) + '\n'
 
         output += ui.data(
-            indent=4,
+            indent=indent + 4,
             field='processing_chain',
             value=self.processing_chain if self.processing_chain else '-'
         ) + '\n'
 
         output += ui.line(field='Duration') + '\n'
         output += ui.data(
-            indent=4,
+            indent=indent + 4,
             field='Frames',
             value=self.length
         ) + '\n'
 
         if self.time_resolution:
             output += ui.data(
-                indent=4,
+                indent=indent + 4,
                 field='Seconds',
                 value=self._frame_to_time(frame_id=self.length),
                 unit='sec'
             ) + '\n'
 
         if self._focus_start is not None and self._focus_stop is not None:
-            output += ui.line(field='Focus segment') + '\n'
+            output += ui.line(field='Focus segment', indent=indent) + '\n'
             output += ui.line(
-                indent=4,
+                indent=indent + 4,
                 field='Duration'
             ) + '\n'
 
             output += ui.data(
-                indent=6,
+                indent=indent + 6,
                 field='Index',
                 value=self._focus_stop - self._focus_start
             ) + '\n'
@@ -328,34 +347,34 @@ class DataContainer(ObjectContainer):
                 ) + '\n'
 
             output += ui.line(
-                indent=4,
+                indent=indent + 4,
                 field='Start'
             ) + '\n'
 
             output += ui.data(
-                indent=6,
+                indent=indent + 6,
                 field='Index',
                 value=self._focus_start
             ) + '\n'
 
             if self.time_resolution:
                 output += ui.data(
-                    indent=6,
+                    indent=indent + 6,
                     field='Seconds',
                     value=self._frame_to_time(frame_id=self._focus_start),
                     unit='sec'
                 ) + '\n'
 
-            output += ui.line(indent=4, field='Stop') + '\n'
+            output += ui.line(indent=indent + 4, field='Stop') + '\n'
             output += ui.data(
-                indent=6,
+                indent=indent + 6,
                 field='Index',
                 value=self._focus_stop
             ) + '\n'
 
             if self.time_resolution:
                 output += ui.data(
-                    indent=6,
+                    indent=indent + 6,
                     field='Seconds',
                     value=self._frame_to_time(frame_id=self._focus_stop),
                     unit='sec'
@@ -385,6 +404,10 @@ class DataContainer(ObjectContainer):
 
         process_parameters : dict, optional
             Parameters for the process method of the Processor
+            Default value None
+
+        preprocessing_callbacks : list of dicts
+            Callbacks used for preprocessing
             Default value None
 
         input_type : ProcessingChainItemType
@@ -700,8 +723,19 @@ class DataContainer(ObjectContainer):
 
         return data[::frame_hop]
 
-    def plot(self):
+    def plot(self, plot=True, figsize=None):
         """Visualize data array.
+
+        Parameters
+        ----------
+        plot : bool
+            If true, figure is shown automatically. Set to False if collecting multiple plots into same figure
+            outside this method.
+            Default value True
+
+        figsize : tuple
+            Size of the figure. If None given, default size (10,5) is used.
+            Default value None
 
         Returns
         -------
@@ -709,16 +743,44 @@ class DataContainer(ObjectContainer):
 
         """
 
+        if figsize is None:
+            figsize = (10, 5)
+
         import matplotlib.pyplot as plt
-        plt.figure()
-        plt.plot(self.get_focused())
+        from librosa.core import frames_to_time
+        from librosa.display import TimeFormatter
+
+        if plot:
+            plt.figure(figsize=figsize)
+
+        # Plot feature matrix
+        if self.time_resolution:
+            sr = int(1.0 / float(self.time_resolution))
+            x_axis = 'time'
+        else:
+            sr = 1.0
+            x_axis = None
+
+        y = self.get_focused()[0]
+        locs = frames_to_time(frames=numpy.arange(len(y)), sr=sr, hop_length=1)
+
+        plt.plot(locs, y)
+        axes = plt.gca()
+
+        axes.set_xlim([locs.min(), locs.max()])
+        if x_axis == 'time':
+            axes.xaxis.set_major_formatter(TimeFormatter(lag=False))
+            axes.xaxis.set_label_text('Time')
+        elif x_axis is None or x_axis in ['off', 'none']:
+            axes.set_xticks([])
 
         # Add filename to first subplot
         if self.filename:
             plt.title(self.filename)
 
-        plt.tight_layout()
-        plt.show()
+        if plot:
+            plt.tight_layout()
+            plt.show()
 
 
 class DataArrayContainer(DataContainer):
@@ -842,16 +904,35 @@ class DataMatrix2DContainer(DataContainer):
         self.data_axis = d['data_axis']
         self.time_axis = d['time_axis']
 
-    def __str__(self):
-        ui = FancyStringifier()
+    def to_string(self, ui=None, indent=0):
+        """Get container information in a string
 
-        output = super(DataMatrix2DContainer, self).__str__()
+        Parameters
+        ----------
+        ui : FancyStringifier or FancyHTMLStringifier
+            Stringifier class
+            Default value FancyStringifier
 
-        output += ui.line(field='Data') + '\n'
+        indent : int
+            Amount of indent
+            Default value 0
 
-        output += ui.line(indent=4, field='Dimensions') + '\n'
-        output += ui.data(indent=6, field='time_axis', value=self.time_axis) + '\n'
-        output += ui.data(indent=6, field='data_axis', value=self.data_axis) + '\n'
+        Returns
+        -------
+        str
+
+        """
+
+        if ui is None:
+            ui = FancyStringifier()
+
+        output = super(DataMatrix2DContainer, self).to_string(ui=ui, indent=indent)
+
+        output += ui.line(field='Data', indent=indent) + '\n'
+
+        output += ui.line(indent=indent + 2, field='Dimensions') + '\n'
+        output += ui.data(indent=indent + 4, field='time_axis', value=self.time_axis) + '\n'
+        output += ui.data(indent=indent + 4, field='data_axis', value=self.data_axis) + '\n'
 
         return output
 
@@ -1069,8 +1150,32 @@ class DataMatrix2DContainer(DataContainer):
 
         return self
 
-    def plot(self):
+    def plot(self, plot=True, show_color_bar=False, figsize=None, xlabel=None, ylabel=None):
         """Visualize data matrix.
+
+        Parameters
+        ----------
+
+        plot : bool
+            If true, figure is shown automatically. Set to False if collecting multiple plots into same figure
+            outside this method.
+            Default value True
+
+        show_color_bar : bool
+            Show color bar next to plot.
+            Default value False
+
+        figsize : tuple
+            Size of the figure. If None given, default size (10,5) is used.
+            Default value None
+
+        xlabel : str
+            Label for X axis
+            Default value None
+
+        ylabel : str
+            Label for Y axis
+            Default value None
 
         Returns
         -------
@@ -1078,9 +1183,14 @@ class DataMatrix2DContainer(DataContainer):
 
         """
 
+        if figsize is None:
+            figsize = (10, 5)
+
         from librosa.display import specshow
         import matplotlib.pyplot as plt
-        plt.figure()
+
+        if plot:
+            plt.figure(figsize=figsize)
 
         data = self.get_focused()
         if self.time_axis == 0:
@@ -1102,15 +1212,23 @@ class DataMatrix2DContainer(DataContainer):
             hop_length=1
         )
 
-        # Add color bar
-        plt.colorbar()
+        if show_color_bar:
+            # Add color bar
+            plt.colorbar()
 
         # Add filename to first subplot
         if hasattr(self, 'filename') and self.filename:
             plt.title(self.filename)
 
-        plt.tight_layout()
-        plt.show()
+        if ylabel:
+            plt.ylabel(ylabel, fontsize=16)
+
+        if xlabel:
+            plt.xlabel(xlabel, fontsize=16)
+
+        if plot:
+            plt.tight_layout()
+            plt.show()
 
 
 class DataMatrix3DContainer(DataMatrix2DContainer):
@@ -1183,16 +1301,36 @@ class DataMatrix3DContainer(DataMatrix2DContainer):
         super(DataMatrix3DContainer, self).__setstate__(d)
         self.sequence_axis = d['sequence_axis']
 
-    def __str__(self):
-        ui = FancyStringifier()
+    def to_string(self, ui=None, indent=0):
+        """Get container information in a string
 
-        output = super(DataMatrix2DContainer, self).__str__()
+        Parameters
+        ----------
+        ui : FancyStringifier or FancyHTMLStringifier
+            Stringifier class
+            Default value FancyStringifier
 
-        output += ui.line(field='Data') + '\n'
-        output += ui.line(indent=4, field='Dimensions') + '\n'
-        output += ui.data(indent=6, field='time_axis', value=self.time_axis) + '\n'
-        output += ui.data(indent=6, field='data_axis', value=self.data_axis) + '\n'
-        output += ui.data(indent=6, field='sequence_axis', value=self.sequence_axis) + '\n'
+        indent : int
+            Amount of indent
+            Default value 0
+
+        Returns
+        -------
+        str
+
+        """
+
+        if ui is None:
+            ui = FancyStringifier()
+
+        output = super(DataMatrix3DContainer, self).to_string(ui=ui, indent=indent)
+
+        output += ui.line(field='Data', indent=indent) + '\n'
+
+        output += ui.line(indent=indent + 2, field='Dimensions') + '\n'
+        output += ui.data(indent=indent + 4, field='time_axis', value=self.time_axis) + '\n'
+        output += ui.data(indent=indent + 4, field='data_axis', value=self.data_axis) + '\n'
+        output += ui.data(indent=indent + 4, field='sequence_axis', value=self.sequence_axis) + '\n'
 
         return output
 
@@ -1333,7 +1471,7 @@ class DataMatrix3DContainer(DataMatrix2DContainer):
 
         return self
 
-    def plot(self, show_color_bar=False, show_filename=True, plot=True):
+    def plot(self, show_color_bar=False, show_filename=True, plot=True, figsize=None):
         """Plot data
 
         Parameters
@@ -1352,11 +1490,18 @@ class DataMatrix3DContainer(DataMatrix2DContainer):
             outside this method.
             Default value True
 
+        figsize : tuple
+            Size of the figure. If None given, default size (10,10) is used.
+            Default value None
+
         Returns
         -------
         self
 
         """
+
+        if figsize is None:
+            figsize = (10, 10)
 
         data = self.get_focused()
 
@@ -1364,10 +1509,10 @@ class DataMatrix3DContainer(DataMatrix2DContainer):
             from librosa.display import specshow
             import matplotlib.pyplot as plt
             if plot:
-                plt.figure()
+                plt.figure(figsize=figsize)
 
             for sequence_id in range(data.shape[self.sequence_axis]):
-                plt.subplot(data.shape[self.sequence_axis], 1, sequence_id + 1)
+                ax = plt.subplot(data.shape[self.sequence_axis], 1, sequence_id + 1)
                 current_data = data[:, :, sequence_id]
                 if self.time_axis == 0:
                     # Make sure time is on x-axis
@@ -1377,6 +1522,7 @@ class DataMatrix3DContainer(DataMatrix2DContainer):
                 if self.time_resolution:
                     sr = int(1.0 / float(self.time_resolution))
                     x_axis = 'time'
+
                 else:
                     sr = 1.0
                     x_axis = None
@@ -1394,16 +1540,20 @@ class DataMatrix3DContainer(DataMatrix2DContainer):
                     # Add color bar
                     plt.colorbar()
 
-            # Add filename to first subplot
-            if show_filename and hasattr(self, 'filename') and self.filename:
-                plt.title(self.filename)
+                if sequence_id < data.shape[self.sequence_axis]-1:
+                    ax.axes.get_xaxis().set_visible(False)
+
+                # Add filename to first subplot
+                if show_filename and hasattr(self, 'filename') and self.filename:
+                    plt.title(self.filename)
+                    show_filename = False
 
             if plot:
                 plt.tight_layout()
                 plt.show()
 
         else:
-            # TODO find method visualize deep matrices.
+            # TODO find method to visualize deep matrices.
             message = '{name}: Matrix is too deep, plot-method not yet implemented.'.format(
                 name=self.__class__.__name__
             )
@@ -1482,17 +1632,37 @@ class DataMatrix4DContainer(DataMatrix3DContainer):
         super(DataMatrix4DContainer, self).__setstate__(d)
         self.channel_axis = d['channel_axis']
 
-    def __str__(self):
-        ui = FancyStringifier()
+    def to_string(self, ui=None, indent=0):
+        """Get container information in a string
 
-        output = super(DataMatrix4DContainer, self).__str__()
+        Parameters
+        ----------
+        ui : FancyStringifier or FancyHTMLStringifier
+            Stringifier class
+            Default value FancyStringifier
 
-        output += ui.line(field='Data') + '\n'
-        output += ui.line(indent=4, field='Dimensions') + '\n'
-        output += ui.data(indent=6, field='time_axis', value=self.time_axis) + '\n'
-        output += ui.data(indent=6, field='data_axis', value=self.data_axis) + '\n'
-        output += ui.data(indent=6, field='sequence_axis', value=self.sequence_axis) + '\n'
-        output += ui.data(indent=6, field='channel_axis', value=self.channel_axis) + '\n'
+        indent : int
+            Amount of indent
+            Default value 0
+
+        Returns
+        -------
+        str
+
+        """
+
+        if ui is None:
+            ui = FancyStringifier()
+
+        output = super(DataMatrix4DContainer, self).to_string(ui=ui, indent=indent)
+
+        output += ui.line(field='Data', indent=indent) + '\n'
+
+        output += ui.line(indent=indent + 2, field='Dimensions') + '\n'
+        output += ui.data(indent=indent + 4, field='time_axis', value=self.time_axis) + '\n'
+        output += ui.data(indent=indent + 4, field='data_axis', value=self.data_axis) + '\n'
+        output += ui.data(indent=indent + 4, field='sequence_axis', value=self.sequence_axis) + '\n'
+        output += ui.data(indent=indent + 4, field='channel_axis', value=self.channel_axis) + '\n'
 
         return output
 
@@ -1669,7 +1839,7 @@ class DataMatrix4DContainer(DataMatrix3DContainer):
 
         return self
 
-    def plot(self, show_color_bar=False, show_filename=True, plot=True):
+    def plot(self, show_color_bar=False, show_filename=True, plot=True, figsize=None):
         """Plot data
 
         Parameters
@@ -1688,11 +1858,18 @@ class DataMatrix4DContainer(DataMatrix3DContainer):
             outside this method.
             Default value True
 
+        figsize : tuple
+            Size of the figure. If None given, default size (10,5) is used.
+            Default value None
+
         Returns
         -------
         self
 
         """
+
+        if figsize is None:
+            figsize = (10, 5)
 
         data = self.get_focused()
 
@@ -1701,7 +1878,7 @@ class DataMatrix4DContainer(DataMatrix3DContainer):
             import matplotlib.pyplot as plt
 
             if plot:
-                plt.figure()
+                plt.figure(figsize=figsize)
 
             rows_count = data.shape[self.channel_axis]
             for sequence_id in range(data.shape[self.sequence_axis]):
@@ -1724,6 +1901,7 @@ class DataMatrix4DContainer(DataMatrix3DContainer):
                             data.shape[self.sequence_axis],
                             index
                         )
+
                     if self.sequence_axis == 0 and self.channel_axis == 1:
                         current_data = data[sequence_id, channel_id, :, :]
 
@@ -1739,6 +1917,14 @@ class DataMatrix4DContainer(DataMatrix3DContainer):
                     elif self.sequence_axis == 2 and self.channel_axis == 3:
                         current_data = data[:, :, sequence_id, channel_id]
 
+                    else:
+                        message = '{name}: Unknown data axes'.format(
+                            name=self.__class__.__name__
+                        )
+
+                        self.logger.exception(message)
+                        raise ValueError(message)
+
                     # Plot feature matrix
                     ax = specshow(
                         data=current_data,
@@ -1746,14 +1932,15 @@ class DataMatrix4DContainer(DataMatrix3DContainer):
                         sr=1,
                         hop_length=1
                     )
+
                     if rows_count == 1:
                         if channel_id != data.shape[self.channel_axis] - 1:
                             ax.tick_params(
                                 axis='x',
                                 which='both',
-                                bottom='off',
-                                top='off',
-                                labelbottom='off'
+                                bottom=False,
+                                top=False,
+                                labelbottom=False
                             )
                             plt.xlabel('')
                     else:
@@ -1761,9 +1948,9 @@ class DataMatrix4DContainer(DataMatrix3DContainer):
                             ax.tick_params(
                                 axis='x',
                                 which='both',
-                                bottom='off',
-                                top='off',
-                                labelbottom='off'
+                                bottom=False,
+                                top=False,
+                                labelbottom=False
                             )
                             plt.xlabel('')
 
@@ -1778,7 +1965,7 @@ class DataMatrix4DContainer(DataMatrix3DContainer):
                 plt.show()
 
         else:
-            # TODO find method visualize deep matrices.
+            # TODO find method to visualize deep matrices.
             message = '{name}: Matrix is too deep, plot-method not yet implemented.'.format(
                 name=self.__class__.__name__
             )
@@ -1837,13 +2024,32 @@ class BinaryMatrix2DContainer(DataMatrix2DContainer):
 
         self.label_list = d['label_list']
 
-    def __str__(self):
-        ui = FancyStringifier()
+    def to_string(self, ui=None, indent=0):
+        """Get container information in a string
 
-        output = super(BinaryMatrix2DContainer, self).__str__()
+        Parameters
+        ----------
+        ui : FancyStringifier or FancyHTMLStringifier
+            Stringifier class
+            Default value FancyStringifier
 
-        output += ui.line(field='Labels') + '\n'
-        output += ui.data(indent=4, field='label_list', value=self.label_list) + '\n'
+        indent : int
+            Amount of indent
+            Default value 0
+
+        Returns
+        -------
+        str
+
+        """
+
+        if ui is None:
+            ui = FancyStringifier()
+
+        output = super(BinaryMatrix2DContainer, self).to_string(ui=ui, indent=indent)
+
+        output += ui.line(field='Labels', indent=indent) + '\n'
+        output += ui.data(indent=indent + 2, field='label_list', value=self.label_list) + '\n'
 
         return output
 
@@ -1885,24 +2091,60 @@ class BinaryMatrix2DContainer(DataMatrix2DContainer):
 
         return self
 
-    def plot(self, binary_matrix=None, data_container=None):
+    def plot(self, plot=True, binary_matrix=None, data_container=None, figsize=None, panel_title=None,
+             binary_panel_title='Binary matrix', data_panel_title='Data', panel_title_position='right',
+             color='binary'):
         """Visualize binary matrix, and optionally synced data matrix.
 
         For example, this can be used to visualize sound event activity along with the acoustic features.
 
         Parameters
         ----------
+        plot : bool
+            If true, figure is shown automatically. Set to False if collecting multiple plots into same figure
+            outside this method.
+            Default value True
+
         binary_matrix : numpy.ndarray
             Binary matrix, if None given internal data used.
+            Default value None
 
         data_container : DataContainer
             Extra data matrix to be shown along with binary matrix.
-             
+            Default value None
+
+        figsize : tuple
+            Size of the figure. If None given, default size (10,5) is used.
+            Default value None
+
+        panel_title :  str
+            Panel title (ylabel for first subplot)
+            Default value None
+
+        binary_panel_title : str
+            Binary panel title (ylabel for first subplot)
+            Default value "Binary matrix"
+
+        data_panel_title : str
+            Data panel title (ylabel for second subplot)
+            Default value "Data"
+
+        panel_title_position : str
+            Panel title position ['left', 'right']
+            Default value "right"
+
+        color : str
+            Color scheme used ['binary', 'gray', 'purple', 'blue', 'green', 'orange', 'red']
+            Default value 'binary'
+
         Returns
         -------
         None
 
         """
+
+        if figsize is None:
+            figsize = (10, 5)
 
         import matplotlib.pyplot as plt
         from librosa.display import specshow
@@ -1913,56 +2155,95 @@ class BinaryMatrix2DContainer(DataMatrix2DContainer):
         if self.time_axis == 0:
             binary_matrix = binary_matrix.T
 
+        if color:
+            if color == 'binary':
+                cmap = plt.cm.binary
+            elif color == 'gray':
+                cmap = plt.cm.gray_r
+            elif color == 'purple':
+                cmap = plt.cm.Purples
+            elif color == 'blue':
+                cmap = plt.cm.Blues
+            elif color == 'green':
+                cmap = plt.cm.Greens
+            elif color == 'orange':
+                cmap = plt.cm.Oranges
+            elif color == 'red':
+                cmap = plt.cm.Reds
+            else:
+                cmap = plt.cm.binary
+        else:
+            cmap = plt.cm.binary
+
         if binary_matrix is not None and data_container is not None:
-            plt.subplots(2, 1)
+            fig, axes = plt.subplots(2, 1, figsize=figsize)
+            fig.subplots_adjust(top=1.0, bottom=0.0, right=1.0, hspace=0.05, wspace=0.00)
 
             # Features
             ax1 = plt.subplot(2, 1, 1)
-            ax1.yaxis.set_label_position("right")
             specshow(
                 binary_matrix,
                 x_axis='time',
                 sr=int(1 / float(self.time_resolution)),
                 hop_length=1,
-                cmap=plt.cm.gray_r
+                cmap=cmap
             )
 
             y_ticks = numpy.arange(0, len(self.label_list)) + 0.5
             ax1.set_yticks(y_ticks)
-            ax1.set_yticklabels(self.label_list)
-
-            plt.ylabel('Binary matrix')
+            ax1.set_yticklabels(self.label_list, fontsize=20)
+            ax1.get_xaxis().set_visible(False)
+            ax1.yaxis.set_label_position(panel_title_position)
+            plt.ylabel(binary_panel_title, fontsize=20)
 
             # Binary matrix
             ax2 = plt.subplot(2, 1, 2)
-            ax2.yaxis.set_label_position("right")
+
             specshow(
                 data_container.data,
                 x_axis='time',
                 sr=int(1 / float(data_container.hop_length_seconds)),
                 hop_length=1
             )
-
-            plt.ylabel('Data')
+            ax2.yaxis.set_label_position(panel_title_position)
+            plt.ylabel(data_panel_title, fontsize=20)
+            plt.xlabel('Time', fontsize=20)
 
         elif binary_matrix is not None and data_container is None:
-            plt.subplots(1, 1)
-            ax = plt.subplot(1, 1, 1)
+            if plot:
+                plt.figure(figsize=figsize)
+
             # Binary matrix
-            ax.yaxis.set_label_position("right")
-            specshow(
+            if self.time_resolution:
+                sr = int(1.0 / float(self.time_resolution))
+                x_axis = 'time'
+            else:
+                sr = 1.0
+                x_axis = None
+
+            ax = specshow(
                 binary_matrix,
-                x_axis='time',
-                sr=int(1 / float(self.time_resolution)),
+                x_axis=x_axis,
+                sr=sr,
                 hop_length=1,
-                cmap=plt.cm.gray_r
+                cmap=cmap
             )
 
-            y_ticks = numpy.arange(0, len(self.label_list)) + 0.5
-            ax.set_yticks(y_ticks)
-            ax.set_yticklabels(self.label_list)
+            if panel_title:
+                ax.yaxis.set_label_position(panel_title_position)
+                plt.ylabel(panel_title, fontsize=20)
 
-        plt.show()
+            if self.time_resolution:
+                plt.xlabel('Time', fontsize=20)
+
+            if self.label_list:
+                ax.yaxis.set_label_position("right")
+                y_ticks = numpy.arange(0, len(self.label_list)) + 0.5
+                ax.set_yticks(y_ticks)
+                ax.set_yticklabels(self.label_list, fontsize=20)
+
+        if plot:
+            plt.show()
 
 
 class DataRepository(RepositoryContainer):
@@ -2034,48 +2315,68 @@ class DataRepository(RepositoryContainer):
         del d['processing_chain']
         del d['item_class']
 
-    def __str__(self):
-        ui = FancyStringifier()
+    def to_string(self, ui=None, indent=0):
+        """Get container information in a string
+
+        Parameters
+        ----------
+        ui : FancyStringifier or FancyHTMLStringifier
+            Stringifier class
+            Default value FancyStringifier
+
+        indent : int
+            Amount of indent
+            Default value 0
+
+        Returns
+        -------
+        str
+
+        """
+
+        if ui is None:
+            ui = FancyStringifier()
 
         output = ''
-        output += ui.class_name(self.__class__.__name__) + '\n'
+        output += ui.class_name(self.__class__.__name__, indent=indent) + '\n'
 
         if hasattr(self, 'filename') and self.filename:
             output += ui.data(
                 field='filename',
-                value=self.filename
+                value=self.filename,
+                indent=indent
             ) + '\n'
 
-        output += ui.line(field='Repository info') + '\n'
+        output += ui.line(field='Repository info', indent=indent) + '\n'
 
         if hasattr(self, 'item_class') and self.item_class:
             output += ui.data(
-                indent=4,
+                indent=indent + 2,
                 field='Item class',
                 value=self.item_class.__name__
             ) + '\n'
 
         output += ui.data(
-            indent=4,
+            indent=indent + 2,
             field='Item count',
             value=len(self)
         ) + '\n'
 
         output += ui.data(
-            indent=4,
+            indent=indent + 2,
             field='Labels',
             value=list(self.keys())
         ) + '\n'
 
-        output += ui.line(field='Content') + '\n'
+        output += ui.line(field='Content', indent=indent) + '\n'
         for label, label_data in iteritems(self):
             if label_data:
                 if isinstance(label_data, dict):
                     for stream_id, stream_data in iteritems(label_data):
                         output += ui.data(
-                            indent=4,
+                            indent=indent + 2,
                             field='['+str(label)+']' + '[' + str(stream_id) + ']',
-                            value=stream_data
+                            value=stream_data.to_string(ui=ui)
                         ) + '\n'
 
         output += '\n'
@@ -2349,6 +2650,10 @@ class DataRepository(RepositoryContainer):
             Parameters for the process method of the Processor
             Default value None
 
+        preprocessing_callbacks : list of dicts
+            Callbacks used for preprocessing
+            Default value None
+
         input_type : ProcessingChainItemType
             Input data type
             Default value None
@@ -2374,7 +2679,7 @@ class DataRepository(RepositoryContainer):
 
         return self
 
-    def plot(self, plot=True):
+    def plot(self, plot=True, figsize=None):
         """Visualize data stored in the repository.
 
         plot : bool
@@ -2382,11 +2687,18 @@ class DataRepository(RepositoryContainer):
             outside this method.
             Default value True
 
+        figsize : tuple
+            Size of the figure. If None given, default size (10,10) is used.
+            Default value None
+
         Returns
         -------
         self
 
         """
+
+        if figsize is None:
+            figsize = (10, 10)
 
         from librosa.display import specshow
         import matplotlib.pyplot as plt
@@ -2400,7 +2712,7 @@ class DataRepository(RepositoryContainer):
         labels.sort()
 
         if plot:
-            plt.figure()
+            plt.figure(figsize=figsize)
 
         for label_id, label in enumerate(self.labels):
             for stream_id in self.stream_ids(label):

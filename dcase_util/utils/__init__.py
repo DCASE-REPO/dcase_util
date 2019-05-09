@@ -19,6 +19,7 @@ General functions
     check_pkg_resources
     is_int
     is_float
+    is_jupiter
 
 SuppressStdoutAndStderr
 -----------------------

@@ -5,8 +5,8 @@ import importlib
 import logging
 
 from dcase_util.containers import DictContainer
-from dcase_util.ui import FancyStringifier
-from dcase_util.utils import SimpleMathStringEvaluator, setup_logging
+from dcase_util.ui import FancyStringifier, FancyHTMLStringifier
+from dcase_util.utils import SimpleMathStringEvaluator, setup_logging, is_jupyter
 
 
 def create_sequential_model(model_parameter_list, input_shape=None, output_shape=None, constants=None, return_functional=False):
@@ -242,7 +242,7 @@ def create_sequential_model(model_parameter_list, input_shape=None, output_shape
     return keras_model
 
 
-def model_summary_string(keras_model, mode='keras'):
+def model_summary_string(keras_model, mode='keras', show_parameters=True, display=False):
     """Model summary in a formatted string, similar to Keras model summary function.
 
     Parameters
@@ -254,6 +254,14 @@ def model_summary_string(keras_model, mode='keras'):
         Summary mode ['extended', 'keras']. In case 'keras', standard Keras summary is returned.
         Default value keras
 
+    show_parameters : bool
+        Show model parameter count and input / output shapes
+        Default value True
+
+    display : bool
+        Display summary immediately, otherwise return string
+        Default value False
+
     Returns
     -------
     str
@@ -261,26 +269,76 @@ def model_summary_string(keras_model, mode='keras'):
 
     """
 
-    ui = FancyStringifier()
+    if is_jupyter():
+        ui = FancyHTMLStringifier()
+        html_mode = True
+    else:
+        ui = FancyStringifier()
+        html_mode = False
+
     output = ''
     output += ui.line('Model summary') + '\n'
 
-    if mode == 'extended':
+    if mode == 'extended' or mode == 'extended_wide':
         layer_name_map = {
             'BatchNormalization': 'BatchNorm',
         }
+
+        layer_type_html_tags = {
+            'InputLayer': '<span class="label label-default">{0:s}</span>',
+            'Dense': '<span class="label label-primary">{0:s}</span>',
+            'TimeDistributed': '<span class="label label-primary">{0:s}</span>',
+
+            'BatchNorm': '<span class="label label-default">{0:s}</span>',
+            'Activation': '<span class="label label-default">{0:s}</span>',
+            'Dropout': '<span class="label label-default">{0:s}</span>',
+
+            'Flatten': '<span class="label label-success">{0:s}</span>',
+            'Reshape': '<span class="label label-success">{0:s}</span>',
+            'Permute': '<span class="label label-success">{0:s}</span>',
+
+            'Conv1D': '<span class="label label-warning">{0:s}</span>',
+            'Conv2D': '<span class="label label-warning">{0:s}</span>',
+
+            'MaxPooling1D': '<span class="label label-success">{0:s}</span>',
+            'MaxPooling2D': '<span class="label label-success">{0:s}</span>',
+            'MaxPooling3D': '<span class="label label-success">{0:s}</span>',
+            'AveragePooling1D': '<span class="label label-success">{0:s}</span>',
+            'AveragePooling2D': '<span class="label label-success">{0:s}</span>',
+            'AveragePooling3D': '<span class="label label-success">{0:s}</span>',
+            'GlobalMaxPooling1D': '<span class="label label-success">{0:s}</span>',
+            'GlobalMaxPooling2D': '<span class="label label-success">{0:s}</span>',
+            'GlobalMaxPooling3D': '<span class="label label-success">{0:s}</span>',
+            'GlobalAveragePooling1D': '<span class="label label-success">{0:s}</span>',
+            'GlobalAveragePooling2D': '<span class="label label-success">{0:s}</span>',
+            'GlobalAveragePooling3D': '<span class="label label-success">{0:s}</span>',
+
+            'RNN': '<span class="label label-danger">{0:s}</span>',
+            'SimpleRNN': '<span class="label label-danger">{0:s}</span>',
+            'GRU': '<span class="label label-danger">{0:s}</span>',
+            'CuDNNGRU': '<span class="label label-danger">{0:s}</span>',
+            'LSTM': '<span class="label label-danger">{0:s}</span>',
+            'CuDNNLSTM': '<span class="label label-danger">{0:s}</span>',
+            'Bidirectional': '<span class="label label-danger">{0:s}</span>'
+        }
+
         import keras
         from distutils.version import LooseVersion
         import keras.backend as keras_backend
 
-        output += ui.row(
-            'Layer type', 'Output', 'Param', 'Name', 'Connected to', 'Activ.', 'Init',
-            widths=[15, 25, 10, 20, 25, 10, 10],
-            indent=4
-        ) + '\n'
-        output += ui.row('-', '-', '-', '-', '-', '-', '-') + '\n'
+        table_data = {
+            'layer_type': [],
+            'output': [],
+            'parameter_count': [],
+            'name': [],
+            'connected_to': [],
+            'activation': [],
+            'initialization': []
+        }
 
-        for layer in keras_model.layers:
+        row_separators = []
+        prev_name = None
+        for layer_id, layer in enumerate(keras_model.layers):
             connections = []
             if LooseVersion(keras.__version__) >= LooseVersion('2.1.3'):
                 for node_index, node in enumerate(layer._inbound_nodes):
@@ -307,6 +365,9 @@ def model_summary_string(keras_model, mode='keras'):
             if layer_name in layer_name_map:
                 layer_name = layer_name_map[layer_name]
 
+            if html_mode and layer_name in layer_type_html_tags:
+                layer_name = layer_type_html_tags[layer_name].format(layer_name)
+
             if config.get_path('kernel_initializer.class_name') == 'VarianceScaling':
                 init = str(config.get_path('kernel_initializer.config.distribution', '---'))
 
@@ -314,17 +375,20 @@ def model_summary_string(keras_model, mode='keras'):
                 init = 'uniform'
 
             else:
-                init = '---'
+                init = '-'
 
-            output += ui.row(
-                layer_name,
-                str(layer.output_shape),
-                str(layer.count_params()),
-                str(layer.name),
-                str(connections[0]) if len(connections) > 0 else '---',
-                str(config.get('activation', '---')),
-                init
-            ) + '\n'
+            name_parts = layer.name.split('_')
+            if prev_name != name_parts[0]:
+                row_separators.append(layer_id)
+                prev_name = name_parts[0]
+
+            table_data['layer_type'].append(layer_name)
+            table_data['output'].append(str(layer.output_shape))
+            table_data['parameter_count'].append(str(layer.count_params()))
+            table_data['name'].append(layer.name)
+            table_data['connected_to'].append(str(connections[0]) if len(connections) > 0 else '-')
+            table_data['activation'].append(str(config.get('activation', '-')))
+            table_data['initialization'].append(init)
 
         trainable_count = int(
             numpy.sum([keras_backend.count_params(p) for p in set(keras_model.trainable_weights)])
@@ -334,41 +398,79 @@ def model_summary_string(keras_model, mode='keras'):
             numpy.sum([keras_backend.count_params(p) for p in set(keras_model.non_trainable_weights)])
         )
 
-        output += ui.line('') + '\n'
-        output += ui.line('Parameters', indent=4,) + '\n'
-        output += ui.data(indent=6, field='Total', value=trainable_count + non_trainable_count) + '\n'
-        output += ui.data(indent=6, field='Trainable', value=trainable_count) + '\n'
-        output += ui.data(indent=6, field='Non-Trainable', value=non_trainable_count) + '\n'
+        # Show row separators only if they are useful
+        if len(row_separators) == len(keras_model.layers):
+            row_separators = None
+        if mode == 'extended':
+            output += ui.table(
+                cell_data=[table_data['name'], table_data['layer_type'], table_data['output'], table_data['parameter_count']],
+                column_headers=['Layer name', 'Layer type', 'Output shape', 'Parameters'],
+                column_types=['str30', 'str20', 'str25', 'str20'],
+                column_separators=[1, 2],
+                row_separators=row_separators,
+                indent=4
+            )
+
+        elif mode == 'extended_wide':
+            output += ui.table(
+                cell_data=[table_data['name'], table_data['layer_type'], table_data['output'], table_data['parameter_count'],
+                           table_data['activation'], table_data['initialization']],
+                column_headers=['Layer name', 'Layer type', 'Output shape', 'Parameters', 'Act.', 'Init.'],
+                column_types=['str30', 'str20', 'str25', 'str20', 'str15', 'str15'],
+                column_separators=[1, 2, 3],
+                row_separators=row_separators,
+                indent=4
+            )
+
+        if show_parameters:
+            output += ui.line('') + '\n'
+            output += ui.line('Parameters', indent=4) + '\n'
+            output += ui.data(indent=6, field='Total', value=trainable_count + non_trainable_count) + '\n'
+            output += ui.data(indent=6, field='Trainable', value=trainable_count) + '\n'
+            output += ui.data(indent=6, field='Non-Trainable', value=non_trainable_count) + '\n'
 
     else:
         output_buffer = []
         keras_model.summary(print_fn=output_buffer.append)
         for line in output_buffer:
-            output += ui.line(line, indent=4) + '\n'
+            if is_jupyter():
+                output += ui.line('<code>'+line+'</code>', indent=4) + '\n'
+            else:
+                output += ui.line(line, indent=4) + '\n'
 
     model_config = keras_model.get_config()
 
-    output += ui.line('') + '\n'
-    output += ui.line('Input', indent=4) + '\n'
-    output += ui.data(indent=6, field='Shape', value=keras_model.input_shape) + '\n'
+    if show_parameters:
+        output += ui.line('') + '\n'
+        output += ui.line('Input', indent=4) + '\n'
+        output += ui.data(indent=6, field='Shape', value=keras_model.input_shape) + '\n'
 
-    output += ui.line('Output', indent=4) + '\n'
-    output += ui.data(indent=6, field='Shape', value=keras_model.output_shape) + '\n'
+        output += ui.line('Output', indent=4) + '\n'
+        output += ui.data(indent=6, field='Shape', value=keras_model.output_shape) + '\n'
 
-    if isinstance(model_config, dict) and 'layers' in model_config:
-        output += ui.data(
-            indent=6,
-            field='Activation',
-            value=model_config['layers'][-1]['config'].get('activation')
-        ) + '\n'
+        if isinstance(model_config, dict) and 'layers' in model_config:
+            output += ui.data(
+                indent=6,
+                field='Activation',
+                value=model_config['layers'][-1]['config'].get('activation')
+            ) + '\n'
 
-    elif isinstance(model_config, list):
-        output += ui.data(
-            indent=6,
-            field='Activation',
-            value=model_config[-1].get('config', {}).get('activation')
-        ) + '\n'
+        elif isinstance(model_config, list):
+            output += ui.data(
+                indent=6,
+                field='Activation',
+                value=model_config[-1].get('config', {}).get('activation')
+            ) + '\n'
 
-    return output
+    if display:
+        if is_jupyter():
+            from IPython.core.display import display, HTML
+            display(HTML(output))
+
+        else:
+            print(output)
+
+    else:
+        return output
 
 
