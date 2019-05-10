@@ -1,0 +1,6 @@
+dcase\_util.ui.FancyHTMLPrinter.debug
+=====================================
+
+.. currentmodule:: dcase_util.ui
+
+.. automethod:: FancyHTMLPrinter.debug

@@ -1,5 +1,5 @@
-dcase\_util\.data\.EventRollEncoder
-===================================
+dcase_util.data.EventRollEncoder
+================================
 
 .. currentmodule:: dcase_util.data
 
@@ -39,5 +39,23 @@ dcase\_util\.data\.EventRollEncoder
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~EventRollEncoder.T
+      ~EventRollEncoder.bytes
+      ~EventRollEncoder.data
+      ~EventRollEncoder.focus_start
+      ~EventRollEncoder.focus_stop
+      ~EventRollEncoder.frames
+      ~EventRollEncoder.length
+      ~EventRollEncoder.logger
+      ~EventRollEncoder.md5
+      ~EventRollEncoder.shape
+      ~EventRollEncoder.stats
+      ~EventRollEncoder.valid_formats
+      ~EventRollEncoder.vector_length
    
    

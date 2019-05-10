@@ -1,5 +1,5 @@
-dcase\_util\.utils\.setup\_logging
-==================================
+dcase_util.utils.setup_logging
+==============================
 
 .. currentmodule:: dcase_util.utils
 

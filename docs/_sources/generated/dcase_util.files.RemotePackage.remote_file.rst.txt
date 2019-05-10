@@ -1,5 +1,5 @@
-dcase\_util\.files\.RemotePackage\.remote\_file
-===============================================
+dcase_util.files.RemotePackage.remote_file
+==========================================
 
 .. currentmodule:: dcase_util.files
 

@@ -1,5 +1,5 @@
-dcase\_util\.containers\.FileMixin\.get\_file\_information
-==========================================================
+dcase_util.containers.FileMixin.get_file_information
+====================================================
 
 .. currentmodule:: dcase_util.containers
 

@@ -1,5 +1,5 @@
-dcase\_util\.data\.Masker\.load
-===============================
+dcase_util.data.Masker.load
+===========================
 
 .. currentmodule:: dcase_util.data
 

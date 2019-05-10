@@ -1,0 +1,6 @@
+dcase\_util.ui.FancyHTMLPrinter.sub\_header
+===========================================
+
+.. currentmodule:: dcase_util.ui
+
+.. automethod:: FancyHTMLPrinter.sub_header

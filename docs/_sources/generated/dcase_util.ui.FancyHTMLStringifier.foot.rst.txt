@@ -1,0 +1,6 @@
+dcase\_util.ui.FancyHTMLStringifier.foot
+========================================
+
+.. currentmodule:: dcase_util.ui
+
+.. automethod:: FancyHTMLStringifier.foot

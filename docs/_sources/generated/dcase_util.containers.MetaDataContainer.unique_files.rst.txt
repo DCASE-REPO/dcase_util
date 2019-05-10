@@ -1,5 +1,5 @@
-dcase\_util\.containers\.MetaDataContainer\.unique\_files
-=========================================================
+dcase_util.containers.MetaDataContainer.unique_files
+====================================================
 
 .. currentmodule:: dcase_util.containers
 

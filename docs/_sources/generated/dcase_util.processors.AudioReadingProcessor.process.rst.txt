@@ -1,5 +1,5 @@
-dcase\_util\.processors\.AudioReadingProcessor\.process
-=======================================================
+dcase_util.processors.AudioReadingProcessor.process
+===================================================
 
 .. currentmodule:: dcase_util.processors
 

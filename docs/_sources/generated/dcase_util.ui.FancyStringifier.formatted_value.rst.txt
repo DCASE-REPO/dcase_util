@@ -1,5 +1,5 @@
-dcase\_util\.ui\.FancyStringifier\.formatted\_value
-===================================================
+dcase_util.ui.FancyStringifier.formatted_value
+==============================================
 
 .. currentmodule:: dcase_util.ui
 

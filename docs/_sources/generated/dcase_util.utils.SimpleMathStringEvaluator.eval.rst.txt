@@ -1,5 +1,5 @@
-dcase\_util\.utils\.SimpleMathStringEvaluator\.eval
-===================================================
+dcase_util.utils.SimpleMathStringEvaluator.eval
+===============================================
 
 .. currentmodule:: dcase_util.utils
 

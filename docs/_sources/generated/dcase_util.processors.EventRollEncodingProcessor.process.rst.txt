@@ -1,5 +1,5 @@
-dcase\_util\.processors\.EventRollEncodingProcessor\.process
-============================================================
+dcase_util.processors.EventRollEncodingProcessor.process
+========================================================
 
 .. currentmodule:: dcase_util.processors
 

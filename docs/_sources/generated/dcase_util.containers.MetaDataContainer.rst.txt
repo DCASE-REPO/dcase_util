@@ -1,5 +1,5 @@
-dcase\_util\.containers\.MetaDataContainer
-==========================================
+dcase_util.containers.MetaDataContainer
+=======================================
 
 .. currentmodule:: dcase_util.containers
 
@@ -62,5 +62,27 @@ dcase\_util\.containers\.MetaDataContainer
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~MetaDataContainer.bytes
+      ~MetaDataContainer.event_count
+      ~MetaDataContainer.event_label_count
+      ~MetaDataContainer.file_count
+      ~MetaDataContainer.identifier_count
+      ~MetaDataContainer.logger
+      ~MetaDataContainer.max_offset
+      ~MetaDataContainer.md5
+      ~MetaDataContainer.scene_label_count
+      ~MetaDataContainer.tag_count
+      ~MetaDataContainer.unique_event_labels
+      ~MetaDataContainer.unique_files
+      ~MetaDataContainer.unique_identifiers
+      ~MetaDataContainer.unique_scene_labels
+      ~MetaDataContainer.unique_source_labels
+      ~MetaDataContainer.unique_tags
+      ~MetaDataContainer.valid_formats
    
    

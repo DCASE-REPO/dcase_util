@@ -1,5 +1,5 @@
-dcase\_util\.tools\.DatasetPacker
-=================================
+dcase_util.tools.DatasetPacker
+==============================
 
 .. currentmodule:: dcase_util.tools
 
@@ -20,5 +20,11 @@ dcase\_util\.tools\.DatasetPacker
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~DatasetPacker.logger
    
    

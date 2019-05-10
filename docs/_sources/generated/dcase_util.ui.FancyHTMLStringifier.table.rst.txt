@@ -1,0 +1,6 @@
+dcase\_util.ui.FancyHTMLStringifier.table
+=========================================
+
+.. currentmodule:: dcase_util.ui
+
+.. automethod:: FancyHTMLStringifier.table

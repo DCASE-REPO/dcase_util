@@ -1,5 +1,5 @@
-dcase\_util\.files\.Serializer\.save\_cpickle
-=============================================
+dcase_util.files.Serializer.save_cpickle
+========================================
 
 .. currentmodule:: dcase_util.files
 

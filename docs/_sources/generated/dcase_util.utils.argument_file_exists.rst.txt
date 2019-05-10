@@ -1,5 +1,5 @@
-dcase\_util\.utils\.argument\_file\_exists
-==========================================
+dcase_util.utils.argument_file_exists
+=====================================
 
 .. currentmodule:: dcase_util.utils
 

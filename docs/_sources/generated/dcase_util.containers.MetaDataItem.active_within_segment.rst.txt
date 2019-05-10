@@ -1,5 +1,5 @@
-dcase\_util\.containers\.MetaDataItem\.active\_within\_segment
-==============================================================
+dcase_util.containers.MetaDataItem.active_within_segment
+========================================================
 
 .. currentmodule:: dcase_util.containers
 

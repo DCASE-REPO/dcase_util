@@ -1,5 +1,5 @@
-dcase\_util\.containers\.DataRepository\.get\_container
-=======================================================
+dcase_util.containers.DataRepository.get_container
+==================================================
 
 .. currentmodule:: dcase_util.containers
 

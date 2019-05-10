@@ -1,5 +1,5 @@
-dcase\_util\.datasets\.SoundEventDataset\.event\_label\_count
-=============================================================
+dcase_util.datasets.SoundEventDataset.event_label_count
+=======================================================
 
 .. currentmodule:: dcase_util.datasets
 

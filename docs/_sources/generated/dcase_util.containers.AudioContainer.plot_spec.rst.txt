@@ -1,5 +1,5 @@
-dcase\_util\.containers\.AudioContainer\.plot\_spec
-===================================================
+dcase_util.containers.AudioContainer.plot_spec
+==============================================
 
 .. currentmodule:: dcase_util.containers
 

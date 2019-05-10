@@ -1,5 +1,5 @@
-dcase\_util\.data\.DataBuffer\.set
-==================================
+dcase_util.data.DataBuffer.set
+==============================
 
 .. currentmodule:: dcase_util.data
 

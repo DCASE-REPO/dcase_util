@@ -1,5 +1,5 @@
-dcase\_util\.containers\.FileMixin
-==================================
+dcase_util.containers.FileMixin
+===============================
 
 .. currentmodule:: dcase_util.containers
 
@@ -25,5 +25,13 @@ dcase\_util\.containers\.FileMixin
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~FileMixin.bytes
+      ~FileMixin.logger
+      ~FileMixin.md5
    
    

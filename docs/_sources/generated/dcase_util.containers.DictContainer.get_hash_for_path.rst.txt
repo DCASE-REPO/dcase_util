@@ -1,5 +1,5 @@
-dcase\_util\.containers\.DictContainer\.get\_hash\_for\_path
-============================================================
+dcase_util.containers.DictContainer.get_hash_for_path
+=====================================================
 
 .. currentmodule:: dcase_util.containers
 

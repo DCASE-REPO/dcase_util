@@ -1,5 +1,5 @@
-dcase\_util\.containers\.MetaDataContainer\.filter\_time\_segment
-=================================================================
+dcase_util.containers.MetaDataContainer.filter_time_segment
+===========================================================
 
 .. currentmodule:: dcase_util.containers
 

@@ -1,5 +1,5 @@
-dcase\_util\.data\.DecisionEncoder
-==================================
+dcase_util.data.DecisionEncoder
+===============================
 
 .. currentmodule:: dcase_util.data
 
@@ -33,5 +33,14 @@ dcase\_util\.data\.DecisionEncoder
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~DecisionEncoder.bytes
+      ~DecisionEncoder.logger
+      ~DecisionEncoder.md5
+      ~DecisionEncoder.valid_formats
    
    

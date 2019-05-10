@@ -1,5 +1,5 @@
-dcase\_util\.utils\.SuppressStdoutAndStderr
-===========================================
+dcase_util.utils.SuppressStdoutAndStderr
+========================================
 
 .. currentmodule:: dcase_util.utils
 
@@ -8,6 +8,12 @@ dcase\_util\.utils\.SuppressStdoutAndStderr
    
    .. automethod:: __init__
 
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~SuppressStdoutAndStderr.__init__
    
    
 

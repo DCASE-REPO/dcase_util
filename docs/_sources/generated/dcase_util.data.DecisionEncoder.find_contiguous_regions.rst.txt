@@ -1,5 +1,5 @@
-dcase\_util\.data\.DecisionEncoder\.find\_contiguous\_regions
-=============================================================
+dcase_util.data.DecisionEncoder.find_contiguous_regions
+=======================================================
 
 .. currentmodule:: dcase_util.data
 

@@ -1,5 +1,5 @@
-dcase\_util\.processors\.EventRollEncodingProcessor
-===================================================
+dcase_util.processors.EventRollEncodingProcessor
+================================================
 
 .. currentmodule:: dcase_util.processors
 
@@ -31,5 +31,16 @@ dcase\_util\.processors\.EventRollEncodingProcessor
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~EventRollEncodingProcessor.bytes
+      ~EventRollEncodingProcessor.input_type
+      ~EventRollEncodingProcessor.logger
+      ~EventRollEncodingProcessor.md5
+      ~EventRollEncodingProcessor.output_type
+      ~EventRollEncodingProcessor.valid_formats
    
    

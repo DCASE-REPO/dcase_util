@@ -1,0 +1,6 @@
+dcase\_util.ui.FancyHTMLPrinter.error
+=====================================
+
+.. currentmodule:: dcase_util.ui
+
+.. automethod:: FancyHTMLPrinter.error

@@ -1,5 +1,5 @@
-dcase\_util\.containers\.AudioContainer\.focus\_channel
-=======================================================
+dcase_util.containers.AudioContainer.focus_channel
+==================================================
 
 .. currentmodule:: dcase_util.containers
 

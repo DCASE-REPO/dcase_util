@@ -1,5 +1,5 @@
-dcase\_util\.processors\.ZeroCrossingRateExtractorProcessor
-===========================================================
+dcase_util.processors.ZeroCrossingRateExtractorProcessor
+========================================================
 
 .. currentmodule:: dcase_util.processors
 
@@ -32,5 +32,17 @@ dcase\_util\.processors\.ZeroCrossingRateExtractorProcessor
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ZeroCrossingRateExtractorProcessor.bytes
+      ~ZeroCrossingRateExtractorProcessor.input_type
+      ~ZeroCrossingRateExtractorProcessor.label
+      ~ZeroCrossingRateExtractorProcessor.logger
+      ~ZeroCrossingRateExtractorProcessor.md5
+      ~ZeroCrossingRateExtractorProcessor.output_type
+      ~ZeroCrossingRateExtractorProcessor.valid_formats
    
    

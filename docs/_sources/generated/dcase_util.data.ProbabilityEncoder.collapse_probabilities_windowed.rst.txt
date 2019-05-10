@@ -1,5 +1,5 @@
-dcase\_util\.data\.ProbabilityEncoder\.collapse\_probabilities\_windowed
-========================================================================
+dcase_util.data.ProbabilityEncoder.collapse_probabilities_windowed
+==================================================================
 
 .. currentmodule:: dcase_util.data
 

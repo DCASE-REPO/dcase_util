@@ -1,5 +1,5 @@
-dcase\_util\.features\.MelExtractor
-===================================
+dcase_util.features.MelExtractor
+================================
 
 .. currentmodule:: dcase_util.features
 
@@ -23,5 +23,12 @@ dcase\_util\.features\.MelExtractor
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~MelExtractor.label
+      ~MelExtractor.logger
    
    

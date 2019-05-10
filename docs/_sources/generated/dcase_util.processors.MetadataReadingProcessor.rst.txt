@@ -1,5 +1,5 @@
-dcase\_util\.processors\.MetadataReadingProcessor
-=================================================
+dcase_util.processors.MetadataReadingProcessor
+==============================================
 
 .. currentmodule:: dcase_util.processors
 
@@ -31,5 +31,16 @@ dcase\_util\.processors\.MetadataReadingProcessor
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~MetadataReadingProcessor.bytes
+      ~MetadataReadingProcessor.input_type
+      ~MetadataReadingProcessor.logger
+      ~MetadataReadingProcessor.md5
+      ~MetadataReadingProcessor.output_type
+      ~MetadataReadingProcessor.valid_formats
    
    

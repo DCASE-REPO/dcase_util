@@ -1,5 +1,5 @@
-dcase\_util\.containers\.BinaryMatrix2DContainer
-================================================
+dcase_util.containers.BinaryMatrix2DContainer
+=============================================
 
 .. currentmodule:: dcase_util.containers
 
@@ -38,5 +38,23 @@ dcase\_util\.containers\.BinaryMatrix2DContainer
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~BinaryMatrix2DContainer.T
+      ~BinaryMatrix2DContainer.bytes
+      ~BinaryMatrix2DContainer.data
+      ~BinaryMatrix2DContainer.focus_start
+      ~BinaryMatrix2DContainer.focus_stop
+      ~BinaryMatrix2DContainer.frames
+      ~BinaryMatrix2DContainer.length
+      ~BinaryMatrix2DContainer.logger
+      ~BinaryMatrix2DContainer.md5
+      ~BinaryMatrix2DContainer.shape
+      ~BinaryMatrix2DContainer.stats
+      ~BinaryMatrix2DContainer.valid_formats
+      ~BinaryMatrix2DContainer.vector_length
    
    

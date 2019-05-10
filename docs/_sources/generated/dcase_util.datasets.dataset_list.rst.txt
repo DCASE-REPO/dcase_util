@@ -1,5 +1,5 @@
-dcase\_util\.datasets\.dataset\_list
-====================================
+dcase_util.datasets.dataset_list
+================================
 
 .. currentmodule:: dcase_util.datasets
 

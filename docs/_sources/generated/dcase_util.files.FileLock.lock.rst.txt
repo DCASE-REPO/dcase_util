@@ -1,5 +1,5 @@
-dcase\_util\.files\.FileLock\.lock
-==================================
+dcase_util.files.FileLock.lock
+==============================
 
 .. currentmodule:: dcase_util.files
 

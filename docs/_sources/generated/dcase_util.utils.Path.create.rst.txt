@@ -1,5 +1,5 @@
-dcase\_util\.utils\.Path\.create
-================================
+dcase_util.utils.Path.create
+============================
 
 .. currentmodule:: dcase_util.utils
 

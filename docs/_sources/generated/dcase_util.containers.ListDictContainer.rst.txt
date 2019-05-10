@@ -1,5 +1,5 @@
-dcase\_util\.containers\.ListDictContainer
-==========================================
+dcase_util.containers.ListDictContainer
+=======================================
 
 .. currentmodule:: dcase_util.containers
 
@@ -45,5 +45,14 @@ dcase\_util\.containers\.ListDictContainer
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ListDictContainer.bytes
+      ~ListDictContainer.logger
+      ~ListDictContainer.md5
+      ~ListDictContainer.valid_formats
    
    

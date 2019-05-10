@@ -1,5 +1,5 @@
-dcase\_util\.features\.FeatureExtractor
-=======================================
+dcase_util.features.FeatureExtractor
+====================================
 
 .. currentmodule:: dcase_util.features
 
@@ -21,5 +21,11 @@ dcase\_util\.features\.FeatureExtractor
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~FeatureExtractor.logger
    
    

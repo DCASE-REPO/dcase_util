@@ -1,5 +1,5 @@
-dcase\_util\.keras\.data\_collector
-===================================
+dcase_util.keras.data_collector
+===============================
 
 .. currentmodule:: dcase_util.keras
 

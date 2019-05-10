@@ -1,5 +1,5 @@
-dcase\_util\.processors\.MelExtractorProcessor
-==============================================
+dcase_util.processors.MelExtractorProcessor
+===========================================
 
 .. currentmodule:: dcase_util.processors
 
@@ -34,5 +34,17 @@ dcase\_util\.processors\.MelExtractorProcessor
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~MelExtractorProcessor.bytes
+      ~MelExtractorProcessor.input_type
+      ~MelExtractorProcessor.label
+      ~MelExtractorProcessor.logger
+      ~MelExtractorProcessor.md5
+      ~MelExtractorProcessor.output_type
+      ~MelExtractorProcessor.valid_formats
    
    

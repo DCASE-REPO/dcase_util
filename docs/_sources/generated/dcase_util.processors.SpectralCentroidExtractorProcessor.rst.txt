@@ -1,5 +1,5 @@
-dcase\_util\.processors\.SpectralCentroidExtractorProcessor
-===========================================================
+dcase_util.processors.SpectralCentroidExtractorProcessor
+========================================================
 
 .. currentmodule:: dcase_util.processors
 
@@ -34,5 +34,17 @@ dcase\_util\.processors\.SpectralCentroidExtractorProcessor
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~SpectralCentroidExtractorProcessor.bytes
+      ~SpectralCentroidExtractorProcessor.input_type
+      ~SpectralCentroidExtractorProcessor.label
+      ~SpectralCentroidExtractorProcessor.logger
+      ~SpectralCentroidExtractorProcessor.md5
+      ~SpectralCentroidExtractorProcessor.output_type
+      ~SpectralCentroidExtractorProcessor.valid_formats
    
    

@@ -1,0 +1,6 @@
+dcase\_util.ui.FancyHTMLPrinter.foot
+====================================
+
+.. currentmodule:: dcase_util.ui
+
+.. automethod:: FancyHTMLPrinter.foot

@@ -1,5 +1,5 @@
-dcase\_util\.containers\.MetaDataItem\.source\_label
-====================================================
+dcase_util.containers.MetaDataItem.source_label
+===============================================
 
 .. currentmodule:: dcase_util.containers
 

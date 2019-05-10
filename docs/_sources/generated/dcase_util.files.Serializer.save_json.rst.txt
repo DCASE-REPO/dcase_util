@@ -1,5 +1,5 @@
-dcase\_util\.files\.Serializer\.save\_json
-==========================================
+dcase_util.files.Serializer.save_json
+=====================================
 
 .. currentmodule:: dcase_util.files
 

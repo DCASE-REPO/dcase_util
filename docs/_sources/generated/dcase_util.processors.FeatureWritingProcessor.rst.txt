@@ -1,5 +1,5 @@
-dcase\_util\.processors\.FeatureWritingProcessor
-================================================
+dcase_util.processors.FeatureWritingProcessor
+=============================================
 
 .. currentmodule:: dcase_util.processors
 
@@ -31,5 +31,16 @@ dcase\_util\.processors\.FeatureWritingProcessor
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~FeatureWritingProcessor.bytes
+      ~FeatureWritingProcessor.input_type
+      ~FeatureWritingProcessor.logger
+      ~FeatureWritingProcessor.md5
+      ~FeatureWritingProcessor.output_type
+      ~FeatureWritingProcessor.valid_formats
    
    

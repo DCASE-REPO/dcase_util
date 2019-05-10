@@ -1,5 +1,5 @@
-dcase\_util\.utils\.filelist\_exists
-====================================
+dcase_util.utils.filelist_exists
+================================
 
 .. currentmodule:: dcase_util.utils
 

@@ -1,5 +1,5 @@
-dcase\_util\.features\.SpectralFeatureExtractor\.get\_window\_function
-======================================================================
+dcase_util.features.SpectralFeatureExtractor.get_window_function
+================================================================
 
 .. currentmodule:: dcase_util.features
 

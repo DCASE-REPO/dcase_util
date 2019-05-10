@@ -1,5 +1,5 @@
-dcase\_util\.containers\.ContainerMixin
-=======================================
+dcase_util.containers.ContainerMixin
+====================================
 
 .. currentmodule:: dcase_util.containers
 
@@ -20,5 +20,11 @@ dcase\_util\.containers\.ContainerMixin
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ContainerMixin.logger
    
    

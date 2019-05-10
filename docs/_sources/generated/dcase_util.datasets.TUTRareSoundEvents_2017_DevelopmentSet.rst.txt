@@ -1,5 +1,5 @@
-dcase\_util\.datasets\.TUTRareSoundEvents\_2017\_DevelopmentSet
-===============================================================
+dcase_util.datasets.TUTRareSoundEvents_2017_DevelopmentSet
+==========================================================
 
 .. currentmodule:: dcase_util.datasets
 
@@ -58,5 +58,18 @@ dcase\_util\.datasets\.TUTRareSoundEvents\_2017\_DevelopmentSet
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~TUTRareSoundEvents_2017_DevelopmentSet.audio_file_count
+      ~TUTRareSoundEvents_2017_DevelopmentSet.audio_files
+      ~TUTRareSoundEvents_2017_DevelopmentSet.error_meta
+      ~TUTRareSoundEvents_2017_DevelopmentSet.error_meta_count
+      ~TUTRareSoundEvents_2017_DevelopmentSet.fold_count
+      ~TUTRareSoundEvents_2017_DevelopmentSet.logger
+      ~TUTRareSoundEvents_2017_DevelopmentSet.meta
+      ~TUTRareSoundEvents_2017_DevelopmentSet.meta_count
    
    

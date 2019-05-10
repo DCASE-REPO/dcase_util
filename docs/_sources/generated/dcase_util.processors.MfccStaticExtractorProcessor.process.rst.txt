@@ -1,5 +1,5 @@
-dcase\_util\.processors\.MfccStaticExtractorProcessor\.process
-==============================================================
+dcase_util.processors.MfccStaticExtractorProcessor.process
+==========================================================
 
 .. currentmodule:: dcase_util.processors
 

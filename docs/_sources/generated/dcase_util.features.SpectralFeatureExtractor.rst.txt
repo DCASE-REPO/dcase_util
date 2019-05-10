@@ -1,5 +1,5 @@
-dcase\_util\.features\.SpectralFeatureExtractor
-===============================================
+dcase_util.features.SpectralFeatureExtractor
+============================================
 
 .. currentmodule:: dcase_util.features
 
@@ -23,5 +23,11 @@ dcase\_util\.features\.SpectralFeatureExtractor
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~SpectralFeatureExtractor.logger
    
    

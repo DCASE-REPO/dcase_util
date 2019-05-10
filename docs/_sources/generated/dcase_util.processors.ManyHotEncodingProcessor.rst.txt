@@ -1,5 +1,5 @@
-dcase\_util\.processors\.ManyHotEncodingProcessor
-=================================================
+dcase_util.processors.ManyHotEncodingProcessor
+==============================================
 
 .. currentmodule:: dcase_util.processors
 
@@ -31,5 +31,16 @@ dcase\_util\.processors\.ManyHotEncodingProcessor
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ManyHotEncodingProcessor.bytes
+      ~ManyHotEncodingProcessor.input_type
+      ~ManyHotEncodingProcessor.logger
+      ~ManyHotEncodingProcessor.md5
+      ~ManyHotEncodingProcessor.output_type
+      ~ManyHotEncodingProcessor.valid_formats
    
    

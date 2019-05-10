@@ -1,5 +1,5 @@
-dcase\_util\.containers\.MetaDataContainer\.unique\_source\_labels
-==================================================================
+dcase_util.containers.MetaDataContainer.unique_source_labels
+============================================================
 
 .. currentmodule:: dcase_util.containers
 

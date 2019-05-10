@@ -1,5 +1,5 @@
-dcase\_util\.data\.Normalizer\.std
-==================================
+dcase_util.data.Normalizer.std
+==============================
 
 .. currentmodule:: dcase_util.data
 

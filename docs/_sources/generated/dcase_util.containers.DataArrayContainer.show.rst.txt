@@ -1,5 +1,5 @@
-dcase\_util\.containers\.DataArrayContainer\.show
-=================================================
+dcase_util.containers.DataArrayContainer.show
+=============================================
 
 .. currentmodule:: dcase_util.containers
 

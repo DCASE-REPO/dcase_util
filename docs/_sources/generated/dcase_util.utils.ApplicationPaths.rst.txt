@@ -1,5 +1,5 @@
-dcase\_util\.utils\.ApplicationPaths
-====================================
+dcase_util.utils.ApplicationPaths
+=================================
 
 .. currentmodule:: dcase_util.utils
 
@@ -32,5 +32,11 @@ dcase\_util\.utils\.ApplicationPaths
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ApplicationPaths.logger
    
    

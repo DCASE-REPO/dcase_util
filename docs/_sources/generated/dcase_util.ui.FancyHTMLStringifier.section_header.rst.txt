@@ -1,0 +1,6 @@
+dcase\_util.ui.FancyHTMLStringifier.section\_header
+===================================================
+
+.. currentmodule:: dcase_util.ui
+
+.. automethod:: FancyHTMLStringifier.section_header

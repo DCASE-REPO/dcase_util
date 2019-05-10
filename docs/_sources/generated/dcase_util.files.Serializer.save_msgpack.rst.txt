@@ -1,5 +1,5 @@
-dcase\_util\.files\.Serializer\.save\_msgpack
-=============================================
+dcase_util.files.Serializer.save_msgpack
+========================================
 
 .. currentmodule:: dcase_util.files
 

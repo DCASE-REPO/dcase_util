@@ -1,5 +1,5 @@
-dcase\_util\.utils\.SimpleMathStringEvaluator
-=============================================
+dcase_util.utils.SimpleMathStringEvaluator
+==========================================
 
 .. currentmodule:: dcase_util.utils
 
@@ -19,5 +19,11 @@ dcase\_util\.utils\.SimpleMathStringEvaluator
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~SimpleMathStringEvaluator.logger
    
    

@@ -1,5 +1,5 @@
-dcase\_util\.containers\.MetaDataItem\.identifier
-=================================================
+dcase_util.containers.MetaDataItem.identifier
+=============================================
 
 .. currentmodule:: dcase_util.containers
 

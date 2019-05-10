@@ -1,5 +1,5 @@
-dcase\_util\.containers\.DataArrayContainer\.freeze
-===================================================
+dcase_util.containers.DataArrayContainer.freeze
+===============================================
 
 .. currentmodule:: dcase_util.containers
 

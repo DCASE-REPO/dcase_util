@@ -1,5 +1,5 @@
-dcase\_util\.data\.DecisionEncoder\.majority\_vote
-==================================================
+dcase_util.data.DecisionEncoder.majority_vote
+=============================================
 
 .. currentmodule:: dcase_util.data
 

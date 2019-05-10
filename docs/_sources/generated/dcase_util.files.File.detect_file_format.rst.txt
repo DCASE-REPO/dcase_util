@@ -1,5 +1,5 @@
-dcase\_util\.files\.File\.detect\_file\_format
-==============================================
+dcase_util.files.File.detect_file_format
+========================================
 
 .. currentmodule:: dcase_util.files
 

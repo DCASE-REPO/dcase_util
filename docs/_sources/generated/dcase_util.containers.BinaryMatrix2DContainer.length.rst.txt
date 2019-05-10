@@ -1,5 +1,5 @@
-dcase\_util\.containers\.BinaryMatrix2DContainer\.length
-========================================================
+dcase_util.containers.BinaryMatrix2DContainer.length
+====================================================
 
 .. currentmodule:: dcase_util.containers
 

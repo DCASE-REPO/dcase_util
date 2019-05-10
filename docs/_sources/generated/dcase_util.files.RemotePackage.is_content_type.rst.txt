@@ -1,5 +1,5 @@
-dcase\_util\.files\.RemotePackage\.is\_content\_type
-====================================================
+dcase_util.files.RemotePackage.is_content_type
+==============================================
 
 .. currentmodule:: dcase_util.files
 

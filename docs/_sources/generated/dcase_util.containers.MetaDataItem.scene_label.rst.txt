@@ -1,5 +1,5 @@
-dcase\_util\.containers\.MetaDataItem\.scene\_label
-===================================================
+dcase_util.containers.MetaDataItem.scene_label
+==============================================
 
 .. currentmodule:: dcase_util.containers
 

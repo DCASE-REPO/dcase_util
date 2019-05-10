@@ -1,0 +1,6 @@
+dcase\_util.ui.FancyHTMLStringifier.line
+========================================
+
+.. currentmodule:: dcase_util.ui
+
+.. automethod:: FancyHTMLStringifier.line

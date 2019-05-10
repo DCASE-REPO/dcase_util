@@ -1,5 +1,5 @@
-dcase\_util\.ui\.FancyStringifier\.row\_sep
-===========================================
+dcase_util.ui.FancyStringifier.row_sep
+======================================
 
 .. currentmodule:: dcase_util.ui
 

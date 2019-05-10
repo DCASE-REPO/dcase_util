@@ -1,5 +1,5 @@
-dcase\_util\.decorators\.RunOnce
-================================
+dcase_util.decorators.RunOnce
+=============================
 
 .. currentmodule:: dcase_util.decorators
 

@@ -1,5 +1,5 @@
-dcase\_util\.utils\.ApplicationPaths\.save\_parameters\_to\_path
-================================================================
+dcase_util.utils.ApplicationPaths.save_parameters_to_path
+=========================================================
 
 .. currentmodule:: dcase_util.utils
 

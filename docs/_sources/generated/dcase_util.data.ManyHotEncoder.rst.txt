@@ -1,5 +1,5 @@
-dcase\_util\.data\.ManyHotEncoder
-=================================
+dcase_util.data.ManyHotEncoder
+==============================
 
 .. currentmodule:: dcase_util.data
 
@@ -39,5 +39,23 @@ dcase\_util\.data\.ManyHotEncoder
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ManyHotEncoder.T
+      ~ManyHotEncoder.bytes
+      ~ManyHotEncoder.data
+      ~ManyHotEncoder.focus_start
+      ~ManyHotEncoder.focus_stop
+      ~ManyHotEncoder.frames
+      ~ManyHotEncoder.length
+      ~ManyHotEncoder.logger
+      ~ManyHotEncoder.md5
+      ~ManyHotEncoder.shape
+      ~ManyHotEncoder.stats
+      ~ManyHotEncoder.valid_formats
+      ~ManyHotEncoder.vector_length
    
    

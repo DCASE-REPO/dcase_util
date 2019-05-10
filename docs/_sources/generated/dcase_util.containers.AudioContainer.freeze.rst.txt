@@ -1,5 +1,5 @@
-dcase\_util\.containers\.AudioContainer\.freeze
-===============================================
+dcase_util.containers.AudioContainer.freeze
+===========================================
 
 .. currentmodule:: dcase_util.containers
 

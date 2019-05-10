@@ -1,5 +1,5 @@
-dcase\_util\.files\.File
-========================
+dcase_util.files.File
+=====================
 
 .. currentmodule:: dcase_util.files
 
@@ -27,5 +27,14 @@ dcase\_util\.files\.File
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~File.bytes
+      ~File.logger
+      ~File.md5
+      ~File.valid_formats
    
    

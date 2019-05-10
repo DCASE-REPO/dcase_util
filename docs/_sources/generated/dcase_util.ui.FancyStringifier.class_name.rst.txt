@@ -1,5 +1,5 @@
-dcase\_util\.ui\.FancyStringifier\.class\_name
-==============================================
+dcase_util.ui.FancyStringifier.class_name
+=========================================
 
 .. currentmodule:: dcase_util.ui
 

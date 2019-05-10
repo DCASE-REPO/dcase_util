@@ -1,5 +1,5 @@
-dcase\_util\.containers\.FileMixin\.is\_package
-===============================================
+dcase_util.containers.FileMixin.is_package
+==========================================
 
 .. currentmodule:: dcase_util.containers
 

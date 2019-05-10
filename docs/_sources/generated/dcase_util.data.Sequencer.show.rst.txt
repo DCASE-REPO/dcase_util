@@ -1,5 +1,5 @@
-dcase\_util\.data\.Sequencer\.show
-==================================
+dcase_util.data.Sequencer.show
+==============================
 
 .. currentmodule:: dcase_util.data
 

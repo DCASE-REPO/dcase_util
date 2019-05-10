@@ -1,5 +1,5 @@
-dcase\_util\.processors\.OneHotEncodingProcessor
-================================================
+dcase_util.processors.OneHotEncodingProcessor
+=============================================
 
 .. currentmodule:: dcase_util.processors
 
@@ -31,5 +31,16 @@ dcase\_util\.processors\.OneHotEncodingProcessor
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~OneHotEncodingProcessor.bytes
+      ~OneHotEncodingProcessor.input_type
+      ~OneHotEncodingProcessor.logger
+      ~OneHotEncodingProcessor.md5
+      ~OneHotEncodingProcessor.output_type
+      ~OneHotEncodingProcessor.valid_formats
    
    

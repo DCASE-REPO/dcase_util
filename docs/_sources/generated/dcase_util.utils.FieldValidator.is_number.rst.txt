@@ -1,5 +1,5 @@
-dcase\_util\.utils\.FieldValidator\.is\_number
-==============================================
+dcase_util.utils.FieldValidator.is_number
+=========================================
 
 .. currentmodule:: dcase_util.utils
 

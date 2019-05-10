@@ -1,5 +1,5 @@
-dcase\_util\.data\.ProbabilityEncoder\.load
-===========================================
+dcase_util.data.ProbabilityEncoder.load
+=======================================
 
 .. currentmodule:: dcase_util.data
 
