@@ -1,5 +1,5 @@
-dcase\_util\.keras\.ProgressLoggerCallback
-==========================================
+dcase_util.keras.ProgressLoggerCallback
+=======================================
 
 .. currentmodule:: dcase_util.keras
 
@@ -31,5 +31,11 @@ dcase\_util\.keras\.ProgressLoggerCallback
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ProgressLoggerCallback.logger
    
    

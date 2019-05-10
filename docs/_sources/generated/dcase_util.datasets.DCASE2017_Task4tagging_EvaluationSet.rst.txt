@@ -1,5 +1,5 @@
-dcase\_util\.datasets\.DCASE2017\_Task4tagging\_EvaluationSet
-=============================================================
+dcase_util.datasets.DCASE2017_Task4tagging_EvaluationSet
+========================================================
 
 .. currentmodule:: dcase_util.datasets
 
@@ -57,5 +57,18 @@ dcase\_util\.datasets\.DCASE2017\_Task4tagging\_EvaluationSet
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~DCASE2017_Task4tagging_EvaluationSet.audio_file_count
+      ~DCASE2017_Task4tagging_EvaluationSet.audio_files
+      ~DCASE2017_Task4tagging_EvaluationSet.error_meta
+      ~DCASE2017_Task4tagging_EvaluationSet.error_meta_count
+      ~DCASE2017_Task4tagging_EvaluationSet.fold_count
+      ~DCASE2017_Task4tagging_EvaluationSet.logger
+      ~DCASE2017_Task4tagging_EvaluationSet.meta
+      ~DCASE2017_Task4tagging_EvaluationSet.meta_count
    
    

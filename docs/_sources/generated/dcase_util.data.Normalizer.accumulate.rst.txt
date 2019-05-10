@@ -1,5 +1,5 @@
-dcase\_util\.data\.Normalizer\.accumulate
-=========================================
+dcase_util.data.Normalizer.accumulate
+=====================================
 
 .. currentmodule:: dcase_util.data
 

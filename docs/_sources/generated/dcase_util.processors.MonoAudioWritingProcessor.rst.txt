@@ -1,5 +1,5 @@
-dcase\_util\.processors\.MonoAudioWritingProcessor
-==================================================
+dcase_util.processors.MonoAudioWritingProcessor
+===============================================
 
 .. currentmodule:: dcase_util.processors
 
@@ -31,5 +31,16 @@ dcase\_util\.processors\.MonoAudioWritingProcessor
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~MonoAudioWritingProcessor.bytes
+      ~MonoAudioWritingProcessor.input_type
+      ~MonoAudioWritingProcessor.logger
+      ~MonoAudioWritingProcessor.md5
+      ~MonoAudioWritingProcessor.output_type
+      ~MonoAudioWritingProcessor.valid_formats
    
    

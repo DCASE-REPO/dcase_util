@@ -1,5 +1,5 @@
-dcase\_util\.containers\.DataRepository
-=======================================
+dcase_util.containers.DataRepository
+====================================
 
 .. currentmodule:: dcase_util.containers
 
@@ -60,5 +60,15 @@ dcase\_util\.containers\.DataRepository
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~DataRepository.bytes
+      ~DataRepository.labels
+      ~DataRepository.logger
+      ~DataRepository.md5
+      ~DataRepository.valid_formats
    
    

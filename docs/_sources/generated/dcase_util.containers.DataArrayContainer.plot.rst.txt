@@ -1,5 +1,5 @@
-dcase\_util\.containers\.DataArrayContainer\.plot
-=================================================
+dcase_util.containers.DataArrayContainer.plot
+=============================================
 
 .. currentmodule:: dcase_util.containers
 

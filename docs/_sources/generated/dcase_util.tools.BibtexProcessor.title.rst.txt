@@ -1,5 +1,5 @@
-dcase\_util\.tools\.BibtexProcessor\.title
-==========================================
+dcase_util.tools.BibtexProcessor.title
+======================================
 
 .. currentmodule:: dcase_util.tools
 

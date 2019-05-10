@@ -1,5 +1,5 @@
-dcase\_util\.utils\.Example
-===========================
+dcase_util.utils.Example
+========================
 
 .. currentmodule:: dcase_util.utils
 
@@ -27,5 +27,11 @@ dcase\_util\.utils\.Example
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Example.example_folder
    
    

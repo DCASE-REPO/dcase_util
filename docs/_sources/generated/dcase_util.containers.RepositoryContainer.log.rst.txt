@@ -1,5 +1,5 @@
-dcase\_util\.containers\.RepositoryContainer\.log
-=================================================
+dcase_util.containers.RepositoryContainer.log
+=============================================
 
 .. currentmodule:: dcase_util.containers
 

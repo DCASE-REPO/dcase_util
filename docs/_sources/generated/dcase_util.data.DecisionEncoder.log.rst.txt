@@ -1,5 +1,5 @@
-dcase\_util\.data\.DecisionEncoder\.log
-=======================================
+dcase_util.data.DecisionEncoder.log
+===================================
 
 .. currentmodule:: dcase_util.data
 

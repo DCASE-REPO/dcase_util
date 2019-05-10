@@ -1,5 +1,5 @@
-dcase\_util\.features\.MfccAccelerationExtractor\.extract
-=========================================================
+dcase_util.features.MfccAccelerationExtractor.extract
+=====================================================
 
 .. currentmodule:: dcase_util.features
 

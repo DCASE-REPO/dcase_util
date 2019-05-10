@@ -1,5 +1,5 @@
-dcase\_util\.ui\.FancyStringifier
-=================================
+dcase_util.ui.FancyStringifier
+==============================
 
 .. currentmodule:: dcase_util.ui
 
@@ -31,5 +31,11 @@ dcase\_util\.ui\.FancyStringifier
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~FancyStringifier.logger
    
    

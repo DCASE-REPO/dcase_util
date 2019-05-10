@@ -1,5 +1,5 @@
-dcase\_util\.features\.MfccDeltaExtractor
-=========================================
+dcase_util.features.MfccDeltaExtractor
+======================================
 
 .. currentmodule:: dcase_util.features
 
@@ -23,5 +23,12 @@ dcase\_util\.features\.MfccDeltaExtractor
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~MfccDeltaExtractor.label
+      ~MfccDeltaExtractor.logger
    
    

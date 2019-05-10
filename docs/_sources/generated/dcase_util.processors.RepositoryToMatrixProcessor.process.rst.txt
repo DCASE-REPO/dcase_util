@@ -1,5 +1,5 @@
-dcase\_util\.processors\.RepositoryToMatrixProcessor\.process
-=============================================================
+dcase_util.processors.RepositoryToMatrixProcessor.process
+=========================================================
 
 .. currentmodule:: dcase_util.processors
 

@@ -1,5 +1,5 @@
-dcase\_util\.data\.Masker\.mask
-===============================
+dcase_util.data.Masker.mask
+===========================
 
 .. currentmodule:: dcase_util.data
 

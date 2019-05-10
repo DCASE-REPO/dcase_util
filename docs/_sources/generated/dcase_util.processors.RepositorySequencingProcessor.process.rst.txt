@@ -1,5 +1,5 @@
-dcase\_util\.processors\.RepositorySequencingProcessor\.process
-===============================================================
+dcase_util.processors.RepositorySequencingProcessor.process
+===========================================================
 
 .. currentmodule:: dcase_util.processors
 

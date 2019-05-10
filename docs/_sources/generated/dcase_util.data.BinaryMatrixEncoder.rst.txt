@@ -1,5 +1,5 @@
-dcase\_util\.data\.BinaryMatrixEncoder
-======================================
+dcase_util.data.BinaryMatrixEncoder
+===================================
 
 .. currentmodule:: dcase_util.data
 
@@ -38,5 +38,23 @@ dcase\_util\.data\.BinaryMatrixEncoder
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~BinaryMatrixEncoder.T
+      ~BinaryMatrixEncoder.bytes
+      ~BinaryMatrixEncoder.data
+      ~BinaryMatrixEncoder.focus_start
+      ~BinaryMatrixEncoder.focus_stop
+      ~BinaryMatrixEncoder.frames
+      ~BinaryMatrixEncoder.length
+      ~BinaryMatrixEncoder.logger
+      ~BinaryMatrixEncoder.md5
+      ~BinaryMatrixEncoder.shape
+      ~BinaryMatrixEncoder.stats
+      ~BinaryMatrixEncoder.valid_formats
+      ~BinaryMatrixEncoder.vector_length
    
    

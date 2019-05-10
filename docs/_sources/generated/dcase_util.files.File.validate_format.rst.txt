@@ -1,5 +1,5 @@
-dcase\_util\.files\.File\.validate\_format
-==========================================
+dcase_util.files.File.validate_format
+=====================================
 
 .. currentmodule:: dcase_util.files
 

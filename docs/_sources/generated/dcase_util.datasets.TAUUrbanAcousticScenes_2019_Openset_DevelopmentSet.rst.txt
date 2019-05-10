@@ -1,5 +1,5 @@
-dcase\_util\.datasets\.TAUUrbanAcousticScenes\_2019\_Openset\_DevelopmentSet
-============================================================================
+dcase\_util.datasets.TAUUrbanAcousticScenes\_2019\_Openset\_DevelopmentSet
+==========================================================================
 
 .. currentmodule:: dcase_util.datasets
 
@@ -57,5 +57,18 @@ dcase\_util\.datasets\.TAUUrbanAcousticScenes\_2019\_Openset\_DevelopmentSet
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~TAUUrbanAcousticScenes_2019_Openset_DevelopmentSet.audio_file_count
+      ~TAUUrbanAcousticScenes_2019_Openset_DevelopmentSet.audio_files
+      ~TAUUrbanAcousticScenes_2019_Openset_DevelopmentSet.error_meta
+      ~TAUUrbanAcousticScenes_2019_Openset_DevelopmentSet.error_meta_count
+      ~TAUUrbanAcousticScenes_2019_Openset_DevelopmentSet.fold_count
+      ~TAUUrbanAcousticScenes_2019_Openset_DevelopmentSet.logger
+      ~TAUUrbanAcousticScenes_2019_Openset_DevelopmentSet.meta
+      ~TAUUrbanAcousticScenes_2019_Openset_DevelopmentSet.meta_count
    
    

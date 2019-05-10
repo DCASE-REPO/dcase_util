@@ -1,5 +1,5 @@
-dcase\_util\.features\.SpectralCentroidExtractor\.extract
-=========================================================
+dcase_util.features.SpectralCentroidExtractor.extract
+=====================================================
 
 .. currentmodule:: dcase_util.features
 

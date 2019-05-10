@@ -1,5 +1,5 @@
-dcase\_util\.utils\.FileFormat\.validate\_label
-===============================================
+dcase_util.utils.FileFormat.validate_label
+==========================================
 
 .. currentmodule:: dcase_util.utils
 

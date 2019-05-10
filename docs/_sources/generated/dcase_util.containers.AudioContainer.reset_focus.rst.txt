@@ -1,5 +1,5 @@
-dcase\_util\.containers\.AudioContainer\.reset\_focus
-=====================================================
+dcase_util.containers.AudioContainer.reset_focus
+================================================
 
 .. currentmodule:: dcase_util.containers
 

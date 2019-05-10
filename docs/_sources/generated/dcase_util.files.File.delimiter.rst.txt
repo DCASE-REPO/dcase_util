@@ -1,5 +1,5 @@
-dcase\_util\.files\.File\.delimiter
-===================================
+dcase_util.files.File.delimiter
+===============================
 
 .. currentmodule:: dcase_util.files
 

@@ -1,5 +1,5 @@
-dcase\_util\.keras\.model\_summary\_string
-==========================================
+dcase_util.keras.model_summary_string
+=====================================
 
 .. currentmodule:: dcase_util.keras
 

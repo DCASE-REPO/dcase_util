@@ -1,5 +1,5 @@
-dcase\_util\.data\.Aggregator
-=============================
+dcase_util.data.Aggregator
+==========================
 
 .. currentmodule:: dcase_util.data
 
@@ -30,5 +30,15 @@ dcase\_util\.data\.Aggregator
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Aggregator.bytes
+      ~Aggregator.logger
+      ~Aggregator.md5
+      ~Aggregator.valid_formats
+      ~Aggregator.valid_method
    
    

@@ -1,5 +1,5 @@
-dcase\_util\.ui\.FancyPrinter\.title
-====================================
+dcase_util.ui.FancyPrinter.title
+================================
 
 .. currentmodule:: dcase_util.ui
 

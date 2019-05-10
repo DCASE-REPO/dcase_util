@@ -1,5 +1,5 @@
-dcase\_util\.datasets\.Dataset\.error\_meta
-===========================================
+dcase_util.datasets.Dataset.error_meta
+======================================
 
 .. currentmodule:: dcase_util.datasets
 

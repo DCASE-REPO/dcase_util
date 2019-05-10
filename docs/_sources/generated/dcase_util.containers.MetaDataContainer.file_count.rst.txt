@@ -1,5 +1,5 @@
-dcase\_util\.containers\.MetaDataContainer\.file\_count
-=======================================================
+dcase_util.containers.MetaDataContainer.file_count
+==================================================
 
 .. currentmodule:: dcase_util.containers
 

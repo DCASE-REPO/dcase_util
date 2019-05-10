@@ -1,5 +1,5 @@
-dcase\_util\.data\.DataBuffer\.count
-====================================
+dcase_util.data.DataBuffer.count
+================================
 
 .. currentmodule:: dcase_util.data
 

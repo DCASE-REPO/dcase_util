@@ -1,0 +1,6 @@
+dcase\_util.containers.MetaDataContainer.to\_string
+===================================================
+
+.. currentmodule:: dcase_util.containers
+
+.. automethod:: MetaDataContainer.to_string

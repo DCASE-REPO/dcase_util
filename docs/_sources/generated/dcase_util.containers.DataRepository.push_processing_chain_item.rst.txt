@@ -1,5 +1,5 @@
-dcase\_util\.containers\.DataRepository\.push\_processing\_chain\_item
-======================================================================
+dcase_util.containers.DataRepository.push_processing_chain_item
+===============================================================
 
 .. currentmodule:: dcase_util.containers
 

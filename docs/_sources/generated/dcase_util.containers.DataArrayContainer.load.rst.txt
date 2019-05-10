@@ -1,5 +1,5 @@
-dcase\_util\.containers\.DataArrayContainer\.load
-=================================================
+dcase_util.containers.DataArrayContainer.load
+=============================================
 
 .. currentmodule:: dcase_util.containers
 

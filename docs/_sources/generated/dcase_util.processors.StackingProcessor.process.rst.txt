@@ -1,5 +1,5 @@
-dcase\_util\.processors\.StackingProcessor\.process
-===================================================
+dcase_util.processors.StackingProcessor.process
+===============================================
 
 .. currentmodule:: dcase_util.processors
 

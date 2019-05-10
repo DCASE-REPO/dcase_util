@@ -1,5 +1,5 @@
-dcase\_util\.containers\.MetaDataContainer\.event\_stat\_counts
-===============================================================
+dcase_util.containers.MetaDataContainer.event_stat_counts
+=========================================================
 
 .. currentmodule:: dcase_util.containers
 

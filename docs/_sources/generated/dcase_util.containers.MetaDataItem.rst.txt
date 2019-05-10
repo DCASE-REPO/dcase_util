@@ -1,5 +1,5 @@
-dcase\_util\.containers\.MetaDataItem
-=====================================
+dcase_util.containers.MetaDataItem
+==================================
 
 .. currentmodule:: dcase_util.containers
 
@@ -40,5 +40,22 @@ dcase\_util\.containers\.MetaDataItem
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~MetaDataItem.event_label
+      ~MetaDataItem.filename
+      ~MetaDataItem.filename_original
+      ~MetaDataItem.id
+      ~MetaDataItem.identifier
+      ~MetaDataItem.logger
+      ~MetaDataItem.offset
+      ~MetaDataItem.onset
+      ~MetaDataItem.scene_label
+      ~MetaDataItem.set_label
+      ~MetaDataItem.source_label
+      ~MetaDataItem.tags
    
    

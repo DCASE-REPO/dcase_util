@@ -1,5 +1,5 @@
-dcase\_util\.containers\.MetaDataContainer\.difference
-======================================================
+dcase_util.containers.MetaDataContainer.difference
+==================================================
 
 .. currentmodule:: dcase_util.containers
 

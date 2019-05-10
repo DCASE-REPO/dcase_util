@@ -1,5 +1,5 @@
-dcase\_util\.data\.Stacker
-==========================
+dcase_util.data.Stacker
+=======================
 
 .. currentmodule:: dcase_util.data
 
@@ -30,5 +30,14 @@ dcase\_util\.data\.Stacker
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Stacker.bytes
+      ~Stacker.logger
+      ~Stacker.md5
+      ~Stacker.valid_formats
    
    

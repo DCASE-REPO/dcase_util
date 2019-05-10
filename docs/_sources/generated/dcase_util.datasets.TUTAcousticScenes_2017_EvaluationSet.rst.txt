@@ -1,5 +1,5 @@
-dcase\_util\.datasets\.TUTAcousticScenes\_2017\_EvaluationSet
-=============================================================
+dcase_util.datasets.TUTAcousticScenes_2017_EvaluationSet
+========================================================
 
 .. currentmodule:: dcase_util.datasets
 
@@ -57,5 +57,18 @@ dcase\_util\.datasets\.TUTAcousticScenes\_2017\_EvaluationSet
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~TUTAcousticScenes_2017_EvaluationSet.audio_file_count
+      ~TUTAcousticScenes_2017_EvaluationSet.audio_files
+      ~TUTAcousticScenes_2017_EvaluationSet.error_meta
+      ~TUTAcousticScenes_2017_EvaluationSet.error_meta_count
+      ~TUTAcousticScenes_2017_EvaluationSet.fold_count
+      ~TUTAcousticScenes_2017_EvaluationSet.logger
+      ~TUTAcousticScenes_2017_EvaluationSet.meta
+      ~TUTAcousticScenes_2017_EvaluationSet.meta_count
    
    

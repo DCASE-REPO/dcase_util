@@ -1,0 +1,42 @@
+dcase\_util.ui.FancyHTMLStringifier
+===================================
+
+.. currentmodule:: dcase_util.ui
+
+.. autoclass:: FancyHTMLStringifier
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~FancyHTMLStringifier.__init__
+      ~FancyHTMLStringifier.class_name
+      ~FancyHTMLStringifier.data
+      ~FancyHTMLStringifier.foot
+      ~FancyHTMLStringifier.formatted_value
+      ~FancyHTMLStringifier.get_margin
+      ~FancyHTMLStringifier.line
+      ~FancyHTMLStringifier.row
+      ~FancyHTMLStringifier.row_reset
+      ~FancyHTMLStringifier.row_sep
+      ~FancyHTMLStringifier.section_header
+      ~FancyHTMLStringifier.sep
+      ~FancyHTMLStringifier.sub_header
+      ~FancyHTMLStringifier.table
+      ~FancyHTMLStringifier.title
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~FancyHTMLStringifier.logger
+   
+   

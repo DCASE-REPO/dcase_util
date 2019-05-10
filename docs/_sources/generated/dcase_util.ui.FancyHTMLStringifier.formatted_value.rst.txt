@@ -1,0 +1,6 @@
+dcase\_util.ui.FancyHTMLStringifier.formatted\_value
+====================================================
+
+.. currentmodule:: dcase_util.ui
+
+.. automethod:: FancyHTMLStringifier.formatted_value

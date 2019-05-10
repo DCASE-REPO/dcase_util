@@ -1,5 +1,5 @@
-dcase\_util\.features\.MelExtractor\.extract
-============================================
+dcase_util.features.MelExtractor.extract
+========================================
 
 .. currentmodule:: dcase_util.features
 

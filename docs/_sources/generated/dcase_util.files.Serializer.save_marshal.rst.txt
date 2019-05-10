@@ -1,5 +1,5 @@
-dcase\_util\.files\.Serializer\.save\_marshal
-=============================================
+dcase_util.files.Serializer.save_marshal
+========================================
 
 .. currentmodule:: dcase_util.files
 

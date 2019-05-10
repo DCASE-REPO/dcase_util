@@ -1,5 +1,5 @@
-dcase\_util\.utils\.Path\.size\_string
-======================================
+dcase_util.utils.Path.size_string
+=================================
 
 .. currentmodule:: dcase_util.utils
 

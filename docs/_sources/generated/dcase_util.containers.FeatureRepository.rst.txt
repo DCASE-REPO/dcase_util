@@ -1,5 +1,5 @@
-dcase\_util\.containers\.FeatureRepository
-==========================================
+dcase_util.containers.FeatureRepository
+=======================================
 
 .. currentmodule:: dcase_util.containers
 
@@ -60,5 +60,15 @@ dcase\_util\.containers\.FeatureRepository
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~FeatureRepository.bytes
+      ~FeatureRepository.labels
+      ~FeatureRepository.logger
+      ~FeatureRepository.md5
+      ~FeatureRepository.valid_formats
    
    

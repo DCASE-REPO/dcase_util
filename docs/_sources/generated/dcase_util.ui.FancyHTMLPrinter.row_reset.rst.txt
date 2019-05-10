@@ -1,0 +1,6 @@
+dcase\_util.ui.FancyHTMLPrinter.row\_reset
+==========================================
+
+.. currentmodule:: dcase_util.ui
+
+.. automethod:: FancyHTMLPrinter.row_reset

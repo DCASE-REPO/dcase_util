@@ -1,5 +1,5 @@
-dcase\_util\.datasets\.dataset\_factory
-=======================================
+dcase_util.datasets.dataset_factory
+===================================
 
 .. currentmodule:: dcase_util.datasets
 

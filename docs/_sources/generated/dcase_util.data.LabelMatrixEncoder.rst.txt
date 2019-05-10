@@ -1,5 +1,5 @@
-dcase\_util\.data\.LabelMatrixEncoder
-=====================================
+dcase_util.data.LabelMatrixEncoder
+==================================
 
 .. currentmodule:: dcase_util.data
 
@@ -37,5 +37,23 @@ dcase\_util\.data\.LabelMatrixEncoder
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~LabelMatrixEncoder.T
+      ~LabelMatrixEncoder.bytes
+      ~LabelMatrixEncoder.data
+      ~LabelMatrixEncoder.focus_start
+      ~LabelMatrixEncoder.focus_stop
+      ~LabelMatrixEncoder.frames
+      ~LabelMatrixEncoder.length
+      ~LabelMatrixEncoder.logger
+      ~LabelMatrixEncoder.md5
+      ~LabelMatrixEncoder.shape
+      ~LabelMatrixEncoder.stats
+      ~LabelMatrixEncoder.valid_formats
+      ~LabelMatrixEncoder.vector_length
    
    

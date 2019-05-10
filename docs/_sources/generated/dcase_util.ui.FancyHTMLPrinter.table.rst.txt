@@ -1,0 +1,6 @@
+dcase\_util.ui.FancyHTMLPrinter.table
+=====================================
+
+.. currentmodule:: dcase_util.ui
+
+.. automethod:: FancyHTMLPrinter.table

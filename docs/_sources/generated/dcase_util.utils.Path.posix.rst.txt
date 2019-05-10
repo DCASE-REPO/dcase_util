@@ -1,5 +1,5 @@
-dcase\_util\.utils\.Path\.posix
-===============================
+dcase_util.utils.Path.posix
+===========================
 
 .. currentmodule:: dcase_util.utils
 

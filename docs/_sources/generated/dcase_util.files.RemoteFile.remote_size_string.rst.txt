@@ -1,5 +1,5 @@
-dcase\_util\.files\.RemoteFile\.remote\_size\_string
-====================================================
+dcase_util.files.RemoteFile.remote_size_string
+==============================================
 
 .. currentmodule:: dcase_util.files
 

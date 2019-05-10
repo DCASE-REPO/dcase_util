@@ -1,5 +1,5 @@
-dcase\_util\.containers\.MetaDataContainer\.event\_inactivity
-=============================================================
+dcase_util.containers.MetaDataContainer.event_inactivity
+========================================================
 
 .. currentmodule:: dcase_util.containers
 

@@ -1,5 +1,5 @@
-dcase\_util\.containers\.ProbabilityItem\.log
-=============================================
+dcase_util.containers.ProbabilityItem.log
+=========================================
 
 .. currentmodule:: dcase_util.containers
 

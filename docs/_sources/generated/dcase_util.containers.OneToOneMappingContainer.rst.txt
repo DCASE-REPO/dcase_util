@@ -1,5 +1,5 @@
-dcase\_util\.containers\.OneToOneMappingContainer
-=================================================
+dcase_util.containers.OneToOneMappingContainer
+==============================================
 
 .. currentmodule:: dcase_util.containers
 
@@ -56,5 +56,15 @@ dcase\_util\.containers\.OneToOneMappingContainer
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~OneToOneMappingContainer.bytes
+      ~OneToOneMappingContainer.flipped
+      ~OneToOneMappingContainer.logger
+      ~OneToOneMappingContainer.md5
+      ~OneToOneMappingContainer.valid_formats
    
    

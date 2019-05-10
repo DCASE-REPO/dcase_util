@@ -1,5 +1,5 @@
-dcase\_util\.containers\.ProbabilityItem\.get\_list
-===================================================
+dcase_util.containers.ProbabilityItem.get_list
+==============================================
 
 .. currentmodule:: dcase_util.containers
 

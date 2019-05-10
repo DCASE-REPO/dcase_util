@@ -1,5 +1,5 @@
-dcase\_util\.containers\.MetaDataContainer\.intersection\_report
-================================================================
+dcase_util.containers.MetaDataContainer.intersection_report
+===========================================================
 
 .. currentmodule:: dcase_util.containers
 
