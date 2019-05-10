@@ -23,7 +23,7 @@ install:
     - "pip install python-coveralls"
     - "pip install coveralls"
     - "pip install nose"
-    - "pip install scikit-learn"
+    - "pip install scikit-learn==0.20.3"
     - "pip install librosa"
     - "pip install ipython"
     - "python setup.py develop"
