@@ -790,7 +790,7 @@ MetaDataContainer
     MetaDataContainer.unique_identifiers
     MetaDataContainer.unique_source_labels
     MetaDataContainer.max_offset
-    MetaDataContainer.get_string
+    MetaDataContainer.to_string
     MetaDataContainer.filter
     MetaDataContainer.filter_time_segment
     MetaDataContainer.process_events
