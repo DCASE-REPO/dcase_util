@@ -123,6 +123,7 @@ Specialized classes inherited AcousticSceneDataset:
     TUTUrbanAcousticScenes_2018_EvaluationSet
     TUTUrbanAcousticScenes_2018_Mobile_DevelopmentSet
     TUTUrbanAcousticScenes_2018_Mobile_LeaderboardSet
+    TUTUrbanAcousticScenes_2018_Mobile_EvaluationSet
     TAUUrbanAcousticScenes_2019_DevelopmentSet
     TAUUrbanAcousticScenes_2019_LeaderboardSet
     TAUUrbanAcousticScenes_2019_Mobile_DevelopmentSet
