@@ -3,6 +3,45 @@
 Release notes
 =============
 
+v0.2.8
+------
+
+**New features**
+
+* Add ``TAUUrbanAcousticScenes_2019_LeaderboardSet``, ``TAUUrbanAcousticScenes_2019_Mobile_LeaderboardSet``, and ``TAUUrbanAcousticScenes_2019_Openset_LeaderboardSet`` datasets.
+* Add ``is_jupyter`` function to detect if code is running inside jupyter
+* Add ``shorten`` method in ``Path`` to shorten long paths for visualization purpose
+* Add ``FancyHTMLStringifier``, ``FancyHTMLPrinter`` classes for HTML output
+* Add ``plot`` method in ``DataArrayContainer``
+* Add ``plot`` method in ``Normalizer``
+
+**Updates**
+
+* Update YAML serialization to use ``yaml.FullLoader``
+* ``formatted_value`` method in ``FancyStringifier`` to be static
+* Refactor printing methods in containers to allow automatic output mode switching between HTML (Jypyter) and string (console)
+* Update data printing mechanism for containers
+* Update ``plot`` methods API to include ``figsize`` parameter
+* Update default parameters in ``plot`` method in ``AudioContainer`` (color bar is hidden by default)
+* Update error messages in ``AudioContainer`` to be more informative
+* Update ``load`` method in ``MetaDataContainer`` to support additional row formats
+* Update ``feature_extractor_list`` method to have option to return string or display (print to console or print as HTML output in Jupyter)
+* Update ``dataset_list`` to use table layout and add option to return string or display (print to console or print as HTML output in Jupyter)
+* Update ``to_string`` method in ``MetaDataContainer`` with option ``show_info`` to control what data is print
+* Update API for methods ``show`` and ``log`` in ``Dataset`` to include ``show_meta`` parameter and ``mode`` parameter to control output format
+* Update printing ``validation_files_balanced`` method in ``AcousticSceneDataset`` to support different output modes (print to console or print as HTML output in Jupyter)
+* Update ``ProgressLoggerCallback`` to include ``show_timing`` parameter and ``notebook`` output type
+* Update ``StasherCallback`` with ``to_string`` and ``show``
+* Update printing inside ``setup_keras`` function
+* Update ``model_summary_string`` function with new parameters (``show_parameters`` and ``display``)
+* Update ``plot`` method in ``DataMatrix2DContainer`` with ``xlabel`` and ``ylabel`` parameters
+* Update ``plot`` method in ``BinaryMatrix2DContainer`` with ``panel_title_position`` parameters
+* Update usage of ``tqdm`` library in ``Dataset`` to allow locally progress bar disable/enable
+
+**Bug fixes**
+
+* Fix single channel audio plotting in ``AudioContainer``
+
 v0.2.7
 ------
 
