@@ -1,5 +1,5 @@
-dcase\_util\.files\.Package\.extract
-====================================
+dcase_util.files.Package.extract
+================================
 
 .. currentmodule:: dcase_util.files
 

@@ -1,5 +1,5 @@
-dcase\_util\.processors\.MfccDeltaExtractorProcessor
-====================================================
+dcase_util.processors.MfccDeltaExtractorProcessor
+=================================================
 
 .. currentmodule:: dcase_util.processors
 
@@ -34,5 +34,17 @@ dcase\_util\.processors\.MfccDeltaExtractorProcessor
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~MfccDeltaExtractorProcessor.bytes
+      ~MfccDeltaExtractorProcessor.input_type
+      ~MfccDeltaExtractorProcessor.label
+      ~MfccDeltaExtractorProcessor.logger
+      ~MfccDeltaExtractorProcessor.md5
+      ~MfccDeltaExtractorProcessor.output_type
+      ~MfccDeltaExtractorProcessor.valid_formats
    
    

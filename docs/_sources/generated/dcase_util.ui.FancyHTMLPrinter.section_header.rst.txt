@@ -1,0 +1,6 @@
+dcase\_util.ui.FancyHTMLPrinter.section\_header
+===============================================
+
+.. currentmodule:: dcase_util.ui
+
+.. automethod:: FancyHTMLPrinter.section_header

@@ -1,5 +1,5 @@
-dcase\_util\.data\.Stacker\.load
-================================
+dcase_util.data.Stacker.load
+============================
 
 .. currentmodule:: dcase_util.data
 

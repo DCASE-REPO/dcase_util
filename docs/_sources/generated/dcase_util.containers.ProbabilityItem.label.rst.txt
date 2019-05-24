@@ -1,5 +1,5 @@
-dcase\_util\.containers\.ProbabilityItem\.label
-===============================================
+dcase_util.containers.ProbabilityItem.label
+===========================================
 
 .. currentmodule:: dcase_util.containers
 

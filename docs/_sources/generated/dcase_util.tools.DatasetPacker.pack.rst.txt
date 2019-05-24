@@ -1,5 +1,5 @@
-dcase\_util\.tools\.DatasetPacker\.pack
-=======================================
+dcase_util.tools.DatasetPacker.pack
+===================================
 
 .. currentmodule:: dcase_util.tools
 

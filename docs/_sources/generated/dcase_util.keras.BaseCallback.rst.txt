@@ -1,5 +1,5 @@
-dcase\_util\.keras\.BaseCallback
-================================
+dcase_util.keras.BaseCallback
+=============================
 
 .. currentmodule:: dcase_util.keras
 
@@ -30,5 +30,11 @@ dcase\_util\.keras\.BaseCallback
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~BaseCallback.logger
    
    

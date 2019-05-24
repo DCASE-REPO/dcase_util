@@ -1,5 +1,5 @@
-dcase\_util\.data\.ProbabilityEncoder
-=====================================
+dcase_util.data.ProbabilityEncoder
+==================================
 
 .. currentmodule:: dcase_util.data
 
@@ -33,5 +33,14 @@ dcase\_util\.data\.ProbabilityEncoder
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ProbabilityEncoder.bytes
+      ~ProbabilityEncoder.logger
+      ~ProbabilityEncoder.md5
+      ~ProbabilityEncoder.valid_formats
    
    

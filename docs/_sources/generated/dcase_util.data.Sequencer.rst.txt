@@ -1,5 +1,5 @@
-dcase\_util\.data\.Sequencer
-============================
+dcase_util.data.Sequencer
+=========================
 
 .. currentmodule:: dcase_util.data
 
@@ -31,5 +31,14 @@ dcase\_util\.data\.Sequencer
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Sequencer.bytes
+      ~Sequencer.logger
+      ~Sequencer.md5
+      ~Sequencer.valid_formats
    
    

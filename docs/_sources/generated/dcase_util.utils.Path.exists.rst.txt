@@ -1,5 +1,5 @@
-dcase\_util\.utils\.Path\.exists
-================================
+dcase_util.utils.Path.exists
+============================
 
 .. currentmodule:: dcase_util.utils
 

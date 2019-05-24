@@ -1,5 +1,5 @@
-dcase\_util\.datasets\.CHiMEHome\_DomesticAudioTag\_DevelopmentSet
-==================================================================
+dcase_util.datasets.CHiMEHome_DomesticAudioTag_DevelopmentSet
+=============================================================
 
 .. currentmodule:: dcase_util.datasets
 
@@ -58,5 +58,18 @@ dcase\_util\.datasets\.CHiMEHome\_DomesticAudioTag\_DevelopmentSet
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.audio_file_count
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.audio_files
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.error_meta
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.error_meta_count
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.fold_count
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.logger
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.meta
+      ~CHiMEHome_DomesticAudioTag_DevelopmentSet.meta_count
    
    

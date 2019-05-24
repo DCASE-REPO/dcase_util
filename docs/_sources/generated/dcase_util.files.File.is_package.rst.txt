@@ -1,5 +1,5 @@
-dcase\_util\.files\.File\.is\_package
-=====================================
+dcase_util.files.File.is_package
+================================
 
 .. currentmodule:: dcase_util.files
 

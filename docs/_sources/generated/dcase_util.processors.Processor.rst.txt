@@ -1,5 +1,5 @@
-dcase\_util\.processors\.Processor
-==================================
+dcase_util.processors.Processor
+===============================
 
 .. currentmodule:: dcase_util.processors
 
@@ -31,5 +31,14 @@ dcase\_util\.processors\.Processor
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Processor.bytes
+      ~Processor.logger
+      ~Processor.md5
+      ~Processor.valid_formats
    
    

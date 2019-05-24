@@ -1,5 +1,5 @@
-dcase\_util\.keras\.StasherCallback
-===================================
+dcase_util.keras.StasherCallback
+================================
 
 .. currentmodule:: dcase_util.keras
 
@@ -32,5 +32,11 @@ dcase\_util\.keras\.StasherCallback
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~StasherCallback.logger
    
    

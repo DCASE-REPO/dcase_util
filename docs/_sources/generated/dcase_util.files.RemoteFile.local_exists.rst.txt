@@ -1,5 +1,5 @@
-dcase\_util\.files\.RemoteFile\.local\_exists
-=============================================
+dcase_util.files.RemoteFile.local_exists
+========================================
 
 .. currentmodule:: dcase_util.files
 

@@ -1,5 +1,5 @@
-dcase\_util\.files\.File\.get\_file\_information
-================================================
+dcase_util.files.File.get_file_information
+==========================================
 
 .. currentmodule:: dcase_util.files
 

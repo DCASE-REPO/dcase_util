@@ -1,5 +1,5 @@
-dcase\_util\.files\.RemoteFile
-==============================
+dcase_util.files.RemoteFile
+===========================
 
 .. currentmodule:: dcase_util.files
 
@@ -63,5 +63,22 @@ dcase\_util\.files\.RemoteFile
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~RemoteFile.bytes
+      ~RemoteFile.local_bytes
+      ~RemoteFile.local_md5
+      ~RemoteFile.local_modified
+      ~RemoteFile.logger
+      ~RemoteFile.md5
+      ~RemoteFile.remote_bytes
+      ~RemoteFile.remote_file
+      ~RemoteFile.remote_modified
+      ~RemoteFile.remote_status
+      ~RemoteFile.valid_content_types
+      ~RemoteFile.valid_formats
    
    

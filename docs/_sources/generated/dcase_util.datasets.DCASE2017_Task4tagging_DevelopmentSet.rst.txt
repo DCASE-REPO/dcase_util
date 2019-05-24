@@ -1,5 +1,5 @@
-dcase\_util\.datasets\.DCASE2017\_Task4tagging\_DevelopmentSet
-==============================================================
+dcase_util.datasets.DCASE2017_Task4tagging_DevelopmentSet
+=========================================================
 
 .. currentmodule:: dcase_util.datasets
 
@@ -57,5 +57,18 @@ dcase\_util\.datasets\.DCASE2017\_Task4tagging\_DevelopmentSet
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~DCASE2017_Task4tagging_DevelopmentSet.audio_file_count
+      ~DCASE2017_Task4tagging_DevelopmentSet.audio_files
+      ~DCASE2017_Task4tagging_DevelopmentSet.error_meta
+      ~DCASE2017_Task4tagging_DevelopmentSet.error_meta_count
+      ~DCASE2017_Task4tagging_DevelopmentSet.fold_count
+      ~DCASE2017_Task4tagging_DevelopmentSet.logger
+      ~DCASE2017_Task4tagging_DevelopmentSet.meta
+      ~DCASE2017_Task4tagging_DevelopmentSet.meta_count
    
    

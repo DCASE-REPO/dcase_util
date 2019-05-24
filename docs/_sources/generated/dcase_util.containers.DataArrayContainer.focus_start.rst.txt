@@ -1,5 +1,5 @@
-dcase\_util\.containers\.DataArrayContainer\.focus\_start
-=========================================================
+dcase_util.containers.DataArrayContainer.focus_start
+====================================================
 
 .. currentmodule:: dcase_util.containers
 

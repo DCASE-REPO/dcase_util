@@ -1,5 +1,5 @@
-dcase\_util\.processors\.OneHotEncodingProcessor\.process
-=========================================================
+dcase_util.processors.OneHotEncodingProcessor.process
+=====================================================
 
 .. currentmodule:: dcase_util.processors
 

@@ -1,5 +1,5 @@
-dcase\_util\.tools\.DatasetPacker\.convert\_markdown
-====================================================
+dcase_util.tools.DatasetPacker.convert_markdown
+===============================================
 
 .. currentmodule:: dcase_util.tools
 

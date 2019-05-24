@@ -1,5 +1,5 @@
-dcase\_util\.processors\.ProcessingChainItem
-============================================
+dcase_util.processors.ProcessingChainItem
+=========================================
 
 .. currentmodule:: dcase_util.processors
 
@@ -56,5 +56,14 @@ dcase\_util\.processors\.ProcessingChainItem
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ProcessingChainItem.bytes
+      ~ProcessingChainItem.logger
+      ~ProcessingChainItem.md5
+      ~ProcessingChainItem.valid_formats
    
    

@@ -1,5 +1,5 @@
-dcase\_util\.processors\.SequencingProcessor
-============================================
+dcase_util.processors.SequencingProcessor
+=========================================
 
 .. currentmodule:: dcase_util.processors
 
@@ -31,5 +31,16 @@ dcase\_util\.processors\.SequencingProcessor
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~SequencingProcessor.bytes
+      ~SequencingProcessor.input_type
+      ~SequencingProcessor.logger
+      ~SequencingProcessor.md5
+      ~SequencingProcessor.output_type
+      ~SequencingProcessor.valid_formats
    
    

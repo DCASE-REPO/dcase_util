@@ -1,5 +1,5 @@
-dcase\_util\.processors\.FeatureReadingProcessor\.process
-=========================================================
+dcase_util.processors.FeatureReadingProcessor.process
+=====================================================
 
 .. currentmodule:: dcase_util.processors
 

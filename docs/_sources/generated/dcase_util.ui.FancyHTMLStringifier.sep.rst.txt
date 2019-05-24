@@ -1,0 +1,6 @@
+dcase\_util.ui.FancyHTMLStringifier.sep
+=======================================
+
+.. currentmodule:: dcase_util.ui
+
+.. automethod:: FancyHTMLStringifier.sep

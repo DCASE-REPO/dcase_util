@@ -1,5 +1,5 @@
-dcase\_util\.datasets\.TUTUrbanAcousticScenes\_2018\_DevelopmentSet
-===================================================================
+dcase_util.datasets.TUTUrbanAcousticScenes_2018_DevelopmentSet
+==============================================================
 
 .. currentmodule:: dcase_util.datasets
 
@@ -57,5 +57,18 @@ dcase\_util\.datasets\.TUTUrbanAcousticScenes\_2018\_DevelopmentSet
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~TUTUrbanAcousticScenes_2018_DevelopmentSet.audio_file_count
+      ~TUTUrbanAcousticScenes_2018_DevelopmentSet.audio_files
+      ~TUTUrbanAcousticScenes_2018_DevelopmentSet.error_meta
+      ~TUTUrbanAcousticScenes_2018_DevelopmentSet.error_meta_count
+      ~TUTUrbanAcousticScenes_2018_DevelopmentSet.fold_count
+      ~TUTUrbanAcousticScenes_2018_DevelopmentSet.logger
+      ~TUTUrbanAcousticScenes_2018_DevelopmentSet.meta
+      ~TUTUrbanAcousticScenes_2018_DevelopmentSet.meta_count
    
    

@@ -1,5 +1,5 @@
-dcase\_util\.keras\.ProgressPlotterCallback
-===========================================
+dcase_util.keras.ProgressPlotterCallback
+========================================
 
 .. currentmodule:: dcase_util.keras
 
@@ -33,5 +33,11 @@ dcase\_util\.keras\.ProgressPlotterCallback
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ProgressPlotterCallback.logger
    
    

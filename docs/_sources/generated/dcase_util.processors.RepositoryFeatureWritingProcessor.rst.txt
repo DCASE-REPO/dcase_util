@@ -1,5 +1,5 @@
-dcase\_util\.processors\.RepositoryFeatureWritingProcessor
-==========================================================
+dcase_util.processors.RepositoryFeatureWritingProcessor
+=======================================================
 
 .. currentmodule:: dcase_util.processors
 
@@ -31,5 +31,16 @@ dcase\_util\.processors\.RepositoryFeatureWritingProcessor
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~RepositoryFeatureWritingProcessor.bytes
+      ~RepositoryFeatureWritingProcessor.input_type
+      ~RepositoryFeatureWritingProcessor.logger
+      ~RepositoryFeatureWritingProcessor.md5
+      ~RepositoryFeatureWritingProcessor.output_type
+      ~RepositoryFeatureWritingProcessor.valid_formats
    
    

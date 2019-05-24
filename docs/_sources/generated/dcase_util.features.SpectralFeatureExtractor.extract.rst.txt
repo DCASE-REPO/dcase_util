@@ -1,5 +1,5 @@
-dcase\_util\.features\.SpectralFeatureExtractor\.extract
-========================================================
+dcase_util.features.SpectralFeatureExtractor.extract
+====================================================
 
 .. currentmodule:: dcase_util.features
 

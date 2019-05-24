@@ -1,5 +1,5 @@
-dcase\_util\.containers\.MetaDataContainer\.log
-===============================================
+dcase_util.containers.MetaDataContainer.log
+===========================================
 
 .. currentmodule:: dcase_util.containers
 

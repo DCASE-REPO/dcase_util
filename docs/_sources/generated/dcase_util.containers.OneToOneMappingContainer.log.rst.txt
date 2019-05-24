@@ -1,5 +1,5 @@
-dcase\_util\.containers\.OneToOneMappingContainer\.log
-======================================================
+dcase_util.containers.OneToOneMappingContainer.log
+==================================================
 
 .. currentmodule:: dcase_util.containers
 

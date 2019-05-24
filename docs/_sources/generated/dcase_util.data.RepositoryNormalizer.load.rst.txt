@@ -1,5 +1,5 @@
-dcase\_util\.data\.RepositoryNormalizer\.load
-=============================================
+dcase_util.data.RepositoryNormalizer.load
+=========================================
 
 .. currentmodule:: dcase_util.data
 

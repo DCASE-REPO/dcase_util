@@ -1,5 +1,5 @@
-dcase\_util\.data\.ProbabilityEncoder\.log
-==========================================
+dcase_util.data.ProbabilityEncoder.log
+======================================
 
 .. currentmodule:: dcase_util.data
 

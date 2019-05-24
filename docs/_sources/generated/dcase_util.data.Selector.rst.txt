@@ -1,5 +1,5 @@
-dcase\_util\.data\.Selector
-===========================
+dcase_util.data.Selector
+========================
 
 .. currentmodule:: dcase_util.data
 
@@ -31,5 +31,14 @@ dcase\_util\.data\.Selector
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Selector.bytes
+      ~Selector.logger
+      ~Selector.md5
+      ~Selector.valid_formats
    
    

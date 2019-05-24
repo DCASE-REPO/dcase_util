@@ -1,5 +1,5 @@
-dcase\_util\.data\.DecisionEncoder\.show
-========================================
+dcase_util.data.DecisionEncoder.show
+====================================
 
 .. currentmodule:: dcase_util.data
 

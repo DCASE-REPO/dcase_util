@@ -1,5 +1,5 @@
-dcase\_util\.containers\.ListContainer\.load
-============================================
+dcase_util.containers.ListContainer.load
+========================================
 
 .. currentmodule:: dcase_util.containers
 

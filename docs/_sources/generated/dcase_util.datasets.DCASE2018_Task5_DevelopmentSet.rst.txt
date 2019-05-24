@@ -1,5 +1,5 @@
-dcase\_util\.datasets\.DCASE2018\_Task5\_DevelopmentSet
-=======================================================
+dcase_util.datasets.DCASE2018_Task5_DevelopmentSet
+==================================================
 
 .. currentmodule:: dcase_util.datasets
 
@@ -57,5 +57,18 @@ dcase\_util\.datasets\.DCASE2018\_Task5\_DevelopmentSet
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~DCASE2018_Task5_DevelopmentSet.audio_file_count
+      ~DCASE2018_Task5_DevelopmentSet.audio_files
+      ~DCASE2018_Task5_DevelopmentSet.error_meta
+      ~DCASE2018_Task5_DevelopmentSet.error_meta_count
+      ~DCASE2018_Task5_DevelopmentSet.fold_count
+      ~DCASE2018_Task5_DevelopmentSet.logger
+      ~DCASE2018_Task5_DevelopmentSet.meta
+      ~DCASE2018_Task5_DevelopmentSet.meta_count
    
    

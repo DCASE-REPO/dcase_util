@@ -1,5 +1,5 @@
-dcase\_util\.tools\.BibtexProcessor\.submissions\_fancy
-=======================================================
+dcase_util.tools.BibtexProcessor.submissions_fancy
+==================================================
 
 .. currentmodule:: dcase_util.tools
 

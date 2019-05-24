@@ -1,5 +1,5 @@
-dcase\_util\.files\.FileLock\.expired
-=====================================
+dcase_util.files.FileLock.expired
+=================================
 
 .. currentmodule:: dcase_util.files
 

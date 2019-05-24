@@ -1,5 +1,5 @@
-dcase\_util\.files\.FileLock
-============================
+dcase_util.files.FileLock
+=========================
 
 .. currentmodule:: dcase_util.files
 
@@ -32,5 +32,16 @@ dcase\_util\.files\.FileLock
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~FileLock.bytes
+      ~FileLock.expired
+      ~FileLock.is_locked
+      ~FileLock.logger
+      ~FileLock.md5
+      ~FileLock.valid_formats
    
    

@@ -1,0 +1,6 @@
+dcase\_util.ui.FancyHTMLPrinter.title
+=====================================
+
+.. currentmodule:: dcase_util.ui
+
+.. automethod:: FancyHTMLPrinter.title

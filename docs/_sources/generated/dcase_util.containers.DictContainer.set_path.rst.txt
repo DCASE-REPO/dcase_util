@@ -1,5 +1,5 @@
-dcase\_util\.containers\.DictContainer\.set\_path
-=================================================
+dcase_util.containers.DictContainer.set_path
+============================================
 
 .. currentmodule:: dcase_util.containers
 

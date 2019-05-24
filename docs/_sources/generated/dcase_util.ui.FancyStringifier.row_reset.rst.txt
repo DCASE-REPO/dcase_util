@@ -1,5 +1,5 @@
-dcase\_util\.ui\.FancyStringifier\.row\_reset
-=============================================
+dcase_util.ui.FancyStringifier.row_reset
+========================================
 
 .. currentmodule:: dcase_util.ui
 

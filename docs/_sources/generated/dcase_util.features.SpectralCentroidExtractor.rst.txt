@@ -1,5 +1,5 @@
-dcase\_util\.features\.SpectralCentroidExtractor
-================================================
+dcase_util.features.SpectralCentroidExtractor
+=============================================
 
 .. currentmodule:: dcase_util.features
 
@@ -23,5 +23,12 @@ dcase\_util\.features\.SpectralCentroidExtractor
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~SpectralCentroidExtractor.label
+      ~SpectralCentroidExtractor.logger
    
    

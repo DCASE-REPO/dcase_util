@@ -1,5 +1,5 @@
-dcase\_util\.containers\.MetaDataContainer\.add\_time
-=====================================================
+dcase_util.containers.MetaDataContainer.add_time
+================================================
 
 .. currentmodule:: dcase_util.containers
 

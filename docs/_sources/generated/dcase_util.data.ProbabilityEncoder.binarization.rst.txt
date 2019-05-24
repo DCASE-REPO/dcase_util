@@ -1,5 +1,5 @@
-dcase\_util\.data\.ProbabilityEncoder\.binarization
-===================================================
+dcase_util.data.ProbabilityEncoder.binarization
+===============================================
 
 .. currentmodule:: dcase_util.data
 

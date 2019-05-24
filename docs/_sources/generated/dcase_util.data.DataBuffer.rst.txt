@@ -1,5 +1,5 @@
-dcase\_util\.data\.DataBuffer
-=============================
+dcase_util.data.DataBuffer
+==========================
 
 .. currentmodule:: dcase_util.data
 
@@ -33,5 +33,16 @@ dcase\_util\.data\.DataBuffer
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~DataBuffer.bytes
+      ~DataBuffer.count
+      ~DataBuffer.full
+      ~DataBuffer.logger
+      ~DataBuffer.md5
+      ~DataBuffer.valid_formats
    
    

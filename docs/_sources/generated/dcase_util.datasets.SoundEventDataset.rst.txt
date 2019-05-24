@@ -1,5 +1,5 @@
-dcase\_util\.datasets\.SoundEventDataset
-========================================
+dcase_util.datasets.SoundEventDataset
+=====================================
 
 .. currentmodule:: dcase_util.datasets
 
@@ -57,5 +57,18 @@ dcase\_util\.datasets\.SoundEventDataset
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~SoundEventDataset.audio_file_count
+      ~SoundEventDataset.audio_files
+      ~SoundEventDataset.error_meta
+      ~SoundEventDataset.error_meta_count
+      ~SoundEventDataset.fold_count
+      ~SoundEventDataset.logger
+      ~SoundEventDataset.meta
+      ~SoundEventDataset.meta_count
    
    

@@ -1,5 +1,5 @@
-dcase\_util\.features\.SpectralFeatureExtractor\.get\_spectrogram
-=================================================================
+dcase_util.features.SpectralFeatureExtractor.get_spectrogram
+============================================================
 
 .. currentmodule:: dcase_util.features
 

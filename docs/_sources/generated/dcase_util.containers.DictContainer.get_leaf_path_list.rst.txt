@@ -1,5 +1,5 @@
-dcase\_util\.containers\.DictContainer\.get\_leaf\_path\_list
-=============================================================
+dcase_util.containers.DictContainer.get_leaf_path_list
+======================================================
 
 .. currentmodule:: dcase_util.containers
 

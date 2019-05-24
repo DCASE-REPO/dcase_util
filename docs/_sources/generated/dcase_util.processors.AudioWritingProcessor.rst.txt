@@ -1,5 +1,5 @@
-dcase\_util\.processors\.AudioWritingProcessor
-==============================================
+dcase_util.processors.AudioWritingProcessor
+===========================================
 
 .. currentmodule:: dcase_util.processors
 
@@ -31,5 +31,16 @@ dcase\_util\.processors\.AudioWritingProcessor
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~AudioWritingProcessor.bytes
+      ~AudioWritingProcessor.input_type
+      ~AudioWritingProcessor.logger
+      ~AudioWritingProcessor.md5
+      ~AudioWritingProcessor.output_type
+      ~AudioWritingProcessor.valid_formats
    
    

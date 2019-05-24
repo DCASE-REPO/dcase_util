@@ -1,5 +1,5 @@
-dcase\_util\.containers\.PackageMixin\.extract
-==============================================
+dcase_util.containers.PackageMixin.extract
+==========================================
 
 .. currentmodule:: dcase_util.containers
 

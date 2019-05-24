@@ -1,5 +1,5 @@
-dcase\_util\.processors\.DataShapingProcessor
-=============================================
+dcase_util.processors.DataShapingProcessor
+==========================================
 
 .. currentmodule:: dcase_util.processors
 
@@ -31,5 +31,16 @@ dcase\_util\.processors\.DataShapingProcessor
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~DataShapingProcessor.bytes
+      ~DataShapingProcessor.input_type
+      ~DataShapingProcessor.logger
+      ~DataShapingProcessor.md5
+      ~DataShapingProcessor.output_type
+      ~DataShapingProcessor.valid_formats
    
    

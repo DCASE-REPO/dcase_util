@@ -1,5 +1,5 @@
-dcase\_util\.containers\.ObjectContainer
-========================================
+dcase_util.containers.ObjectContainer
+=====================================
 
 .. currentmodule:: dcase_util.containers
 
@@ -29,5 +29,14 @@ dcase\_util\.containers\.ObjectContainer
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ObjectContainer.bytes
+      ~ObjectContainer.logger
+      ~ObjectContainer.md5
+      ~ObjectContainer.valid_formats
    
    

@@ -1,5 +1,5 @@
-dcase\_util\.processors\.FeatureExtractorProcessor\.process
-===========================================================
+dcase_util.processors.FeatureExtractorProcessor.process
+=======================================================
 
 .. currentmodule:: dcase_util.processors
 

@@ -1,5 +1,5 @@
-dcase\_util\.datasets\.dataset\_exists
-======================================
+dcase_util.datasets.dataset_exists
+==================================
 
 .. currentmodule:: dcase_util.datasets
 

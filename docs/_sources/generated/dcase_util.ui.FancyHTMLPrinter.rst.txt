@@ -1,0 +1,42 @@
+dcase\_util.ui.FancyHTMLPrinter
+===============================
+
+.. currentmodule:: dcase_util.ui
+
+.. autoclass:: FancyHTMLPrinter
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~FancyHTMLPrinter.__init__
+      ~FancyHTMLPrinter.data
+      ~FancyHTMLPrinter.debug
+      ~FancyHTMLPrinter.error
+      ~FancyHTMLPrinter.foot
+      ~FancyHTMLPrinter.info
+      ~FancyHTMLPrinter.line
+      ~FancyHTMLPrinter.row
+      ~FancyHTMLPrinter.row_reset
+      ~FancyHTMLPrinter.row_sep
+      ~FancyHTMLPrinter.section_header
+      ~FancyHTMLPrinter.sep
+      ~FancyHTMLPrinter.sub_header
+      ~FancyHTMLPrinter.table
+      ~FancyHTMLPrinter.title
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~FancyHTMLPrinter.logger
+   
+   

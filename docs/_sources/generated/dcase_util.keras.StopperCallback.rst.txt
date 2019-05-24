@@ -1,5 +1,5 @@
-dcase\_util\.keras\.StopperCallback
-===================================
+dcase_util.keras.StopperCallback
+================================
 
 .. currentmodule:: dcase_util.keras
 
@@ -31,5 +31,11 @@ dcase\_util\.keras\.StopperCallback
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~StopperCallback.logger
    
    

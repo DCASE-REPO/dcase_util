@@ -1,5 +1,5 @@
-dcase\_util\.containers\.DataArrayContainer\.get\_focused
-=========================================================
+dcase_util.containers.DataArrayContainer.get_focused
+====================================================
 
 .. currentmodule:: dcase_util.containers
 

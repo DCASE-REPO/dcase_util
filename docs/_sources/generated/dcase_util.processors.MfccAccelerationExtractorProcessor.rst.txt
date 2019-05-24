@@ -1,5 +1,5 @@
-dcase\_util\.processors\.MfccAccelerationExtractorProcessor
-===========================================================
+dcase_util.processors.MfccAccelerationExtractorProcessor
+========================================================
 
 .. currentmodule:: dcase_util.processors
 
@@ -34,5 +34,17 @@ dcase\_util\.processors\.MfccAccelerationExtractorProcessor
    
 
    
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~MfccAccelerationExtractorProcessor.bytes
+      ~MfccAccelerationExtractorProcessor.input_type
+      ~MfccAccelerationExtractorProcessor.label
+      ~MfccAccelerationExtractorProcessor.logger
+      ~MfccAccelerationExtractorProcessor.md5
+      ~MfccAccelerationExtractorProcessor.output_type
+      ~MfccAccelerationExtractorProcessor.valid_formats
    
    
