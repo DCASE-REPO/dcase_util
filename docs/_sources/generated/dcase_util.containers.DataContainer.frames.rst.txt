@@ -1,5 +1,5 @@
-dcase_util.containers.DataContainer.frames
-==========================================
+dcase\_util.containers.DataContainer.frames
+===========================================
 
 .. currentmodule:: dcase_util.containers
 

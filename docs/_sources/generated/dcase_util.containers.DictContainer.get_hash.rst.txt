@@ -1,5 +1,5 @@
-dcase_util.containers.DictContainer.get_hash
-============================================
+dcase\_util.containers.DictContainer.get\_hash
+==============================================
 
 .. currentmodule:: dcase_util.containers
 

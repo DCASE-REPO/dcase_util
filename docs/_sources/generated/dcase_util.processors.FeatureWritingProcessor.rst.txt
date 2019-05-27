@@ -1,5 +1,5 @@
-dcase_util.processors.FeatureWritingProcessor
-=============================================
+dcase\_util.processors.FeatureWritingProcessor
+==============================================
 
 .. currentmodule:: dcase_util.processors
 
@@ -26,6 +26,8 @@ dcase_util.processors.FeatureWritingProcessor
       ~FeatureWritingProcessor.process
       ~FeatureWritingProcessor.save
       ~FeatureWritingProcessor.show
+      ~FeatureWritingProcessor.to_html
+      ~FeatureWritingProcessor.to_string
       ~FeatureWritingProcessor.validate_format
    
    

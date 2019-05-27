@@ -1,5 +1,5 @@
-dcase_util.ui.FancyPrinter.row
-==============================
+dcase\_util.ui.FancyPrinter.row
+===============================
 
 .. currentmodule:: dcase_util.ui
 

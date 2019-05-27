@@ -1,5 +1,5 @@
-dcase_util.features.RMSEnergyExtractor
-======================================
+dcase\_util.features.RMSEnergyExtractor
+=======================================
 
 .. currentmodule:: dcase_util.features
 
@@ -19,6 +19,8 @@ dcase_util.features.RMSEnergyExtractor
       ~RMSEnergyExtractor.get_window_function
       ~RMSEnergyExtractor.log
       ~RMSEnergyExtractor.show
+      ~RMSEnergyExtractor.to_html
+      ~RMSEnergyExtractor.to_string
    
    
 
@@ -28,6 +30,7 @@ dcase_util.features.RMSEnergyExtractor
 
    .. autosummary::
    
+      ~RMSEnergyExtractor.description
       ~RMSEnergyExtractor.label
       ~RMSEnergyExtractor.logger
    

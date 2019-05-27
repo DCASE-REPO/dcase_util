@@ -1,5 +1,5 @@
-dcase_util.containers.AudioContainer.streams
-============================================
+dcase\_util.containers.AudioContainer.streams
+=============================================
 
 .. currentmodule:: dcase_util.containers
 

@@ -1,5 +1,5 @@
-dcase_util.processors.OneHotEncodingProcessor
-=============================================
+dcase\_util.processors.OneHotEncodingProcessor
+==============================================
 
 .. currentmodule:: dcase_util.processors
 
@@ -26,6 +26,8 @@ dcase_util.processors.OneHotEncodingProcessor
       ~OneHotEncodingProcessor.process
       ~OneHotEncodingProcessor.save
       ~OneHotEncodingProcessor.show
+      ~OneHotEncodingProcessor.to_html
+      ~OneHotEncodingProcessor.to_string
       ~OneHotEncodingProcessor.validate_format
    
    

@@ -1,5 +1,5 @@
-dcase_util.files.FileLock
-=========================
+dcase\_util.files.FileLock
+==========================
 
 .. currentmodule:: dcase_util.files
 
@@ -26,6 +26,8 @@ dcase_util.files.FileLock
       ~FileLock.release
       ~FileLock.save
       ~FileLock.show
+      ~FileLock.to_html
+      ~FileLock.to_string
       ~FileLock.touch
       ~FileLock.validate_format
    

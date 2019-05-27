@@ -1,5 +1,5 @@
-dcase_util.processors.Processor
-===============================
+dcase\_util.processors.Processor
+================================
 
 .. currentmodule:: dcase_util.processors
 
@@ -26,6 +26,8 @@ dcase_util.processors.Processor
       ~Processor.process
       ~Processor.save
       ~Processor.show
+      ~Processor.to_html
+      ~Processor.to_string
       ~Processor.validate_format
    
    

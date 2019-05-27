@@ -1,5 +1,5 @@
-dcase_util.processors.StackingProcessor
-=======================================
+dcase\_util.processors.StackingProcessor
+========================================
 
 .. currentmodule:: dcase_util.processors
 
@@ -26,6 +26,8 @@ dcase_util.processors.StackingProcessor
       ~StackingProcessor.process
       ~StackingProcessor.save
       ~StackingProcessor.show
+      ~StackingProcessor.to_html
+      ~StackingProcessor.to_string
       ~StackingProcessor.validate_format
    
    

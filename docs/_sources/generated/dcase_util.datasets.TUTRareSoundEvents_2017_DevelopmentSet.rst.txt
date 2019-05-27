@@ -1,5 +1,5 @@
-dcase_util.datasets.TUTRareSoundEvents_2017_DevelopmentSet
-==========================================================
+dcase\_util.datasets.TUTRareSoundEvents\_2017\_DevelopmentSet
+=============================================================
 
 .. currentmodule:: dcase_util.datasets
 

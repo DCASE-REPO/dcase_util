@@ -1,5 +1,5 @@
-dcase_util.processors.AudioReadingProcessor
-===========================================
+dcase\_util.processors.AudioReadingProcessor
+============================================
 
 .. currentmodule:: dcase_util.processors
 
@@ -26,6 +26,8 @@ dcase_util.processors.AudioReadingProcessor
       ~AudioReadingProcessor.process
       ~AudioReadingProcessor.save
       ~AudioReadingProcessor.show
+      ~AudioReadingProcessor.to_html
+      ~AudioReadingProcessor.to_string
       ~AudioReadingProcessor.validate_format
    
    

@@ -1,5 +1,5 @@
-dcase_util.processors.MetadataReadingProcessor
-==============================================
+dcase\_util.processors.MetadataReadingProcessor
+===============================================
 
 .. currentmodule:: dcase_util.processors
 
@@ -26,6 +26,8 @@ dcase_util.processors.MetadataReadingProcessor
       ~MetadataReadingProcessor.process
       ~MetadataReadingProcessor.save
       ~MetadataReadingProcessor.show
+      ~MetadataReadingProcessor.to_html
+      ~MetadataReadingProcessor.to_string
       ~MetadataReadingProcessor.validate_format
    
    

@@ -1,5 +1,5 @@
-dcase_util.containers.MetaDataItem
-==================================
+dcase\_util.containers.MetaDataItem
+===================================
 
 .. currentmodule:: dcase_util.containers
 
@@ -20,22 +20,17 @@ dcase_util.containers.MetaDataItem
       ~MetaDataItem.fromkeys
       ~MetaDataItem.get
       ~MetaDataItem.get_list
-      ~MetaDataItem.has_key
       ~MetaDataItem.items
-      ~MetaDataItem.iteritems
-      ~MetaDataItem.iterkeys
-      ~MetaDataItem.itervalues
       ~MetaDataItem.keys
       ~MetaDataItem.log
       ~MetaDataItem.pop
       ~MetaDataItem.popitem
       ~MetaDataItem.setdefault
       ~MetaDataItem.show
+      ~MetaDataItem.to_html
+      ~MetaDataItem.to_string
       ~MetaDataItem.update
       ~MetaDataItem.values
-      ~MetaDataItem.viewitems
-      ~MetaDataItem.viewkeys
-      ~MetaDataItem.viewvalues
    
    
 

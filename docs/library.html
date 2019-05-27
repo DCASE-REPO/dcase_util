@@ -760,12 +760,16 @@
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_EvaluationSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_DevelopmentSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_LeaderboardSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_LeaderboardSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_EvaluationSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.TAUUrbanAcousticScenes_2019_DevelopmentSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.TAUUrbanAcousticScenes_2019_LeaderboardSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_LeaderboardSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.TAUUrbanAcousticScenes_2019_EvaluationSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.TAUUrbanAcousticScenes_2019_Mobile_DevelopmentSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_Mobile_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.TAUUrbanAcousticScenes_2019_Mobile_LeaderboardSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_Mobile_LeaderboardSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.TAUUrbanAcousticScenes_2019_Mobile_EvaluationSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_Mobile_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_DevelopmentSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_LeaderboardSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_LeaderboardSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_EvaluationSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.DCASE2018_Task5_DevelopmentSet.html">dcase_util.datasets.DCASE2018_Task5_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.DCASE2018_Task5_EvaluationSet.html">dcase_util.datasets.DCASE2018_Task5_EvaluationSet</a></li>
 </ul>
@@ -1435,6 +1439,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-2-9">v0.2.9</a></li>
 <li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-2-8">v0.2.8</a></li>
 <li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-2-7">v0.2.7</a></li>
 <li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-2-6">v0.2.6</a></li>
@@ -1524,16 +1529,16 @@ handling meta data and various forms of other structured data, and provide stand
 audio datasets from various sources.</p>
 <p>Design principles:</p>
 <ul class="simple">
-<li>Concentrate on common utilities needed for DCASE research and DCASE challenge organization.</li>
-<li>Use object-oriented design when applicable.</li>
-<li>Design class APIs to allow class extension through class inheritance.</li>
-<li>Wrap data into container classes, inherit containers from standard Python containers when possible to keep code usable with external tools.</li>
-<li>Favor readable code over highly optimized code, avoid one-liners or hackish code.</li>
-<li>In case of inherited classes, expose all valid parameters as args in the function definition and inject them back to kwargs for the super classes.</li>
-<li>Enable chaining class method calls by returning self when possible.</li>
-<li>Use extensive code commenting.</li>
-<li>Validate code through unit-testing.</li>
-<li>Follow PEP 8 style guide.</li>
+<li><p>Concentrate on common utilities needed for DCASE research and DCASE challenge organization.</p></li>
+<li><p>Use object-oriented design when applicable.</p></li>
+<li><p>Design class APIs to allow class extension through class inheritance.</p></li>
+<li><p>Wrap data into container classes, inherit containers from standard Python containers when possible to keep code usable with external tools.</p></li>
+<li><p>Favor readable code over highly optimized code, avoid one-liners or hackish code.</p></li>
+<li><p>In case of inherited classes, expose all valid parameters as args in the function definition and inject them back to kwargs for the super classes.</p></li>
+<li><p>Enable chaining class method calls by returning self when possible.</p></li>
+<li><p>Use extensive code commenting.</p></li>
+<li><p>Validate code through unit-testing.</p></li>
+<li><p>Follow PEP 8 style guide.</p></li>
 </ul>
 <div class="section" id="author">
 <h2>Author<a class="headerlink" href="#author" title="Permalink to this headline">¶</a></h2>

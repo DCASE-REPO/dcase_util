@@ -1,5 +1,5 @@
-dcase_util.files.RemoteFile
-===========================
+dcase\_util.files.RemoteFile
+============================
 
 .. currentmodule:: dcase_util.files
 
@@ -30,13 +30,9 @@ dcase_util.files.RemoteFile
       ~RemoteFile.get_hash_for_path
       ~RemoteFile.get_leaf_path_list
       ~RemoteFile.get_path
-      ~RemoteFile.has_key
       ~RemoteFile.is_content_type
       ~RemoteFile.is_package
       ~RemoteFile.items
-      ~RemoteFile.iteritems
-      ~RemoteFile.iterkeys
-      ~RemoteFile.itervalues
       ~RemoteFile.keys
       ~RemoteFile.load
       ~RemoteFile.local_changed
@@ -53,12 +49,11 @@ dcase_util.files.RemoteFile
       ~RemoteFile.set_path
       ~RemoteFile.setdefault
       ~RemoteFile.show
+      ~RemoteFile.to_html
+      ~RemoteFile.to_string
       ~RemoteFile.update
       ~RemoteFile.validate_format
       ~RemoteFile.values
-      ~RemoteFile.viewitems
-      ~RemoteFile.viewkeys
-      ~RemoteFile.viewvalues
    
    
 

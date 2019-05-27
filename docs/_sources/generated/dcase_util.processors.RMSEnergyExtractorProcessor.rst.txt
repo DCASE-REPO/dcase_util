@@ -1,5 +1,5 @@
-dcase_util.processors.RMSEnergyExtractorProcessor
-=================================================
+dcase\_util.processors.RMSEnergyExtractorProcessor
+==================================================
 
 .. currentmodule:: dcase_util.processors
 
@@ -29,6 +29,8 @@ dcase_util.processors.RMSEnergyExtractorProcessor
       ~RMSEnergyExtractorProcessor.process
       ~RMSEnergyExtractorProcessor.save
       ~RMSEnergyExtractorProcessor.show
+      ~RMSEnergyExtractorProcessor.to_html
+      ~RMSEnergyExtractorProcessor.to_string
       ~RMSEnergyExtractorProcessor.validate_format
    
    
@@ -40,6 +42,7 @@ dcase_util.processors.RMSEnergyExtractorProcessor
    .. autosummary::
    
       ~RMSEnergyExtractorProcessor.bytes
+      ~RMSEnergyExtractorProcessor.description
       ~RMSEnergyExtractorProcessor.input_type
       ~RMSEnergyExtractorProcessor.label
       ~RMSEnergyExtractorProcessor.logger

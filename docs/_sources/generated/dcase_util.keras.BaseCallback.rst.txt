@@ -1,5 +1,5 @@
-dcase_util.keras.BaseCallback
-=============================
+dcase\_util.keras.BaseCallback
+==============================
 
 .. currentmodule:: dcase_util.keras
 

@@ -1,5 +1,5 @@
-dcase_util.tools.SubmissionChecker.process
-==========================================
+dcase\_util.tools.SubmissionChecker.process
+===========================================
 
 .. currentmodule:: dcase_util.tools
 

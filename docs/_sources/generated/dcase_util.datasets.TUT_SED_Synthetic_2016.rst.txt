@@ -1,5 +1,5 @@
-dcase_util.datasets.TUT_SED_Synthetic_2016
-==========================================
+dcase\_util.datasets.TUT\_SED\_Synthetic\_2016
+==============================================
 
 .. currentmodule:: dcase_util.datasets
 

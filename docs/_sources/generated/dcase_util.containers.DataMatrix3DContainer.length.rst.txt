@@ -1,5 +1,5 @@
-dcase_util.containers.DataMatrix3DContainer.length
-==================================================
+dcase\_util.containers.DataMatrix3DContainer.length
+===================================================
 
 .. currentmodule:: dcase_util.containers
 

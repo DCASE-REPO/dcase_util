@@ -1,5 +1,5 @@
-dcase_util.containers.ParameterContainer
-========================================
+dcase\_util.containers.ParameterContainer
+=========================================
 
 .. currentmodule:: dcase_util.containers
 
@@ -29,12 +29,8 @@ dcase_util.containers.ParameterContainer
       ~ParameterContainer.get_hash_for_path
       ~ParameterContainer.get_leaf_path_list
       ~ParameterContainer.get_path
-      ~ParameterContainer.has_key
       ~ParameterContainer.is_package
       ~ParameterContainer.items
-      ~ParameterContainer.iteritems
-      ~ParameterContainer.iterkeys
-      ~ParameterContainer.itervalues
       ~ParameterContainer.keys
       ~ParameterContainer.load
       ~ParameterContainer.log
@@ -45,12 +41,11 @@ dcase_util.containers.ParameterContainer
       ~ParameterContainer.set_path
       ~ParameterContainer.setdefault
       ~ParameterContainer.show
+      ~ParameterContainer.to_html
+      ~ParameterContainer.to_string
       ~ParameterContainer.update
       ~ParameterContainer.validate_format
       ~ParameterContainer.values
-      ~ParameterContainer.viewitems
-      ~ParameterContainer.viewkeys
-      ~ParameterContainer.viewvalues
    
    
 

@@ -1,5 +1,5 @@
-dcase_util.processors.MelExtractorProcessor
-===========================================
+dcase\_util.processors.MelExtractorProcessor
+============================================
 
 .. currentmodule:: dcase_util.processors
 
@@ -29,6 +29,8 @@ dcase_util.processors.MelExtractorProcessor
       ~MelExtractorProcessor.process
       ~MelExtractorProcessor.save
       ~MelExtractorProcessor.show
+      ~MelExtractorProcessor.to_html
+      ~MelExtractorProcessor.to_string
       ~MelExtractorProcessor.validate_format
    
    
@@ -40,6 +42,7 @@ dcase_util.processors.MelExtractorProcessor
    .. autosummary::
    
       ~MelExtractorProcessor.bytes
+      ~MelExtractorProcessor.description
       ~MelExtractorProcessor.input_type
       ~MelExtractorProcessor.label
       ~MelExtractorProcessor.logger

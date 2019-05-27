@@ -1,5 +1,5 @@
-dcase_util.processors.ZeroCrossingRateExtractorProcessor
-========================================================
+dcase\_util.processors.ZeroCrossingRateExtractorProcessor
+=========================================================
 
 .. currentmodule:: dcase_util.processors
 
@@ -27,6 +27,8 @@ dcase_util.processors.ZeroCrossingRateExtractorProcessor
       ~ZeroCrossingRateExtractorProcessor.process
       ~ZeroCrossingRateExtractorProcessor.save
       ~ZeroCrossingRateExtractorProcessor.show
+      ~ZeroCrossingRateExtractorProcessor.to_html
+      ~ZeroCrossingRateExtractorProcessor.to_string
       ~ZeroCrossingRateExtractorProcessor.validate_format
    
    
@@ -38,6 +40,7 @@ dcase_util.processors.ZeroCrossingRateExtractorProcessor
    .. autosummary::
    
       ~ZeroCrossingRateExtractorProcessor.bytes
+      ~ZeroCrossingRateExtractorProcessor.description
       ~ZeroCrossingRateExtractorProcessor.input_type
       ~ZeroCrossingRateExtractorProcessor.label
       ~ZeroCrossingRateExtractorProcessor.logger

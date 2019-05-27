@@ -1,5 +1,5 @@
-dcase_util.processors.MfccStaticExtractorProcessor
-==================================================
+dcase\_util.processors.MfccStaticExtractorProcessor
+===================================================
 
 .. currentmodule:: dcase_util.processors
 
@@ -29,6 +29,8 @@ dcase_util.processors.MfccStaticExtractorProcessor
       ~MfccStaticExtractorProcessor.process
       ~MfccStaticExtractorProcessor.save
       ~MfccStaticExtractorProcessor.show
+      ~MfccStaticExtractorProcessor.to_html
+      ~MfccStaticExtractorProcessor.to_string
       ~MfccStaticExtractorProcessor.validate_format
    
    
@@ -40,6 +42,7 @@ dcase_util.processors.MfccStaticExtractorProcessor
    .. autosummary::
    
       ~MfccStaticExtractorProcessor.bytes
+      ~MfccStaticExtractorProcessor.description
       ~MfccStaticExtractorProcessor.input_type
       ~MfccStaticExtractorProcessor.label
       ~MfccStaticExtractorProcessor.logger

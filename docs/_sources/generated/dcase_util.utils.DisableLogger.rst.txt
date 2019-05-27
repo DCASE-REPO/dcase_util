@@ -1,5 +1,5 @@
-dcase_util.utils.DisableLogger
-==============================
+dcase\_util.utils.DisableLogger
+===============================
 
 .. currentmodule:: dcase_util.utils
 

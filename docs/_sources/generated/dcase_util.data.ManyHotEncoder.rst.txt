@@ -1,5 +1,5 @@
-dcase_util.data.ManyHotEncoder
-==============================
+dcase\_util.data.ManyHotEncoder
+===============================
 
 .. currentmodule:: dcase_util.data
 
@@ -34,6 +34,8 @@ dcase_util.data.ManyHotEncoder
       ~ManyHotEncoder.save
       ~ManyHotEncoder.set_focus
       ~ManyHotEncoder.show
+      ~ManyHotEncoder.to_html
+      ~ManyHotEncoder.to_string
       ~ManyHotEncoder.validate_format
    
    

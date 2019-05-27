@@ -1,5 +1,5 @@
-dcase_util.features.SpectralCentroidExtractor
-=============================================
+dcase\_util.features.SpectralCentroidExtractor
+==============================================
 
 .. currentmodule:: dcase_util.features
 
@@ -19,6 +19,8 @@ dcase_util.features.SpectralCentroidExtractor
       ~SpectralCentroidExtractor.get_window_function
       ~SpectralCentroidExtractor.log
       ~SpectralCentroidExtractor.show
+      ~SpectralCentroidExtractor.to_html
+      ~SpectralCentroidExtractor.to_string
    
    
 
@@ -28,6 +30,7 @@ dcase_util.features.SpectralCentroidExtractor
 
    .. autosummary::
    
+      ~SpectralCentroidExtractor.description
       ~SpectralCentroidExtractor.label
       ~SpectralCentroidExtractor.logger
    

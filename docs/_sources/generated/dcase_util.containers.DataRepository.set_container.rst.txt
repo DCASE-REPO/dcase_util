@@ -1,5 +1,5 @@
-dcase_util.containers.DataRepository.set_container
-==================================================
+dcase\_util.containers.DataRepository.set\_container
+====================================================
 
 .. currentmodule:: dcase_util.containers
 

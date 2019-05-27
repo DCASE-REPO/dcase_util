@@ -1,5 +1,5 @@
-dcase_util.features.MelExtractor
-================================
+dcase\_util.features.MelExtractor
+=================================
 
 .. currentmodule:: dcase_util.features
 
@@ -19,6 +19,8 @@ dcase_util.features.MelExtractor
       ~MelExtractor.get_window_function
       ~MelExtractor.log
       ~MelExtractor.show
+      ~MelExtractor.to_html
+      ~MelExtractor.to_string
    
    
 
@@ -28,6 +30,7 @@ dcase_util.features.MelExtractor
 
    .. autosummary::
    
+      ~MelExtractor.description
       ~MelExtractor.label
       ~MelExtractor.logger
    

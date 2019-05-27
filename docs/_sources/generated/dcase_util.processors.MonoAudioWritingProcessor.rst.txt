@@ -1,5 +1,5 @@
-dcase_util.processors.MonoAudioWritingProcessor
-===============================================
+dcase\_util.processors.MonoAudioWritingProcessor
+================================================
 
 .. currentmodule:: dcase_util.processors
 
@@ -26,6 +26,8 @@ dcase_util.processors.MonoAudioWritingProcessor
       ~MonoAudioWritingProcessor.process
       ~MonoAudioWritingProcessor.save
       ~MonoAudioWritingProcessor.show
+      ~MonoAudioWritingProcessor.to_html
+      ~MonoAudioWritingProcessor.to_string
       ~MonoAudioWritingProcessor.validate_format
    
    

@@ -1,5 +1,5 @@
-dcase_util.datasets.AcousticSceneDataset
-========================================
+dcase\_util.datasets.AcousticSceneDataset
+=========================================
 
 .. currentmodule:: dcase_util.datasets
 

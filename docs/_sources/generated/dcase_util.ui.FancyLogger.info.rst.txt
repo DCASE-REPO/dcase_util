@@ -1,5 +1,5 @@
-dcase_util.ui.FancyLogger.info
-==============================
+dcase\_util.ui.FancyLogger.info
+===============================
 
 .. currentmodule:: dcase_util.ui
 

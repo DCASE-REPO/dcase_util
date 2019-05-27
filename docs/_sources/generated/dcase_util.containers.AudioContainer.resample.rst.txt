@@ -1,5 +1,5 @@
-dcase_util.containers.AudioContainer.resample
-=============================================
+dcase\_util.containers.AudioContainer.resample
+==============================================
 
 .. currentmodule:: dcase_util.containers
 

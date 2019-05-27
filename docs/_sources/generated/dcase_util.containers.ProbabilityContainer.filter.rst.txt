@@ -1,5 +1,5 @@
-dcase_util.containers.ProbabilityContainer.filter
-=================================================
+dcase\_util.containers.ProbabilityContainer.filter
+==================================================
 
 .. currentmodule:: dcase_util.containers
 

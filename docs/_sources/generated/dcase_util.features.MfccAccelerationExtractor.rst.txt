@@ -1,5 +1,5 @@
-dcase_util.features.MfccAccelerationExtractor
-=============================================
+dcase\_util.features.MfccAccelerationExtractor
+==============================================
 
 .. currentmodule:: dcase_util.features
 
@@ -19,6 +19,8 @@ dcase_util.features.MfccAccelerationExtractor
       ~MfccAccelerationExtractor.get_window_function
       ~MfccAccelerationExtractor.log
       ~MfccAccelerationExtractor.show
+      ~MfccAccelerationExtractor.to_html
+      ~MfccAccelerationExtractor.to_string
    
    
 
@@ -28,6 +30,7 @@ dcase_util.features.MfccAccelerationExtractor
 
    .. autosummary::
    
+      ~MfccAccelerationExtractor.description
       ~MfccAccelerationExtractor.label
       ~MfccAccelerationExtractor.logger
    

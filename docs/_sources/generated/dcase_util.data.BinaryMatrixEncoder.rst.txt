@@ -1,5 +1,5 @@
-dcase_util.data.BinaryMatrixEncoder
-===================================
+dcase\_util.data.BinaryMatrixEncoder
+====================================
 
 .. currentmodule:: dcase_util.data
 
@@ -33,6 +33,8 @@ dcase_util.data.BinaryMatrixEncoder
       ~BinaryMatrixEncoder.save
       ~BinaryMatrixEncoder.set_focus
       ~BinaryMatrixEncoder.show
+      ~BinaryMatrixEncoder.to_html
+      ~BinaryMatrixEncoder.to_string
       ~BinaryMatrixEncoder.validate_format
    
    

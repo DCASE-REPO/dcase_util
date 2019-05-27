@@ -1,5 +1,5 @@
-dcase_util.files.Serializer.load_msgpack
-========================================
+dcase\_util.files.Serializer.load\_msgpack
+==========================================
 
 .. currentmodule:: dcase_util.files
 

@@ -1,5 +1,5 @@
-dcase_util.data.ProbabilityEncoder
-==================================
+dcase\_util.data.ProbabilityEncoder
+===================================
 
 .. currentmodule:: dcase_util.data
 
@@ -28,6 +28,8 @@ dcase_util.data.ProbabilityEncoder
       ~ProbabilityEncoder.max_selection
       ~ProbabilityEncoder.save
       ~ProbabilityEncoder.show
+      ~ProbabilityEncoder.to_html
+      ~ProbabilityEncoder.to_string
       ~ProbabilityEncoder.validate_format
    
    

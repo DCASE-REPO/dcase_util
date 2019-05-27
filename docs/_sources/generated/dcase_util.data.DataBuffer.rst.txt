@@ -1,5 +1,5 @@
-dcase_util.data.DataBuffer
-==========================
+dcase\_util.data.DataBuffer
+===========================
 
 .. currentmodule:: dcase_util.data
 
@@ -28,6 +28,8 @@ dcase_util.data.DataBuffer
       ~DataBuffer.save
       ~DataBuffer.set
       ~DataBuffer.show
+      ~DataBuffer.to_html
+      ~DataBuffer.to_string
       ~DataBuffer.validate_format
    
    

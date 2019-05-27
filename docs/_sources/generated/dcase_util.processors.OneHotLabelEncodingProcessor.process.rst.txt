@@ -1,5 +1,5 @@
-dcase_util.processors.OneHotLabelEncodingProcessor.process
-==========================================================
+dcase\_util.processors.OneHotLabelEncodingProcessor.process
+===========================================================
 
 .. currentmodule:: dcase_util.processors
 

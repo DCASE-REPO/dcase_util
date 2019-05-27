@@ -1,5 +1,5 @@
-dcase_util.datasets.AudioTaggingDataset
-=======================================
+dcase\_util.datasets.AudioTaggingDataset
+========================================
 
 .. currentmodule:: dcase_util.datasets
 

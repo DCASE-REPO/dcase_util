@@ -1,5 +1,5 @@
-dcase_util.ui.FancyPrinter.data
-===============================
+dcase\_util.ui.FancyPrinter.data
+================================
 
 .. currentmodule:: dcase_util.ui
 

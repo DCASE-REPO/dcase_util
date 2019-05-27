@@ -1,5 +1,5 @@
-dcase_util.containers.BinaryMatrix2DContainer.data
-==================================================
+dcase\_util.containers.BinaryMatrix2DContainer.data
+===================================================
 
 .. currentmodule:: dcase_util.containers
 

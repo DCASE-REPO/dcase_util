@@ -1,5 +1,5 @@
-dcase_util.processors.DataShapingProcessor
-==========================================
+dcase\_util.processors.DataShapingProcessor
+===========================================
 
 .. currentmodule:: dcase_util.processors
 
@@ -26,6 +26,8 @@ dcase_util.processors.DataShapingProcessor
       ~DataShapingProcessor.process
       ~DataShapingProcessor.save
       ~DataShapingProcessor.show
+      ~DataShapingProcessor.to_html
+      ~DataShapingProcessor.to_string
       ~DataShapingProcessor.validate_format
    
    

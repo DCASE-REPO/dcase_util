@@ -169,9 +169,13 @@ class Path(object):
         if path is None:
             path = self.path
 
-        parts = path.split(os.sep)
-        if len(parts) > part_count:
-            return '.....' + os.path.join(*parts[-part_count:])
+        if path is not None:
+            parts = path.split(os.sep)
+            if len(parts) > part_count:
+                return '.....' + os.path.join(*parts[-part_count:])
+            else:
+                return path
+
         else:
             return path
 

@@ -1,5 +1,5 @@
-dcase_util.processors.RepositoryAggregationProcessor.process
-============================================================
+dcase\_util.processors.RepositoryAggregationProcessor.process
+=============================================================
 
 .. currentmodule:: dcase_util.processors
 

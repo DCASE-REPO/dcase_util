@@ -1,5 +1,5 @@
-dcase_util.data.Selector
-========================
+dcase\_util.data.Selector
+=========================
 
 .. currentmodule:: dcase_util.data
 
@@ -26,6 +26,8 @@ dcase_util.data.Selector
       ~Selector.select
       ~Selector.set_mask
       ~Selector.show
+      ~Selector.to_html
+      ~Selector.to_string
       ~Selector.validate_format
    
    

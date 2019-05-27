@@ -1,5 +1,5 @@
-dcase_util.containers.DataArrayContainer
-========================================
+dcase\_util.containers.DataArrayContainer
+=========================================
 
 .. currentmodule:: dcase_util.containers
 
@@ -31,6 +31,8 @@ dcase_util.containers.DataArrayContainer
       ~DataArrayContainer.save
       ~DataArrayContainer.set_focus
       ~DataArrayContainer.show
+      ~DataArrayContainer.to_html
+      ~DataArrayContainer.to_string
       ~DataArrayContainer.validate_format
    
    

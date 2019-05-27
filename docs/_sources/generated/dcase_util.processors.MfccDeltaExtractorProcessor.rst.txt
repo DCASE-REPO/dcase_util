@@ -1,5 +1,5 @@
-dcase_util.processors.MfccDeltaExtractorProcessor
-=================================================
+dcase\_util.processors.MfccDeltaExtractorProcessor
+==================================================
 
 .. currentmodule:: dcase_util.processors
 
@@ -29,6 +29,8 @@ dcase_util.processors.MfccDeltaExtractorProcessor
       ~MfccDeltaExtractorProcessor.process
       ~MfccDeltaExtractorProcessor.save
       ~MfccDeltaExtractorProcessor.show
+      ~MfccDeltaExtractorProcessor.to_html
+      ~MfccDeltaExtractorProcessor.to_string
       ~MfccDeltaExtractorProcessor.validate_format
    
    
@@ -40,6 +42,7 @@ dcase_util.processors.MfccDeltaExtractorProcessor
    .. autosummary::
    
       ~MfccDeltaExtractorProcessor.bytes
+      ~MfccDeltaExtractorProcessor.description
       ~MfccDeltaExtractorProcessor.input_type
       ~MfccDeltaExtractorProcessor.label
       ~MfccDeltaExtractorProcessor.logger

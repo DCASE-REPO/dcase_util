@@ -1,5 +1,5 @@
-dcase_util.utils.ApplicationPaths
-=================================
+dcase\_util.utils.ApplicationPaths
+==================================
 
 .. currentmodule:: dcase_util.utils
 
@@ -26,6 +26,7 @@ dcase_util.utils.ApplicationPaths
       ~ApplicationPaths.posix
       ~ApplicationPaths.posix_to_nt
       ~ApplicationPaths.save_parameters_to_path
+      ~ApplicationPaths.shorten
       ~ApplicationPaths.size_bytes
       ~ApplicationPaths.size_string
    

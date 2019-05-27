@@ -1,5 +1,5 @@
-dcase_util.containers.ProbabilityItem.show
-==========================================
+dcase\_util.containers.ProbabilityItem.show
+===========================================
 
 .. currentmodule:: dcase_util.containers
 

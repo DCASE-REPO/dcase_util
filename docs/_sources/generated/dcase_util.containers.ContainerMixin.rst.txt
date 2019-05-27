@@ -1,5 +1,5 @@
-dcase_util.containers.ContainerMixin
-====================================
+dcase\_util.containers.ContainerMixin
+=====================================
 
 .. currentmodule:: dcase_util.containers
 
@@ -16,6 +16,8 @@ dcase_util.containers.ContainerMixin
       ~ContainerMixin.__init__
       ~ContainerMixin.log
       ~ContainerMixin.show
+      ~ContainerMixin.to_html
+      ~ContainerMixin.to_string
    
    
 

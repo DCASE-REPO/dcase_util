@@ -1,5 +1,5 @@
-dcase_util.containers.DictContainer.load
-========================================
+dcase\_util.containers.DictContainer.load
+=========================================
 
 .. currentmodule:: dcase_util.containers
 

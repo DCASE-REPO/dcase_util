@@ -1,5 +1,5 @@
-dcase_util.processors.SequencingProcessor
-=========================================
+dcase\_util.processors.SequencingProcessor
+==========================================
 
 .. currentmodule:: dcase_util.processors
 
@@ -26,6 +26,8 @@ dcase_util.processors.SequencingProcessor
       ~SequencingProcessor.process
       ~SequencingProcessor.save
       ~SequencingProcessor.show
+      ~SequencingProcessor.to_html
+      ~SequencingProcessor.to_string
       ~SequencingProcessor.validate_format
    
    

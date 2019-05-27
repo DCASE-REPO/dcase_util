@@ -3,6 +3,13 @@
 Release notes
 =============
 
+v0.2.9
+------
+
+**New features**
+
+* Add ``TAUUrbanAcousticScenes_2019_EvaluationSet``, ``TAUUrbanAcousticScenes_2019_Mobile_EvaluationSet``, and ``TAUUrbanAcousticScenes_2019_Openset_EvaluationSet`` datasets.
+
 v0.2.8
 ------
 

@@ -1,5 +1,5 @@
-dcase_util.containers.DataMatrix2DContainer
-===========================================
+dcase\_util.containers.DataMatrix2DContainer
+============================================
 
 .. currentmodule:: dcase_util.containers
 
@@ -32,6 +32,8 @@ dcase_util.containers.DataMatrix2DContainer
       ~DataMatrix2DContainer.save
       ~DataMatrix2DContainer.set_focus
       ~DataMatrix2DContainer.show
+      ~DataMatrix2DContainer.to_html
+      ~DataMatrix2DContainer.to_string
       ~DataMatrix2DContainer.validate_format
    
    

@@ -1,5 +1,5 @@
-dcase_util.containers.RepositoryContainer
-=========================================
+dcase\_util.containers.RepositoryContainer
+==========================================
 
 .. currentmodule:: dcase_util.containers
 
@@ -29,12 +29,8 @@ dcase_util.containers.RepositoryContainer
       ~RepositoryContainer.get_hash_for_path
       ~RepositoryContainer.get_leaf_path_list
       ~RepositoryContainer.get_path
-      ~RepositoryContainer.has_key
       ~RepositoryContainer.is_package
       ~RepositoryContainer.items
-      ~RepositoryContainer.iteritems
-      ~RepositoryContainer.iterkeys
-      ~RepositoryContainer.itervalues
       ~RepositoryContainer.keys
       ~RepositoryContainer.load
       ~RepositoryContainer.log
@@ -45,12 +41,11 @@ dcase_util.containers.RepositoryContainer
       ~RepositoryContainer.set_path
       ~RepositoryContainer.setdefault
       ~RepositoryContainer.show
+      ~RepositoryContainer.to_html
+      ~RepositoryContainer.to_string
       ~RepositoryContainer.update
       ~RepositoryContainer.validate_format
       ~RepositoryContainer.values
-      ~RepositoryContainer.viewitems
-      ~RepositoryContainer.viewkeys
-      ~RepositoryContainer.viewvalues
    
    
 

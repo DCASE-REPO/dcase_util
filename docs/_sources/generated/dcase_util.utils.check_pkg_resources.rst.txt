@@ -1,5 +1,5 @@
-dcase_util.utils.check_pkg_resources
-====================================
+dcase\_util.utils.check\_pkg\_resources
+=======================================
 
 .. currentmodule:: dcase_util.utils
 

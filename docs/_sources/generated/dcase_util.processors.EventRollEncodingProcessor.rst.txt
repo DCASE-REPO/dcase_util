@@ -1,5 +1,5 @@
-dcase_util.processors.EventRollEncodingProcessor
-================================================
+dcase\_util.processors.EventRollEncodingProcessor
+=================================================
 
 .. currentmodule:: dcase_util.processors
 
@@ -26,6 +26,8 @@ dcase_util.processors.EventRollEncodingProcessor
       ~EventRollEncodingProcessor.process
       ~EventRollEncodingProcessor.save
       ~EventRollEncodingProcessor.show
+      ~EventRollEncodingProcessor.to_html
+      ~EventRollEncodingProcessor.to_string
       ~EventRollEncodingProcessor.validate_format
    
    

@@ -1,5 +1,5 @@
-dcase_util.utils.Example.acoustic_scene_audio_filename
-======================================================
+dcase\_util.utils.Example.acoustic\_scene\_audio\_filename
+==========================================================
 
 .. currentmodule:: dcase_util.utils
 

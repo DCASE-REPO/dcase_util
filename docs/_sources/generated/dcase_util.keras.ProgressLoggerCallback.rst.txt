@@ -1,5 +1,5 @@
-dcase_util.keras.ProgressLoggerCallback
-=======================================
+dcase\_util.keras.ProgressLoggerCallback
+========================================
 
 .. currentmodule:: dcase_util.keras
 

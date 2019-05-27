@@ -1,5 +1,5 @@
-dcase_util.containers.ObjectContainer
-=====================================
+dcase\_util.containers.ObjectContainer
+======================================
 
 .. currentmodule:: dcase_util.containers
 
@@ -24,6 +24,8 @@ dcase_util.containers.ObjectContainer
       ~ObjectContainer.log
       ~ObjectContainer.save
       ~ObjectContainer.show
+      ~ObjectContainer.to_html
+      ~ObjectContainer.to_string
       ~ObjectContainer.validate_format
    
    

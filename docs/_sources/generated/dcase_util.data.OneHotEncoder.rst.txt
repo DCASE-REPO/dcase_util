@@ -1,5 +1,5 @@
-dcase_util.data.OneHotEncoder
-=============================
+dcase\_util.data.OneHotEncoder
+==============================
 
 .. currentmodule:: dcase_util.data
 
@@ -34,6 +34,8 @@ dcase_util.data.OneHotEncoder
       ~OneHotEncoder.save
       ~OneHotEncoder.set_focus
       ~OneHotEncoder.show
+      ~OneHotEncoder.to_html
+      ~OneHotEncoder.to_string
       ~OneHotEncoder.validate_format
    
    

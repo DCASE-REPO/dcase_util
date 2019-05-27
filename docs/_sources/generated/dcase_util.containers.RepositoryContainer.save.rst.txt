@@ -1,5 +1,5 @@
-dcase_util.containers.RepositoryContainer.save
-==============================================
+dcase\_util.containers.RepositoryContainer.save
+===============================================
 
 .. currentmodule:: dcase_util.containers
 

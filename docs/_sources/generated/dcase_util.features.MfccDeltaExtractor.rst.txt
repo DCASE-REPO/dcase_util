@@ -1,5 +1,5 @@
-dcase_util.features.MfccDeltaExtractor
-======================================
+dcase\_util.features.MfccDeltaExtractor
+=======================================
 
 .. currentmodule:: dcase_util.features
 
@@ -19,6 +19,8 @@ dcase_util.features.MfccDeltaExtractor
       ~MfccDeltaExtractor.get_window_function
       ~MfccDeltaExtractor.log
       ~MfccDeltaExtractor.show
+      ~MfccDeltaExtractor.to_html
+      ~MfccDeltaExtractor.to_string
    
    
 
@@ -28,6 +30,7 @@ dcase_util.features.MfccDeltaExtractor
 
    .. autosummary::
    
+      ~MfccDeltaExtractor.description
       ~MfccDeltaExtractor.label
       ~MfccDeltaExtractor.logger
    

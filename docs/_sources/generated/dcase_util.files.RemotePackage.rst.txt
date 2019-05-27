@@ -1,5 +1,5 @@
-dcase_util.files.RemotePackage
-==============================
+dcase\_util.files.RemotePackage
+===============================
 
 .. currentmodule:: dcase_util.files
 
@@ -32,13 +32,9 @@ dcase_util.files.RemotePackage
       ~RemotePackage.get_hash_for_path
       ~RemotePackage.get_leaf_path_list
       ~RemotePackage.get_path
-      ~RemotePackage.has_key
       ~RemotePackage.is_content_type
       ~RemotePackage.is_package
       ~RemotePackage.items
-      ~RemotePackage.iteritems
-      ~RemotePackage.iterkeys
-      ~RemotePackage.itervalues
       ~RemotePackage.keys
       ~RemotePackage.load
       ~RemotePackage.local_changed
@@ -55,12 +51,11 @@ dcase_util.files.RemotePackage
       ~RemotePackage.set_path
       ~RemotePackage.setdefault
       ~RemotePackage.show
+      ~RemotePackage.to_html
+      ~RemotePackage.to_string
       ~RemotePackage.update
       ~RemotePackage.validate_format
       ~RemotePackage.values
-      ~RemotePackage.viewitems
-      ~RemotePackage.viewkeys
-      ~RemotePackage.viewvalues
    
    
 

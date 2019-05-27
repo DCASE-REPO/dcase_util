@@ -1,5 +1,5 @@
-dcase_util.utils.FieldValidator.is_empty
-========================================
+dcase\_util.utils.FieldValidator.is\_empty
+==========================================
 
 .. currentmodule:: dcase_util.utils
 

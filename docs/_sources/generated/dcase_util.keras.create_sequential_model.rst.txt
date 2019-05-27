@@ -1,5 +1,5 @@
-dcase_util.keras.create_sequential_model
-========================================
+dcase\_util.keras.create\_sequential\_model
+===========================================
 
 .. currentmodule:: dcase_util.keras
 

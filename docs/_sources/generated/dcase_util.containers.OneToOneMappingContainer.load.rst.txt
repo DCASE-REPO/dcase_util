@@ -1,5 +1,5 @@
-dcase_util.containers.OneToOneMappingContainer.load
-===================================================
+dcase\_util.containers.OneToOneMappingContainer.load
+====================================================
 
 .. currentmodule:: dcase_util.containers
 

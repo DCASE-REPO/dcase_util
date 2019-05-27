@@ -1,5 +1,5 @@
-dcase_util.ui.FancyLogger.row_reset
-===================================
+dcase\_util.ui.FancyLogger.row\_reset
+=====================================
 
 .. currentmodule:: dcase_util.ui
 

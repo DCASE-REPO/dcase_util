@@ -1,5 +1,5 @@
-dcase_util.files.Serializer.save_yaml
-=====================================
+dcase\_util.files.Serializer.save\_yaml
+=======================================
 
 .. currentmodule:: dcase_util.files
 

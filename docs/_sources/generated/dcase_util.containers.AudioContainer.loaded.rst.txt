@@ -1,5 +1,5 @@
-dcase_util.containers.AudioContainer.loaded
-===========================================
+dcase\_util.containers.AudioContainer.loaded
+============================================
 
 .. currentmodule:: dcase_util.containers
 
