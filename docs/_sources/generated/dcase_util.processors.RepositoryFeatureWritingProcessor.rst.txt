@@ -1,5 +1,5 @@
-dcase_util.processors.RepositoryFeatureWritingProcessor
-=======================================================
+dcase\_util.processors.RepositoryFeatureWritingProcessor
+========================================================
 
 .. currentmodule:: dcase_util.processors
 
@@ -26,6 +26,8 @@ dcase_util.processors.RepositoryFeatureWritingProcessor
       ~RepositoryFeatureWritingProcessor.process
       ~RepositoryFeatureWritingProcessor.save
       ~RepositoryFeatureWritingProcessor.show
+      ~RepositoryFeatureWritingProcessor.to_html
+      ~RepositoryFeatureWritingProcessor.to_string
       ~RepositoryFeatureWritingProcessor.validate_format
    
    

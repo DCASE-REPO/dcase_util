@@ -1,5 +1,5 @@
-dcase_util.containers.FileMixin.exists
-======================================
+dcase\_util.containers.FileMixin.exists
+=======================================
 
 .. currentmodule:: dcase_util.containers
 

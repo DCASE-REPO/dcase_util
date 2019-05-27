@@ -1,5 +1,5 @@
-dcase_util.data.Sequencer
-=========================
+dcase\_util.data.Sequencer
+==========================
 
 .. currentmodule:: dcase_util.data
 
@@ -26,6 +26,8 @@ dcase_util.data.Sequencer
       ~Sequencer.save
       ~Sequencer.sequence
       ~Sequencer.show
+      ~Sequencer.to_html
+      ~Sequencer.to_string
       ~Sequencer.validate_format
    
    

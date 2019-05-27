@@ -1,5 +1,5 @@
-dcase_util.processors.RepositoryNormalizationProcessor
-======================================================
+dcase\_util.processors.RepositoryNormalizationProcessor
+=======================================================
 
 .. currentmodule:: dcase_util.processors
 
@@ -26,6 +26,8 @@ dcase_util.processors.RepositoryNormalizationProcessor
       ~RepositoryNormalizationProcessor.process
       ~RepositoryNormalizationProcessor.save
       ~RepositoryNormalizationProcessor.show
+      ~RepositoryNormalizationProcessor.to_html
+      ~RepositoryNormalizationProcessor.to_string
       ~RepositoryNormalizationProcessor.validate_format
    
    

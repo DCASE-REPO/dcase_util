@@ -1,5 +1,5 @@
-dcase_util.utils.ApplicationPaths.generate
-==========================================
+dcase\_util.utils.ApplicationPaths.generate
+===========================================
 
 .. currentmodule:: dcase_util.utils
 

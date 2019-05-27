@@ -1,5 +1,5 @@
-dcase_util.containers.ListDictContainer.search
-==============================================
+dcase\_util.containers.ListDictContainer.search
+===============================================
 
 .. currentmodule:: dcase_util.containers
 

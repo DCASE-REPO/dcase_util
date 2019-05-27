@@ -1,5 +1,5 @@
-dcase_util.data.DataBuffer.key_exists
-=====================================
+dcase\_util.data.DataBuffer.key\_exists
+=======================================
 
 .. currentmodule:: dcase_util.data
 

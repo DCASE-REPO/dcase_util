@@ -1,5 +1,5 @@
-dcase_util.utils.Path
-=====================
+dcase\_util.utils.Path
+======================
 
 .. currentmodule:: dcase_util.utils
 
@@ -22,6 +22,7 @@ dcase_util.utils.Path
       ~Path.modify
       ~Path.posix
       ~Path.posix_to_nt
+      ~Path.shorten
       ~Path.size_bytes
       ~Path.size_string
    

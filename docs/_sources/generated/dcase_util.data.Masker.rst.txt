@@ -1,5 +1,5 @@
-dcase_util.data.Masker
-======================
+dcase\_util.data.Masker
+=======================
 
 .. currentmodule:: dcase_util.data
 
@@ -26,6 +26,8 @@ dcase_util.data.Masker
       ~Masker.save
       ~Masker.set_mask
       ~Masker.show
+      ~Masker.to_html
+      ~Masker.to_string
       ~Masker.validate_format
    
    

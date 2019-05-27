@@ -760,12 +760,16 @@
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTUrbanAcousticScenes_2018_EvaluationSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_DevelopmentSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_LeaderboardSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_LeaderboardSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_EvaluationSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TAUUrbanAcousticScenes_2019_DevelopmentSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TAUUrbanAcousticScenes_2019_LeaderboardSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_LeaderboardSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TAUUrbanAcousticScenes_2019_EvaluationSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TAUUrbanAcousticScenes_2019_Mobile_DevelopmentSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_Mobile_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TAUUrbanAcousticScenes_2019_Mobile_LeaderboardSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_Mobile_LeaderboardSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TAUUrbanAcousticScenes_2019_Mobile_EvaluationSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_Mobile_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_DevelopmentSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_LeaderboardSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_LeaderboardSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_EvaluationSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.DCASE2018_Task5_DevelopmentSet.html">dcase_util.datasets.DCASE2018_Task5_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.DCASE2018_Task5_EvaluationSet.html">dcase_util.datasets.DCASE2018_Task5_EvaluationSet</a></li>
 </ul>
@@ -1435,6 +1439,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-9">v0.2.9</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-8">v0.2.8</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-7">v0.2.7</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-6">v0.2.6</a></li>
@@ -1526,162 +1531,138 @@
 <dd><p>Keras callback to plot progress during the training process and save final progress into figure.
 Implements Keras Callback API.</p>
 <p>Constructor</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first last docutils">
-<dt><strong>epochs</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int</span></dt>
-<dd><p class="first last">Total amount of epochs
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>epochs</strong><span class="classifier">int</span></dt><dd><p>Total amount of epochs
 Default value None</p>
 </dd>
-<dt><strong>metric</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
-<dd><p class="first last">Metric name
+<dt><strong>metric</strong><span class="classifier">str</span></dt><dd><p>Metric name
 Default value None</p>
 </dd>
-<dt><strong>manual_update</strong> <span class="classifier-delimiter">:</span> <span class="classifier">bool</span></dt>
-<dd><p class="first last">Manually update callback, use this to when injecting external metrics
+<dt><strong>manual_update</strong><span class="classifier">bool</span></dt><dd><p>Manually update callback, use this to when injecting external metrics
 Default value False</p>
 </dd>
-<dt><strong>interactive</strong> <span class="classifier-delimiter">:</span> <span class="classifier">bool</span></dt>
-<dd><p class="first last">Show plot during the training and update with plotting rate
+<dt><strong>interactive</strong><span class="classifier">bool</span></dt><dd><p>Show plot during the training and update with plotting rate
 Default value True</p>
 </dd>
-<dt><strong>plotting_rate</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int</span></dt>
-<dd><p class="first last">Plot update rate in seconds
+<dt><strong>plotting_rate</strong><span class="classifier">int</span></dt><dd><p>Plot update rate in seconds
 Default value 10</p>
 </dd>
-<dt><strong>save</strong> <span class="classifier-delimiter">:</span> <span class="classifier">bool</span></dt>
-<dd><p class="first last">Save plot on disk, plotting rate applies
+<dt><strong>save</strong><span class="classifier">bool</span></dt><dd><p>Save plot on disk, plotting rate applies
 Default value False</p>
 </dd>
-<dt><strong>filename</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
-<dd><p class="first last">Filename of figure
+<dt><strong>filename</strong><span class="classifier">str</span></dt><dd><p>Filename of figure
 Default value None</p>
 </dd>
-<dt><strong>focus_span</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int</span></dt>
-<dd><p class="first last">Epoch amount to highlight, and show separately in the plot.
+<dt><strong>focus_span</strong><span class="classifier">int</span></dt><dd><p>Epoch amount to highlight, and show separately in the plot.
 Default value 10</p>
 </dd>
 </dl>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 <dl class="method">
 <dt id="dcase_util.keras.ProgressPlotterCallback.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>epochs=None</em>, <em>manual_update=False</em>, <em>external_metric_labels=None</em>, <em>metric=None</em>, <em>loss=None</em>, <em>filename=None</em>, <em>plotting_rate=10</em>, <em>interactive=True</em>, <em>save=False</em>, <em>focus_span=10</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/keras/callbacks.html#ProgressPlotterCallback.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.keras.ProgressPlotterCallback.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>self</em>, <em>epochs=None</em>, <em>manual_update=False</em>, <em>external_metric_labels=None</em>, <em>metric=None</em>, <em>loss=None</em>, <em>filename=None</em>, <em>plotting_rate=10</em>, <em>interactive=True</em>, <em>save=False</em>, <em>focus_span=10</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/keras/callbacks.html#ProgressPlotterCallback.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.keras.ProgressPlotterCallback.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Constructor</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first last docutils">
-<dt><strong>epochs</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int</span></dt>
-<dd><p class="first last">Total amount of epochs
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>epochs</strong><span class="classifier">int</span></dt><dd><p>Total amount of epochs
 Default value None</p>
 </dd>
-<dt><strong>metric</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
-<dd><p class="first last">Metric name
+<dt><strong>metric</strong><span class="classifier">str</span></dt><dd><p>Metric name
 Default value None</p>
 </dd>
-<dt><strong>manual_update</strong> <span class="classifier-delimiter">:</span> <span class="classifier">bool</span></dt>
-<dd><p class="first last">Manually update callback, use this to when injecting external metrics
+<dt><strong>manual_update</strong><span class="classifier">bool</span></dt><dd><p>Manually update callback, use this to when injecting external metrics
 Default value False</p>
 </dd>
-<dt><strong>interactive</strong> <span class="classifier-delimiter">:</span> <span class="classifier">bool</span></dt>
-<dd><p class="first last">Show plot during the training and update with plotting rate
+<dt><strong>interactive</strong><span class="classifier">bool</span></dt><dd><p>Show plot during the training and update with plotting rate
 Default value True</p>
 </dd>
-<dt><strong>plotting_rate</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int</span></dt>
-<dd><p class="first last">Plot update rate in seconds
+<dt><strong>plotting_rate</strong><span class="classifier">int</span></dt><dd><p>Plot update rate in seconds
 Default value 10</p>
 </dd>
-<dt><strong>save</strong> <span class="classifier-delimiter">:</span> <span class="classifier">bool</span></dt>
-<dd><p class="first last">Save plot on disk, plotting rate applies
+<dt><strong>save</strong><span class="classifier">bool</span></dt><dd><p>Save plot on disk, plotting rate applies
 Default value False</p>
 </dd>
-<dt><strong>filename</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
-<dd><p class="first last">Filename of figure
+<dt><strong>filename</strong><span class="classifier">str</span></dt><dd><p>Filename of figure
 Default value None</p>
 </dd>
-<dt><strong>focus_span</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int</span></dt>
-<dd><p class="first last">Epoch amount to highlight, and show separately in the plot.
+<dt><strong>focus_span</strong><span class="classifier">int</span></dt><dd><p>Epoch amount to highlight, and show separately in the plot.
 Default value 10</p>
 </dd>
 </dl>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <p class="rubric">Methods</p>
-<table border="1" class="longtable docutils">
+<table class="longtable docutils align-center">
 <colgroup>
-<col width="10%" />
-<col width="90%" />
+<col style="width: 10%" />
+<col style="width: 90%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#dcase_util.keras.ProgressPlotterCallback.__init__" title="dcase_util.keras.ProgressPlotterCallback.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>([epochs,&nbsp;manual_update,&nbsp;…])</td>
-<td>Constructor</td>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dcase_util.keras.ProgressPlotterCallback.__init__" title="dcase_util.keras.ProgressPlotterCallback.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(self[, epochs, manual_update, …])</p></td>
+<td><p>Constructor</p></td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_external_metric</span></code>(metric_label)</td>
-<td>Add external metric to be monitored</td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_external_metric</span></code>(self, metric_label)</p></td>
+<td><p>Add external metric to be monitored</p></td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">close</span></code>()</td>
-<td>Manually close progress logging</td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">close</span></code>(self)</p></td>
+<td><p>Manually close progress logging</p></td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">draw</span></code>()</td>
-<td>Draw plot</td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">draw</span></code>(self)</p></td>
+<td><p>Draw plot</p></td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_operator</span></code>(metric)</td>
-<td></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_operator</span></code>(self, metric)</p></td>
+<td><p></p></td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">on_batch_begin</span></code>(batch[,&nbsp;logs])</td>
-<td></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">on_batch_begin</span></code>(self, batch[, logs])</p></td>
+<td><p></p></td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">on_batch_end</span></code>(batch[,&nbsp;logs])</td>
-<td></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">on_batch_end</span></code>(self, batch[, logs])</p></td>
+<td><p></p></td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">on_epoch_begin</span></code>(epoch[,&nbsp;logs])</td>
-<td></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">on_epoch_begin</span></code>(self, epoch[, logs])</p></td>
+<td><p></p></td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">on_epoch_end</span></code>(epoch[,&nbsp;logs])</td>
-<td></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">on_epoch_end</span></code>(self, epoch[, logs])</p></td>
+<td><p></p></td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">on_train_begin</span></code>([logs])</td>
-<td></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">on_train_begin</span></code>(self[, logs])</p></td>
+<td><p></p></td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">on_train_end</span></code>([logs])</td>
-<td></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">on_train_end</span></code>(self[, logs])</p></td>
+<td><p></p></td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_external_metric_value</span></code>(metric_label,&nbsp;…)</td>
-<td>Add external metric value</td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_external_metric_value</span></code>(self, …)</p></td>
+<td><p>Add external metric value</p></td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_model</span></code>(model)</td>
-<td></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_model</span></code>(self, model)</p></td>
+<td><p></p></td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code>(params)</td>
-<td></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code>(self, params)</p></td>
+<td><p></p></td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code>()</td>
-<td>Update</td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code>(self)</p></td>
+<td><p>Update</p></td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_progress_log</span></code>()</td>
-<td>Update progress to logging interface</td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_progress_log</span></code>(self)</p></td>
+<td><p>Update progress to logging interface</p></td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">Attributes</p>
-<table border="1" class="longtable docutils">
+<table class="longtable docutils align-center">
 <colgroup>
-<col width="10%" />
-<col width="90%" />
+<col style="width: 10%" />
+<col style="width: 90%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">logger</span></code></td>
-<td></td>
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">logger</span></code></p></td>
+<td><p></p></td>
 </tr>
 </tbody>
 </table>

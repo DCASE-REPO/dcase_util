@@ -1,5 +1,5 @@
-dcase_util.processors.SpectralCentroidExtractorProcessor.process
-================================================================
+dcase\_util.processors.SpectralCentroidExtractorProcessor.process
+=================================================================
 
 .. currentmodule:: dcase_util.processors
 

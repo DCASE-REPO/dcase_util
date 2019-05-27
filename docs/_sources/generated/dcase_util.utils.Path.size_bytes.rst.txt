@@ -1,5 +1,5 @@
-dcase_util.utils.Path.size_bytes
-================================
+dcase\_util.utils.Path.size\_bytes
+==================================
 
 .. currentmodule:: dcase_util.utils
 

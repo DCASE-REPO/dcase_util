@@ -1,5 +1,5 @@
-dcase_util.datasets.CHiMEHome_DomesticAudioTag_DevelopmentSet
-=============================================================
+dcase\_util.datasets.CHiMEHome\_DomesticAudioTag\_DevelopmentSet
+================================================================
 
 .. currentmodule:: dcase_util.datasets
 

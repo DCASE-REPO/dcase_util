@@ -1,5 +1,5 @@
-dcase_util.containers.AudioContainer
-====================================
+dcase\_util.containers.AudioContainer
+=====================================
 
 .. currentmodule:: dcase_util.containers
 
@@ -37,6 +37,8 @@ dcase_util.containers.AudioContainer
       ~AudioContainer.segments
       ~AudioContainer.set_focus
       ~AudioContainer.show
+      ~AudioContainer.to_html
+      ~AudioContainer.to_string
       ~AudioContainer.validate_format
    
    

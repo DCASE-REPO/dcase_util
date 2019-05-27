@@ -1,5 +1,5 @@
-dcase_util.processors.RepositorySequencingProcessor
-===================================================
+dcase\_util.processors.RepositorySequencingProcessor
+====================================================
 
 .. currentmodule:: dcase_util.processors
 
@@ -26,6 +26,8 @@ dcase_util.processors.RepositorySequencingProcessor
       ~RepositorySequencingProcessor.process
       ~RepositorySequencingProcessor.save
       ~RepositorySequencingProcessor.show
+      ~RepositorySequencingProcessor.to_html
+      ~RepositorySequencingProcessor.to_string
       ~RepositorySequencingProcessor.validate_format
    
    

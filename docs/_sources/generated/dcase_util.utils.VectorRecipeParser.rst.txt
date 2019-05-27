@@ -1,5 +1,5 @@
-dcase_util.utils.VectorRecipeParser
-===================================
+dcase\_util.utils.VectorRecipeParser
+====================================
 
 .. currentmodule:: dcase_util.utils
 

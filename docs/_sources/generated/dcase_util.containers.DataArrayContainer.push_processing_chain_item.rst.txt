@@ -1,5 +1,5 @@
-dcase_util.containers.DataArrayContainer.push_processing_chain_item
-===================================================================
+dcase\_util.containers.DataArrayContainer.push\_processing\_chain\_item
+=======================================================================
 
 .. currentmodule:: dcase_util.containers
 

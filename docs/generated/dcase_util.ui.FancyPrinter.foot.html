@@ -760,12 +760,16 @@
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTUrbanAcousticScenes_2018_EvaluationSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_DevelopmentSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_LeaderboardSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_LeaderboardSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_EvaluationSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TAUUrbanAcousticScenes_2019_DevelopmentSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TAUUrbanAcousticScenes_2019_LeaderboardSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_LeaderboardSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TAUUrbanAcousticScenes_2019_EvaluationSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TAUUrbanAcousticScenes_2019_Mobile_DevelopmentSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_Mobile_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TAUUrbanAcousticScenes_2019_Mobile_LeaderboardSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_Mobile_LeaderboardSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TAUUrbanAcousticScenes_2019_Mobile_EvaluationSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_Mobile_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_DevelopmentSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_LeaderboardSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_LeaderboardSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_EvaluationSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.DCASE2018_Task5_DevelopmentSet.html">dcase_util.datasets.DCASE2018_Task5_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.DCASE2018_Task5_EvaluationSet.html">dcase_util.datasets.DCASE2018_Task5_EvaluationSet</a></li>
 </ul>
@@ -1435,6 +1439,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-9">v0.2.9</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-8">v0.2.8</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-7">v0.2.7</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-6">v0.2.6</a></li>
@@ -1522,47 +1527,40 @@
 <h1>dcase_util.ui.FancyPrinter.foot<a class="headerlink" href="#dcase-util-ui-fancyprinter-foot" title="Permalink to this headline">¶</a></h1>
 <dl class="method">
 <dt id="dcase_util.ui.FancyPrinter.foot">
-<code class="descclassname">FancyPrinter.</code><code class="descname">foot</code><span class="sig-paren">(</span><em>text='DONE'</em>, <em>time=None</em>, <em>item_count=None</em>, <em>indent=2</em>, <em>level='info'</em><span class="sig-paren">)</span><a class="headerlink" href="#dcase_util.ui.FancyPrinter.foot" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">FancyPrinter.</code><code class="descname">foot</code><span class="sig-paren">(</span><em>self</em>, <em>text='DONE'</em>, <em>time=None</em>, <em>item_count=None</em>, <em>indent=2</em>, <em>level='info'</em><span class="sig-paren">)</span><a class="headerlink" href="#dcase_util.ui.FancyPrinter.foot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Footer, logged at info level</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
-<dt><strong>text</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str, optional</span></dt>
-<dd><p class="first last">Footer text.
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>text</strong><span class="classifier">str, optional</span></dt><dd><p>Footer text.
 Default value ‘DONE’</p>
 </dd>
-<dt><strong>time</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str, optional</span></dt>
-<dd><p class="first last">Elapsed time as string.
+<dt><strong>time</strong><span class="classifier">str, optional</span></dt><dd><p>Elapsed time as string.
 Default value None</p>
 </dd>
-<dt><strong>item_count</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int, optional</span></dt>
-<dd><p class="first last">Item count.
+<dt><strong>item_count</strong><span class="classifier">int, optional</span></dt><dd><p>Item count.
 Default value None</p>
 </dd>
-<dt><strong>indent</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int</span></dt>
-<dd><p class="first last">Amount of indention used for the line.
+<dt><strong>indent</strong><span class="classifier">int</span></dt><dd><p>Amount of indention used for the line.
 Default value 2</p>
 </dd>
-<dt><strong>level</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
-<dd><p class="first last">Logging level, one of [info, debug, warning, warn, error].
+<dt><strong>level</strong><span class="classifier">str</span></dt><dd><p>Logging level, one of [info, debug, warning, warn, error].
 Default value ‘info’</p>
 </dd>
 </dl>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
-<dt><strong>nothing</strong></dt>
-<dd></dd>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>nothing</dt><dd></dd>
 </dl>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 <div class="admonition seealso">
-<p class="first admonition-title">See also</p>
-<p class="last"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dcase_util.ui.FancyUI.foot</span></code>, <a class="reference internal" href="#dcase_util.ui.FancyPrinter.foot" title="dcase_util.ui.FancyPrinter.foot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dcase_util.ui.FancyPrinter.foot</span></code></a></p>
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">dcase_util.ui.FancyUI.foot</span></code></dt><dd></dd>
+<dt><a class="reference internal" href="#dcase_util.ui.FancyPrinter.foot" title="dcase_util.ui.FancyPrinter.foot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dcase_util.ui.FancyPrinter.foot</span></code></a></dt><dd></dd>
+</dl>
 </div>
 </dd></dl>
 

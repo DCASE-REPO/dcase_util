@@ -1,5 +1,5 @@
-dcase_util.containers.ListContainer.update
-==========================================
+dcase\_util.containers.ListContainer.update
+===========================================
 
 .. currentmodule:: dcase_util.containers
 

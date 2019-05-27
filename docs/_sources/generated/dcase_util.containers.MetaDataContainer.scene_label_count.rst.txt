@@ -1,5 +1,5 @@
-dcase_util.containers.MetaDataContainer.scene_label_count
-=========================================================
+dcase\_util.containers.MetaDataContainer.scene\_label\_count
+============================================================
 
 .. currentmodule:: dcase_util.containers
 

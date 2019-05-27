@@ -1,5 +1,5 @@
-dcase_util.features.MfccStaticExtractor
-=======================================
+dcase\_util.features.MfccStaticExtractor
+========================================
 
 .. currentmodule:: dcase_util.features
 
@@ -19,6 +19,8 @@ dcase_util.features.MfccStaticExtractor
       ~MfccStaticExtractor.get_window_function
       ~MfccStaticExtractor.log
       ~MfccStaticExtractor.show
+      ~MfccStaticExtractor.to_html
+      ~MfccStaticExtractor.to_string
    
    
 
@@ -28,6 +30,7 @@ dcase_util.features.MfccStaticExtractor
 
    .. autosummary::
    
+      ~MfccStaticExtractor.description
       ~MfccStaticExtractor.label
       ~MfccStaticExtractor.logger
    

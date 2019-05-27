@@ -1,5 +1,5 @@
-dcase_util.ui.FancyLogger.sub_header
-====================================
+dcase\_util.ui.FancyLogger.sub\_header
+======================================
 
 .. currentmodule:: dcase_util.ui
 

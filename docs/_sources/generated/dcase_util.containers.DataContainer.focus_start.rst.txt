@@ -1,5 +1,5 @@
-dcase_util.containers.DataContainer.focus_start
-===============================================
+dcase\_util.containers.DataContainer.focus\_start
+=================================================
 
 .. currentmodule:: dcase_util.containers
 

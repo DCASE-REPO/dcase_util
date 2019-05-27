@@ -1,5 +1,5 @@
-dcase_util.keras.StasherCallback
-================================
+dcase\_util.keras.StasherCallback
+=================================
 
 .. currentmodule:: dcase_util.keras
 
@@ -27,6 +27,9 @@ dcase_util.keras.StasherCallback
       ~StasherCallback.set_external_metric_value
       ~StasherCallback.set_model
       ~StasherCallback.set_params
+      ~StasherCallback.show
+      ~StasherCallback.to_html
+      ~StasherCallback.to_string
       ~StasherCallback.update
    
    

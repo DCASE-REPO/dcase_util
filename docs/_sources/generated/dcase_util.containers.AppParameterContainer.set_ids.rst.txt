@@ -1,5 +1,5 @@
-dcase_util.containers.AppParameterContainer.set_ids
-===================================================
+dcase\_util.containers.AppParameterContainer.set\_ids
+=====================================================
 
 .. currentmodule:: dcase_util.containers
 

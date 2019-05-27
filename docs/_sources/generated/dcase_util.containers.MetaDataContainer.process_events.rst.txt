@@ -1,5 +1,5 @@
-dcase_util.containers.MetaDataContainer.process_events
-======================================================
+dcase\_util.containers.MetaDataContainer.process\_events
+========================================================
 
 .. currentmodule:: dcase_util.containers
 

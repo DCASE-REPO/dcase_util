@@ -1,5 +1,5 @@
-dcase_util.containers.AudioContainer.data
-=========================================
+dcase\_util.containers.AudioContainer.data
+==========================================
 
 .. currentmodule:: dcase_util.containers
 

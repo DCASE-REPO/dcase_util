@@ -1,5 +1,5 @@
-dcase_util.files.Serializer
-===========================
+dcase\_util.files.Serializer
+============================
 
 .. currentmodule:: dcase_util.files
 

@@ -1,5 +1,5 @@
-dcase_util.processors.RepositoryFeatureReadingProcessor
-=======================================================
+dcase\_util.processors.RepositoryFeatureReadingProcessor
+========================================================
 
 .. currentmodule:: dcase_util.processors
 
@@ -26,6 +26,8 @@ dcase_util.processors.RepositoryFeatureReadingProcessor
       ~RepositoryFeatureReadingProcessor.process
       ~RepositoryFeatureReadingProcessor.save
       ~RepositoryFeatureReadingProcessor.show
+      ~RepositoryFeatureReadingProcessor.to_html
+      ~RepositoryFeatureReadingProcessor.to_string
       ~RepositoryFeatureReadingProcessor.validate_format
    
    

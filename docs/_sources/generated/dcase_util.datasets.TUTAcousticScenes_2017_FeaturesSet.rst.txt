@@ -1,5 +1,5 @@
-dcase_util.datasets.TUTAcousticScenes_2017_FeaturesSet
-======================================================
+dcase\_util.datasets.TUTAcousticScenes\_2017\_FeaturesSet
+=========================================================
 
 .. currentmodule:: dcase_util.datasets
 

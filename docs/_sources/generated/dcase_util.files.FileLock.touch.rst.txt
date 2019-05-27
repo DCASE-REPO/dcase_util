@@ -1,5 +1,5 @@
-dcase_util.files.FileLock.touch
-===============================
+dcase\_util.files.FileLock.touch
+================================
 
 .. currentmodule:: dcase_util.files
 

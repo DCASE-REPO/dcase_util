@@ -1,5 +1,5 @@
-dcase_util.data.RepositoryNormalizer
-====================================
+dcase\_util.data.RepositoryNormalizer
+=====================================
 
 .. currentmodule:: dcase_util.data
 
@@ -28,6 +28,8 @@ dcase_util.data.RepositoryNormalizer
       ~RepositoryNormalizer.reset
       ~RepositoryNormalizer.save
       ~RepositoryNormalizer.show
+      ~RepositoryNormalizer.to_html
+      ~RepositoryNormalizer.to_string
       ~RepositoryNormalizer.validate_format
    
    

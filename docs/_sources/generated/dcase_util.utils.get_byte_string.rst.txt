@@ -1,5 +1,5 @@
-dcase_util.utils.get_byte_string
-================================
+dcase\_util.utils.get\_byte\_string
+===================================
 
 .. currentmodule:: dcase_util.utils
 

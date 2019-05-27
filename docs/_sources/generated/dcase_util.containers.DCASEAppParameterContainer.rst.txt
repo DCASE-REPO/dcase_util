@@ -1,5 +1,5 @@
-dcase_util.containers.DCASEAppParameterContainer
-================================================
+dcase\_util.containers.DCASEAppParameterContainer
+=================================================
 
 .. currentmodule:: dcase_util.containers
 
@@ -32,12 +32,8 @@ dcase_util.containers.DCASEAppParameterContainer
       ~DCASEAppParameterContainer.get_path
       ~DCASEAppParameterContainer.get_path_translated
       ~DCASEAppParameterContainer.get_set
-      ~DCASEAppParameterContainer.has_key
       ~DCASEAppParameterContainer.is_package
       ~DCASEAppParameterContainer.items
-      ~DCASEAppParameterContainer.iteritems
-      ~DCASEAppParameterContainer.iterkeys
-      ~DCASEAppParameterContainer.itervalues
       ~DCASEAppParameterContainer.keys
       ~DCASEAppParameterContainer.load
       ~DCASEAppParameterContainer.log
@@ -55,13 +51,12 @@ dcase_util.containers.DCASEAppParameterContainer
       ~DCASEAppParameterContainer.set_path_translated
       ~DCASEAppParameterContainer.setdefault
       ~DCASEAppParameterContainer.show
+      ~DCASEAppParameterContainer.to_html
+      ~DCASEAppParameterContainer.to_string
       ~DCASEAppParameterContainer.update
       ~DCASEAppParameterContainer.update_parameter_set
       ~DCASEAppParameterContainer.validate_format
       ~DCASEAppParameterContainer.values
-      ~DCASEAppParameterContainer.viewitems
-      ~DCASEAppParameterContainer.viewkeys
-      ~DCASEAppParameterContainer.viewvalues
    
    
 

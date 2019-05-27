@@ -1,5 +1,5 @@
-dcase_util.containers.AppParameterContainer.update_parameter_set
-================================================================
+dcase\_util.containers.AppParameterContainer.update\_parameter\_set
+===================================================================
 
 .. currentmodule:: dcase_util.containers
 

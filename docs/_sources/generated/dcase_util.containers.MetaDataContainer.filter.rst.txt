@@ -1,5 +1,5 @@
-dcase_util.containers.MetaDataContainer.filter
-==============================================
+dcase\_util.containers.MetaDataContainer.filter
+===============================================
 
 .. currentmodule:: dcase_util.containers
 

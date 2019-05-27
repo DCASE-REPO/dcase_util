@@ -1,5 +1,5 @@
-dcase_util.data.DecisionEncoder
-===============================
+dcase\_util.data.DecisionEncoder
+================================
 
 .. currentmodule:: dcase_util.data
 
@@ -28,6 +28,8 @@ dcase_util.data.DecisionEncoder
       ~DecisionEncoder.process_activity
       ~DecisionEncoder.save
       ~DecisionEncoder.show
+      ~DecisionEncoder.to_html
+      ~DecisionEncoder.to_string
       ~DecisionEncoder.validate_format
    
    

@@ -1,5 +1,5 @@
-dcase_util.containers.RepositoryContainer.load
-==============================================
+dcase\_util.containers.RepositoryContainer.load
+===============================================
 
 .. currentmodule:: dcase_util.containers
 

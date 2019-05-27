@@ -1,5 +1,5 @@
-dcase_util.processors.MfccAccelerationExtractorProcessor
-========================================================
+dcase\_util.processors.MfccAccelerationExtractorProcessor
+=========================================================
 
 .. currentmodule:: dcase_util.processors
 
@@ -29,6 +29,8 @@ dcase_util.processors.MfccAccelerationExtractorProcessor
       ~MfccAccelerationExtractorProcessor.process
       ~MfccAccelerationExtractorProcessor.save
       ~MfccAccelerationExtractorProcessor.show
+      ~MfccAccelerationExtractorProcessor.to_html
+      ~MfccAccelerationExtractorProcessor.to_string
       ~MfccAccelerationExtractorProcessor.validate_format
    
    
@@ -40,6 +42,7 @@ dcase_util.processors.MfccAccelerationExtractorProcessor
    .. autosummary::
    
       ~MfccAccelerationExtractorProcessor.bytes
+      ~MfccAccelerationExtractorProcessor.description
       ~MfccAccelerationExtractorProcessor.input_type
       ~MfccAccelerationExtractorProcessor.label
       ~MfccAccelerationExtractorProcessor.logger

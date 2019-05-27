@@ -1,5 +1,5 @@
-dcase_util.containers.MetaDataContainer.unique_identifiers
-==========================================================
+dcase\_util.containers.MetaDataContainer.unique\_identifiers
+============================================================
 
 .. currentmodule:: dcase_util.containers
 

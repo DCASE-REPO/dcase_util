@@ -1,5 +1,5 @@
-dcase_util.features.RMSEnergyExtractor.extract
-==============================================
+dcase\_util.features.RMSEnergyExtractor.extract
+===============================================
 
 .. currentmodule:: dcase_util.features
 

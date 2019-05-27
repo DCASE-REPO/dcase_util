@@ -1,5 +1,5 @@
-dcase_util.containers.ParameterListContainer
-============================================
+dcase\_util.containers.ParameterListContainer
+=============================================
 
 .. currentmodule:: dcase_util.containers
 
@@ -15,6 +15,8 @@ dcase_util.containers.ParameterListContainer
    
       ~ParameterListContainer.__init__
       ~ParameterListContainer.append
+      ~ParameterListContainer.clear
+      ~ParameterListContainer.copy
       ~ParameterListContainer.count
       ~ParameterListContainer.delimiter
       ~ParameterListContainer.detect_file_format
@@ -39,6 +41,8 @@ dcase_util.containers.ParameterListContainer
       ~ParameterListContainer.search
       ~ParameterListContainer.show
       ~ParameterListContainer.sort
+      ~ParameterListContainer.to_html
+      ~ParameterListContainer.to_string
       ~ParameterListContainer.update
       ~ParameterListContainer.validate_format
    

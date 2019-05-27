@@ -1,5 +1,5 @@
-dcase_util.containers.MetaDataItem.get_list
-===========================================
+dcase\_util.containers.MetaDataItem.get\_list
+=============================================
 
 .. currentmodule:: dcase_util.containers
 

@@ -1,5 +1,5 @@
-dcase_util.data.Sequencer.load
-==============================
+dcase\_util.data.Sequencer.load
+===============================
 
 .. currentmodule:: dcase_util.data
 

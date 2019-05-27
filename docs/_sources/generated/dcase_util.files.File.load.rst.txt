@@ -1,5 +1,5 @@
-dcase_util.files.File.load
-==========================
+dcase\_util.files.File.load
+===========================
 
 .. currentmodule:: dcase_util.files
 

@@ -1,5 +1,5 @@
-dcase_util.containers.ProbabilityContainer
-==========================================
+dcase\_util.containers.ProbabilityContainer
+===========================================
 
 .. currentmodule:: dcase_util.containers
 
@@ -16,6 +16,8 @@ dcase_util.containers.ProbabilityContainer
       ~ProbabilityContainer.__init__
       ~ProbabilityContainer.append
       ~ProbabilityContainer.as_matrix
+      ~ProbabilityContainer.clear
+      ~ProbabilityContainer.copy
       ~ProbabilityContainer.count
       ~ProbabilityContainer.delimiter
       ~ProbabilityContainer.detect_file_format
@@ -40,6 +42,8 @@ dcase_util.containers.ProbabilityContainer
       ~ProbabilityContainer.search
       ~ProbabilityContainer.show
       ~ProbabilityContainer.sort
+      ~ProbabilityContainer.to_html
+      ~ProbabilityContainer.to_string
       ~ProbabilityContainer.update
       ~ProbabilityContainer.validate_format
    

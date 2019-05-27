@@ -1,5 +1,5 @@
-dcase_util.files.Package
-========================
+dcase\_util.files.Package
+=========================
 
 .. currentmodule:: dcase_util.files
 
@@ -27,6 +27,8 @@ dcase_util.files.Package
       ~Package.log
       ~Package.save
       ~Package.show
+      ~Package.to_html
+      ~Package.to_string
       ~Package.validate_format
    
    

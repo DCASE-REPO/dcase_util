@@ -1,5 +1,5 @@
-dcase_util.tools.SubmissionChecker
-==================================
+dcase\_util.tools.SubmissionChecker
+===================================
 
 .. currentmodule:: dcase_util.tools
 
@@ -25,6 +25,8 @@ dcase_util.tools.SubmissionChecker
       ~SubmissionChecker.process
       ~SubmissionChecker.save
       ~SubmissionChecker.show
+      ~SubmissionChecker.to_html
+      ~SubmissionChecker.to_string
       ~SubmissionChecker.validate_format
    
    

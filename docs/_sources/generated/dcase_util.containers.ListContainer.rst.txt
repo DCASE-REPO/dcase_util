@@ -1,5 +1,5 @@
-dcase_util.containers.ListContainer
-===================================
+dcase\_util.containers.ListContainer
+====================================
 
 .. currentmodule:: dcase_util.containers
 
@@ -15,6 +15,8 @@ dcase_util.containers.ListContainer
    
       ~ListContainer.__init__
       ~ListContainer.append
+      ~ListContainer.clear
+      ~ListContainer.copy
       ~ListContainer.count
       ~ListContainer.delimiter
       ~ListContainer.detect_file_format
@@ -34,6 +36,8 @@ dcase_util.containers.ListContainer
       ~ListContainer.save
       ~ListContainer.show
       ~ListContainer.sort
+      ~ListContainer.to_html
+      ~ListContainer.to_string
       ~ListContainer.update
       ~ListContainer.validate_format
    

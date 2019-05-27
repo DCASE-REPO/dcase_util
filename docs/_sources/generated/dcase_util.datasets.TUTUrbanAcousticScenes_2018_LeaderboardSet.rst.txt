@@ -1,5 +1,5 @@
-dcase_util.datasets.TUTUrbanAcousticScenes_2018_LeaderboardSet
-==============================================================
+dcase\_util.datasets.TUTUrbanAcousticScenes\_2018\_LeaderboardSet
+=================================================================
 
 .. currentmodule:: dcase_util.datasets
 

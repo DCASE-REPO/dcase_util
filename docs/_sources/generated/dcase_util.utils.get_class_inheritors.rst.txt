@@ -1,5 +1,5 @@
-dcase_util.utils.get_class_inheritors
-=====================================
+dcase\_util.utils.get\_class\_inheritors
+========================================
 
 .. currentmodule:: dcase_util.utils
 

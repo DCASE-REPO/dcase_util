@@ -1,5 +1,5 @@
-dcase_util.data.BinaryMatrixEncoder.plot
-========================================
+dcase\_util.data.BinaryMatrixEncoder.plot
+=========================================
 
 .. currentmodule:: dcase_util.data
 

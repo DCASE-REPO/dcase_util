@@ -1,5 +1,5 @@
-dcase_util.processors.RepositoryAggregationProcessor
-====================================================
+dcase\_util.processors.RepositoryAggregationProcessor
+=====================================================
 
 .. currentmodule:: dcase_util.processors
 
@@ -26,6 +26,8 @@ dcase_util.processors.RepositoryAggregationProcessor
       ~RepositoryAggregationProcessor.process
       ~RepositoryAggregationProcessor.save
       ~RepositoryAggregationProcessor.show
+      ~RepositoryAggregationProcessor.to_html
+      ~RepositoryAggregationProcessor.to_string
       ~RepositoryAggregationProcessor.validate_format
    
    

@@ -1,5 +1,5 @@
-dcase_util.processors.AggregationProcessor
-==========================================
+dcase\_util.processors.AggregationProcessor
+===========================================
 
 .. currentmodule:: dcase_util.processors
 
@@ -26,6 +26,8 @@ dcase_util.processors.AggregationProcessor
       ~AggregationProcessor.process
       ~AggregationProcessor.save
       ~AggregationProcessor.show
+      ~AggregationProcessor.to_html
+      ~AggregationProcessor.to_string
       ~AggregationProcessor.validate_format
    
    

@@ -1,5 +1,5 @@
-dcase_util.processors.ProcessingChain.process
-=============================================
+dcase\_util.processors.ProcessingChain.process
+==============================================
 
 .. currentmodule:: dcase_util.processors
 

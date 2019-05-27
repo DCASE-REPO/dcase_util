@@ -1,5 +1,5 @@
-dcase_util.containers.MetaDataContainer
-=======================================
+dcase\_util.containers.MetaDataContainer
+========================================
 
 .. currentmodule:: dcase_util.containers
 
@@ -16,6 +16,8 @@ dcase_util.containers.MetaDataContainer
       ~MetaDataContainer.__init__
       ~MetaDataContainer.add_time
       ~MetaDataContainer.append
+      ~MetaDataContainer.clear
+      ~MetaDataContainer.copy
       ~MetaDataContainer.count
       ~MetaDataContainer.delimiter
       ~MetaDataContainer.detect_file_format
@@ -31,7 +33,6 @@ dcase_util.containers.MetaDataContainer
       ~MetaDataContainer.get_field
       ~MetaDataContainer.get_field_unique
       ~MetaDataContainer.get_file_information
-      ~MetaDataContainer.get_string
       ~MetaDataContainer.index
       ~MetaDataContainer.insert
       ~MetaDataContainer.intersection
@@ -56,6 +57,8 @@ dcase_util.containers.MetaDataContainer
       ~MetaDataContainer.stats
       ~MetaDataContainer.tag_stat_counts
       ~MetaDataContainer.to_event_roll
+      ~MetaDataContainer.to_html
+      ~MetaDataContainer.to_string
       ~MetaDataContainer.update
       ~MetaDataContainer.validate_format
    

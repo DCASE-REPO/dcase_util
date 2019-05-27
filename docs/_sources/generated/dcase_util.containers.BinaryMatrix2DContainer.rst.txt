@@ -1,5 +1,5 @@
-dcase_util.containers.BinaryMatrix2DContainer
-=============================================
+dcase\_util.containers.BinaryMatrix2DContainer
+==============================================
 
 .. currentmodule:: dcase_util.containers
 
@@ -33,6 +33,8 @@ dcase_util.containers.BinaryMatrix2DContainer
       ~BinaryMatrix2DContainer.save
       ~BinaryMatrix2DContainer.set_focus
       ~BinaryMatrix2DContainer.show
+      ~BinaryMatrix2DContainer.to_html
+      ~BinaryMatrix2DContainer.to_string
       ~BinaryMatrix2DContainer.validate_format
    
    

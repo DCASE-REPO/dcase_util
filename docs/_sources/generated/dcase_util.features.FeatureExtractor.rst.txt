@@ -1,5 +1,5 @@
-dcase_util.features.FeatureExtractor
-====================================
+dcase\_util.features.FeatureExtractor
+=====================================
 
 .. currentmodule:: dcase_util.features
 
@@ -17,6 +17,8 @@ dcase_util.features.FeatureExtractor
       ~FeatureExtractor.extract
       ~FeatureExtractor.log
       ~FeatureExtractor.show
+      ~FeatureExtractor.to_html
+      ~FeatureExtractor.to_string
    
    
 
@@ -26,6 +28,8 @@ dcase_util.features.FeatureExtractor
 
    .. autosummary::
    
+      ~FeatureExtractor.description
+      ~FeatureExtractor.label
       ~FeatureExtractor.logger
    
    

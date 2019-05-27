@@ -1,5 +1,5 @@
-dcase_util.features.SpectralFeatureExtractor
-============================================
+dcase\_util.features.SpectralFeatureExtractor
+=============================================
 
 .. currentmodule:: dcase_util.features
 
@@ -19,6 +19,8 @@ dcase_util.features.SpectralFeatureExtractor
       ~SpectralFeatureExtractor.get_window_function
       ~SpectralFeatureExtractor.log
       ~SpectralFeatureExtractor.show
+      ~SpectralFeatureExtractor.to_html
+      ~SpectralFeatureExtractor.to_string
    
    
 
@@ -28,6 +30,8 @@ dcase_util.features.SpectralFeatureExtractor
 
    .. autosummary::
    
+      ~SpectralFeatureExtractor.description
+      ~SpectralFeatureExtractor.label
       ~SpectralFeatureExtractor.logger
    
    

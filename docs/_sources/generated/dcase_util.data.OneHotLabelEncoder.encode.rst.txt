@@ -1,5 +1,5 @@
-dcase_util.data.OneHotLabelEncoder.encode
-=========================================
+dcase\_util.data.OneHotLabelEncoder.encode
+==========================================
 
 .. currentmodule:: dcase_util.data
 

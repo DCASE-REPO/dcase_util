@@ -1,5 +1,5 @@
-dcase_util.data.OneHotLabelEncoder
-==================================
+dcase\_util.data.OneHotLabelEncoder
+===================================
 
 .. currentmodule:: dcase_util.data
 
@@ -33,6 +33,8 @@ dcase_util.data.OneHotLabelEncoder
       ~OneHotLabelEncoder.save
       ~OneHotLabelEncoder.set_focus
       ~OneHotLabelEncoder.show
+      ~OneHotLabelEncoder.to_html
+      ~OneHotLabelEncoder.to_string
       ~OneHotLabelEncoder.validate_format
    
    

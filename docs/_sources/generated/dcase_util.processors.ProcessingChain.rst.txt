@@ -1,5 +1,5 @@
-dcase_util.processors.ProcessingChain
-=====================================
+dcase\_util.processors.ProcessingChain
+======================================
 
 .. currentmodule:: dcase_util.processors
 
@@ -19,6 +19,8 @@ dcase_util.processors.ProcessingChain
       ~ProcessingChain.chain_item
       ~ProcessingChain.chain_item_exists
       ~ProcessingChain.chain_string
+      ~ProcessingChain.clear
+      ~ProcessingChain.copy
       ~ProcessingChain.count
       ~ProcessingChain.delimiter
       ~ProcessingChain.detect_file_format
@@ -50,6 +52,8 @@ dcase_util.processors.ProcessingChain
       ~ProcessingChain.show
       ~ProcessingChain.show_chain
       ~ProcessingChain.sort
+      ~ProcessingChain.to_html
+      ~ProcessingChain.to_string
       ~ProcessingChain.update
       ~ProcessingChain.validate_format
    

@@ -1,5 +1,5 @@
-dcase_util.containers.DataMatrix3DContainer.log
-===============================================
+dcase\_util.containers.DataMatrix3DContainer.log
+================================================
 
 .. currentmodule:: dcase_util.containers
 

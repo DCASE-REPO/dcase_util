@@ -1,5 +1,5 @@
-dcase_util.containers.FeatureContainer
-======================================
+dcase\_util.containers.FeatureContainer
+=======================================
 
 .. currentmodule:: dcase_util.containers
 
@@ -32,6 +32,8 @@ dcase_util.containers.FeatureContainer
       ~FeatureContainer.save
       ~FeatureContainer.set_focus
       ~FeatureContainer.show
+      ~FeatureContainer.to_html
+      ~FeatureContainer.to_string
       ~FeatureContainer.validate_format
    
    

@@ -1,5 +1,5 @@
-dcase_util.keras.get_keras_data_sequence_class
-==============================================
+dcase\_util.keras.get\_keras\_data\_sequence\_class
+===================================================
 
 .. currentmodule:: dcase_util.keras
 

@@ -1,5 +1,5 @@
-dcase_util.containers.ListDictContainer.save
-============================================
+dcase\_util.containers.ListDictContainer.save
+=============================================
 
 .. currentmodule:: dcase_util.containers
 

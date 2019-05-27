@@ -1,5 +1,5 @@
-dcase_util.processors.RepositoryMaskingProcessor
-================================================
+dcase\_util.processors.RepositoryMaskingProcessor
+=================================================
 
 .. currentmodule:: dcase_util.processors
 
@@ -26,6 +26,8 @@ dcase_util.processors.RepositoryMaskingProcessor
       ~RepositoryMaskingProcessor.process
       ~RepositoryMaskingProcessor.save
       ~RepositoryMaskingProcessor.show
+      ~RepositoryMaskingProcessor.to_html
+      ~RepositoryMaskingProcessor.to_string
       ~RepositoryMaskingProcessor.validate_format
    
    

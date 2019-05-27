@@ -1,5 +1,5 @@
-dcase_util.processors.ProcessingChain.chain_item_exists
-=======================================================
+dcase\_util.processors.ProcessingChain.chain\_item\_exists
+==========================================================
 
 .. currentmodule:: dcase_util.processors
 

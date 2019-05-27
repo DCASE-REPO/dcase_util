@@ -1,5 +1,5 @@
-dcase_util.containers.ProbabilityItem.filename
-==============================================
+dcase\_util.containers.ProbabilityItem.filename
+===============================================
 
 .. currentmodule:: dcase_util.containers
 

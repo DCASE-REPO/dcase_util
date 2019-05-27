@@ -1,5 +1,5 @@
-dcase_util.containers.OneToOneMappingContainer.map
-==================================================
+dcase\_util.containers.OneToOneMappingContainer.map
+===================================================
 
 .. currentmodule:: dcase_util.containers
 

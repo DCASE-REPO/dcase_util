@@ -1,5 +1,5 @@
-dcase_util.ui.FancyPrinter.section_header
-=========================================
+dcase\_util.ui.FancyPrinter.section\_header
+===========================================
 
 .. currentmodule:: dcase_util.ui
 

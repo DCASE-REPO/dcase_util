@@ -1,5 +1,5 @@
-dcase_util.containers.DataContainer
-===================================
+dcase\_util.containers.DataContainer
+====================================
 
 .. currentmodule:: dcase_util.containers
 
@@ -31,6 +31,8 @@ dcase_util.containers.DataContainer
       ~DataContainer.save
       ~DataContainer.set_focus
       ~DataContainer.show
+      ~DataContainer.to_html
+      ~DataContainer.to_string
       ~DataContainer.validate_format
    
    

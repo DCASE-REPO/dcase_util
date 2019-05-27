@@ -1,5 +1,5 @@
-dcase_util.processors.OneHotLabelEncodingProcessor
-==================================================
+dcase\_util.processors.OneHotLabelEncodingProcessor
+===================================================
 
 .. currentmodule:: dcase_util.processors
 
@@ -26,6 +26,8 @@ dcase_util.processors.OneHotLabelEncodingProcessor
       ~OneHotLabelEncodingProcessor.process
       ~OneHotLabelEncodingProcessor.save
       ~OneHotLabelEncodingProcessor.show
+      ~OneHotLabelEncodingProcessor.to_html
+      ~OneHotLabelEncodingProcessor.to_string
       ~OneHotLabelEncodingProcessor.validate_format
    
    

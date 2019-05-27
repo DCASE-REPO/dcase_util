@@ -1,5 +1,5 @@
-dcase_util.data.LabelMatrixEncoder
-==================================
+dcase\_util.data.LabelMatrixEncoder
+===================================
 
 .. currentmodule:: dcase_util.data
 
@@ -32,6 +32,8 @@ dcase_util.data.LabelMatrixEncoder
       ~LabelMatrixEncoder.save
       ~LabelMatrixEncoder.set_focus
       ~LabelMatrixEncoder.show
+      ~LabelMatrixEncoder.to_html
+      ~LabelMatrixEncoder.to_string
       ~LabelMatrixEncoder.validate_format
    
    

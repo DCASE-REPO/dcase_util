@@ -1,5 +1,5 @@
-dcase_util.features.ZeroCrossingRateExtractor
-=============================================
+dcase\_util.features.ZeroCrossingRateExtractor
+==============================================
 
 .. currentmodule:: dcase_util.features
 
@@ -17,6 +17,8 @@ dcase_util.features.ZeroCrossingRateExtractor
       ~ZeroCrossingRateExtractor.extract
       ~ZeroCrossingRateExtractor.log
       ~ZeroCrossingRateExtractor.show
+      ~ZeroCrossingRateExtractor.to_html
+      ~ZeroCrossingRateExtractor.to_string
    
    
 
@@ -26,6 +28,7 @@ dcase_util.features.ZeroCrossingRateExtractor
 
    .. autosummary::
    
+      ~ZeroCrossingRateExtractor.description
       ~ZeroCrossingRateExtractor.label
       ~ZeroCrossingRateExtractor.logger
    

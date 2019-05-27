@@ -1,5 +1,5 @@
-dcase_util.processors.FeatureExtractorProcessor
-===============================================
+dcase\_util.processors.FeatureExtractorProcessor
+================================================
 
 .. currentmodule:: dcase_util.processors
 
@@ -26,6 +26,8 @@ dcase_util.processors.FeatureExtractorProcessor
       ~FeatureExtractorProcessor.process
       ~FeatureExtractorProcessor.save
       ~FeatureExtractorProcessor.show
+      ~FeatureExtractorProcessor.to_html
+      ~FeatureExtractorProcessor.to_string
       ~FeatureExtractorProcessor.validate_format
    
    

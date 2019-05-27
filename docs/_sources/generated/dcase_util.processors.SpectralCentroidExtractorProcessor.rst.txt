@@ -1,5 +1,5 @@
-dcase_util.processors.SpectralCentroidExtractorProcessor
-========================================================
+dcase\_util.processors.SpectralCentroidExtractorProcessor
+=========================================================
 
 .. currentmodule:: dcase_util.processors
 
@@ -29,6 +29,8 @@ dcase_util.processors.SpectralCentroidExtractorProcessor
       ~SpectralCentroidExtractorProcessor.process
       ~SpectralCentroidExtractorProcessor.save
       ~SpectralCentroidExtractorProcessor.show
+      ~SpectralCentroidExtractorProcessor.to_html
+      ~SpectralCentroidExtractorProcessor.to_string
       ~SpectralCentroidExtractorProcessor.validate_format
    
    
@@ -40,6 +42,7 @@ dcase_util.processors.SpectralCentroidExtractorProcessor
    .. autosummary::
    
       ~SpectralCentroidExtractorProcessor.bytes
+      ~SpectralCentroidExtractorProcessor.description
       ~SpectralCentroidExtractorProcessor.input_type
       ~SpectralCentroidExtractorProcessor.label
       ~SpectralCentroidExtractorProcessor.logger

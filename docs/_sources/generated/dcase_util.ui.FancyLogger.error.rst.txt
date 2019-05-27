@@ -1,5 +1,5 @@
-dcase_util.ui.FancyLogger.error
-===============================
+dcase\_util.ui.FancyLogger.error
+================================
 
 .. currentmodule:: dcase_util.ui
 

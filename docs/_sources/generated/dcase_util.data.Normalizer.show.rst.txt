@@ -1,5 +1,5 @@
-dcase_util.data.Normalizer.show
-===============================
+dcase\_util.data.Normalizer.show
+================================
 
 .. currentmodule:: dcase_util.data
 

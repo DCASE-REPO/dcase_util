@@ -1,5 +1,5 @@
-dcase_util.processors.MetadataReadingProcessor.process
-======================================================
+dcase\_util.processors.MetadataReadingProcessor.process
+=======================================================
 
 .. currentmodule:: dcase_util.processors
 

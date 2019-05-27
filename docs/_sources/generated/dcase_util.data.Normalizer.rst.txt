@@ -1,5 +1,5 @@
-dcase_util.data.Normalizer
-==========================
+dcase\_util.data.Normalizer
+===========================
 
 .. currentmodule:: dcase_util.data
 
@@ -25,9 +25,12 @@ dcase_util.data.Normalizer
       ~Normalizer.load
       ~Normalizer.log
       ~Normalizer.normalize
+      ~Normalizer.plot
       ~Normalizer.reset
       ~Normalizer.save
       ~Normalizer.show
+      ~Normalizer.to_html
+      ~Normalizer.to_string
       ~Normalizer.validate_format
    
    

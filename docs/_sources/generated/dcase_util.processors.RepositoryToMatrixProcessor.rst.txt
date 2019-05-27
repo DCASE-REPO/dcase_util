@@ -1,5 +1,5 @@
-dcase_util.processors.RepositoryToMatrixProcessor
-=================================================
+dcase\_util.processors.RepositoryToMatrixProcessor
+==================================================
 
 .. currentmodule:: dcase_util.processors
 
@@ -26,6 +26,8 @@ dcase_util.processors.RepositoryToMatrixProcessor
       ~RepositoryToMatrixProcessor.process
       ~RepositoryToMatrixProcessor.save
       ~RepositoryToMatrixProcessor.show
+      ~RepositoryToMatrixProcessor.to_html
+      ~RepositoryToMatrixProcessor.to_string
       ~RepositoryToMatrixProcessor.validate_format
    
    

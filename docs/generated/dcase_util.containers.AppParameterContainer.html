@@ -760,12 +760,16 @@
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTUrbanAcousticScenes_2018_EvaluationSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_DevelopmentSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_LeaderboardSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_LeaderboardSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_EvaluationSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TAUUrbanAcousticScenes_2019_DevelopmentSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TAUUrbanAcousticScenes_2019_LeaderboardSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_LeaderboardSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TAUUrbanAcousticScenes_2019_EvaluationSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TAUUrbanAcousticScenes_2019_Mobile_DevelopmentSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_Mobile_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TAUUrbanAcousticScenes_2019_Mobile_LeaderboardSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_Mobile_LeaderboardSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TAUUrbanAcousticScenes_2019_Mobile_EvaluationSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_Mobile_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_DevelopmentSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_LeaderboardSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_LeaderboardSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_EvaluationSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.DCASE2018_Task5_DevelopmentSet.html">dcase_util.datasets.DCASE2018_Task5_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.DCASE2018_Task5_EvaluationSet.html">dcase_util.datasets.DCASE2018_Task5_EvaluationSet</a></li>
 </ul>
@@ -1435,6 +1439,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-9">v0.2.9</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-8">v0.2.8</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-7">v0.2.7</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-6">v0.2.6</a></li>
@@ -1525,266 +1530,227 @@
 <em class="property">class </em><code class="descclassname">dcase_util.containers.</code><code class="descname">AppParameterContainer</code><span class="sig-paren">(</span><em>data=None</em>, <em>app_base=None</em>, <em>application_directory_parameter_filename='parameters.yaml'</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/containers/parameters.html#AppParameterContainer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.containers.AppParameterContainer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parameter container class for application parameters, inherited from ParameterContainer.</p>
 <p>Constructor</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first last docutils">
-<dt><strong>data</strong> <span class="classifier-delimiter">:</span> <span class="classifier">dict</span></dt>
-<dd><p class="first last">Dictionary to initialize container
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>data</strong><span class="classifier">dict</span></dt><dd><p>Dictionary to initialize container
 Default value None</p>
 </dd>
-<dt><strong>app_base</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
-<dd><p class="first last">Absolute path to the project root
+<dt><strong>app_base</strong><span class="classifier">str</span></dt><dd><p>Absolute path to the project root
 Default value None</p>
 </dd>
-<dt><strong>section_process_order</strong> <span class="classifier-delimiter">:</span> <span class="classifier">list, optional</span></dt>
-<dd><p class="first last">Parameter section processing order. Given dict is used to override internal default list.
+<dt><strong>section_process_order</strong><span class="classifier">list, optional</span></dt><dd><p>Parameter section processing order. Given dict is used to override internal default list.
 Default value ‘parameters.yaml’</p>
 </dd>
-<dt><strong>path_structure</strong> <span class="classifier-delimiter">:</span> <span class="classifier">dict of lists, optional</span></dt>
-<dd><p class="first last">Defines how paths are created, section hash is used to create unique folder names. Given dict is used to
+<dt><strong>path_structure</strong><span class="classifier">dict of lists, optional</span></dt><dd><p>Defines how paths are created, section hash is used to create unique folder names. Given dict is used to
 override internal default list.</p>
 </dd>
-<dt><strong>method_dependencies</strong> <span class="classifier-delimiter">:</span> <span class="classifier">dict of dicts, optional</span></dt>
-<dd><p class="first last">Given dict is used to override internal default list.</p>
+<dt><strong>method_dependencies</strong><span class="classifier">dict of dicts, optional</span></dt><dd><p>Given dict is used to override internal default list.</p>
 </dd>
-<dt><strong>magic_field</strong> <span class="classifier-delimiter">:</span> <span class="classifier">dict, optional</span></dt>
-<dd><p class="first last">Dict of field names for specific tasks. Given dict is used to override internal default list.</p>
+<dt><strong>magic_field</strong><span class="classifier">dict, optional</span></dt><dd><p>Dict of field names for specific tasks. Given dict is used to override internal default list.</p>
 </dd>
-<dt><strong>non_hashable_fields</strong> <span class="classifier-delimiter">:</span> <span class="classifier">list, optional</span></dt>
-<dd><p class="first last">List of fields skipped when parameter hash for the section is calculated. Given list is used to override
+<dt><strong>non_hashable_fields</strong><span class="classifier">list, optional</span></dt><dd><p>List of fields skipped when parameter hash for the section is calculated. Given list is used to override
 internal default list.</p>
 </dd>
-<dt><strong>control_sections</strong> <span class="classifier-delimiter">:</span> <span class="classifier">list, optional</span></dt>
-<dd><p class="first last">List of top level sections used for framework control, for these section no hash is calculated. Given list
+<dt><strong>control_sections</strong><span class="classifier">list, optional</span></dt><dd><p>List of top level sections used for framework control, for these section no hash is calculated. Given list
 is used to override internal default list.</p>
 </dd>
 </dl>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 <dl class="method">
 <dt id="dcase_util.containers.AppParameterContainer.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>data=None</em>, <em>app_base=None</em>, <em>application_directory_parameter_filename='parameters.yaml'</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/containers/parameters.html#AppParameterContainer.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.containers.AppParameterContainer.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>self</em>, <em>data=None</em>, <em>app_base=None</em>, <em>application_directory_parameter_filename='parameters.yaml'</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/containers/parameters.html#AppParameterContainer.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.containers.AppParameterContainer.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Constructor</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first last docutils">
-<dt><strong>data</strong> <span class="classifier-delimiter">:</span> <span class="classifier">dict</span></dt>
-<dd><p class="first last">Dictionary to initialize container
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>data</strong><span class="classifier">dict</span></dt><dd><p>Dictionary to initialize container
 Default value None</p>
 </dd>
-<dt><strong>app_base</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
-<dd><p class="first last">Absolute path to the project root
+<dt><strong>app_base</strong><span class="classifier">str</span></dt><dd><p>Absolute path to the project root
 Default value None</p>
 </dd>
-<dt><strong>section_process_order</strong> <span class="classifier-delimiter">:</span> <span class="classifier">list, optional</span></dt>
-<dd><p class="first last">Parameter section processing order. Given dict is used to override internal default list.
+<dt><strong>section_process_order</strong><span class="classifier">list, optional</span></dt><dd><p>Parameter section processing order. Given dict is used to override internal default list.
 Default value ‘parameters.yaml’</p>
 </dd>
-<dt><strong>path_structure</strong> <span class="classifier-delimiter">:</span> <span class="classifier">dict of lists, optional</span></dt>
-<dd><p class="first last">Defines how paths are created, section hash is used to create unique folder names. Given dict is used to
+<dt><strong>path_structure</strong><span class="classifier">dict of lists, optional</span></dt><dd><p>Defines how paths are created, section hash is used to create unique folder names. Given dict is used to
 override internal default list.</p>
 </dd>
-<dt><strong>method_dependencies</strong> <span class="classifier-delimiter">:</span> <span class="classifier">dict of dicts, optional</span></dt>
-<dd><p class="first last">Given dict is used to override internal default list.</p>
+<dt><strong>method_dependencies</strong><span class="classifier">dict of dicts, optional</span></dt><dd><p>Given dict is used to override internal default list.</p>
 </dd>
-<dt><strong>magic_field</strong> <span class="classifier-delimiter">:</span> <span class="classifier">dict, optional</span></dt>
-<dd><p class="first last">Dict of field names for specific tasks. Given dict is used to override internal default list.</p>
+<dt><strong>magic_field</strong><span class="classifier">dict, optional</span></dt><dd><p>Dict of field names for specific tasks. Given dict is used to override internal default list.</p>
 </dd>
-<dt><strong>non_hashable_fields</strong> <span class="classifier-delimiter">:</span> <span class="classifier">list, optional</span></dt>
-<dd><p class="first last">List of fields skipped when parameter hash for the section is calculated. Given list is used to override
+<dt><strong>non_hashable_fields</strong><span class="classifier">list, optional</span></dt><dd><p>List of fields skipped when parameter hash for the section is calculated. Given list is used to override
 internal default list.</p>
 </dd>
-<dt><strong>control_sections</strong> <span class="classifier-delimiter">:</span> <span class="classifier">list, optional</span></dt>
-<dd><p class="first last">List of top level sections used for framework control, for these section no hash is calculated. Given list
+<dt><strong>control_sections</strong><span class="classifier">list, optional</span></dt><dd><p>List of top level sections used for framework control, for these section no hash is calculated. Given list
 is used to override internal default list.</p>
 </dd>
 </dl>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <p class="rubric">Methods</p>
-<table border="1" class="longtable docutils">
+<table class="longtable docutils align-center">
 <colgroup>
-<col width="10%" />
-<col width="90%" />
+<col style="width: 10%" />
+<col style="width: 90%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#dcase_util.containers.AppParameterContainer.__init__" title="dcase_util.containers.AppParameterContainer.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>([data,&nbsp;app_base,&nbsp;…])</td>
-<td>Constructor</td>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dcase_util.containers.AppParameterContainer.__init__" title="dcase_util.containers.AppParameterContainer.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(self[, data, app_base, …])</p></td>
+<td><p>Constructor</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="dcase_util.containers.AppParameterContainer.active_set.html#dcase_util.containers.AppParameterContainer.active_set" title="dcase_util.containers.AppParameterContainer.active_set"><code class="xref py py-obj docutils literal notranslate"><span class="pre">active_set</span></code></a>()</td>
-<td>Get active set id</td>
+<tr class="row-even"><td><p><a class="reference internal" href="dcase_util.containers.AppParameterContainer.active_set.html#dcase_util.containers.AppParameterContainer.active_set" title="dcase_util.containers.AppParameterContainer.active_set"><code class="xref py py-obj docutils literal notranslate"><span class="pre">active_set</span></code></a>(self)</p></td>
+<td><p>Get active set id</p></td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">clear</span></code>()</td>
-<td></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">clear</span></code>()</p></td>
+<td><p></p></td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">copy</span></code>()</td>
-<td></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">copy</span></code>()</p></td>
+<td><p></p></td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">delimiter</span></code>([exclude_delimiters])</td>
-<td>Use csv.sniffer to guess delimiter for CSV file</td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">delimiter</span></code>(self[, exclude_delimiters])</p></td>
+<td><p>Use csv.sniffer to guess delimiter for CSV file</p></td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">detect_file_format</span></code>([filename])</td>
-<td>Detect file format from extension</td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">detect_file_format</span></code>(self[, filename])</p></td>
+<td><p>Detect file format from extension</p></td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">empty</span></code>()</td>
-<td>Check if file is empty</td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">empty</span></code>(self)</p></td>
+<td><p>Check if file is empty</p></td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">exists</span></code>()</td>
-<td>Checks that file exists</td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">exists</span></code>(self)</p></td>
+<td><p>Checks that file exists</p></td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">filter</span></code>([data,&nbsp;excluded_key_prefix])</td>
-<td>Filter nested dict</td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">filter</span></code>(self[, data, excluded_key_prefix])</p></td>
+<td><p>Filter nested dict</p></td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">fromkeys</span></code>($type,&nbsp;iterable[,&nbsp;value])</td>
-<td>Create a new dictionary with keys from iterable and values set to value.</td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">fromkeys</span></code>(iterable[, value])</p></td>
+<td><p>Returns a new dict with keys from iterable and values equal to value.</p></td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">get</span></code>($self,&nbsp;key[,&nbsp;default])</td>
-<td>Return the value for key if key is in the dictionary, else default.</td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get</span></code>()</p></td>
+<td><p></p></td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_dump_content</span></code>(data)</td>
-<td>Clean internal content for saving</td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_dump_content</span></code>(self, data)</p></td>
+<td><p>Clean internal content for saving</p></td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_file_information</span></code>()</td>
-<td>Get file information, filename</td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_file_information</span></code>(self)</p></td>
+<td><p>Get file information, filename</p></td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_hash</span></code>([data])</td>
-<td>Get unique hash string (md5) for given parameter dict.</td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_hash</span></code>(self[, data])</p></td>
+<td><p>Get unique hash string (md5) for given parameter dict.</p></td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_hash_for_path</span></code>([dotted_path])</td>
-<td>Get unique hash string for the data under given path.</td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_hash_for_path</span></code>(self[, dotted_path])</p></td>
+<td><p>Get unique hash string for the data under given path.</p></td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_leaf_path_list</span></code>([target_field,&nbsp;…])</td>
-<td>Get path list to all leaf node in the nested dict.</td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_leaf_path_list</span></code>(self[, target_field, …])</p></td>
+<td><p>Get path list to all leaf node in the nested dict.</p></td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_path</span></code>(path[,&nbsp;default,&nbsp;data])</td>
-<td>Get value from nested dict with dotted path</td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_path</span></code>(self, path[, default, data])</p></td>
+<td><p>Get value from nested dict with dotted path</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="dcase_util.containers.AppParameterContainer.get_path_translated.html#dcase_util.containers.AppParameterContainer.get_path_translated" title="dcase_util.containers.AppParameterContainer.get_path_translated"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_path_translated</span></code></a>(path[,&nbsp;parameters])</td>
-<td>Get data with path, path can contain string constants which will be translated.</td>
+<tr class="row-even"><td><p><a class="reference internal" href="dcase_util.containers.AppParameterContainer.get_path_translated.html#dcase_util.containers.AppParameterContainer.get_path_translated" title="dcase_util.containers.AppParameterContainer.get_path_translated"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_path_translated</span></code></a>(self, path[, parameters])</p></td>
+<td><p>Get data with path, path can contain string constants which will be translated.</p></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="dcase_util.containers.AppParameterContainer.get_set.html#dcase_util.containers.AppParameterContainer.get_set" title="dcase_util.containers.AppParameterContainer.get_set"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_set</span></code></a>(set_id)</td>
-<td>Get parameter set</td>
+<tr class="row-odd"><td><p><a class="reference internal" href="dcase_util.containers.AppParameterContainer.get_set.html#dcase_util.containers.AppParameterContainer.get_set" title="dcase_util.containers.AppParameterContainer.get_set"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_set</span></code></a>(self, set_id)</p></td>
+<td><p>Get parameter set</p></td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">AppParameterContainer.has_key</span></code></td>
-<td></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_package</span></code>(self[, filename])</p></td>
+<td><p>Determine if the file is compressed package.</p></td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_package</span></code>([filename])</td>
-<td>Determine if the file is compressed package.</td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">items</span></code>()</p></td>
+<td><p></p></td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">items</span></code>()</td>
-<td></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">keys</span></code>()</p></td>
+<td><p></p></td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">AppParameterContainer.iteritems</span></code></td>
-<td></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">load</span></code>(self[, filename, file_format])</p></td>
+<td><p>Load file</p></td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">AppParameterContainer.iterkeys</span></code></td>
-<td></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">log</span></code>(self[, level])</p></td>
+<td><p>Log container content</p></td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">AppParameterContainer.itervalues</span></code></td>
-<td></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">merge</span></code>(self, override[, target])</p></td>
+<td><p>Recursive dict merge</p></td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">keys</span></code>()</td>
-<td></td>
+<tr class="row-even"><td><p><a class="reference internal" href="dcase_util.containers.AppParameterContainer.override.html#dcase_util.containers.AppParameterContainer.override" title="dcase_util.containers.AppParameterContainer.override"><code class="xref py py-obj docutils literal notranslate"><span class="pre">override</span></code></a>(self, override)</p></td>
+<td><p>Override container content recursively.</p></td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">load</span></code>([filename,&nbsp;file_format])</td>
-<td>Load file</td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">pop</span></code>()</p></td>
+<td><p>If key is not found, d is returned if given, otherwise KeyError is raised</p></td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">log</span></code>([level])</td>
-<td>Log container content</td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">popitem</span></code>()</p></td>
+<td><p>2-tuple; but raise KeyError if D is empty.</p></td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">merge</span></code>(override[,&nbsp;target])</td>
-<td>Recursive dict merge</td>
+<tr class="row-odd"><td><p><a class="reference internal" href="dcase_util.containers.AppParameterContainer.process.html#dcase_util.containers.AppParameterContainer.process" title="dcase_util.containers.AppParameterContainer.process"><code class="xref py py-obj docutils literal notranslate"><span class="pre">process</span></code></a>(self[, create_paths, …])</p></td>
+<td><p>Process parameters</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="dcase_util.containers.AppParameterContainer.override.html#dcase_util.containers.AppParameterContainer.override" title="dcase_util.containers.AppParameterContainer.override"><code class="xref py py-obj docutils literal notranslate"><span class="pre">override</span></code></a>(override)</td>
-<td>Override container content recursively.</td>
+<tr class="row-even"><td><p><a class="reference internal" href="dcase_util.containers.AppParameterContainer.process_set.html#dcase_util.containers.AppParameterContainer.process_set" title="dcase_util.containers.AppParameterContainer.process_set"><code class="xref py py-obj docutils literal notranslate"><span class="pre">process_set</span></code></a>(self, parameters[, …])</p></td>
+<td><p>Process parameter set</p></td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">pop</span></code>(k[,d])</td>
-<td>If key is not found, d is returned if given, otherwise KeyError is raised</td>
+<tr class="row-odd"><td><p><a class="reference internal" href="dcase_util.containers.AppParameterContainer.reset.html#dcase_util.containers.AppParameterContainer.reset" title="dcase_util.containers.AppParameterContainer.reset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reset</span></code></a>(self[, field_labels, section_labels, …])</p></td>
+<td><p></p></td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">popitem</span></code>()</td>
-<td>2-tuple; but raise KeyError if D is empty.</td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code>(self[, filename, file_format])</p></td>
+<td><p>Save file</p></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="dcase_util.containers.AppParameterContainer.process.html#dcase_util.containers.AppParameterContainer.process" title="dcase_util.containers.AppParameterContainer.process"><code class="xref py py-obj docutils literal notranslate"><span class="pre">process</span></code></a>([create_paths,&nbsp;create_parameter_hints])</td>
-<td>Process parameters</td>
+<tr class="row-odd"><td><p><a class="reference internal" href="dcase_util.containers.AppParameterContainer.set_id_exists.html#dcase_util.containers.AppParameterContainer.set_id_exists" title="dcase_util.containers.AppParameterContainer.set_id_exists"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_id_exists</span></code></a>(self, set_id)</p></td>
+<td><p>Set id exists</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="dcase_util.containers.AppParameterContainer.process_set.html#dcase_util.containers.AppParameterContainer.process_set" title="dcase_util.containers.AppParameterContainer.process_set"><code class="xref py py-obj docutils literal notranslate"><span class="pre">process_set</span></code></a>(parameters[,&nbsp;create_paths,&nbsp;…])</td>
-<td>Process parameter set</td>
+<tr class="row-even"><td><p><a class="reference internal" href="dcase_util.containers.AppParameterContainer.set_ids.html#dcase_util.containers.AppParameterContainer.set_ids" title="dcase_util.containers.AppParameterContainer.set_ids"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_ids</span></code></a>(self)</p></td>
+<td><p>Get set ids</p></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="dcase_util.containers.AppParameterContainer.reset.html#dcase_util.containers.AppParameterContainer.reset" title="dcase_util.containers.AppParameterContainer.reset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reset</span></code></a>([field_labels,&nbsp;section_labels,&nbsp;…])</td>
-<td></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_path</span></code>(self, path, new_value[, data])</p></td>
+<td><p>Set value in nested dict with dotted path</p></td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code>([filename,&nbsp;file_format])</td>
-<td>Save file</td>
+<tr class="row-even"><td><p><a class="reference internal" href="dcase_util.containers.AppParameterContainer.set_path_translated.html#dcase_util.containers.AppParameterContainer.set_path_translated" title="dcase_util.containers.AppParameterContainer.set_path_translated"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_path_translated</span></code></a>(self, path, new_value[, …])</p></td>
+<td><p>Set data with path, path can contain string constants which will be translated.</p></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="dcase_util.containers.AppParameterContainer.set_id_exists.html#dcase_util.containers.AppParameterContainer.set_id_exists" title="dcase_util.containers.AppParameterContainer.set_id_exists"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_id_exists</span></code></a>(set_id)</td>
-<td>Set id exists</td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">setdefault</span></code>()</p></td>
+<td><p></p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="dcase_util.containers.AppParameterContainer.set_ids.html#dcase_util.containers.AppParameterContainer.set_ids" title="dcase_util.containers.AppParameterContainer.set_ids"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_ids</span></code></a>()</td>
-<td>Get set ids</td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">show</span></code>(self[, mode, indent, visualize])</p></td>
+<td><p>Print container content</p></td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_path</span></code>(path,&nbsp;new_value[,&nbsp;data])</td>
-<td>Set value in nested dict with dotted path</td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_html</span></code>(self[, indent])</p></td>
+<td><p>Get container information in a HTML formatted string</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="dcase_util.containers.AppParameterContainer.set_path_translated.html#dcase_util.containers.AppParameterContainer.set_path_translated" title="dcase_util.containers.AppParameterContainer.set_path_translated"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_path_translated</span></code></a>(path,&nbsp;new_value[,&nbsp;…])</td>
-<td>Set data with path, path can contain string constants which will be translated.</td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_string</span></code>(self[, ui, indent])</p></td>
+<td><p>Get container information in a string</p></td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">setdefault</span></code>($self,&nbsp;key[,&nbsp;default])</td>
-<td>Insert key with a value of default if key is not in the dictionary.</td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code>()</p></td>
+<td><p>If E is present and has a .keys() method, then does:  for k in E: D[k] = E[k] If E is present and lacks a .keys() method, then does:  for k, v in E: D[k] = v In either case, this is followed by: for k in F:  D[k] = F[k]</p></td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">show</span></code>([mode,&nbsp;indent,&nbsp;visualize])</td>
-<td>Print container content</td>
+<tr class="row-even"><td><p><a class="reference internal" href="dcase_util.containers.AppParameterContainer.update_parameter_set.html#dcase_util.containers.AppParameterContainer.update_parameter_set" title="dcase_util.containers.AppParameterContainer.update_parameter_set"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_parameter_set</span></code></a>(self, set_id)</p></td>
+<td><p>Update active parameter set</p></td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code>([E,&nbsp;]**F)</td>
-<td>If E is present and has a .keys() method, then does:  for k in E: D[k] = E[k] If E is present and lacks a .keys() method, then does:  for k, v in E: D[k] = v In either case, this is followed by: for k in F:  D[k] = F[k]</td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_format</span></code>(self)</p></td>
+<td><p>Validate file format</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="dcase_util.containers.AppParameterContainer.update_parameter_set.html#dcase_util.containers.AppParameterContainer.update_parameter_set" title="dcase_util.containers.AppParameterContainer.update_parameter_set"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_parameter_set</span></code></a>(set_id)</td>
-<td>Update active parameter set</td>
-</tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_format</span></code>()</td>
-<td>Validate file format</td>
-</tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">values</span></code>()</td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">AppParameterContainer.viewitems</span></code></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">AppParameterContainer.viewkeys</span></code></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">AppParameterContainer.viewvalues</span></code></td>
-<td></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">values</span></code>()</p></td>
+<td><p></p></td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">Attributes</p>
-<table border="1" class="longtable docutils">
+<table class="longtable docutils align-center">
 <colgroup>
-<col width="10%" />
-<col width="90%" />
+<col style="width: 10%" />
+<col style="width: 90%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">bytes</span></code></td>
-<td>File size in bytes</td>
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">bytes</span></code></p></td>
+<td><p>File size in bytes</p></td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">logger</span></code></td>
-<td>Logger instance</td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">logger</span></code></p></td>
+<td><p>Logger instance</p></td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">md5</span></code></td>
-<td>Checksum for file.</td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">md5</span></code></p></td>
+<td><p>Checksum for file.</p></td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">valid_formats</span></code></td>
-<td></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">valid_formats</span></code></p></td>
+<td><p></p></td>
 </tr>
 </tbody>
 </table>

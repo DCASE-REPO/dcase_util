@@ -1,5 +1,5 @@
-dcase_util.datasets.Dataset.eval
-================================
+dcase\_util.datasets.Dataset.eval
+=================================
 
 .. currentmodule:: dcase_util.datasets
 

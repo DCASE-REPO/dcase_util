@@ -1,5 +1,5 @@
-dcase_util.processors.ZeroCrossingRateExtractorProcessor.process
-================================================================
+dcase\_util.processors.ZeroCrossingRateExtractorProcessor.process
+=================================================================
 
 .. currentmodule:: dcase_util.processors
 

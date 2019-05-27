@@ -1,5 +1,5 @@
-dcase_util.data.Selector.log
-============================
+dcase\_util.data.Selector.log
+=============================
 
 .. currentmodule:: dcase_util.data
 

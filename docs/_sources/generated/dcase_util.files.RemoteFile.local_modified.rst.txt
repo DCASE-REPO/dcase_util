@@ -1,5 +1,5 @@
-dcase_util.files.RemoteFile.local_modified
-==========================================
+dcase\_util.files.RemoteFile.local\_modified
+============================================
 
 .. currentmodule:: dcase_util.files
 

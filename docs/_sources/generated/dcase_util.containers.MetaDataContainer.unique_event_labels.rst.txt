@@ -1,5 +1,5 @@
-dcase_util.containers.MetaDataContainer.unique_event_labels
-===========================================================
+dcase\_util.containers.MetaDataContainer.unique\_event\_labels
+==============================================================
 
 .. currentmodule:: dcase_util.containers
 

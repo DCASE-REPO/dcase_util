@@ -1,5 +1,5 @@
-dcase_util.processors.ProcessingChain.call_method
-=================================================
+dcase\_util.processors.ProcessingChain.call\_method
+===================================================
 
 .. currentmodule:: dcase_util.processors
 

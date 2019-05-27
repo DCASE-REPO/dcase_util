@@ -1,5 +1,5 @@
-dcase_util.processors.DataShapingProcessor.process
-==================================================
+dcase\_util.processors.DataShapingProcessor.process
+===================================================
 
 .. currentmodule:: dcase_util.processors
 

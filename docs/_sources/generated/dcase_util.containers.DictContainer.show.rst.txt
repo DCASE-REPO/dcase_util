@@ -1,5 +1,5 @@
-dcase_util.containers.DictContainer.show
-========================================
+dcase\_util.containers.DictContainer.show
+=========================================
 
 .. currentmodule:: dcase_util.containers
 

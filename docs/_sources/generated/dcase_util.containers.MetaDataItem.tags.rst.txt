@@ -1,5 +1,5 @@
-dcase_util.containers.MetaDataItem.tags
-=======================================
+dcase\_util.containers.MetaDataItem.tags
+========================================
 
 .. currentmodule:: dcase_util.containers
 

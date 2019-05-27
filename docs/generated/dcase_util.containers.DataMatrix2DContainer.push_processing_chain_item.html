@@ -760,12 +760,16 @@
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTUrbanAcousticScenes_2018_EvaluationSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_DevelopmentSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_LeaderboardSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_LeaderboardSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_EvaluationSet.html">dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TAUUrbanAcousticScenes_2019_DevelopmentSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TAUUrbanAcousticScenes_2019_LeaderboardSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_LeaderboardSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TAUUrbanAcousticScenes_2019_EvaluationSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TAUUrbanAcousticScenes_2019_Mobile_DevelopmentSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_Mobile_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TAUUrbanAcousticScenes_2019_Mobile_LeaderboardSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_Mobile_LeaderboardSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TAUUrbanAcousticScenes_2019_Mobile_EvaluationSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_Mobile_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_DevelopmentSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_LeaderboardSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_LeaderboardSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_EvaluationSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.DCASE2018_Task5_DevelopmentSet.html">dcase_util.datasets.DCASE2018_Task5_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.DCASE2018_Task5_EvaluationSet.html">dcase_util.datasets.DCASE2018_Task5_EvaluationSet</a></li>
 </ul>
@@ -1435,6 +1439,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-9">v0.2.9</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-8">v0.2.8</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-7">v0.2.7</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-6">v0.2.6</a></li>
@@ -1522,47 +1527,36 @@
 <h1>dcase_util.containers.DataMatrix2DContainer.push_processing_chain_item<a class="headerlink" href="#dcase-util-containers-datamatrix2dcontainer-push-processing-chain-item" title="Permalink to this headline">¶</a></h1>
 <dl class="method">
 <dt id="dcase_util.containers.DataMatrix2DContainer.push_processing_chain_item">
-<code class="descclassname">DataMatrix2DContainer.</code><code class="descname">push_processing_chain_item</code><span class="sig-paren">(</span><em>processor_name</em>, <em>init_parameters=None</em>, <em>process_parameters=None</em>, <em>preprocessing_callbacks=None</em>, <em>input_type=None</em>, <em>output_type=None</em><span class="sig-paren">)</span><a class="headerlink" href="#dcase_util.containers.DataMatrix2DContainer.push_processing_chain_item" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">DataMatrix2DContainer.</code><code class="descname">push_processing_chain_item</code><span class="sig-paren">(</span><em>self</em>, <em>processor_name</em>, <em>init_parameters=None</em>, <em>process_parameters=None</em>, <em>preprocessing_callbacks=None</em>, <em>input_type=None</em>, <em>output_type=None</em><span class="sig-paren">)</span><a class="headerlink" href="#dcase_util.containers.DataMatrix2DContainer.push_processing_chain_item" title="Permalink to this definition">¶</a></dt>
 <dd><p>Push processing chain item</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
-<dt><strong>processor_name</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
-<dd><p class="first last">Processor name</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>processor_name</strong><span class="classifier">str</span></dt><dd><p>Processor name</p>
 </dd>
-<dt><strong>init_parameters</strong> <span class="classifier-delimiter">:</span> <span class="classifier">dict, optional</span></dt>
-<dd><p class="first last">Initialization parameters for the processors
+<dt><strong>init_parameters</strong><span class="classifier">dict, optional</span></dt><dd><p>Initialization parameters for the processors
 Default value None</p>
 </dd>
-<dt><strong>process_parameters</strong> <span class="classifier-delimiter">:</span> <span class="classifier">dict, optional</span></dt>
-<dd><p class="first last">Parameters for the process method of the Processor
+<dt><strong>process_parameters</strong><span class="classifier">dict, optional</span></dt><dd><p>Parameters for the process method of the Processor
 Default value None</p>
 </dd>
-<dt><strong>preprocessing_callbacks</strong> <span class="classifier-delimiter">:</span> <span class="classifier">list of dicts</span></dt>
-<dd><p class="first last">Callbacks used for preprocessing
+<dt><strong>preprocessing_callbacks</strong><span class="classifier">list of dicts</span></dt><dd><p>Callbacks used for preprocessing
 Default value None</p>
 </dd>
-<dt><strong>input_type</strong> <span class="classifier-delimiter">:</span> <span class="classifier">ProcessingChainItemType</span></dt>
-<dd><p class="first last">Input data type
+<dt><strong>input_type</strong><span class="classifier">ProcessingChainItemType</span></dt><dd><p>Input data type
 Default value None</p>
 </dd>
-<dt><strong>output_type</strong> <span class="classifier-delimiter">:</span> <span class="classifier">ProcessingChainItemType</span></dt>
-<dd><p class="first last">Output data type
+<dt><strong>output_type</strong><span class="classifier">ProcessingChainItemType</span></dt><dd><p>Output data type
 Default value None</p>
 </dd>
 </dl>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
-<dt><strong>self</strong></dt>
-<dd></dd>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>self</dt><dd></dd>
 </dl>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 </div>

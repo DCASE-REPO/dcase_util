@@ -1,5 +1,5 @@
-dcase_util.containers.RepositoryContainer.show
-==============================================
+dcase\_util.containers.RepositoryContainer.show
+===============================================
 
 .. currentmodule:: dcase_util.containers
 

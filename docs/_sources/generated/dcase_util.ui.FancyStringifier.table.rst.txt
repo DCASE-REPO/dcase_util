@@ -1,5 +1,5 @@
-dcase_util.ui.FancyStringifier.table
-====================================
+dcase\_util.ui.FancyStringifier.table
+=====================================
 
 .. currentmodule:: dcase_util.ui
 

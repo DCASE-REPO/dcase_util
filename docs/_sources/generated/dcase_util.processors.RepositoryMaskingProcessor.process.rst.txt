@@ -1,5 +1,5 @@
-dcase_util.processors.RepositoryMaskingProcessor.process
-========================================================
+dcase\_util.processors.RepositoryMaskingProcessor.process
+=========================================================
 
 .. currentmodule:: dcase_util.processors
 

@@ -1,5 +1,5 @@
-dcase_util.data.Stacker
-=======================
+dcase\_util.data.Stacker
+========================
 
 .. currentmodule:: dcase_util.data
 
@@ -25,6 +25,8 @@ dcase_util.data.Stacker
       ~Stacker.save
       ~Stacker.show
       ~Stacker.stack
+      ~Stacker.to_html
+      ~Stacker.to_string
       ~Stacker.validate_format
    
    

@@ -1,5 +1,5 @@
-dcase_util.containers.DataArrayContainer.data
-=============================================
+dcase\_util.containers.DataArrayContainer.data
+==============================================
 
 .. currentmodule:: dcase_util.containers
 

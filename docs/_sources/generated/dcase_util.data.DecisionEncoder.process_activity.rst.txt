@@ -1,5 +1,5 @@
-dcase_util.data.DecisionEncoder.process_activity
-================================================
+dcase\_util.data.DecisionEncoder.process\_activity
+==================================================
 
 .. currentmodule:: dcase_util.data
 
