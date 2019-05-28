@@ -1439,6 +1439,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-10">v0.2.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-9">v0.2.9</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-8">v0.2.8</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-7">v0.2.7</a></li>
@@ -1530,172 +1531,172 @@
 <em class="property">class </em><code class="descclassname">dcase_util.utils.</code><code class="descname">FileFormat</code><a class="reference internal" href="../_modules/dcase_util/utils/files.html#FileFormat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.utils.FileFormat" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="method">
 <dt id="dcase_util.utils.FileFormat.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>self</em>, <em>/</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dcase_util.utils.FileFormat.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>$self</em>, <em>/</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dcase_util.utils.FileFormat.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
 
 <p class="rubric">Methods</p>
-<table class="longtable docutils align-center">
+<table border="1" class="longtable docutils">
 <colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
+<col width="10%" />
+<col width="90%" />
 </colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="dcase_util.utils.FileFormat.detect.html#dcase_util.utils.FileFormat.detect" title="dcase_util.utils.FileFormat.detect"><code class="xref py py-obj docutils literal notranslate"><span class="pre">detect</span></code></a>(filename[, use_content_for_unknown])</p></td>
-<td><p>Detect file format.</p></td>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="dcase_util.utils.FileFormat.detect.html#dcase_util.utils.FileFormat.detect" title="dcase_util.utils.FileFormat.detect"><code class="xref py py-obj docutils literal notranslate"><span class="pre">detect</span></code></a>(filename[,&nbsp;use_content_for_unknown])</td>
+<td>Detect file format.</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="dcase_util.utils.FileFormat.detect_based_on_content.html#dcase_util.utils.FileFormat.detect_based_on_content" title="dcase_util.utils.FileFormat.detect_based_on_content"><code class="xref py py-obj docutils literal notranslate"><span class="pre">detect_based_on_content</span></code></a>(filename)</p></td>
-<td><p>Detect file format based on content by using python-magic.</p></td>
+<tr class="row-even"><td><a class="reference internal" href="dcase_util.utils.FileFormat.detect_based_on_content.html#dcase_util.utils.FileFormat.detect_based_on_content" title="dcase_util.utils.FileFormat.detect_based_on_content"><code class="xref py py-obj docutils literal notranslate"><span class="pre">detect_based_on_content</span></code></a>(filename)</td>
+<td>Detect file format based on content by using python-magic.</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="dcase_util.utils.FileFormat.detect_based_on_filename.html#dcase_util.utils.FileFormat.detect_based_on_filename" title="dcase_util.utils.FileFormat.detect_based_on_filename"><code class="xref py py-obj docutils literal notranslate"><span class="pre">detect_based_on_filename</span></code></a>(filename)</p></td>
-<td><p>Detect file format based on filename.</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="dcase_util.utils.FileFormat.detect_based_on_filename.html#dcase_util.utils.FileFormat.detect_based_on_filename" title="dcase_util.utils.FileFormat.detect_based_on_filename"><code class="xref py py-obj docutils literal notranslate"><span class="pre">detect_based_on_filename</span></code></a>(filename)</td>
+<td>Detect file format based on filename.</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="dcase_util.utils.FileFormat.validate_label.html#dcase_util.utils.FileFormat.validate_label" title="dcase_util.utils.FileFormat.validate_label"><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_label</span></code></a>(label)</p></td>
-<td><p>Validate file format label against labels known by this class</p></td>
+<tr class="row-even"><td><a class="reference internal" href="dcase_util.utils.FileFormat.validate_label.html#dcase_util.utils.FileFormat.validate_label" title="dcase_util.utils.FileFormat.validate_label"><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_label</span></code></a>(label)</td>
+<td>Validate file format label against labels known by this class</td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">Attributes</p>
-<table class="longtable docutils align-center">
+<table border="1" class="longtable docutils">
 <colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
+<col width="10%" />
+<col width="90%" />
 </colgroup>
-<tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">AAC</span></code></p></td>
-<td><p>Audio file (compressed), Advanced Audio Coding file</p></td>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">AAC</span></code></td>
+<td>Audio file (compressed), Advanced Audio Coding file</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">AC3</span></code></p></td>
-<td><p>Audio file (compressed), Audio Codec 3 file</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">AC3</span></code></td>
+<td>Audio file (compressed), Audio Codec 3 file</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">AIFF</span></code></p></td>
-<td><p>Audio file, Audio Interchange File Format file</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">AIFF</span></code></td>
+<td>Audio file, Audio Interchange File Format file</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">AMR</span></code></p></td>
-<td><p>Audio file, Adaptive Multi-Rate audio codec file</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">AMR</span></code></td>
+<td>Audio file, Adaptive Multi-Rate audio codec file</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ANN</span></code></p></td>
-<td><p>Annotation file</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">ANN</span></code></td>
+<td>Annotation file</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">AU</span></code></p></td>
-<td><p>Audio file, AU file format</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">AU</span></code></td>
+<td>Audio file, AU file format</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">AVI</span></code></p></td>
-<td><p>Video file, Audio Video Interleave File</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">AVI</span></code></td>
+<td>Video file, Audio Video Interleave File</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">CPICKLE</span></code></p></td>
-<td><p>pickled Python object</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">CPICKLE</span></code></td>
+<td>pickled Python object</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">CSV</span></code></p></td>
-<td><p>Comma-separated values (CSV) file</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">CSV</span></code></td>
+<td>Comma-separated values (CSV) file</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">FLAC</span></code></p></td>
-<td><p>Audio file, Free Lossless Audio Codec (FLAC) file</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">FLAC</span></code></td>
+<td>Audio file, Free Lossless Audio Codec (FLAC) file</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">FLV</span></code></p></td>
-<td><p>Video file, Flash video</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">FLV</span></code></td>
+<td>Video file, Flash video</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GIF</span></code></p></td>
-<td><p>Image file, Graphical Interchange Format File</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">GIF</span></code></td>
+<td>Image file, Graphical Interchange Format File</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GZ</span></code></p></td>
-<td><p>Compressed file, Gnu Zipped Archive</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">GZ</span></code></td>
+<td>Compressed file, Gnu Zipped Archive</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">JPG</span></code></p></td>
-<td><p>Image file, JPEG Image</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">JPG</span></code></td>
+<td>Image file, JPEG Image</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">JSON</span></code></p></td>
-<td><p>JavaScript Object Notation (JSON) file</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">JSON</span></code></td>
+<td>JavaScript Object Notation (JSON) file</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">M4A</span></code></p></td>
-<td><p>Audio file (compressed), MPEG-4 codec audio file</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">M4A</span></code></td>
+<td>Audio file (compressed), MPEG-4 codec audio file</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">MARSHAL</span></code></p></td>
-<td><p>Marshal Data Migration Model File</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">MARSHAL</span></code></td>
+<td>Marshal Data Migration Model File</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">META</span></code></p></td>
-<td><p>Annotation file</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">META</span></code></td>
+<td>Annotation file</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">MKA</span></code></p></td>
-<td><p>Audio file, Matroska audio</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">MKA</span></code></td>
+<td>Audio file, Matroska audio</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">MKV</span></code></p></td>
-<td><p>Video file, Matroska video</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">MKV</span></code></td>
+<td>Video file, Matroska video</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">MOV</span></code></p></td>
-<td><p>Video file, Apple QuickTime Movie</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">MOV</span></code></td>
+<td>Video file, Apple QuickTime Movie</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">MP3</span></code></p></td>
-<td><p>Audio file (compressed), MPEG-2 Audio Layer III file</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">MP3</span></code></td>
+<td>Audio file (compressed), MPEG-2 Audio Layer III file</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">MP4</span></code></p></td>
-<td><p>Video file, MPEG-4 Video File</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">MP4</span></code></td>
+<td>Video file, MPEG-4 Video File</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">MPG</span></code></p></td>
-<td><p>Video file, MPEG Video File</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">MPG</span></code></td>
+<td>Video file, MPEG Video File</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">MSGPACK</span></code></p></td>
-<td><p>MessagePack</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">MSGPACK</span></code></td>
+<td>MessagePack</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">NUMPY</span></code></p></td>
-<td><p>Numpy data object</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">NUMPY</span></code></td>
+<td>Numpy data object</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">NUMPYZ</span></code></p></td>
-<td><p>Numpy zip data object</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">NUMPYZ</span></code></td>
+<td>Numpy zip data object</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">OGG</span></code></p></td>
-<td><p>Audio file (compressed)</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">OGG</span></code></td>
+<td>Audio file (compressed)</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">PDF</span></code></p></td>
-<td><p>Document file, Portable Document Format File</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">PDF</span></code></td>
+<td>Document file, Portable Document Format File</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">PNG</span></code></p></td>
-<td><p>Image file, Portable Network Graphic</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">PNG</span></code></td>
+<td>Image file, Portable Network Graphic</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">RA</span></code></p></td>
-<td><p>Audio file (compressed), RealAudio files</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">RA</span></code></td>
+<td>Audio file (compressed), RealAudio files</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">RAR</span></code></p></td>
-<td><p>Compressed file, WinRAR Compressed Archive</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">RAR</span></code></td>
+<td>Compressed file, WinRAR Compressed Archive</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">RAW</span></code></p></td>
-<td><p>Raw binary file</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">RAW</span></code></td>
+<td>Raw binary file</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SVG</span></code></p></td>
-<td><p>Image file, Scalable Vector Graphics File</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">SVG</span></code></td>
+<td>Image file, Scalable Vector Graphics File</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">TAR</span></code></p></td>
-<td><p>Consolidated Unix File Archive</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">TAR</span></code></td>
+<td>Consolidated Unix File Archive</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">TXT</span></code></p></td>
-<td><p>TXT file</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">TXT</span></code></td>
+<td>TXT file</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">UNKNOWN</span></code></p></td>
-<td><p>Unknown format</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">UNKNOWN</span></code></td>
+<td>Unknown format</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">VOC</span></code></p></td>
-<td><p>Audio file, Creative voice file</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">VOC</span></code></td>
+<td>Audio file, Creative voice file</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">WAV</span></code></p></td>
-<td><p>Audio file, Waveform Audio File Format (WAVE) file</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">WAV</span></code></td>
+<td>Audio file, Waveform Audio File Format (WAVE) file</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">WEBM</span></code></p></td>
-<td><p>Video file</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">WEBM</span></code></td>
+<td>Video file</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">WMA</span></code></p></td>
-<td><p>Audio file, Windows Media Audio File</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">WMA</span></code></td>
+<td>Audio file, Windows Media Audio File</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">WMV</span></code></p></td>
-<td><p>Video file, Windows Media Video File</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">WMV</span></code></td>
+<td>Video file, Windows Media Video File</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">XML</span></code></p></td>
-<td><p>Extensible Markup Language (XML) file</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">XML</span></code></td>
+<td>Extensible Markup Language (XML) file</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">YAML</span></code></p></td>
-<td><p>YAML file</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">YAML</span></code></td>
+<td>YAML file</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ZIP</span></code></p></td>
-<td><p>Compressed file, Zipped File</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">ZIP</span></code></td>
+<td>Compressed file, Zipped File</td>
 </tr>
 </tbody>
 </table>

@@ -1439,6 +1439,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-10">v0.2.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-9">v0.2.9</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-8">v0.2.8</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-7">v0.2.7</a></li>
@@ -1527,41 +1528,56 @@
 <h1>dcase_util.processors.MonoAudioReadingProcessor.process<a class="headerlink" href="#dcase-util-processors-monoaudioreadingprocessor-process" title="Permalink to this headline">¶</a></h1>
 <dl class="method">
 <dt id="dcase_util.processors.MonoAudioReadingProcessor.process">
-<code class="descclassname">MonoAudioReadingProcessor.</code><code class="descname">process</code><span class="sig-paren">(</span><em>self</em>, <em>data=None</em>, <em>filename=None</em>, <em>focus_start_samples=None</em>, <em>focus_stop_samples=None</em>, <em>focus_duration_samples=None</em>, <em>focus_start_seconds=None</em>, <em>focus_stop_seconds=None</em>, <em>focus_duration_seconds=None</em>, <em>focus_channel=None</em>, <em>store_processing_chain=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dcase_util.processors.MonoAudioReadingProcessor.process" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">MonoAudioReadingProcessor.</code><code class="descname">process</code><span class="sig-paren">(</span><em>data=None</em>, <em>filename=None</em>, <em>focus_start_samples=None</em>, <em>focus_stop_samples=None</em>, <em>focus_duration_samples=None</em>, <em>focus_start_seconds=None</em>, <em>focus_stop_seconds=None</em>, <em>focus_duration_seconds=None</em>, <em>focus_channel=None</em>, <em>store_processing_chain=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dcase_util.processors.MonoAudioReadingProcessor.process" title="Permalink to this definition">¶</a></dt>
 <dd><p>Audio reading</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>data :</strong></dt><dd></dd>
-<dt><strong>filename</strong><span class="classifier">str</span></dt><dd><p>Filename</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>data :</strong></dt>
+<dd></dd>
+<dt><strong>filename</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dd><p class="first last">Filename</p>
 </dd>
-<dt><strong>focus_start_samples</strong><span class="classifier">int</span></dt><dd><p>Sample index of focus segment start</p>
+<dt><strong>focus_start_samples</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int</span></dt>
+<dd><p class="first last">Sample index of focus segment start</p>
 </dd>
-<dt><strong>focus_stop_samples</strong><span class="classifier">int</span></dt><dd><p>Sample index of focus segment stop</p>
+<dt><strong>focus_stop_samples</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int</span></dt>
+<dd><p class="first last">Sample index of focus segment stop</p>
 </dd>
-<dt><strong>focus_duration_samples</strong><span class="classifier">int</span></dt><dd><p>Sample count of focus segment</p>
+<dt><strong>focus_duration_samples</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int</span></dt>
+<dd><p class="first last">Sample count of focus segment</p>
 </dd>
-<dt><strong>focus_start_seconds</strong><span class="classifier">float</span></dt><dd><p>Time stamp (in seconds) of focus segment start</p>
+<dt><strong>focus_start_seconds</strong> <span class="classifier-delimiter">:</span> <span class="classifier">float</span></dt>
+<dd><p class="first last">Time stamp (in seconds) of focus segment start</p>
 </dd>
-<dt><strong>focus_stop_seconds</strong><span class="classifier">float</span></dt><dd><p>Time stamp (in seconds) of focus segment stop</p>
+<dt><strong>focus_stop_seconds</strong> <span class="classifier-delimiter">:</span> <span class="classifier">float</span></dt>
+<dd><p class="first last">Time stamp (in seconds) of focus segment stop</p>
 </dd>
-<dt><strong>focus_duration_seconds</strong><span class="classifier">float</span></dt><dd><p>Duration (in seconds) of focus segment</p>
+<dt><strong>focus_duration_seconds</strong> <span class="classifier-delimiter">:</span> <span class="classifier">float</span></dt>
+<dd><p class="first last">Duration (in seconds) of focus segment</p>
 </dd>
-<dt><strong>focus_channel</strong><span class="classifier">int or str</span></dt><dd><p>Audio channel id or name to focus. In case of stereo signal, valid channel labels to select
+<dt><strong>focus_channel</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int or str</span></dt>
+<dd><p class="first last">Audio channel id or name to focus. In case of stereo signal, valid channel labels to select
 single channel are ‘L’, ‘R’, ‘left’, and ‘right’ or 0, 1, and to get mixed down version
 of all channels ‘mixdown’.</p>
 </dd>
-<dt><strong>store_processing_chain</strong><span class="classifier">bool</span></dt><dd><p>Store processing chain to data container returned
+<dt><strong>store_processing_chain</strong> <span class="classifier-delimiter">:</span> <span class="classifier">bool</span></dt>
+<dd><p class="first last">Store processing chain to data container returned
 Default value False</p>
 </dd>
 </dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>AudioContainer</dt><dd></dd>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>AudioContainer</strong></dt>
+<dd></dd>
 </dl>
-</dd>
-</dl>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </div>

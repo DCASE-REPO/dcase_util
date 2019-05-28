@@ -1439,6 +1439,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-10">v0.2.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-9">v0.2.9</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-8">v0.2.8</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-7">v0.2.7</a></li>
@@ -1530,96 +1531,106 @@
 <em class="property">class </em><code class="descclassname">dcase_util.utils.</code><code class="descname">ApplicationPaths</code><span class="sig-paren">(</span><em>parameter_container=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/utils/files.html#ApplicationPaths"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.utils.ApplicationPaths" title="Permalink to this definition">¶</a></dt>
 <dd><p>Utility class for application paths, paths are automatically generated based on parameters through parameter hash.</p>
 <p>Constructor</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>parameter_container</strong><span class="classifier">ParameterContainer</span></dt><dd><p>Application parameter container
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>parameter_container</strong> <span class="classifier-delimiter">:</span> <span class="classifier">ParameterContainer</span></dt>
+<dd><p class="first last">Application parameter container
 Default value None</p>
 </dd>
 </dl>
-</dd>
-</dl>
+</td>
+</tr>
+</tbody>
+</table>
 <dl class="method">
 <dt id="dcase_util.utils.ApplicationPaths.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>self</em>, <em>parameter_container=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/utils/files.html#ApplicationPaths.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.utils.ApplicationPaths.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>parameter_container=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/utils/files.html#ApplicationPaths.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.utils.ApplicationPaths.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Constructor</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>parameter_container</strong><span class="classifier">ParameterContainer</span></dt><dd><p>Application parameter container
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>parameter_container</strong> <span class="classifier-delimiter">:</span> <span class="classifier">ParameterContainer</span></dt>
+<dd><p class="first last">Application parameter container
 Default value None</p>
 </dd>
 </dl>
-</dd>
-</dl>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <p class="rubric">Methods</p>
-<table class="longtable docutils align-center">
+<table border="1" class="longtable docutils">
 <colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
+<col width="10%" />
+<col width="90%" />
 </colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dcase_util.utils.ApplicationPaths.__init__" title="dcase_util.utils.ApplicationPaths.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(self[, parameter_container])</p></td>
-<td><p>Constructor</p></td>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#dcase_util.utils.ApplicationPaths.__init__" title="dcase_util.utils.ApplicationPaths.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>([parameter_container])</td>
+<td>Constructor</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="dcase_util.utils.ApplicationPaths.construct_path.html#dcase_util.utils.ApplicationPaths.construct_path" title="dcase_util.utils.ApplicationPaths.construct_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">construct_path</span></code></a>(path_parts)</p></td>
-<td><p>Generate all combinations of based on path parts</p></td>
+<tr class="row-even"><td><a class="reference internal" href="dcase_util.utils.ApplicationPaths.construct_path.html#dcase_util.utils.ApplicationPaths.construct_path" title="dcase_util.utils.ApplicationPaths.construct_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">construct_path</span></code></a>(path_parts)</td>
+<td>Generate all combinations of based on path parts</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">create</span></code>(self[, paths])</p></td>
-<td><p>Create given paths.</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">create</span></code>([paths])</td>
+<td>Create given paths.</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="dcase_util.utils.ApplicationPaths.directory_name.html#dcase_util.utils.ApplicationPaths.directory_name" title="dcase_util.utils.ApplicationPaths.directory_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">directory_name</span></code></a>(prefix, param_hash)</p></td>
-<td><p>Generate directory name.</p></td>
+<tr class="row-even"><td><a class="reference internal" href="dcase_util.utils.ApplicationPaths.directory_name.html#dcase_util.utils.ApplicationPaths.directory_name" title="dcase_util.utils.ApplicationPaths.directory_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">directory_name</span></code></a>(prefix,&nbsp;param_hash)</td>
+<td>Generate directory name.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">exists</span></code>(self[, path])</p></td>
-<td><p>Checks that path exists</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">exists</span></code>([path])</td>
+<td>Checks that path exists</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">file_count</span></code>(self[, path])</p></td>
-<td><p>File count under given path including sub directories.</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">file_count</span></code>([path])</td>
+<td>File count under given path including sub directories.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">file_list</span></code>(self[, path, recursive, …])</p></td>
-<td><p>Get file list</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">file_list</span></code>([path,&nbsp;recursive,&nbsp;extensions,&nbsp;…])</td>
+<td>Get file list</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="dcase_util.utils.ApplicationPaths.generate.html#dcase_util.utils.ApplicationPaths.generate" title="dcase_util.utils.ApplicationPaths.generate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate</span></code></a>(self, path_base, structure)</p></td>
-<td><p>Generate application paths and include parameter hashes to the paths</p></td>
+<tr class="row-even"><td><a class="reference internal" href="dcase_util.utils.ApplicationPaths.generate.html#dcase_util.utils.ApplicationPaths.generate" title="dcase_util.utils.ApplicationPaths.generate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate</span></code></a>(path_base,&nbsp;structure)</td>
+<td>Generate application paths and include parameter hashes to the paths</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">makedirs</span></code>(self[, path])</p></td>
-<td><p>Create given path.</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">makedirs</span></code>([path])</td>
+<td>Create given path.</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">modify</span></code>(self[, path, path_base, …])</p></td>
-<td><p>Modify path Parameters ———- path : str     Path, if none given one given to class constructor is used.</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">modify</span></code>([path,&nbsp;path_base,&nbsp;…])</td>
+<td>Modify path Parameters ———- path : str     Path, if none given one given to class constructor is used.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">posix</span></code>(self[, path])</p></td>
-<td><p>Converts path to POSIX format</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">posix</span></code>([path])</td>
+<td>Converts path to POSIX format</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">posix_to_nt</span></code>(self[, path])</p></td>
-<td><p>Converts posix formatted path to nt</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">posix_to_nt</span></code>([path])</td>
+<td>Converts posix formatted path to nt</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="dcase_util.utils.ApplicationPaths.save_parameters_to_path.html#dcase_util.utils.ApplicationPaths.save_parameters_to_path" title="dcase_util.utils.ApplicationPaths.save_parameters_to_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_parameters_to_path</span></code></a>(self, path_base, …)</p></td>
-<td><p>Save parameters to each application sub-directory.</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="dcase_util.utils.ApplicationPaths.save_parameters_to_path.html#dcase_util.utils.ApplicationPaths.save_parameters_to_path" title="dcase_util.utils.ApplicationPaths.save_parameters_to_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_parameters_to_path</span></code></a>(path_base,&nbsp;structure)</td>
+<td>Save parameters to each application sub-directory.</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">shorten</span></code>(self[, path, part_count])</p></td>
-<td><p>Shorten path into given parts length</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">shorten</span></code>([path,&nbsp;part_count])</td>
+<td>Shorten path into given parts length</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">size_bytes</span></code>(self[, path])</p></td>
-<td><p>Total byte count of all files under given path.</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">size_bytes</span></code>([path])</td>
+<td>Total byte count of all files under given path.</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">size_string</span></code>(self[, path, show_bytes])</p></td>
-<td><p>Total data size of all files under given path returned in human readable form.</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">size_string</span></code>([path,&nbsp;show_bytes])</td>
+<td>Total data size of all files under given path returned in human readable form.</td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">Attributes</p>
-<table class="longtable docutils align-center">
+<table border="1" class="longtable docutils">
 <colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
+<col width="10%" />
+<col width="90%" />
 </colgroup>
-<tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">logger</span></code></p></td>
-<td><p>Logger instance</p></td>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">logger</span></code></td>
+<td>Logger instance</td>
 </tr>
 </tbody>
 </table>

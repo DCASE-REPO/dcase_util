@@ -1439,6 +1439,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-10">v0.2.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-9">v0.2.9</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-8">v0.2.8</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-7">v0.2.7</a></li>
@@ -1530,231 +1531,251 @@
 <em class="property">class </em><code class="descclassname">dcase_util.files.</code><code class="descname">RemotePackage</code><span class="sig-paren">(</span><em>filename=None</em>, <em>content_type=None</em>, <em>local_md5=None</em>, <em>remote_file=None</em>, <em>remote_md5=None</em>, <em>remote_bytes=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/files/remote.html#RemotePackage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.files.RemotePackage" title="Permalink to this definition">¶</a></dt>
 <dd><p>Remote package class</p>
 <p>Constructor</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>filename</strong><span class="classifier">str</span></dt><dd><p>Local filename.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>filename</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dd><p class="first last">Local filename.</p>
 </dd>
-<dt><strong>content_type</strong><span class="classifier">str or list of str</span></dt><dd><p>Content type, valid labels [‘code’, ‘documentation’, ‘meta’, ‘audio’, ‘features’].</p>
+<dt><strong>content_type</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str or list of str</span></dt>
+<dd><p class="first last">Content type, valid labels [‘code’, ‘documentation’, ‘meta’, ‘audio’, ‘features’].</p>
 </dd>
-<dt><strong>local_md5</strong><span class="classifier">str</span></dt><dd><p>Checksum of local file (MD5).</p>
+<dt><strong>local_md5</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dd><p class="first last">Checksum of local file (MD5).</p>
 </dd>
-<dt><strong>remote_file</strong><span class="classifier">str</span></dt><dd><p>URL to remote filename.</p>
+<dt><strong>remote_file</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dd><p class="first last">URL to remote filename.</p>
 </dd>
-<dt><strong>remote_md5</strong><span class="classifier">str</span></dt><dd><p>Checksum of remote file (MD5).</p>
+<dt><strong>remote_md5</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dd><p class="first last">Checksum of remote file (MD5).</p>
 </dd>
-<dt><strong>remote_bytes</strong><span class="classifier">int</span></dt><dd><p>Remote file size in bytes</p>
+<dt><strong>remote_bytes</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int</span></dt>
+<dd><p class="first last">Remote file size in bytes</p>
 </dd>
 </dl>
-</dd>
-</dl>
+</td>
+</tr>
+</tbody>
+</table>
 <dl class="method">
 <dt id="dcase_util.files.RemotePackage.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>self</em>, <em>filename=None</em>, <em>content_type=None</em>, <em>local_md5=None</em>, <em>remote_file=None</em>, <em>remote_md5=None</em>, <em>remote_bytes=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dcase_util.files.RemotePackage.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>filename=None</em>, <em>content_type=None</em>, <em>local_md5=None</em>, <em>remote_file=None</em>, <em>remote_md5=None</em>, <em>remote_bytes=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dcase_util.files.RemotePackage.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Constructor</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>filename</strong><span class="classifier">str</span></dt><dd><p>Local filename.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>filename</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dd><p class="first last">Local filename.</p>
 </dd>
-<dt><strong>content_type</strong><span class="classifier">str or list of str</span></dt><dd><p>Content type, valid labels [‘code’, ‘documentation’, ‘meta’, ‘audio’, ‘features’].</p>
+<dt><strong>content_type</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str or list of str</span></dt>
+<dd><p class="first last">Content type, valid labels [‘code’, ‘documentation’, ‘meta’, ‘audio’, ‘features’].</p>
 </dd>
-<dt><strong>local_md5</strong><span class="classifier">str</span></dt><dd><p>Checksum of local file (MD5).</p>
+<dt><strong>local_md5</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dd><p class="first last">Checksum of local file (MD5).</p>
 </dd>
-<dt><strong>remote_file</strong><span class="classifier">str</span></dt><dd><p>URL to remote filename.</p>
+<dt><strong>remote_file</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dd><p class="first last">URL to remote filename.</p>
 </dd>
-<dt><strong>remote_md5</strong><span class="classifier">str</span></dt><dd><p>Checksum of remote file (MD5).</p>
+<dt><strong>remote_md5</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dd><p class="first last">Checksum of remote file (MD5).</p>
 </dd>
-<dt><strong>remote_bytes</strong><span class="classifier">int</span></dt><dd><p>Remote file size in bytes</p>
+<dt><strong>remote_bytes</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int</span></dt>
+<dd><p class="first last">Remote file size in bytes</p>
 </dd>
 </dl>
-</dd>
-</dl>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <p class="rubric">Methods</p>
-<table class="longtable docutils align-center">
+<table border="1" class="longtable docutils">
 <colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
+<col width="10%" />
+<col width="90%" />
 </colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dcase_util.files.RemotePackage.__init__" title="dcase_util.files.RemotePackage.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(self[, filename, content_type, …])</p></td>
-<td><p>Constructor</p></td>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#dcase_util.files.RemotePackage.__init__" title="dcase_util.files.RemotePackage.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>([filename,&nbsp;content_type,&nbsp;…])</td>
+<td>Constructor</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">clear</span></code>()</p></td>
-<td><p></p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">clear</span></code>()</td>
+<td></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">compress</span></code>(self[, filename, path, file_list, …])</p></td>
-<td><p>Compress the package.</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">compress</span></code>([filename,&nbsp;path,&nbsp;file_list,&nbsp;size_limit])</td>
+<td>Compress the package.</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">copy</span></code>()</p></td>
-<td><p></p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">copy</span></code>()</td>
+<td></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">delimiter</span></code>(self[, exclude_delimiters])</p></td>
-<td><p>Use csv.sniffer to guess delimiter for CSV file</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">delimiter</span></code>([exclude_delimiters])</td>
+<td>Use csv.sniffer to guess delimiter for CSV file</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">detect_file_format</span></code>(self[, filename])</p></td>
-<td><p>Detect file format from extension</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">detect_file_format</span></code>([filename])</td>
+<td>Detect file format from extension</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="dcase_util.files.RemotePackage.download.html#dcase_util.files.RemotePackage.download" title="dcase_util.files.RemotePackage.download"><code class="xref py py-obj docutils literal notranslate"><span class="pre">download</span></code></a>(self)</p></td>
-<td><p>Download remote file and save it as local file.</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="dcase_util.files.RemotePackage.download.html#dcase_util.files.RemotePackage.download" title="dcase_util.files.RemotePackage.download"><code class="xref py py-obj docutils literal notranslate"><span class="pre">download</span></code></a>()</td>
+<td>Download remote file and save it as local file.</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">empty</span></code>(self)</p></td>
-<td><p>Check if file is empty</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">empty</span></code>()</td>
+<td>Check if file is empty</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">exists</span></code>(self)</p></td>
-<td><p>Checks that file exists</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">exists</span></code>()</td>
+<td>Checks that file exists</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="dcase_util.files.RemotePackage.extract.html#dcase_util.files.RemotePackage.extract" title="dcase_util.files.RemotePackage.extract"><code class="xref py py-obj docutils literal notranslate"><span class="pre">extract</span></code></a>(self[, target_path, overwrite, …])</p></td>
-<td><p>Extract the package.</p></td>
+<tr class="row-even"><td><a class="reference internal" href="dcase_util.files.RemotePackage.extract.html#dcase_util.files.RemotePackage.extract" title="dcase_util.files.RemotePackage.extract"><code class="xref py py-obj docutils literal notranslate"><span class="pre">extract</span></code></a>([target_path,&nbsp;overwrite,&nbsp;…])</td>
+<td>Extract the package.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">filter</span></code>(self[, data, excluded_key_prefix])</p></td>
-<td><p>Filter nested dict</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">filter</span></code>([data,&nbsp;excluded_key_prefix])</td>
+<td>Filter nested dict</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">fromkeys</span></code>(iterable[, value])</p></td>
-<td><p>Returns a new dict with keys from iterable and values equal to value.</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">fromkeys</span></code>($type,&nbsp;iterable[,&nbsp;value])</td>
+<td>Create a new dictionary with keys from iterable and values set to value.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get</span></code>()</p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">get</span></code>($self,&nbsp;key[,&nbsp;default])</td>
+<td>Return the value for key if key is in the dictionary, else default.</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_dump_content</span></code>(self, data)</p></td>
-<td><p>Clean internal content for saving</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_dump_content</span></code>(data)</td>
+<td>Clean internal content for saving</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_file_information</span></code>(self)</p></td>
-<td><p>Get file information, filename</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_file_information</span></code>()</td>
+<td>Get file information, filename</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_hash</span></code>(self[, data])</p></td>
-<td><p>Get unique hash string (md5) for given parameter dict.</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_hash</span></code>([data])</td>
+<td>Get unique hash string (md5) for given parameter dict.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_hash_for_path</span></code>(self[, dotted_path])</p></td>
-<td><p>Get unique hash string for the data under given path.</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_hash_for_path</span></code>([dotted_path])</td>
+<td>Get unique hash string for the data under given path.</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_leaf_path_list</span></code>(self[, target_field, …])</p></td>
-<td><p>Get path list to all leaf node in the nested dict.</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_leaf_path_list</span></code>([target_field,&nbsp;…])</td>
+<td>Get path list to all leaf node in the nested dict.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_path</span></code>(self, path[, default, data])</p></td>
-<td><p>Get value from nested dict with dotted path</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_path</span></code>(path[,&nbsp;default,&nbsp;data])</td>
+<td>Get value from nested dict with dotted path</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="dcase_util.files.RemotePackage.is_content_type.html#dcase_util.files.RemotePackage.is_content_type" title="dcase_util.files.RemotePackage.is_content_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_content_type</span></code></a>(self, content_type)</p></td>
-<td><p>Check that file contains given type of content</p></td>
+<tr class="row-even"><td><a class="reference internal" href="dcase_util.files.RemotePackage.is_content_type.html#dcase_util.files.RemotePackage.is_content_type" title="dcase_util.files.RemotePackage.is_content_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_content_type</span></code></a>(content_type)</td>
+<td>Check that file contains given type of content</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_package</span></code>(self[, filename])</p></td>
-<td><p>Determine if the file is compressed package.</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_package</span></code>([filename])</td>
+<td>Determine if the file is compressed package.</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">items</span></code>()</p></td>
-<td><p></p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">items</span></code>()</td>
+<td></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">keys</span></code>()</p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">keys</span></code>()</td>
+<td></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">load</span></code>(self[, filename, file_format])</p></td>
-<td><p>Load file</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">load</span></code>([filename,&nbsp;file_format])</td>
+<td>Load file</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="dcase_util.files.RemotePackage.local_changed.html#dcase_util.files.RemotePackage.local_changed" title="dcase_util.files.RemotePackage.local_changed"><code class="xref py py-obj docutils literal notranslate"><span class="pre">local_changed</span></code></a>(self)</p></td>
-<td><p>Check does the local file corresponds to remote file (based on checksum or modification times and file size).</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="dcase_util.files.RemotePackage.local_changed.html#dcase_util.files.RemotePackage.local_changed" title="dcase_util.files.RemotePackage.local_changed"><code class="xref py py-obj docutils literal notranslate"><span class="pre">local_changed</span></code></a>()</td>
+<td>Check does the local file corresponds to remote file (based on checksum or modification times and file size).</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="dcase_util.files.RemotePackage.local_exists.html#dcase_util.files.RemotePackage.local_exists" title="dcase_util.files.RemotePackage.local_exists"><code class="xref py py-obj docutils literal notranslate"><span class="pre">local_exists</span></code></a>(self)</p></td>
-<td><p>Check does the local file exists.</p></td>
+<tr class="row-even"><td><a class="reference internal" href="dcase_util.files.RemotePackage.local_exists.html#dcase_util.files.RemotePackage.local_exists" title="dcase_util.files.RemotePackage.local_exists"><code class="xref py py-obj docutils literal notranslate"><span class="pre">local_exists</span></code></a>()</td>
+<td>Check does the local file exists.</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="dcase_util.files.RemotePackage.local_size_string.html#dcase_util.files.RemotePackage.local_size_string" title="dcase_util.files.RemotePackage.local_size_string"><code class="xref py py-obj docutils literal notranslate"><span class="pre">local_size_string</span></code></a>(self)</p></td>
-<td><p>File size of local file in human readable form.</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="dcase_util.files.RemotePackage.local_size_string.html#dcase_util.files.RemotePackage.local_size_string" title="dcase_util.files.RemotePackage.local_size_string"><code class="xref py py-obj docutils literal notranslate"><span class="pre">local_size_string</span></code></a>()</td>
+<td>File size of local file in human readable form.</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">log</span></code>(self[, level])</p></td>
-<td><p>Log container content</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">log</span></code>([level])</td>
+<td>Log container content</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">merge</span></code>(self, override[, target])</p></td>
-<td><p>Recursive dict merge</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">merge</span></code>(override[,&nbsp;target])</td>
+<td>Recursive dict merge</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">pop</span></code>()</p></td>
-<td><p>If key is not found, d is returned if given, otherwise KeyError is raised</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">pop</span></code>(k[,d])</td>
+<td>If key is not found, d is returned if given, otherwise KeyError is raised</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">popitem</span></code>()</p></td>
-<td><p>2-tuple; but raise KeyError if D is empty.</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">popitem</span></code>()</td>
+<td>2-tuple; but raise KeyError if D is empty.</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="dcase_util.files.RemotePackage.remote_exists.html#dcase_util.files.RemotePackage.remote_exists" title="dcase_util.files.RemotePackage.remote_exists"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remote_exists</span></code></a>(self)</p></td>
-<td><p>Check does the remote file exists (based on HTTP status code).</p></td>
+<tr class="row-even"><td><a class="reference internal" href="dcase_util.files.RemotePackage.remote_exists.html#dcase_util.files.RemotePackage.remote_exists" title="dcase_util.files.RemotePackage.remote_exists"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remote_exists</span></code></a>()</td>
+<td>Check does the remote file exists (based on HTTP status code).</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="dcase_util.files.RemotePackage.remote_info.html#dcase_util.files.RemotePackage.remote_info" title="dcase_util.files.RemotePackage.remote_info"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remote_info</span></code></a>(self)</p></td>
-<td><p>Get information about the remove file (status, size, checksum, last modification time).</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="dcase_util.files.RemotePackage.remote_info.html#dcase_util.files.RemotePackage.remote_info" title="dcase_util.files.RemotePackage.remote_info"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remote_info</span></code></a>()</td>
+<td>Get information about the remove file (status, size, checksum, last modification time).</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="dcase_util.files.RemotePackage.remote_size_string.html#dcase_util.files.RemotePackage.remote_size_string" title="dcase_util.files.RemotePackage.remote_size_string"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remote_size_string</span></code></a>(self)</p></td>
-<td><p>File size of remote file in human readable form.</p></td>
+<tr class="row-even"><td><a class="reference internal" href="dcase_util.files.RemotePackage.remote_size_string.html#dcase_util.files.RemotePackage.remote_size_string" title="dcase_util.files.RemotePackage.remote_size_string"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remote_size_string</span></code></a>()</td>
+<td>File size of remote file in human readable form.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code>(self[, filename, file_format])</p></td>
-<td><p>Save file</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code>([filename,&nbsp;file_format])</td>
+<td>Save file</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_path</span></code>(self, path, new_value[, data])</p></td>
-<td><p>Set value in nested dict with dotted path</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_path</span></code>(path,&nbsp;new_value[,&nbsp;data])</td>
+<td>Set value in nested dict with dotted path</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">setdefault</span></code>()</p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">setdefault</span></code>($self,&nbsp;key[,&nbsp;default])</td>
+<td>Insert key with a value of default if key is not in the dictionary.</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">show</span></code>(self[, mode, indent, visualize])</p></td>
-<td><p>Print container content</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">show</span></code>([mode,&nbsp;indent,&nbsp;visualize])</td>
+<td>Print container content</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_html</span></code>(self[, indent])</p></td>
-<td><p>Get container information in a HTML formatted string</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_html</span></code>([indent])</td>
+<td>Get container information in a HTML formatted string</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_string</span></code>(self[, ui, indent])</p></td>
-<td><p>Get container information in a string</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_string</span></code>([ui,&nbsp;indent])</td>
+<td>Get container information in a string</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code>()</p></td>
-<td><p>If E is present and has a .keys() method, then does:  for k in E: D[k] = E[k] If E is present and lacks a .keys() method, then does:  for k, v in E: D[k] = v In either case, this is followed by: for k in F:  D[k] = F[k]</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code>([E,&nbsp;]**F)</td>
+<td>If E is present and has a .keys() method, then does:  for k in E: D[k] = E[k] If E is present and lacks a .keys() method, then does:  for k, v in E: D[k] = v In either case, this is followed by: for k in F:  D[k] = F[k]</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_format</span></code>(self)</p></td>
-<td><p>Validate file format</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_format</span></code>()</td>
+<td>Validate file format</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">values</span></code>()</p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">values</span></code>()</td>
+<td></td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">Attributes</p>
-<table class="longtable docutils align-center">
+<table border="1" class="longtable docutils">
 <colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
+<col width="10%" />
+<col width="90%" />
 </colgroup>
-<tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">bytes</span></code></p></td>
-<td><p>File size in bytes</p></td>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">bytes</span></code></td>
+<td>File size in bytes</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="dcase_util.files.RemotePackage.local_bytes.html#dcase_util.files.RemotePackage.local_bytes" title="dcase_util.files.RemotePackage.local_bytes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">local_bytes</span></code></a></p></td>
-<td><p>File size of local file in bytes.</p></td>
+<tr class="row-even"><td><a class="reference internal" href="dcase_util.files.RemotePackage.local_bytes.html#dcase_util.files.RemotePackage.local_bytes" title="dcase_util.files.RemotePackage.local_bytes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">local_bytes</span></code></a></td>
+<td>File size of local file in bytes.</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="dcase_util.files.RemotePackage.local_md5.html#dcase_util.files.RemotePackage.local_md5" title="dcase_util.files.RemotePackage.local_md5"><code class="xref py py-obj docutils literal notranslate"><span class="pre">local_md5</span></code></a></p></td>
-<td><p>Checksum for local file.</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="dcase_util.files.RemotePackage.local_md5.html#dcase_util.files.RemotePackage.local_md5" title="dcase_util.files.RemotePackage.local_md5"><code class="xref py py-obj docutils literal notranslate"><span class="pre">local_md5</span></code></a></td>
+<td>Checksum for local file.</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="dcase_util.files.RemotePackage.local_modified.html#dcase_util.files.RemotePackage.local_modified" title="dcase_util.files.RemotePackage.local_modified"><code class="xref py py-obj docutils literal notranslate"><span class="pre">local_modified</span></code></a></p></td>
-<td><p>Modification timestamp for local file.</p></td>
+<tr class="row-even"><td><a class="reference internal" href="dcase_util.files.RemotePackage.local_modified.html#dcase_util.files.RemotePackage.local_modified" title="dcase_util.files.RemotePackage.local_modified"><code class="xref py py-obj docutils literal notranslate"><span class="pre">local_modified</span></code></a></td>
+<td>Modification timestamp for local file.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">logger</span></code></p></td>
-<td><p>Logger instance</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">logger</span></code></td>
+<td>Logger instance</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">md5</span></code></p></td>
-<td><p>Checksum for file.</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">md5</span></code></td>
+<td>Checksum for file.</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="dcase_util.files.RemotePackage.package_password.html#dcase_util.files.RemotePackage.package_password" title="dcase_util.files.RemotePackage.package_password"><code class="xref py py-obj docutils literal notranslate"><span class="pre">package_password</span></code></a></p></td>
-<td><p>Package password</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="dcase_util.files.RemotePackage.package_password.html#dcase_util.files.RemotePackage.package_password" title="dcase_util.files.RemotePackage.package_password"><code class="xref py py-obj docutils literal notranslate"><span class="pre">package_password</span></code></a></td>
+<td>Package password</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="dcase_util.files.RemotePackage.remote_bytes.html#dcase_util.files.RemotePackage.remote_bytes" title="dcase_util.files.RemotePackage.remote_bytes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remote_bytes</span></code></a></p></td>
-<td><p>File size of remote file.</p></td>
+<tr class="row-even"><td><a class="reference internal" href="dcase_util.files.RemotePackage.remote_bytes.html#dcase_util.files.RemotePackage.remote_bytes" title="dcase_util.files.RemotePackage.remote_bytes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remote_bytes</span></code></a></td>
+<td>File size of remote file.</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="dcase_util.files.RemotePackage.remote_file.html#dcase_util.files.RemotePackage.remote_file" title="dcase_util.files.RemotePackage.remote_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remote_file</span></code></a></p></td>
-<td><p>URL to remote file</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="dcase_util.files.RemotePackage.remote_file.html#dcase_util.files.RemotePackage.remote_file" title="dcase_util.files.RemotePackage.remote_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remote_file</span></code></a></td>
+<td>URL to remote file</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="dcase_util.files.RemotePackage.remote_modified.html#dcase_util.files.RemotePackage.remote_modified" title="dcase_util.files.RemotePackage.remote_modified"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remote_modified</span></code></a></p></td>
-<td><p>Last modification time for remote file.</p></td>
+<tr class="row-even"><td><a class="reference internal" href="dcase_util.files.RemotePackage.remote_modified.html#dcase_util.files.RemotePackage.remote_modified" title="dcase_util.files.RemotePackage.remote_modified"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remote_modified</span></code></a></td>
+<td>Last modification time for remote file.</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="dcase_util.files.RemotePackage.remote_status.html#dcase_util.files.RemotePackage.remote_status" title="dcase_util.files.RemotePackage.remote_status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remote_status</span></code></a></p></td>
-<td><p>Status of remote file.</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="dcase_util.files.RemotePackage.remote_status.html#dcase_util.files.RemotePackage.remote_status" title="dcase_util.files.RemotePackage.remote_status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remote_status</span></code></a></td>
+<td>Status of remote file.</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">valid_content_types</span></code></p></td>
-<td><p></p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">valid_content_types</span></code></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">valid_formats</span></code></p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">valid_formats</span></code></td>
+<td></td>
 </tr>
 </tbody>
 </table>

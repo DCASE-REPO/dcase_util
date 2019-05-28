@@ -1439,6 +1439,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-10">v0.2.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-9">v0.2.9</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-8">v0.2.8</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-7">v0.2.7</a></li>
@@ -1527,48 +1528,62 @@
 <h1>dcase_util.data.BinaryMatrixEncoder.plot<a class="headerlink" href="#dcase-util-data-binarymatrixencoder-plot" title="Permalink to this headline">¶</a></h1>
 <dl class="method">
 <dt id="dcase_util.data.BinaryMatrixEncoder.plot">
-<code class="descclassname">BinaryMatrixEncoder.</code><code class="descname">plot</code><span class="sig-paren">(</span><em>self</em>, <em>plot=True</em>, <em>binary_matrix=None</em>, <em>data_container=None</em>, <em>figsize=None</em>, <em>panel_title=None</em>, <em>binary_panel_title='Binary matrix'</em>, <em>data_panel_title='Data'</em>, <em>panel_title_position='right'</em>, <em>color='binary'</em><span class="sig-paren">)</span><a class="headerlink" href="#dcase_util.data.BinaryMatrixEncoder.plot" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">BinaryMatrixEncoder.</code><code class="descname">plot</code><span class="sig-paren">(</span><em>plot=True</em>, <em>binary_matrix=None</em>, <em>data_container=None</em>, <em>figsize=None</em>, <em>panel_title=None</em>, <em>binary_panel_title='Binary matrix'</em>, <em>data_panel_title='Data'</em>, <em>panel_title_position='right'</em>, <em>color='binary'</em><span class="sig-paren">)</span><a class="headerlink" href="#dcase_util.data.BinaryMatrixEncoder.plot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Visualize binary matrix, and optionally synced data matrix.</p>
 <p>For example, this can be used to visualize sound event activity along with the acoustic features.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>plot</strong><span class="classifier">bool</span></dt><dd><p>If true, figure is shown automatically. Set to False if collecting multiple plots into same figure
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>plot</strong> <span class="classifier-delimiter">:</span> <span class="classifier">bool</span></dt>
+<dd><p class="first last">If true, figure is shown automatically. Set to False if collecting multiple plots into same figure
 outside this method.
 Default value True</p>
 </dd>
-<dt><strong>binary_matrix</strong><span class="classifier">numpy.ndarray</span></dt><dd><p>Binary matrix, if None given internal data used.
+<dt><strong>binary_matrix</strong> <span class="classifier-delimiter">:</span> <span class="classifier">numpy.ndarray</span></dt>
+<dd><p class="first last">Binary matrix, if None given internal data used.
 Default value None</p>
 </dd>
-<dt><strong>data_container</strong><span class="classifier">DataContainer</span></dt><dd><p>Extra data matrix to be shown along with binary matrix.
+<dt><strong>data_container</strong> <span class="classifier-delimiter">:</span> <span class="classifier">DataContainer</span></dt>
+<dd><p class="first last">Extra data matrix to be shown along with binary matrix.
 Default value None</p>
 </dd>
-<dt><strong>figsize</strong><span class="classifier">tuple</span></dt><dd><p>Size of the figure. If None given, default size (10,5) is used.
+<dt><strong>figsize</strong> <span class="classifier-delimiter">:</span> <span class="classifier">tuple</span></dt>
+<dd><p class="first last">Size of the figure. If None given, default size (10,5) is used.
 Default value None</p>
 </dd>
-<dt><strong>panel_title</strong><span class="classifier">str</span></dt><dd><p>Panel title (ylabel for first subplot)
+<dt><strong>panel_title</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dd><p class="first last">Panel title (ylabel for first subplot)
 Default value None</p>
 </dd>
-<dt><strong>binary_panel_title</strong><span class="classifier">str</span></dt><dd><p>Binary panel title (ylabel for first subplot)
+<dt><strong>binary_panel_title</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dd><p class="first last">Binary panel title (ylabel for first subplot)
 Default value “Binary matrix”</p>
 </dd>
-<dt><strong>data_panel_title</strong><span class="classifier">str</span></dt><dd><p>Data panel title (ylabel for second subplot)
+<dt><strong>data_panel_title</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dd><p class="first last">Data panel title (ylabel for second subplot)
 Default value “Data”</p>
 </dd>
-<dt><strong>panel_title_position</strong><span class="classifier">str</span></dt><dd><p>Panel title position [‘left’, ‘right’]
+<dt><strong>panel_title_position</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dd><p class="first last">Panel title position [‘left’, ‘right’]
 Default value “right”</p>
 </dd>
-<dt><strong>color</strong><span class="classifier">str</span></dt><dd><p>Color scheme used [‘binary’, ‘gray’, ‘purple’, ‘blue’, ‘green’, ‘orange’, ‘red’]
+<dt><strong>color</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dd><p class="first last">Color scheme used [‘binary’, ‘gray’, ‘purple’, ‘blue’, ‘green’, ‘orange’, ‘red’]
 Default value ‘binary’</p>
 </dd>
 </dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>None</dt><dd></dd>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>None</strong></dt>
+<dd></dd>
 </dl>
-</dd>
-</dl>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </div>

@@ -1439,6 +1439,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-10">v0.2.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-9">v0.2.9</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-8">v0.2.8</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-7">v0.2.7</a></li>
@@ -1530,76 +1531,86 @@
 <em class="property">class </em><code class="descclassname">dcase_util.tools.</code><code class="descname">BibtexProcessor</code><span class="sig-paren">(</span><em>year=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/tools/bibtex.html#BibtexProcessor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.tools.BibtexProcessor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Simple Bibtex field processing class to prepare bibtex entries for the challenge and workshop submissions.</p>
 <p>Constructor</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>year</strong><span class="classifier">int</span></dt><dd><p>Year</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>year</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int</span></dt>
+<dd><p class="first last">Year</p>
 </dd>
 </dl>
-</dd>
-</dl>
+</td>
+</tr>
+</tbody>
+</table>
 <dl class="method">
 <dt id="dcase_util.tools.BibtexProcessor.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>self</em>, <em>year=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/tools/bibtex.html#BibtexProcessor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.tools.BibtexProcessor.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>year=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/tools/bibtex.html#BibtexProcessor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.tools.BibtexProcessor.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Constructor</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>year</strong><span class="classifier">int</span></dt><dd><p>Year</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>year</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int</span></dt>
+<dd><p class="first last">Year</p>
 </dd>
 </dl>
-</dd>
-</dl>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <p class="rubric">Methods</p>
-<table class="longtable docutils align-center">
+<table border="1" class="longtable docutils">
 <colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
+<col width="10%" />
+<col width="90%" />
 </colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dcase_util.tools.BibtexProcessor.__init__" title="dcase_util.tools.BibtexProcessor.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(self[, year])</p></td>
-<td><p>Constructor</p></td>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#dcase_util.tools.BibtexProcessor.__init__" title="dcase_util.tools.BibtexProcessor.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>([year])</td>
+<td>Constructor</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="dcase_util.tools.BibtexProcessor.abstract.html#dcase_util.tools.BibtexProcessor.abstract" title="dcase_util.tools.BibtexProcessor.abstract"><code class="xref py py-obj docutils literal notranslate"><span class="pre">abstract</span></code></a>(abstract)</p></td>
-<td><p>Process publication abstract.</p></td>
+<tr class="row-even"><td><a class="reference internal" href="dcase_util.tools.BibtexProcessor.abstract.html#dcase_util.tools.BibtexProcessor.abstract" title="dcase_util.tools.BibtexProcessor.abstract"><code class="xref py py-obj docutils literal notranslate"><span class="pre">abstract</span></code></a>(abstract)</td>
+<td>Process publication abstract.</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="dcase_util.tools.BibtexProcessor.affiliation_list.html#dcase_util.tools.BibtexProcessor.affiliation_list" title="dcase_util.tools.BibtexProcessor.affiliation_list"><code class="xref py py-obj docutils literal notranslate"><span class="pre">affiliation_list</span></code></a>(self, authors)</p></td>
-<td><p>Collect all unique affiliations</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="dcase_util.tools.BibtexProcessor.affiliation_list.html#dcase_util.tools.BibtexProcessor.affiliation_list" title="dcase_util.tools.BibtexProcessor.affiliation_list"><code class="xref py py-obj docutils literal notranslate"><span class="pre">affiliation_list</span></code></a>(authors)</td>
+<td>Collect all unique affiliations</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="dcase_util.tools.BibtexProcessor.affiliation_list_fancy.html#dcase_util.tools.BibtexProcessor.affiliation_list_fancy" title="dcase_util.tools.BibtexProcessor.affiliation_list_fancy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">affiliation_list_fancy</span></code></a>(self, authors[, …])</p></td>
-<td><p>Affiliation string with indexes.</p></td>
+<tr class="row-even"><td><a class="reference internal" href="dcase_util.tools.BibtexProcessor.affiliation_list_fancy.html#dcase_util.tools.BibtexProcessor.affiliation_list_fancy" title="dcase_util.tools.BibtexProcessor.affiliation_list_fancy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">affiliation_list_fancy</span></code></a>(authors[,&nbsp;…])</td>
+<td>Affiliation string with indexes.</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="dcase_util.tools.BibtexProcessor.affiliation_str.html#dcase_util.tools.BibtexProcessor.affiliation_str" title="dcase_util.tools.BibtexProcessor.affiliation_str"><code class="xref py py-obj docutils literal notranslate"><span class="pre">affiliation_str</span></code></a>(self, data)</p></td>
-<td><p>Affiliation string.</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="dcase_util.tools.BibtexProcessor.affiliation_str.html#dcase_util.tools.BibtexProcessor.affiliation_str" title="dcase_util.tools.BibtexProcessor.affiliation_str"><code class="xref py py-obj docutils literal notranslate"><span class="pre">affiliation_str</span></code></a>(data)</td>
+<td>Affiliation string.</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="dcase_util.tools.BibtexProcessor.authors.html#dcase_util.tools.BibtexProcessor.authors" title="dcase_util.tools.BibtexProcessor.authors"><code class="xref py py-obj docutils literal notranslate"><span class="pre">authors</span></code></a>(authors)</p></td>
-<td><p>Author list in format [lastname1], [firstname1] and [lastname2], [firstname2].</p></td>
+<tr class="row-even"><td><a class="reference internal" href="dcase_util.tools.BibtexProcessor.authors.html#dcase_util.tools.BibtexProcessor.authors" title="dcase_util.tools.BibtexProcessor.authors"><code class="xref py py-obj docutils literal notranslate"><span class="pre">authors</span></code></a>(authors)</td>
+<td>Author list in format [lastname1], [firstname1] and [lastname2], [firstname2].</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="dcase_util.tools.BibtexProcessor.authors_fancy.html#dcase_util.tools.BibtexProcessor.authors_fancy" title="dcase_util.tools.BibtexProcessor.authors_fancy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">authors_fancy</span></code></a>(self, authors[, affiliation_list])</p></td>
-<td><p>Author list with affiliation indexes.</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="dcase_util.tools.BibtexProcessor.authors_fancy.html#dcase_util.tools.BibtexProcessor.authors_fancy" title="dcase_util.tools.BibtexProcessor.authors_fancy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">authors_fancy</span></code></a>(authors[,&nbsp;affiliation_list])</td>
+<td>Author list with affiliation indexes.</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="dcase_util.tools.BibtexProcessor.key.html#dcase_util.tools.BibtexProcessor.key" title="dcase_util.tools.BibtexProcessor.key"><code class="xref py py-obj docutils literal notranslate"><span class="pre">key</span></code></a>(self, authors[, title, year])</p></td>
-<td><p>Bibtex key generation.</p></td>
+<tr class="row-even"><td><a class="reference internal" href="dcase_util.tools.BibtexProcessor.key.html#dcase_util.tools.BibtexProcessor.key" title="dcase_util.tools.BibtexProcessor.key"><code class="xref py py-obj docutils literal notranslate"><span class="pre">key</span></code></a>(authors[,&nbsp;title,&nbsp;year])</td>
+<td>Bibtex key generation.</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="dcase_util.tools.BibtexProcessor.submissions_fancy.html#dcase_util.tools.BibtexProcessor.submissions_fancy" title="dcase_util.tools.BibtexProcessor.submissions_fancy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">submissions_fancy</span></code></a>(submissions[, css_class])</p></td>
-<td><p>HTML string with submission labels</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="dcase_util.tools.BibtexProcessor.submissions_fancy.html#dcase_util.tools.BibtexProcessor.submissions_fancy" title="dcase_util.tools.BibtexProcessor.submissions_fancy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">submissions_fancy</span></code></a>(submissions[,&nbsp;css_class])</td>
+<td>HTML string with submission labels</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="dcase_util.tools.BibtexProcessor.title.html#dcase_util.tools.BibtexProcessor.title" title="dcase_util.tools.BibtexProcessor.title"><code class="xref py py-obj docutils literal notranslate"><span class="pre">title</span></code></a>(self, title)</p></td>
-<td><p>Process publication title.</p></td>
+<tr class="row-even"><td><a class="reference internal" href="dcase_util.tools.BibtexProcessor.title.html#dcase_util.tools.BibtexProcessor.title" title="dcase_util.tools.BibtexProcessor.title"><code class="xref py py-obj docutils literal notranslate"><span class="pre">title</span></code></a>(title)</td>
+<td>Process publication title.</td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">Attributes</p>
-<table class="longtable docutils align-center">
+<table border="1" class="longtable docutils">
 <colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
+<col width="10%" />
+<col width="90%" />
 </colgroup>
-<tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">logger</span></code></p></td>
-<td><p></p></td>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">logger</span></code></td>
+<td></td>
 </tr>
 </tbody>
 </table>

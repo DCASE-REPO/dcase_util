@@ -1439,6 +1439,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-10">v0.2.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-9">v0.2.9</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-8">v0.2.8</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-7">v0.2.7</a></li>
@@ -1530,143 +1531,163 @@
 <em class="property">class </em><code class="descclassname">dcase_util.processors.</code><code class="descname">RepositorySequencingProcessor</code><span class="sig-paren">(</span><em>sequence_length=10</em>, <em>hop_length=None</em>, <em>padding=None</em>, <em>shift=0</em>, <em>shift_border='roll'</em>, <em>required_data_amount_per_segment=0.9</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/processors/data.html#RepositorySequencingProcessor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.processors.RepositorySequencingProcessor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Data sequencing processor</p>
 <p>__init__ method.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>sequence_length</strong><span class="classifier">int</span></dt><dd><p>Sequence length
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>sequence_length</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int</span></dt>
+<dd><p class="first last">Sequence length
 Default value 10</p>
 </dd>
-<dt><strong>hop_length</strong><span class="classifier">int</span></dt><dd><p>Hop value of when forming the sequence, if None then hop length equals to sequence_length (non-overlapping sequences).
+<dt><strong>hop_length</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int</span></dt>
+<dd><p class="first last">Hop value of when forming the sequence, if None then hop length equals to sequence_length (non-overlapping sequences).
 Default value None</p>
 </dd>
-<dt><strong>padding: str</strong></dt><dd><p>How data is treated at the boundaries [None, ‘zero’, ‘repeat’]
+<dt><strong>padding: str</strong></dt>
+<dd><p class="first last">How data is treated at the boundaries [None, ‘zero’, ‘repeat’]
 Default value None</p>
 </dd>
-<dt><strong>shift_border</strong><span class="classifier">string, [‘roll’, ‘shift’]</span></dt><dd><p>Sequence border handling when doing temporal shifting.
+<dt><strong>shift_border</strong> <span class="classifier-delimiter">:</span> <span class="classifier">string, [‘roll’, ‘shift’]</span></dt>
+<dd><p class="first last">Sequence border handling when doing temporal shifting.
 Default value roll</p>
 </dd>
-<dt><strong>shift</strong><span class="classifier">int</span></dt><dd><p>Sequencing grid shift.
+<dt><strong>shift</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int</span></dt>
+<dd><p class="first last">Sequencing grid shift.
 Default value 0</p>
 </dd>
-<dt><strong>required_data_amount_per_segment</strong><span class="classifier">float [0,1]</span></dt><dd><p>Percentage of valid data items per segment there need to be for valid segment. Use this parameter to
+<dt><strong>required_data_amount_per_segment</strong> <span class="classifier-delimiter">:</span> <span class="classifier">float [0,1]</span></dt>
+<dd><p class="first last">Percentage of valid data items per segment there need to be for valid segment. Use this parameter to
 filter out part of the non-full segments.
 Default value 0.9</p>
 </dd>
 </dl>
-</dd>
-</dl>
+</td>
+</tr>
+</tbody>
+</table>
 <dl class="method">
 <dt id="dcase_util.processors.RepositorySequencingProcessor.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>self</em>, <em>sequence_length=10</em>, <em>hop_length=None</em>, <em>padding=None</em>, <em>shift=0</em>, <em>shift_border='roll'</em>, <em>required_data_amount_per_segment=0.9</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/processors/data.html#RepositorySequencingProcessor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.processors.RepositorySequencingProcessor.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>sequence_length=10</em>, <em>hop_length=None</em>, <em>padding=None</em>, <em>shift=0</em>, <em>shift_border='roll'</em>, <em>required_data_amount_per_segment=0.9</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/processors/data.html#RepositorySequencingProcessor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.processors.RepositorySequencingProcessor.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>__init__ method.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>sequence_length</strong><span class="classifier">int</span></dt><dd><p>Sequence length
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>sequence_length</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int</span></dt>
+<dd><p class="first last">Sequence length
 Default value 10</p>
 </dd>
-<dt><strong>hop_length</strong><span class="classifier">int</span></dt><dd><p>Hop value of when forming the sequence, if None then hop length equals to sequence_length (non-overlapping sequences).
+<dt><strong>hop_length</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int</span></dt>
+<dd><p class="first last">Hop value of when forming the sequence, if None then hop length equals to sequence_length (non-overlapping sequences).
 Default value None</p>
 </dd>
-<dt><strong>padding: str</strong></dt><dd><p>How data is treated at the boundaries [None, ‘zero’, ‘repeat’]
+<dt><strong>padding: str</strong></dt>
+<dd><p class="first last">How data is treated at the boundaries [None, ‘zero’, ‘repeat’]
 Default value None</p>
 </dd>
-<dt><strong>shift_border</strong><span class="classifier">string, [‘roll’, ‘shift’]</span></dt><dd><p>Sequence border handling when doing temporal shifting.
+<dt><strong>shift_border</strong> <span class="classifier-delimiter">:</span> <span class="classifier">string, [‘roll’, ‘shift’]</span></dt>
+<dd><p class="first last">Sequence border handling when doing temporal shifting.
 Default value roll</p>
 </dd>
-<dt><strong>shift</strong><span class="classifier">int</span></dt><dd><p>Sequencing grid shift.
+<dt><strong>shift</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int</span></dt>
+<dd><p class="first last">Sequencing grid shift.
 Default value 0</p>
 </dd>
-<dt><strong>required_data_amount_per_segment</strong><span class="classifier">float [0,1]</span></dt><dd><p>Percentage of valid data items per segment there need to be for valid segment. Use this parameter to
+<dt><strong>required_data_amount_per_segment</strong> <span class="classifier-delimiter">:</span> <span class="classifier">float [0,1]</span></dt>
+<dd><p class="first last">Percentage of valid data items per segment there need to be for valid segment. Use this parameter to
 filter out part of the non-full segments.
 Default value 0.9</p>
 </dd>
 </dl>
-</dd>
-</dl>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <p class="rubric">Methods</p>
-<table class="longtable docutils align-center">
+<table border="1" class="longtable docutils">
 <colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
+<col width="10%" />
+<col width="90%" />
 </colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dcase_util.processors.RepositorySequencingProcessor.__init__" title="dcase_util.processors.RepositorySequencingProcessor.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(self[, sequence_length, …])</p></td>
-<td><p>__init__ method.</p></td>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#dcase_util.processors.RepositorySequencingProcessor.__init__" title="dcase_util.processors.RepositorySequencingProcessor.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>([sequence_length,&nbsp;hop_length,&nbsp;…])</td>
+<td>__init__ method.</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">delimiter</span></code>(self[, exclude_delimiters])</p></td>
-<td><p>Use csv.sniffer to guess delimiter for CSV file</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">delimiter</span></code>([exclude_delimiters])</td>
+<td>Use csv.sniffer to guess delimiter for CSV file</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">detect_file_format</span></code>(self[, filename])</p></td>
-<td><p>Detect file format from extension</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">detect_file_format</span></code>([filename])</td>
+<td>Detect file format from extension</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">empty</span></code>(self)</p></td>
-<td><p>Check if file is empty</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">empty</span></code>()</td>
+<td>Check if file is empty</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">exists</span></code>(self)</p></td>
-<td><p>Checks that file exists</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">exists</span></code>()</td>
+<td>Checks that file exists</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_file_information</span></code>(self)</p></td>
-<td><p>Get file information, filename</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_file_information</span></code>()</td>
+<td>Get file information, filename</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_processing_chain_item</span></code>(self)</p></td>
-<td><p>Get processing chain item with current Processor data.</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_processing_chain_item</span></code>()</td>
+<td>Get processing chain item with current Processor data.</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_package</span></code>(self[, filename])</p></td>
-<td><p>Determine if the file is compressed package.</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_package</span></code>([filename])</td>
+<td>Determine if the file is compressed package.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">load</span></code>(self[, filename])</p></td>
-<td><p>Load file</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">load</span></code>([filename])</td>
+<td>Load file</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">log</span></code>(self[, level])</p></td>
-<td><p>Log container content</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">log</span></code>([level])</td>
+<td>Log container content</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="dcase_util.processors.RepositorySequencingProcessor.process.html#dcase_util.processors.RepositorySequencingProcessor.process" title="dcase_util.processors.RepositorySequencingProcessor.process"><code class="xref py py-obj docutils literal notranslate"><span class="pre">process</span></code></a>(self[, data, store_processing_chain])</p></td>
-<td><p>Process</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="dcase_util.processors.RepositorySequencingProcessor.process.html#dcase_util.processors.RepositorySequencingProcessor.process" title="dcase_util.processors.RepositorySequencingProcessor.process"><code class="xref py py-obj docutils literal notranslate"><span class="pre">process</span></code></a>([data,&nbsp;store_processing_chain])</td>
+<td>Process</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code>(self[, filename])</p></td>
-<td><p>Save file</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code>([filename])</td>
+<td>Save file</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">show</span></code>(self[, mode, indent, visualize])</p></td>
-<td><p>Print container content</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">show</span></code>([mode,&nbsp;indent,&nbsp;visualize])</td>
+<td>Print container content</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_html</span></code>(self[, indent])</p></td>
-<td><p>Get container information in a HTML formatted string</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_html</span></code>([indent])</td>
+<td>Get container information in a HTML formatted string</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_string</span></code>(self[, ui, indent])</p></td>
-<td><p>Get container information in a string</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_string</span></code>([ui,&nbsp;indent])</td>
+<td>Get container information in a string</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_format</span></code>(self)</p></td>
-<td><p>Validate file format</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_format</span></code>()</td>
+<td>Validate file format</td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">Attributes</p>
-<table class="longtable docutils align-center">
+<table border="1" class="longtable docutils">
 <colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
+<col width="10%" />
+<col width="90%" />
 </colgroup>
-<tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">bytes</span></code></p></td>
-<td><p>File size in bytes</p></td>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">bytes</span></code></td>
+<td>File size in bytes</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">input_type</span></code></p></td>
-<td><p>Input data type</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">input_type</span></code></td>
+<td>Input data type</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">logger</span></code></p></td>
-<td><p>Logger instance</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">logger</span></code></td>
+<td>Logger instance</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">md5</span></code></p></td>
-<td><p>Checksum for file.</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">md5</span></code></td>
+<td>Checksum for file.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">output_type</span></code></p></td>
-<td><p>Output data type</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">output_type</span></code></td>
+<td>Output data type</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">valid_formats</span></code></p></td>
-<td><p></p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">valid_formats</span></code></td>
+<td></td>
 </tr>
 </tbody>
 </table>

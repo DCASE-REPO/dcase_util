@@ -1439,6 +1439,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-10">v0.2.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-9">v0.2.9</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-8">v0.2.8</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-7">v0.2.7</a></li>
@@ -1527,37 +1528,48 @@
 <h1>dcase_util.containers.MetaDataContainer.filter_time_segment<a class="headerlink" href="#dcase-util-containers-metadatacontainer-filter-time-segment" title="Permalink to this headline">¶</a></h1>
 <dl class="method">
 <dt id="dcase_util.containers.MetaDataContainer.filter_time_segment">
-<code class="descclassname">MetaDataContainer.</code><code class="descname">filter_time_segment</code><span class="sig-paren">(</span><em>self</em>, <em>start=None</em>, <em>stop=None</em>, <em>duration=None</em>, <em>filename=None</em>, <em>zero_time=True</em>, <em>trim=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/containers/metadata.html#MetaDataContainer.filter_time_segment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.containers.MetaDataContainer.filter_time_segment" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">MetaDataContainer.</code><code class="descname">filter_time_segment</code><span class="sig-paren">(</span><em>start=None</em>, <em>stop=None</em>, <em>duration=None</em>, <em>filename=None</em>, <em>zero_time=True</em>, <em>trim=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/containers/metadata.html#MetaDataContainer.filter_time_segment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.containers.MetaDataContainer.filter_time_segment" title="Permalink to this definition">¶</a></dt>
 <dd><p>Filter time segment</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>start</strong><span class="classifier">float &gt; 0.0</span></dt><dd><p>Segment start, seconds
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>start</strong> <span class="classifier-delimiter">:</span> <span class="classifier">float &gt; 0.0</span></dt>
+<dd><p class="first last">Segment start, seconds
 Default value None</p>
 </dd>
-<dt><strong>stop</strong><span class="classifier">float &gt; 0.0</span></dt><dd><p>Segment end, seconds
+<dt><strong>stop</strong> <span class="classifier-delimiter">:</span> <span class="classifier">float &gt; 0.0</span></dt>
+<dd><p class="first last">Segment end, seconds
 Default value None</p>
 </dd>
-<dt><strong>duration</strong><span class="classifier">float</span></dt><dd><p>Segment duration, seconds
+<dt><strong>duration</strong> <span class="classifier-delimiter">:</span> <span class="classifier">float</span></dt>
+<dd><p class="first last">Segment duration, seconds
 Default value None</p>
 </dd>
-<dt><strong>filename</strong><span class="classifier">str</span></dt><dd><p>Filename to filter
+<dt><strong>filename</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dd><p class="first last">Filename to filter
 Default value None</p>
 </dd>
-<dt><strong>zero_time</strong><span class="classifier">bool</span></dt><dd><p>Convert timestamps in respect to the segment start
+<dt><strong>zero_time</strong> <span class="classifier-delimiter">:</span> <span class="classifier">bool</span></dt>
+<dd><p class="first last">Convert timestamps in respect to the segment start
 Default value True</p>
 </dd>
-<dt><strong>trim</strong><span class="classifier">bool</span></dt><dd><p>Trim event onsets and offset according to segment start and stop times.
+<dt><strong>trim</strong> <span class="classifier-delimiter">:</span> <span class="classifier">bool</span></dt>
+<dd><p class="first last">Trim event onsets and offset according to segment start and stop times.
 Default value True</p>
 </dd>
 </dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>MetaDataContainer</dt><dd></dd>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>MetaDataContainer</strong></dt>
+<dd></dd>
 </dl>
-</dd>
-</dl>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </div>

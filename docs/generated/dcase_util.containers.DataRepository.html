@@ -1439,6 +1439,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-10">v0.2.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-9">v0.2.9</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-8">v0.2.8</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-7">v0.2.7</a></li>
@@ -1531,190 +1532,204 @@
 <dd><p>Data repository container class to store multiple DataContainers together.</p>
 <p>Containers are stored in a dict, label is used as dictionary key and value is associated data container.</p>
 <p>Constructor</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>filename: str or dict</strong></dt><dd><p>Either one filename (str) or multiple filenames in a dictionary. Dictionary based parameter is used to
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>filename: str or dict</strong></dt>
+<dd><p class="first last">Either one filename (str) or multiple filenames in a dictionary. Dictionary based parameter is used to
 construct the repository from separate FeatureContainers, two formats for the dictionary is supported:
 1) label as key, and filename as value, and 2) two-level dictionary label as key1, stream as
 key2 and filename as value.</p>
 </dd>
-<dt><strong>default_stream_id</strong><span class="classifier">str or int</span></dt><dd><p>Default stream id used when accessing data
+<dt><strong>default_stream_id</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str or int</span></dt>
+<dd><p class="first last">Default stream id used when accessing data
 Default value 0</p>
 </dd>
-<dt><strong>processing_chain</strong><span class="classifier">ProcessingChain</span></dt><dd><p>Processing chain to be included into repository
+<dt><strong>processing_chain</strong> <span class="classifier-delimiter">:</span> <span class="classifier">ProcessingChain</span></dt>
+<dd><p class="first last">Processing chain to be included into repository
 Default value None</p>
 </dd>
 </dl>
-</dd>
-</dl>
+</td>
+</tr>
+</tbody>
+</table>
 <dl class="method">
 <dt id="dcase_util.containers.DataRepository.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>self</em>, <em>data=None</em>, <em>filename=None</em>, <em>default_stream_id=0</em>, <em>processing_chain=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/containers/data.html#DataRepository.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.containers.DataRepository.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>data=None</em>, <em>filename=None</em>, <em>default_stream_id=0</em>, <em>processing_chain=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/containers/data.html#DataRepository.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.containers.DataRepository.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Constructor</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>filename: str or dict</strong></dt><dd><p>Either one filename (str) or multiple filenames in a dictionary. Dictionary based parameter is used to
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>filename: str or dict</strong></dt>
+<dd><p class="first last">Either one filename (str) or multiple filenames in a dictionary. Dictionary based parameter is used to
 construct the repository from separate FeatureContainers, two formats for the dictionary is supported:
 1) label as key, and filename as value, and 2) two-level dictionary label as key1, stream as
 key2 and filename as value.</p>
 </dd>
-<dt><strong>default_stream_id</strong><span class="classifier">str or int</span></dt><dd><p>Default stream id used when accessing data
+<dt><strong>default_stream_id</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str or int</span></dt>
+<dd><p class="first last">Default stream id used when accessing data
 Default value 0</p>
 </dd>
-<dt><strong>processing_chain</strong><span class="classifier">ProcessingChain</span></dt><dd><p>Processing chain to be included into repository
+<dt><strong>processing_chain</strong> <span class="classifier-delimiter">:</span> <span class="classifier">ProcessingChain</span></dt>
+<dd><p class="first last">Processing chain to be included into repository
 Default value None</p>
 </dd>
 </dl>
-</dd>
-</dl>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <p class="rubric">Methods</p>
-<table class="longtable docutils align-center">
+<table border="1" class="longtable docutils">
 <colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
+<col width="10%" />
+<col width="90%" />
 </colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dcase_util.containers.DataRepository.__init__" title="dcase_util.containers.DataRepository.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(self[, data, filename, …])</p></td>
-<td><p>Constructor</p></td>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#dcase_util.containers.DataRepository.__init__" title="dcase_util.containers.DataRepository.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>([data,&nbsp;filename,&nbsp;…])</td>
+<td>Constructor</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">clear</span></code>()</p></td>
-<td><p></p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">clear</span></code>()</td>
+<td></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">copy</span></code>()</p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">copy</span></code>()</td>
+<td></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">delimiter</span></code>(self[, exclude_delimiters])</p></td>
-<td><p>Use csv.sniffer to guess delimiter for CSV file</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">delimiter</span></code>([exclude_delimiters])</td>
+<td>Use csv.sniffer to guess delimiter for CSV file</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">detect_file_format</span></code>(self[, filename])</p></td>
-<td><p>Detect file format from extension</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">detect_file_format</span></code>([filename])</td>
+<td>Detect file format from extension</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">empty</span></code>(self)</p></td>
-<td><p>Check if file is empty</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">empty</span></code>()</td>
+<td>Check if file is empty</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">exists</span></code>(self)</p></td>
-<td><p>Checks that file exists</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">exists</span></code>()</td>
+<td>Checks that file exists</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">filter</span></code>(self[, data, excluded_key_prefix])</p></td>
-<td><p>Filter nested dict</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">filter</span></code>([data,&nbsp;excluded_key_prefix])</td>
+<td>Filter nested dict</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">fromkeys</span></code>(iterable[, value])</p></td>
-<td><p>Returns a new dict with keys from iterable and values equal to value.</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">fromkeys</span></code>($type,&nbsp;iterable[,&nbsp;value])</td>
+<td>Create a new dictionary with keys from iterable and values set to value.</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get</span></code>()</p></td>
-<td><p></p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">get</span></code>($self,&nbsp;key[,&nbsp;default])</td>
+<td>Return the value for key if key is in the dictionary, else default.</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="dcase_util.containers.DataRepository.get_container.html#dcase_util.containers.DataRepository.get_container" title="dcase_util.containers.DataRepository.get_container"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_container</span></code></a>(self, label[, stream_id])</p></td>
-<td><p>Get container from repository</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="dcase_util.containers.DataRepository.get_container.html#dcase_util.containers.DataRepository.get_container" title="dcase_util.containers.DataRepository.get_container"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_container</span></code></a>(label[,&nbsp;stream_id])</td>
+<td>Get container from repository</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_dump_content</span></code>(self, data)</p></td>
-<td><p>Clean internal content for saving</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_dump_content</span></code>(data)</td>
+<td>Clean internal content for saving</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_file_information</span></code>(self)</p></td>
-<td><p>Get file information, filename</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_file_information</span></code>()</td>
+<td>Get file information, filename</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_hash</span></code>(self[, data])</p></td>
-<td><p>Get unique hash string (md5) for given parameter dict.</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_hash</span></code>([data])</td>
+<td>Get unique hash string (md5) for given parameter dict.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_hash_for_path</span></code>(self[, dotted_path])</p></td>
-<td><p>Get unique hash string for the data under given path.</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_hash_for_path</span></code>([dotted_path])</td>
+<td>Get unique hash string for the data under given path.</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_leaf_path_list</span></code>(self[, target_field, …])</p></td>
-<td><p>Get path list to all leaf node in the nested dict.</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_leaf_path_list</span></code>([target_field,&nbsp;…])</td>
+<td>Get path list to all leaf node in the nested dict.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_path</span></code>(self, path[, default, data])</p></td>
-<td><p>Get value from nested dict with dotted path</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_path</span></code>(path[,&nbsp;default,&nbsp;data])</td>
+<td>Get value from nested dict with dotted path</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_package</span></code>(self[, filename])</p></td>
-<td><p>Determine if the file is compressed package.</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_package</span></code>([filename])</td>
+<td>Determine if the file is compressed package.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">items</span></code>()</p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">items</span></code>()</td>
+<td></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">keys</span></code>()</p></td>
-<td><p></p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">keys</span></code>()</td>
+<td></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="dcase_util.containers.DataRepository.load.html#dcase_util.containers.DataRepository.load" title="dcase_util.containers.DataRepository.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load</span></code></a>(self[, filename, collect_from_containers])</p></td>
-<td><p>Load file list</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="dcase_util.containers.DataRepository.load.html#dcase_util.containers.DataRepository.load" title="dcase_util.containers.DataRepository.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load</span></code></a>([filename,&nbsp;collect_from_containers])</td>
+<td>Load file list</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">log</span></code>(self[, level])</p></td>
-<td><p>Log container content</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">log</span></code>([level])</td>
+<td>Log container content</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">merge</span></code>(self, override[, target])</p></td>
-<td><p>Recursive dict merge</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">merge</span></code>(override[,&nbsp;target])</td>
+<td>Recursive dict merge</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="dcase_util.containers.DataRepository.plot.html#dcase_util.containers.DataRepository.plot" title="dcase_util.containers.DataRepository.plot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot</span></code></a>(self[, plot, figsize])</p></td>
-<td><p>Visualize data stored in the repository.</p></td>
+<tr class="row-even"><td><a class="reference internal" href="dcase_util.containers.DataRepository.plot.html#dcase_util.containers.DataRepository.plot" title="dcase_util.containers.DataRepository.plot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot</span></code></a>([plot,&nbsp;figsize])</td>
+<td>Visualize data stored in the repository.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">pop</span></code>()</p></td>
-<td><p>If key is not found, d is returned if given, otherwise KeyError is raised</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">pop</span></code>(k[,d])</td>
+<td>If key is not found, d is returned if given, otherwise KeyError is raised</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">popitem</span></code>()</p></td>
-<td><p>2-tuple; but raise KeyError if D is empty.</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">popitem</span></code>()</td>
+<td>2-tuple; but raise KeyError if D is empty.</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="dcase_util.containers.DataRepository.push_processing_chain_item.html#dcase_util.containers.DataRepository.push_processing_chain_item" title="dcase_util.containers.DataRepository.push_processing_chain_item"><code class="xref py py-obj docutils literal notranslate"><span class="pre">push_processing_chain_item</span></code></a>(self, processor_name)</p></td>
-<td><p>Push processing chain item</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="dcase_util.containers.DataRepository.push_processing_chain_item.html#dcase_util.containers.DataRepository.push_processing_chain_item" title="dcase_util.containers.DataRepository.push_processing_chain_item"><code class="xref py py-obj docutils literal notranslate"><span class="pre">push_processing_chain_item</span></code></a>(processor_name[,&nbsp;…])</td>
+<td>Push processing chain item</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code>(self[, filename, split_into_containers])</p></td>
-<td><p>Save file</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code>([filename,&nbsp;split_into_containers])</td>
+<td>Save file</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="dcase_util.containers.DataRepository.set_container.html#dcase_util.containers.DataRepository.set_container" title="dcase_util.containers.DataRepository.set_container"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_container</span></code></a>(self, container, label[, …])</p></td>
-<td><p>Store container to repository</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="dcase_util.containers.DataRepository.set_container.html#dcase_util.containers.DataRepository.set_container" title="dcase_util.containers.DataRepository.set_container"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_container</span></code></a>(container,&nbsp;label[,&nbsp;stream_id])</td>
+<td>Store container to repository</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_path</span></code>(self, path, new_value[, data])</p></td>
-<td><p>Set value in nested dict with dotted path</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_path</span></code>(path,&nbsp;new_value[,&nbsp;data])</td>
+<td>Set value in nested dict with dotted path</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">setdefault</span></code>()</p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">setdefault</span></code>($self,&nbsp;key[,&nbsp;default])</td>
+<td>Insert key with a value of default if key is not in the dictionary.</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">show</span></code>(self[, mode, indent, visualize])</p></td>
-<td><p>Print container content</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">show</span></code>([mode,&nbsp;indent,&nbsp;visualize])</td>
+<td>Print container content</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">stream_ids</span></code>(self, label)</p></td>
-<td><p>Stream ids stores for the label in the repository.</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">stream_ids</span></code>(label)</td>
+<td>Stream ids stores for the label in the repository.</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_html</span></code>(self[, indent])</p></td>
-<td><p>Get container information in a HTML formatted string</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_html</span></code>([indent])</td>
+<td>Get container information in a HTML formatted string</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_string</span></code>(self[, ui, indent])</p></td>
-<td><p>Get container information in a string</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_string</span></code>([ui,&nbsp;indent])</td>
+<td>Get container information in a string</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code>()</p></td>
-<td><p>If E is present and has a .keys() method, then does:  for k in E: D[k] = E[k] If E is present and lacks a .keys() method, then does:  for k, v in E: D[k] = v In either case, this is followed by: for k in F:  D[k] = F[k]</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code>([E,&nbsp;]**F)</td>
+<td>If E is present and has a .keys() method, then does:  for k in E: D[k] = E[k] If E is present and lacks a .keys() method, then does:  for k, v in E: D[k] = v In either case, this is followed by: for k in F:  D[k] = F[k]</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_format</span></code>(self)</p></td>
-<td><p>Validate file format</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_format</span></code>()</td>
+<td>Validate file format</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">values</span></code>()</p></td>
-<td><p></p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">values</span></code>()</td>
+<td></td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">Attributes</p>
-<table class="longtable docutils align-center">
+<table border="1" class="longtable docutils">
 <colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
+<col width="10%" />
+<col width="90%" />
 </colgroup>
-<tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">bytes</span></code></p></td>
-<td><p>File size in bytes</p></td>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">bytes</span></code></td>
+<td>File size in bytes</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">labels</span></code></p></td>
-<td><p>Item labels stores in the repository.</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">labels</span></code></td>
+<td>Item labels stores in the repository.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">logger</span></code></p></td>
-<td><p>Logger instance</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">logger</span></code></td>
+<td>Logger instance</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">md5</span></code></p></td>
-<td><p>Checksum for file.</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">md5</span></code></td>
+<td>Checksum for file.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">valid_formats</span></code></p></td>
-<td><p>Valid file formats</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">valid_formats</span></code></td>
+<td>Valid file formats</td>
 </tr>
 </tbody>
 </table>

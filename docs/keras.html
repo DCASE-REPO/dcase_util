@@ -1439,6 +1439,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-2-10">v0.2.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-2-9">v0.2.9</a></li>
 <li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-2-8">v0.2.8</a></li>
 <li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-2-7">v0.2.7</a></li>
@@ -1527,17 +1528,17 @@
 <div class="section" id="model">
 <h2>Model<a class="headerlink" href="#model" title="Permalink to this headline">¶</a></h2>
 <p><em>dcase_util.keras.model.</em> *</p>
-<table class="longtable docutils align-center">
+<table border="1" class="longtable docutils">
 <colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
+<col width="10%" />
+<col width="90%" />
 </colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/dcase_util.keras.create_sequential_model.html#dcase_util.keras.create_sequential_model" title="dcase_util.keras.create_sequential_model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_sequential_model</span></code></a>(model_parameter_list)</p></td>
-<td><p>Create sequential Keras model</p></td>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.keras.create_sequential_model.html#dcase_util.keras.create_sequential_model" title="dcase_util.keras.create_sequential_model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_sequential_model</span></code></a>(model_parameter_list)</td>
+<td>Create sequential Keras model</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/dcase_util.keras.model_summary_string.html#dcase_util.keras.model_summary_string" title="dcase_util.keras.model_summary_string"><code class="xref py py-obj docutils literal notranslate"><span class="pre">model_summary_string</span></code></a>(keras_model[, mode, …])</p></td>
-<td><p>Model summary in a formatted string, similar to Keras model summary function.</p></td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.keras.model_summary_string.html#dcase_util.keras.model_summary_string" title="dcase_util.keras.model_summary_string"><code class="xref py py-obj docutils literal notranslate"><span class="pre">model_summary_string</span></code></a>(keras_model[,&nbsp;mode,&nbsp;…])</td>
+<td>Model summary in a formatted string, similar to Keras model summary function.</td>
 </tr>
 </tbody>
 </table>
@@ -1716,14 +1717,14 @@
 <p>Keras callback to store metrics with tqdm progress bar or logging interface. Implements Keras Callback API.</p>
 <p>This callback is very similar to standard <code class="docutils literal notranslate"><span class="pre">ProgbarLogger</span></code> Keras callback, however it adds support for
 logging interface and external metrics (metrics calculated outside Keras training process).</p>
-<table class="longtable docutils align-center">
+<table border="1" class="longtable docutils">
 <colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
+<col width="10%" />
+<col width="90%" />
 </colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/dcase_util.keras.ProgressLoggerCallback.html#dcase_util.keras.ProgressLoggerCallback" title="dcase_util.keras.ProgressLoggerCallback"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProgressLoggerCallback</span></code></a>([manual_update, …])</p></td>
-<td><p>Keras callback to show metrics in logging interface.</p></td>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.keras.ProgressLoggerCallback.html#dcase_util.keras.ProgressLoggerCallback" title="dcase_util.keras.ProgressLoggerCallback"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProgressLoggerCallback</span></code></a>([manual_update,&nbsp;…])</td>
+<td>Keras callback to show metrics in logging interface.</td>
 </tr>
 </tbody>
 </table>
@@ -1733,14 +1734,14 @@ logging interface and external metrics (metrics calculated outside Keras trainin
 <p><em>dcase_util.keras.ProgressPlotterCallback</em></p>
 <p>Keras callback to plot progress during the training process and save final progress into figure.
 Implements Keras Callback API.</p>
-<table class="longtable docutils align-center">
+<table border="1" class="longtable docutils">
 <colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
+<col width="10%" />
+<col width="90%" />
 </colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/dcase_util.keras.ProgressPlotterCallback.html#dcase_util.keras.ProgressPlotterCallback" title="dcase_util.keras.ProgressPlotterCallback"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProgressPlotterCallback</span></code></a>([epochs, …])</p></td>
-<td><p>Keras callback to plot progress during the training process and save final progress into figure.</p></td>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.keras.ProgressPlotterCallback.html#dcase_util.keras.ProgressPlotterCallback" title="dcase_util.keras.ProgressPlotterCallback"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProgressPlotterCallback</span></code></a>([epochs,&nbsp;…])</td>
+<td>Keras callback to plot progress during the training process and save final progress into figure.</td>
 </tr>
 </tbody>
 </table>
@@ -1752,14 +1753,14 @@ Implements Keras Callback API.</p>
 Implements Keras Callback API.</p>
 <p>This Callback is very similar to standard <code class="docutils literal notranslate"><span class="pre">EarlyStopping</span></code> Keras callback, however it adds support for
 external metrics (metrics calculated outside Keras training process).</p>
-<table class="longtable docutils align-center">
+<table border="1" class="longtable docutils">
 <colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
+<col width="10%" />
+<col width="90%" />
 </colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/dcase_util.keras.StopperCallback.html#dcase_util.keras.StopperCallback" title="dcase_util.keras.StopperCallback"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StopperCallback</span></code></a>([epochs, manual_update, …])</p></td>
-<td><p>Keras callback to stop training when improvement has not seen in specified amount of epochs.</p></td>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.keras.StopperCallback.html#dcase_util.keras.StopperCallback" title="dcase_util.keras.StopperCallback"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StopperCallback</span></code></a>([epochs,&nbsp;manual_update,&nbsp;…])</td>
+<td>Keras callback to stop training when improvement has not seen in specified amount of epochs.</td>
 </tr>
 </tbody>
 </table>
@@ -1770,14 +1771,14 @@ external metrics (metrics calculated outside Keras training process).</p>
 <p>Keras callback to monitor training process and store best model. Implements Keras Callback API.</p>
 <p>This callback is very similar to standard <code class="docutils literal notranslate"><span class="pre">ModelCheckpoint</span></code> Keras callback, however it adds support for
 external metrics (metrics calculated outside Keras training process).</p>
-<table class="longtable docutils align-center">
+<table border="1" class="longtable docutils">
 <colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
+<col width="10%" />
+<col width="90%" />
 </colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/dcase_util.keras.StasherCallback.html#dcase_util.keras.StasherCallback" title="dcase_util.keras.StasherCallback"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StasherCallback</span></code></a>([epochs, manual_update, …])</p></td>
-<td><p>Keras callback to monitor training process and store best model.</p></td>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.keras.StasherCallback.html#dcase_util.keras.StasherCallback" title="dcase_util.keras.StasherCallback"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StasherCallback</span></code></a>([epochs,&nbsp;manual_update,&nbsp;…])</td>
+<td>Keras callback to monitor training process and store best model.</td>
 </tr>
 </tbody>
 </table>
@@ -1785,14 +1786,14 @@ external metrics (metrics calculated outside Keras training process).</p>
 <div class="section" id="basecallback">
 <h3>BaseCallback<a class="headerlink" href="#basecallback" title="Permalink to this headline">¶</a></h3>
 <p><em>dcase_util.keras.BaseCallback</em></p>
-<table class="longtable docutils align-center">
+<table border="1" class="longtable docutils">
 <colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
+<col width="10%" />
+<col width="90%" />
 </colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/dcase_util.keras.BaseCallback.html#dcase_util.keras.BaseCallback" title="dcase_util.keras.BaseCallback"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BaseCallback</span></code></a>([epochs, manual_update, …])</p></td>
-<td><p>Base class for Callbacks</p></td>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.keras.BaseCallback.html#dcase_util.keras.BaseCallback" title="dcase_util.keras.BaseCallback"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BaseCallback</span></code></a>([epochs,&nbsp;manual_update,&nbsp;…])</td>
+<td>Base class for Callbacks</td>
 </tr>
 </tbody>
 </table>
@@ -1805,14 +1806,14 @@ external metrics (metrics calculated outside Keras training process).</p>
 <p><em>dcase_util.keras.get_keras_data_sequence</em></p>
 <p>KerasDataSequence class should be accessed through getter method to avoid importing Keras when importing dcase_util.
 This mechanics allows user to decide when importing the Keras, and set random seeds before this.</p>
-<table class="longtable docutils align-center">
+<table border="1" class="longtable docutils">
 <colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
+<col width="10%" />
+<col width="90%" />
 </colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/dcase_util.keras.get_keras_data_sequence_class.html#dcase_util.keras.get_keras_data_sequence_class" title="dcase_util.keras.get_keras_data_sequence_class"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_keras_data_sequence_class</span></code></a>()</p></td>
-<td><p></p></td>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.keras.get_keras_data_sequence_class.html#dcase_util.keras.get_keras_data_sequence_class" title="dcase_util.keras.get_keras_data_sequence_class"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_keras_data_sequence_class</span></code></a>()</td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -1820,14 +1821,14 @@ This mechanics allows user to decide when importing the Keras, and set random se
 <div class="section" id="data-collector">
 <h3>data_collector<a class="headerlink" href="#data-collector" title="Permalink to this headline">¶</a></h3>
 <p><em>dcase_util.keras.data_collector</em></p>
-<table class="longtable docutils align-center">
+<table border="1" class="longtable docutils">
 <colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
+<col width="10%" />
+<col width="90%" />
 </colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/dcase_util.keras.data_collector.html#dcase_util.keras.data_collector" title="dcase_util.keras.data_collector"><code class="xref py py-obj docutils literal notranslate"><span class="pre">data_collector</span></code></a>([item_list, …])</p></td>
-<td><p>Data collector</p></td>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.keras.data_collector.html#dcase_util.keras.data_collector" title="dcase_util.keras.data_collector"><code class="xref py py-obj docutils literal notranslate"><span class="pre">data_collector</span></code></a>([item_list,&nbsp;…])</td>
+<td>Data collector</td>
 </tr>
 </tbody>
 </table>
@@ -1836,17 +1837,17 @@ This mechanics allows user to decide when importing the Keras, and set random se
 <div class="section" id="utils">
 <h2>Utils<a class="headerlink" href="#utils" title="Permalink to this headline">¶</a></h2>
 <p><em>dcase_util.keras.utils.</em> *</p>
-<table class="longtable docutils align-center">
+<table border="1" class="longtable docutils">
 <colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
+<col width="10%" />
+<col width="90%" />
 </colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/dcase_util.keras.setup_keras.html#dcase_util.keras.setup_keras" title="dcase_util.keras.setup_keras"><code class="xref py py-obj docutils literal notranslate"><span class="pre">setup_keras</span></code></a>(\*args, \*\*kwargs)</p></td>
-<td><p>Decorator class to allow only one execution</p></td>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.keras.setup_keras.html#dcase_util.keras.setup_keras" title="dcase_util.keras.setup_keras"><code class="xref py py-obj docutils literal notranslate"><span class="pre">setup_keras</span></code></a></td>
+<td>Decorator class to allow only one execution</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/dcase_util.keras.create_optimizer.html#dcase_util.keras.create_optimizer" title="dcase_util.keras.create_optimizer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_optimizer</span></code></a>(class_name[, config])</p></td>
-<td><p>Create Keras optimizer</p></td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.keras.create_optimizer.html#dcase_util.keras.create_optimizer" title="dcase_util.keras.create_optimizer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_optimizer</span></code></a>(class_name[,&nbsp;config])</td>
+<td>Create Keras optimizer</td>
 </tr>
 </tbody>
 </table>

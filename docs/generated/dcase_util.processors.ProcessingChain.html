@@ -1439,6 +1439,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-10">v0.2.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-9">v0.2.9</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-8">v0.2.8</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-7">v0.2.7</a></li>
@@ -1531,172 +1532,172 @@
 <dd><p>__init__ method.</p>
 <dl class="method">
 <dt id="dcase_util.processors.ProcessingChain.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>self</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/processors/processing_chain.html#ProcessingChain.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.processors.ProcessingChain.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/processors/processing_chain.html#ProcessingChain.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.processors.ProcessingChain.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>__init__ method.</p>
 </dd></dl>
 
 <p class="rubric">Methods</p>
-<table class="longtable docutils align-center">
+<table border="1" class="longtable docutils">
 <colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
+<col width="10%" />
+<col width="90%" />
 </colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dcase_util.processors.ProcessingChain.__init__" title="dcase_util.processors.ProcessingChain.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(self, \*args, \*\*kwargs)</p></td>
-<td><p>__init__ method.</p></td>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#dcase_util.processors.ProcessingChain.__init__" title="dcase_util.processors.ProcessingChain.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(*args,&nbsp;**kwargs)</td>
+<td>__init__ method.</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">append</span></code>()</p></td>
-<td><p></p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">append</span></code>($self,&nbsp;object,&nbsp;/)</td>
+<td>Append object to the end of the list.</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="dcase_util.processors.ProcessingChain.call_method.html#dcase_util.processors.ProcessingChain.call_method" title="dcase_util.processors.ProcessingChain.call_method"><code class="xref py py-obj docutils literal notranslate"><span class="pre">call_method</span></code></a>(self, method_name[, parameters])</p></td>
-<td><p>Call class method in the processing chain items</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="dcase_util.processors.ProcessingChain.call_method.html#dcase_util.processors.ProcessingChain.call_method" title="dcase_util.processors.ProcessingChain.call_method"><code class="xref py py-obj docutils literal notranslate"><span class="pre">call_method</span></code></a>(method_name[,&nbsp;parameters])</td>
+<td>Call class method in the processing chain items</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="dcase_util.processors.ProcessingChain.chain_item.html#dcase_util.processors.ProcessingChain.chain_item" title="dcase_util.processors.ProcessingChain.chain_item"><code class="xref py py-obj docutils literal notranslate"><span class="pre">chain_item</span></code></a>(self, processor_name)</p></td>
-<td><p>Get item based processor_name from the processing chain.</p></td>
+<tr class="row-even"><td><a class="reference internal" href="dcase_util.processors.ProcessingChain.chain_item.html#dcase_util.processors.ProcessingChain.chain_item" title="dcase_util.processors.ProcessingChain.chain_item"><code class="xref py py-obj docutils literal notranslate"><span class="pre">chain_item</span></code></a>(processor_name)</td>
+<td>Get item based processor_name from the processing chain.</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="dcase_util.processors.ProcessingChain.chain_item_exists.html#dcase_util.processors.ProcessingChain.chain_item_exists" title="dcase_util.processors.ProcessingChain.chain_item_exists"><code class="xref py py-obj docutils literal notranslate"><span class="pre">chain_item_exists</span></code></a>(self, processor_name)</p></td>
-<td><p>Check if item exists already in the chain</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="dcase_util.processors.ProcessingChain.chain_item_exists.html#dcase_util.processors.ProcessingChain.chain_item_exists" title="dcase_util.processors.ProcessingChain.chain_item_exists"><code class="xref py py-obj docutils literal notranslate"><span class="pre">chain_item_exists</span></code></a>(processor_name)</td>
+<td>Check if item exists already in the chain</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">chain_string</span></code>(self)</p></td>
-<td><p>Basic info about the items in the chain.</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">chain_string</span></code>()</td>
+<td>Basic info about the items in the chain.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">clear</span></code>()</p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">clear</span></code>($self,&nbsp;/)</td>
+<td>Remove all items from list.</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">copy</span></code>()</p></td>
-<td><p></p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">copy</span></code>($self,&nbsp;/)</td>
+<td>Return a shallow copy of the list.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">count</span></code>()</p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">count</span></code>($self,&nbsp;value,&nbsp;/)</td>
+<td>Return number of occurrences of value.</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">delimiter</span></code>(self[, exclude_delimiters])</p></td>
-<td><p>Use csv.sniffer to guess delimiter for CSV file</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">delimiter</span></code>([exclude_delimiters])</td>
+<td>Use csv.sniffer to guess delimiter for CSV file</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">detect_file_format</span></code>(self[, filename])</p></td>
-<td><p>Detect file format from extension</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">detect_file_format</span></code>([filename])</td>
+<td>Detect file format from extension</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">empty</span></code>(self)</p></td>
-<td><p>Check if file is empty</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">empty</span></code>()</td>
+<td>Check if file is empty</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">exists</span></code>(self)</p></td>
-<td><p>Checks that file exists</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">exists</span></code>()</td>
+<td>Checks that file exists</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">extend</span></code>()</p></td>
-<td><p></p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">extend</span></code>($self,&nbsp;iterable,&nbsp;/)</td>
+<td>Extend list by appending elements from the iterable.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">filter</span></code>(self[, case_insensitive_fields])</p></td>
-<td><p>Filter content based on field values.</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">filter</span></code>([case_insensitive_fields])</td>
+<td>Filter content based on field values.</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_dump_content</span></code>(self, data)</p></td>
-<td><p>Clean internal content for saving</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_dump_content</span></code>(data)</td>
+<td>Clean internal content for saving</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_field</span></code>(self, field_name[, …])</p></td>
-<td><p>Get all data from field.</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_field</span></code>(field_name[,&nbsp;skip_items_without_field])</td>
+<td>Get all data from field.</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_field_unique</span></code>(self, field_name)</p></td>
-<td><p>Get unique data from field.</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_field_unique</span></code>(field_name)</td>
+<td>Get unique data from field.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_file_information</span></code>(self)</p></td>
-<td><p>Get file information, filename</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_file_information</span></code>()</td>
+<td>Get file information, filename</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">index</span></code>()</p></td>
-<td><p>Raises ValueError if the value is not present.</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">index</span></code>($self,&nbsp;value[,&nbsp;start,&nbsp;stop])</td>
+<td>Return first index of value.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">insert</span></code>()</p></td>
-<td><p>L.insert(index, object) – insert object before index</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">insert</span></code>($self,&nbsp;index,&nbsp;object,&nbsp;/)</td>
+<td>Insert object before index.</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_package</span></code>(self[, filename])</p></td>
-<td><p>Determine if the file is compressed package.</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_package</span></code>([filename])</td>
+<td>Determine if the file is compressed package.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">load</span></code>(self[, filename, fields, csv_header, …])</p></td>
-<td><p>Load file</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">load</span></code>([filename,&nbsp;fields,&nbsp;csv_header,&nbsp;…])</td>
+<td>Load file</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">log</span></code>(self[, level])</p></td>
-<td><p>Log container content</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">log</span></code>([level])</td>
+<td>Log container content</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="dcase_util.processors.ProcessingChain.log_chain.html#dcase_util.processors.ProcessingChain.log_chain" title="dcase_util.processors.ProcessingChain.log_chain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">log_chain</span></code></a>(self[, level])</p></td>
-<td><p>Log chain information</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="dcase_util.processors.ProcessingChain.log_chain.html#dcase_util.processors.ProcessingChain.log_chain" title="dcase_util.processors.ProcessingChain.log_chain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">log_chain</span></code></a>([level])</td>
+<td>Log chain information</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">pop</span></code>()</p></td>
-<td><p>Raises IndexError if list is empty or index is out of range.</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">pop</span></code>($self[,&nbsp;index])</td>
+<td>Remove and return item at index (default last).</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="dcase_util.processors.ProcessingChain.process.html#dcase_util.processors.ProcessingChain.process" title="dcase_util.processors.ProcessingChain.process"><code class="xref py py-obj docutils literal notranslate"><span class="pre">process</span></code></a>(self[, data, store_processing_chain])</p></td>
-<td><p>Process the data with processing chain</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="dcase_util.processors.ProcessingChain.process.html#dcase_util.processors.ProcessingChain.process" title="dcase_util.processors.ProcessingChain.process"><code class="xref py py-obj docutils literal notranslate"><span class="pre">process</span></code></a>([data,&nbsp;store_processing_chain])</td>
+<td>Process the data with processing chain</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="dcase_util.processors.ProcessingChain.processor_class.html#dcase_util.processors.ProcessingChain.processor_class" title="dcase_util.processors.ProcessingChain.processor_class"><code class="xref py py-obj docutils literal notranslate"><span class="pre">processor_class</span></code></a>(self, processor_name, \*\*kwargs)</p></td>
-<td><p>Processor class initialized.</p></td>
+<tr class="row-even"><td><a class="reference internal" href="dcase_util.processors.ProcessingChain.processor_class.html#dcase_util.processors.ProcessingChain.processor_class" title="dcase_util.processors.ProcessingChain.processor_class"><code class="xref py py-obj docutils literal notranslate"><span class="pre">processor_class</span></code></a>(processor_name,&nbsp;**kwargs)</td>
+<td>Processor class initialized.</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="dcase_util.processors.ProcessingChain.processor_class_reference.html#dcase_util.processors.ProcessingChain.processor_class_reference" title="dcase_util.processors.ProcessingChain.processor_class_reference"><code class="xref py py-obj docutils literal notranslate"><span class="pre">processor_class_reference</span></code></a>(self, processor_name)</p></td>
-<td><p>Processor class reference.</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="dcase_util.processors.ProcessingChain.processor_class_reference.html#dcase_util.processors.ProcessingChain.processor_class_reference" title="dcase_util.processors.ProcessingChain.processor_class_reference"><code class="xref py py-obj docutils literal notranslate"><span class="pre">processor_class_reference</span></code></a>(processor_name)</td>
+<td>Processor class reference.</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="dcase_util.processors.ProcessingChain.processor_exists.html#dcase_util.processors.ProcessingChain.processor_exists" title="dcase_util.processors.ProcessingChain.processor_exists"><code class="xref py py-obj docutils literal notranslate"><span class="pre">processor_exists</span></code></a>(self, processor_name)</p></td>
-<td><p>Checks that processor exists in the chain.</p></td>
+<tr class="row-even"><td><a class="reference internal" href="dcase_util.processors.ProcessingChain.processor_exists.html#dcase_util.processors.ProcessingChain.processor_exists" title="dcase_util.processors.ProcessingChain.processor_exists"><code class="xref py py-obj docutils literal notranslate"><span class="pre">processor_exists</span></code></a>(processor_name)</td>
+<td>Checks that processor exists in the chain.</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="dcase_util.processors.ProcessingChain.push_processor.html#dcase_util.processors.ProcessingChain.push_processor" title="dcase_util.processors.ProcessingChain.push_processor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">push_processor</span></code></a>(self, processor_name[, …])</p></td>
-<td><p>Push processor item to the chain, if item already exists in the processing chain update only parameters.</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="dcase_util.processors.ProcessingChain.push_processor.html#dcase_util.processors.ProcessingChain.push_processor" title="dcase_util.processors.ProcessingChain.push_processor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">push_processor</span></code></a>(processor_name[,&nbsp;…])</td>
+<td>Push processor item to the chain, if item already exists in the processing chain update only parameters.</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove</span></code>()</p></td>
-<td><p>Raises ValueError if the value is not present.</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove</span></code>($self,&nbsp;value,&nbsp;/)</td>
+<td>Remove first occurrence of value.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_field</span></code>(self, field_name)</p></td>
-<td><p>Remove field from data items</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_field</span></code>(field_name)</td>
+<td>Remove field from data items</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">reverse</span></code>()</p></td>
-<td><p>L.reverse() – reverse <em>IN PLACE</em></p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">reverse</span></code>($self,&nbsp;/)</td>
+<td>Reverse <em>IN PLACE</em>.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code>(self[, filename, fields, csv_header, …])</p></td>
-<td><p>Save file</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code>([filename,&nbsp;fields,&nbsp;csv_header,&nbsp;…])</td>
+<td>Save file</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">search</span></code>(self, key, value)</p></td>
-<td><p>Search in the list of dictionaries</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">search</span></code>(key,&nbsp;value)</td>
+<td>Search in the list of dictionaries</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">show</span></code>(self[, mode, indent, visualize])</p></td>
-<td><p>Print container content</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">show</span></code>([mode,&nbsp;indent,&nbsp;visualize])</td>
+<td>Print container content</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="dcase_util.processors.ProcessingChain.show_chain.html#dcase_util.processors.ProcessingChain.show_chain" title="dcase_util.processors.ProcessingChain.show_chain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">show_chain</span></code></a>(self)</p></td>
-<td><p>Show chain information.</p></td>
+<tr class="row-even"><td><a class="reference internal" href="dcase_util.processors.ProcessingChain.show_chain.html#dcase_util.processors.ProcessingChain.show_chain" title="dcase_util.processors.ProcessingChain.show_chain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">show_chain</span></code></a>()</td>
+<td>Show chain information.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">sort</span></code>()</p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">sort</span></code>($self,&nbsp;/,&nbsp;*[,&nbsp;key,&nbsp;reverse])</td>
+<td>Stable sort <em>IN PLACE</em>.</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_html</span></code>(self[, indent])</p></td>
-<td><p>Get container information in a HTML formatted string</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_html</span></code>([indent])</td>
+<td>Get container information in a HTML formatted string</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_string</span></code>(self[, ui, indent])</p></td>
-<td><p>Get container information in a string</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_string</span></code>([ui,&nbsp;indent])</td>
+<td>Get container information in a string</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code>(self, data)</p></td>
-<td><p>Replace content with given list</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code>(data)</td>
+<td>Replace content with given list</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_format</span></code>(self)</p></td>
-<td><p>Validate file format</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_format</span></code>()</td>
+<td>Validate file format</td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">Attributes</p>
-<table class="longtable docutils align-center">
+<table border="1" class="longtable docutils">
 <colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
+<col width="10%" />
+<col width="90%" />
 </colgroup>
-<tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">bytes</span></code></p></td>
-<td><p>File size in bytes</p></td>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">bytes</span></code></td>
+<td>File size in bytes</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">logger</span></code></p></td>
-<td><p>Logger instance</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">logger</span></code></td>
+<td>Logger instance</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">md5</span></code></p></td>
-<td><p>Checksum for file.</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">md5</span></code></td>
+<td>Checksum for file.</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">valid_formats</span></code></p></td>
-<td><p>Valid formats</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">valid_formats</span></code></td>
+<td>Valid formats</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">valid_input_types</span></code></p></td>
-<td><p>Valid input data types</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">valid_input_types</span></code></td>
+<td>Valid input data types</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">valid_output_types</span></code></p></td>
-<td><p>Valid output data types</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">valid_output_types</span></code></td>
+<td>Valid output data types</td>
 </tr>
 </tbody>
 </table>

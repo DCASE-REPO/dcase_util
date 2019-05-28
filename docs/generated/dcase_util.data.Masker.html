@@ -1439,6 +1439,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-10">v0.2.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-9">v0.2.9</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-8">v0.2.8</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-7">v0.2.7</a></li>
@@ -1530,103 +1531,113 @@
 <em class="property">class </em><code class="descclassname">dcase_util.data.</code><code class="descname">Masker</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/data/manipulators.html#Masker"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.data.Masker" title="Permalink to this definition">¶</a></dt>
 <dd><p>Data masker</p>
 <p>Constructor</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>time_resolution</strong><span class="classifier">float</span></dt><dd><p>Hop length in seconds</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>time_resolution</strong> <span class="classifier-delimiter">:</span> <span class="classifier">float</span></dt>
+<dd><p class="first last">Hop length in seconds</p>
 </dd>
 </dl>
-</dd>
-</dl>
+</td>
+</tr>
+</tbody>
+</table>
 <dl class="method">
 <dt id="dcase_util.data.Masker.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>self</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/data/manipulators.html#Masker.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.data.Masker.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/data/manipulators.html#Masker.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.data.Masker.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Constructor</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>time_resolution</strong><span class="classifier">float</span></dt><dd><p>Hop length in seconds</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>time_resolution</strong> <span class="classifier-delimiter">:</span> <span class="classifier">float</span></dt>
+<dd><p class="first last">Hop length in seconds</p>
 </dd>
 </dl>
-</dd>
-</dl>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <p class="rubric">Methods</p>
-<table class="longtable docutils align-center">
+<table border="1" class="longtable docutils">
 <colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
+<col width="10%" />
+<col width="90%" />
 </colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dcase_util.data.Masker.__init__" title="dcase_util.data.Masker.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(self, \*\*kwargs)</p></td>
-<td><p>Constructor</p></td>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#dcase_util.data.Masker.__init__" title="dcase_util.data.Masker.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(**kwargs)</td>
+<td>Constructor</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">delimiter</span></code>(self[, exclude_delimiters])</p></td>
-<td><p>Use csv.sniffer to guess delimiter for CSV file</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">delimiter</span></code>([exclude_delimiters])</td>
+<td>Use csv.sniffer to guess delimiter for CSV file</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">detect_file_format</span></code>(self[, filename])</p></td>
-<td><p>Detect file format from extension</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">detect_file_format</span></code>([filename])</td>
+<td>Detect file format from extension</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">empty</span></code>(self)</p></td>
-<td><p>Check if file is empty</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">empty</span></code>()</td>
+<td>Check if file is empty</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">exists</span></code>(self)</p></td>
-<td><p>Checks that file exists</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">exists</span></code>()</td>
+<td>Checks that file exists</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_file_information</span></code>(self)</p></td>
-<td><p>Get file information, filename</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_file_information</span></code>()</td>
+<td>Get file information, filename</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_package</span></code>(self[, filename])</p></td>
-<td><p>Determine if the file is compressed package.</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_package</span></code>([filename])</td>
+<td>Determine if the file is compressed package.</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="dcase_util.data.Masker.load.html#dcase_util.data.Masker.load" title="dcase_util.data.Masker.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load</span></code></a>(self[, filename])</p></td>
-<td><p>Load file</p></td>
+<tr class="row-even"><td><a class="reference internal" href="dcase_util.data.Masker.load.html#dcase_util.data.Masker.load" title="dcase_util.data.Masker.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load</span></code></a>([filename])</td>
+<td>Load file</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="dcase_util.data.Masker.log.html#dcase_util.data.Masker.log" title="dcase_util.data.Masker.log"><code class="xref py py-obj docutils literal notranslate"><span class="pre">log</span></code></a>(self[, level])</p></td>
-<td><p>Log container content</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="dcase_util.data.Masker.log.html#dcase_util.data.Masker.log" title="dcase_util.data.Masker.log"><code class="xref py py-obj docutils literal notranslate"><span class="pre">log</span></code></a>([level])</td>
+<td>Log container content</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="dcase_util.data.Masker.mask.html#dcase_util.data.Masker.mask" title="dcase_util.data.Masker.mask"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mask</span></code></a>(self, data[, mask_events])</p></td>
-<td><p>Masking data repository with given events</p></td>
+<tr class="row-even"><td><a class="reference internal" href="dcase_util.data.Masker.mask.html#dcase_util.data.Masker.mask" title="dcase_util.data.Masker.mask"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mask</span></code></a>(data[,&nbsp;mask_events])</td>
+<td>Masking data repository with given events</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="dcase_util.data.Masker.save.html#dcase_util.data.Masker.save" title="dcase_util.data.Masker.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code></a>(self[, filename])</p></td>
-<td><p>Save file</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="dcase_util.data.Masker.save.html#dcase_util.data.Masker.save" title="dcase_util.data.Masker.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code></a>([filename])</td>
+<td>Save file</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_mask</span></code>(self, mask_events)</p></td>
-<td><p>Set masking events</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_mask</span></code>(mask_events)</td>
+<td>Set masking events</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="dcase_util.data.Masker.show.html#dcase_util.data.Masker.show" title="dcase_util.data.Masker.show"><code class="xref py py-obj docutils literal notranslate"><span class="pre">show</span></code></a>(self[, mode, indent, visualize])</p></td>
-<td><p>Print container content</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="dcase_util.data.Masker.show.html#dcase_util.data.Masker.show" title="dcase_util.data.Masker.show"><code class="xref py py-obj docutils literal notranslate"><span class="pre">show</span></code></a>([mode,&nbsp;indent,&nbsp;visualize])</td>
+<td>Print container content</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_html</span></code>(self[, indent])</p></td>
-<td><p>Get container information in a HTML formatted string</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_html</span></code>([indent])</td>
+<td>Get container information in a HTML formatted string</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_string</span></code>(self[, ui, indent])</p></td>
-<td><p>Get container information in a string</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_string</span></code>([ui,&nbsp;indent])</td>
+<td>Get container information in a string</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_format</span></code>(self)</p></td>
-<td><p>Validate file format</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_format</span></code>()</td>
+<td>Validate file format</td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">Attributes</p>
-<table class="longtable docutils align-center">
+<table border="1" class="longtable docutils">
 <colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
+<col width="10%" />
+<col width="90%" />
 </colgroup>
-<tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">bytes</span></code></p></td>
-<td><p>File size in bytes</p></td>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">bytes</span></code></td>
+<td>File size in bytes</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">logger</span></code></p></td>
-<td><p>Logger instance</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">logger</span></code></td>
+<td>Logger instance</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">md5</span></code></p></td>
-<td><p>Checksum for file.</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">md5</span></code></td>
+<td>Checksum for file.</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">valid_formats</span></code></p></td>
-<td><p></p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">valid_formats</span></code></td>
+<td></td>
 </tr>
 </tbody>
 </table>

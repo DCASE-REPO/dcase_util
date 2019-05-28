@@ -1439,6 +1439,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-10">v0.2.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-9">v0.2.9</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-8">v0.2.8</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-7">v0.2.7</a></li>
@@ -1527,33 +1528,42 @@
 <h1>dcase_util.data.DecisionEncoder.many_hot<a class="headerlink" href="#dcase-util-data-decisionencoder-many-hot" title="Permalink to this headline">¶</a></h1>
 <dl class="method">
 <dt id="dcase_util.data.DecisionEncoder.many_hot">
-<code class="descclassname">DecisionEncoder.</code><code class="descname">many_hot</code><span class="sig-paren">(</span><em>self</em>, <em>frame_decisions</em>, <em>label_list=None</em>, <em>time_axis=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/data/decisions.html#DecisionEncoder.many_hot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.data.DecisionEncoder.many_hot" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">DecisionEncoder.</code><code class="descname">many_hot</code><span class="sig-paren">(</span><em>frame_decisions</em>, <em>label_list=None</em>, <em>time_axis=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/data/decisions.html#DecisionEncoder.many_hot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.data.DecisionEncoder.many_hot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Many hot</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>frame_decisions</strong><span class="classifier">numpy.ndarray [shape=(d,t) or (t,d)]</span></dt><dd><p>Frame decisions</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>frame_decisions</strong> <span class="classifier-delimiter">:</span> <span class="classifier">numpy.ndarray [shape=(d,t) or (t,d)]</span></dt>
+<dd><p class="first last">Frame decisions</p>
 </dd>
-<dt><strong>label_list</strong><span class="classifier">list or str</span></dt><dd><p>Label list, if None given one for class initializer is used.
+<dt><strong>label_list</strong> <span class="classifier-delimiter">:</span> <span class="classifier">list or str</span></dt>
+<dd><p class="first last">Label list, if None given one for class initializer is used.
 Default value None</p>
 </dd>
-<dt><strong>time_axis</strong><span class="classifier">int</span></dt><dd><p>Axis index for frames in the matrix
+<dt><strong>time_axis</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int</span></dt>
+<dd><p class="first last">Axis index for frames in the matrix
 Default value 1</p>
 </dd>
 </dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>list</dt><dd></dd>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>list</strong></dt>
+<dd></dd>
 </dl>
-</dd>
-<dt class="field-odd">Raises</dt>
-<dd class="field-odd"><dl class="simple">
-<dt>ValueError</dt><dd><p>No label list given as method parameter or class initializer parameter</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>ValueError</strong></dt>
+<dd><p class="first last">No label list given as method parameter or class initializer parameter</p>
 </dd>
 </dl>
-</dd>
-</dl>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </div>

@@ -3,6 +3,13 @@
 Release notes
 =============
 
+v0.2.10
+------
+
+**Bug fixes**
+
+* Fix cross-validation data loading for datasets without reference meta data in ``load_crossvalidation_data`` method of ``Dataset`` class
+
 v0.2.9
 ------
 

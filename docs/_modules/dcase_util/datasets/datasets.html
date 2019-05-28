@@ -1437,6 +1437,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-10">v0.2.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-9">v0.2.9</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-8">v0.2.8</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-7">v0.2.7</a></li>
@@ -2110,17 +2111,61 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># Reset cross validation data and insert &#39;all_data&#39;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">crossvalidation_data</span> <span class="o">=</span> <span class="n">DictContainer</span><span class="p">({</span>
-            <span class="s1">&#39;train&#39;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="s1">&#39;all_data&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta_container</span>
-            <span class="p">},</span>
-            <span class="s1">&#39;test&#39;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="s1">&#39;all_data&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta_container</span>
-            <span class="p">},</span>
-            <span class="s1">&#39;evaluate&#39;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="s1">&#39;all_data&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta_container</span>
-            <span class="p">},</span>
-        <span class="p">})</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta_container</span><span class="p">:</span>
+            <span class="c1"># Meta data is available</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">crossvalidation_data</span> <span class="o">=</span> <span class="n">DictContainer</span><span class="p">({</span>
+                <span class="s1">&#39;train&#39;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s1">&#39;all_data&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta_container</span>
+                <span class="p">},</span>
+                <span class="s1">&#39;test&#39;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s1">&#39;all_data&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta_container</span>
+                <span class="p">},</span>
+                <span class="s1">&#39;evaluate&#39;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s1">&#39;all_data&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta_container</span>
+                <span class="p">},</span>
+            <span class="p">})</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># No meta data available, load data from evaluation setup files (if they exists).</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">crossvalidation_data</span> <span class="o">=</span> <span class="n">DictContainer</span><span class="p">({</span>
+                <span class="s1">&#39;train&#39;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s1">&#39;all_data&#39;</span><span class="p">:</span> <span class="n">MetaDataContainer</span><span class="p">()</span>
+                <span class="p">},</span>
+                <span class="s1">&#39;test&#39;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s1">&#39;all_data&#39;</span><span class="p">:</span> <span class="n">MetaDataContainer</span><span class="p">()</span>
+                <span class="p">},</span>
+                <span class="s1">&#39;evaluate&#39;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s1">&#39;all_data&#39;</span><span class="p">:</span> <span class="n">MetaDataContainer</span><span class="p">()</span>
+                <span class="p">},</span>
+            <span class="p">})</span>
+
+            <span class="n">train_filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">evaluation_setup_filename</span><span class="p">(</span><span class="n">setup_part</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">)</span>
+            <span class="n">test_filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">evaluation_setup_filename</span><span class="p">(</span><span class="n">setup_part</span><span class="o">=</span><span class="s1">&#39;test&#39;</span><span class="p">)</span>
+            <span class="n">evaluate_filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">evaluation_setup_filename</span><span class="p">(</span><span class="n">setup_part</span><span class="o">=</span><span class="s1">&#39;evaluate&#39;</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">train_filename</span><span class="p">):</span>
+                <span class="c1"># Training data exists, load and process it</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">crossvalidation_data</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">][</span><span class="s1">&#39;all_data&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">MetaDataContainer</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">train_filename</span><span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+
+                <span class="c1"># Process items</span>
+                <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">crossvalidation_data</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">][</span><span class="s1">&#39;all_data&#39;</span><span class="p">]:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">process_meta_item</span><span class="p">(</span><span class="n">item</span><span class="o">=</span><span class="n">item</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">test_filename</span><span class="p">):</span>
+                <span class="c1"># Testing data exists, load and process it</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">crossvalidation_data</span><span class="p">[</span><span class="s1">&#39;test&#39;</span><span class="p">][</span><span class="s1">&#39;all_data&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">MetaDataContainer</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">test_filename</span><span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+
+                <span class="c1"># Process items</span>
+                <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">crossvalidation_data</span><span class="p">[</span><span class="s1">&#39;test&#39;</span><span class="p">][</span><span class="s1">&#39;all_data&#39;</span><span class="p">]:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">process_meta_item</span><span class="p">(</span><span class="n">item</span><span class="o">=</span><span class="n">item</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">evaluate_filename</span><span class="p">):</span>
+                <span class="c1"># Evaluation data exists, load and process it</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">crossvalidation_data</span><span class="p">[</span><span class="s1">&#39;evaluate&#39;</span><span class="p">][</span><span class="s1">&#39;all_data&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">MetaDataContainer</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">evaluate_filename</span><span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+
+                <span class="c1"># Process items</span>
+                <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">crossvalidation_data</span><span class="p">[</span><span class="s1">&#39;evaluate&#39;</span><span class="p">][</span><span class="s1">&#39;all_data&#39;</span><span class="p">]:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">process_meta_item</span><span class="p">(</span><span class="n">item</span><span class="o">=</span><span class="n">item</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">crossvalidation_set</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">crossvalidation_data</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
             <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">crossvalidation_data</span><span class="p">[</span><span class="n">crossvalidation_set</span><span class="p">][</span><span class="s1">&#39;all_data&#39;</span><span class="p">]:</span>
