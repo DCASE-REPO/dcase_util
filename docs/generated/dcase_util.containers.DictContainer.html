@@ -1439,6 +1439,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-10">v0.2.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-9">v0.2.9</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-8">v0.2.8</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-7">v0.2.7</a></li>
@@ -1531,136 +1532,136 @@
 <dd><p>Dictionary container class inherited from standard dict class.</p>
 <dl class="method">
 <dt id="dcase_util.containers.DictContainer.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>self</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/containers/containers.html#DictContainer.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.containers.DictContainer.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/containers/containers.html#DictContainer.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.containers.DictContainer.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
 
 <p class="rubric">Methods</p>
-<table class="longtable docutils align-center">
+<table border="1" class="longtable docutils">
 <colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
+<col width="10%" />
+<col width="90%" />
 </colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dcase_util.containers.DictContainer.__init__" title="dcase_util.containers.DictContainer.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(self, \*args, \*\*kwargs)</p></td>
-<td><p>Initialize self.</p></td>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#dcase_util.containers.DictContainer.__init__" title="dcase_util.containers.DictContainer.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(*args,&nbsp;**kwargs)</td>
+<td>Initialize self.</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">clear</span></code>()</p></td>
-<td><p></p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">clear</span></code>()</td>
+<td></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">copy</span></code>()</p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">copy</span></code>()</td>
+<td></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">delimiter</span></code>(self[, exclude_delimiters])</p></td>
-<td><p>Use csv.sniffer to guess delimiter for CSV file</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">delimiter</span></code>([exclude_delimiters])</td>
+<td>Use csv.sniffer to guess delimiter for CSV file</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">detect_file_format</span></code>(self[, filename])</p></td>
-<td><p>Detect file format from extension</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">detect_file_format</span></code>([filename])</td>
+<td>Detect file format from extension</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">empty</span></code>(self)</p></td>
-<td><p>Check if file is empty</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">empty</span></code>()</td>
+<td>Check if file is empty</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">exists</span></code>(self)</p></td>
-<td><p>Checks that file exists</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">exists</span></code>()</td>
+<td>Checks that file exists</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">filter</span></code>(self[, data, excluded_key_prefix])</p></td>
-<td><p>Filter nested dict</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">filter</span></code>([data,&nbsp;excluded_key_prefix])</td>
+<td>Filter nested dict</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">fromkeys</span></code>(iterable[, value])</p></td>
-<td><p>Returns a new dict with keys from iterable and values equal to value.</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">fromkeys</span></code>($type,&nbsp;iterable[,&nbsp;value])</td>
+<td>Create a new dictionary with keys from iterable and values set to value.</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get</span></code>()</p></td>
-<td><p></p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">get</span></code>($self,&nbsp;key[,&nbsp;default])</td>
+<td>Return the value for key if key is in the dictionary, else default.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_dump_content</span></code>(self, data)</p></td>
-<td><p>Clean internal content for saving</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_dump_content</span></code>(data)</td>
+<td>Clean internal content for saving</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_file_information</span></code>(self)</p></td>
-<td><p>Get file information, filename</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_file_information</span></code>()</td>
+<td>Get file information, filename</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="dcase_util.containers.DictContainer.get_hash.html#dcase_util.containers.DictContainer.get_hash" title="dcase_util.containers.DictContainer.get_hash"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_hash</span></code></a>(self[, data])</p></td>
-<td><p>Get unique hash string (md5) for given parameter dict.</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="dcase_util.containers.DictContainer.get_hash.html#dcase_util.containers.DictContainer.get_hash" title="dcase_util.containers.DictContainer.get_hash"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_hash</span></code></a>([data])</td>
+<td>Get unique hash string (md5) for given parameter dict.</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="dcase_util.containers.DictContainer.get_hash_for_path.html#dcase_util.containers.DictContainer.get_hash_for_path" title="dcase_util.containers.DictContainer.get_hash_for_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_hash_for_path</span></code></a>(self[, dotted_path])</p></td>
-<td><p>Get unique hash string for the data under given path.</p></td>
+<tr class="row-even"><td><a class="reference internal" href="dcase_util.containers.DictContainer.get_hash_for_path.html#dcase_util.containers.DictContainer.get_hash_for_path" title="dcase_util.containers.DictContainer.get_hash_for_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_hash_for_path</span></code></a>([dotted_path])</td>
+<td>Get unique hash string for the data under given path.</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="dcase_util.containers.DictContainer.get_leaf_path_list.html#dcase_util.containers.DictContainer.get_leaf_path_list" title="dcase_util.containers.DictContainer.get_leaf_path_list"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_leaf_path_list</span></code></a>(self[, target_field, …])</p></td>
-<td><p>Get path list to all leaf node in the nested dict.</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="dcase_util.containers.DictContainer.get_leaf_path_list.html#dcase_util.containers.DictContainer.get_leaf_path_list" title="dcase_util.containers.DictContainer.get_leaf_path_list"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_leaf_path_list</span></code></a>([target_field,&nbsp;…])</td>
+<td>Get path list to all leaf node in the nested dict.</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="dcase_util.containers.DictContainer.get_path.html#dcase_util.containers.DictContainer.get_path" title="dcase_util.containers.DictContainer.get_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_path</span></code></a>(self, path[, default, data])</p></td>
-<td><p>Get value from nested dict with dotted path</p></td>
+<tr class="row-even"><td><a class="reference internal" href="dcase_util.containers.DictContainer.get_path.html#dcase_util.containers.DictContainer.get_path" title="dcase_util.containers.DictContainer.get_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_path</span></code></a>(path[,&nbsp;default,&nbsp;data])</td>
+<td>Get value from nested dict with dotted path</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_package</span></code>(self[, filename])</p></td>
-<td><p>Determine if the file is compressed package.</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_package</span></code>([filename])</td>
+<td>Determine if the file is compressed package.</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">items</span></code>()</p></td>
-<td><p></p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">items</span></code>()</td>
+<td></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">keys</span></code>()</p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">keys</span></code>()</td>
+<td></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="dcase_util.containers.DictContainer.load.html#dcase_util.containers.DictContainer.load" title="dcase_util.containers.DictContainer.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load</span></code></a>(self[, filename, file_format])</p></td>
-<td><p>Load file</p></td>
+<tr class="row-even"><td><a class="reference internal" href="dcase_util.containers.DictContainer.load.html#dcase_util.containers.DictContainer.load" title="dcase_util.containers.DictContainer.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load</span></code></a>([filename,&nbsp;file_format])</td>
+<td>Load file</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="dcase_util.containers.DictContainer.log.html#dcase_util.containers.DictContainer.log" title="dcase_util.containers.DictContainer.log"><code class="xref py py-obj docutils literal notranslate"><span class="pre">log</span></code></a>(self[, level])</p></td>
-<td><p>Log container content</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="dcase_util.containers.DictContainer.log.html#dcase_util.containers.DictContainer.log" title="dcase_util.containers.DictContainer.log"><code class="xref py py-obj docutils literal notranslate"><span class="pre">log</span></code></a>([level])</td>
+<td>Log container content</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="dcase_util.containers.DictContainer.merge.html#dcase_util.containers.DictContainer.merge" title="dcase_util.containers.DictContainer.merge"><code class="xref py py-obj docutils literal notranslate"><span class="pre">merge</span></code></a>(self, override[, target])</p></td>
-<td><p>Recursive dict merge</p></td>
+<tr class="row-even"><td><a class="reference internal" href="dcase_util.containers.DictContainer.merge.html#dcase_util.containers.DictContainer.merge" title="dcase_util.containers.DictContainer.merge"><code class="xref py py-obj docutils literal notranslate"><span class="pre">merge</span></code></a>(override[,&nbsp;target])</td>
+<td>Recursive dict merge</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">pop</span></code>()</p></td>
-<td><p>If key is not found, d is returned if given, otherwise KeyError is raised</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">pop</span></code>(k[,d])</td>
+<td>If key is not found, d is returned if given, otherwise KeyError is raised</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">popitem</span></code>()</p></td>
-<td><p>2-tuple; but raise KeyError if D is empty.</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">popitem</span></code>()</td>
+<td>2-tuple; but raise KeyError if D is empty.</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="dcase_util.containers.DictContainer.save.html#dcase_util.containers.DictContainer.save" title="dcase_util.containers.DictContainer.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code></a>(self[, filename, file_format])</p></td>
-<td><p>Save file</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="dcase_util.containers.DictContainer.save.html#dcase_util.containers.DictContainer.save" title="dcase_util.containers.DictContainer.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code></a>([filename,&nbsp;file_format])</td>
+<td>Save file</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="dcase_util.containers.DictContainer.set_path.html#dcase_util.containers.DictContainer.set_path" title="dcase_util.containers.DictContainer.set_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_path</span></code></a>(self, path, new_value[, data])</p></td>
-<td><p>Set value in nested dict with dotted path</p></td>
+<tr class="row-even"><td><a class="reference internal" href="dcase_util.containers.DictContainer.set_path.html#dcase_util.containers.DictContainer.set_path" title="dcase_util.containers.DictContainer.set_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_path</span></code></a>(path,&nbsp;new_value[,&nbsp;data])</td>
+<td>Set value in nested dict with dotted path</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">setdefault</span></code>()</p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">setdefault</span></code>($self,&nbsp;key[,&nbsp;default])</td>
+<td>Insert key with a value of default if key is not in the dictionary.</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="dcase_util.containers.DictContainer.show.html#dcase_util.containers.DictContainer.show" title="dcase_util.containers.DictContainer.show"><code class="xref py py-obj docutils literal notranslate"><span class="pre">show</span></code></a>(self[, mode, indent, visualize])</p></td>
-<td><p>Print container content</p></td>
+<tr class="row-even"><td><a class="reference internal" href="dcase_util.containers.DictContainer.show.html#dcase_util.containers.DictContainer.show" title="dcase_util.containers.DictContainer.show"><code class="xref py py-obj docutils literal notranslate"><span class="pre">show</span></code></a>([mode,&nbsp;indent,&nbsp;visualize])</td>
+<td>Print container content</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_html</span></code>(self[, indent])</p></td>
-<td><p>Get container information in a HTML formatted string</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_html</span></code>([indent])</td>
+<td>Get container information in a HTML formatted string</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_string</span></code>(self[, ui, indent])</p></td>
-<td><p>Get container information in a string</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_string</span></code>([ui,&nbsp;indent])</td>
+<td>Get container information in a string</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code>()</p></td>
-<td><p>If E is present and has a .keys() method, then does:  for k in E: D[k] = E[k] If E is present and lacks a .keys() method, then does:  for k, v in E: D[k] = v In either case, this is followed by: for k in F:  D[k] = F[k]</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code>([E,&nbsp;]**F)</td>
+<td>If E is present and has a .keys() method, then does:  for k in E: D[k] = E[k] If E is present and lacks a .keys() method, then does:  for k, v in E: D[k] = v In either case, this is followed by: for k in F:  D[k] = F[k]</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_format</span></code>(self)</p></td>
-<td><p>Validate file format</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_format</span></code>()</td>
+<td>Validate file format</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">values</span></code>()</p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">values</span></code>()</td>
+<td></td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">Attributes</p>
-<table class="longtable docutils align-center">
+<table border="1" class="longtable docutils">
 <colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
+<col width="10%" />
+<col width="90%" />
 </colgroup>
-<tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">bytes</span></code></p></td>
-<td><p>File size in bytes</p></td>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">bytes</span></code></td>
+<td>File size in bytes</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">logger</span></code></p></td>
-<td><p>Logger instance</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">logger</span></code></td>
+<td>Logger instance</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">md5</span></code></p></td>
-<td><p>Checksum for file.</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">md5</span></code></td>
+<td>Checksum for file.</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">valid_formats</span></code></p></td>
-<td><p>Valid file formats</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">valid_formats</span></code></td>
+<td>Valid file formats</td>
 </tr>
 </tbody>
 </table>

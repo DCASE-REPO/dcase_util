@@ -1439,6 +1439,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-10">v0.2.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-9">v0.2.9</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-8">v0.2.8</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-7">v0.2.7</a></li>
@@ -1527,47 +1528,60 @@
 <h1>dcase_util.containers.ListDictContainer.load<a class="headerlink" href="#dcase-util-containers-listdictcontainer-load" title="Permalink to this headline">¶</a></h1>
 <dl class="method">
 <dt id="dcase_util.containers.ListDictContainer.load">
-<code class="descclassname">ListDictContainer.</code><code class="descname">load</code><span class="sig-paren">(</span><em>self</em>, <em>filename=None</em>, <em>fields=None</em>, <em>csv_header=True</em>, <em>file_format=None</em>, <em>delimiter=None</em>, <em>convert_numeric_fields=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/containers/containers.html#ListDictContainer.load"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.containers.ListDictContainer.load" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">ListDictContainer.</code><code class="descname">load</code><span class="sig-paren">(</span><em>filename=None</em>, <em>fields=None</em>, <em>csv_header=True</em>, <em>file_format=None</em>, <em>delimiter=None</em>, <em>convert_numeric_fields=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/containers/containers.html#ListDictContainer.load"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.containers.ListDictContainer.load" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load file</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>filename</strong><span class="classifier">str, optional</span></dt><dd><p>File path, if None given, filename given to class constructor is used.
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>filename</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str, optional</span></dt>
+<dd><p class="first last">File path, if None given, filename given to class constructor is used.
 Default value None</p>
 </dd>
-<dt><strong>fields</strong><span class="classifier">list of str, optional</span></dt><dd><p>List of column names
+<dt><strong>fields</strong> <span class="classifier-delimiter">:</span> <span class="classifier">list of str, optional</span></dt>
+<dd><p class="first last">List of column names
 Default value None</p>
 </dd>
-<dt><strong>csv_header</strong><span class="classifier">bool, optional</span></dt><dd><p>Read field names from first line (header). Used only for CSV formatted files.
+<dt><strong>csv_header</strong> <span class="classifier-delimiter">:</span> <span class="classifier">bool, optional</span></dt>
+<dd><p class="first last">Read field names from first line (header). Used only for CSV formatted files.
 Default value True</p>
 </dd>
-<dt><strong>file_format</strong><span class="classifier">FileFormat, optional</span></dt><dd><p>Forced file format, use this when there is
+<dt><strong>file_format</strong> <span class="classifier-delimiter">:</span> <span class="classifier">FileFormat, optional</span></dt>
+<dd><p class="first last">Forced file format, use this when there is
 a miss-match between file extension and file format.
 Default value None</p>
 </dd>
-<dt><strong>delimiter</strong><span class="classifier">str, optional</span></dt><dd><p>Forced data delimiter for csv format. If None given,
+<dt><strong>delimiter</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str, optional</span></dt>
+<dd><p class="first last">Forced data delimiter for csv format. If None given,
 automatic delimiter sniffer used. Use this when sniffer does not work.
 Default value None</p>
 </dd>
-<dt><strong>convert_numeric_fields</strong><span class="classifier">bool, optional</span></dt><dd><p>Convert int and float fields to correct type.
+<dt><strong>convert_numeric_fields</strong> <span class="classifier-delimiter">:</span> <span class="classifier">bool, optional</span></dt>
+<dd><p class="first last">Convert int and float fields to correct type.
 Default value True</p>
 </dd>
 </dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>self</dt><dd></dd>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>self</strong></dt>
+<dd></dd>
 </dl>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>IOError:</strong></dt>
+<dd><p class="first last">File does not exists or has unknown file format</p>
 </dd>
-<dt class="field-odd">Raises</dt>
-<dd class="field-odd"><dl class="simple">
-<dt>IOError:</dt><dd><p>File does not exists or has unknown file format</p>
-</dd>
-<dt>ValueError:</dt><dd><p>No fields or csv_header set for CSV formatted file.</p>
+<dt><strong>ValueError:</strong></dt>
+<dd><p class="first last">No fields or csv_header set for CSV formatted file.</p>
 </dd>
 </dl>
-</dd>
-</dl>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </div>

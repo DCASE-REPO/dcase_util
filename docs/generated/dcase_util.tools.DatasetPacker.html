@@ -1439,6 +1439,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-10">v0.2.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-9">v0.2.9</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-8">v0.2.8</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-7">v0.2.7</a></li>
@@ -1529,81 +1530,99 @@
 <dt id="dcase_util.tools.DatasetPacker">
 <em class="property">class </em><code class="descclassname">dcase_util.tools.</code><code class="descname">DatasetPacker</code><span class="sig-paren">(</span><em>package_size_limit=None</em>, <em>convert_md_to_html=True</em>, <em>md_to_html_template=None</em>, <em>package_extension='zip'</em>, <em>filename_template='{dataset_name}.{data_name}.{extension}'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/tools/datasets.html#DatasetPacker"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.tools.DatasetPacker" title="Permalink to this definition">¶</a></dt>
 <dd><p>Constructor</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>package_size_limit</strong><span class="classifier">int</span></dt><dd><p>Package size limit in bytes (uncompressed), bigger packages will be split into multiple packages.
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>package_size_limit</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int</span></dt>
+<dd><p class="first last">Package size limit in bytes (uncompressed), bigger packages will be split into multiple packages.
 Default value None</p>
 </dd>
-<dt><strong>convert_md_to_html</strong><span class="classifier">bool</span></dt><dd><p>Convert Markdown document to HTML. Original Markdown document is kept.
+<dt><strong>convert_md_to_html</strong> <span class="classifier-delimiter">:</span> <span class="classifier">bool</span></dt>
+<dd><p class="first last">Convert Markdown document to HTML. Original Markdown document is kept.
 Default value True</p>
 </dd>
-<dt><strong>md_to_html_template</strong><span class="classifier">str</span></dt><dd><p>Template override for HTML document. If None given, default one is used.
+<dt><strong>md_to_html_template</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dd><p class="first last">Template override for HTML document. If None given, default one is used.
 Default value None</p>
 </dd>
-<dt><strong>package_extension</strong><span class="classifier">str</span></dt><dd><p>Package extension
+<dt><strong>package_extension</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dd><p class="first last">Package extension
 Default value ‘zip’</p>
 </dd>
-<dt><strong>filename_template</strong><span class="classifier">str</span></dt><dd><p>Template for dataset package filenames.
+<dt><strong>filename_template</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dd><p class="first last">Template for dataset package filenames.
 Default value ‘{dataset_name}.{data_name}.{extension}’</p>
 </dd>
 </dl>
-</dd>
-</dl>
+</td>
+</tr>
+</tbody>
+</table>
 <dl class="method">
 <dt id="dcase_util.tools.DatasetPacker.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>self</em>, <em>package_size_limit=None</em>, <em>convert_md_to_html=True</em>, <em>md_to_html_template=None</em>, <em>package_extension='zip'</em>, <em>filename_template='{dataset_name}.{data_name}.{extension}'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/tools/datasets.html#DatasetPacker.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.tools.DatasetPacker.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>package_size_limit=None</em>, <em>convert_md_to_html=True</em>, <em>md_to_html_template=None</em>, <em>package_extension='zip'</em>, <em>filename_template='{dataset_name}.{data_name}.{extension}'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/tools/datasets.html#DatasetPacker.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.tools.DatasetPacker.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Constructor</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>package_size_limit</strong><span class="classifier">int</span></dt><dd><p>Package size limit in bytes (uncompressed), bigger packages will be split into multiple packages.
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>package_size_limit</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int</span></dt>
+<dd><p class="first last">Package size limit in bytes (uncompressed), bigger packages will be split into multiple packages.
 Default value None</p>
 </dd>
-<dt><strong>convert_md_to_html</strong><span class="classifier">bool</span></dt><dd><p>Convert Markdown document to HTML. Original Markdown document is kept.
+<dt><strong>convert_md_to_html</strong> <span class="classifier-delimiter">:</span> <span class="classifier">bool</span></dt>
+<dd><p class="first last">Convert Markdown document to HTML. Original Markdown document is kept.
 Default value True</p>
 </dd>
-<dt><strong>md_to_html_template</strong><span class="classifier">str</span></dt><dd><p>Template override for HTML document. If None given, default one is used.
+<dt><strong>md_to_html_template</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dd><p class="first last">Template override for HTML document. If None given, default one is used.
 Default value None</p>
 </dd>
-<dt><strong>package_extension</strong><span class="classifier">str</span></dt><dd><p>Package extension
+<dt><strong>package_extension</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dd><p class="first last">Package extension
 Default value ‘zip’</p>
 </dd>
-<dt><strong>filename_template</strong><span class="classifier">str</span></dt><dd><p>Template for dataset package filenames.
+<dt><strong>filename_template</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dd><p class="first last">Template for dataset package filenames.
 Default value ‘{dataset_name}.{data_name}.{extension}’</p>
 </dd>
 </dl>
-</dd>
-</dl>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <p class="rubric">Methods</p>
-<table class="longtable docutils align-center">
+<table border="1" class="longtable docutils">
 <colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
+<col width="10%" />
+<col width="90%" />
 </colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dcase_util.tools.DatasetPacker.__init__" title="dcase_util.tools.DatasetPacker.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(self[, package_size_limit, …])</p></td>
-<td><p>Constructor</p></td>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#dcase_util.tools.DatasetPacker.__init__" title="dcase_util.tools.DatasetPacker.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>([package_size_limit,&nbsp;…])</td>
+<td>Constructor</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="dcase_util.tools.DatasetPacker.convert_markdown.html#dcase_util.tools.DatasetPacker.convert_markdown" title="dcase_util.tools.DatasetPacker.convert_markdown"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convert_markdown</span></code></a>(self, source_filename, …)</p></td>
-<td><p>Convert markdown document to HTML document.</p></td>
+<tr class="row-even"><td><a class="reference internal" href="dcase_util.tools.DatasetPacker.convert_markdown.html#dcase_util.tools.DatasetPacker.convert_markdown" title="dcase_util.tools.DatasetPacker.convert_markdown"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convert_markdown</span></code></a>(source_filename,&nbsp;…)</td>
+<td>Convert markdown document to HTML document.</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="dcase_util.tools.DatasetPacker.pack.html#dcase_util.tools.DatasetPacker.pack" title="dcase_util.tools.DatasetPacker.pack"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pack</span></code></a>(self[, dataset_name, content, …])</p></td>
-<td><p>Pack dataset.</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="dcase_util.tools.DatasetPacker.pack.html#dcase_util.tools.DatasetPacker.pack" title="dcase_util.tools.DatasetPacker.pack"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pack</span></code></a>([dataset_name,&nbsp;content,&nbsp;output_path,&nbsp;…])</td>
+<td>Pack dataset.</td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">Attributes</p>
-<table class="longtable docutils align-center">
+<table border="1" class="longtable docutils">
 <colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
+<col width="10%" />
+<col width="90%" />
 </colgroup>
-<tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">logger</span></code></p></td>
-<td><p></p></td>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">logger</span></code></td>
+<td></td>
 </tr>
 </tbody>
 </table>

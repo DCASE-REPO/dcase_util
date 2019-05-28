@@ -1439,6 +1439,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-10">v0.2.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-9">v0.2.9</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-8">v0.2.8</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-7">v0.2.7</a></li>
@@ -1530,79 +1531,79 @@
 <em class="property">class </em><code class="descclassname">dcase_util.utils.</code><code class="descname">FieldValidator</code><a class="reference internal" href="../_modules/dcase_util/utils/validators.html#FieldValidator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.utils.FieldValidator" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="method">
 <dt id="dcase_util.utils.FieldValidator.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>self</em>, <em>/</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dcase_util.utils.FieldValidator.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>$self</em>, <em>/</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dcase_util.utils.FieldValidator.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
 
 <p class="rubric">Methods</p>
-<table class="longtable docutils align-center">
+<table border="1" class="longtable docutils">
 <colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
+<col width="10%" />
+<col width="90%" />
 </colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="dcase_util.utils.FieldValidator.is_alpha.html#dcase_util.utils.FieldValidator.is_alpha" title="dcase_util.utils.FieldValidator.is_alpha"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_alpha</span></code></a>(field[, length])</p></td>
-<td><p>Test for alpha field with length 1</p></td>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="dcase_util.utils.FieldValidator.is_alpha.html#dcase_util.utils.FieldValidator.is_alpha" title="dcase_util.utils.FieldValidator.is_alpha"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_alpha</span></code></a>(field[,&nbsp;length])</td>
+<td>Test for alpha field with length 1</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="dcase_util.utils.FieldValidator.is_audiofile.html#dcase_util.utils.FieldValidator.is_audiofile" title="dcase_util.utils.FieldValidator.is_audiofile"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_audiofile</span></code></a>(field)</p></td>
-<td><p>Test for audio file field</p></td>
+<tr class="row-even"><td><a class="reference internal" href="dcase_util.utils.FieldValidator.is_audiofile.html#dcase_util.utils.FieldValidator.is_audiofile" title="dcase_util.utils.FieldValidator.is_audiofile"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_audiofile</span></code></a>(field)</td>
+<td>Test for audio file field</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_datafile</span></code>(field)</p></td>
-<td><p>Test for data file field</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_datafile</span></code>(field)</td>
+<td>Test for data file field</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="dcase_util.utils.FieldValidator.is_empty.html#dcase_util.utils.FieldValidator.is_empty" title="dcase_util.utils.FieldValidator.is_empty"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_empty</span></code></a>(field)</p></td>
-<td><p>Test for empty field</p></td>
+<tr class="row-even"><td><a class="reference internal" href="dcase_util.utils.FieldValidator.is_empty.html#dcase_util.utils.FieldValidator.is_empty" title="dcase_util.utils.FieldValidator.is_empty"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_empty</span></code></a>(field)</td>
+<td>Test for empty field</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="dcase_util.utils.FieldValidator.is_list.html#dcase_util.utils.FieldValidator.is_list" title="dcase_util.utils.FieldValidator.is_list"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_list</span></code></a>(field)</p></td>
-<td><p>Test for list field, valid delimiters [ : ; #]</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="dcase_util.utils.FieldValidator.is_list.html#dcase_util.utils.FieldValidator.is_list" title="dcase_util.utils.FieldValidator.is_list"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_list</span></code></a>(field)</td>
+<td>Test for list field, valid delimiters [ : ; #]</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="dcase_util.utils.FieldValidator.is_number.html#dcase_util.utils.FieldValidator.is_number" title="dcase_util.utils.FieldValidator.is_number"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_number</span></code></a>(field)</p></td>
-<td><p>Test for number field</p></td>
+<tr class="row-even"><td><a class="reference internal" href="dcase_util.utils.FieldValidator.is_number.html#dcase_util.utils.FieldValidator.is_number" title="dcase_util.utils.FieldValidator.is_number"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_number</span></code></a>(field)</td>
+<td>Test for number field</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="dcase_util.utils.FieldValidator.process.html#dcase_util.utils.FieldValidator.process" title="dcase_util.utils.FieldValidator.process"><code class="xref py py-obj docutils literal notranslate"><span class="pre">process</span></code></a>(field)</p></td>
-<td><p>Test field</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="dcase_util.utils.FieldValidator.process.html#dcase_util.utils.FieldValidator.process" title="dcase_util.utils.FieldValidator.process"><code class="xref py py-obj docutils literal notranslate"><span class="pre">process</span></code></a>(field)</td>
+<td>Test field</td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">Attributes</p>
-<table class="longtable docutils align-center">
+<table border="1" class="longtable docutils">
 <colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
+<col width="10%" />
+<col width="90%" />
 </colgroup>
-<tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ALPHA1</span></code></p></td>
-<td><p></p></td>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">ALPHA1</span></code></td>
+<td></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ALPHA2</span></code></p></td>
-<td><p></p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">ALPHA2</span></code></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">AUDIOFILE</span></code></p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">AUDIOFILE</span></code></td>
+<td></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">DATAFILE</span></code></p></td>
-<td><p></p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">DATAFILE</span></code></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">EMPTY</span></code></p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">EMPTY</span></code></td>
+<td></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">FILE</span></code></p></td>
-<td><p></p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">FILE</span></code></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">LIST</span></code></p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">LIST</span></code></td>
+<td></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">NUMBER</span></code></p></td>
-<td><p></p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">NUMBER</span></code></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">STRING</span></code></p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">STRING</span></code></td>
+<td></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">audio_file_extensions</span></code></p></td>
-<td><p></p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">audio_file_extensions</span></code></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">data_file_extensions</span></code></p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">data_file_extensions</span></code></td>
+<td></td>
 </tr>
 </tbody>
 </table>

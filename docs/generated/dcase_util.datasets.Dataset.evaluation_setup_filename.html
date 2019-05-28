@@ -1439,6 +1439,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-10">v0.2.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-9">v0.2.9</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-8">v0.2.8</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-7">v0.2.7</a></li>
@@ -1527,38 +1528,48 @@
 <h1>dcase_util.datasets.Dataset.evaluation_setup_filename<a class="headerlink" href="#dcase-util-datasets-dataset-evaluation-setup-filename" title="Permalink to this headline">¶</a></h1>
 <dl class="method">
 <dt id="dcase_util.datasets.Dataset.evaluation_setup_filename">
-<code class="descclassname">Dataset.</code><code class="descname">evaluation_setup_filename</code><span class="sig-paren">(</span><em>self</em>, <em>setup_part='train'</em>, <em>fold=None</em>, <em>scene_label=None</em>, <em>file_extension=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/datasets/datasets.html#Dataset.evaluation_setup_filename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.datasets.Dataset.evaluation_setup_filename" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">Dataset.</code><code class="descname">evaluation_setup_filename</code><span class="sig-paren">(</span><em>setup_part='train'</em>, <em>fold=None</em>, <em>scene_label=None</em>, <em>file_extension=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/datasets/datasets.html#Dataset.evaluation_setup_filename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.datasets.Dataset.evaluation_setup_filename" title="Permalink to this definition">¶</a></dt>
 <dd><p>Evaluation setup filename generation.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>setup_part</strong><span class="classifier">str</span></dt><dd><p>Setup part ‘train’, ‘test’, ‘evaluate’
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>setup_part</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dd><p class="first last">Setup part ‘train’, ‘test’, ‘evaluate’
 Default value ‘train’</p>
 </dd>
-<dt><strong>fold</strong><span class="classifier">int</span></dt><dd><p>Fold number
+<dt><strong>fold</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int</span></dt>
+<dd><p class="first last">Fold number
 Default value None</p>
 </dd>
-<dt><strong>scene_label</strong><span class="classifier">str</span></dt><dd><p>Scene label
+<dt><strong>scene_label</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dd><p class="first last">Scene label
 Default value None</p>
 </dd>
-<dt><strong>file_extension</strong><span class="classifier">str</span></dt><dd><p>File extension. If None given, self.evaluation_setup_file_extension is used.
+<dt><strong>file_extension</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dd><p class="first last">File extension. If None given, self.evaluation_setup_file_extension is used.
 Default value None</p>
 </dd>
 </dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>str</dt><dd><p>Filename with full path.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-odd">Raises</dt>
-<dd class="field-odd"><dl class="simple">
-<dt>ValueError</dt><dd><p>Unknown setup part.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>str</strong></dt>
+<dd><p class="first last">Filename with full path.</p>
 </dd>
 </dl>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>ValueError</strong></dt>
+<dd><p class="first last">Unknown setup part.</p>
 </dd>
 </dl>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </div>

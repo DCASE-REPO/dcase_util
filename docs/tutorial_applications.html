@@ -1439,6 +1439,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-2-10">v0.2.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-2-9">v0.2.9</a></li>
 <li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-2-8">v0.2.8</a></li>
 <li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-2-7">v0.2.7</a></li>
@@ -1528,12 +1529,12 @@
 <p>This tutorial shows how to build simple acoustic scene classifier with utilities
 available in <code class="xref py py-obj docutils literal notranslate"><span class="pre">dcase_util</span></code>. Acoustic scene classifier application contains usually following stages:</p>
 <ul class="simple">
-<li><p><strong>Dataset initialization stage</strong>, make use dataset is downloaded and ready to be used.</p></li>
-<li><p><strong>Feature extraction stage</strong>, acoustic features are extracted for all audio files in the development dataset and stores to the disk for easier access later</p></li>
-<li><p><strong>Feature normalization stage</strong>, go though training material per cross-validation fold and calculate mean and standard deviation for acoustic features to normalize feature data later</p></li>
-<li><p><strong>Learning stage</strong>, go through training material per cross-validation fold, and learn acoustic model.</p></li>
-<li><p><strong>Testing stage</strong>, go through testing material per cross-validation fold, and estimate scene class for each sample.</p></li>
-<li><p><strong>Evaluation</strong>, evaluate system output against ground truth.</p></li>
+<li><strong>Dataset initialization stage</strong>, make use dataset is downloaded and ready to be used.</li>
+<li><strong>Feature extraction stage</strong>, acoustic features are extracted for all audio files in the development dataset and stores to the disk for easier access later</li>
+<li><strong>Feature normalization stage</strong>, go though training material per cross-validation fold and calculate mean and standard deviation for acoustic features to normalize feature data later</li>
+<li><strong>Learning stage</strong>, go through training material per cross-validation fold, and learn acoustic model.</li>
+<li><strong>Testing stage</strong>, go through testing material per cross-validation fold, and estimate scene class for each sample.</li>
+<li><strong>Evaluation</strong>, evaluate system output against ground truth.</li>
 </ul>
 <p>This examples uses acoustic scene dataset published for DCASE2013 (10 scene classes), static MFCCs as features, and
 GMM as classifier. Example is showing only bare minimum code needed, usual development system requires better

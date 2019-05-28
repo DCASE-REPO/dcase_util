@@ -1439,6 +1439,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-10">v0.2.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-9">v0.2.9</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-8">v0.2.8</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-7">v0.2.7</a></li>
@@ -1530,159 +1531,171 @@
 <em class="property">class </em><code class="descclassname">dcase_util.data.</code><code class="descname">BinaryMatrixEncoder</code><span class="sig-paren">(</span><em>label_list=None</em>, <em>time_resolution=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/data/encoders.html#BinaryMatrixEncoder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.data.BinaryMatrixEncoder" title="Permalink to this definition">¶</a></dt>
 <dd><p>Binary matrix encoder base class</p>
 <p>Constructor</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>label_list</strong><span class="classifier">list or str</span></dt><dd><p>Label list
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>label_list</strong> <span class="classifier-delimiter">:</span> <span class="classifier">list or str</span></dt>
+<dd><p class="first last">Label list
 Default value None</p>
 </dd>
-<dt><strong>time_resolution</strong><span class="classifier">float</span></dt><dd><p>Time resolution
+<dt><strong>time_resolution</strong> <span class="classifier-delimiter">:</span> <span class="classifier">float</span></dt>
+<dd><p class="first last">Time resolution
 Default value None</p>
 </dd>
 </dl>
-</dd>
-</dl>
+</td>
+</tr>
+</tbody>
+</table>
 <dl class="method">
 <dt id="dcase_util.data.BinaryMatrixEncoder.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>self</em>, <em>label_list=None</em>, <em>time_resolution=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/data/encoders.html#BinaryMatrixEncoder.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.data.BinaryMatrixEncoder.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>label_list=None</em>, <em>time_resolution=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/data/encoders.html#BinaryMatrixEncoder.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.data.BinaryMatrixEncoder.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Constructor</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>label_list</strong><span class="classifier">list or str</span></dt><dd><p>Label list
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>label_list</strong> <span class="classifier-delimiter">:</span> <span class="classifier">list or str</span></dt>
+<dd><p class="first last">Label list
 Default value None</p>
 </dd>
-<dt><strong>time_resolution</strong><span class="classifier">float</span></dt><dd><p>Time resolution
+<dt><strong>time_resolution</strong> <span class="classifier-delimiter">:</span> <span class="classifier">float</span></dt>
+<dd><p class="first last">Time resolution
 Default value None</p>
 </dd>
 </dl>
-</dd>
-</dl>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <p class="rubric">Methods</p>
-<table class="longtable docutils align-center">
+<table border="1" class="longtable docutils">
 <colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
+<col width="10%" />
+<col width="90%" />
 </colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dcase_util.data.BinaryMatrixEncoder.__init__" title="dcase_util.data.BinaryMatrixEncoder.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(self[, label_list, time_resolution])</p></td>
-<td><p>Constructor</p></td>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#dcase_util.data.BinaryMatrixEncoder.__init__" title="dcase_util.data.BinaryMatrixEncoder.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>([label_list,&nbsp;time_resolution])</td>
+<td>Constructor</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">change_axis</span></code>(self[, time_axis, data_axis])</p></td>
-<td><p>Set axis</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">change_axis</span></code>([time_axis,&nbsp;data_axis])</td>
+<td>Set axis</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">delimiter</span></code>(self[, exclude_delimiters])</p></td>
-<td><p>Use csv.sniffer to guess delimiter for CSV file</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">delimiter</span></code>([exclude_delimiters])</td>
+<td>Use csv.sniffer to guess delimiter for CSV file</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">detect_file_format</span></code>(self[, filename])</p></td>
-<td><p>Detect file format from extension</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">detect_file_format</span></code>([filename])</td>
+<td>Detect file format from extension</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">empty</span></code>(self)</p></td>
-<td><p>Check if file is empty</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">empty</span></code>()</td>
+<td>Check if file is empty</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">exists</span></code>(self)</p></td>
-<td><p>Checks that file exists</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">exists</span></code>()</td>
+<td>Checks that file exists</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">freeze</span></code>(self)</p></td>
-<td><p>Freeze focus segment, copy segment to be container’s data.</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">freeze</span></code>()</td>
+<td>Freeze focus segment, copy segment to be container’s data.</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_file_information</span></code>(self)</p></td>
-<td><p>Get file information, filename</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_file_information</span></code>()</td>
+<td>Get file information, filename</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_focused</span></code>(self)</p></td>
-<td><p>Get focus segment from data matrix.</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_focused</span></code>()</td>
+<td>Get focus segment from data matrix.</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_frames</span></code>(self[, frame_ids, vector_ids, …])</p></td>
-<td><p>Get frames from data matrix.</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_frames</span></code>([frame_ids,&nbsp;vector_ids,&nbsp;frame_hop])</td>
+<td>Get frames from data matrix.</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_package</span></code>(self[, filename])</p></td>
-<td><p>Determine if the file is compressed package.</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_package</span></code>([filename])</td>
+<td>Determine if the file is compressed package.</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">load</span></code>(self[, filename])</p></td>
-<td><p>Load file</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">load</span></code>([filename])</td>
+<td>Load file</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">log</span></code>(self[, level])</p></td>
-<td><p>Log container content</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">log</span></code>([level])</td>
+<td>Log container content</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="dcase_util.data.BinaryMatrixEncoder.pad.html#dcase_util.data.BinaryMatrixEncoder.pad" title="dcase_util.data.BinaryMatrixEncoder.pad"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pad</span></code></a>(self, length[, binary_matrix])</p></td>
-<td><p>Pad binary matrix along time axis</p></td>
+<tr class="row-even"><td><a class="reference internal" href="dcase_util.data.BinaryMatrixEncoder.pad.html#dcase_util.data.BinaryMatrixEncoder.pad" title="dcase_util.data.BinaryMatrixEncoder.pad"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pad</span></code></a>(length[,&nbsp;binary_matrix])</td>
+<td>Pad binary matrix along time axis</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="dcase_util.data.BinaryMatrixEncoder.plot.html#dcase_util.data.BinaryMatrixEncoder.plot" title="dcase_util.data.BinaryMatrixEncoder.plot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot</span></code></a>(self[, plot, binary_matrix, …])</p></td>
-<td><p>Visualize binary matrix, and optionally synced data matrix.</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="dcase_util.data.BinaryMatrixEncoder.plot.html#dcase_util.data.BinaryMatrixEncoder.plot" title="dcase_util.data.BinaryMatrixEncoder.plot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot</span></code></a>([plot,&nbsp;binary_matrix,&nbsp;data_container,&nbsp;…])</td>
+<td>Visualize binary matrix, and optionally synced data matrix.</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">push_processing_chain_item</span></code>(self, processor_name)</p></td>
-<td><p>Push processing chain item</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">push_processing_chain_item</span></code>(processor_name[,&nbsp;…])</td>
+<td>Push processing chain item</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">reset_focus</span></code>(self)</p></td>
-<td><p>Reset focus segment</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">reset_focus</span></code>()</td>
+<td>Reset focus segment</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code>(self[, filename])</p></td>
-<td><p>Save file</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code>([filename])</td>
+<td>Save file</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_focus</span></code>(self[, start, stop, duration, …])</p></td>
-<td><p>Set focus segment</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_focus</span></code>([start,&nbsp;stop,&nbsp;duration,&nbsp;…])</td>
+<td>Set focus segment</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">show</span></code>(self[, mode, indent, visualize])</p></td>
-<td><p>Print container content</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">show</span></code>([mode,&nbsp;indent,&nbsp;visualize])</td>
+<td>Print container content</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_html</span></code>(self[, indent])</p></td>
-<td><p>Get container information in a HTML formatted string</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_html</span></code>([indent])</td>
+<td>Get container information in a HTML formatted string</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_string</span></code>(self[, ui, indent])</p></td>
-<td><p>Get container information in a string</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_string</span></code>([ui,&nbsp;indent])</td>
+<td>Get container information in a string</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_format</span></code>(self)</p></td>
-<td><p>Validate file format</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_format</span></code>()</td>
+<td>Validate file format</td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">Attributes</p>
-<table class="longtable docutils align-center">
+<table border="1" class="longtable docutils">
 <colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
+<col width="10%" />
+<col width="90%" />
 </colgroup>
-<tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">T</span></code></p></td>
-<td><p>Transposed data in a data container</p></td>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">T</span></code></td>
+<td>Transposed data in a data container</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">bytes</span></code></p></td>
-<td><p>File size in bytes</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">bytes</span></code></td>
+<td>File size in bytes</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">data</span></code></p></td>
-<td><p>Data matrix</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">data</span></code></td>
+<td>Data matrix</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">focus_start</span></code></p></td>
-<td><p>Focus segment start</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">focus_start</span></code></td>
+<td>Focus segment start</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">focus_stop</span></code></p></td>
-<td><p>Focus segment stop</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">focus_stop</span></code></td>
+<td>Focus segment stop</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">frames</span></code></p></td>
-<td><p>Number of data frames</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">frames</span></code></td>
+<td>Number of data frames</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">length</span></code></p></td>
-<td><p>Number of data columns</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">length</span></code></td>
+<td>Number of data columns</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">logger</span></code></p></td>
-<td><p>Logger instance</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">logger</span></code></td>
+<td>Logger instance</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">md5</span></code></p></td>
-<td><p>Checksum for file.</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">md5</span></code></td>
+<td>Checksum for file.</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">shape</span></code></p></td>
-<td><p>Shape of data matrix</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">shape</span></code></td>
+<td>Shape of data matrix</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">stats</span></code></p></td>
-<td><p>Basic statistics of data matrix.</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">stats</span></code></td>
+<td>Basic statistics of data matrix.</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">valid_formats</span></code></p></td>
-<td><p></p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">valid_formats</span></code></td>
+<td></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">vector_length</span></code></p></td>
-<td><p>Data vector length</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">vector_length</span></code></td>
+<td>Data vector length</td>
 </tr>
 </tbody>
 </table>

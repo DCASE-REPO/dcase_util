@@ -1439,6 +1439,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-10">v0.2.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-9">v0.2.9</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-8">v0.2.8</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-7">v0.2.7</a></li>
@@ -1527,48 +1528,57 @@
 <h1>dcase_util.ui.FancyLogger.table<a class="headerlink" href="#dcase-util-ui-fancylogger-table" title="Permalink to this headline">¶</a></h1>
 <dl class="method">
 <dt id="dcase_util.ui.FancyLogger.table">
-<code class="descclassname">FancyLogger.</code><code class="descname">table</code><span class="sig-paren">(</span><em>self</em>, <em>cell_data=None</em>, <em>column_headers=None</em>, <em>column_types=None</em>, <em>column_separators=None</em>, <em>row_separators=None</em>, <em>indent=0</em>, <em>level='info'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/ui/ui.html#FancyLogger.table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.ui.FancyLogger.table" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">FancyLogger.</code><code class="descname">table</code><span class="sig-paren">(</span><em>cell_data=None</em>, <em>column_headers=None</em>, <em>column_types=None</em>, <em>column_separators=None</em>, <em>row_separators=None</em>, <em>indent=0</em>, <em>level='info'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/ui/ui.html#FancyLogger.table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.ui.FancyLogger.table" title="Permalink to this definition">¶</a></dt>
 <dd><p>Data table</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>cell_data</strong><span class="classifier">list of list</span></dt><dd><p>Cell data in format [ [cell(col1,row1), cell(col1,row2), cell(col1,row3)],
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>cell_data</strong> <span class="classifier-delimiter">:</span> <span class="classifier">list of list</span></dt>
+<dd><p class="first last">Cell data in format [ [cell(col1,row1), cell(col1,row2), cell(col1,row3)],
 [cell(col2,row1), cell(col2,row2), cell(col2,row3)] ]
 Default value None</p>
 </dd>
-<dt><strong>column_headers</strong><span class="classifier">list of str</span></dt><dd><p>Column headers in list, if None given column numbers are used
+<dt><strong>column_headers</strong> <span class="classifier-delimiter">:</span> <span class="classifier">list of str</span></dt>
+<dd><p class="first last">Column headers in list, if None given column numbers are used
 Default value None</p>
 </dd>
-<dt><strong>column_types</strong><span class="classifier">list of str</span></dt><dd><p>Column data types, if None given type is determined automatically.
+<dt><strong>column_types</strong> <span class="classifier-delimiter">:</span> <span class="classifier">list of str</span></dt>
+<dd><p class="first last">Column data types, if None given type is determined automatically.
 Possible values: [‘int’, ‘float1’, ‘float2’, ‘float3’, ‘float4’, ‘str10’, ‘str20’]]
 Default value None</p>
 </dd>
-<dt><strong>column_separators</strong><span class="classifier">list of int</span></dt><dd><p>Column ids where to place separation lines. Line is placed on the right of the indicated column.
+<dt><strong>column_separators</strong> <span class="classifier-delimiter">:</span> <span class="classifier">list of int</span></dt>
+<dd><p class="first last">Column ids where to place separation lines. Line is placed on the right of the indicated column.
 Default value None</p>
 </dd>
-<dt><strong>row_separators</strong><span class="classifier">list of int</span></dt><dd><p>Row ids where to place separation lines. Line is place after indicated row.
+<dt><strong>row_separators</strong> <span class="classifier-delimiter">:</span> <span class="classifier">list of int</span></dt>
+<dd><p class="first last">Row ids where to place separation lines. Line is place after indicated row.
 Default value None</p>
 </dd>
-<dt><strong>indent</strong><span class="classifier">int</span></dt><dd><p>Amount of indention used for the line
+<dt><strong>indent</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int</span></dt>
+<dd><p class="first last">Amount of indention used for the line
 Default value 0</p>
 </dd>
-<dt><strong>level</strong><span class="classifier">str</span></dt><dd><p>Logging level, one of [info,debug,warning,warn,error]
+<dt><strong>level</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dd><p class="first last">Logging level, one of [info,debug,warning,warn,error]
 Default value ‘info’</p>
 </dd>
 </dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>nothing</dt><dd></dd>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>nothing</strong></dt>
+<dd></dd>
 </dl>
-</dd>
-</dl>
+</td>
+</tr>
+</tbody>
+</table>
 <div class="admonition seealso">
-<p class="admonition-title">See also</p>
-<dl class="simple">
-<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">dcase_util.ui.FancyUI.table</span></code></dt><dd></dd>
-<dt><a class="reference internal" href="dcase_util.ui.FancyPrinter.table.html#dcase_util.ui.FancyPrinter.table" title="dcase_util.ui.FancyPrinter.table"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dcase_util.ui.FancyPrinter.table</span></code></a></dt><dd></dd>
-</dl>
+<p class="first admonition-title">See also</p>
+<p class="last"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dcase_util.ui.FancyUI.table</span></code>, <a class="reference internal" href="dcase_util.ui.FancyPrinter.table.html#dcase_util.ui.FancyPrinter.table" title="dcase_util.ui.FancyPrinter.table"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dcase_util.ui.FancyPrinter.table</span></code></a></p>
 </div>
 </dd></dl>
 

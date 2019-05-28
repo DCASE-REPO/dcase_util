@@ -1439,6 +1439,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-10">v0.2.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-9">v0.2.9</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-8">v0.2.8</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-7">v0.2.7</a></li>
@@ -1530,46 +1531,60 @@
 <code class="descclassname">dcase_util.keras.</code><code class="descname">data_collector</code><span class="sig-paren">(</span><em>item_list=None</em>, <em>data_processing_chain=None</em>, <em>meta_processing_chain=None</em>, <em>target_format='single_target_per_sequence'</em>, <em>channel_dimension='channels_last'</em>, <em>verbose=True</em>, <em>print_indent=2</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/keras/data.html#data_collector"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.keras.data_collector" title="Permalink to this definition">¶</a></dt>
 <dd><p>Data collector</p>
 <p>Collects data and meta into matrices while processing them through processing chains.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>item_list</strong><span class="classifier">list or dict</span></dt><dd><p>Items in the data sequence. List containing multi-level dictionary with first level key
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>item_list</strong> <span class="classifier-delimiter">:</span> <span class="classifier">list or dict</span></dt>
+<dd><p class="first last">Items in the data sequence. List containing multi-level dictionary with first level key
 ‘data’ and ‘meta’. Second level should contain parameters for process method in the processing chain.
 Default value None</p>
 </dd>
-<dt><strong>data_processing_chain</strong><span class="classifier">ProcessingChain</span></dt><dd><p>Data processing chain.
+<dt><strong>data_processing_chain</strong> <span class="classifier-delimiter">:</span> <span class="classifier">ProcessingChain</span></dt>
+<dd><p class="first last">Data processing chain.
 Default value None</p>
 </dd>
-<dt><strong>meta_processing_chain</strong><span class="classifier">ProcessingChain</span></dt><dd><p>Meta processing chain.
+<dt><strong>meta_processing_chain</strong> <span class="classifier-delimiter">:</span> <span class="classifier">ProcessingChain</span></dt>
+<dd><p class="first last">Meta processing chain.
 Default value None</p>
 </dd>
-<dt><strong>channel_dimension</strong><span class="classifier">str</span></dt><dd><p>Controls where channel dimension should be added. Similar to Keras data format parameter.
+<dt><strong>channel_dimension</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dd><p class="first last">Controls where channel dimension should be added. Similar to Keras data format parameter.
 If None given, no channel dimension is added.
 Possible values [None, ‘channels_first’, ‘channels_last’]
 Default value None</p>
 </dd>
-<dt><strong>target_format</strong><span class="classifier">str</span></dt><dd><p>Meta data interpretation in the relation to the data items.
+<dt><strong>target_format</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dd><p class="first last">Meta data interpretation in the relation to the data items.
 Possible values [‘same’, ‘single_target_per_segment’]
 Default value ‘single_target_per_segment’</p>
 </dd>
-<dt><strong>verbose</strong><span class="classifier">bool</span></dt><dd><p>Print information about the data
+<dt><strong>verbose</strong> <span class="classifier-delimiter">:</span> <span class="classifier">bool</span></dt>
+<dd><p class="first last">Print information about the data
 Default value True</p>
 </dd>
-<dt><strong>print_indent</strong><span class="classifier">int</span></dt><dd><p>Default value 2</p>
+<dt><strong>print_indent</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int</span></dt>
+<dd><p class="first last">Default value 2</p>
 </dd>
 </dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>numpy.ndarray</strong></dt>
+<dd><p class="first last">data</p>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>numpy.ndarray</dt><dd><p>data</p>
+<dt><strong>numpy.ndarray</strong></dt>
+<dd><p class="first last">meta</p>
 </dd>
-<dt>numpy.ndarray</dt><dd><p>meta</p>
-</dd>
-<dt>dict</dt><dd><p>data size information</p>
+<dt><strong>dict</strong></dt>
+<dd><p class="first last">data size information</p>
 </dd>
 </dl>
-</dd>
-</dl>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </div>

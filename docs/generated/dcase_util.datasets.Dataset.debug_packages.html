@@ -1439,6 +1439,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-10">v0.2.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-9">v0.2.9</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-8">v0.2.8</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-7">v0.2.7</a></li>
@@ -1527,26 +1528,33 @@
 <h1>dcase_util.datasets.Dataset.debug_packages<a class="headerlink" href="#dcase-util-datasets-dataset-debug-packages" title="Permalink to this headline">¶</a></h1>
 <dl class="method">
 <dt id="dcase_util.datasets.Dataset.debug_packages">
-<code class="descclassname">Dataset.</code><code class="descname">debug_packages</code><span class="sig-paren">(</span><em>self</em>, <em>local_check=True</em>, <em>remote_check=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/datasets/datasets.html#Dataset.debug_packages"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.datasets.Dataset.debug_packages" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">Dataset.</code><code class="descname">debug_packages</code><span class="sig-paren">(</span><em>local_check=True</em>, <em>remote_check=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/datasets/datasets.html#Dataset.debug_packages"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.datasets.Dataset.debug_packages" title="Permalink to this definition">¶</a></dt>
 <dd><p>Debug remote packages associated to the dataset.
 Use this to check remote file size and md5 hash when developing dataset class.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>local_check</strong><span class="classifier">bool</span></dt><dd><p>Check local packages, calculate md5 hash and package size.
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>local_check</strong> <span class="classifier-delimiter">:</span> <span class="classifier">bool</span></dt>
+<dd><p class="first last">Check local packages, calculate md5 hash and package size.
 Default value True</p>
 </dd>
-<dt><strong>remote_check</strong><span class="classifier">bool</span></dt><dd><p>Check remote package information and verify against information stored in the package_list (defined in the dataset class).
+<dt><strong>remote_check</strong> <span class="classifier-delimiter">:</span> <span class="classifier">bool</span></dt>
+<dd><p class="first last">Check remote package information and verify against information stored in the package_list (defined in the dataset class).
 Default value True</p>
 </dd>
 </dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>self</dt><dd></dd>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>self</strong></dt>
+<dd></dd>
 </dl>
-</dd>
-</dl>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </div>

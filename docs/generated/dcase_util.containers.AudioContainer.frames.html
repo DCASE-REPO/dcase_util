@@ -1439,6 +1439,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-10">v0.2.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-9">v0.2.9</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-8">v0.2.8</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-7">v0.2.7</a></li>
@@ -1527,38 +1528,48 @@
 <h1>dcase_util.containers.AudioContainer.frames<a class="headerlink" href="#dcase-util-containers-audiocontainer-frames" title="Permalink to this headline">¶</a></h1>
 <dl class="method">
 <dt id="dcase_util.containers.AudioContainer.frames">
-<code class="descclassname">AudioContainer.</code><code class="descname">frames</code><span class="sig-paren">(</span><em>self</em>, <em>frame_length=None</em>, <em>hop_length=None</em>, <em>frame_length_seconds=None</em>, <em>hop_length_seconds=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/containers/audio.html#AudioContainer.frames"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.containers.AudioContainer.frames" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">AudioContainer.</code><code class="descname">frames</code><span class="sig-paren">(</span><em>frame_length=None</em>, <em>hop_length=None</em>, <em>frame_length_seconds=None</em>, <em>hop_length_seconds=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/containers/audio.html#AudioContainer.frames"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.containers.AudioContainer.frames" title="Permalink to this definition">¶</a></dt>
 <dd><p>Slice audio into overlapping frames.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>frame_length</strong><span class="classifier">int, optional</span></dt><dd><p>Frame length in samples. Set either frame_length or frame_length_seconds.
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>frame_length</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int, optional</span></dt>
+<dd><p class="first last">Frame length in samples. Set either frame_length or frame_length_seconds.
 Default value None</p>
 </dd>
-<dt><strong>hop_length</strong><span class="classifier">int, optional</span></dt><dd><p>Frame hop length in samples. Set either hop_length or hop_length_seconds.
+<dt><strong>hop_length</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int, optional</span></dt>
+<dd><p class="first last">Frame hop length in samples. Set either hop_length or hop_length_seconds.
 Default value None</p>
 </dd>
-<dt><strong>frame_length_seconds</strong><span class="classifier">float, optional</span></dt><dd><p>Frame length in seconds, converted into samples based on sampling rate.
+<dt><strong>frame_length_seconds</strong> <span class="classifier-delimiter">:</span> <span class="classifier">float, optional</span></dt>
+<dd><p class="first last">Frame length in seconds, converted into samples based on sampling rate.
 Default value None</p>
 </dd>
-<dt><strong>hop_length_seconds: float, optional</strong></dt><dd><p>Frame hop length in seconds, converted into samples based on sampling rate.
+<dt><strong>hop_length_seconds: float, optional</strong></dt>
+<dd><p class="first last">Frame hop length in seconds, converted into samples based on sampling rate.
 Default value None</p>
 </dd>
 </dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>numpy.ndarray</dt><dd></dd>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>numpy.ndarray</strong></dt>
+<dd></dd>
 </dl>
-</dd>
-<dt class="field-odd">Raises</dt>
-<dd class="field-odd"><dl class="simple">
-<dt>ValueError:</dt><dd><p>No frame_length and no frame_length_seconds given.
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>ValueError:</strong></dt>
+<dd><p class="first last">No frame_length and no frame_length_seconds given.
 No hop_length and no hop_length_seconds given.</p>
 </dd>
 </dl>
-</dd>
-</dl>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </div>

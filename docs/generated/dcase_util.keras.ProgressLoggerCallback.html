@@ -1439,6 +1439,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-10">v0.2.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-9">v0.2.9</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-8">v0.2.8</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-7">v0.2.7</a></li>
@@ -1532,126 +1533,148 @@
 <p>This callback is very similar to standard <code class="docutils literal notranslate"><span class="pre">ProgbarLogger</span></code> Keras callback, however it adds support for logging
 interface, and external metrics (metrics calculated outside Keras training process).</p>
 <p>Constructor</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>epochs</strong><span class="classifier">int</span></dt><dd><p>Total amount of epochs
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>epochs</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int</span></dt>
+<dd><p class="first last">Total amount of epochs
 Default value None</p>
 </dd>
-<dt><strong>metric</strong><span class="classifier">str</span></dt><dd><p>Metric name
+<dt><strong>metric</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dd><p class="first last">Metric name
 Default value None</p>
 </dd>
-<dt><strong>manual_update</strong><span class="classifier">bool</span></dt><dd><p>Manually update callback, use this to when injecting external metrics
+<dt><strong>manual_update</strong> <span class="classifier-delimiter">:</span> <span class="classifier">bool</span></dt>
+<dd><p class="first last">Manually update callback, use this to when injecting external metrics
 Default value False</p>
 </dd>
-<dt><strong>manual_update_interval</strong><span class="classifier">int</span></dt><dd><p>Epoch interval for manual update, used anticipate updates
+<dt><strong>manual_update_interval</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int</span></dt>
+<dd><p class="first last">Epoch interval for manual update, used anticipate updates
 Default value 1</p>
 </dd>
-<dt><strong>output_type</strong><span class="classifier">str</span></dt><dd><p>Output type, either ‘logging’, ‘console’, or ‘notebook’
+<dt><strong>output_type</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dd><p class="first last">Output type, either ‘logging’, ‘console’, or ‘notebook’
 Default value ‘logging’</p>
 </dd>
-<dt><strong>show_timing</strong><span class="classifier">bool</span></dt><dd><p>Show per epoch time and estimated time remaining
+<dt><strong>show_timing</strong> <span class="classifier-delimiter">:</span> <span class="classifier">bool</span></dt>
+<dd><p class="first last">Show per epoch time and estimated time remaining
 Default value True</p>
 </dd>
-<dt><strong>external_metric_labels</strong><span class="classifier">dict or OrderedDict</span></dt><dd><p>Dictionary with {‘metric_label’: ‘metric_name’}
+<dt><strong>external_metric_labels</strong> <span class="classifier-delimiter">:</span> <span class="classifier">dict or OrderedDict</span></dt>
+<dd><p class="first last">Dictionary with {‘metric_label’: ‘metric_name’}
 Default value None</p>
 </dd>
 </dl>
-</dd>
-</dl>
+</td>
+</tr>
+</tbody>
+</table>
 <dl class="method">
 <dt id="dcase_util.keras.ProgressLoggerCallback.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>self</em>, <em>manual_update=False</em>, <em>epochs=None</em>, <em>external_metric_labels=None</em>, <em>metric=None</em>, <em>loss=None</em>, <em>manual_update_interval=1</em>, <em>output_type='logging'</em>, <em>show_timing=True</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/keras/callbacks.html#ProgressLoggerCallback.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.keras.ProgressLoggerCallback.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>manual_update=False</em>, <em>epochs=None</em>, <em>external_metric_labels=None</em>, <em>metric=None</em>, <em>loss=None</em>, <em>manual_update_interval=1</em>, <em>output_type='logging'</em>, <em>show_timing=True</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/keras/callbacks.html#ProgressLoggerCallback.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.keras.ProgressLoggerCallback.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Constructor</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>epochs</strong><span class="classifier">int</span></dt><dd><p>Total amount of epochs
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>epochs</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int</span></dt>
+<dd><p class="first last">Total amount of epochs
 Default value None</p>
 </dd>
-<dt><strong>metric</strong><span class="classifier">str</span></dt><dd><p>Metric name
+<dt><strong>metric</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dd><p class="first last">Metric name
 Default value None</p>
 </dd>
-<dt><strong>manual_update</strong><span class="classifier">bool</span></dt><dd><p>Manually update callback, use this to when injecting external metrics
+<dt><strong>manual_update</strong> <span class="classifier-delimiter">:</span> <span class="classifier">bool</span></dt>
+<dd><p class="first last">Manually update callback, use this to when injecting external metrics
 Default value False</p>
 </dd>
-<dt><strong>manual_update_interval</strong><span class="classifier">int</span></dt><dd><p>Epoch interval for manual update, used anticipate updates
+<dt><strong>manual_update_interval</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int</span></dt>
+<dd><p class="first last">Epoch interval for manual update, used anticipate updates
 Default value 1</p>
 </dd>
-<dt><strong>output_type</strong><span class="classifier">str</span></dt><dd><p>Output type, either ‘logging’, ‘console’, or ‘notebook’
+<dt><strong>output_type</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dd><p class="first last">Output type, either ‘logging’, ‘console’, or ‘notebook’
 Default value ‘logging’</p>
 </dd>
-<dt><strong>show_timing</strong><span class="classifier">bool</span></dt><dd><p>Show per epoch time and estimated time remaining
+<dt><strong>show_timing</strong> <span class="classifier-delimiter">:</span> <span class="classifier">bool</span></dt>
+<dd><p class="first last">Show per epoch time and estimated time remaining
 Default value True</p>
 </dd>
-<dt><strong>external_metric_labels</strong><span class="classifier">dict or OrderedDict</span></dt><dd><p>Dictionary with {‘metric_label’: ‘metric_name’}
+<dt><strong>external_metric_labels</strong> <span class="classifier-delimiter">:</span> <span class="classifier">dict or OrderedDict</span></dt>
+<dd><p class="first last">Dictionary with {‘metric_label’: ‘metric_name’}
 Default value None</p>
 </dd>
 </dl>
-</dd>
-</dl>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <p class="rubric">Methods</p>
-<table class="longtable docutils align-center">
+<table border="1" class="longtable docutils">
 <colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
+<col width="10%" />
+<col width="90%" />
 </colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dcase_util.keras.ProgressLoggerCallback.__init__" title="dcase_util.keras.ProgressLoggerCallback.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(self[, manual_update, epochs, …])</p></td>
-<td><p>Constructor</p></td>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#dcase_util.keras.ProgressLoggerCallback.__init__" title="dcase_util.keras.ProgressLoggerCallback.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>([manual_update,&nbsp;epochs,&nbsp;…])</td>
+<td>Constructor</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_external_metric</span></code>(self, metric_id)</p></td>
-<td><p>Add external metric to be monitored</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_external_metric</span></code>(metric_id)</td>
+<td>Add external metric to be monitored</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_operator</span></code>(self, metric)</p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_operator</span></code>(metric)</td>
+<td></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">on_batch_begin</span></code>(self, batch[, logs])</p></td>
-<td><p></p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">on_batch_begin</span></code>(batch[,&nbsp;logs])</td>
+<td></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">on_batch_end</span></code>(self, batch[, logs])</p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">on_batch_end</span></code>(batch[,&nbsp;logs])</td>
+<td></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">on_epoch_begin</span></code>(self, epoch[, logs])</p></td>
-<td><p></p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">on_epoch_begin</span></code>(epoch[,&nbsp;logs])</td>
+<td></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">on_epoch_end</span></code>(self, epoch[, logs])</p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">on_epoch_end</span></code>(epoch[,&nbsp;logs])</td>
+<td></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">on_train_begin</span></code>(self[, logs])</p></td>
-<td><p></p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">on_train_begin</span></code>([logs])</td>
+<td></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">on_train_end</span></code>(self[, logs])</p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">on_train_end</span></code>([logs])</td>
+<td></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_external_metric_value</span></code>(self, …)</p></td>
-<td><p>Add external metric value</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_external_metric_value</span></code>(metric_label,&nbsp;…)</td>
+<td>Add external metric value</td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_model</span></code>(self, model)</p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_model</span></code>(model)</td>
+<td></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code>(self, params)</p></td>
-<td><p></p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code>(params)</td>
+<td></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code>(self)</p></td>
-<td><p>Update</p></td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code>()</td>
+<td>Update</td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_progress_log</span></code>(self)</p></td>
-<td><p>Update progress to logging interface</p></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_progress_log</span></code>()</td>
+<td>Update progress to logging interface</td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">Attributes</p>
-<table class="longtable docutils align-center">
+<table border="1" class="longtable docutils">
 <colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
+<col width="10%" />
+<col width="90%" />
 </colgroup>
-<tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">logger</span></code></p></td>
-<td><p></p></td>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">logger</span></code></td>
+<td></td>
 </tr>
 </tbody>
 </table>

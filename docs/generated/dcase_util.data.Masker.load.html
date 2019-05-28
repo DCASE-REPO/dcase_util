@@ -1439,6 +1439,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-10">v0.2.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-9">v0.2.9</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-8">v0.2.8</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-7">v0.2.7</a></li>
@@ -1527,30 +1528,38 @@
 <h1>dcase_util.data.Masker.load<a class="headerlink" href="#dcase-util-data-masker-load" title="Permalink to this headline">¶</a></h1>
 <dl class="method">
 <dt id="dcase_util.data.Masker.load">
-<code class="descclassname">Masker.</code><code class="descname">load</code><span class="sig-paren">(</span><em>self</em>, <em>filename=None</em><span class="sig-paren">)</span><a class="headerlink" href="#dcase_util.data.Masker.load" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">Masker.</code><code class="descname">load</code><span class="sig-paren">(</span><em>filename=None</em><span class="sig-paren">)</span><a class="headerlink" href="#dcase_util.data.Masker.load" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load file</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>filename</strong><span class="classifier">str, optional</span></dt><dd><p>File path
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>filename</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str, optional</span></dt>
+<dd><p class="first last">File path
 Default value filename given to class constructor</p>
 </dd>
 </dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>self</dt><dd></dd>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>self</strong></dt>
+<dd></dd>
 </dl>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>ImportError:</strong></dt>
+<dd><p class="first last">Error if file format specific module cannot be imported</p>
 </dd>
-<dt class="field-odd">Raises</dt>
-<dd class="field-odd"><dl class="simple">
-<dt>ImportError:</dt><dd><p>Error if file format specific module cannot be imported</p>
-</dd>
-<dt>IOError:</dt><dd><p>File does not exists or has unknown file format</p>
+<dt><strong>IOError:</strong></dt>
+<dd><p class="first last">File does not exists or has unknown file format</p>
 </dd>
 </dl>
-</dd>
-</dl>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </div>

@@ -1439,6 +1439,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-2-10">v0.2.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-2-9">v0.2.9</a></li>
 <li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-2-8">v0.2.8</a></li>
 <li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-2-7">v0.2.7</a></li>
@@ -1531,32 +1532,32 @@
 <p><em>dcase_util.data.DataBuffer</em></p>
 <p>Data buffering class, which can be used to store data and meta data associated to the item. Item data is accessed
 through item key. When internal buffer is filled, oldest item is replaced.</p>
-<table class="longtable docutils align-center">
+<table border="1" class="longtable docutils">
 <colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
+<col width="10%" />
+<col width="90%" />
 </colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/dcase_util.data.DataBuffer.html#dcase_util.data.DataBuffer" title="dcase_util.data.DataBuffer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataBuffer</span></code></a>([size])</p></td>
-<td><p>Data buffer (First in, first out)</p></td>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.data.DataBuffer.html#dcase_util.data.DataBuffer" title="dcase_util.data.DataBuffer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataBuffer</span></code></a>([size])</td>
+<td>Data buffer (First in, first out)</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/dcase_util.data.DataBuffer.set.html#dcase_util.data.DataBuffer.set" title="dcase_util.data.DataBuffer.set"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataBuffer.set</span></code></a>(self, key[, data, meta])</p></td>
-<td><p>Insert item to the buffer</p></td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.data.DataBuffer.set.html#dcase_util.data.DataBuffer.set" title="dcase_util.data.DataBuffer.set"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataBuffer.set</span></code></a>(key[,&nbsp;data,&nbsp;meta])</td>
+<td>Insert item to the buffer</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/dcase_util.data.DataBuffer.get.html#dcase_util.data.DataBuffer.get" title="dcase_util.data.DataBuffer.get"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataBuffer.get</span></code></a>(self, key)</p></td>
-<td><p>Get item based on key</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.data.DataBuffer.get.html#dcase_util.data.DataBuffer.get" title="dcase_util.data.DataBuffer.get"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataBuffer.get</span></code></a>(key)</td>
+<td>Get item based on key</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/dcase_util.data.DataBuffer.clear.html#dcase_util.data.DataBuffer.clear" title="dcase_util.data.DataBuffer.clear"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataBuffer.clear</span></code></a>(self)</p></td>
-<td><p>Empty the buffer</p></td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.data.DataBuffer.clear.html#dcase_util.data.DataBuffer.clear" title="dcase_util.data.DataBuffer.clear"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataBuffer.clear</span></code></a>()</td>
+<td>Empty the buffer</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/dcase_util.data.DataBuffer.count.html#dcase_util.data.DataBuffer.count" title="dcase_util.data.DataBuffer.count"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataBuffer.count</span></code></a></p></td>
-<td><p>Buffer usage</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.data.DataBuffer.count.html#dcase_util.data.DataBuffer.count" title="dcase_util.data.DataBuffer.count"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataBuffer.count</span></code></a></td>
+<td>Buffer usage</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/dcase_util.data.DataBuffer.full.html#dcase_util.data.DataBuffer.full" title="dcase_util.data.DataBuffer.full"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataBuffer.full</span></code></a></p></td>
-<td><p>Buffer full</p></td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.data.DataBuffer.full.html#dcase_util.data.DataBuffer.full" title="dcase_util.data.DataBuffer.full"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataBuffer.full</span></code></a></td>
+<td>Buffer full</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/dcase_util.data.DataBuffer.key_exists.html#dcase_util.data.DataBuffer.key_exists" title="dcase_util.data.DataBuffer.key_exists"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataBuffer.key_exists</span></code></a>(self, key)</p></td>
-<td><p>Check that key exists in the buffer</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.data.DataBuffer.key_exists.html#dcase_util.data.DataBuffer.key_exists" title="dcase_util.data.DataBuffer.key_exists"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataBuffer.key_exists</span></code></a>(key)</td>
+<td>Check that key exists in the buffer</td>
 </tr>
 </tbody>
 </table>
@@ -1567,20 +1568,20 @@ through item key. When internal buffer is filled, oldest item is replaced.</p>
 <div class="section" id="binarymatrixencoder">
 <h3>BinaryMatrixEncoder<a class="headerlink" href="#binarymatrixencoder" title="Permalink to this headline">¶</a></h3>
 <p><em>dcase_util.data.BinaryMatrixEncoder</em></p>
-<table class="longtable docutils align-center">
+<table border="1" class="longtable docutils">
 <colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
+<col width="10%" />
+<col width="90%" />
 </colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/dcase_util.data.BinaryMatrixEncoder.html#dcase_util.data.BinaryMatrixEncoder" title="dcase_util.data.BinaryMatrixEncoder"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BinaryMatrixEncoder</span></code></a>([label_list, …])</p></td>
-<td><p>Binary matrix encoder base class</p></td>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.data.BinaryMatrixEncoder.html#dcase_util.data.BinaryMatrixEncoder" title="dcase_util.data.BinaryMatrixEncoder"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BinaryMatrixEncoder</span></code></a>([label_list,&nbsp;…])</td>
+<td>Binary matrix encoder base class</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/dcase_util.data.BinaryMatrixEncoder.pad.html#dcase_util.data.BinaryMatrixEncoder.pad" title="dcase_util.data.BinaryMatrixEncoder.pad"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BinaryMatrixEncoder.pad</span></code></a>(self, length[, …])</p></td>
-<td><p>Pad binary matrix along time axis</p></td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.data.BinaryMatrixEncoder.pad.html#dcase_util.data.BinaryMatrixEncoder.pad" title="dcase_util.data.BinaryMatrixEncoder.pad"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BinaryMatrixEncoder.pad</span></code></a>(length[,&nbsp;binary_matrix])</td>
+<td>Pad binary matrix along time axis</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/dcase_util.data.BinaryMatrixEncoder.plot.html#dcase_util.data.BinaryMatrixEncoder.plot" title="dcase_util.data.BinaryMatrixEncoder.plot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BinaryMatrixEncoder.plot</span></code></a>(self[, plot, …])</p></td>
-<td><p>Visualize binary matrix, and optionally synced data matrix.</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.data.BinaryMatrixEncoder.plot.html#dcase_util.data.BinaryMatrixEncoder.plot" title="dcase_util.data.BinaryMatrixEncoder.plot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BinaryMatrixEncoder.plot</span></code></a>([plot,&nbsp;…])</td>
+<td>Visualize binary matrix, and optionally synced data matrix.</td>
 </tr>
 </tbody>
 </table>
@@ -1588,17 +1589,17 @@ through item key. When internal buffer is filled, oldest item is replaced.</p>
 <div class="section" id="onehotencoder">
 <h3>OneHotEncoder<a class="headerlink" href="#onehotencoder" title="Permalink to this headline">¶</a></h3>
 <p><em>dcase_util.data.OneHotEncoder</em></p>
-<table class="longtable docutils align-center">
+<table border="1" class="longtable docutils">
 <colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
+<col width="10%" />
+<col width="90%" />
 </colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/dcase_util.data.OneHotEncoder.html#dcase_util.data.OneHotEncoder" title="dcase_util.data.OneHotEncoder"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OneHotEncoder</span></code></a>([label_list, time_resolution, …])</p></td>
-<td><p>One hot encoder class</p></td>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.data.OneHotEncoder.html#dcase_util.data.OneHotEncoder" title="dcase_util.data.OneHotEncoder"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OneHotEncoder</span></code></a>([label_list,&nbsp;time_resolution,&nbsp;…])</td>
+<td>One hot encoder class</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/dcase_util.data.OneHotEncoder.encode.html#dcase_util.data.OneHotEncoder.encode" title="dcase_util.data.OneHotEncoder.encode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OneHotEncoder.encode</span></code></a>(self, label[, …])</p></td>
-<td><p>Generate one hot binary matrix</p></td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.data.OneHotEncoder.encode.html#dcase_util.data.OneHotEncoder.encode" title="dcase_util.data.OneHotEncoder.encode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OneHotEncoder.encode</span></code></a>(label[,&nbsp;length_frames,&nbsp;…])</td>
+<td>Generate one hot binary matrix</td>
 </tr>
 </tbody>
 </table>
@@ -1606,17 +1607,17 @@ through item key. When internal buffer is filled, oldest item is replaced.</p>
 <div class="section" id="manyhotencoder">
 <h3>ManyHotEncoder<a class="headerlink" href="#manyhotencoder" title="Permalink to this headline">¶</a></h3>
 <p><em>dcase_util.data.ManyHotEncoder</em></p>
-<table class="longtable docutils align-center">
+<table border="1" class="longtable docutils">
 <colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
+<col width="10%" />
+<col width="90%" />
 </colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/dcase_util.data.ManyHotEncoder.html#dcase_util.data.ManyHotEncoder" title="dcase_util.data.ManyHotEncoder"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ManyHotEncoder</span></code></a>([label_list, …])</p></td>
-<td><p>Many hot encoder class</p></td>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.data.ManyHotEncoder.html#dcase_util.data.ManyHotEncoder" title="dcase_util.data.ManyHotEncoder"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ManyHotEncoder</span></code></a>([label_list,&nbsp;…])</td>
+<td>Many hot encoder class</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/dcase_util.data.ManyHotEncoder.encode.html#dcase_util.data.ManyHotEncoder.encode" title="dcase_util.data.ManyHotEncoder.encode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ManyHotEncoder.encode</span></code></a>(self, label_list[, …])</p></td>
-<td><p>Generate one hot binary matrix</p></td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.data.ManyHotEncoder.encode.html#dcase_util.data.ManyHotEncoder.encode" title="dcase_util.data.ManyHotEncoder.encode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ManyHotEncoder.encode</span></code></a>(label_list[,&nbsp;…])</td>
+<td>Generate one hot binary matrix</td>
 </tr>
 </tbody>
 </table>
@@ -1624,17 +1625,17 @@ through item key. When internal buffer is filled, oldest item is replaced.</p>
 <div class="section" id="eventrollencoder">
 <h3>EventRollEncoder<a class="headerlink" href="#eventrollencoder" title="Permalink to this headline">¶</a></h3>
 <p><em>dcase_util.data.EventRollEncoder</em></p>
-<table class="longtable docutils align-center">
+<table border="1" class="longtable docutils">
 <colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
+<col width="10%" />
+<col width="90%" />
 </colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/dcase_util.data.EventRollEncoder.html#dcase_util.data.EventRollEncoder" title="dcase_util.data.EventRollEncoder"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EventRollEncoder</span></code></a>([label_list, …])</p></td>
-<td><p>Event list encoder class</p></td>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.data.EventRollEncoder.html#dcase_util.data.EventRollEncoder" title="dcase_util.data.EventRollEncoder"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EventRollEncoder</span></code></a>([label_list,&nbsp;…])</td>
+<td>Event list encoder class</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/dcase_util.data.EventRollEncoder.encode.html#dcase_util.data.EventRollEncoder.encode" title="dcase_util.data.EventRollEncoder.encode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EventRollEncoder.encode</span></code></a>(self, metadata_container)</p></td>
-<td><p>Generate event roll from MetaDataContainer</p></td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.data.EventRollEncoder.encode.html#dcase_util.data.EventRollEncoder.encode" title="dcase_util.data.EventRollEncoder.encode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EventRollEncoder.encode</span></code></a>(metadata_container)</td>
+<td>Generate event roll from MetaDataContainer</td>
 </tr>
 </tbody>
 </table>
@@ -1642,14 +1643,14 @@ through item key. When internal buffer is filled, oldest item is replaced.</p>
 <div class="section" id="labelmatrixencoder">
 <h3>LabelMatrixEncoder<a class="headerlink" href="#labelmatrixencoder" title="Permalink to this headline">¶</a></h3>
 <p><em>dcase_util.data.LabelMatrixEncoder</em></p>
-<table class="longtable docutils align-center">
+<table border="1" class="longtable docutils">
 <colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
+<col width="10%" />
+<col width="90%" />
 </colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/dcase_util.data.LabelMatrixEncoder.html#dcase_util.data.LabelMatrixEncoder" title="dcase_util.data.LabelMatrixEncoder"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LabelMatrixEncoder</span></code></a>([label_list, time_resolution])</p></td>
-<td><p>Label matrix encoder base class</p></td>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.data.LabelMatrixEncoder.html#dcase_util.data.LabelMatrixEncoder" title="dcase_util.data.LabelMatrixEncoder"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LabelMatrixEncoder</span></code></a>([label_list,&nbsp;time_resolution])</td>
+<td>Label matrix encoder base class</td>
 </tr>
 </tbody>
 </table>
@@ -1657,17 +1658,17 @@ through item key. When internal buffer is filled, oldest item is replaced.</p>
 <div class="section" id="onehotlabelencoder">
 <h3>OneHotLabelEncoder<a class="headerlink" href="#onehotlabelencoder" title="Permalink to this headline">¶</a></h3>
 <p><em>dcase_util.data.OneHotLabelEncoder</em></p>
-<table class="longtable docutils align-center">
+<table border="1" class="longtable docutils">
 <colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
+<col width="10%" />
+<col width="90%" />
 </colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/dcase_util.data.OneHotLabelEncoder.html#dcase_util.data.OneHotLabelEncoder" title="dcase_util.data.OneHotLabelEncoder"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OneHotLabelEncoder</span></code></a>([label_list, …])</p></td>
-<td><p>One Hot label encoder class</p></td>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.data.OneHotLabelEncoder.html#dcase_util.data.OneHotLabelEncoder" title="dcase_util.data.OneHotLabelEncoder"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OneHotLabelEncoder</span></code></a>([label_list,&nbsp;…])</td>
+<td>One Hot label encoder class</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/dcase_util.data.OneHotLabelEncoder.encode.html#dcase_util.data.OneHotLabelEncoder.encode" title="dcase_util.data.OneHotLabelEncoder.encode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OneHotLabelEncoder.encode</span></code></a>(self, label[, …])</p></td>
-<td><p>Generate one hot label matrix</p></td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.data.OneHotLabelEncoder.encode.html#dcase_util.data.OneHotLabelEncoder.encode" title="dcase_util.data.OneHotLabelEncoder.encode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OneHotLabelEncoder.encode</span></code></a>(label[,&nbsp;…])</td>
+<td>Generate one hot label matrix</td>
 </tr>
 </tbody>
 </table>
@@ -1678,44 +1679,44 @@ through item key. When internal buffer is filled, oldest item is replaced.</p>
 <div class="section" id="normalizer">
 <h3>Normalizer<a class="headerlink" href="#normalizer" title="Permalink to this headline">¶</a></h3>
 <p><em>dcase_util.data.Normalizer</em></p>
-<table class="longtable docutils align-center">
+<table border="1" class="longtable docutils">
 <colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
+<col width="10%" />
+<col width="90%" />
 </colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/dcase_util.data.Normalizer.html#dcase_util.data.Normalizer" title="dcase_util.data.Normalizer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Normalizer</span></code></a>([n, s1, s2, mean, std])</p></td>
-<td><p>Data normalizer to accumulate data statistics</p></td>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.data.Normalizer.html#dcase_util.data.Normalizer" title="dcase_util.data.Normalizer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Normalizer</span></code></a>([n,&nbsp;s1,&nbsp;s2,&nbsp;mean,&nbsp;std])</td>
+<td>Data normalizer to accumulate data statistics</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/dcase_util.data.Normalizer.log.html#dcase_util.data.Normalizer.log" title="dcase_util.data.Normalizer.log"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Normalizer.log</span></code></a>(self[, level])</p></td>
-<td><p>Log container content</p></td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.data.Normalizer.log.html#dcase_util.data.Normalizer.log" title="dcase_util.data.Normalizer.log"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Normalizer.log</span></code></a>([level])</td>
+<td>Log container content</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/dcase_util.data.Normalizer.show.html#dcase_util.data.Normalizer.show" title="dcase_util.data.Normalizer.show"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Normalizer.show</span></code></a>(self[, mode, indent, visualize])</p></td>
-<td><p>Print container content</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.data.Normalizer.show.html#dcase_util.data.Normalizer.show" title="dcase_util.data.Normalizer.show"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Normalizer.show</span></code></a>([mode,&nbsp;indent,&nbsp;visualize])</td>
+<td>Print container content</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/dcase_util.data.Normalizer.load.html#dcase_util.data.Normalizer.load" title="dcase_util.data.Normalizer.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Normalizer.load</span></code></a>(self[, filename])</p></td>
-<td><p>Load file</p></td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.data.Normalizer.load.html#dcase_util.data.Normalizer.load" title="dcase_util.data.Normalizer.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Normalizer.load</span></code></a>([filename])</td>
+<td>Load file</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/dcase_util.data.Normalizer.save.html#dcase_util.data.Normalizer.save" title="dcase_util.data.Normalizer.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Normalizer.save</span></code></a>(self[, filename])</p></td>
-<td><p>Save file</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.data.Normalizer.save.html#dcase_util.data.Normalizer.save" title="dcase_util.data.Normalizer.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Normalizer.save</span></code></a>([filename])</td>
+<td>Save file</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/dcase_util.data.Normalizer.mean.html#dcase_util.data.Normalizer.mean" title="dcase_util.data.Normalizer.mean"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Normalizer.mean</span></code></a></p></td>
-<td><p>Mean vector</p></td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.data.Normalizer.mean.html#dcase_util.data.Normalizer.mean" title="dcase_util.data.Normalizer.mean"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Normalizer.mean</span></code></a></td>
+<td>Mean vector</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/dcase_util.data.Normalizer.std.html#dcase_util.data.Normalizer.std" title="dcase_util.data.Normalizer.std"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Normalizer.std</span></code></a></p></td>
-<td><p>Standard deviation vector</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.data.Normalizer.std.html#dcase_util.data.Normalizer.std" title="dcase_util.data.Normalizer.std"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Normalizer.std</span></code></a></td>
+<td>Standard deviation vector</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/dcase_util.data.Normalizer.reset.html#dcase_util.data.Normalizer.reset" title="dcase_util.data.Normalizer.reset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Normalizer.reset</span></code></a>(self)</p></td>
-<td><p>Reset internal variables.</p></td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.data.Normalizer.reset.html#dcase_util.data.Normalizer.reset" title="dcase_util.data.Normalizer.reset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Normalizer.reset</span></code></a>()</td>
+<td>Reset internal variables.</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/dcase_util.data.Normalizer.accumulate.html#dcase_util.data.Normalizer.accumulate" title="dcase_util.data.Normalizer.accumulate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Normalizer.accumulate</span></code></a>(self, data[, time_axis])</p></td>
-<td><p>Accumulate statistics</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.data.Normalizer.accumulate.html#dcase_util.data.Normalizer.accumulate" title="dcase_util.data.Normalizer.accumulate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Normalizer.accumulate</span></code></a>(data[,&nbsp;time_axis])</td>
+<td>Accumulate statistics</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/dcase_util.data.Normalizer.finalize.html#dcase_util.data.Normalizer.finalize" title="dcase_util.data.Normalizer.finalize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Normalizer.finalize</span></code></a>(self)</p></td>
-<td><p>Finalize statistics calculation</p></td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.data.Normalizer.finalize.html#dcase_util.data.Normalizer.finalize" title="dcase_util.data.Normalizer.finalize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Normalizer.finalize</span></code></a>()</td>
+<td>Finalize statistics calculation</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/dcase_util.data.Normalizer.normalize.html#dcase_util.data.Normalizer.normalize" title="dcase_util.data.Normalizer.normalize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Normalizer.normalize</span></code></a>(self, data, \*\*kwargs)</p></td>
-<td><p>Normalize data matrix with internal statistics of the class.</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.data.Normalizer.normalize.html#dcase_util.data.Normalizer.normalize" title="dcase_util.data.Normalizer.normalize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Normalizer.normalize</span></code></a>(data,&nbsp;**kwargs)</td>
+<td>Normalize data matrix with internal statistics of the class.</td>
 </tr>
 </tbody>
 </table>
@@ -1723,20 +1724,20 @@ through item key. When internal buffer is filled, oldest item is replaced.</p>
 <div class="section" id="repositorynormalizer">
 <h3>RepositoryNormalizer<a class="headerlink" href="#repositorynormalizer" title="Permalink to this headline">¶</a></h3>
 <p><em>dcase_util.data.RepositoryNormalizer</em></p>
-<table class="longtable docutils align-center">
+<table border="1" class="longtable docutils">
 <colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
+<col width="10%" />
+<col width="90%" />
 </colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/dcase_util.data.RepositoryNormalizer.html#dcase_util.data.RepositoryNormalizer" title="dcase_util.data.RepositoryNormalizer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RepositoryNormalizer</span></code></a>([normalizers, filename])</p></td>
-<td><p>Data repository normalizer</p></td>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.data.RepositoryNormalizer.html#dcase_util.data.RepositoryNormalizer" title="dcase_util.data.RepositoryNormalizer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RepositoryNormalizer</span></code></a>([normalizers,&nbsp;filename])</td>
+<td>Data repository normalizer</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/dcase_util.data.RepositoryNormalizer.load.html#dcase_util.data.RepositoryNormalizer.load" title="dcase_util.data.RepositoryNormalizer.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RepositoryNormalizer.load</span></code></a>(self, filename[, …])</p></td>
-<td><p>Load normalizers from disk.</p></td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.data.RepositoryNormalizer.load.html#dcase_util.data.RepositoryNormalizer.load" title="dcase_util.data.RepositoryNormalizer.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RepositoryNormalizer.load</span></code></a>(filename[,&nbsp;…])</td>
+<td>Load normalizers from disk.</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/dcase_util.data.RepositoryNormalizer.normalize.html#dcase_util.data.RepositoryNormalizer.normalize" title="dcase_util.data.RepositoryNormalizer.normalize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RepositoryNormalizer.normalize</span></code></a>(self, data, …)</p></td>
-<td><p>Normalize data repository</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.data.RepositoryNormalizer.normalize.html#dcase_util.data.RepositoryNormalizer.normalize" title="dcase_util.data.RepositoryNormalizer.normalize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RepositoryNormalizer.normalize</span></code></a>(data,&nbsp;**kwargs)</td>
+<td>Normalize data repository</td>
 </tr>
 </tbody>
 </table>
@@ -1749,12 +1750,12 @@ This processing stage can be used to collapse data within certain window lengths
 calculating mean and std of them, or flatten the matrix into single vector.</p>
 <p>Supported processing methods:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">flatten</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">mean</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">std</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">cov</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">kurtosis</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">skew</span></code></p></li>
+<li><code class="docutils literal notranslate"><span class="pre">flatten</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">mean</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">std</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">cov</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">kurtosis</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">skew</span></code></li>
 </ul>
 <p>The processing methods can combined.</p>
 <p>Usage examples:</p>
@@ -1779,29 +1780,29 @@ calculating mean and std of them, or flatten the matrix into single vector.</p>
 <span class="n">data_matrix</span> <span class="o">=</span> <span class="n">data_aggregator</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">data_matrix</span><span class="p">)</span>
 </pre></div>
 </td></tr></table></div>
-<table class="longtable docutils align-center">
+<table border="1" class="longtable docutils">
 <colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
+<col width="10%" />
+<col width="90%" />
 </colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/dcase_util.data.Aggregator.html#dcase_util.data.Aggregator" title="dcase_util.data.Aggregator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Aggregator</span></code></a>([win_length_frames, …])</p></td>
-<td><p>Data aggregator</p></td>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.data.Aggregator.html#dcase_util.data.Aggregator" title="dcase_util.data.Aggregator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Aggregator</span></code></a>([win_length_frames,&nbsp;…])</td>
+<td>Data aggregator</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/dcase_util.data.Aggregator.log.html#dcase_util.data.Aggregator.log" title="dcase_util.data.Aggregator.log"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Aggregator.log</span></code></a>(self[, level])</p></td>
-<td><p>Log container content</p></td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.data.Aggregator.log.html#dcase_util.data.Aggregator.log" title="dcase_util.data.Aggregator.log"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Aggregator.log</span></code></a>([level])</td>
+<td>Log container content</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/dcase_util.data.Aggregator.show.html#dcase_util.data.Aggregator.show" title="dcase_util.data.Aggregator.show"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Aggregator.show</span></code></a>(self[, mode, indent, visualize])</p></td>
-<td><p>Print container content</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.data.Aggregator.show.html#dcase_util.data.Aggregator.show" title="dcase_util.data.Aggregator.show"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Aggregator.show</span></code></a>([mode,&nbsp;indent,&nbsp;visualize])</td>
+<td>Print container content</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/dcase_util.data.Aggregator.load.html#dcase_util.data.Aggregator.load" title="dcase_util.data.Aggregator.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Aggregator.load</span></code></a>(self[, filename])</p></td>
-<td><p>Load file</p></td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.data.Aggregator.load.html#dcase_util.data.Aggregator.load" title="dcase_util.data.Aggregator.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Aggregator.load</span></code></a>([filename])</td>
+<td>Load file</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/dcase_util.data.Aggregator.save.html#dcase_util.data.Aggregator.save" title="dcase_util.data.Aggregator.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Aggregator.save</span></code></a>(self[, filename])</p></td>
-<td><p>Save file</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.data.Aggregator.save.html#dcase_util.data.Aggregator.save" title="dcase_util.data.Aggregator.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Aggregator.save</span></code></a>([filename])</td>
+<td>Save file</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/dcase_util.data.Aggregator.aggregate.html#dcase_util.data.Aggregator.aggregate" title="dcase_util.data.Aggregator.aggregate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Aggregator.aggregate</span></code></a>(self[, data])</p></td>
-<td><p>Aggregate data</p></td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.data.Aggregator.aggregate.html#dcase_util.data.Aggregator.aggregate" title="dcase_util.data.Aggregator.aggregate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Aggregator.aggregate</span></code></a>([data])</td>
+<td>Aggregate data</td>
 </tr>
 </tbody>
 </table>
@@ -1811,32 +1812,32 @@ calculating mean and std of them, or flatten the matrix into single vector.</p>
 <p><em>dcase_util.data.Sequencer</em></p>
 <p>Sequencer class processes data matrices into sequences (images). Sequences can overlap, and sequencing grid can be
 altered between calls (shifted).</p>
-<table class="longtable docutils align-center">
+<table border="1" class="longtable docutils">
 <colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
+<col width="10%" />
+<col width="90%" />
 </colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/dcase_util.data.Sequencer.html#dcase_util.data.Sequencer" title="dcase_util.data.Sequencer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Sequencer</span></code></a>([sequence_length, hop_length, …])</p></td>
-<td><p>Data sequencer</p></td>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.data.Sequencer.html#dcase_util.data.Sequencer" title="dcase_util.data.Sequencer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Sequencer</span></code></a>([sequence_length,&nbsp;hop_length,&nbsp;…])</td>
+<td>Data sequencer</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/dcase_util.data.Sequencer.log.html#dcase_util.data.Sequencer.log" title="dcase_util.data.Sequencer.log"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Sequencer.log</span></code></a>(self[, level])</p></td>
-<td><p>Log container content</p></td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.data.Sequencer.log.html#dcase_util.data.Sequencer.log" title="dcase_util.data.Sequencer.log"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Sequencer.log</span></code></a>([level])</td>
+<td>Log container content</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/dcase_util.data.Sequencer.show.html#dcase_util.data.Sequencer.show" title="dcase_util.data.Sequencer.show"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Sequencer.show</span></code></a>(self[, mode, indent, visualize])</p></td>
-<td><p>Print container content</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.data.Sequencer.show.html#dcase_util.data.Sequencer.show" title="dcase_util.data.Sequencer.show"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Sequencer.show</span></code></a>([mode,&nbsp;indent,&nbsp;visualize])</td>
+<td>Print container content</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/dcase_util.data.Sequencer.load.html#dcase_util.data.Sequencer.load" title="dcase_util.data.Sequencer.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Sequencer.load</span></code></a>(self[, filename])</p></td>
-<td><p>Load file</p></td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.data.Sequencer.load.html#dcase_util.data.Sequencer.load" title="dcase_util.data.Sequencer.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Sequencer.load</span></code></a>([filename])</td>
+<td>Load file</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/dcase_util.data.Sequencer.save.html#dcase_util.data.Sequencer.save" title="dcase_util.data.Sequencer.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Sequencer.save</span></code></a>(self[, filename])</p></td>
-<td><p>Save file</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.data.Sequencer.save.html#dcase_util.data.Sequencer.save" title="dcase_util.data.Sequencer.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Sequencer.save</span></code></a>([filename])</td>
+<td>Save file</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/dcase_util.data.Sequencer.sequence.html#dcase_util.data.Sequencer.sequence" title="dcase_util.data.Sequencer.sequence"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Sequencer.sequence</span></code></a>(self, data[, shift])</p></td>
-<td><p>Convert 2D data matrix into sequence of specified length 2D matrices</p></td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.data.Sequencer.sequence.html#dcase_util.data.Sequencer.sequence" title="dcase_util.data.Sequencer.sequence"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Sequencer.sequence</span></code></a>(data[,&nbsp;shift])</td>
+<td>Convert 2D data matrix into sequence of specified length 2D matrices</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/dcase_util.data.Sequencer.increase_shifting.html#dcase_util.data.Sequencer.increase_shifting" title="dcase_util.data.Sequencer.increase_shifting"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Sequencer.increase_shifting</span></code></a>(self[, shift_step])</p></td>
-<td><p>Increase temporal shifting</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.data.Sequencer.increase_shifting.html#dcase_util.data.Sequencer.increase_shifting" title="dcase_util.data.Sequencer.increase_shifting"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Sequencer.increase_shifting</span></code></a>([shift_step])</td>
+<td>Increase temporal shifting</td>
 </tr>
 </tbody>
 </table>
@@ -1900,29 +1901,29 @@ from it.</p>
 </td></tr></table></div>
 <p>See  <a class="reference internal" href="generated/dcase_util.utils.VectorRecipeParser.html#dcase_util.utils.VectorRecipeParser" title="dcase_util.utils.VectorRecipeParser"><code class="xref py py-meth docutils literal notranslate"><span class="pre">dcase_util.utils.VectorRecipeParser</span></code></a> how recipe string can be conveniently used to generate
 above data structure.</p>
-<table class="longtable docutils align-center">
+<table border="1" class="longtable docutils">
 <colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
+<col width="10%" />
+<col width="90%" />
 </colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/dcase_util.data.Stacker.html#dcase_util.data.Stacker" title="dcase_util.data.Stacker"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Stacker</span></code></a>([recipe, hop])</p></td>
-<td><p>Data stacker</p></td>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.data.Stacker.html#dcase_util.data.Stacker" title="dcase_util.data.Stacker"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Stacker</span></code></a>([recipe,&nbsp;hop])</td>
+<td>Data stacker</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/dcase_util.data.Stacker.log.html#dcase_util.data.Stacker.log" title="dcase_util.data.Stacker.log"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Stacker.log</span></code></a>(self[, level])</p></td>
-<td><p>Log container content</p></td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.data.Stacker.log.html#dcase_util.data.Stacker.log" title="dcase_util.data.Stacker.log"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Stacker.log</span></code></a>([level])</td>
+<td>Log container content</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/dcase_util.data.Stacker.show.html#dcase_util.data.Stacker.show" title="dcase_util.data.Stacker.show"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Stacker.show</span></code></a>(self[, mode, indent, visualize])</p></td>
-<td><p>Print container content</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.data.Stacker.show.html#dcase_util.data.Stacker.show" title="dcase_util.data.Stacker.show"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Stacker.show</span></code></a>([mode,&nbsp;indent,&nbsp;visualize])</td>
+<td>Print container content</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/dcase_util.data.Stacker.load.html#dcase_util.data.Stacker.load" title="dcase_util.data.Stacker.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Stacker.load</span></code></a>(self[, filename])</p></td>
-<td><p>Load file</p></td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.data.Stacker.load.html#dcase_util.data.Stacker.load" title="dcase_util.data.Stacker.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Stacker.load</span></code></a>([filename])</td>
+<td>Load file</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/dcase_util.data.Stacker.save.html#dcase_util.data.Stacker.save" title="dcase_util.data.Stacker.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Stacker.save</span></code></a>(self[, filename])</p></td>
-<td><p>Save file</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.data.Stacker.save.html#dcase_util.data.Stacker.save" title="dcase_util.data.Stacker.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Stacker.save</span></code></a>([filename])</td>
+<td>Save file</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/dcase_util.data.Stacker.stack.html#dcase_util.data.Stacker.stack" title="dcase_util.data.Stacker.stack"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Stacker.stack</span></code></a>(self, repository, \*\*kwargs)</p></td>
-<td><p>Vector creation based on recipe</p></td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.data.Stacker.stack.html#dcase_util.data.Stacker.stack" title="dcase_util.data.Stacker.stack"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Stacker.stack</span></code></a>(repository,&nbsp;**kwargs)</td>
+<td>Vector creation based on recipe</td>
 </tr>
 </tbody>
 </table>
@@ -1931,29 +1932,29 @@ above data structure.</p>
 <h3>Selector<a class="headerlink" href="#selector" title="Permalink to this headline">¶</a></h3>
 <p><em>dcase_util.data.Selector</em></p>
 <p>Data selecting class.</p>
-<table class="longtable docutils align-center">
+<table border="1" class="longtable docutils">
 <colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
+<col width="10%" />
+<col width="90%" />
 </colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/dcase_util.data.Selector.html#dcase_util.data.Selector" title="dcase_util.data.Selector"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Selector</span></code></a>(**kwargs)</p></td>
-<td><p>Data selector</p></td>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.data.Selector.html#dcase_util.data.Selector" title="dcase_util.data.Selector"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Selector</span></code></a>(**kwargs)</td>
+<td>Data selector</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/dcase_util.data.Selector.log.html#dcase_util.data.Selector.log" title="dcase_util.data.Selector.log"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Selector.log</span></code></a>(self[, level])</p></td>
-<td><p>Log container content</p></td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.data.Selector.log.html#dcase_util.data.Selector.log" title="dcase_util.data.Selector.log"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Selector.log</span></code></a>([level])</td>
+<td>Log container content</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/dcase_util.data.Selector.show.html#dcase_util.data.Selector.show" title="dcase_util.data.Selector.show"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Selector.show</span></code></a>(self[, mode, indent, visualize])</p></td>
-<td><p>Print container content</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.data.Selector.show.html#dcase_util.data.Selector.show" title="dcase_util.data.Selector.show"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Selector.show</span></code></a>([mode,&nbsp;indent,&nbsp;visualize])</td>
+<td>Print container content</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/dcase_util.data.Selector.load.html#dcase_util.data.Selector.load" title="dcase_util.data.Selector.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Selector.load</span></code></a>(self[, filename])</p></td>
-<td><p>Load file</p></td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.data.Selector.load.html#dcase_util.data.Selector.load" title="dcase_util.data.Selector.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Selector.load</span></code></a>([filename])</td>
+<td>Load file</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/dcase_util.data.Selector.save.html#dcase_util.data.Selector.save" title="dcase_util.data.Selector.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Selector.save</span></code></a>(self[, filename])</p></td>
-<td><p>Save file</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.data.Selector.save.html#dcase_util.data.Selector.save" title="dcase_util.data.Selector.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Selector.save</span></code></a>([filename])</td>
+<td>Save file</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/dcase_util.data.Selector.select.html#dcase_util.data.Selector.select" title="dcase_util.data.Selector.select"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Selector.select</span></code></a>(self, data[, selection_events])</p></td>
-<td><p>Selecting data repository with given events</p></td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.data.Selector.select.html#dcase_util.data.Selector.select" title="dcase_util.data.Selector.select"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Selector.select</span></code></a>(data[,&nbsp;selection_events])</td>
+<td>Selecting data repository with given events</td>
 </tr>
 </tbody>
 </table>
@@ -1962,29 +1963,29 @@ above data structure.</p>
 <h3>Masker<a class="headerlink" href="#masker" title="Permalink to this headline">¶</a></h3>
 <p><em>dcase_util.data.Masker</em></p>
 <p>Data masking class.</p>
-<table class="longtable docutils align-center">
+<table border="1" class="longtable docutils">
 <colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
+<col width="10%" />
+<col width="90%" />
 </colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/dcase_util.data.Masker.html#dcase_util.data.Masker" title="dcase_util.data.Masker"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Masker</span></code></a>(**kwargs)</p></td>
-<td><p>Data masker</p></td>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.data.Masker.html#dcase_util.data.Masker" title="dcase_util.data.Masker"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Masker</span></code></a>(**kwargs)</td>
+<td>Data masker</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/dcase_util.data.Masker.log.html#dcase_util.data.Masker.log" title="dcase_util.data.Masker.log"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Masker.log</span></code></a>(self[, level])</p></td>
-<td><p>Log container content</p></td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.data.Masker.log.html#dcase_util.data.Masker.log" title="dcase_util.data.Masker.log"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Masker.log</span></code></a>([level])</td>
+<td>Log container content</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/dcase_util.data.Masker.show.html#dcase_util.data.Masker.show" title="dcase_util.data.Masker.show"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Masker.show</span></code></a>(self[, mode, indent, visualize])</p></td>
-<td><p>Print container content</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.data.Masker.show.html#dcase_util.data.Masker.show" title="dcase_util.data.Masker.show"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Masker.show</span></code></a>([mode,&nbsp;indent,&nbsp;visualize])</td>
+<td>Print container content</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/dcase_util.data.Masker.load.html#dcase_util.data.Masker.load" title="dcase_util.data.Masker.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Masker.load</span></code></a>(self[, filename])</p></td>
-<td><p>Load file</p></td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.data.Masker.load.html#dcase_util.data.Masker.load" title="dcase_util.data.Masker.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Masker.load</span></code></a>([filename])</td>
+<td>Load file</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/dcase_util.data.Masker.save.html#dcase_util.data.Masker.save" title="dcase_util.data.Masker.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Masker.save</span></code></a>(self[, filename])</p></td>
-<td><p>Save file</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.data.Masker.save.html#dcase_util.data.Masker.save" title="dcase_util.data.Masker.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Masker.save</span></code></a>([filename])</td>
+<td>Save file</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/dcase_util.data.Masker.mask.html#dcase_util.data.Masker.mask" title="dcase_util.data.Masker.mask"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Masker.mask</span></code></a>(self, data[, mask_events])</p></td>
-<td><p>Masking data repository with given events</p></td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.data.Masker.mask.html#dcase_util.data.Masker.mask" title="dcase_util.data.Masker.mask"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Masker.mask</span></code></a>(data[,&nbsp;mask_events])</td>
+<td>Masking data repository with given events</td>
 </tr>
 </tbody>
 </table>
@@ -1995,35 +1996,35 @@ above data structure.</p>
 <div class="section" id="probabilityencoder">
 <h3>ProbabilityEncoder<a class="headerlink" href="#probabilityencoder" title="Permalink to this headline">¶</a></h3>
 <p><em>dcase_util.data.ProbabilityEncoder</em></p>
-<table class="longtable docutils align-center">
+<table border="1" class="longtable docutils">
 <colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
+<col width="10%" />
+<col width="90%" />
 </colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/dcase_util.data.ProbabilityEncoder.html#dcase_util.data.ProbabilityEncoder" title="dcase_util.data.ProbabilityEncoder"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProbabilityEncoder</span></code></a>([label_list])</p></td>
-<td><p>Constructor</p></td>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.data.ProbabilityEncoder.html#dcase_util.data.ProbabilityEncoder" title="dcase_util.data.ProbabilityEncoder"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProbabilityEncoder</span></code></a>([label_list])</td>
+<td>Constructor</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/dcase_util.data.ProbabilityEncoder.log.html#dcase_util.data.ProbabilityEncoder.log" title="dcase_util.data.ProbabilityEncoder.log"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProbabilityEncoder.log</span></code></a>(self[, level])</p></td>
-<td><p>Log container content</p></td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.data.ProbabilityEncoder.log.html#dcase_util.data.ProbabilityEncoder.log" title="dcase_util.data.ProbabilityEncoder.log"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProbabilityEncoder.log</span></code></a>([level])</td>
+<td>Log container content</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/dcase_util.data.ProbabilityEncoder.show.html#dcase_util.data.ProbabilityEncoder.show" title="dcase_util.data.ProbabilityEncoder.show"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProbabilityEncoder.show</span></code></a>(self[, mode, …])</p></td>
-<td><p>Print container content</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.data.ProbabilityEncoder.show.html#dcase_util.data.ProbabilityEncoder.show" title="dcase_util.data.ProbabilityEncoder.show"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProbabilityEncoder.show</span></code></a>([mode,&nbsp;indent,&nbsp;…])</td>
+<td>Print container content</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/dcase_util.data.ProbabilityEncoder.load.html#dcase_util.data.ProbabilityEncoder.load" title="dcase_util.data.ProbabilityEncoder.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProbabilityEncoder.load</span></code></a>(self[, filename])</p></td>
-<td><p>Load file</p></td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.data.ProbabilityEncoder.load.html#dcase_util.data.ProbabilityEncoder.load" title="dcase_util.data.ProbabilityEncoder.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProbabilityEncoder.load</span></code></a>([filename])</td>
+<td>Load file</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/dcase_util.data.ProbabilityEncoder.save.html#dcase_util.data.ProbabilityEncoder.save" title="dcase_util.data.ProbabilityEncoder.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProbabilityEncoder.save</span></code></a>(self[, filename])</p></td>
-<td><p>Save file</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.data.ProbabilityEncoder.save.html#dcase_util.data.ProbabilityEncoder.save" title="dcase_util.data.ProbabilityEncoder.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProbabilityEncoder.save</span></code></a>([filename])</td>
+<td>Save file</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/dcase_util.data.ProbabilityEncoder.collapse_probabilities.html#dcase_util.data.ProbabilityEncoder.collapse_probabilities" title="dcase_util.data.ProbabilityEncoder.collapse_probabilities"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProbabilityEncoder.collapse_probabilities</span></code></a>(…)</p></td>
-<td><p>Collapse probabilities along time_axis</p></td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.data.ProbabilityEncoder.collapse_probabilities.html#dcase_util.data.ProbabilityEncoder.collapse_probabilities" title="dcase_util.data.ProbabilityEncoder.collapse_probabilities"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProbabilityEncoder.collapse_probabilities</span></code></a>(…)</td>
+<td>Collapse probabilities along time_axis</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/dcase_util.data.ProbabilityEncoder.collapse_probabilities_windowed.html#dcase_util.data.ProbabilityEncoder.collapse_probabilities_windowed" title="dcase_util.data.ProbabilityEncoder.collapse_probabilities_windowed"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProbabilityEncoder.collapse_probabilities_windowed</span></code></a>(…)</p></td>
-<td><p>Collapse probabilities with a sliding window.</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.data.ProbabilityEncoder.collapse_probabilities_windowed.html#dcase_util.data.ProbabilityEncoder.collapse_probabilities_windowed" title="dcase_util.data.ProbabilityEncoder.collapse_probabilities_windowed"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProbabilityEncoder.collapse_probabilities_windowed</span></code></a>(…)</td>
+<td>Collapse probabilities with a sliding window.</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/dcase_util.data.ProbabilityEncoder.binarization.html#dcase_util.data.ProbabilityEncoder.binarization" title="dcase_util.data.ProbabilityEncoder.binarization"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProbabilityEncoder.binarization</span></code></a>(self, …[, …])</p></td>
-<td><p>Binarization</p></td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.data.ProbabilityEncoder.binarization.html#dcase_util.data.ProbabilityEncoder.binarization" title="dcase_util.data.ProbabilityEncoder.binarization"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProbabilityEncoder.binarization</span></code></a>(probabilities)</td>
+<td>Binarization</td>
 </tr>
 </tbody>
 </table>
@@ -2034,38 +2035,38 @@ above data structure.</p>
 <div class="section" id="decisionencoder">
 <h3>DecisionEncoder<a class="headerlink" href="#decisionencoder" title="Permalink to this headline">¶</a></h3>
 <p><em>dcase_util.data.DecisionEncoder</em></p>
-<table class="longtable docutils align-center">
+<table border="1" class="longtable docutils">
 <colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
+<col width="10%" />
+<col width="90%" />
 </colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/dcase_util.data.DecisionEncoder.html#dcase_util.data.DecisionEncoder" title="dcase_util.data.DecisionEncoder"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DecisionEncoder</span></code></a>([label_list])</p></td>
-<td><p>Constructor</p></td>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.data.DecisionEncoder.html#dcase_util.data.DecisionEncoder" title="dcase_util.data.DecisionEncoder"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DecisionEncoder</span></code></a>([label_list])</td>
+<td>Constructor</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/dcase_util.data.DecisionEncoder.log.html#dcase_util.data.DecisionEncoder.log" title="dcase_util.data.DecisionEncoder.log"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DecisionEncoder.log</span></code></a>(self[, level])</p></td>
-<td><p>Log container content</p></td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.data.DecisionEncoder.log.html#dcase_util.data.DecisionEncoder.log" title="dcase_util.data.DecisionEncoder.log"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DecisionEncoder.log</span></code></a>([level])</td>
+<td>Log container content</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/dcase_util.data.DecisionEncoder.show.html#dcase_util.data.DecisionEncoder.show" title="dcase_util.data.DecisionEncoder.show"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DecisionEncoder.show</span></code></a>(self[, mode, indent, …])</p></td>
-<td><p>Print container content</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.data.DecisionEncoder.show.html#dcase_util.data.DecisionEncoder.show" title="dcase_util.data.DecisionEncoder.show"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DecisionEncoder.show</span></code></a>([mode,&nbsp;indent,&nbsp;visualize])</td>
+<td>Print container content</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/dcase_util.data.DecisionEncoder.load.html#dcase_util.data.DecisionEncoder.load" title="dcase_util.data.DecisionEncoder.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DecisionEncoder.load</span></code></a>(self[, filename])</p></td>
-<td><p>Load file</p></td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.data.DecisionEncoder.load.html#dcase_util.data.DecisionEncoder.load" title="dcase_util.data.DecisionEncoder.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DecisionEncoder.load</span></code></a>([filename])</td>
+<td>Load file</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/dcase_util.data.DecisionEncoder.save.html#dcase_util.data.DecisionEncoder.save" title="dcase_util.data.DecisionEncoder.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DecisionEncoder.save</span></code></a>(self[, filename])</p></td>
-<td><p>Save file</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.data.DecisionEncoder.save.html#dcase_util.data.DecisionEncoder.save" title="dcase_util.data.DecisionEncoder.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DecisionEncoder.save</span></code></a>([filename])</td>
+<td>Save file</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/dcase_util.data.DecisionEncoder.majority_vote.html#dcase_util.data.DecisionEncoder.majority_vote" title="dcase_util.data.DecisionEncoder.majority_vote"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DecisionEncoder.majority_vote</span></code></a>(self, …[, …])</p></td>
-<td><p>Majority vote.</p></td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.data.DecisionEncoder.majority_vote.html#dcase_util.data.DecisionEncoder.majority_vote" title="dcase_util.data.DecisionEncoder.majority_vote"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DecisionEncoder.majority_vote</span></code></a>(frame_decisions)</td>
+<td>Majority vote.</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/dcase_util.data.DecisionEncoder.many_hot.html#dcase_util.data.DecisionEncoder.many_hot" title="dcase_util.data.DecisionEncoder.many_hot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DecisionEncoder.many_hot</span></code></a>(self, frame_decisions)</p></td>
-<td><p>Many hot</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.data.DecisionEncoder.many_hot.html#dcase_util.data.DecisionEncoder.many_hot" title="dcase_util.data.DecisionEncoder.many_hot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DecisionEncoder.many_hot</span></code></a>(frame_decisions[,&nbsp;…])</td>
+<td>Many hot</td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/dcase_util.data.DecisionEncoder.find_contiguous_regions.html#dcase_util.data.DecisionEncoder.find_contiguous_regions" title="dcase_util.data.DecisionEncoder.find_contiguous_regions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DecisionEncoder.find_contiguous_regions</span></code></a>(…)</p></td>
-<td><p>Find contiguous regions from bool valued numpy.array.</p></td>
+<tr class="row-even"><td><a class="reference internal" href="generated/dcase_util.data.DecisionEncoder.find_contiguous_regions.html#dcase_util.data.DecisionEncoder.find_contiguous_regions" title="dcase_util.data.DecisionEncoder.find_contiguous_regions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DecisionEncoder.find_contiguous_regions</span></code></a>(…)</td>
+<td>Find contiguous regions from bool valued numpy.array.</td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/dcase_util.data.DecisionEncoder.process_activity.html#dcase_util.data.DecisionEncoder.process_activity" title="dcase_util.data.DecisionEncoder.process_activity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DecisionEncoder.process_activity</span></code></a>(self, …)</p></td>
-<td><p>Process activity array (binary)</p></td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/dcase_util.data.DecisionEncoder.process_activity.html#dcase_util.data.DecisionEncoder.process_activity" title="dcase_util.data.DecisionEncoder.process_activity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DecisionEncoder.process_activity</span></code></a>(…[,&nbsp;…])</td>
+<td>Process activity array (binary)</td>
 </tr>
 </tbody>
 </table>
