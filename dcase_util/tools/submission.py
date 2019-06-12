@@ -1053,12 +1053,17 @@ class SubmissionChecker(ObjectContainer):
                         invalid_labels.append(item.event_label)
 
         if not valid_field_count:
+            if invalid_item:
+                field_count = '{field_count:d}'.format(len(invalid_item))
+            else:
+                field_count = 'None'
+
             error_log.append(
                 self._output_error_message(
                     type_label='Content',
                     subtype_label='Wrong field count',
-                    description='{field_count:d}'.format(
-                        field_count=len(invalid_item)
+                    description='{field_count:s}'.format(
+                        field_count=field_count
                     )
                 )
             )
