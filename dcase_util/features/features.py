@@ -414,12 +414,12 @@ class SpectralFeatureExtractor(FeatureExtractor):
             FFT size
             Default value 2048
 
-        win_length_samples : float
-            Window length in seconds
+        win_length_samples : int
+            Window length in samples
             Default value None
 
-        hop_length_samples : float
-            Hop length in seconds
+        hop_length_samples : int
+            Hop length in samples
             Default value None
 
         window : numpy.array
