@@ -31,13 +31,16 @@ class AudioContainer(ContainerMixin, FileMixin):
 
         Parameters
         ----------
-        filename : str, optional
-            File path
+        data : numpy.ndarray or list of numpy.ndarray
+            Data to initialize the container
+            Default value None
+
         fs : int
             Target sampling frequency, if loaded audio does have different sampling frequency, audio will be re-sampled.
             Default value "44100"
 
         """
+
         # Run ContainerMixin init
         ContainerMixin.__init__(self, **kwargs)
 
@@ -54,6 +57,9 @@ class AudioContainer(ContainerMixin, FileMixin):
         if data is None:
             # Initialize with array
             data = numpy.ndarray((0, ))
+
+        if isinstance(data, list):
+            data = numpy.vstack(data)
 
         self._data = data
         self.data_synced_with_file = False
