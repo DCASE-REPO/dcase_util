@@ -77,6 +77,8 @@ Output::
     FancyLogger.row
     FancyLogger.row_reset
     FancyLogger.row_sep
+    FancyLogger.row_sum
+    FancyLogger.row_average
     FancyLogger.title
     FancyLogger.section_header
     FancyLogger.sub_header
@@ -180,6 +182,8 @@ This class provides rich HTML formatted output printing in IPython/Jupyter.
     FancyHTMLPrinter.row
     FancyHTMLPrinter.row_reset
     FancyHTMLPrinter.row_sep
+    FancyHTMLPrinter.row_sum
+    FancyHTMLPrinter.row_average
     FancyHTMLPrinter.title
     FancyHTMLPrinter.section_header
     FancyHTMLPrinter.sub_header
@@ -214,6 +218,8 @@ This class can be used to produce uniformly formatted output strings.
     FancyStringifier.row
     FancyStringifier.row_reset
     FancyStringifier.row_sep
+    FancyStringifier.row_sum
+    FancyStringifier.row_average
     FancyStringifier.class_name
 
 FancyHTMLStringifier
@@ -239,6 +245,8 @@ This class can be used to produce HTML formatted output strings.
     FancyHTMLStringifier.row
     FancyHTMLStringifier.row_reset
     FancyHTMLStringifier.row_sep
+    FancyHTMLStringifier.row_sum
+    FancyHTMLStringifier.row_average
     FancyHTMLStringifier.class_name
 
 """

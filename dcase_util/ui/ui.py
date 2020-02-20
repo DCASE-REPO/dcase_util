@@ -21,6 +21,8 @@ class FancyStringifier(object):
         self.row_indent = 2
         self.row_column_separators = []
         self.row_column_count = None
+        self.row_column_numerical_value_sum = {}
+        self.row_column_numerical_value_count = {}
 
     @property
     def logger(self):
@@ -613,6 +615,10 @@ class FancyStringifier(object):
         separators : list of bool
             Column vertical separators. If None given, value from previous method call is used.
 
+        accumulate : bool
+            Flag to indicate internal column wise value accumulation.
+            Default value True
+
         Returns
         -------
         str
@@ -630,6 +636,8 @@ class FancyStringifier(object):
 
         if kwargs.get('separators'):
             self.row_column_separators = kwargs.get('separators')
+
+        accumulate = kwargs.get('accumulate', True)
 
         self.row_column_count = len(args)
 
@@ -652,6 +660,18 @@ class FancyStringifier(object):
                 cell += ' '
 
             cell += '{0:<' + str(column_width) + 's} '
+
+            if accumulate:
+                if (isinstance(column_data, int) or isinstance(column_data, float)):
+                    if column_id not in self.row_column_numerical_value_count:
+                        self.row_column_numerical_value_count[column_id] = 0
+
+                    if column_id not in self.row_column_numerical_value_sum:
+                        self.row_column_numerical_value_sum[column_id] = 0
+
+                    self.row_column_numerical_value_count[column_id] += 1
+                    self.row_column_numerical_value_sum[column_id] += column_data
+
 
             column_data = self.formatted_value(column_data, data_type=data_type)
 
@@ -676,6 +696,7 @@ class FancyStringifier(object):
             else:
                 line_string += ' '
 
+
         return ' ' * self.row_indent + line_string
 
     def row_reset(self):
@@ -692,6 +713,7 @@ class FancyStringifier(object):
         self.row_indent = 2
         self.row_column_separators = []
         self.row_column_count = None
+        self.row_value_cache_reset()
 
         return self
 
@@ -719,6 +741,68 @@ class FancyStringifier(object):
 
         else:
             return ''
+
+    def row_sum(self, label='Sum'):
+        """Table row showing internally accumulated sum of previous row values per column
+
+        Parameters
+        ----------
+        label : str or dict
+            Label used for non-accumulated columns. Can be dict where column id is key.
+            Default value 'Sum'
+
+        Returns
+        -------
+        str
+
+        """
+
+        values = []
+        for column_id in range(0, self.row_column_count):
+            if column_id in self.row_column_numerical_value_sum:
+                values.append(self.row_column_numerical_value_sum[column_id])
+
+            elif isinstance(label,dict) and column_id in label:
+                values.append(label[column_id])
+
+            else:
+                values.append(label)
+
+        return self.row(*values, accumulate=False)
+
+    def row_average(self, label='Avg'):
+        """Table row showing internally accumulated average of previous row values per column
+
+        Parameters
+        ----------
+        label : str or dict
+            Label used for non-accumulated columns. Can be dict where column id is key.
+            Default value 'Avg'
+
+        Returns
+        -------
+        str
+
+        """
+
+        values = []
+        for column_id in range(0, self.row_column_count):
+            if column_id in self.row_column_numerical_value_sum:
+                values.append(
+                    self.row_column_numerical_value_sum[column_id] / float(self.row_column_numerical_value_count[column_id])
+                )
+
+            elif isinstance(label,dict) and column_id in label:
+                values.append(label[column_id])
+
+            else:
+                values.append(label)
+
+        return self.row(*values, accumulate=False)
+
+    def row_value_cache_reset(self):
+        self.row_column_numerical_value_sum = {}
+        self.row_column_numerical_value_count = {}
 
     def class_name(self, class_name, indent=0):
         """Class name
@@ -1568,6 +1652,42 @@ class FancyLogger(object):
 
         self.line(
             self.ui.row_sep(separator_char=separator_char)
+        )
+
+    def row_sum(self, label='Sum'):
+        """Table row showing internally accumulated sum of previous row values per column
+
+        Parameters
+        ----------
+        label : str or dict
+            Label used for non-accumulated columns. Can be dict where column id is key.
+            Default value 'Sum'
+
+        Returns
+        -------
+        str
+
+        """
+        self.line(
+            self.ui.row_sum(label)
+        )
+
+    def row_average(self, label='Avg'):
+        """Table row showing internally accumulated average of previous row values per column
+
+        Parameters
+        ----------
+        label : str or dict
+            Label used for non-accumulated columns. Can be dict where column id is key.
+            Default value 'Avg'
+
+        Returns
+        -------
+        str
+
+        """
+        self.line(
+            self.ui.row_average(label)
         )
 
     def title(self, text, level='info'):
