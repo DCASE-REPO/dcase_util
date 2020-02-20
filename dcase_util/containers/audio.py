@@ -1516,6 +1516,7 @@ class AudioContainer(ContainerMixin, FileMixin):
     def segments(self,
                  segment_length=None, segment_length_seconds=None,
                  segments=None,
+                 active_segments=None,
                  skip_segments=None):
         """Slice audio into segments.
 
@@ -1535,6 +1536,12 @@ class AudioContainer(ContainerMixin, FileMixin):
         segments : list of dict or MetaDataContainer, optional
             List of time segments (onset and offset). If none given, segment length is used to produce consecutive
             non-overlapping segments.
+            Default value None
+
+        active_segments : list of dict or MetaDataContainer, optional
+            List of time segments (onset and offset) to be used when creating segments.
+            Only used when segment_length or segment_length_seconds are given and segments are generated
+            within this method.
             Default value None
 
         skip_segments : list of dict or MetaDataContainer, optional
@@ -1564,39 +1571,79 @@ class AudioContainer(ContainerMixin, FileMixin):
                 # Make sure skip segments is MetaDataContainer
                 skip_segments = MetaDataContainer(skip_segments)
 
-            # No segments given, get segments based on segment_length
-            segment_start = 0
-            segments = MetaDataContainer()
-            while True:
-                # Segment stop
-                segment_stop = segment_start + segment_length
-                if skip_segments is not None:
-                    # Go through skip segments and adjust segment start and stop to avoid segments
-                    for item in skip_segments:
-                        if item.active_within_segment(
-                            start=segment_start/float(self.fs),
-                            stop=segment_stop/float(self.fs)
-                        ):
-                            # Adjust segment start to avoid current skip segment
-                            segment_start = int(self.fs * item.offset)
-                            # Adjust segment stop accordingly
-                            segment_stop = segment_start + segment_length
+            if active_segments is not None:
+                # Make sure active segments is MetaDataContainer
+                active_segments = MetaDataContainer(active_segments)
 
-                if segment_stop < self.length:
-                    # Valid segment found, store it
-                    segments.append(
-                        {
-                            'onset': segment_start/float(self.fs),
-                            'offset': segment_stop/float(self.fs),
-                        }
-                    )
+                segments = MetaDataContainer()
+                for active_seg in active_segments:
+                    segment_start = int(self.fs * active_seg.onset)
 
-                # Set next segment start
-                segment_start = segment_stop
+                    while segment_start + segment_length < int(self.fs * active_seg.offset):
+                        # Segment stop
+                        segment_stop = segment_start + segment_length
+                        if skip_segments is not None:
+                            # Go through skip segments and adjust segment start and stop to avoid segments
+                            for item in skip_segments:
+                                if item.active_within_segment(
+                                        start=segment_start / float(self.fs),
+                                        stop=segment_stop / float(self.fs)
+                                ):
+                                    # Adjust segment start to avoid current skip segment
+                                    segment_start = int(self.fs * item.offset)
+                                    # Adjust segment stop accordingly
+                                    segment_stop = segment_start + segment_length
 
-                # Stop loop if segment_start is out of signal
-                if segment_start > self.length:
-                    break
+                        if segment_stop < self.length:
+                            # Valid segment found, store it
+                            segments.append(
+                                {
+                                    'onset': segment_start / float(self.fs),
+                                    'offset': segment_stop / float(self.fs),
+                                }
+                            )
+
+                        # Set next segment start
+                        segment_start = segment_stop
+
+                        # Stop loop if segment_start is out of signal
+                        if segment_start > self.length:
+                            break
+
+            else:
+                # No segments given, get segments based on segment_length
+                segment_start = 0
+                segments = MetaDataContainer()
+                while True:
+                    # Segment stop
+                    segment_stop = segment_start + segment_length
+                    if skip_segments is not None:
+                        # Go through skip segments and adjust segment start and stop to avoid segments
+                        for item in skip_segments:
+                            if item.active_within_segment(
+                                start=segment_start/float(self.fs),
+                                stop=segment_stop/float(self.fs)
+                            ):
+                                # Adjust segment start to avoid current skip segment
+                                segment_start = int(self.fs * item.offset)
+                                # Adjust segment stop accordingly
+                                segment_stop = segment_start + segment_length
+
+                    if segment_stop < self.length:
+                        # Valid segment found, store it
+                        segments.append(
+                            {
+                                'onset': segment_start/float(self.fs),
+                                'offset': segment_stop/float(self.fs),
+                            }
+                        )
+
+                    # Set next segment start
+                    segment_start = segment_stop
+
+                    # Stop loop if segment_start is out of signal
+                    if segment_start > self.length:
+                        break
 
         elif segments is not None:
             # Make sure segments is MetadataContainer
