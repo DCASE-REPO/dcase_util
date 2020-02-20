@@ -212,7 +212,7 @@ def setup_logging(parameters=None,
             except ImportError:
                 pass
 
-    # Function to handle uncaught expections
+    # Function to handle uncaught exceptions
     def handle_exception(exc_type, exc_value, exc_traceback):
         if issubclass(exc_type, KeyboardInterrupt):
             sys.__excepthook__(exc_type, exc_value, exc_traceback)
