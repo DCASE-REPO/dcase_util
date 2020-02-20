@@ -39,6 +39,21 @@ class AudioContainer(ContainerMixin, FileMixin):
             Target sampling frequency, if loaded audio does have different sampling frequency, audio will be re-sampled.
             Default value "44100"
 
+        focus_start_samples : int
+            Focus segment start
+            Default value None
+
+        focus_stop_samples : int
+            Focus segment stop
+            Default value None
+
+        focus_channel : int
+            Focus segment channel
+            Default value None
+
+        filename : str, optional
+            File path
+
         """
 
         # Run ContainerMixin init
