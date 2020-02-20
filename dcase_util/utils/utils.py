@@ -73,29 +73,31 @@ def get_byte_string(num_bytes, show_bytes=True):
     if show_bytes and num_bytes > KB:
         output += ' ('
 
-    if num_bytes > YB:
+    if num_bytes >= YB:
         output += '%.4g YB' % (num_bytes / YB)
 
-    elif num_bytes > ZB:
+    elif num_bytes >= ZB:
         output += '%.4g ZB' % (num_bytes / ZB)
 
-    elif num_bytes > EB:
+    elif num_bytes >= EB:
         output += '%.4g EB' % (num_bytes / EB)
 
-    elif num_bytes > PB:
+    elif num_bytes >= PB:
         output += '%.4g PB' % (num_bytes / PB)
 
-    elif num_bytes > TB:
+    elif num_bytes >= TB:
         output += '%.4g TB' % (num_bytes / TB)
 
-    elif num_bytes > GB:
+    elif num_bytes >= GB:
         output += '%.4g GB' % (num_bytes / GB)
 
-    elif num_bytes > MB:
+    elif num_bytes >= MB:
         output += '%.4g MB' % (num_bytes / MB)
 
-    elif num_bytes > KB:
+    elif num_bytes >= KB:
         output += '%.4g KB' % (num_bytes / KB)
+    else:
+        output += '%d bytes' % (num_bytes)
 
     if show_bytes and num_bytes > KB:
         output += ')'
