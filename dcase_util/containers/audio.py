@@ -25,7 +25,7 @@ class AudioContainer(ContainerMixin, FileMixin):
 
     def __init__(self,
                  data=None, fs=44100,
-                 focus_start_samples=None, focus_stop_samples=None, focus_channel=None,
+                 focus_start_samples=None, focus_stop_samples=None, focus_channel=None, channel_labels=None,
                  **kwargs):
         """Constructor
 
@@ -49,6 +49,10 @@ class AudioContainer(ContainerMixin, FileMixin):
 
         focus_channel : int
             Focus segment channel
+            Default value None
+
+        channel_labels : list
+            Channel names
             Default value None
 
         filename : str, optional
@@ -96,6 +100,8 @@ class AudioContainer(ContainerMixin, FileMixin):
         self.focus_start_samples = focus_start_samples
         self.focus_stop_samples = focus_stop_samples
         self.focus_channel = focus_channel
+
+        self.channel_labels = channel_labels
 
     def __getstate__(self):
         d = super(AudioContainer, self).__getstate__()
@@ -1724,11 +1730,18 @@ class AudioContainer(ContainerMixin, FileMixin):
             Size of the figure. If None given, default size (10,5) is used.
             Default value None
 
+        channel_labels : list
+            Channel names
+            Default value None
+
         Returns
         -------
         self
 
         """
+
+        if channel_labels is None:
+            channel_labels = self.channel_labels
 
         if figsize is None:
             figsize = (10, 5)
@@ -1760,7 +1773,15 @@ class AudioContainer(ContainerMixin, FileMixin):
                     alpha=alpha
                 )
 
-                plt.ylabel('Channel {channel:d}'.format(channel=channel_id))
+                if channel_id < len(channel_labels):
+                    plt.ylabel('{channel_label} / Ch{channel:d}'.format(
+                        channel_label=channel_labels[channel_id],
+                        channel=channel_id)
+                    )
+
+                else:
+                    plt.ylabel('Channel {channel:d}'.format(channel=channel_id))
+
                 if channel_id == 0 and show_filename:
                     if self.filename:
                         plt.title(title)
@@ -1780,7 +1801,13 @@ class AudioContainer(ContainerMixin, FileMixin):
                 alpha=alpha
             )
 
-            plt.ylabel('Channel {channel:d}'.format(channel=0))
+            if len(channel_labels):
+                plt.ylabel('{channel_label}'.format(
+                    channel_label=channel_labels[0])
+                )
+
+            else:
+                plt.ylabel('Channel {channel:d}'.format(channel=0))
 
             if self.filename and show_filename:
                 plt.title(title)
@@ -1789,7 +1816,7 @@ class AudioContainer(ContainerMixin, FileMixin):
             plt.show()
 
     def plot_spec(self, spec_type='log', hop_length=512, cmap='magma',
-                  show_filename=True, show_colorbar=False, plot=True, figsize=None):
+                  show_filename=True, show_colorbar=False, plot=True, figsize=None, channel_labels=None):
         """Visualize audio data as spectrogram.
 
         Parameters
@@ -1824,11 +1851,18 @@ class AudioContainer(ContainerMixin, FileMixin):
             Size of the figure. If None given, default size (10,5) is used.
             Default value None
 
+        channel_labels : list
+            Channel names
+            Default value None
+
         Returns
         -------
         self
 
         """
+
+        if channel_labels is None:
+            channel_labels = self.channel_labels
 
         if figsize is None:
             figsize = (10, 5)
@@ -1902,7 +1936,15 @@ class AudioContainer(ContainerMixin, FileMixin):
                 if show_colorbar:
                     plt.colorbar(format='%+2.0f dB')
 
-                plt.ylabel('Channel {channel:d}'.format(channel=channel_id))
+                if channel_id < len(channel_labels):
+                    plt.ylabel('{channel_label} / Ch{channel:d}'.format(
+                        channel_label=channel_labels[channel_id],
+                        channel=channel_id)
+                    )
+
+                else:
+                    plt.ylabel('Channel {channel:d}'.format(channel=channel_id))
+
                 if channel_id == 0 and self.filename:
                     plt.title(title)
 
@@ -1975,7 +2017,14 @@ class AudioContainer(ContainerMixin, FileMixin):
             if show_colorbar:
                 plt.colorbar(format='%+2.0f dB')
 
-            plt.ylabel('Channel {channel:d}'.format(channel=channel_id))
+            if len(channel_labels):
+                plt.ylabel('{channel_label}'.format(
+                    channel_label=channel_labels[0])
+                )
+
+            else:
+                plt.ylabel('Channel {channel:d}'.format(channel=0))
+
             if show_filename and channel_id == 0:
                 plt.title(title)
 
