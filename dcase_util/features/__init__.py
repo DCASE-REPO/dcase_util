@@ -106,6 +106,39 @@ SpectralCentroidExtractor
     SpectralCentroidExtractor
     SpectralCentroidExtractor.extract
 
+
+EmbeddingExtractor
+------------------
+
+*dcase_util.features.EmbeddingExtractor*
+
+.. autosummary::
+    :toctree: generated/
+
+    EmbeddingExtractor
+
+OpenL3Extractor
+---------------
+
+*dcase_util.features.OpenL3Extractor*
+
+.. autosummary::
+    :toctree: generated/
+
+    OpenL3Extractor
+    OpenL3Extractor.extract
+
+EdgeL3Extractor
+---------------
+
+*dcase_util.features.EdgeL3Extractor*
+
+.. autosummary::
+    :toctree: generated/
+
+    EdgeL3Extractor
+    EdgeL3Extractor.extract
+
 """
 
 from .features import *
