@@ -303,6 +303,10 @@ def setup_keras(seed=None, profile=None,
             inter_op_parallelism_threads=BLAS_thread_count
         )
 
+        os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+        import logging
+        logging.getLogger('tensorflow').setLevel(logging.FATAL)
+
         with SuppressStdoutAndStderr():
             from keras import backend as k
             session = tf.Session(config=config)
