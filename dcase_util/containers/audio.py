@@ -1737,8 +1737,8 @@ class AudioContainer(ContainerMixin, FileMixin):
         elif plot_type == 'spec':
             self.plot_spec(**kwargs)
 
-    def plot_wave(self, x_axis='time', max_points=50000.0, offset=0.0, color='#333333', alpha=1.0,
-                  show_filename=True, plot=True, figsize=None):
+    def plot_wave(self, x_axis='time', max_points=50000.0, max_sr=1000, offset=0.0, color='#333333', alpha=1.0,
+                  show_filename=True, plot=True, figsize=None, channel_labels=None):
         """Visualize audio data as waveform.
 
         Parameters
@@ -1752,12 +1752,16 @@ class AudioContainer(ContainerMixin, FileMixin):
             Maximum number of time-points to plot (see `librosa.display.waveplot`).
             Default value 50000
 
+        max_sr : number
+            Maximum sampling rate for the visualization
+            Default value 1000
+
         offset : float
             Horizontal offset (in time) to start the waveform plot (see `librosa.display.waveplot`).
             Default value 0.0
 
-        color : str
-            Waveform fill color in hex-code.
+        color : str or list of str
+            Waveform fill color in hex-code. Per channel colors can be given as list of str.
             Default value '#333333'
 
         alpha : float
@@ -1810,13 +1814,19 @@ class AudioContainer(ContainerMixin, FileMixin):
                 else:
                     current_x_axis = x_axis
 
+                if isinstance(color, list) and channel_id < len(color):
+                    current_color = color[channel_id]
+                else:
+                    current_color = color
+
                 waveplot(
                     y=channel_data.ravel(),
                     sr=self.fs,
                     x_axis=current_x_axis,
                     max_points=max_points,
+                    max_sr=max_sr,
                     offset=offset,
-                    color=color,
+                    color=current_color,
                     alpha=alpha
                 )
 
@@ -1838,13 +1848,19 @@ class AudioContainer(ContainerMixin, FileMixin):
 
         else:
             # Plotting for single channel audio
+            if isinstance(color, list) and len(color):
+                current_color = color[0]
+            else:
+                current_color = color
+
             waveplot(
                 y=self.get_focused().ravel(),
                 sr=self.fs,
                 x_axis=x_axis,
                 max_points=max_points,
+                max_sr=max_sr,
                 offset=offset,
-                color=color,
+                color=current_color,
                 alpha=alpha
             )
 
