@@ -404,6 +404,28 @@ SpectralCentroidExtractorProcessor
     SpectralCentroidExtractorProcessor
     SpectralCentroidExtractorProcessor.process
 
+OpenL3ExtractorProcessor
+------------------------
+
+*dcase_util.processors.OpenL3ExtractorProcessor*
+
+.. autosummary::
+    :toctree: generated/
+
+    OpenL3ExtractorProcessor
+    OpenL3ExtractorProcessor.process
+
+EdgeL3ExtractorProcessor
+------------------------
+
+*dcase_util.processors.EdgeL3ExtractorProcessor*
+
+.. autosummary::
+    :toctree: generated/
+
+    EdgeL3ExtractorProcessor
+    EdgeL3ExtractorProcessor.process
+
 Metadata
 ::::::::
 
