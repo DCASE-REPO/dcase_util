@@ -1738,7 +1738,7 @@ class OpenL3Extractor(EmbeddingExtractor):
     label = 'openl3'  #: Extractor label
     description = 'OpenL3 (embedding)'  #: Extractor description
 
-    def __init__(self, fs=48000, hop_length_samples=None, hop_length_seconds=0.2,
+    def __init__(self, fs=48000, hop_length_samples=None, hop_length_seconds=0.02,
                  model=None, input_repr='mel256', content_type="music",
                  embedding_size=6144,
                  center=True, batch_size=32, verbose=False,
@@ -1813,6 +1813,12 @@ class OpenL3Extractor(EmbeddingExtractor):
         self.verbose = verbose
 
         try:
+            # Suppress tensorflow warnings
+            import os
+            os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+            import logging
+            logging.getLogger('tensorflow').setLevel(logging.FATAL)
+
             import openl3
 
         except ImportError:
@@ -1942,9 +1948,9 @@ class EdgeL3Extractor(EmbeddingExtractor):
     label = 'edgel3'  #: Extractor label
     description = 'EdgeL3 (embedding)'  #: Extractor description
 
-    def __init__(self, fs=48000, hop_length_samples=None, hop_length_seconds=0.2,
+    def __init__(self, fs=48000, hop_length_samples=None, hop_length_seconds=0.02,
                  model=None, retrain_type='ft', sparsity=95.45,
-                 center=True, batch_size=32, verbose=False,
+                 center=True, verbose=False,
                  **kwargs):
         """Constructor
 
@@ -1979,10 +1985,6 @@ class EdgeL3Extractor(EmbeddingExtractor):
             If True, pads beginning of signal so timestamps correspond to center of window.
             Default value True
 
-        batch_size : int
-            Batch size used for input to embedding model
-            Default value 32
-
         verbose : bool
             If True, prints verbose messages.
             Default value False
@@ -2010,6 +2012,12 @@ class EdgeL3Extractor(EmbeddingExtractor):
         self.verbose = verbose
 
         try:
+            # Suppress tensorflow warnings
+            import os
+            os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+            import logging
+            logging.getLogger('tensorflow').setLevel(logging.FATAL)
+
             import edgel3
 
         except ImportError:
