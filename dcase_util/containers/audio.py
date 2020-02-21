@@ -1722,7 +1722,7 @@ class AudioContainer(ContainerMixin, FileMixin):
         ----------
 
         plot_type : str
-            Visualization type, 'wave' for waveform plot, 'spec' for spectrogram.
+            Visualization type, 'wave' for waveform plot, 'spec' for spectrogram, 'dual' for showing both at the same time.
             Default value 'wave'
 
         Returns
@@ -1737,8 +1737,50 @@ class AudioContainer(ContainerMixin, FileMixin):
         elif plot_type == 'spec':
             self.plot_spec(**kwargs)
 
+        elif plot_type == 'dual':
+            if self.channels == 1:
+                import matplotlib.pyplot as plt
+                plt.figure()
+                plt.subplot(2, 1, 1)
+                self.plot_wave(
+                    x_axis=kwargs.get('x_axis', 'time'),
+                    max_points=kwargs.get('max_points', 50000.0),
+                    max_sr=kwargs.get('max_sr', 1000),
+                    offset=kwargs.get('offset', 0.0),
+                    color=kwargs.get('color', '#333333'),
+                    alpha=kwargs.get('alpha', 1.0),
+                    show_filename=kwargs.get('show_filename', True),
+                    show_xaxis=False,
+                    plot=False,
+                    figsize=kwargs.get('figsize', None),
+                    channel_labels=kwargs.get('channel_labels', None)
+                )
+
+                plt.subplot(2, 1, 2)
+                self.plot_spec(
+                    spec_type=kwargs.get('spec_type', 'log'),
+                    hop_length=kwargs.get('hop_length', 512),
+                    cmap=kwargs.get('cmap', 'magma'),
+                    show_filename=False,
+                    show_xaxis=kwargs.get('show_xaxis', True),
+                    show_colorbar=False,
+                    plot=False,
+                    figsize=kwargs.get('figsize', None),
+                    channel_labels=kwargs.get('channel_labels', None)
+                )
+
+                plt.show()
+
+            else:
+                # TODO dual plotting for multichannel audio.
+                message = '{name}: Dual plotting of multi-channel audio is not yet implemented.'.format(
+                    name=self.__class__.__name__
+                )
+                self.logger.exception(message)
+                raise NotImplementedError(message)
+
     def plot_wave(self, x_axis='time', max_points=50000.0, max_sr=1000, offset=0.0, color='#333333', alpha=1.0,
-                  show_filename=True, plot=True, figsize=None, channel_labels=None):
+                  show_filename=True, show_xaxis=True, plot=True, figsize=None, channel_labels=None):
         """Visualize audio data as waveform.
 
         Parameters
@@ -1770,6 +1812,10 @@ class AudioContainer(ContainerMixin, FileMixin):
 
         show_filename : bool
             Show filename as figure title.
+            Default value True
+
+        show_xaxis : bool
+            Show X-axis.
             Default value True
 
         plot : bool
@@ -1830,7 +1876,7 @@ class AudioContainer(ContainerMixin, FileMixin):
                     alpha=alpha
                 )
 
-                if channel_id < len(channel_labels):
+                if isinstance(channel_labels, list) and channel_id < len(channel_labels):
                     plt.ylabel('{channel_label} / Ch{channel:d}'.format(
                         channel_label=channel_labels[channel_id],
                         channel=channel_id)
@@ -1843,7 +1889,7 @@ class AudioContainer(ContainerMixin, FileMixin):
                     if self.filename:
                         plt.title(title)
 
-                if channel_id+1 != self.channels:
+                if channel_id+1 != self.channels or not show_xaxis:
                     ax.axes.get_xaxis().set_visible(False)
 
         else:
@@ -1853,7 +1899,7 @@ class AudioContainer(ContainerMixin, FileMixin):
             else:
                 current_color = color
 
-            waveplot(
+            ax = waveplot(
                 y=self.get_focused().ravel(),
                 sr=self.fs,
                 x_axis=x_axis,
@@ -1864,10 +1910,8 @@ class AudioContainer(ContainerMixin, FileMixin):
                 alpha=alpha
             )
 
-            if len(channel_labels):
-                plt.ylabel('{channel_label}'.format(
-                    channel_label=channel_labels[0])
-                )
+            if isinstance(channel_labels, list) and len(channel_labels):
+                plt.ylabel('{channel_label}'.format(channel_label=channel_labels[0]))
 
             else:
                 plt.ylabel('Channel {channel:d}'.format(channel=0))
@@ -1875,11 +1919,14 @@ class AudioContainer(ContainerMixin, FileMixin):
             if self.filename and show_filename:
                 plt.title(title)
 
+            if not show_xaxis:
+                ax.axes.get_xaxis().set_visible(False)
+
         if plot:
             plt.show()
 
     def plot_spec(self, spec_type='log', hop_length=512, cmap='magma',
-                  show_filename=True, show_colorbar=False, plot=True, figsize=None, channel_labels=None):
+                  show_filename=True, show_xaxis=True, show_colorbar=False, plot=True, figsize=None, channel_labels=None):
         """Visualize audio data as spectrogram.
 
         Parameters
@@ -1899,6 +1946,10 @@ class AudioContainer(ContainerMixin, FileMixin):
 
         show_filename : bool
             Show filename as figure title.
+            Default value True
+
+        show_xaxis : bool
+            Show X-axis.
             Default value True
 
         show_colorbar : bool
@@ -1999,7 +2050,7 @@ class AudioContainer(ContainerMixin, FileMixin):
                 if show_colorbar:
                     plt.colorbar(format='%+2.0f dB')
 
-                if channel_id < len(channel_labels):
+                if isinstance(channel_labels, list) and channel_id < len(channel_labels):
                     plt.ylabel('{channel_label} / Ch{channel:d}'.format(
                         channel_label=channel_labels[channel_id],
                         channel=channel_id)
@@ -2011,7 +2062,7 @@ class AudioContainer(ContainerMixin, FileMixin):
                 if channel_id == 0 and self.filename:
                     plt.title(title)
 
-                if channel_id+1 != self.channels:
+                if channel_id+1 != self.channels or not show_xaxis:
                     ax.axes.get_xaxis().set_visible(False)
 
         else:
@@ -2038,7 +2089,7 @@ class AudioContainer(ContainerMixin, FileMixin):
                 raise ValueError(message)
 
             if spec_type == 'linear':
-                specshow(
+                ax = specshow(
                     data=D,
                     sr=self.fs,
                     y_axis='linear',
@@ -2048,7 +2099,7 @@ class AudioContainer(ContainerMixin, FileMixin):
                 )
 
             elif spec_type == 'log':
-                specshow(
+                ax = specshow(
                     data=D,
                     sr=self.fs,
                     y_axis='log',
@@ -2058,7 +2109,7 @@ class AudioContainer(ContainerMixin, FileMixin):
                 )
 
             elif spec_type == 'cqt_hz' or 'cqt':
-                specshow(
+                ax = specshow(
                     data=D,
                     sr=self.fs,
                     y_axis='cqt_hz',
@@ -2068,7 +2119,7 @@ class AudioContainer(ContainerMixin, FileMixin):
                 )
 
             elif spec_type == 'cqt_note':
-                specshow(
+                ax = specshow(
                     data=D,
                     sr=self.fs,
                     y_axis='cqt_note',
@@ -2080,13 +2131,16 @@ class AudioContainer(ContainerMixin, FileMixin):
             if show_colorbar:
                 plt.colorbar(format='%+2.0f dB')
 
-            if len(channel_labels):
+            if isinstance(channel_labels, list) and len(channel_labels):
                 plt.ylabel('{channel_label}'.format(
                     channel_label=channel_labels[0])
                 )
 
             else:
                 plt.ylabel('Channel {channel:d}'.format(channel=0))
+
+            if not show_xaxis:
+                ax.axes.get_xaxis().set_visible(False)
 
             if show_filename and channel_id == 0:
                 plt.title(title)
