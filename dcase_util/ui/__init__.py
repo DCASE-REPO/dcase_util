@@ -121,9 +121,14 @@ Usage examples:
     ui.table(cell_data=[[1, 2, 3], [1, 2, 3]])
 
     # Faster way to create output tables without collecting data into one data structure.
-    ui.row('Header1', 'Header2', widths=[10,20], types=['float2','str20'])
-    ui.row('-','-')
-    ui.row(10.21231, 'String text')
+    ui.row('Name', 'Value', widths=[10,20], types=['str20','float2','float2'])
+    ui.row_sep()
+    ui.row('A', 8.89)
+    ui.row('B', 3.23)
+    ui.row('C', 2.57)
+    ui.row_sep()
+    ui.row_sum()
+    ui.row_average()
 
 Output::
 
@@ -143,10 +148,14 @@ Output::
          1        1
          2        2
          3        3
-
-      Header1 | Header2           |
-      ------- | ----------------- |
-       10.21  | String text       |
+    Name      Value
+    -------   -----------------
+    A         8.89
+    B         3.23
+    C         2.57
+    -------   -----------------
+    Sum       14.69
+    Avg       4.90
 
 .. autosummary::
     :toctree: generated/
