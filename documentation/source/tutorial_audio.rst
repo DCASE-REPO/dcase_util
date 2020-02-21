@@ -11,21 +11,25 @@ Creating container
 
 Generating two-channel audio::
 
-    audio_container = dcase_util.containers.AudioContainer(fs=44100)
-    t = numpy.linspace(0, 2, 2 * audio_container.fs, endpoint=False)
+    fs = 44100
+    t = numpy.linspace(0, 2, 2 * fs, endpoint=False)
     x1 = numpy.sin(220 * 2 * numpy.pi * t)
     x2 = numpy.sin(440 * 2 * numpy.pi * t)
-    audio_container.data = numpy.vstack([x1, x2])
+
+    audio_container = dcase_util.containers.AudioContainer(data=[x1, x2], fs=fs, channel_labels=['left', 'right'])
 
 Show container information::
 
     # AudioContainer :: Class
     #  Sampling rate                     : 44100
-    #     Channels                        : 2
+    #     Channels                       : 2
+    #       Labels                       :
+    #        [0]                         : left
+    #        [1]                         : right
     #   Duration
-    #     Seconds                         : 2.00 sec
-    #     Milliseconds                    : 2000.00 ms
-    #     Samples                         : 88200 samples
+    #     Seconds                        : 2.00 sec
+    #     Milliseconds                   : 2000.00 ms
+    #     Samples                        : 88200 samples
 
 Loading and Saving
 ==================
@@ -179,6 +183,55 @@ Splitting audio signal into non-overlapping segments (1 sec) while avoiding cert
     #         -                        8.50     9.50   -                 -                 -                 -
     #
 
+
+Splitting audio signal into non-overlapping segments (1 sec) from defined regions while avoiding certain regions of the signal::
+
+    active_segments = dcase_util.containers.MetaDataContainer(
+        [
+            {
+                'onset': 0.0,
+                'offset': 5.0,
+            },
+            {
+                'onset': 8.0,
+                'offset': 13.0,
+            },
+        ]
+    )
+    data, segment_meta = audio_container.segments(
+        segment_length_seconds=1.0,
+        skip_segments=dcase_util.containers.MetaDataContainer(
+            [
+                {
+                    'onset': 3.5,
+                    'offset': 6.5
+                }
+            ]
+        )
+    )
+    segment_meta.log_all()
+    # MetaDataContainer :: Class
+    #   Items                             : 8
+    #   Unique
+    #     Files                           : 0
+    #     Scene labels                    : 0
+    #     Event labels                    : 0
+    #     Tags                            : 0
+    #
+    #   Meta data
+    #     Source                  Onset   Offset   Scene             Event             Tags              Identifier
+    #     --------------------   ------   ------   ---------------   ---------------   ---------------   -----
+    #     -                        0.00     1.00   -                 -                 -                 -
+    #     -                        1.00     2.00   -                 -                 -                 -
+    #     -                        2.00     3.00   -                 -                 -                 -
+    #     -                        6.50     7.50   -                 -                 -                 -
+    #     -                        8.00     9.00   -                 -                 -                 -
+    #     -                        9.00    10.00   -                 -                 -                 -
+    #     -                       10.00    11.00   -                 -                 -                 -
+    #     -                       11.00    12.00   -                 -                 -                 -
+    #
+
+
 Processing
 ==========
 
@@ -195,7 +248,7 @@ Visualizations
 
 Plot waveform::
 
-    audio_container.plot_wave()
+    audio_container.plot_wave(channel_labels=['Left', 'Right'], color=['#333333', '#777777'])
 
 .. plot::
 
@@ -204,7 +257,7 @@ Plot waveform::
       filename=dcase_util.utils.Example.audio_filename()
     )
     audio_container.filename = None
-    audio_container.plot_wave()
+    audio_container.plot_wave(channel_labels=['Left', 'Right'], color=['#333333', '#777777'])
 
 Plot spectrogram::
 
@@ -223,7 +276,7 @@ Plot waveform and spectrogram together::
 
     plt.figure()
     plt.subplot(2, 1, 1)
-    audio_container.plot(plot_type='wave', plot=False, show_filename=False)
+    audio_container.plot(plot_type='wave', plot=False, show_filename=False, show_xaxis=False)
     plt.subplot(2, 1, 2)
     audio_container.plot(plot_type='spec', plot=False, show_filename=False, show_colorbar=False)
     plt.show()
@@ -237,8 +290,21 @@ Plot waveform and spectrogram together::
     )
     plt.figure()
     plt.subplot(2, 1, 1)
-    audio_container.plot(plot_type='wave', plot=False, show_filename=False)
+    audio_container.plot(plot_type='wave', plot=False, show_filename=False, show_xaxis=False)
     plt.subplot(2, 1, 2)
     audio_container.plot(plot_type='spec', plot=False, show_filename=False, show_colorbar=False)
     plt.show()
 
+
+Or with single command::
+
+    audio_container.plot(plot_type='dual')
+
+.. plot::
+
+    import dcase_util
+    audio_container = dcase_util.containers.AudioContainer().load(
+        filename=dcase_util.utils.Example.audio_filename(),
+        mono=True
+    )
+    audio_container.plot(plot_type='dual')
