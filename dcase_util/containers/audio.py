@@ -198,6 +198,20 @@ class AudioContainer(ContainerMixin, FileMixin):
             indent=indent
         ) + '\n'
 
+        if self.channel_labels:
+            if isinstance(self.channel_labels, list):
+                output += ui.data(
+                    field='Labels',
+                    value='',
+                    indent=indent + 2
+                ) + '\n'
+                for channel_id, label in enumerate(self.channel_labels):
+                    output += ui.data(
+                        field='[{channel_id}]'.format(channel_id=channel_id),
+                        value=str(label),
+                        indent=indent+3
+                    ) + '\n'
+
         output += ui.line(field='Duration', indent=indent) + '\n'
         output += ui.data(
             indent=indent + 2,
