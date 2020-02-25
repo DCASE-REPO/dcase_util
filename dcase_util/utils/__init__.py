@@ -14,6 +14,7 @@ General functions
 .. autosummary::
     :toctree: generated/
 
+    get_audio_info
     get_class_inheritors
     get_byte_string
     check_pkg_resources
@@ -189,6 +190,8 @@ Some example data for easy testing and tutoring.
     Example
     Example.audio_filename
     Example.acoustic_scene_audio_filename
+    Example.audio_filename_mp3
+    Example.acoustic_scene_audio_filename_mp3
     Example.audio_container
     Example.event_metadata_container
     Example.scene_metadata_container

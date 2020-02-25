@@ -67,10 +67,8 @@ def get_byte_string(num_bytes, show_bytes=True):
     locale.setlocale(locale.LC_ALL, '')
 
     output = ''
-    if show_bytes:
-        output += locale.format("%d", num_bytes, grouping=True) + ' bytes'
-
     if show_bytes and num_bytes > KB:
+        output += locale.format("%d", num_bytes, grouping=True) + ' bytes'
         output += ' ('
 
     if num_bytes >= YB:
@@ -210,6 +208,138 @@ def is_jupyter():
     except NameError:
         # Normal python interpreter
         return False
+
+
+def get_audio_info(filename, logger=None):
+    """Get information about audio file without opening it.
+
+    Parameters
+    ----------
+    filename : str
+        filename
+
+    logger : Logger class
+        Logger class
+        Default value None
+
+    Returns
+    -------
+    DictContainer
+        Dict with audio file information
+
+    """
+
+    import soundfile
+    from dcase_util.utils.files import FileFormat
+    from dcase_util.files import File
+    from dcase_util.containers import DictContainer
+
+    if logger is None:
+        logger = logging.getLogger(__name__)
+
+    file = File(
+        filename=filename,
+        valid_formats=[
+            FileFormat.WAV,
+            FileFormat.FLAC,
+            FileFormat.OGG,
+            FileFormat.MP3,
+            FileFormat.M4A,
+            FileFormat.MP4,
+            FileFormat.WEBM
+        ]
+    )
+
+    if not file.exists():
+        # File does not exists
+        message = '{name}: File does not exists [{filename}] '.format(
+            name=__name__,
+            filename=filename
+        )
+        logger.exception(message)
+
+        raise IOError(message)
+    file.detect_file_format()
+
+    if file.format is None:
+        # Unknown format
+        message = '{name}: File format cannot be detected for file [{filename}] '.format(
+            name=__name__,
+            filename=filename
+        )
+        logger.exception(message)
+
+        raise IOError(message)
+
+    info = DictContainer({
+        'filename': file.filename,
+        'bytes': file.bytes,
+        'format': file.format
+    })
+
+    if file.format == FileFormat.WAV:
+        wav_info = soundfile.info(file=file.filename)
+        info['fs'] = wav_info.samplerate
+        info['channels'] = wav_info.channels
+        info['duration_sec'] = wav_info.duration
+        info['duration_ms'] = (wav_info.frames / float(wav_info.samplerate)) * 1000
+        info['duration_samples'] = wav_info.frames
+        info['subtype'] = {
+            'name': wav_info.subtype,
+            'info': wav_info.subtype_info
+        }
+
+        if info['subtype'] == 'PCM_16':
+            info['bit_depth'] = 16
+
+        elif info['subtype'] == 'PCM_24':
+            info['bit_depth'] = 24
+
+        elif info['subtype'] == 'PCM_32':
+            info['bit_depth'] = 32
+
+    elif file.format in [FileFormat.FLAC, FileFormat.OGG,
+                         FileFormat.MP3,
+                         FileFormat.M4A, FileFormat.MP4, FileFormat.WEBM]:
+
+        try:
+            from ffprobe import FFProbe
+        except ImportError:
+            message = '{name}: Unable to import ffprobe module. You can install it with `pip install ffprobe`.'.format(
+                name=__name__
+            )
+
+            logger.exception(message)
+            raise ImportError(message)
+
+        ffmpeg_meta = FFProbe(file.filename)
+
+        for stream in ffmpeg_meta.streams:
+            if stream.is_audio():
+                info['fs'] = int(stream.sample_rate)
+                info['channels'] = int(stream.channels)
+
+                if stream.duration != 'N/A':
+                    info['duration_sec'] = stream.duration_seconds()
+                else:
+                    info['duration_sec'] = None
+
+                if stream.bit_rate != 'N/A':
+                    info['bit_rate'] = int(stream.bit_rate)
+                else:
+                    info['bit_rate'] = None
+
+                info['codec'] = {
+                    'name': stream.codec_name,
+                    'name_long': stream.codec_long_name,
+                    'tag': stream.codec_tag,
+                    'tag_string': stream.codec_tag_string,
+                    'time_base': stream.codec_time_base,
+                    'type': stream.codec_type,
+                    'description': stream.codec_description(),
+                }
+
+    return info
 
 
 class SuppressStdoutAndStderr(object):
