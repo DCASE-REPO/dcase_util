@@ -4,7 +4,7 @@ Release notes
 =============
 
 v0.2.11
-------
+-------
 
 **New features**
 
@@ -35,7 +35,7 @@ v0.2.11
 * Fix ``get_byte_string`` to work with small values
 
 v0.2.10
-------
+-------
 
 **Bug fixes**
 
