@@ -24,6 +24,14 @@ class Example(object):
         return pkg_resources.resource_filename(__name__, os.path.join(cls.example_folder, 'acoustic_scene.wav'))
 
     @classmethod
+    def audio_filename_mp3(cls):
+        return pkg_resources.resource_filename(__name__, os.path.join(cls.example_folder, 'acoustic_scene.mp3'))
+
+    @classmethod
+    def acoustic_scene_audio_filename_mp3(cls):
+        return pkg_resources.resource_filename(__name__, os.path.join(cls.example_folder, 'acoustic_scene.mp3'))
+
+    @classmethod
     def audio_container(cls):
         from dcase_util.containers import AudioContainer
         container = AudioContainer(fs=44100)
