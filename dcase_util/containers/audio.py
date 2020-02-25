@@ -1325,6 +1325,7 @@ class AudioContainer(ContainerMixin, FileMixin):
         """
 
         if target_fs != self.fs:
+            self._data = numpy.asfortranarray(self._data)
             self._data = librosa.resample(
                 y=self._data,
                 orig_sr=self.fs,
@@ -1562,7 +1563,7 @@ class AudioContainer(ContainerMixin, FileMixin):
 
         if self.channels == 1:
             return librosa.util.frame(
-                y=self.get_focused(),
+                x=self.get_focused(),
                 frame_length=frame_length,
                 hop_length=hop_length
             )
@@ -1572,7 +1573,7 @@ class AudioContainer(ContainerMixin, FileMixin):
             for channel_id, channel_data in enumerate(self.get_focused()):
                 data.append(
                     librosa.util.frame(
-                        y=channel_data,
+                        x=channel_data,
                         frame_length=frame_length,
                         hop_length=hop_length
                     )
