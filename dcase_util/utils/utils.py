@@ -229,7 +229,6 @@ def get_audio_info(filename, logger=None):
 
     """
 
-    import soundfile
     from dcase_util.utils.files import FileFormat
     from dcase_util.files import File
     from dcase_util.containers import DictContainer
@@ -278,6 +277,8 @@ def get_audio_info(filename, logger=None):
     })
 
     if file.format == FileFormat.WAV:
+        import soundfile
+
         wav_info = soundfile.info(file=file.filename)
         info['fs'] = wav_info.samplerate
         info['channels'] = wav_info.channels
@@ -289,6 +290,7 @@ def get_audio_info(filename, logger=None):
             'info': wav_info.subtype_info
         }
 
+        # Map sub type to bit depth
         if info['subtype'] == 'PCM_16':
             info['bit_depth'] = 16
 
@@ -299,45 +301,67 @@ def get_audio_info(filename, logger=None):
             info['bit_depth'] = 32
 
     elif file.format in [FileFormat.FLAC, FileFormat.OGG,
-                         FileFormat.MP3,
-                         FileFormat.M4A, FileFormat.MP4, FileFormat.WEBM]:
+                         FileFormat.MP3, FileFormat.M4A, FileFormat.MP4,
+                         FileFormat.WEBM]:
+        # Use ffprobe to get file info from other formats
+        import subprocess
+        import json
+        import shlex
 
+        cmd = "ffprobe -v quiet -print_format json -show_streams"
+        args = shlex.split(cmd)
+        args.append(file.filename)
+
+        # Run command line command, fetch and parse json output
         try:
-            from ffprobe import FFProbe
-        except ImportError:
-            message = '{name}: Unable to import ffprobe module. You can install it with `pip install ffprobe`.'.format(
-                name=__name__
+            output = subprocess.check_output(args).decode('utf-8')
+
+        except OSError:
+            # Error while running the command
+            message = '{name}: It seems that ffmpeg (ffprobe) is not installed.'.format(
+                name=__name__,
+                filename=filename
             )
-
             logger.exception(message)
-            raise ImportError(message)
 
-        ffmpeg_meta = FFProbe(file.filename)
+            raise IOError(message)
 
-        for stream in ffmpeg_meta.streams:
-            if stream.is_audio():
-                info['fs'] = int(stream.sample_rate)
-                info['channels'] = int(stream.channels)
+        ffmpeg_meta = json.loads(output)
 
-                if stream.duration != 'N/A':
-                    info['duration_sec'] = stream.duration_seconds()
+        for stream in ffmpeg_meta['streams']:
+            if stream['codec_type'] == 'audio':
+                # Fetch audio info from first audio stream
+                info['fs'] = int(stream['sample_rate'])
+
+                # Get duration
+                if 'duration' not in stream:
+                    info['duration_sec'] = None
+                elif is_float(stream['duration']):
+                    info['duration_sec'] = float(stream['duration'])
                 else:
                     info['duration_sec'] = None
 
-                if stream.bit_rate != 'N/A':
-                    info['bit_rate'] = int(stream.bit_rate)
+                # Get bit rate
+                if 'bit_rate' not in stream:
+                    info['bit_rate'] = None
+                elif is_int(stream['bit_rate']):
+                    info['bit_rate'] = int(stream['bit_rate'])
                 else:
                     info['bit_rate'] = None
 
-                info['codec'] = {
-                    'name': stream.codec_name,
-                    'name_long': stream.codec_long_name,
-                    'tag': stream.codec_tag,
-                    'tag_string': stream.codec_tag_string,
-                    'time_base': stream.codec_time_base,
-                    'type': stream.codec_type,
-                    'description': stream.codec_description(),
-                }
+                # Get codec info
+                info['codec'] = {}
+
+                if 'codec_name' in stream:
+                    info['codec']['name'] = stream['codec_name']
+
+                if 'codec_long_name' in stream:
+                    info['codec']['name_long'] = stream['codec_long_name']
+
+                if 'codec_type' in stream:
+                    info['codec']['type'] = stream['codec_type']
+
+                break
 
     return info
 

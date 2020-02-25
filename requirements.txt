@@ -20,4 +20,3 @@ colorama>=0.3.7
 python-magic>=0.4.13
 markdown>=2.6.9
 jinja2>=2.6.9
-ffprobe-python>=1.0.3
