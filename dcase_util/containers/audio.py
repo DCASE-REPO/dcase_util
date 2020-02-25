@@ -13,7 +13,7 @@ from six.moves.http_client import BadStatusLine
 
 from dcase_util.containers import ContainerMixin, FileMixin
 from dcase_util.ui.ui import FancyStringifier, FancyHTMLStringifier
-from dcase_util.utils import FileFormat, Path, is_int, is_jupyter
+from dcase_util.utils import FileFormat, Path, is_int, is_jupyter, get_audio_info
 
 
 class AudioContainer(ContainerMixin, FileMixin):
@@ -687,7 +687,7 @@ class AudioContainer(ContainerMixin, FileMixin):
             else:
                 return True
 
-    def load(self, filename=None, fs='native', mono=False, res_type='kaiser_best', start=None, stop=None):
+    def load(self, filename=None, fs='native', mono=False, res_type='kaiser_best', start=None, stop=None, auto_trimming=False):
         """Load file
 
         Parameters
@@ -717,6 +717,10 @@ class AudioContainer(ContainerMixin, FileMixin):
             Segment stop time in seconds.
             Default value None
 
+        auto_trimming : bool
+            In case using segment stop parameter, the parameter is adjusted automatically if it exceeds the file duration.
+            Default value False
+
         Raises
         ------
         IOError:
@@ -737,22 +741,58 @@ class AudioContainer(ContainerMixin, FileMixin):
             if fs is None:
                 # Use sampling frequency defined in class construction.
                 fs = self.fs
+            info = get_audio_info(filename=self.filename)
+            # Check start and stop parameters against file duration
+            if start is not None and start < 0:
+                message = '{name}: Start parameter is negative [{file}]'.format(
+                    name=self.__class__.__name__,
+                    file=self.filename
+                )
+
+                self.logger.exception(message)
+                raise IOError(message)
+
+            elif info['duration_sec'] and start is not None and start > info['duration_sec']:
+                message = '{name}: Start parameter exceeds file length [{file}]'.format(
+                    name=self.__class__.__name__,
+                    file=self.filename
+                )
+
+                self.logger.exception(message)
+                raise IOError(message)
+
+            if stop is not None and stop < 0:
+                message = '{name}: Stop parameter is negative [{file}]'.format(
+                    name=self.__class__.__name__,
+                    file=self.filename
+                )
+
+                self.logger.exception(message)
+                raise IOError(message)
+
+            elif info['duration_sec'] and stop is not None and stop > info['duration_sec'] and not auto_trimming:
+                message = '{name}: Stop parameter exceeds file length [{file}]'.format(
+                    name=self.__class__.__name__,
+                    file=self.filename
+                )
+
+                self.logger.exception(message)
+                raise IOError(message)
 
             if self.format == FileFormat.WAV:
-                info = soundfile.info(file=self.filename)
 
                 self.filetype_info = {
-                    'subtype': info.subtype,
-                    'subtype_info': info.subtype_info
+                    'subtype': info['subtype']['name'],
+                    'subtype_info': info['subtype']['info']
                 }
 
                 # Handle segment start and stop
                 if start is not None and stop is not None:
-                    start_sample = int(start * info.samplerate)
-                    stop_sample = int(stop * info.samplerate)
+                    start_sample = int(start * info['fs'])
+                    stop_sample = int(stop * info['fs'])
 
-                    if stop_sample > info.frames:
-                        stop_sample = info.frames
+                    if stop_sample > info['duration_samples']:
+                        stop_sample = info['duration_samples']
 
                 else:
                     start_sample = None
@@ -795,6 +835,10 @@ class AudioContainer(ContainerMixin, FileMixin):
                     offset = start
                     duration = stop - start
 
+                elif start is not None:
+                    offset = start
+                    duration = None
+
                 else:
                     offset = 0.0
                     duration = None
@@ -815,6 +859,15 @@ class AudioContainer(ContainerMixin, FileMixin):
                     offset=offset,
                     duration=duration
                 )
+
+                if not auto_trimming and duration is not None and duration != self.duration_sec:
+                    message = '{name}: Check start and stop parameter, requested duration exceeds the file length [{file}]'.format(
+                        name=self.__class__.__name__,
+                        file=self.filename
+                    )
+
+                    self.logger.exception(message)
+                    raise IOError(message)
 
             else:
                 message = '{name}: Unknown format [{format}]'.format(
