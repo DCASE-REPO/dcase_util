@@ -1526,7 +1526,7 @@ class RMSEnergyExtractor(SpectralFeatureExtractor):
             window=self.window
         )
 
-        return librosa.feature.rmse(
+        return librosa.feature.rms(
             S=spectrogram
         ).reshape((1, -1))
 
