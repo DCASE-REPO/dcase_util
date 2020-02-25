@@ -133,6 +133,8 @@ Specialized classes inherited AcousticSceneDataset:
     TAUUrbanAcousticScenes_2019_Openset_DevelopmentSet
     TAUUrbanAcousticScenes_2019_Openset_LeaderboardSet
     TAUUrbanAcousticScenes_2019_Openset_EvaluationSet
+    TAUUrbanAcousticScenes_2020_Mobile_DevelopmentSet
+    TAUUrbanAcousticScenes_2020_3Class_DevelopmentSet
     DCASE2018_Task5_DevelopmentSet
     DCASE2018_Task5_EvaluationSet
 
