@@ -1046,20 +1046,38 @@ class Dataset(object):
 
         log = FancyLogger()
         log.sub_header('Debug packages')
+
+        log.data('storage_name', self.storage_name)
+        log.data('local_path', self.local_path)
+        log.line()
+
         if local_check:
             log.line('Local', indent=2)
             log.row_reset()
-            log.row('package', 'local_md5', 'local_bytes', widths=[65, 35, 15])
+            log.row('package', 'local_md5', 'local_bytes', 'md5', 'bytes', widths=[65, 35, 15, 10, 10], separators=[False, False, True])
             log.row_sep()
 
             for item in self.package_list:
                 file = File(**item)
+
+                md5_status = ''
+                bytes_status = ''
 
                 if file.is_package():
                     package = Package(**item)
                     if package.exists():
                         md5 = package.md5
                         bytes = package.bytes
+
+                        if package.md5 == item['remote_md5']:
+                            md5_status = 'OK'
+                        else:
+                            md5_status = 'Check'
+
+                        if package.bytes == item['remote_bytes']:
+                            bytes_status = 'OK'
+                        else:
+                            bytes_status = 'Check'
 
                     else:
                         md5 = '-- PACKAGE DOES NOT EXISTS --'
@@ -1068,6 +1086,16 @@ class Dataset(object):
                 elif file.exists():
                     md5 = file.md5
                     bytes = file.bytes
+                    
+                    if file.md5 == item['remote_md5']:
+                        md5_status = 'OK'
+                    else:
+                        md5_status = 'Check'
+    
+                    if file.bytes == item['remote_bytes']:
+                        bytes_status = 'OK'
+                    else:
+                        bytes_status = 'Check'
 
                 else:
                     md5 = '-- FILE DOES NOT EXISTS --'
@@ -1076,7 +1104,9 @@ class Dataset(object):
                 log.row(
                     os.path.split(item['filename'])[-1],
                     md5,
-                    bytes
+                    bytes,
+                    md5_status,
+                    bytes_status
                 )
 
             log.line()
