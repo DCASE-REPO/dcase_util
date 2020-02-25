@@ -16,7 +16,7 @@ from . import processors
 from . import tools
 from . import keras
 
-__version__ = '0.2.5'
+__version__ = '0.2.11'
 
 
 def check_installation():
