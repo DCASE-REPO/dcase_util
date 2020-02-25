@@ -26,6 +26,10 @@ class File(FileMixin):
         filename : str, optional
             File path
 
+        valid_formats : list of FileFormat items
+            List of valid formats (FileFormat)
+            Default [YAML,JSON,CPICKLE,MARSHAL,MSGPACK,TXT,CSV,ZIP,TAR]
+
         """
 
         # Run FileMixin init
