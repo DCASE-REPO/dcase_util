@@ -76,3 +76,105 @@ class FeatureRepository(DataRepository):
         super(FeatureRepository, self).__init__(**kwargs)
 
         self.item_class = FeatureContainer
+
+    def detect_file_format(self, filename=None):
+        """Detect file format from extension
+
+        Parameters
+        ----------
+        filename : str or dict
+            filename
+            Default value None
+
+        Raises
+        ------
+        IOError:
+            Unknown file format
+
+        Returns
+        -------
+        str
+            format tag
+
+        """
+
+        if filename is None:
+            filename = self.filename
+
+        if isinstance(filename, dict):
+            file_format = {}
+            for key in filename:
+                file_format[filename[key]] = FileFormat.detect(filename=filename[key])
+
+        else:
+            file_format = FileFormat.detect(filename=filename)
+
+        if file_format is None:
+            # Unknown format
+            message = '{name}: File format cannot be detected for file [{filename}] '.format(
+                name=self.__class__.__name__,
+                filename=filename
+            )
+            if self.logger:
+                self.logger.exception(message)
+
+            raise IOError(message)
+
+        self.format = file_format
+        return self
+
+    def validate_format(self):
+        """Validate file format
+
+        Raises
+        ------
+        IOError:
+            Unknown file format
+
+        Returns
+        -------
+        bool
+
+        """
+
+        if self.valid_formats:
+            # Validate only if valid format has been given
+
+            if not hasattr(self, 'format') or not self.format:
+                # Detect format if defined yet
+                self.detect_file_format()
+
+            if self.format and isinstance(self.format, dict):
+                valid = True
+                for filename in self.format:
+                    if self.format[filename] not in self.valid_formats:
+                        message = '{name}: Unknown format [{format}] for file [{file}]'.format(
+                            name=self.__class__.__name__,
+                            format=os.path.splitext(self.format[filename])[-1],
+                            file=self.format[filename]
+                        )
+                        if self.logger:
+                            self.logger.exception(message)
+
+                        raise IOError(message)
+
+                if valid:
+                    return True
+
+            elif self.format and self.format in self.valid_formats:
+                # Format found and valid formats defined, validate format
+                return True
+
+            else:
+                message = '{name}: Unknown format [{format}] for file [{file}]'.format(
+                    name=self.__class__.__name__,
+                    format=os.path.splitext(self.filename)[-1],
+                    file=self.filename
+                )
+                if self.logger:
+                    self.logger.exception(message)
+
+                raise IOError(message)
+
+        else:
+            return True
