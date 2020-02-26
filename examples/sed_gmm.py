@@ -209,6 +209,7 @@ if param.get_path('flow.learning'):
                         feature_path=param.get_path('path.features'),
                         feature_label=feature_label
                     )
+
                 # Load all features.
                 repo = dcase_util.containers.FeatureRepository(filename=filename_dict).load()
 
@@ -356,10 +357,10 @@ if param.get_path('flow.testing'):
 
                     # Accumulate probabilities inside sliding window.
                     probabilities = dcase_util.data.ProbabilityEncoder().collapse_probabilities_windowed(
-                        probabilities=probabilities,
+                        probabilities=probabilities.reshape(1, -1),
                         window_length=int(param.get_path('recognizer.probability_collapsing.window_length') / float(features.time_resolution)),
                         operator='sliding_sum',
-                    )
+                    )[0]
 
                     # Get frame decisions
                     frame_decisions = dcase_util.data.ProbabilityEncoder().binarization(
