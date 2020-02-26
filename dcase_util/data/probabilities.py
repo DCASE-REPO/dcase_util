@@ -130,6 +130,13 @@ class ProbabilityEncoder(ObjectContainer):
             self.logger.exception(message)
             raise AssertionError(message)
 
+        if len(probabilities.shape) == 1:
+            # In case of array, convert to matrix
+            if time_axis == 0:
+                probabilities = probabilities.reshape(-1, 1)
+            else:
+                probabilities = probabilities.reshape(1, -1)
+
         # Get data_axis
         if time_axis == 0:
             data_axis = 1
