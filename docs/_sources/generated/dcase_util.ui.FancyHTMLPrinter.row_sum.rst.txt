@@ -1,0 +1,6 @@
+dcase\_util.ui.FancyHTMLPrinter.row\_sum
+========================================
+
+.. currentmodule:: dcase_util.ui
+
+.. automethod:: FancyHTMLPrinter.row_sum

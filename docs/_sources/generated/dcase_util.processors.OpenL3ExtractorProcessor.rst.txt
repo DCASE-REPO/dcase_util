@@ -1,0 +1,51 @@
+dcase\_util.processors.OpenL3ExtractorProcessor
+===============================================
+
+.. currentmodule:: dcase_util.processors
+
+.. autoclass:: OpenL3ExtractorProcessor
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~OpenL3ExtractorProcessor.__init__
+      ~OpenL3ExtractorProcessor.delimiter
+      ~OpenL3ExtractorProcessor.detect_file_format
+      ~OpenL3ExtractorProcessor.empty
+      ~OpenL3ExtractorProcessor.exists
+      ~OpenL3ExtractorProcessor.extract
+      ~OpenL3ExtractorProcessor.get_file_information
+      ~OpenL3ExtractorProcessor.get_processing_chain_item
+      ~OpenL3ExtractorProcessor.is_package
+      ~OpenL3ExtractorProcessor.load
+      ~OpenL3ExtractorProcessor.log
+      ~OpenL3ExtractorProcessor.process
+      ~OpenL3ExtractorProcessor.save
+      ~OpenL3ExtractorProcessor.show
+      ~OpenL3ExtractorProcessor.to_html
+      ~OpenL3ExtractorProcessor.to_string
+      ~OpenL3ExtractorProcessor.validate_format
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~OpenL3ExtractorProcessor.bytes
+      ~OpenL3ExtractorProcessor.description
+      ~OpenL3ExtractorProcessor.input_type
+      ~OpenL3ExtractorProcessor.label
+      ~OpenL3ExtractorProcessor.logger
+      ~OpenL3ExtractorProcessor.md5
+      ~OpenL3ExtractorProcessor.output_type
+      ~OpenL3ExtractorProcessor.valid_formats
+   
+   

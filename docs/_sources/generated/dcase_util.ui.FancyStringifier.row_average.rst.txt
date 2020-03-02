@@ -1,0 +1,6 @@
+dcase\_util.ui.FancyStringifier.row\_average
+============================================
+
+.. currentmodule:: dcase_util.ui
+
+.. automethod:: FancyStringifier.row_average

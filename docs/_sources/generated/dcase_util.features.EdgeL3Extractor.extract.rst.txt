@@ -1,0 +1,6 @@
+dcase\_util.features.EdgeL3Extractor.extract
+============================================
+
+.. currentmodule:: dcase_util.features
+
+.. automethod:: EdgeL3Extractor.extract

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>dcase_util.containers.MetaDataContainer.get_string &mdash; DCASE Utilities 1.0 documentation</title>
+  <title>dcase_util.processors.OpenL3ExtractorProcessor &mdash; DCASE Utilities 1.0 documentation</title>
   
 
   
@@ -23,10 +23,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -37,7 +37,9 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="dcase_util.processors.OpenL3ExtractorProcessor.process" href="dcase_util.processors.OpenL3ExtractorProcessor.process.html" />
+    <link rel="prev" title="dcase_util.processors.SpectralCentroidExtractorProcessor.process" href="dcase_util.processors.SpectralCentroidExtractorProcessor.process.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -178,7 +180,7 @@
 </li>
 </ul>
 <p class="caption"><span class="caption-text">Utilities</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../containers.html">Containers</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../containers.html#basic-containers">Basic containers</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../containers.html#objectcontainer">ObjectContainer</a><ul>
@@ -768,6 +770,8 @@
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_DevelopmentSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_LeaderboardSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_LeaderboardSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_EvaluationSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_EvaluationSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TAUUrbanAcousticScenes_2020_Mobile_DevelopmentSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2020_Mobile_DevelopmentSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TAUUrbanAcousticScenes_2020_3Class_DevelopmentSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2020_3Class_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.DCASE2018_Task5_DevelopmentSet.html">dcase_util.datasets.DCASE2018_Task5_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.DCASE2018_Task5_EvaluationSet.html">dcase_util.datasets.DCASE2018_Task5_EvaluationSet</a></li>
 </ul>
@@ -854,6 +858,20 @@
 <li class="toctree-l2"><a class="reference internal" href="../features.html#spectralcentroidextractor">SpectralCentroidExtractor</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.features.SpectralCentroidExtractor.html">dcase_util.features.SpectralCentroidExtractor</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.features.SpectralCentroidExtractor.extract.html">dcase_util.features.SpectralCentroidExtractor.extract</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../features.html#embeddingextractor">EmbeddingExtractor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.features.EmbeddingExtractor.html">dcase_util.features.EmbeddingExtractor</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../features.html#openl3extractor">OpenL3Extractor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.features.OpenL3Extractor.html">dcase_util.features.OpenL3Extractor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.features.OpenL3Extractor.extract.html">dcase_util.features.OpenL3Extractor.extract</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../features.html#edgel3extractor">EdgeL3Extractor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.features.EdgeL3Extractor.html">dcase_util.features.EdgeL3Extractor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.features.EdgeL3Extractor.extract.html">dcase_util.features.EdgeL3Extractor.extract</a></li>
 </ul>
 </li>
 </ul>
@@ -993,7 +1011,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../processors.html">Processors</a><ul>
+<li class="toctree-l1 current"><a class="reference internal" href="../processors.html">Processors</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../processors.html#processing-chain">Processing chain</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../processors.html#processingchainitem">ProcessingChainItem</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.ProcessingChainItem.html">dcase_util.processors.ProcessingChainItem</a></li>
@@ -1111,7 +1129,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../processors.html#features">Features</a><ul>
+<li class="toctree-l2 current"><a class="reference internal" href="../processors.html#features">Features</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../processors.html#featurereadingprocessor">FeatureReadingProcessor</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.FeatureReadingProcessor.html">dcase_util.processors.FeatureReadingProcessor</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.FeatureReadingProcessor.process.html">dcase_util.processors.FeatureReadingProcessor.process</a></li>
@@ -1182,6 +1200,16 @@
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.SpectralCentroidExtractorProcessor.process.html">dcase_util.processors.SpectralCentroidExtractorProcessor.process</a></li>
 </ul>
 </li>
+<li class="toctree-l3 current"><a class="reference internal" href="../processors.html#openl3extractorprocessor">OpenL3ExtractorProcessor</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">dcase_util.processors.OpenL3ExtractorProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.OpenL3ExtractorProcessor.process.html">dcase_util.processors.OpenL3ExtractorProcessor.process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../processors.html#edgel3extractorprocessor">EdgeL3ExtractorProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.EdgeL3ExtractorProcessor.html">dcase_util.processors.EdgeL3ExtractorProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.EdgeL3ExtractorProcessor.process.html">dcase_util.processors.EdgeL3ExtractorProcessor.process</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../processors.html#metadata">Metadata</a><ul>
@@ -1210,6 +1238,8 @@
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyLogger.row.html">dcase_util.ui.FancyLogger.row</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyLogger.row_reset.html">dcase_util.ui.FancyLogger.row_reset</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyLogger.row_sep.html">dcase_util.ui.FancyLogger.row_sep</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyLogger.row_sum.html">dcase_util.ui.FancyLogger.row_sum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyLogger.row_average.html">dcase_util.ui.FancyLogger.row_average</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyLogger.title.html">dcase_util.ui.FancyLogger.title</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyLogger.section_header.html">dcase_util.ui.FancyLogger.section_header</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyLogger.sub_header.html">dcase_util.ui.FancyLogger.sub_header</a></li>
@@ -1246,6 +1276,8 @@
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyHTMLPrinter.row.html">dcase_util.ui.FancyHTMLPrinter.row</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyHTMLPrinter.row_reset.html">dcase_util.ui.FancyHTMLPrinter.row_reset</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyHTMLPrinter.row_sep.html">dcase_util.ui.FancyHTMLPrinter.row_sep</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyHTMLPrinter.row_sum.html">dcase_util.ui.FancyHTMLPrinter.row_sum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyHTMLPrinter.row_average.html">dcase_util.ui.FancyHTMLPrinter.row_average</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyHTMLPrinter.title.html">dcase_util.ui.FancyHTMLPrinter.title</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyHTMLPrinter.section_header.html">dcase_util.ui.FancyHTMLPrinter.section_header</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyHTMLPrinter.sub_header.html">dcase_util.ui.FancyHTMLPrinter.sub_header</a></li>
@@ -1272,6 +1304,8 @@
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyStringifier.row.html">dcase_util.ui.FancyStringifier.row</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyStringifier.row_reset.html">dcase_util.ui.FancyStringifier.row_reset</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyStringifier.row_sep.html">dcase_util.ui.FancyStringifier.row_sep</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyStringifier.row_sum.html">dcase_util.ui.FancyStringifier.row_sum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyStringifier.row_average.html">dcase_util.ui.FancyStringifier.row_average</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyStringifier.class_name.html">dcase_util.ui.FancyStringifier.class_name</a></li>
 </ul>
 </li>
@@ -1289,6 +1323,8 @@
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyHTMLStringifier.row.html">dcase_util.ui.FancyHTMLStringifier.row</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyHTMLStringifier.row_reset.html">dcase_util.ui.FancyHTMLStringifier.row_reset</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyHTMLStringifier.row_sep.html">dcase_util.ui.FancyHTMLStringifier.row_sep</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyHTMLStringifier.row_sum.html">dcase_util.ui.FancyHTMLStringifier.row_sum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyHTMLStringifier.row_average.html">dcase_util.ui.FancyHTMLStringifier.row_average</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.ui.FancyHTMLStringifier.class_name.html">dcase_util.ui.FancyHTMLStringifier.class_name</a></li>
 </ul>
 </li>
@@ -1296,6 +1332,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../utils.html">Utils</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../utils.html#general-functions">General functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.utils.get_audio_info.html">dcase_util.utils.get_audio_info</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.utils.get_class_inheritors.html">dcase_util.utils.get_class_inheritors</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.utils.get_byte_string.html">dcase_util.utils.get_byte_string</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.utils.check_pkg_resources.html">dcase_util.utils.check_pkg_resources</a></li>
@@ -1393,6 +1430,8 @@
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.utils.Example.html">dcase_util.utils.Example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.utils.Example.audio_filename.html">dcase_util.utils.Example.audio_filename</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.utils.Example.acoustic_scene_audio_filename.html">dcase_util.utils.Example.acoustic_scene_audio_filename</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.utils.Example.audio_filename_mp3.html">dcase_util.utils.Example.audio_filename_mp3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.utils.Example.acoustic_scene_audio_filename_mp3.html">dcase_util.utils.Example.acoustic_scene_audio_filename_mp3</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.utils.Example.audio_container.html">dcase_util.utils.Example.audio_container</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.utils.Example.event_metadata_container.html">dcase_util.utils.Example.event_metadata_container</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.utils.Example.scene_metadata_container.html">dcase_util.utils.Example.scene_metadata_container</a></li>
@@ -1437,6 +1476,8 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-11">v0.2.11</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-10">v0.2.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-9">v0.2.9</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-8">v0.2.8</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-7">v0.2.7</a></li>
@@ -1502,7 +1543,9 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>dcase_util.containers.MetaDataContainer.get_string</li>
+          <li><a href="../processors.html">Processors</a> &raquo;</li>
+        
+      <li>dcase_util.processors.OpenL3ExtractorProcessor</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -1519,8 +1562,187 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="dcase-util-containers-metadatacontainer-get-string">
-<h1>dcase_util.containers.MetaDataContainer.get_string<a class="headerlink" href="#dcase-util-containers-metadatacontainer-get-string" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="dcase-util-processors-openl3extractorprocessor">
+<h1>dcase_util.processors.OpenL3ExtractorProcessor<a class="headerlink" href="#dcase-util-processors-openl3extractorprocessor" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="dcase_util.processors.OpenL3ExtractorProcessor">
+<em class="property">class </em><code class="sig-prename descclassname">dcase_util.processors.</code><code class="sig-name descname">OpenL3ExtractorProcessor</code><span class="sig-paren">(</span><em class="sig-param">fs=44100</em>, <em class="sig-param">hop_length_samples=None</em>, <em class="sig-param">hop_length_seconds=0.02</em>, <em class="sig-param">model=None</em>, <em class="sig-param">input_repr='mel256'</em>, <em class="sig-param">content_type='music'</em>, <em class="sig-param">embedding_size=6144</em>, <em class="sig-param">center=True</em>, <em class="sig-param">batch_size=32</em>, <em class="sig-param">verbose=False</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/processors/features.html#OpenL3ExtractorProcessor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.processors.OpenL3ExtractorProcessor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructor</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>fs</strong><span class="classifier">int</span></dt><dd><p>Sampling rate of the incoming signal.</p>
+</dd>
+<dt><strong>hop_length_samples</strong><span class="classifier">int</span></dt><dd><p>Hop length in samples.
+Default value None</p>
+</dd>
+<dt><strong>hop_length_seconds</strong><span class="classifier">float</span></dt><dd><p>Hop length in seconds.
+Default value 0.02</p>
+</dd>
+<dt><strong>model</strong><span class="classifier">keras.models.Model or None</span></dt><dd><p>Loaded model object. If a model is provided, then <em class="xref py py-obj">input_repr</em>, <em class="xref py py-obj">content_type</em>, and <em class="xref py py-obj">embedding_size</em> will be ignored. If None is provided, the model will be loaded using the provided values of <em class="xref py py-obj">input_repr</em>, <em class="xref py py-obj">content_type</em> and <em class="xref py py-obj">embedding_size</em>.
+Default value None</p>
+</dd>
+<dt><strong>input_repr</strong><span class="classifier">“linear”, “mel128”, or “mel256”</span></dt><dd><p>Spectrogram representation used for model. Ignored if <em class="xref py py-obj">model</em> is
+a valid Keras model.
+Default value “mel256”</p>
+</dd>
+<dt><strong>content_type</strong><span class="classifier">“music” or “env”</span></dt><dd><p>Type of content used to train the embedding model. Ignored if <em class="xref py py-obj">model</em> is
+a valid Keras model.
+Default value “music”</p>
+</dd>
+<dt><strong>embedding_size</strong><span class="classifier">6144 or 512</span></dt><dd><p>Embedding dimensionality. Ignored if <em class="xref py py-obj">model</em> is a valid Keras model.
+Default value 6144</p>
+</dd>
+<dt><strong>center</strong><span class="classifier">bool</span></dt><dd><p>If True, pads beginning of signal so timestamps correspond to center of window.
+Default value True</p>
+</dd>
+<dt><strong>batch_size</strong><span class="classifier">int</span></dt><dd><p>Batch size used for input to embedding model
+Default value 32</p>
+</dd>
+<dt><strong>verbose</strong><span class="classifier">bool</span></dt><dd><p>If True, prints verbose messages.
+Default value False</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="method">
+<dt id="dcase_util.processors.OpenL3ExtractorProcessor.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">fs=44100</em>, <em class="sig-param">hop_length_samples=None</em>, <em class="sig-param">hop_length_seconds=0.02</em>, <em class="sig-param">model=None</em>, <em class="sig-param">input_repr='mel256'</em>, <em class="sig-param">content_type='music'</em>, <em class="sig-param">embedding_size=6144</em>, <em class="sig-param">center=True</em>, <em class="sig-param">batch_size=32</em>, <em class="sig-param">verbose=False</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/processors/features.html#OpenL3ExtractorProcessor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.processors.OpenL3ExtractorProcessor.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructor</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>fs</strong><span class="classifier">int</span></dt><dd><p>Sampling rate of the incoming signal.</p>
+</dd>
+<dt><strong>hop_length_samples</strong><span class="classifier">int</span></dt><dd><p>Hop length in samples.
+Default value None</p>
+</dd>
+<dt><strong>hop_length_seconds</strong><span class="classifier">float</span></dt><dd><p>Hop length in seconds.
+Default value 0.02</p>
+</dd>
+<dt><strong>model</strong><span class="classifier">keras.models.Model or None</span></dt><dd><p>Loaded model object. If a model is provided, then <em class="xref py py-obj">input_repr</em>, <em class="xref py py-obj">content_type</em>, and <em class="xref py py-obj">embedding_size</em> will be ignored. If None is provided, the model will be loaded using the provided values of <em class="xref py py-obj">input_repr</em>, <em class="xref py py-obj">content_type</em> and <em class="xref py py-obj">embedding_size</em>.
+Default value None</p>
+</dd>
+<dt><strong>input_repr</strong><span class="classifier">“linear”, “mel128”, or “mel256”</span></dt><dd><p>Spectrogram representation used for model. Ignored if <em class="xref py py-obj">model</em> is
+a valid Keras model.
+Default value “mel256”</p>
+</dd>
+<dt><strong>content_type</strong><span class="classifier">“music” or “env”</span></dt><dd><p>Type of content used to train the embedding model. Ignored if <em class="xref py py-obj">model</em> is
+a valid Keras model.
+Default value “music”</p>
+</dd>
+<dt><strong>embedding_size</strong><span class="classifier">6144 or 512</span></dt><dd><p>Embedding dimensionality. Ignored if <em class="xref py py-obj">model</em> is a valid Keras model.
+Default value 6144</p>
+</dd>
+<dt><strong>center</strong><span class="classifier">bool</span></dt><dd><p>If True, pads beginning of signal so timestamps correspond to center of window.
+Default value True</p>
+</dd>
+<dt><strong>batch_size</strong><span class="classifier">int</span></dt><dd><p>Batch size used for input to embedding model
+Default value 32</p>
+</dd>
+<dt><strong>verbose</strong><span class="classifier">bool</span></dt><dd><p>If True, prints verbose messages.
+Default value False</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dcase_util.processors.OpenL3ExtractorProcessor.__init__" title="dcase_util.processors.OpenL3ExtractorProcessor.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(self[, fs, hop_length_samples, …])</p></td>
+<td><p>Constructor</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">delimiter</span></code>(self[, exclude_delimiters])</p></td>
+<td><p>Use csv.sniffer to guess delimiter for CSV file</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">detect_file_format</span></code>(self[, filename])</p></td>
+<td><p>Detect file format from extension</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">empty</span></code>(self)</p></td>
+<td><p>Check if file is empty</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">exists</span></code>(self)</p></td>
+<td><p>Checks that file exists</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">extract</span></code>(self, y)</p></td>
+<td><p>Extract features for the audio signal.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_file_information</span></code>(self)</p></td>
+<td><p>Get file information, filename</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_processing_chain_item</span></code>(self)</p></td>
+<td><p>Get processing chain item with current Processor data.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_package</span></code>(self[, filename])</p></td>
+<td><p>Determine if the file is compressed package.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">load</span></code>(self[, filename])</p></td>
+<td><p>Load file</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">log</span></code>(self[, level])</p></td>
+<td><p>Log container content</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="dcase_util.processors.OpenL3ExtractorProcessor.process.html#dcase_util.processors.OpenL3ExtractorProcessor.process" title="dcase_util.processors.OpenL3ExtractorProcessor.process"><code class="xref py py-obj docutils literal notranslate"><span class="pre">process</span></code></a>(self[, data, store_processing_chain])</p></td>
+<td><p>Extract features</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code>(self[, filename])</p></td>
+<td><p>Save file</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">show</span></code>(self[, mode, indent, visualize])</p></td>
+<td><p>Print container content</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_html</span></code>(self[, indent])</p></td>
+<td><p>Get container information in a HTML formatted string</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_string</span></code>(self[, ui, indent])</p></td>
+<td><p>Get container information in a string</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_format</span></code>(self)</p></td>
+<td><p>Validate file format</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">bytes</span></code></p></td>
+<td><p>File size in bytes</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">description</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">input_type</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">label</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">logger</span></code></p></td>
+<td><p>Logger instance</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">md5</span></code></p></td>
+<td><p>Checksum for file.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">output_type</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">valid_formats</span></code></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </div>
 
 
@@ -1528,6 +1750,15 @@
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="dcase_util.processors.OpenL3ExtractorProcessor.process.html" class="btn btn-neutral float-right" title="dcase_util.processors.OpenL3ExtractorProcessor.process" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="dcase_util.processors.SpectralCentroidExtractorProcessor.process.html" class="btn btn-neutral float-left" title="dcase_util.processors.SpectralCentroidExtractorProcessor.process" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

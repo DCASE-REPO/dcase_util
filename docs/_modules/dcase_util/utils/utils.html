@@ -1790,7 +1790,6 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="kn">import</span> <span class="nn">soundfile</span>
     <span class="kn">from</span> <span class="nn">dcase_util.utils.files</span> <span class="k">import</span> <span class="n">FileFormat</span>
     <span class="kn">from</span> <span class="nn">dcase_util.files</span> <span class="k">import</span> <span class="n">File</span>
     <span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="k">import</span> <span class="n">DictContainer</span>
@@ -1839,6 +1838,8 @@
     <span class="p">})</span>
 
     <span class="k">if</span> <span class="n">file</span><span class="o">.</span><span class="n">format</span> <span class="o">==</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">WAV</span><span class="p">:</span>
+        <span class="kn">import</span> <span class="nn">soundfile</span>
+
         <span class="n">wav_info</span> <span class="o">=</span> <span class="n">soundfile</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="n">file</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
         <span class="n">info</span><span class="p">[</span><span class="s1">&#39;fs&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">wav_info</span><span class="o">.</span><span class="n">samplerate</span>
         <span class="n">info</span><span class="p">[</span><span class="s1">&#39;channels&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">wav_info</span><span class="o">.</span><span class="n">channels</span>
@@ -1850,6 +1851,7 @@
             <span class="s1">&#39;info&#39;</span><span class="p">:</span> <span class="n">wav_info</span><span class="o">.</span><span class="n">subtype_info</span>
         <span class="p">}</span>
 
+        <span class="c1"># Map sub type to bit depth</span>
         <span class="k">if</span> <span class="n">info</span><span class="p">[</span><span class="s1">&#39;subtype&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;PCM_16&#39;</span><span class="p">:</span>
             <span class="n">info</span><span class="p">[</span><span class="s1">&#39;bit_depth&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">16</span>
 
@@ -1860,45 +1862,67 @@
             <span class="n">info</span><span class="p">[</span><span class="s1">&#39;bit_depth&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">32</span>
 
     <span class="k">elif</span> <span class="n">file</span><span class="o">.</span><span class="n">format</span> <span class="ow">in</span> <span class="p">[</span><span class="n">FileFormat</span><span class="o">.</span><span class="n">FLAC</span><span class="p">,</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">OGG</span><span class="p">,</span>
-                         <span class="n">FileFormat</span><span class="o">.</span><span class="n">MP3</span><span class="p">,</span>
-                         <span class="n">FileFormat</span><span class="o">.</span><span class="n">M4A</span><span class="p">,</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">MP4</span><span class="p">,</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">WEBM</span><span class="p">]:</span>
+                         <span class="n">FileFormat</span><span class="o">.</span><span class="n">MP3</span><span class="p">,</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">M4A</span><span class="p">,</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">MP4</span><span class="p">,</span>
+                         <span class="n">FileFormat</span><span class="o">.</span><span class="n">WEBM</span><span class="p">]:</span>
+        <span class="c1"># Use ffprobe to get file info from other formats</span>
+        <span class="kn">import</span> <span class="nn">subprocess</span>
+        <span class="kn">import</span> <span class="nn">json</span>
+        <span class="kn">import</span> <span class="nn">shlex</span>
 
+        <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&quot;ffprobe -v quiet -print_format json -show_streams&quot;</span>
+        <span class="n">args</span> <span class="o">=</span> <span class="n">shlex</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+
+        <span class="c1"># Run command line command, fetch and parse json output</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="kn">from</span> <span class="nn">ffprobe</span> <span class="k">import</span> <span class="n">FFProbe</span>
-        <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-            <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Unable to import ffprobe module. You can install it with `pip install ffprobe`.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                <span class="n">name</span><span class="o">=</span><span class="vm">__name__</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">check_output</span><span class="p">(</span><span class="n">args</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+
+        <span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+            <span class="c1"># Error while running the command</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: It seems that ffmpeg (ffprobe) is not installed.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">name</span><span class="o">=</span><span class="vm">__name__</span><span class="p">,</span>
+                <span class="n">filename</span><span class="o">=</span><span class="n">filename</span>
             <span class="p">)</span>
-
             <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-            <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
-        <span class="n">ffmpeg_meta</span> <span class="o">=</span> <span class="n">FFProbe</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
-        <span class="k">for</span> <span class="n">stream</span> <span class="ow">in</span> <span class="n">ffmpeg_meta</span><span class="o">.</span><span class="n">streams</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">stream</span><span class="o">.</span><span class="n">is_audio</span><span class="p">():</span>
-                <span class="n">info</span><span class="p">[</span><span class="s1">&#39;fs&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">stream</span><span class="o">.</span><span class="n">sample_rate</span><span class="p">)</span>
-                <span class="n">info</span><span class="p">[</span><span class="s1">&#39;channels&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">stream</span><span class="o">.</span><span class="n">channels</span><span class="p">)</span>
+        <span class="n">ffmpeg_meta</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
 
-                <span class="k">if</span> <span class="n">stream</span><span class="o">.</span><span class="n">duration</span> <span class="o">!=</span> <span class="s1">&#39;N/A&#39;</span><span class="p">:</span>
-                    <span class="n">info</span><span class="p">[</span><span class="s1">&#39;duration_sec&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="n">duration_seconds</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">stream</span> <span class="ow">in</span> <span class="n">ffmpeg_meta</span><span class="p">[</span><span class="s1">&#39;streams&#39;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">stream</span><span class="p">[</span><span class="s1">&#39;codec_type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;audio&#39;</span><span class="p">:</span>
+                <span class="c1"># Fetch audio info from first audio stream</span>
+                <span class="n">info</span><span class="p">[</span><span class="s1">&#39;fs&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">stream</span><span class="p">[</span><span class="s1">&#39;sample_rate&#39;</span><span class="p">])</span>
+
+                <span class="c1"># Get duration</span>
+                <span class="k">if</span> <span class="s1">&#39;duration&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stream</span><span class="p">:</span>
+                    <span class="n">info</span><span class="p">[</span><span class="s1">&#39;duration_sec&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="k">elif</span> <span class="n">is_float</span><span class="p">(</span><span class="n">stream</span><span class="p">[</span><span class="s1">&#39;duration&#39;</span><span class="p">]):</span>
+                    <span class="n">info</span><span class="p">[</span><span class="s1">&#39;duration_sec&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">stream</span><span class="p">[</span><span class="s1">&#39;duration&#39;</span><span class="p">])</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">info</span><span class="p">[</span><span class="s1">&#39;duration_sec&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 
-                <span class="k">if</span> <span class="n">stream</span><span class="o">.</span><span class="n">bit_rate</span> <span class="o">!=</span> <span class="s1">&#39;N/A&#39;</span><span class="p">:</span>
-                    <span class="n">info</span><span class="p">[</span><span class="s1">&#39;bit_rate&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">stream</span><span class="o">.</span><span class="n">bit_rate</span><span class="p">)</span>
+                <span class="c1"># Get bit rate</span>
+                <span class="k">if</span> <span class="s1">&#39;bit_rate&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stream</span><span class="p">:</span>
+                    <span class="n">info</span><span class="p">[</span><span class="s1">&#39;bit_rate&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="k">elif</span> <span class="n">is_int</span><span class="p">(</span><span class="n">stream</span><span class="p">[</span><span class="s1">&#39;bit_rate&#39;</span><span class="p">]):</span>
+                    <span class="n">info</span><span class="p">[</span><span class="s1">&#39;bit_rate&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">stream</span><span class="p">[</span><span class="s1">&#39;bit_rate&#39;</span><span class="p">])</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">info</span><span class="p">[</span><span class="s1">&#39;bit_rate&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 
-                <span class="n">info</span><span class="p">[</span><span class="s1">&#39;codec&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
-                    <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">stream</span><span class="o">.</span><span class="n">codec_name</span><span class="p">,</span>
-                    <span class="s1">&#39;name_long&#39;</span><span class="p">:</span> <span class="n">stream</span><span class="o">.</span><span class="n">codec_long_name</span><span class="p">,</span>
-                    <span class="s1">&#39;tag&#39;</span><span class="p">:</span> <span class="n">stream</span><span class="o">.</span><span class="n">codec_tag</span><span class="p">,</span>
-                    <span class="s1">&#39;tag_string&#39;</span><span class="p">:</span> <span class="n">stream</span><span class="o">.</span><span class="n">codec_tag_string</span><span class="p">,</span>
-                    <span class="s1">&#39;time_base&#39;</span><span class="p">:</span> <span class="n">stream</span><span class="o">.</span><span class="n">codec_time_base</span><span class="p">,</span>
-                    <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="n">stream</span><span class="o">.</span><span class="n">codec_type</span><span class="p">,</span>
-                    <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="n">stream</span><span class="o">.</span><span class="n">codec_description</span><span class="p">(),</span>
-                <span class="p">}</span>
+                <span class="c1"># Get codec info</span>
+                <span class="n">info</span><span class="p">[</span><span class="s1">&#39;codec&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+
+                <span class="k">if</span> <span class="s1">&#39;codec_name&#39;</span> <span class="ow">in</span> <span class="n">stream</span><span class="p">:</span>
+                    <span class="n">info</span><span class="p">[</span><span class="s1">&#39;codec&#39;</span><span class="p">][</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">stream</span><span class="p">[</span><span class="s1">&#39;codec_name&#39;</span><span class="p">]</span>
+
+                <span class="k">if</span> <span class="s1">&#39;codec_long_name&#39;</span> <span class="ow">in</span> <span class="n">stream</span><span class="p">:</span>
+                    <span class="n">info</span><span class="p">[</span><span class="s1">&#39;codec&#39;</span><span class="p">][</span><span class="s1">&#39;name_long&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">stream</span><span class="p">[</span><span class="s1">&#39;codec_long_name&#39;</span><span class="p">]</span>
+
+                <span class="k">if</span> <span class="s1">&#39;codec_type&#39;</span> <span class="ow">in</span> <span class="n">stream</span><span class="p">:</span>
+                    <span class="n">info</span><span class="p">[</span><span class="s1">&#39;codec&#39;</span><span class="p">][</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">stream</span><span class="p">[</span><span class="s1">&#39;codec_type&#39;</span><span class="p">]</span>
+
+                <span class="k">break</span>
 
     <span class="k">return</span> <span class="n">info</span></div>
 

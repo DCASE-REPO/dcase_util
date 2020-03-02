@@ -1691,6 +1691,13 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
             <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">probabilities</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="c1"># In case of array, convert to matrix</span>
+            <span class="k">if</span> <span class="n">time_axis</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">probabilities</span> <span class="o">=</span> <span class="n">probabilities</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">probabilities</span> <span class="o">=</span> <span class="n">probabilities</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
         <span class="c1"># Get data_axis</span>
         <span class="k">if</span> <span class="n">time_axis</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">data_axis</span> <span class="o">=</span> <span class="mi">1</span>

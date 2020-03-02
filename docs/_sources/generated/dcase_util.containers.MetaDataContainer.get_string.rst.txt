@@ -1,6 +1,0 @@
-dcase\_util\.containers\.MetaDataContainer\.get\_string
-=======================================================
-
-.. currentmodule:: dcase_util.containers
-
-.. automethod:: MetaDataContainer.get_string

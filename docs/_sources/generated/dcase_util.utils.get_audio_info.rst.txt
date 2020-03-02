@@ -1,0 +1,6 @@
+dcase\_util.utils.get\_audio\_info
+==================================
+
+.. currentmodule:: dcase_util.utils
+
+.. autofunction:: get_audio_info

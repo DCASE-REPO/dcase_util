@@ -2884,47 +2884,6 @@
 
         <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;print&#39;</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="p">))</span></div>
-
-
-<span class="k">class</span> <span class="nc">LearningRateWarmRestart</span><span class="p">(</span><span class="n">BaseCallback</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Keras callback to warm restart learning rate</span>
-
-<span class="sd">       See e.g.</span>
-<span class="sd">       Loshchilov, I., &amp; Hutter, F. (2017). SGDR: Stochastic Gradient Descent with Warm Restarts. In Proceedings of ICLR 2017.</span>
-<span class="sd">       (https://arxiv.org/abs/1608.03983)</span>
-
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nbatch</span><span class="p">,</span> <span class="n">initial_lr</span><span class="p">,</span> <span class="n">min_lr</span><span class="p">,</span> <span class="n">epochs_restart</span><span class="p">,</span> <span class="n">Tmult</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">initial_lr</span> <span class="o">=</span> <span class="n">initial_lr</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">min_lr</span> <span class="o">=</span> <span class="n">min_lr</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">epochs_restart</span> <span class="o">=</span> <span class="n">epochs_restart</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">nbatch</span> <span class="o">=</span> <span class="n">nbatch</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">currentEP</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">startEP</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">Tmult</span> <span class="o">=</span> <span class="n">Tmult</span>
-
-    <span class="k">def</span> <span class="nf">on_epoch_begin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">logs</span><span class="o">=</span><span class="p">{}):</span>
-        <span class="k">if</span> <span class="n">epoch</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">epochs_restart</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">currentEP</span> <span class="o">=</span> <span class="n">epoch</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">currentEP</span> <span class="o">=</span> <span class="n">epoch</span> <span class="o">+</span> <span class="mi">1</span>
-
-        <span class="k">if</span> <span class="n">numpy</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">currentEP</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">epochs_restart</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">startEP</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">currentEP</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">Tmult</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">Tmult</span>
-
-    <span class="k">def</span> <span class="nf">on_epoch_end</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epochs</span><span class="p">,</span> <span class="n">logs</span><span class="o">=</span><span class="p">{}):</span>
-        <span class="kn">from</span> <span class="nn">keras</span> <span class="k">import</span> <span class="n">backend</span> <span class="k">as</span> <span class="n">K</span>
-        <span class="n">lr</span> <span class="o">=</span> <span class="n">K</span><span class="o">.</span><span class="n">get_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">optimizer</span><span class="o">.</span><span class="n">lr</span><span class="p">)</span>
-        <span class="c1">#print(&#39;\nLearningRate:{:.6f}&#39;.format(lr))</span>
-
-    <span class="k">def</span> <span class="nf">on_batch_begin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch</span><span class="p">,</span> <span class="n">logs</span><span class="o">=</span><span class="p">{}):</span>
-        <span class="kn">from</span> <span class="nn">keras</span> <span class="k">import</span> <span class="n">backend</span> <span class="k">as</span> <span class="n">K</span>
-        <span class="n">pts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">currentEP</span> <span class="o">+</span> <span class="n">batch</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">nbatch</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">startEP</span>
-        <span class="n">decay</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">numpy</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">pts</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">Tmult</span> <span class="o">*</span> <span class="n">numpy</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
-        <span class="n">lr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_lr</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">initial_lr</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_lr</span><span class="p">)</span> <span class="o">*</span> <span class="n">decay</span>
-        <span class="n">K</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">optimizer</span><span class="o">.</span><span class="n">lr</span><span class="p">,</span> <span class="n">lr</span><span class="p">)</span>
 </pre></div>
 
            </div>

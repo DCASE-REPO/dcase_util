@@ -1,0 +1,6 @@
+dcase\_util.processors.OpenL3ExtractorProcessor.process
+=======================================================
+
+.. currentmodule:: dcase_util.processors
+
+.. automethod:: OpenL3ExtractorProcessor.process

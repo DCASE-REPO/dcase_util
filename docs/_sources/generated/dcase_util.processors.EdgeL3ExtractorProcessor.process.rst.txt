@@ -1,0 +1,6 @@
+dcase\_util.processors.EdgeL3ExtractorProcessor.process
+=======================================================
+
+.. currentmodule:: dcase_util.processors
+
+.. automethod:: EdgeL3ExtractorProcessor.process

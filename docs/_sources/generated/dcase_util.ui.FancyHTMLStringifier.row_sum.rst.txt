@@ -1,0 +1,6 @@
+dcase\_util.ui.FancyHTMLStringifier.row\_sum
+============================================
+
+.. currentmodule:: dcase_util.ui
+
+.. automethod:: FancyHTMLStringifier.row_sum

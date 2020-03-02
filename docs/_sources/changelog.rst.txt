@@ -4,7 +4,7 @@ Release notes
 =============
 
 v0.2.11
-------
+-------
 
 **New features**
 
@@ -33,9 +33,12 @@ v0.2.11
 
 * Fix ``MetaDataContainer`` sorting to work with numeric filenames
 * Fix ``get_byte_string`` to work with small values
+* Fix filename handling in `FeatureRepository` when dict of filenames is used
+* Fix ``collapse_probabilities_windowed`` method in ``ProbabilityEncoder`` to accept arrays of probabilities
+* Fix example system ``sed_gmm.py`` to work with current version
 
 v0.2.10
-------
+-------
 
 **Bug fixes**
 
