@@ -67,35 +67,35 @@ def get_byte_string(num_bytes, show_bytes=True):
     locale.setlocale(locale.LC_ALL, '')
 
     output = ''
-    if show_bytes:
-        output += locale.format("%d", num_bytes, grouping=True) + ' bytes'
-
     if show_bytes and num_bytes > KB:
+        output += locale.format("%d", num_bytes, grouping=True) + ' bytes'
         output += ' ('
 
-    if num_bytes > YB:
+    if num_bytes >= YB:
         output += '%.4g YB' % (num_bytes / YB)
 
-    elif num_bytes > ZB:
+    elif num_bytes >= ZB:
         output += '%.4g ZB' % (num_bytes / ZB)
 
-    elif num_bytes > EB:
+    elif num_bytes >= EB:
         output += '%.4g EB' % (num_bytes / EB)
 
-    elif num_bytes > PB:
+    elif num_bytes >= PB:
         output += '%.4g PB' % (num_bytes / PB)
 
-    elif num_bytes > TB:
+    elif num_bytes >= TB:
         output += '%.4g TB' % (num_bytes / TB)
 
-    elif num_bytes > GB:
+    elif num_bytes >= GB:
         output += '%.4g GB' % (num_bytes / GB)
 
-    elif num_bytes > MB:
+    elif num_bytes >= MB:
         output += '%.4g MB' % (num_bytes / MB)
 
-    elif num_bytes > KB:
+    elif num_bytes >= KB:
         output += '%.4g KB' % (num_bytes / KB)
+    else:
+        output += '%d bytes' % (num_bytes)
 
     if show_bytes and num_bytes > KB:
         output += ')'
@@ -208,6 +208,162 @@ def is_jupyter():
     except NameError:
         # Normal python interpreter
         return False
+
+
+def get_audio_info(filename, logger=None):
+    """Get information about audio file without opening it.
+
+    Parameters
+    ----------
+    filename : str
+        filename
+
+    logger : Logger class
+        Logger class
+        Default value None
+
+    Returns
+    -------
+    DictContainer
+        Dict with audio file information
+
+    """
+
+    from dcase_util.utils.files import FileFormat
+    from dcase_util.files import File
+    from dcase_util.containers import DictContainer
+
+    if logger is None:
+        logger = logging.getLogger(__name__)
+
+    file = File(
+        filename=filename,
+        valid_formats=[
+            FileFormat.WAV,
+            FileFormat.FLAC,
+            FileFormat.OGG,
+            FileFormat.MP3,
+            FileFormat.M4A,
+            FileFormat.MP4,
+            FileFormat.WEBM
+        ]
+    )
+
+    if not file.exists():
+        # File does not exists
+        message = '{name}: File does not exists [{filename}] '.format(
+            name=__name__,
+            filename=filename
+        )
+        logger.exception(message)
+
+        raise IOError(message)
+    file.detect_file_format()
+
+    if file.format is None:
+        # Unknown format
+        message = '{name}: File format cannot be detected for file [{filename}] '.format(
+            name=__name__,
+            filename=filename
+        )
+        logger.exception(message)
+
+        raise IOError(message)
+
+    info = DictContainer({
+        'filename': file.filename,
+        'bytes': file.bytes,
+        'format': file.format
+    })
+
+    if file.format == FileFormat.WAV:
+        import soundfile
+
+        wav_info = soundfile.info(file=file.filename)
+        info['fs'] = wav_info.samplerate
+        info['channels'] = wav_info.channels
+        info['duration_sec'] = wav_info.duration
+        info['duration_ms'] = (wav_info.frames / float(wav_info.samplerate)) * 1000
+        info['duration_samples'] = wav_info.frames
+        info['subtype'] = {
+            'name': wav_info.subtype,
+            'info': wav_info.subtype_info
+        }
+
+        # Map sub type to bit depth
+        if info['subtype'] == 'PCM_16':
+            info['bit_depth'] = 16
+
+        elif info['subtype'] == 'PCM_24':
+            info['bit_depth'] = 24
+
+        elif info['subtype'] == 'PCM_32':
+            info['bit_depth'] = 32
+
+    elif file.format in [FileFormat.FLAC, FileFormat.OGG,
+                         FileFormat.MP3, FileFormat.M4A, FileFormat.MP4,
+                         FileFormat.WEBM]:
+        # Use ffprobe to get file info from other formats
+        import subprocess
+        import json
+        import shlex
+
+        cmd = "ffprobe -v quiet -print_format json -show_streams"
+        args = shlex.split(cmd)
+        args.append(file.filename)
+
+        # Run command line command, fetch and parse json output
+        try:
+            output = subprocess.check_output(args).decode('utf-8')
+
+        except OSError:
+            # Error while running the command
+            message = '{name}: It seems that ffmpeg (ffprobe) is not installed.'.format(
+                name=__name__,
+                filename=filename
+            )
+            logger.exception(message)
+
+            raise IOError(message)
+
+        ffmpeg_meta = json.loads(output)
+
+        for stream in ffmpeg_meta['streams']:
+            if stream['codec_type'] == 'audio':
+                # Fetch audio info from first audio stream
+                info['fs'] = int(stream['sample_rate'])
+
+                # Get duration
+                if 'duration' not in stream:
+                    info['duration_sec'] = None
+                elif is_float(stream['duration']):
+                    info['duration_sec'] = float(stream['duration'])
+                else:
+                    info['duration_sec'] = None
+
+                # Get bit rate
+                if 'bit_rate' not in stream:
+                    info['bit_rate'] = None
+                elif is_int(stream['bit_rate']):
+                    info['bit_rate'] = int(stream['bit_rate'])
+                else:
+                    info['bit_rate'] = None
+
+                # Get codec info
+                info['codec'] = {}
+
+                if 'codec_name' in stream:
+                    info['codec']['name'] = stream['codec_name']
+
+                if 'codec_long_name' in stream:
+                    info['codec']['name_long'] = stream['codec_long_name']
+
+                if 'codec_type' in stream:
+                    info['codec']['type'] = stream['codec_type']
+
+                break
+
+    return info
 
 
 class SuppressStdoutAndStderr(object):

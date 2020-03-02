@@ -1,0 +1,35 @@
+dcase\_util.features.EmbeddingExtractor
+=======================================
+
+.. currentmodule:: dcase_util.features
+
+.. autoclass:: EmbeddingExtractor
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~EmbeddingExtractor.__init__
+      ~EmbeddingExtractor.extract
+      ~EmbeddingExtractor.log
+      ~EmbeddingExtractor.show
+      ~EmbeddingExtractor.to_html
+      ~EmbeddingExtractor.to_string
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~EmbeddingExtractor.description
+      ~EmbeddingExtractor.label
+      ~EmbeddingExtractor.logger
+   
+   

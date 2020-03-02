@@ -1,0 +1,35 @@
+dcase\_util.features.EdgeL3Extractor
+====================================
+
+.. currentmodule:: dcase_util.features
+
+.. autoclass:: EdgeL3Extractor
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~EdgeL3Extractor.__init__
+      ~EdgeL3Extractor.extract
+      ~EdgeL3Extractor.log
+      ~EdgeL3Extractor.show
+      ~EdgeL3Extractor.to_html
+      ~EdgeL3Extractor.to_string
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~EdgeL3Extractor.description
+      ~EdgeL3Extractor.label
+      ~EdgeL3Extractor.logger
+   
+   

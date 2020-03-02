@@ -728,7 +728,7 @@ class DictContainer(dict, ContainerMixin, FileMixin):
         for k, v in sorted(d.items(), key=lambda x: x[0]):
             k = text(k)
             if isinstance(v, dict):
-                output += ui.data(field=k, indent=indent + depth * indent_increase) + '\n'
+                output += ui.data(field=k, value="dict (%d)" % len(v.keys()), indent=indent + depth * indent_increase) + '\n'
                 output += self._walk_and_show(d=v, depth=depth + 1, ui=ui, indent=indent)
 
             else:

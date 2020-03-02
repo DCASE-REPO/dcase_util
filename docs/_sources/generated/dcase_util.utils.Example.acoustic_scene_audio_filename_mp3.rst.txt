@@ -1,0 +1,6 @@
+dcase\_util.utils.Example.acoustic\_scene\_audio\_filename\_mp3
+===============================================================
+
+.. currentmodule:: dcase_util.utils
+
+.. automethod:: Example.acoustic_scene_audio_filename_mp3

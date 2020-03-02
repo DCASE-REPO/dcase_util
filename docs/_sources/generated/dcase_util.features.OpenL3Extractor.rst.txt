@@ -1,0 +1,35 @@
+dcase\_util.features.OpenL3Extractor
+====================================
+
+.. currentmodule:: dcase_util.features
+
+.. autoclass:: OpenL3Extractor
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~OpenL3Extractor.__init__
+      ~OpenL3Extractor.extract
+      ~OpenL3Extractor.log
+      ~OpenL3Extractor.show
+      ~OpenL3Extractor.to_html
+      ~OpenL3Extractor.to_string
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~OpenL3Extractor.description
+      ~OpenL3Extractor.label
+      ~OpenL3Extractor.logger
+   
+   

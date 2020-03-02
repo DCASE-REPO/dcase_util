@@ -1,0 +1,6 @@
+dcase\_util.ui.FancyLogger.row\_average
+=======================================
+
+.. currentmodule:: dcase_util.ui
+
+.. automethod:: FancyLogger.row_average

@@ -1,0 +1,6 @@
+dcase\_util.features.OpenL3Extractor.extract
+============================================
+
+.. currentmodule:: dcase_util.features
+
+.. automethod:: OpenL3Extractor.extract

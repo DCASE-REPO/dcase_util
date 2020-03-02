@@ -13,7 +13,7 @@ from six.moves.http_client import BadStatusLine
 
 from dcase_util.containers import ContainerMixin, FileMixin
 from dcase_util.ui.ui import FancyStringifier, FancyHTMLStringifier
-from dcase_util.utils import FileFormat, Path, is_int, is_jupyter
+from dcase_util.utils import FileFormat, Path, is_int, is_jupyter, get_audio_info
 
 
 class AudioContainer(ContainerMixin, FileMixin):
@@ -25,19 +25,41 @@ class AudioContainer(ContainerMixin, FileMixin):
 
     def __init__(self,
                  data=None, fs=44100,
-                 focus_start_samples=None, focus_stop_samples=None, focus_channel=None,
+                 focus_start_samples=None, focus_stop_samples=None, focus_channel=None, channel_labels=None,
                  **kwargs):
         """Constructor
 
         Parameters
         ----------
-        filename : str, optional
-            File path
+        data : numpy.ndarray or list of numpy.ndarray
+            Data to initialize the container
+            Default value None
+
         fs : int
             Target sampling frequency, if loaded audio does have different sampling frequency, audio will be re-sampled.
             Default value "44100"
 
+        focus_start_samples : int
+            Focus segment start
+            Default value None
+
+        focus_stop_samples : int
+            Focus segment stop
+            Default value None
+
+        focus_channel : int
+            Focus segment channel
+            Default value None
+
+        channel_labels : list
+            Channel names
+            Default value None
+
+        filename : str, optional
+            File path
+
         """
+
         # Run ContainerMixin init
         ContainerMixin.__init__(self, **kwargs)
 
@@ -54,6 +76,9 @@ class AudioContainer(ContainerMixin, FileMixin):
         if data is None:
             # Initialize with array
             data = numpy.ndarray((0, ))
+
+        if isinstance(data, list):
+            data = numpy.vstack(data)
 
         self._data = data
         self.data_synced_with_file = False
@@ -75,6 +100,8 @@ class AudioContainer(ContainerMixin, FileMixin):
         self.focus_start_samples = focus_start_samples
         self.focus_stop_samples = focus_stop_samples
         self.focus_channel = focus_channel
+
+        self.channel_labels = channel_labels
 
     def __getstate__(self):
         d = super(AudioContainer, self).__getstate__()
@@ -170,6 +197,20 @@ class AudioContainer(ContainerMixin, FileMixin):
             value=str(self.channels),
             indent=indent
         ) + '\n'
+
+        if self.channel_labels:
+            if isinstance(self.channel_labels, list):
+                output += ui.data(
+                    field='Labels',
+                    value='',
+                    indent=indent + 2
+                ) + '\n'
+                for channel_id, label in enumerate(self.channel_labels):
+                    output += ui.data(
+                        field='[{channel_id}]'.format(channel_id=channel_id),
+                        value=str(label),
+                        indent=indent+3
+                    ) + '\n'
 
         output += ui.line(field='Duration', indent=indent) + '\n'
         output += ui.data(
@@ -646,7 +687,7 @@ class AudioContainer(ContainerMixin, FileMixin):
             else:
                 return True
 
-    def load(self, filename=None, fs='native', mono=False, res_type='kaiser_best', start=None, stop=None):
+    def load(self, filename=None, fs='native', mono=False, res_type='kaiser_best', start=None, stop=None, auto_trimming=False):
         """Load file
 
         Parameters
@@ -676,6 +717,10 @@ class AudioContainer(ContainerMixin, FileMixin):
             Segment stop time in seconds.
             Default value None
 
+        auto_trimming : bool
+            In case using segment stop parameter, the parameter is adjusted automatically if it exceeds the file duration.
+            Default value False
+
         Raises
         ------
         IOError:
@@ -696,22 +741,58 @@ class AudioContainer(ContainerMixin, FileMixin):
             if fs is None:
                 # Use sampling frequency defined in class construction.
                 fs = self.fs
+            info = get_audio_info(filename=self.filename)
+            # Check start and stop parameters against file duration
+            if start is not None and start < 0:
+                message = '{name}: Start parameter is negative [{file}]'.format(
+                    name=self.__class__.__name__,
+                    file=self.filename
+                )
+
+                self.logger.exception(message)
+                raise IOError(message)
+
+            elif info['duration_sec'] and start is not None and start > info['duration_sec']:
+                message = '{name}: Start parameter exceeds file length [{file}]'.format(
+                    name=self.__class__.__name__,
+                    file=self.filename
+                )
+
+                self.logger.exception(message)
+                raise IOError(message)
+
+            if stop is not None and stop < 0:
+                message = '{name}: Stop parameter is negative [{file}]'.format(
+                    name=self.__class__.__name__,
+                    file=self.filename
+                )
+
+                self.logger.exception(message)
+                raise IOError(message)
+
+            elif info['duration_sec'] and stop is not None and stop > info['duration_sec'] and not auto_trimming:
+                message = '{name}: Stop parameter exceeds file length [{file}]'.format(
+                    name=self.__class__.__name__,
+                    file=self.filename
+                )
+
+                self.logger.exception(message)
+                raise IOError(message)
 
             if self.format == FileFormat.WAV:
-                info = soundfile.info(file=self.filename)
 
                 self.filetype_info = {
-                    'subtype': info.subtype,
-                    'subtype_info': info.subtype_info
+                    'subtype': info['subtype']['name'],
+                    'subtype_info': info['subtype']['info']
                 }
 
                 # Handle segment start and stop
                 if start is not None and stop is not None:
-                    start_sample = int(start * info.samplerate)
-                    stop_sample = int(stop * info.samplerate)
+                    start_sample = int(start * info['fs'])
+                    stop_sample = int(stop * info['fs'])
 
-                    if stop_sample > info.frames:
-                        stop_sample = info.frames
+                    if stop_sample > info['duration_samples']:
+                        stop_sample = info['duration_samples']
 
                 else:
                     start_sample = None
@@ -754,6 +835,10 @@ class AudioContainer(ContainerMixin, FileMixin):
                     offset = start
                     duration = stop - start
 
+                elif start is not None:
+                    offset = start
+                    duration = None
+
                 else:
                     offset = 0.0
                     duration = None
@@ -774,6 +859,15 @@ class AudioContainer(ContainerMixin, FileMixin):
                     offset=offset,
                     duration=duration
                 )
+
+                if not auto_trimming and duration is not None and duration != self.duration_sec:
+                    message = '{name}: Check start and stop parameter, requested duration exceeds the file length [{file}]'.format(
+                        name=self.__class__.__name__,
+                        file=self.filename
+                    )
+
+                    self.logger.exception(message)
+                    raise IOError(message)
 
             else:
                 message = '{name}: Unknown format [{format}]'.format(
@@ -1231,6 +1325,7 @@ class AudioContainer(ContainerMixin, FileMixin):
         """
 
         if target_fs != self.fs:
+            self._data = numpy.asfortranarray(self._data)
             self._data = librosa.resample(
                 y=self._data,
                 orig_sr=self.fs,
@@ -1468,7 +1563,7 @@ class AudioContainer(ContainerMixin, FileMixin):
 
         if self.channels == 1:
             return librosa.util.frame(
-                y=self.get_focused(),
+                x=self.get_focused(),
                 frame_length=frame_length,
                 hop_length=hop_length
             )
@@ -1478,7 +1573,7 @@ class AudioContainer(ContainerMixin, FileMixin):
             for channel_id, channel_data in enumerate(self.get_focused()):
                 data.append(
                     librosa.util.frame(
-                        y=channel_data,
+                        x=channel_data,
                         frame_length=frame_length,
                         hop_length=hop_length
                     )
@@ -1489,6 +1584,7 @@ class AudioContainer(ContainerMixin, FileMixin):
     def segments(self,
                  segment_length=None, segment_length_seconds=None,
                  segments=None,
+                 active_segments=None,
                  skip_segments=None):
         """Slice audio into segments.
 
@@ -1508,6 +1604,12 @@ class AudioContainer(ContainerMixin, FileMixin):
         segments : list of dict or MetaDataContainer, optional
             List of time segments (onset and offset). If none given, segment length is used to produce consecutive
             non-overlapping segments.
+            Default value None
+
+        active_segments : list of dict or MetaDataContainer, optional
+            List of time segments (onset and offset) to be used when creating segments.
+            Only used when segment_length or segment_length_seconds are given and segments are generated
+            within this method.
             Default value None
 
         skip_segments : list of dict or MetaDataContainer, optional
@@ -1537,39 +1639,79 @@ class AudioContainer(ContainerMixin, FileMixin):
                 # Make sure skip segments is MetaDataContainer
                 skip_segments = MetaDataContainer(skip_segments)
 
-            # No segments given, get segments based on segment_length
-            segment_start = 0
-            segments = MetaDataContainer()
-            while True:
-                # Segment stop
-                segment_stop = segment_start + segment_length
-                if skip_segments is not None:
-                    # Go through skip segments and adjust segment start and stop to avoid segments
-                    for item in skip_segments:
-                        if item.active_within_segment(
-                            start=segment_start/float(self.fs),
-                            stop=segment_stop/float(self.fs)
-                        ):
-                            # Adjust segment start to avoid current skip segment
-                            segment_start = int(self.fs * item.offset)
-                            # Adjust segment stop accordingly
-                            segment_stop = segment_start + segment_length
+            if active_segments is not None:
+                # Make sure active segments is MetaDataContainer
+                active_segments = MetaDataContainer(active_segments)
 
-                if segment_stop < self.length:
-                    # Valid segment found, store it
-                    segments.append(
-                        {
-                            'onset': segment_start/float(self.fs),
-                            'offset': segment_stop/float(self.fs),
-                        }
-                    )
+                segments = MetaDataContainer()
+                for active_seg in active_segments:
+                    segment_start = int(self.fs * active_seg.onset)
 
-                # Set next segment start
-                segment_start = segment_stop
+                    while segment_start + segment_length < int(self.fs * active_seg.offset):
+                        # Segment stop
+                        segment_stop = segment_start + segment_length
+                        if skip_segments is not None:
+                            # Go through skip segments and adjust segment start and stop to avoid segments
+                            for item in skip_segments:
+                                if item.active_within_segment(
+                                        start=segment_start / float(self.fs),
+                                        stop=segment_stop / float(self.fs)
+                                ):
+                                    # Adjust segment start to avoid current skip segment
+                                    segment_start = int(self.fs * item.offset)
+                                    # Adjust segment stop accordingly
+                                    segment_stop = segment_start + segment_length
 
-                # Stop loop if segment_start is out of signal
-                if segment_start > self.length:
-                    break
+                        if segment_stop < self.length:
+                            # Valid segment found, store it
+                            segments.append(
+                                {
+                                    'onset': segment_start / float(self.fs),
+                                    'offset': segment_stop / float(self.fs),
+                                }
+                            )
+
+                        # Set next segment start
+                        segment_start = segment_stop
+
+                        # Stop loop if segment_start is out of signal
+                        if segment_start > self.length:
+                            break
+
+            else:
+                # No segments given, get segments based on segment_length
+                segment_start = 0
+                segments = MetaDataContainer()
+                while True:
+                    # Segment stop
+                    segment_stop = segment_start + segment_length
+                    if skip_segments is not None:
+                        # Go through skip segments and adjust segment start and stop to avoid segments
+                        for item in skip_segments:
+                            if item.active_within_segment(
+                                start=segment_start/float(self.fs),
+                                stop=segment_stop/float(self.fs)
+                            ):
+                                # Adjust segment start to avoid current skip segment
+                                segment_start = int(self.fs * item.offset)
+                                # Adjust segment stop accordingly
+                                segment_stop = segment_start + segment_length
+
+                    if segment_stop < self.length:
+                        # Valid segment found, store it
+                        segments.append(
+                            {
+                                'onset': segment_start/float(self.fs),
+                                'offset': segment_stop/float(self.fs),
+                            }
+                        )
+
+                    # Set next segment start
+                    segment_start = segment_stop
+
+                    # Stop loop if segment_start is out of signal
+                    if segment_start > self.length:
+                        break
 
         elif segments is not None:
             # Make sure segments is MetadataContainer
@@ -1648,7 +1790,7 @@ class AudioContainer(ContainerMixin, FileMixin):
         ----------
 
         plot_type : str
-            Visualization type, 'wave' for waveform plot, 'spec' for spectrogram.
+            Visualization type, 'wave' for waveform plot, 'spec' for spectrogram, 'dual' for showing both at the same time.
             Default value 'wave'
 
         Returns
@@ -1663,8 +1805,50 @@ class AudioContainer(ContainerMixin, FileMixin):
         elif plot_type == 'spec':
             self.plot_spec(**kwargs)
 
-    def plot_wave(self, x_axis='time', max_points=50000.0, offset=0.0, color='#333333', alpha=1.0,
-                  show_filename=True, plot=True, figsize=None):
+        elif plot_type == 'dual':
+            if self.channels == 1:
+                import matplotlib.pyplot as plt
+                plt.figure()
+                plt.subplot(2, 1, 1)
+                self.plot_wave(
+                    x_axis=kwargs.get('x_axis', 'time'),
+                    max_points=kwargs.get('max_points', 50000.0),
+                    max_sr=kwargs.get('max_sr', 1000),
+                    offset=kwargs.get('offset', 0.0),
+                    color=kwargs.get('color', '#333333'),
+                    alpha=kwargs.get('alpha', 1.0),
+                    show_filename=kwargs.get('show_filename', True),
+                    show_xaxis=False,
+                    plot=False,
+                    figsize=kwargs.get('figsize', None),
+                    channel_labels=kwargs.get('channel_labels', None)
+                )
+
+                plt.subplot(2, 1, 2)
+                self.plot_spec(
+                    spec_type=kwargs.get('spec_type', 'log'),
+                    hop_length=kwargs.get('hop_length', 512),
+                    cmap=kwargs.get('cmap', 'magma'),
+                    show_filename=False,
+                    show_xaxis=kwargs.get('show_xaxis', True),
+                    show_colorbar=False,
+                    plot=False,
+                    figsize=kwargs.get('figsize', None),
+                    channel_labels=kwargs.get('channel_labels', None)
+                )
+
+                plt.show()
+
+            else:
+                # TODO dual plotting for multichannel audio.
+                message = '{name}: Dual plotting of multi-channel audio is not yet implemented.'.format(
+                    name=self.__class__.__name__
+                )
+                self.logger.exception(message)
+                raise NotImplementedError(message)
+
+    def plot_wave(self, x_axis='time', max_points=50000.0, max_sr=1000, offset=0.0, color='#333333', alpha=1.0,
+                  show_filename=True, show_xaxis=True, plot=True, figsize=None, channel_labels=None):
         """Visualize audio data as waveform.
 
         Parameters
@@ -1678,12 +1862,16 @@ class AudioContainer(ContainerMixin, FileMixin):
             Maximum number of time-points to plot (see `librosa.display.waveplot`).
             Default value 50000
 
+        max_sr : number
+            Maximum sampling rate for the visualization
+            Default value 1000
+
         offset : float
             Horizontal offset (in time) to start the waveform plot (see `librosa.display.waveplot`).
             Default value 0.0
 
-        color : str
-            Waveform fill color in hex-code.
+        color : str or list of str
+            Waveform fill color in hex-code. Per channel colors can be given as list of str.
             Default value '#333333'
 
         alpha : float
@@ -1692,6 +1880,10 @@ class AudioContainer(ContainerMixin, FileMixin):
 
         show_filename : bool
             Show filename as figure title.
+            Default value True
+
+        show_xaxis : bool
+            Show X-axis.
             Default value True
 
         plot : bool
@@ -1703,11 +1895,18 @@ class AudioContainer(ContainerMixin, FileMixin):
             Size of the figure. If None given, default size (10,5) is used.
             Default value None
 
+        channel_labels : list
+            Channel names
+            Default value None
+
         Returns
         -------
         self
 
         """
+
+        if channel_labels is None:
+            channel_labels = self.channel_labels
 
         if figsize is None:
             figsize = (10, 5)
@@ -1729,46 +1928,73 @@ class AudioContainer(ContainerMixin, FileMixin):
                 else:
                     current_x_axis = x_axis
 
+                if isinstance(color, list) and channel_id < len(color):
+                    current_color = color[channel_id]
+                else:
+                    current_color = color
+
                 waveplot(
                     y=channel_data.ravel(),
                     sr=self.fs,
                     x_axis=current_x_axis,
                     max_points=max_points,
+                    max_sr=max_sr,
                     offset=offset,
-                    color=color,
+                    color=current_color,
                     alpha=alpha
                 )
 
-                plt.ylabel('Channel {channel:d}'.format(channel=channel_id))
+                if isinstance(channel_labels, list) and channel_id < len(channel_labels):
+                    plt.ylabel('{channel_label} / Ch{channel:d}'.format(
+                        channel_label=channel_labels[channel_id],
+                        channel=channel_id)
+                    )
+
+                else:
+                    plt.ylabel('Channel {channel:d}'.format(channel=channel_id))
+
                 if channel_id == 0 and show_filename:
                     if self.filename:
                         plt.title(title)
 
-                if channel_id+1 != self.channels:
+                if channel_id+1 != self.channels or not show_xaxis:
                     ax.axes.get_xaxis().set_visible(False)
 
         else:
             # Plotting for single channel audio
-            waveplot(
+            if isinstance(color, list) and len(color):
+                current_color = color[0]
+            else:
+                current_color = color
+
+            ax = waveplot(
                 y=self.get_focused().ravel(),
                 sr=self.fs,
                 x_axis=x_axis,
                 max_points=max_points,
+                max_sr=max_sr,
                 offset=offset,
-                color=color,
+                color=current_color,
                 alpha=alpha
             )
 
-            plt.ylabel('Channel {channel:d}'.format(channel=0))
+            if isinstance(channel_labels, list) and len(channel_labels):
+                plt.ylabel('{channel_label}'.format(channel_label=channel_labels[0]))
+
+            else:
+                plt.ylabel('Channel {channel:d}'.format(channel=0))
 
             if self.filename and show_filename:
                 plt.title(title)
+
+            if not show_xaxis:
+                ax.axes.get_xaxis().set_visible(False)
 
         if plot:
             plt.show()
 
     def plot_spec(self, spec_type='log', hop_length=512, cmap='magma',
-                  show_filename=True, show_colorbar=False, plot=True, figsize=None):
+                  show_filename=True, show_xaxis=True, show_colorbar=False, plot=True, figsize=None, channel_labels=None):
         """Visualize audio data as spectrogram.
 
         Parameters
@@ -1790,6 +2016,10 @@ class AudioContainer(ContainerMixin, FileMixin):
             Show filename as figure title.
             Default value True
 
+        show_xaxis : bool
+            Show X-axis.
+            Default value True
+
         show_colorbar : bool
             Show color bar next to plot.
             Default value False
@@ -1803,11 +2033,18 @@ class AudioContainer(ContainerMixin, FileMixin):
             Size of the figure. If None given, default size (10,5) is used.
             Default value None
 
+        channel_labels : list
+            Channel names
+            Default value None
+
         Returns
         -------
         self
 
         """
+
+        if channel_labels is None:
+            channel_labels = self.channel_labels
 
         if figsize is None:
             figsize = (10, 5)
@@ -1881,11 +2118,19 @@ class AudioContainer(ContainerMixin, FileMixin):
                 if show_colorbar:
                     plt.colorbar(format='%+2.0f dB')
 
-                plt.ylabel('Channel {channel:d}'.format(channel=channel_id))
+                if isinstance(channel_labels, list) and channel_id < len(channel_labels):
+                    plt.ylabel('{channel_label} / Ch{channel:d}'.format(
+                        channel_label=channel_labels[channel_id],
+                        channel=channel_id)
+                    )
+
+                else:
+                    plt.ylabel('Channel {channel:d}'.format(channel=channel_id))
+
                 if channel_id == 0 and self.filename:
                     plt.title(title)
 
-                if channel_id+1 != self.channels:
+                if channel_id+1 != self.channels or not show_xaxis:
                     ax.axes.get_xaxis().set_visible(False)
 
         else:
@@ -1912,7 +2157,7 @@ class AudioContainer(ContainerMixin, FileMixin):
                 raise ValueError(message)
 
             if spec_type == 'linear':
-                specshow(
+                ax = specshow(
                     data=D,
                     sr=self.fs,
                     y_axis='linear',
@@ -1922,7 +2167,7 @@ class AudioContainer(ContainerMixin, FileMixin):
                 )
 
             elif spec_type == 'log':
-                specshow(
+                ax = specshow(
                     data=D,
                     sr=self.fs,
                     y_axis='log',
@@ -1932,7 +2177,7 @@ class AudioContainer(ContainerMixin, FileMixin):
                 )
 
             elif spec_type == 'cqt_hz' or 'cqt':
-                specshow(
+                ax = specshow(
                     data=D,
                     sr=self.fs,
                     y_axis='cqt_hz',
@@ -1942,7 +2187,7 @@ class AudioContainer(ContainerMixin, FileMixin):
                 )
 
             elif spec_type == 'cqt_note':
-                specshow(
+                ax = specshow(
                     data=D,
                     sr=self.fs,
                     y_axis='cqt_note',
@@ -1954,7 +2199,17 @@ class AudioContainer(ContainerMixin, FileMixin):
             if show_colorbar:
                 plt.colorbar(format='%+2.0f dB')
 
-            plt.ylabel('Channel {channel:d}'.format(channel=channel_id))
+            if isinstance(channel_labels, list) and len(channel_labels):
+                plt.ylabel('{channel_label}'.format(
+                    channel_label=channel_labels[0])
+                )
+
+            else:
+                plt.ylabel('Channel {channel:d}'.format(channel=0))
+
+            if not show_xaxis:
+                ax.axes.get_xaxis().set_visible(False)
+
             if show_filename and channel_id == 0:
                 plt.title(title)
 

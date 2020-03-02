@@ -401,7 +401,7 @@ class SpectralFeatureExtractor(FeatureExtractor):
             self.logger.exception(message)
             raise ValueError(message)
 
-    def get_spectrogram(self, y, n_fft=2048, win_length_samples=None, hop_length_samples=None,
+    def get_spectrogram(self, y, n_fft=None, win_length_samples=None, hop_length_samples=None,
                         window=None, center=True, spectrogram_type=None):
         """Spectrogram
 
@@ -414,12 +414,12 @@ class SpectralFeatureExtractor(FeatureExtractor):
             FFT size
             Default value 2048
 
-        win_length_samples : float
-            Window length in seconds
+        win_length_samples : int
+            Window length in samples
             Default value None
 
-        hop_length_samples : float
-            Hop length in seconds
+        hop_length_samples : int
+            Hop length in samples
             Default value None
 
         window : numpy.array
@@ -1526,7 +1526,7 @@ class RMSEnergyExtractor(SpectralFeatureExtractor):
             window=self.window
         )
 
-        return librosa.feature.rmse(
+        return librosa.feature.rms(
             S=spectrogram
         ).reshape((1, -1))
 
@@ -1673,3 +1673,462 @@ class SpectralCentroidExtractor(SpectralFeatureExtractor):
         return librosa.feature.spectral_centroid(
             S=spectrogram).reshape((1, -1))
 
+
+class EmbeddingExtractor(FeatureExtractor):
+    """Embedding extractor base class"""
+    label = 'embedding'  #: Extractor label
+    description = 'Embedding extractor base class'  #: Extractor description
+
+    def __init__(self, **kwargs):
+        """Constructor
+
+        """
+
+        super(EmbeddingExtractor, self).__init__(**kwargs)
+
+        # Run FeatureExtractor init
+        FeatureExtractor.__init__(self, **kwargs)
+
+
+    def to_string(self, ui=None, indent=0):
+        """Get container information in a string
+
+        Parameters
+        ----------
+        ui : FancyStringifier or FancyHTMLStringifier
+            Stringifier class
+            Default value FancyStringifier
+
+        indent : int
+            Amount of indention used
+            Default value 0
+
+        Returns
+        -------
+        str
+
+        """
+
+        if ui is None:
+            ui = FancyStringifier()
+
+        output = super(EmbeddingExtractor, self).to_string(ui=ui, indent=indent)
+
+        return output
+
+    def extract(self, y):
+        """Extract features for the audio signal.
+
+        Parameters
+        ----------
+        y : AudioContainer or numpy.ndarray [shape=(n,)]
+            Audio signal
+
+        Returns
+        -------
+        None
+
+        """
+
+        pass
+
+
+class OpenL3Extractor(EmbeddingExtractor):
+    """OpenL3 Embedding extractor class"""
+    label = 'openl3'  #: Extractor label
+    description = 'OpenL3 (embedding)'  #: Extractor description
+
+    def __init__(self, fs=48000, hop_length_samples=None, hop_length_seconds=0.02,
+                 model=None, input_repr='mel256', content_type="music",
+                 embedding_size=6144,
+                 center=True, batch_size=32, verbose=False,
+                 **kwargs):
+        """Constructor
+
+        Parameters
+        ----------
+        fs : int
+            Sampling rate of the incoming signal. If not 48kHz audio will be resampled.
+            Default value 48000
+
+        hop_length_samples : int
+            Hop length in samples.
+            Default value None
+
+        hop_length_seconds : float
+            Hop length in seconds.
+            Default value 0.02
+
+        model : keras.models.Model or None
+            Loaded model object. If a model is provided, then `input_repr`, `content_type`, and `embedding_size` will be ignored. If None is provided, the model will be loaded using the provided values of `input_repr`, `content_type` and `embedding_size`.
+            Default value None
+
+        input_repr : "linear", "mel128", or "mel256"
+            Spectrogram representation used for model. Ignored if `model` is
+            a valid Keras model.
+            Default value "mel256"
+
+        content_type : "music" or "env"
+            Type of content used to train the embedding model. Ignored if `model` is
+            a valid Keras model.
+            Default value "music"
+
+        embedding_size : 6144 or 512
+            Embedding dimensionality. Ignored if `model` is a valid Keras model.
+            Default value 6144
+
+        center : bool
+            If True, pads beginning of signal so timestamps correspond to center of window.
+            Default value True
+
+        batch_size : int
+            Batch size used for input to embedding model
+            Default value 32
+
+        verbose : bool
+            If True, prints verbose messages.
+            Default value False
+
+        """
+        # Inject parameters for the parent classes back to kwargs. For the convenience they are expose explicitly here.
+        kwargs.update({
+            'fs': fs,
+            'win_length_samples': fs,
+            'hop_length_samples': hop_length_samples,
+            'win_length_seconds': 1.0,
+            'hop_length_seconds': hop_length_seconds,
+        })
+
+        # Run EmbeddingExtractor init
+        EmbeddingExtractor.__init__(self, **kwargs)
+
+        super(OpenL3Extractor, self).__init__(**kwargs)
+
+        self.model = model
+        self.input_repr = input_repr
+        self.content_type = content_type
+        self.embedding_size = embedding_size
+        self.center = center
+        self.batch_size = batch_size
+        self.verbose = verbose
+
+        try:
+            # Suppress tensorflow warnings
+            import os
+            os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+            import logging
+            logging.getLogger('tensorflow').setLevel(logging.FATAL)
+
+            import openl3
+
+        except ImportError:
+            message = '{name}: Unable to import OpenL3 module. You can install it with `pip install openl3`.'.format(
+                name=self.__class__.__name__
+            )
+            self.logger.exception(message)
+            raise ImportError(message)
+
+        if self.model is None:
+            self.model = openl3.models.load_audio_embedding_model(
+                input_repr=self.input_repr ,
+                content_type=self.content_type,
+                embedding_size=self.embedding_size
+            )
+
+    def to_string(self, ui=None, indent=0):
+        """Get container information in a string
+
+        Parameters
+        ----------
+        ui : FancyStringifier or FancyHTMLStringifier
+            Stringifier class
+            Default value FancyStringifier
+
+        indent : int
+            Amount of indention used
+            Default value 0
+
+        Returns
+        -------
+        str
+
+        """
+
+        if ui is None:
+            ui = FancyStringifier()
+
+        output = super(OpenL3Extractor, self).to_string(ui=ui, indent=indent)
+
+        output += ui.line(field='OpenL3Extractor', indent=indent) + '\n'
+        output += ui.data(indent=indent + 2, field='input_repr', value=self.input_repr) + '\n'
+        output += ui.data(indent=indent + 2, field='content_type', value=self.content_type) + '\n'
+        output += ui.data(indent=indent + 2, field='embedding_size', value=self.embedding_size) + '\n'
+        output += ui.data(indent=indent + 2, field='center', value=self.center) + '\n'
+        output += ui.data(indent=indent + 2, field='batch_size', value=self.batch_size) + '\n'
+        output += ui.data(indent=indent + 2, field='verbose', value=self.verbose) + '\n'
+
+        return output
+
+    def __getstate__(self):
+        d = super(OpenL3Extractor, self).__getstate__()
+        d.update({
+            'input_repr': self.input_repr,
+            'content_type': self.content_type,
+            'embedding_size': self.embedding_size,
+            'center': self.center,
+            'batch_size': self.batch_size,
+            'verbose': self.verbose
+        })
+
+        return d
+
+    def __setstate__(self, d):
+        super(OpenL3Extractor, self).__setstate__(d)
+        self.input_repr =  d['input_repr']
+        self.content_type =  d['content_type']
+        self.embedding_size =  d['embedding_size']
+        self.center =  d['center']
+        self.batch_size =  d['batch_size']
+        self.verbose =  d['verbose']
+
+        try:
+            import openl3
+
+        except ImportError:
+            message = '{name}: Unable to import OpenL3 module. You can install it with `pip install openl3`.'.format(
+                name=self.__class__.__name__
+            )
+            self.logger.exception(message)
+            raise ImportError(message)
+
+        self.model = openl3.models.load_audio_embedding_model(
+            input_repr=self.input_repr,
+            content_type=self.content_type,
+            embedding_size=self.embedding_size
+        )
+
+    def extract(self, y):
+        """Extract features for the audio signal.
+
+        Parameters
+        ----------
+        y : numpy.ndarray [shape=(n,)]
+            Audio signal
+
+        Returns
+        -------
+        embedding : np.ndarray [shape=(T, D)] or list[np.ndarray]
+            Array of embeddings for each window or list of such arrays for multiple audio clips.
+
+        """
+        try:
+            import openl3
+
+        except ImportError:
+            message = '{name}: Unable to import OpenL3 module. You can install it with `pip install openl3`.'.format(
+                name=self.__class__.__name__
+            )
+            self.logger.exception(message)
+            raise ImportError(message)
+
+        embedding, timestamps = openl3.get_audio_embedding(
+            audio=y,
+            sr=self.fs,
+            model=self.model,
+            center=self.center,
+            hop_size=self.hop_length_seconds,
+            batch_size=self.batch_size,
+            verbose=self.verbose
+        )
+        return embedding.T
+
+
+class EdgeL3Extractor(EmbeddingExtractor):
+    """EdgeL3 Embedding extractor class"""
+    label = 'edgel3'  #: Extractor label
+    description = 'EdgeL3 (embedding)'  #: Extractor description
+
+    def __init__(self, fs=48000, hop_length_samples=None, hop_length_seconds=0.02,
+                 model=None, retrain_type='ft', sparsity=95.45,
+                 center=True, verbose=False,
+                 **kwargs):
+        """Constructor
+
+        Parameters
+        ----------
+        fs : int
+            Sampling rate of the incoming signal. If not 48kHz audio will be resampled.
+            Default value 48000
+
+        hop_length_samples : int
+            Hop length in samples.
+            Default value None
+
+        hop_length_seconds : float
+            Hop length in seconds.
+            Default value 0.02
+
+        model : keras.models.Model or None
+            Loaded model object. If a model is provided, then `sparsity` will be ignored. If None is provided, the model will be loaded using the provided `sparsity` value.
+            Default value None
+
+        retrain_type : {'ft', 'kd'}
+            Type of retraining for the sparsified weights of L3 audio model. 'ft' chooses the fine-tuning method
+            and 'kd' returns knowledge distilled model.
+            Default value "ft"
+
+        sparsity : {95.45, 53.5, 63.5, 72.3, 73.5, 81.0, 87.0, 90.5}
+            The desired sparsity of audio model.
+            Default value 95.45
+
+        center : bool
+            If True, pads beginning of signal so timestamps correspond to center of window.
+            Default value True
+
+        verbose : bool
+            If True, prints verbose messages.
+            Default value False
+
+        """
+
+        # Inject parameters for the parent classes back to kwargs. For the convenience they are expose explicitly here.
+        kwargs.update({
+            'fs': fs,
+            'win_length_samples': fs,
+            'hop_length_samples': hop_length_samples,
+            'win_length_seconds': 1.0,
+            'hop_length_seconds': hop_length_seconds,
+        })
+
+        # Run EmbeddingExtractor init
+        EmbeddingExtractor.__init__(self, **kwargs)
+
+        super(EdgeL3Extractor, self).__init__(**kwargs)
+
+        self.model = model
+        self.retrain_type = retrain_type
+        self.sparsity = sparsity
+        self.center = center
+        self.verbose = verbose
+
+        try:
+            # Suppress tensorflow warnings
+            import os
+            os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+            import logging
+            logging.getLogger('tensorflow').setLevel(logging.FATAL)
+
+            import edgel3
+
+        except ImportError:
+            message = '{name}: Unable to import EdgeL3 module. You can install it with `pip install edgel3`.'.format(
+                name=self.__class__.__name__
+            )
+            self.logger.exception(message)
+            raise ImportError(message)
+
+        if self.model is None:
+            self.model = edgel3.models.load_embedding_model(
+                retrain_type=self.retrain_type ,
+                sparsity=self.sparsity
+            )
+
+    def to_string(self, ui=None, indent=0):
+        """Get container information in a string
+
+        Parameters
+        ----------
+        ui : FancyStringifier or FancyHTMLStringifier
+            Stringifier class
+            Default value FancyStringifier
+
+        indent : int
+            Amount of indention used
+            Default value 0
+
+        Returns
+        -------
+        str
+
+        """
+
+        if ui is None:
+            ui = FancyStringifier()
+
+        output = super(EdgeL3Extractor, self).to_string(ui=ui, indent=indent)
+
+        output += ui.line(field='EdgeL3Extractor', indent=indent) + '\n'
+        output += ui.data(indent=indent + 2, field='retrain_type', value=self.retrain_type) + '\n'
+        output += ui.data(indent=indent + 2, field='sparsity', value=self.sparsity) + '\n'
+        output += ui.data(indent=indent + 2, field='center', value=self.center) + '\n'
+        output += ui.data(indent=indent + 2, field='verbose', value=self.verbose) + '\n'
+
+        return output
+
+    def __getstate__(self):
+        d = super(EdgeL3Extractor, self).__getstate__()
+        d.update({
+            'retrain_type': self.retrain_type,
+            'sparsity': self.sparsity,
+            'center': self.center,
+            'verbose': self.verbose
+        })
+
+        return d
+
+    def __setstate__(self, d):
+        super(EdgeL3Extractor, self).__setstate__(d)
+        self.retrain_type = d['retrain_type']
+        self.sparsity = d['sparsity']
+        self.center = d['center']
+        self.verbose = d['verbose']
+
+        try:
+            import edgel3
+
+        except ImportError:
+            message = '{name}: Unable to import EdgeL3 module. You can install it with `pip install edgel3`.'.format(
+                name=self.__class__.__name__
+            )
+            self.logger.exception(message)
+            raise ImportError(message)
+
+        self.model = edgel3.models.load_embedding_model(
+            retrain_type=self.retrain_type,
+            sparsity=self.sparsity
+        )
+
+    def extract(self, y):
+        """Extract features for the audio signal.
+
+        Parameters
+        ----------
+        y : numpy.ndarray [shape=(n,)]
+            Audio signal
+
+        Returns
+        -------
+        embedding : np.ndarray [shape=(T, D)] or list[np.ndarray]
+            Array of embeddings for each window or list of such arrays for multiple audio clips.
+
+        """
+
+        try:
+            import edgel3
+
+        except ImportError:
+            message = '{name}: Unable to import EdgeL3 module. You can install it with `pip install edgel3`.'.format(
+                name=self.__class__.__name__
+            )
+            self.logger.exception(message)
+            raise ImportError(message)
+
+        embedding, timestamps = edgel3.get_embedding(
+            audio=y,
+            sr=self.fs,
+            model=self.model,
+            center=self.center,
+            hop_size=self.hop_length_seconds,
+            verbose=self.verbose
+        )
+        return embedding.T

@@ -3,8 +3,42 @@
 Release notes
 =============
 
+v0.2.11
+-------
+
+**New features**
+
+* Add ``OpenL3Extractor``, ``EdgeL3Extractor``, and ``EmbeddingExtractor`` feature extractor classes
+* Add ``OpenL3ExtractorProcessor`` and  ``EdgeL3ExtractorProcessor`` processors
+* Add ``TAUUrbanAcousticScenes_2020_Mobile_DevelopmentSet`` and ``TAUUrbanAcousticScenes_2020_3Class_DevelopmentSet`` datasets
+* Add ``get_audio_info`` function to allow fetching audio file information without reading full file.
+* Add MP3 audio example file
+
+**Updates**
+
+* Update ``AudioContainer`` constructor to allow initialization with multi-channel audio data in form of list of audio data vectors.
+* Update ``load`` method in ``AudioContainer`` to have parameter ``auto_trimming`` to automatically trim stop parameter to audio file length
+* Update ``load`` method in ``AudioContainer`` to check start and stop parameters against actual audio file duration
+* Update ``AudioContainer`` to store ``channel_labels``, update ``plot_wave`` and ``plot_spec`` methods with ``channel_labels`` as well.
+* Update ``plot_wave`` method in ``AudioContainer`` to support ``max_sr`` parameter and different color per channel.
+* Update ``plot`` method in ``AudioContainer`` to plot both waveform and spectrogram at the same time (``dual`` plotting mode)
+* Update ``segments`` method in ``AudioContainer`` to support ``active_segments``
+* Update ``FancyLogger``, ``FancyHTMLPrinter``, and ``FancyStringifier`` to accumulate row value when using ``row`` method, and add ``row_sum`` and ``row_average`` methods
+* Update ``setup_keras`` to suppress TensorFlow warnings
+* Update ``debug_packages`` method of ``Dataset`` class to show more information about local files
+* Update ``FileMixin`` to allow overriding ``valid_format`` through constructor parameter
+* Update code to support Librosa 0.7.0
+
+**Bug fixes**
+
+* Fix ``MetaDataContainer`` sorting to work with numeric filenames
+* Fix ``get_byte_string`` to work with small values
+* Fix filename handling in `FeatureRepository` when dict of filenames is used
+* Fix ``collapse_probabilities_windowed`` method in ``ProbabilityEncoder`` to accept arrays of probabilities
+* Fix example system ``sed_gmm.py`` to work with current version
+
 v0.2.10
-------
+-------
 
 **Bug fixes**
 

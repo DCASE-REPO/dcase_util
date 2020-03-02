@@ -81,8 +81,8 @@ def test_RepositoryNormalizationProcessor():
     )
     processed = normalizer.process(repo)
 
-    nose.tools.assert_almost_equals(numpy.sum(numpy.std(processed['mel'][0].data, axis=1)), 40.0)
-    nose.tools.assert_almost_equals(numpy.sum(numpy.std(processed['mfcc'][0].data, axis=1)), 20.0)
+    nose.tools.assert_almost_equal(numpy.sum(numpy.std(processed['mel'][0].data, axis=1)), 40.0, delta=0.0001)
+    nose.tools.assert_almost_equal(numpy.sum(numpy.std(processed['mfcc'][0].data, axis=1)), 20.0, delta=0.0001)
 
 
 def test_StackingProcessor():

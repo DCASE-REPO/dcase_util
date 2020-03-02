@@ -1,0 +1,51 @@
+dcase\_util.processors.EdgeL3ExtractorProcessor
+===============================================
+
+.. currentmodule:: dcase_util.processors
+
+.. autoclass:: EdgeL3ExtractorProcessor
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~EdgeL3ExtractorProcessor.__init__
+      ~EdgeL3ExtractorProcessor.delimiter
+      ~EdgeL3ExtractorProcessor.detect_file_format
+      ~EdgeL3ExtractorProcessor.empty
+      ~EdgeL3ExtractorProcessor.exists
+      ~EdgeL3ExtractorProcessor.extract
+      ~EdgeL3ExtractorProcessor.get_file_information
+      ~EdgeL3ExtractorProcessor.get_processing_chain_item
+      ~EdgeL3ExtractorProcessor.is_package
+      ~EdgeL3ExtractorProcessor.load
+      ~EdgeL3ExtractorProcessor.log
+      ~EdgeL3ExtractorProcessor.process
+      ~EdgeL3ExtractorProcessor.save
+      ~EdgeL3ExtractorProcessor.show
+      ~EdgeL3ExtractorProcessor.to_html
+      ~EdgeL3ExtractorProcessor.to_string
+      ~EdgeL3ExtractorProcessor.validate_format
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~EdgeL3ExtractorProcessor.bytes
+      ~EdgeL3ExtractorProcessor.description
+      ~EdgeL3ExtractorProcessor.input_type
+      ~EdgeL3ExtractorProcessor.label
+      ~EdgeL3ExtractorProcessor.logger
+      ~EdgeL3ExtractorProcessor.md5
+      ~EdgeL3ExtractorProcessor.output_type
+      ~EdgeL3ExtractorProcessor.valid_formats
+   
+   

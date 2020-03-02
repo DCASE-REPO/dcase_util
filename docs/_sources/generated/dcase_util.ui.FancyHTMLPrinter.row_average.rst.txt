@@ -1,0 +1,6 @@
+dcase\_util.ui.FancyHTMLPrinter.row\_average
+============================================
+
+.. currentmodule:: dcase_util.ui
+
+.. automethod:: FancyHTMLPrinter.row_average

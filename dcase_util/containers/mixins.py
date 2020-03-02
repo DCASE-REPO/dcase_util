@@ -170,7 +170,10 @@ class FileMixin(object):
         if not hasattr(self, 'ui'):
             self.ui = FancyLogger()
 
-        if not hasattr(self, 'valid_formats'):
+        if kwargs.get('valid_formats', None):
+            self.valid_formats = kwargs.get('valid_formats', None)
+
+        elif not hasattr(self, 'valid_formats'):
             self.valid_formats = []
 
         if not hasattr(self, 'filename'):
@@ -284,7 +287,7 @@ class FileMixin(object):
 
         if file_format is None:
             # Unknown format
-            message = '{name}: File format can be detected for file [{filename}] '.format(
+            message = '{name}: File format cannot be detected for file [{filename}] '.format(
                 name=self.__class__.__name__,
                 filename=filename
             )
