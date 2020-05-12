@@ -76,134 +76,134 @@ class TAUUrbanAcousticScenes_2020_Mobile_DevelopmentSet(AcousticSceneDataset):
         kwargs['meta_filename'] = 'meta.csv'
 
         filename_base = 'TAU-urban-acoustic-scenes-2020-mobile-development'
-        source_url = 'https://zenodo.org/record/3670167/files/'
+        source_url = 'https://zenodo.org/record/3819968/files/'
         kwargs['package_list'] = []
 
         kwargs['package_list'] = [
             {
                 'content_type': 'documentation',
                 'remote_file': source_url + filename_base + '.doc.zip',
-                'remote_bytes': 16454,
-                'remote_md5': '0239833f3a3b37e00d3fc8eb3a4922b2',
+                'remote_bytes': 18066,
+                'remote_md5': '175f40dc3fec144347abad4d2962b7ae',
                 'filename': filename_base + '.doc.zip'
             },
             {
                 'content_type': 'meta',
                 'remote_file': source_url + filename_base + '.meta.zip',
-                'remote_bytes': 215206,
-                'remote_md5': 'ef33bf8d127a05938bd8bbfd3edb453e',
+                'remote_bytes': 214159,
+                'remote_md5': '6eae9db553ce48e4ea246e34e50a3cf5',
                 'filename': filename_base + '.meta.zip'
             },
             {
                 'content_type': 'audio',
                 'remote_file': source_url + filename_base + '.audio.1.zip',
-                'remote_bytes': 1725644326,
-                'remote_md5': '6d0700ebcfb9e6b12d32efad1fed2028',
+                'remote_bytes': 1726039031,
+                'remote_md5': 'b1e85b8a908d3d6a6ab73268f385d5c8',
                 'filename': filename_base + '.audio.1.zip'
             },
             {
                 'content_type': 'audio',
                 'remote_file': source_url + filename_base + '.audio.2.zip',
-                'remote_bytes': 1782268476,
-                'remote_md5': '722366b35e17e5c3d2c890e92b10496c',
+                'remote_bytes': 1782268370,
+                'remote_md5': '4310a13cc2943d6ce3f70eba7ba4c784',
                 'filename': filename_base + '.audio.2.zip'
             },
             {
                 'content_type': 'audio',
                 'remote_file': source_url + filename_base + '.audio.3.zip',
-                'remote_bytes': 1870460027,
-                'remote_md5': 'ad6979ac7c34e84efca1c1881d0d3999',
+                'remote_bytes': 1870468865,
+                'remote_md5': 'ed38956c4246abb56190c1e9b602b7b8',
                 'filename': filename_base + '.audio.3.zip'
             },
             {
                 'content_type': 'audio',
                 'remote_file': source_url + filename_base + '.audio.4.zip',
-                'remote_bytes': 1879942752,
-                'remote_md5': 'dcdb92a534c7bef41bbcd1673f012798',
+                'remote_bytes': 1879413176,
+                'remote_md5': '97ab8560056b6816808dedc044dcc023',
                 'filename': filename_base + '.audio.4.zip'
             },
             {
                 'content_type': 'audio',
                 'remote_file': source_url + filename_base + '.audio.5.zip',
-                'remote_bytes': 1823312251,
-                'remote_md5': '790621c26bd0f5b5c0741aedcc861bb9',
+                'remote_bytes': 1823936584,
+                'remote_md5': 'b50f5e0bfed33cd8e52cb3e7f815c6cb',
                 'filename': filename_base + '.audio.5.zip'
             },
             {
                 'content_type': 'audio',
                 'remote_file': source_url + filename_base + '.audio.6.zip',
-                'remote_bytes': 1828101190,
-                'remote_md5': 'f0cace66e7033280b69c8ab6bfa05e07',
+                'remote_bytes': 1827246144,
+                'remote_md5': 'fbf856a3a86fff7520549c899dc94372',
                 'filename': filename_base + '.audio.6.zip'
             },
             {
                 'content_type': 'audio',
                 'remote_file': source_url + filename_base + '.audio.7.zip',
-                'remote_bytes': 1728040374,
-                'remote_md5': '543aa18b4dcc6d8ff37f1efd75d4f077',
+                'remote_bytes': 1728630243,
+                'remote_md5': '0dbffe7b6e45564da649378723284062',
                 'filename': filename_base + '.audio.7.zip'
             },
             {
                 'content_type': 'audio',
                 'remote_file': source_url + filename_base + '.audio.8.zip',
-                'remote_bytes': 1748627076,
-                'remote_md5': 'ceba2fec17a888d92a7af37482bf4ac9',
+                'remote_bytes': 1748646043,
+                'remote_md5': 'bb6f77832bf0bd9f786f965beb251b2e',
                 'filename': filename_base + '.audio.8.zip'
             },
             {
                 'content_type': 'audio',
                 'remote_file': source_url + filename_base + '.audio.9.zip',
-                'remote_bytes': 1780517206,
-                'remote_md5': '516293ffaa3a11323d9133ee3244710c',
+                'remote_bytes': 1780487215,
+                'remote_md5': 'a65596a5372eab10c78e08a0de797c9e',
                 'filename': filename_base + '.audio.9.zip'
             },
             {
                 'content_type': 'audio',
                 'remote_file': source_url + filename_base + '.audio.10.zip',
-                'remote_bytes': 1726310065,
-                'remote_md5': '1062165b25a3598f0642747109a308e5',
+                'remote_bytes': 1726068853,
+                'remote_md5': '2ad595819ffa1d56d2de4c7ed43205a6',
                 'filename': filename_base + '.audio.10.zip'
             },
             {
                 'content_type': 'audio',
                 'remote_file': source_url + filename_base + '.audio.11.zip',
-                'remote_bytes': 1743668224,
-                'remote_md5': '750b289b80f3a3a1ed32458e7ce59f99',
+                'remote_bytes': 1744480272,
+                'remote_md5': '0ad29f7040a4e6a22cfd639b3a6738e5',
                 'filename': filename_base + '.audio.11.zip'
             },
             {
                 'content_type': 'audio',
                 'remote_file': source_url + filename_base + '.audio.12.zip',
-                'remote_bytes': 1739731028,
-                'remote_md5': '57e647a1988e3391296c8aa1dc97e806',
+                'remote_bytes': 1738707195,
+                'remote_md5': 'e5f4400c6b9697295fab4cf507155a2f',
                 'filename': filename_base + '.audio.12.zip'
             },
             {
                 'content_type': 'audio',
                 'remote_file': source_url + filename_base + '.audio.13.zip',
-                'remote_bytes': 1834647884,
-                'remote_md5': '504b3baaf7ae288c022d430271c2a6a9',
+                'remote_bytes': 1835797785,
+                'remote_md5': '8855ab9f9896422746ab4c5d89d8da2f',
                 'filename': filename_base + '.audio.13.zip'
             },
             {
                 'content_type': 'audio',
                 'remote_file': source_url + filename_base + '.audio.14.zip',
-                'remote_bytes': 1846325546,
-                'remote_md5': '191657ce56acfcb87e893befe017ecc4',
+                'remote_bytes': 1846390881,
+                'remote_md5': '092ad744452cd3e7de78f988a3d13020',
                 'filename': filename_base + '.audio.14.zip'
             },
             {
                 'content_type': 'audio',
                 'remote_file': source_url + filename_base + '.audio.15.zip',
-                'remote_bytes': 1868661026,
-                'remote_md5': 'a2c9f5bb65a2a8b0ded5f43b225e1125',
+                'remote_bytes': 1869032508,
+                'remote_md5': '4b5eb85f6592aebf846088d9df76b420',
                 'filename': filename_base + '.audio.15.zip'
             },
             {
                 'content_type': 'audio',
                 'remote_file': source_url + filename_base + '.audio.16.zip',
-                'remote_bytes': 443420112,
-                'remote_md5': '1dba9bb4d53cfa6e6b424e1fd28c7013',
+                'remote_bytes': 436971777,
+                'remote_md5': '2e0a89723e58a3836be019e6996ae460',
                 'filename': filename_base + '.audio.16.zip'
             },
         ]
