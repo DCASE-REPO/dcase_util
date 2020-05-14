@@ -3,4 +3,4 @@ dcase\_util.containers.ProbabilityContainer.unique\_indices
 
 .. currentmodule:: dcase_util.containers
 
-.. autoattribute:: ProbabilityContainer.unique_indices
+.. autoproperty:: ProbabilityContainer.unique_indices

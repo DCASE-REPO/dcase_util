@@ -21,8 +21,10 @@ dcase\_util.ui.FancyLogger
       ~FancyLogger.info
       ~FancyLogger.line
       ~FancyLogger.row
+      ~FancyLogger.row_average
       ~FancyLogger.row_reset
       ~FancyLogger.row_sep
+      ~FancyLogger.row_sum
       ~FancyLogger.section_header
       ~FancyLogger.sep
       ~FancyLogger.sub_header

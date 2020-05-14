@@ -3,4 +3,4 @@ dcase\_util.containers.DataArrayContainer.frames
 
 .. currentmodule:: dcase_util.containers
 
-.. autoattribute:: DataArrayContainer.frames
+.. autoproperty:: DataArrayContainer.frames

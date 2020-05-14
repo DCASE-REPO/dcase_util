@@ -1474,6 +1474,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-12">v0.2.12</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-11">v0.2.11</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-10">v0.2.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-9">v0.2.9</a></li>
@@ -1561,9 +1562,9 @@
   <h1>Source code for dcase_util.containers.containers</h1><div class="highlight"><pre>
 <span></span><span class="ch">#!/usr/bin/env python</span>
 <span class="c1"># -*- coding: utf-8 -*-</span>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">absolute_import</span>
-<span class="kn">from</span> <span class="nn">six</span> <span class="k">import</span> <span class="n">iteritems</span>
-<span class="kn">from</span> <span class="nn">builtins</span> <span class="k">import</span> <span class="nb">str</span> <span class="k">as</span> <span class="n">text</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">absolute_import</span>
+<span class="kn">from</span> <span class="nn">six</span> <span class="kn">import</span> <span class="n">iteritems</span>
+<span class="kn">from</span> <span class="nn">builtins</span> <span class="kn">import</span> <span class="nb">str</span> <span class="k">as</span> <span class="n">text</span>
 
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">sys</span>
@@ -1573,25 +1574,25 @@
 <span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">hashlib</span>
 
-<span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="k">import</span> <span class="n">ContainerMixin</span><span class="p">,</span> <span class="n">FileMixin</span>
-<span class="kn">from</span> <span class="nn">dcase_util.ui</span> <span class="k">import</span> <span class="n">FancyStringifier</span><span class="p">,</span> <span class="n">FancyHTMLStringifier</span>
-<span class="kn">from</span> <span class="nn">dcase_util.utils</span> <span class="k">import</span> <span class="n">is_float</span><span class="p">,</span> <span class="n">is_int</span><span class="p">,</span> <span class="n">FileFormat</span>
+<span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="kn">import</span> <span class="n">ContainerMixin</span><span class="p">,</span> <span class="n">FileMixin</span>
+<span class="kn">from</span> <span class="nn">dcase_util.ui</span> <span class="kn">import</span> <span class="n">FancyStringifier</span><span class="p">,</span> <span class="n">FancyHTMLStringifier</span>
+<span class="kn">from</span> <span class="nn">dcase_util.utils</span> <span class="kn">import</span> <span class="n">is_float</span><span class="p">,</span> <span class="n">is_int</span><span class="p">,</span> <span class="n">FileFormat</span>
 
 
-<div class="viewcode-block" id="ObjectContainer"><a class="viewcode-back" href="../../../generated/dcase_util.containers.ObjectContainer.html#dcase_util.containers.ObjectContainer">[docs]</a><span class="k">class</span> <span class="nc">ObjectContainer</span><span class="p">(</span><span class="n">ContainerMixin</span><span class="p">,</span> <span class="n">FileMixin</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">ObjectContainer</span><span class="p">(</span><span class="n">ContainerMixin</span><span class="p">,</span> <span class="n">FileMixin</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Container class for object inherited from standard object class.&quot;&quot;&quot;</span>
     <span class="n">valid_formats</span> <span class="o">=</span> <span class="p">[</span><span class="n">FileFormat</span><span class="o">.</span><span class="n">CPICKLE</span><span class="p">]</span>  <span class="c1">#: Valid file formats</span>
 
-<div class="viewcode-block" id="ObjectContainer.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.containers.ObjectContainer.html#dcase_util.containers.ObjectContainer.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="c1"># Run ContainerMixin init</span>
         <span class="n">ContainerMixin</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="c1"># Run FileMixin init</span>
         <span class="n">FileMixin</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-        <span class="nb">super</span><span class="p">(</span><span class="n">ObjectContainer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ObjectContainer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-<div class="viewcode-block" id="ObjectContainer.load"><a class="viewcode-back" href="../../../generated/dcase_util.containers.ObjectContainer.load.html#dcase_util.containers.ObjectContainer.load">[docs]</a>    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Load file</span>
 
 <span class="sd">        Parameters</span>
@@ -1620,7 +1621,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">validate_format</span><span class="p">()</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
-            <span class="kn">from</span> <span class="nn">dcase_util.files</span> <span class="k">import</span> <span class="n">Serializer</span>
+            <span class="kn">from</span> <span class="nn">dcase_util.files</span> <span class="kn">import</span> <span class="n">Serializer</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">format</span> <span class="o">==</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">CPICKLE</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">Serializer</span><span class="o">.</span><span class="n">load_cpickle</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">))</span>
 
@@ -1638,9 +1639,9 @@
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_after_load&#39;</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_after_load</span><span class="p">()</span>
 
-        <span class="k">return</span> <span class="bp">self</span></div>
+        <span class="k">return</span> <span class="bp">self</span>
 
-<div class="viewcode-block" id="ObjectContainer.save"><a class="viewcode-back" href="../../../generated/dcase_util.containers.ObjectContainer.save.html#dcase_util.containers.ObjectContainer.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Save file</span>
 
 <span class="sd">        Parameters</span>
@@ -1678,7 +1679,7 @@
             <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
         <span class="k">try</span><span class="p">:</span>
-            <span class="kn">from</span> <span class="nn">dcase_util.files</span> <span class="k">import</span> <span class="n">Serializer</span>
+            <span class="kn">from</span> <span class="nn">dcase_util.files</span> <span class="kn">import</span> <span class="n">Serializer</span>
             <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span>
 
             <span class="c1"># Check if before save function is defined, call if found</span>
@@ -1701,7 +1702,7 @@
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_after_save&#39;</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_after_save</span><span class="p">()</span>
 
-        <span class="k">return</span> <span class="bp">self</span></div></div>
+        <span class="k">return</span> <span class="bp">self</span>
 
 
 <div class="viewcode-block" id="DictContainer"><a class="viewcode-back" href="../../../generated/dcase_util.containers.DictContainer.html#dcase_util.containers.DictContainer">[docs]</a><span class="k">class</span> <span class="nc">DictContainer</span><span class="p">(</span><span class="nb">dict</span><span class="p">,</span> <span class="n">ContainerMixin</span><span class="p">,</span> <span class="n">FileMixin</span><span class="p">):</span>
@@ -1709,7 +1710,7 @@
     <span class="n">valid_formats</span> <span class="o">=</span> <span class="p">[</span><span class="n">FileFormat</span><span class="o">.</span><span class="n">YAML</span><span class="p">,</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">JSON</span><span class="p">,</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">CPICKLE</span><span class="p">,</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">MARSHAL</span><span class="p">,</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">MSGPACK</span><span class="p">,</span>
                      <span class="n">FileFormat</span><span class="o">.</span><span class="n">TXT</span><span class="p">,</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">CSV</span><span class="p">,</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">META</span><span class="p">]</span>  <span class="c1">#: Valid file formats</span>
 
-<div class="viewcode-block" id="DictContainer.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.containers.DictContainer.html#dcase_util.containers.DictContainer.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="DictContainer.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.containers.DictContainer.html#dcase_util.containers.DictContainer.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="c1"># Run ContainerMixin init</span>
         <span class="n">ContainerMixin</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -2065,7 +2066,7 @@
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
             <span class="c1"># File exits</span>
-            <span class="kn">from</span> <span class="nn">dcase_util.files</span> <span class="k">import</span> <span class="n">Serializer</span>
+            <span class="kn">from</span> <span class="nn">dcase_util.files</span> <span class="kn">import</span> <span class="n">Serializer</span>
             <span class="nb">dict</span><span class="o">.</span><span class="n">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">format</span> <span class="o">==</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">YAML</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">format</span> <span class="o">==</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">META</span><span class="p">:</span>
@@ -2165,7 +2166,7 @@
             <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
         <span class="k">try</span><span class="p">:</span>
-            <span class="kn">from</span> <span class="nn">dcase_util.files</span> <span class="k">import</span> <span class="n">Serializer</span>
+            <span class="kn">from</span> <span class="nn">dcase_util.files</span> <span class="kn">import</span> <span class="n">Serializer</span>
             <span class="n">data</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
             <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;__getstate__&#39;</span><span class="p">):</span>
                 <span class="n">data</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__getstate__</span><span class="p">()))</span>
@@ -2494,11 +2495,11 @@
         <span class="k">return</span> <span class="n">data</span></div>
 
 
-<div class="viewcode-block" id="ListContainer"><a class="viewcode-back" href="../../../generated/dcase_util.containers.ListContainer.html#dcase_util.containers.ListContainer">[docs]</a><span class="k">class</span> <span class="nc">ListContainer</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="n">ContainerMixin</span><span class="p">,</span> <span class="n">FileMixin</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">ListContainer</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="n">ContainerMixin</span><span class="p">,</span> <span class="n">FileMixin</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;List container class inherited from standard list class.&quot;&quot;&quot;</span>
     <span class="n">valid_formats</span> <span class="o">=</span> <span class="p">[</span><span class="n">FileFormat</span><span class="o">.</span><span class="n">TXT</span><span class="p">,</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">CPICKLE</span><span class="p">]</span>  <span class="c1">#: Valid file formats</span>
 
-<div class="viewcode-block" id="ListContainer.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.containers.ListContainer.html#dcase_util.containers.ListContainer.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Constructor</span>
 
 <span class="sd">        Parameters</span>
@@ -2515,7 +2516,7 @@
         <span class="n">FileMixin</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="c1"># Run list init</span>
-        <span class="nb">list</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span></div>
+        <span class="nb">list</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">to_string</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ui</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get container information in a string</span>
@@ -2556,7 +2557,7 @@
     <span class="k">def</span> <span class="nf">__setstate__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">ListContainer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__setstate__</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
 
-<div class="viewcode-block" id="ListContainer.update"><a class="viewcode-back" href="../../../generated/dcase_util.containers.ListContainer.update.html#dcase_util.containers.ListContainer.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Replace content with given list</span>
 
 <span class="sd">        Parameters</span>
@@ -2572,9 +2573,9 @@
 
         <span class="nb">list</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="bp">self</span></div>
+        <span class="k">return</span> <span class="bp">self</span>
 
-<div class="viewcode-block" id="ListContainer.load"><a class="viewcode-back" href="../../../generated/dcase_util.containers.ListContainer.load.html#dcase_util.containers.ListContainer.load">[docs]</a>    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">file_format</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">file_format</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Load file</span>
 
 <span class="sd">        Parameters</span>
@@ -2613,7 +2614,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">format</span> <span class="o">=</span> <span class="n">file_format</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
-            <span class="kn">from</span> <span class="nn">dcase_util.files</span> <span class="k">import</span> <span class="n">Serializer</span>
+            <span class="kn">from</span> <span class="nn">dcase_util.files</span> <span class="kn">import</span> <span class="n">Serializer</span>
 
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">format</span> <span class="o">==</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">TXT</span><span class="p">:</span>
                 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
@@ -2640,9 +2641,9 @@
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_after_load&#39;</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_after_load</span><span class="p">()</span>
 
-        <span class="k">return</span> <span class="bp">self</span></div>
+        <span class="k">return</span> <span class="bp">self</span>
 
-<div class="viewcode-block" id="ListContainer.save"><a class="viewcode-back" href="../../../generated/dcase_util.containers.ListContainer.save.html#dcase_util.containers.ListContainer.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">file_format</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">file_format</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Save file</span>
 
 <span class="sd">        Parameters</span>
@@ -2685,7 +2686,7 @@
             <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
         <span class="k">try</span><span class="p">:</span>
-            <span class="kn">from</span> <span class="nn">dcase_util.files</span> <span class="k">import</span> <span class="n">Serializer</span>
+            <span class="kn">from</span> <span class="nn">dcase_util.files</span> <span class="kn">import</span> <span class="n">Serializer</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">format</span> <span class="o">==</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">TXT</span><span class="p">:</span>
                 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">text_file</span><span class="p">:</span>
                     <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
@@ -2707,7 +2708,7 @@
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_after_save&#39;</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_after_save</span><span class="p">()</span>
 
-        <span class="k">return</span> <span class="bp">self</span></div>
+        <span class="k">return</span> <span class="bp">self</span>
 
     <span class="k">def</span> <span class="nf">get_dump_content</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Clean internal content for saving</span>
@@ -2736,14 +2737,14 @@
                 <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
                     <span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_dump_content</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
 
-            <span class="k">return</span> <span class="n">data</span></div>
+            <span class="k">return</span> <span class="n">data</span>
 
 
-<div class="viewcode-block" id="ListDictContainer"><a class="viewcode-back" href="../../../generated/dcase_util.containers.ListDictContainer.html#dcase_util.containers.ListDictContainer">[docs]</a><span class="k">class</span> <span class="nc">ListDictContainer</span><span class="p">(</span><span class="n">ListContainer</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">ListDictContainer</span><span class="p">(</span><span class="n">ListContainer</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;List of dictionaries container class inherited from standard list class.&quot;&quot;&quot;</span>
     <span class="n">valid_formats</span> <span class="o">=</span> <span class="p">[</span><span class="n">FileFormat</span><span class="o">.</span><span class="n">CSV</span><span class="p">,</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">YAML</span><span class="p">,</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">CPICKLE</span><span class="p">]</span>  <span class="c1">#: Valid file formats</span>
 
-<div class="viewcode-block" id="ListDictContainer.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.containers.ListDictContainer.html#dcase_util.containers.ListDictContainer.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Constructor</span>
 
 <span class="sd">        Parameters</span>
@@ -2764,7 +2765,7 @@
 
         <span class="c1"># Convert list items to DictContainers</span>
         <span class="k">for</span> <span class="n">item_id</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-            <span class="bp">self</span><span class="p">[</span><span class="n">item_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">DictContainer</span><span class="p">(</span><span class="n">item</span><span class="p">)</span></div>
+            <span class="bp">self</span><span class="p">[</span><span class="n">item_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">DictContainer</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">to_string</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ui</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get container information in a string</span>
@@ -2800,7 +2801,7 @@
 
         <span class="k">return</span> <span class="n">output</span>
 
-<div class="viewcode-block" id="ListDictContainer.search"><a class="viewcode-back" href="../../../generated/dcase_util.containers.ListDictContainer.search.html#dcase_util.containers.ListDictContainer.search">[docs]</a>    <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Search in the list of dictionaries</span>
 
 <span class="sd">        Parameters</span>
@@ -2821,9 +2822,9 @@
             <span class="k">if</span> <span class="n">element</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="o">==</span> <span class="n">value</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">element</span>
 
-        <span class="k">return</span> <span class="kc">None</span></div>
+        <span class="k">return</span> <span class="kc">None</span>
 
-<div class="viewcode-block" id="ListDictContainer.load"><a class="viewcode-back" href="../../../generated/dcase_util.containers.ListDictContainer.load.html#dcase_util.containers.ListDictContainer.load">[docs]</a>    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fields</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">csv_header</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">file_format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fields</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">csv_header</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">file_format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
              <span class="n">delimiter</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">convert_numeric_fields</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Load file</span>
 
@@ -2879,7 +2880,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">format</span> <span class="o">=</span> <span class="n">file_format</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
-            <span class="kn">from</span> <span class="nn">dcase_util.files</span> <span class="k">import</span> <span class="n">Serializer</span>
+            <span class="kn">from</span> <span class="nn">dcase_util.files</span> <span class="kn">import</span> <span class="n">Serializer</span>
 
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">format</span> <span class="o">==</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">CSV</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">fields</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">csv_header</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -2942,9 +2943,9 @@
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_after_load&#39;</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_after_load</span><span class="p">()</span>
 
-        <span class="k">return</span> <span class="bp">self</span></div>
+        <span class="k">return</span> <span class="bp">self</span>
 
-<div class="viewcode-block" id="ListDictContainer.save"><a class="viewcode-back" href="../../../generated/dcase_util.containers.ListDictContainer.save.html#dcase_util.containers.ListDictContainer.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fields</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">csv_header</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">file_format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fields</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">csv_header</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">file_format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Save file</span>
 
 <span class="sd">        Parameters</span>
@@ -2999,7 +3000,7 @@
             <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
         <span class="k">try</span><span class="p">:</span>
-            <span class="kn">from</span> <span class="nn">dcase_util.files</span> <span class="k">import</span> <span class="n">Serializer</span>
+            <span class="kn">from</span> <span class="nn">dcase_util.files</span> <span class="kn">import</span> <span class="n">Serializer</span>
 
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">format</span> <span class="o">==</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">YAML</span><span class="p">:</span>
                 <span class="n">data</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
@@ -3054,9 +3055,9 @@
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_after_save&#39;</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_after_save</span><span class="p">()</span>
 
-        <span class="k">return</span> <span class="bp">self</span></div>
+        <span class="k">return</span> <span class="bp">self</span>
 
-<div class="viewcode-block" id="ListDictContainer.get_field"><a class="viewcode-back" href="../../../generated/dcase_util.containers.ListDictContainer.get_field.html#dcase_util.containers.ListDictContainer.get_field">[docs]</a>    <span class="k">def</span> <span class="nf">get_field</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field_name</span><span class="p">,</span> <span class="n">skip_items_without_field</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get_field</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field_name</span><span class="p">,</span> <span class="n">skip_items_without_field</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get all data from field.</span>
 
 <span class="sd">        Parameters</span>
@@ -3082,7 +3083,7 @@
             <span class="k">elif</span> <span class="ow">not</span> <span class="n">skip_items_without_field</span><span class="p">:</span>
                 <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">data</span></div>
+        <span class="k">return</span> <span class="n">data</span>
 
     <span class="k">def</span> <span class="nf">get_field_unique</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field_name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get unique data from field.</span>
@@ -3198,17 +3199,17 @@
             <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">matched</span><span class="p">):</span>
                 <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">item</span><span class="p">))</span>
 
-        <span class="k">return</span> <span class="n">ListDictContainer</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">ListDictContainer</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="RepositoryContainer"><a class="viewcode-back" href="../../../generated/dcase_util.containers.RepositoryContainer.html#dcase_util.containers.RepositoryContainer">[docs]</a><span class="k">class</span> <span class="nc">RepositoryContainer</span><span class="p">(</span><span class="n">DictContainer</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">RepositoryContainer</span><span class="p">(</span><span class="n">DictContainer</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Container class for repository, inherited from DictContainer.&quot;&quot;&quot;</span>
-    <span class="n">valid_formats</span> <span class="o">=</span> <span class="p">[</span><span class="n">FileFormat</span><span class="o">.</span><span class="n">CPICKLE</span><span class="p">]</span>  <span class="c1">#: Valid file formats</span></div>
+    <span class="n">valid_formats</span> <span class="o">=</span> <span class="p">[</span><span class="n">FileFormat</span><span class="o">.</span><span class="n">CPICKLE</span><span class="p">]</span>  <span class="c1">#: Valid file formats</span>
 
 
-<div class="viewcode-block" id="TextContainer"><a class="viewcode-back" href="../../../generated/dcase_util.containers.TextContainer.html#dcase_util.containers.TextContainer">[docs]</a><span class="k">class</span> <span class="nc">TextContainer</span><span class="p">(</span><span class="n">ListContainer</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">TextContainer</span><span class="p">(</span><span class="n">ListContainer</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Container class for text, inherited from ListContainer.&quot;&quot;&quot;</span>
-    <span class="n">valid_formats</span> <span class="o">=</span> <span class="p">[</span><span class="n">FileFormat</span><span class="o">.</span><span class="n">TXT</span><span class="p">]</span>  <span class="c1">#: Valid file formats</span></div>
+    <span class="n">valid_formats</span> <span class="o">=</span> <span class="p">[</span><span class="n">FileFormat</span><span class="o">.</span><span class="n">TXT</span><span class="p">]</span>  <span class="c1">#: Valid file formats</span>
 
 
 </pre></div>

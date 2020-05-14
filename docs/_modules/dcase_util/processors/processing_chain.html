@@ -1474,6 +1474,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-12">v0.2.12</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-11">v0.2.11</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-10">v0.2.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-9">v0.2.9</a></li>
@@ -1562,11 +1563,11 @@
 <span></span><span class="ch">#!/usr/bin/env python</span>
 <span class="c1"># -*- coding: utf-8 -*-</span>
 
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">absolute_import</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">absolute_import</span>
 <span class="kn">import</span> <span class="nn">importlib</span>
-<span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="k">import</span> <span class="n">DictContainer</span><span class="p">,</span> <span class="n">ListDictContainer</span>
-<span class="kn">from</span> <span class="nn">dcase_util.ui</span> <span class="k">import</span> <span class="n">FancyLogger</span><span class="p">,</span> <span class="n">FancyStringifier</span>
-<span class="kn">from</span> <span class="nn">dcase_util.utils</span> <span class="k">import</span> <span class="n">FileFormat</span>
+<span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="kn">import</span> <span class="n">DictContainer</span><span class="p">,</span> <span class="n">ListDictContainer</span>
+<span class="kn">from</span> <span class="nn">dcase_util.ui</span> <span class="kn">import</span> <span class="n">FancyLogger</span><span class="p">,</span> <span class="n">FancyStringifier</span>
+<span class="kn">from</span> <span class="nn">dcase_util.utils</span> <span class="kn">import</span> <span class="n">FileFormat</span>
 
 
 <span class="k">class</span> <span class="nc">ProcessingChainItemType</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -1580,7 +1581,7 @@
 
 
 <div class="viewcode-block" id="ProcessingChainItem"><a class="viewcode-back" href="../../../generated/dcase_util.processors.ProcessingChainItem.html#dcase_util.processors.ProcessingChainItem">[docs]</a><span class="k">class</span> <span class="nc">ProcessingChainItem</span><span class="p">(</span><span class="n">DictContainer</span><span class="p">):</span>
-<div class="viewcode-block" id="ProcessingChainItem.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.processors.ProcessingChainItem.html#dcase_util.processors.ProcessingChainItem.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="ProcessingChainItem.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.processors.ProcessingChainItem.html#dcase_util.processors.ProcessingChainItem.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">ProcessingChainItem</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">processor_class</span> <span class="o">=</span> <span class="kc">None</span>
@@ -1626,7 +1627,7 @@
         <span class="k">return</span> <span class="bp">self</span></div>
 
 
-<div class="viewcode-block" id="ProcessingChain"><a class="viewcode-back" href="../../../generated/dcase_util.processors.ProcessingChain.html#dcase_util.processors.ProcessingChain">[docs]</a><span class="k">class</span> <span class="nc">ProcessingChain</span><span class="p">(</span><span class="n">ListDictContainer</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">ProcessingChain</span><span class="p">(</span><span class="n">ListDictContainer</span><span class="p">):</span>
     <span class="n">valid_formats</span> <span class="o">=</span> <span class="p">[</span><span class="n">FileFormat</span><span class="o">.</span><span class="n">CPICKLE</span><span class="p">,</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">YAML</span><span class="p">]</span>  <span class="c1">#: Valid formats</span>
     <span class="n">valid_input_types</span> <span class="o">=</span> <span class="p">[</span>
         <span class="n">ProcessingChainItemType</span><span class="o">.</span><span class="n">AUDIO</span><span class="p">,</span>
@@ -1645,7 +1646,7 @@
         <span class="n">ProcessingChainItemType</span><span class="o">.</span><span class="n">NONE</span>
     <span class="p">]</span>  <span class="c1">#: Valid output data types</span>
 
-<div class="viewcode-block" id="ProcessingChain.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.processors.ProcessingChain.html#dcase_util.processors.ProcessingChain.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;__init__ method.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1667,7 +1668,7 @@
                         <span class="n">processor_name</span><span class="o">=</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;processor_name&#39;</span><span class="p">]</span>
                     <span class="p">)</span>
 
-                    <span class="kn">from</span> <span class="nn">dcase_util.processors.processor</span> <span class="k">import</span> <span class="n">Processor</span>
+                    <span class="kn">from</span> <span class="nn">dcase_util.processors.processor</span> <span class="kn">import</span> <span class="n">Processor</span>
                     <span class="k">if</span> <span class="ow">not</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">current_processor</span><span class="p">,</span> <span class="n">Processor</span><span class="p">):</span>
                         <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: ProcessingChain items should be Processor classes, please check item [</span><span class="si">{item}</span><span class="s1">].&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
                             <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
@@ -1693,7 +1694,7 @@
                         <span class="p">)</span>
 
                     <span class="c1"># Store processing chain item</span>
-                    <span class="bp">self</span><span class="p">[</span><span class="n">item_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">ProcessingChainItem</span><span class="p">(</span><span class="n">item</span><span class="p">)</span></div>
+                    <span class="bp">self</span><span class="p">[</span><span class="n">item_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">ProcessingChainItem</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">chain_string</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Basic info about the items in the chain.</span>
@@ -1734,7 +1735,7 @@
         <span class="sd">&quot;&quot;&quot;Show chain information.&quot;&quot;&quot;</span>
         <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">chain_string</span><span class="p">())</span></div>
 
-<div class="viewcode-block" id="ProcessingChain.log_chain"><a class="viewcode-back" href="../../../generated/dcase_util.processors.ProcessingChain.log_chain.html#dcase_util.processors.ProcessingChain.log_chain">[docs]</a>    <span class="k">def</span> <span class="nf">log_chain</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="s1">&#39;info&#39;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">log_chain</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="s1">&#39;info&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Log chain information</span>
 
 <span class="sd">        Parameters</span>
@@ -1749,7 +1750,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">ui</span> <span class="o">=</span> <span class="n">FancyLogger</span><span class="p">()</span>
-        <span class="n">ui</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">chain_string</span><span class="p">(),</span> <span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">)</span></div>
+        <span class="n">ui</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">chain_string</span><span class="p">(),</span> <span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_check_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Check validity of processing chain item.</span>
@@ -1983,7 +1984,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="ProcessingChain.processor_class"><a class="viewcode-back" href="../../../generated/dcase_util.processors.ProcessingChain.processor_class.html#dcase_util.processors.ProcessingChain.processor_class">[docs]</a>    <span class="k">def</span> <span class="nf">processor_class</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">processor_name</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">processor_class</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">processor_name</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Processor class initialized.</span>
 
 <span class="sd">        Parameters</span>
@@ -2013,9 +2014,9 @@
             <span class="p">)</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></div>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
-<div class="viewcode-block" id="ProcessingChain.process"><a class="viewcode-back" href="../../../generated/dcase_util.processors.ProcessingChain.process.html#dcase_util.processors.ProcessingChain.process">[docs]</a>    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">store_processing_chain</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">store_processing_chain</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Process the data with processing chain</span>
 
 <span class="sd">        Parameters</span>
@@ -2043,11 +2044,11 @@
                     <span class="c1"># Inject data for the first item in the chain</span>
 
                     <span class="k">if</span> <span class="n">step</span><span class="o">.</span><span class="n">processor_class</span><span class="o">.</span><span class="n">input_type</span> <span class="o">==</span> <span class="n">ProcessingChainItemType</span><span class="o">.</span><span class="n">DATA_CONTAINER</span><span class="p">:</span>
-                        <span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="k">import</span> <span class="n">DataMatrix2DContainer</span>
+                        <span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="kn">import</span> <span class="n">DataMatrix2DContainer</span>
                         <span class="n">data</span> <span class="o">=</span> <span class="n">DataMatrix2DContainer</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
 
                     <span class="k">elif</span> <span class="n">step</span><span class="o">.</span><span class="n">processor_class</span><span class="o">.</span><span class="n">input_type</span> <span class="o">==</span> <span class="n">ProcessingChainItemType</span><span class="o">.</span><span class="n">DATA_REPOSITORY</span><span class="p">:</span>
-                        <span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="k">import</span> <span class="n">DataRepository</span>
+                        <span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="kn">import</span> <span class="n">DataRepository</span>
                         <span class="n">data</span> <span class="o">=</span> <span class="n">DataRepository</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
 
                 <span class="k">if</span> <span class="s1">&#39;preprocessing_callbacks&#39;</span> <span class="ow">in</span> <span class="n">step</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">step</span><span class="p">[</span><span class="s1">&#39;preprocessing_callbacks&#39;</span><span class="p">],</span> <span class="nb">list</span><span class="p">):</span>
@@ -2076,9 +2077,9 @@
                         <span class="o">**</span><span class="n">process_parameters</span>
                     <span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">data</span></div>
+        <span class="k">return</span> <span class="n">data</span>
 
-<div class="viewcode-block" id="ProcessingChain.call_method"><a class="viewcode-back" href="../../../generated/dcase_util.processors.ProcessingChain.call_method.html#dcase_util.processors.ProcessingChain.call_method">[docs]</a>    <span class="k">def</span> <span class="nf">call_method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method_name</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">call_method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method_name</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Call class method in the processing chain items</span>
 
 <span class="sd">        Processing chain is gone through and given method is</span>
@@ -2104,9 +2105,9 @@
             <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">step</span><span class="o">.</span><span class="n">processor_class</span><span class="p">,</span> <span class="n">method_name</span><span class="p">):</span>
                 <span class="nb">getattr</span><span class="p">(</span><span class="n">step</span><span class="o">.</span><span class="n">processor_class</span><span class="p">,</span> <span class="n">method_name</span><span class="p">)(</span><span class="o">**</span><span class="n">parameters</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="bp">self</span></div>
+        <span class="k">return</span> <span class="bp">self</span>
 
-<div class="viewcode-block" id="ProcessingChain.chain_item_exists"><a class="viewcode-back" href="../../../generated/dcase_util.processors.ProcessingChain.chain_item_exists.html#dcase_util.processors.ProcessingChain.chain_item_exists">[docs]</a>    <span class="k">def</span> <span class="nf">chain_item_exists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">processor_name</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">chain_item_exists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">processor_name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Check if item exists already in the chain</span>
 
 <span class="sd">        Parameters</span>
@@ -2124,9 +2125,9 @@
             <span class="k">if</span> <span class="n">step</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;processor_name&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="n">processor_name</span><span class="p">:</span>
                 <span class="k">return</span> <span class="kc">True</span>
 
-        <span class="k">return</span> <span class="kc">False</span></div>
+        <span class="k">return</span> <span class="kc">False</span>
 
-<div class="viewcode-block" id="ProcessingChain.chain_item"><a class="viewcode-back" href="../../../generated/dcase_util.processors.ProcessingChain.chain_item.html#dcase_util.processors.ProcessingChain.chain_item">[docs]</a>    <span class="k">def</span> <span class="nf">chain_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">processor_name</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">chain_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">processor_name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get item based processor_name from the processing chain. If processor is not found, None returned.</span>
 
 <span class="sd">        Parameters</span>
@@ -2144,7 +2145,7 @@
             <span class="k">if</span> <span class="n">step</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;processor_name&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="n">processor_name</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">step</span>
 
-        <span class="k">return</span> <span class="kc">None</span></div></div>
+        <span class="k">return</span> <span class="kc">None</span>
 </pre></div>
 
            </div>

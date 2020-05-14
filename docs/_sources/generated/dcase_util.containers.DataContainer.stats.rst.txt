@@ -3,4 +3,4 @@ dcase\_util.containers.DataContainer.stats
 
 .. currentmodule:: dcase_util.containers
 
-.. autoattribute:: DataContainer.stats
+.. autoproperty:: DataContainer.stats

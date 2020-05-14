@@ -1474,6 +1474,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-12">v0.2.12</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-11">v0.2.11</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-10">v0.2.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-9">v0.2.9</a></li>
@@ -1561,16 +1562,16 @@
   <h1>Source code for dcase_util.tools.datasets</h1><div class="highlight"><pre>
 <span></span><span class="c1"># !/usr/bin/env python</span>
 <span class="c1"># -*- coding: utf-8 -*-</span>
-<span class="kn">from</span> <span class="nn">dcase_util.ui</span> <span class="k">import</span> <span class="n">FancyLogger</span>
-<span class="kn">from</span> <span class="nn">dcase_util.files</span> <span class="k">import</span> <span class="n">Package</span>
-<span class="kn">from</span> <span class="nn">dcase_util.utils</span> <span class="k">import</span> <span class="n">get_byte_string</span><span class="p">,</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">dcase_util.ui</span> <span class="kn">import</span> <span class="n">FancyLogger</span>
+<span class="kn">from</span> <span class="nn">dcase_util.files</span> <span class="kn">import</span> <span class="n">Package</span>
+<span class="kn">from</span> <span class="nn">dcase_util.utils</span> <span class="kn">import</span> <span class="n">get_byte_string</span><span class="p">,</span> <span class="n">Path</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">codecs</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 
 
 <div class="viewcode-block" id="DatasetPacker"><a class="viewcode-back" href="../../../generated/dcase_util.tools.DatasetPacker.html#dcase_util.tools.DatasetPacker">[docs]</a><span class="k">class</span> <span class="nc">DatasetPacker</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-<div class="viewcode-block" id="DatasetPacker.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.tools.DatasetPacker.html#dcase_util.tools.DatasetPacker.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="DatasetPacker.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.tools.DatasetPacker.html#dcase_util.tools.DatasetPacker.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">package_size_limit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">convert_md_to_html</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                  <span class="n">md_to_html_template</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -1667,7 +1668,7 @@
     <span class="k">def</span> <span class="nf">logger</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">logger</span><span class="o">.</span><span class="n">handlers</span><span class="p">:</span>
-            <span class="kn">from</span> <span class="nn">dcase_util.utils</span> <span class="k">import</span> <span class="n">setup_logging</span>
+            <span class="kn">from</span> <span class="nn">dcase_util.utils</span> <span class="kn">import</span> <span class="n">setup_logging</span>
             <span class="n">setup_logging</span><span class="p">()</span>
 
         <span class="k">return</span> <span class="n">logger</span>

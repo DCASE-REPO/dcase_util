@@ -1474,6 +1474,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-12">v0.2.12</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-11">v0.2.11</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-10">v0.2.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-9">v0.2.9</a></li>
@@ -1561,19 +1562,19 @@
   <h1>Source code for dcase_util.containers.mapping</h1><div class="highlight"><pre>
 <span></span><span class="ch">#!/usr/bin/env python</span>
 <span class="c1"># -*- coding: utf-8 -*-</span>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">absolute_import</span>
-<span class="kn">from</span> <span class="nn">six</span> <span class="k">import</span> <span class="n">iteritems</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">absolute_import</span>
+<span class="kn">from</span> <span class="nn">six</span> <span class="kn">import</span> <span class="n">iteritems</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">csv</span>
-<span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="k">import</span> <span class="n">DictContainer</span>
-<span class="kn">from</span> <span class="nn">dcase_util.utils</span> <span class="k">import</span> <span class="n">FileFormat</span>
+<span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="kn">import</span> <span class="n">DictContainer</span>
+<span class="kn">from</span> <span class="nn">dcase_util.utils</span> <span class="kn">import</span> <span class="n">FileFormat</span>
 
 
 <div class="viewcode-block" id="OneToOneMappingContainer"><a class="viewcode-back" href="../../../generated/dcase_util.containers.OneToOneMappingContainer.html#dcase_util.containers.OneToOneMappingContainer">[docs]</a><span class="k">class</span> <span class="nc">OneToOneMappingContainer</span><span class="p">(</span><span class="n">DictContainer</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Mapping container class for 1:1 data mapping, inherited from DictContainer class.&quot;&quot;&quot;</span>
     <span class="n">valid_formats</span> <span class="o">=</span> <span class="p">[</span><span class="n">FileFormat</span><span class="o">.</span><span class="n">CSV</span><span class="p">,</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">TXT</span><span class="p">,</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">CPICKLE</span><span class="p">]</span>  <span class="c1">#: Valid file formats</span>
 
-<div class="viewcode-block" id="OneToOneMappingContainer.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.containers.OneToOneMappingContainer.html#dcase_util.containers.OneToOneMappingContainer.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="OneToOneMappingContainer.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.containers.OneToOneMappingContainer.html#dcase_util.containers.OneToOneMappingContainer.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="c1"># Run DictContainer init</span>
         <span class="n">DictContainer</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -1608,7 +1609,7 @@
 
         <span class="nb">dict</span><span class="o">.</span><span class="n">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
-            <span class="kn">from</span> <span class="nn">dcase_util.files</span> <span class="k">import</span> <span class="n">Serializer</span>
+            <span class="kn">from</span> <span class="nn">dcase_util.files</span> <span class="kn">import</span> <span class="n">Serializer</span>
 
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">format</span> <span class="o">==</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">TXT</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">format</span> <span class="o">==</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">CSV</span><span class="p">:</span>
                 <span class="n">map_data</span> <span class="o">=</span> <span class="p">{}</span>
@@ -1675,7 +1676,7 @@
             <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
         <span class="k">try</span><span class="p">:</span>
-            <span class="kn">from</span> <span class="nn">dcase_util.files</span> <span class="k">import</span> <span class="n">Serializer</span>
+            <span class="kn">from</span> <span class="nn">dcase_util.files</span> <span class="kn">import</span> <span class="n">Serializer</span>
 
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">format</span> <span class="o">==</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">CSV</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">format</span> <span class="o">==</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">TXT</span><span class="p">:</span>
                 <span class="n">delimiter</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span>

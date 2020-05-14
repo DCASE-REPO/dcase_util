@@ -3,4 +3,4 @@ dcase\_util.files.RemoteFile.local\_md5
 
 .. currentmodule:: dcase_util.files
 
-.. autoattribute:: RemoteFile.local_md5
+.. autoproperty:: RemoteFile.local_md5

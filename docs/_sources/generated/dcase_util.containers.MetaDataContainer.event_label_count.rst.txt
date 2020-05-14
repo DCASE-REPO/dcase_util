@@ -3,4 +3,4 @@ dcase\_util.containers.MetaDataContainer.event\_label\_count
 
 .. currentmodule:: dcase_util.containers
 
-.. autoattribute:: MetaDataContainer.event_label_count
+.. autoproperty:: MetaDataContainer.event_label_count

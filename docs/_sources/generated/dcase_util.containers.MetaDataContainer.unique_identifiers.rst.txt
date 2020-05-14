@@ -3,4 +3,4 @@ dcase\_util.containers.MetaDataContainer.unique\_identifiers
 
 .. currentmodule:: dcase_util.containers
 
-.. autoattribute:: MetaDataContainer.unique_identifiers
+.. autoproperty:: MetaDataContainer.unique_identifiers

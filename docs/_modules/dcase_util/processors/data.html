@@ -1474,6 +1474,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-12">v0.2.12</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-11">v0.2.11</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-10">v0.2.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-9">v0.2.9</a></li>
@@ -1562,21 +1563,21 @@
 <span></span><span class="ch">#!/usr/bin/env python</span>
 <span class="c1"># -*- coding: utf-8 -*-</span>
 
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">absolute_import</span>
-<span class="kn">from</span> <span class="nn">six</span> <span class="k">import</span> <span class="n">iteritems</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">absolute_import</span>
+<span class="kn">from</span> <span class="nn">six</span> <span class="kn">import</span> <span class="n">iteritems</span>
 <span class="kn">import</span> <span class="nn">numpy</span>
 
-<span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="k">import</span> <span class="n">RepositoryContainer</span>
-<span class="kn">from</span> <span class="nn">dcase_util.processors</span> <span class="k">import</span> <span class="n">Processor</span><span class="p">,</span> <span class="n">ProcessingChainItemType</span><span class="p">,</span> <span class="n">ProcessingChain</span>
-<span class="kn">from</span> <span class="nn">dcase_util.data</span> <span class="k">import</span> <span class="n">Normalizer</span><span class="p">,</span> <span class="n">RepositoryNormalizer</span><span class="p">,</span> <span class="n">Aggregator</span><span class="p">,</span> <span class="n">Sequencer</span><span class="p">,</span> <span class="n">Stacker</span><span class="p">,</span> <span class="n">Masker</span>
+<span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="kn">import</span> <span class="n">RepositoryContainer</span>
+<span class="kn">from</span> <span class="nn">dcase_util.processors</span> <span class="kn">import</span> <span class="n">Processor</span><span class="p">,</span> <span class="n">ProcessingChainItemType</span><span class="p">,</span> <span class="n">ProcessingChain</span>
+<span class="kn">from</span> <span class="nn">dcase_util.data</span> <span class="kn">import</span> <span class="n">Normalizer</span><span class="p">,</span> <span class="n">RepositoryNormalizer</span><span class="p">,</span> <span class="n">Aggregator</span><span class="p">,</span> <span class="n">Sequencer</span><span class="p">,</span> <span class="n">Stacker</span><span class="p">,</span> <span class="n">Masker</span>
 
 
-<div class="viewcode-block" id="AggregationProcessor"><a class="viewcode-back" href="../../../generated/dcase_util.processors.AggregationProcessor.html#dcase_util.processors.AggregationProcessor">[docs]</a><span class="k">class</span> <span class="nc">AggregationProcessor</span><span class="p">(</span><span class="n">Processor</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">AggregationProcessor</span><span class="p">(</span><span class="n">Processor</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Data aggregation processor&quot;&quot;&quot;</span>
     <span class="n">input_type</span> <span class="o">=</span> <span class="n">ProcessingChainItemType</span><span class="o">.</span><span class="n">DATA_CONTAINER</span>  <span class="c1">#: Input data type</span>
     <span class="n">output_type</span> <span class="o">=</span> <span class="n">ProcessingChainItemType</span><span class="o">.</span><span class="n">DATA_CONTAINER</span>  <span class="c1">#: Output data type</span>
 
-<div class="viewcode-block" id="AggregationProcessor.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.processors.AggregationProcessor.html#dcase_util.processors.AggregationProcessor.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">win_length_frames</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">hop_length_frames</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">recipe</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">win_length_frames</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">hop_length_frames</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">recipe</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Constructor</span>
 
 <span class="sd">        Parameters</span>
@@ -1607,9 +1608,9 @@
         <span class="c1"># Run super init to call init of mixins too</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">AggregationProcessor</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">aggregator</span> <span class="o">=</span> <span class="n">Aggregator</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">init_parameters</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">aggregator</span> <span class="o">=</span> <span class="n">Aggregator</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">init_parameters</span><span class="p">)</span>
 
-<div class="viewcode-block" id="AggregationProcessor.process"><a class="viewcode-back" href="../../../generated/dcase_util.processors.AggregationProcessor.process.html#dcase_util.processors.AggregationProcessor.process">[docs]</a>    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">store_processing_chain</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">store_processing_chain</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Process</span>
 
 <span class="sd">        Parameters</span>
@@ -1627,7 +1628,7 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="k">import</span> <span class="n">ContainerMixin</span>
+        <span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="kn">import</span> <span class="n">ContainerMixin</span>
 
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">ContainerMixin</span><span class="p">):</span>
             <span class="c1"># Do processing</span>
@@ -1656,15 +1657,15 @@
                 <span class="n">input_type</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">input_type</span><span class="p">)</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></div></div>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="RepositoryAggregationProcessor"><a class="viewcode-back" href="../../../generated/dcase_util.processors.RepositoryAggregationProcessor.html#dcase_util.processors.RepositoryAggregationProcessor">[docs]</a><span class="k">class</span> <span class="nc">RepositoryAggregationProcessor</span><span class="p">(</span><span class="n">Processor</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">RepositoryAggregationProcessor</span><span class="p">(</span><span class="n">Processor</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Data aggregation processor&quot;&quot;&quot;</span>
     <span class="n">input_type</span> <span class="o">=</span> <span class="n">ProcessingChainItemType</span><span class="o">.</span><span class="n">DATA_REPOSITORY</span>  <span class="c1">#: Input data type</span>
     <span class="n">output_type</span> <span class="o">=</span> <span class="n">ProcessingChainItemType</span><span class="o">.</span><span class="n">DATA_REPOSITORY</span>  <span class="c1">#: Output data type</span>
 
-<div class="viewcode-block" id="RepositoryAggregationProcessor.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.processors.RepositoryAggregationProcessor.html#dcase_util.processors.RepositoryAggregationProcessor.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">win_length_frames</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">hop_length_frames</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">recipe</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">win_length_frames</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">hop_length_frames</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">recipe</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Constructor</span>
 
 <span class="sd">        Parameters</span>
@@ -1695,9 +1696,9 @@
         <span class="c1"># Run super init to call init of mixins too</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">RepositoryAggregationProcessor</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">aggregator</span> <span class="o">=</span> <span class="n">Aggregator</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">init_parameters</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">aggregator</span> <span class="o">=</span> <span class="n">Aggregator</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">init_parameters</span><span class="p">)</span>
 
-<div class="viewcode-block" id="RepositoryAggregationProcessor.process"><a class="viewcode-back" href="../../../generated/dcase_util.processors.RepositoryAggregationProcessor.process.html#dcase_util.processors.RepositoryAggregationProcessor.process">[docs]</a>    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">store_processing_chain</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">store_processing_chain</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Process</span>
 
 <span class="sd">        Parameters</span>
@@ -1747,15 +1748,15 @@
                 <span class="n">input_type</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">input_type</span><span class="p">)</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></div></div>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="SequencingProcessor"><a class="viewcode-back" href="../../../generated/dcase_util.processors.SequencingProcessor.html#dcase_util.processors.SequencingProcessor">[docs]</a><span class="k">class</span> <span class="nc">SequencingProcessor</span><span class="p">(</span><span class="n">Processor</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">SequencingProcessor</span><span class="p">(</span><span class="n">Processor</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Data sequencing processor&quot;&quot;&quot;</span>
     <span class="n">input_type</span> <span class="o">=</span> <span class="n">ProcessingChainItemType</span><span class="o">.</span><span class="n">DATA_CONTAINER</span>  <span class="c1">#: Input data type</span>
     <span class="n">output_type</span> <span class="o">=</span> <span class="n">ProcessingChainItemType</span><span class="o">.</span><span class="n">DATA_CONTAINER</span>  <span class="c1">#: Output data type</span>
 
-<div class="viewcode-block" id="SequencingProcessor.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.processors.SequencingProcessor.html#dcase_util.processors.SequencingProcessor.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sequence_length</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sequence_length</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">padding</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">shift_border</span><span class="o">=</span><span class="s1">&#39;roll&#39;</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
                  <span class="n">required_data_amount_per_segment</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>
@@ -1806,9 +1807,9 @@
         <span class="c1"># Run super init to call init of mixins too</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">SequencingProcessor</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">sequencer</span> <span class="o">=</span> <span class="n">Sequencer</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">init_parameters</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sequencer</span> <span class="o">=</span> <span class="n">Sequencer</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">init_parameters</span><span class="p">)</span>
 
-<div class="viewcode-block" id="SequencingProcessor.process"><a class="viewcode-back" href="../../../generated/dcase_util.processors.SequencingProcessor.process.html#dcase_util.processors.SequencingProcessor.process">[docs]</a>    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">store_processing_chain</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">store_processing_chain</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Process</span>
 
 <span class="sd">        Parameters</span>
@@ -1825,7 +1826,7 @@
 <span class="sd">        DataMatrix3DContainer</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="k">import</span> <span class="n">ContainerMixin</span>
+        <span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="kn">import</span> <span class="n">ContainerMixin</span>
 
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">ContainerMixin</span><span class="p">):</span>
             <span class="c1"># Do processing</span>
@@ -1854,15 +1855,15 @@
                 <span class="n">input_type</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">input_type</span><span class="p">)</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></div></div>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="RepositorySequencingProcessor"><a class="viewcode-back" href="../../../generated/dcase_util.processors.RepositorySequencingProcessor.html#dcase_util.processors.RepositorySequencingProcessor">[docs]</a><span class="k">class</span> <span class="nc">RepositorySequencingProcessor</span><span class="p">(</span><span class="n">Processor</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">RepositorySequencingProcessor</span><span class="p">(</span><span class="n">Processor</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Data sequencing processor&quot;&quot;&quot;</span>
     <span class="n">input_type</span> <span class="o">=</span> <span class="n">ProcessingChainItemType</span><span class="o">.</span><span class="n">DATA_REPOSITORY</span>  <span class="c1">#: Input data type</span>
     <span class="n">output_type</span> <span class="o">=</span> <span class="n">ProcessingChainItemType</span><span class="o">.</span><span class="n">DATA_REPOSITORY</span>  <span class="c1">#: Output data type</span>
 
-<div class="viewcode-block" id="RepositorySequencingProcessor.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.processors.RepositorySequencingProcessor.html#dcase_util.processors.RepositorySequencingProcessor.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sequence_length</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sequence_length</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
                  <span class="n">shift_border</span><span class="o">=</span><span class="s1">&#39;roll&#39;</span><span class="p">,</span> <span class="n">required_data_amount_per_segment</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;__init__ method.</span>
 
@@ -1910,9 +1911,9 @@
         <span class="c1"># Run super init to call init of mixins too</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">RepositorySequencingProcessor</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">sequencer</span> <span class="o">=</span> <span class="n">Sequencer</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">init_parameters</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sequencer</span> <span class="o">=</span> <span class="n">Sequencer</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">init_parameters</span><span class="p">)</span>
 
-<div class="viewcode-block" id="RepositorySequencingProcessor.process"><a class="viewcode-back" href="../../../generated/dcase_util.processors.RepositorySequencingProcessor.process.html#dcase_util.processors.RepositorySequencingProcessor.process">[docs]</a>    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">store_processing_chain</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">store_processing_chain</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Process</span>
 
 <span class="sd">        Parameters</span>
@@ -1962,15 +1963,15 @@
                 <span class="n">input_type</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">input_type</span><span class="p">)</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></div></div>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="NormalizationProcessor"><a class="viewcode-back" href="../../../generated/dcase_util.processors.NormalizationProcessor.html#dcase_util.processors.NormalizationProcessor">[docs]</a><span class="k">class</span> <span class="nc">NormalizationProcessor</span><span class="p">(</span><span class="n">Processor</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">NormalizationProcessor</span><span class="p">(</span><span class="n">Processor</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Data normalizer to accumulate data statistics&quot;&quot;&quot;</span>
     <span class="n">input_type</span> <span class="o">=</span> <span class="n">ProcessingChainItemType</span><span class="o">.</span><span class="n">DATA_CONTAINER</span>  <span class="c1">#: Input data type</span>
     <span class="n">output_type</span> <span class="o">=</span> <span class="n">ProcessingChainItemType</span><span class="o">.</span><span class="n">DATA_CONTAINER</span>  <span class="c1">#: Output data type</span>
 
-<div class="viewcode-block" id="NormalizationProcessor.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.processors.NormalizationProcessor.html#dcase_util.processors.NormalizationProcessor.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">s1</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">s2</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">std</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">normalizer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">s1</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">s2</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">std</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">normalizer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;__init__ method.</span>
 
 <span class="sd">        Parameters</span>
@@ -2035,9 +2036,9 @@
         <span class="c1"># Run super init to call init of mixins too</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">NormalizationProcessor</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">normalizer</span> <span class="o">=</span> <span class="n">Normalizer</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">init_parameters</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">normalizer</span> <span class="o">=</span> <span class="n">Normalizer</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">init_parameters</span><span class="p">)</span>
 
-<div class="viewcode-block" id="NormalizationProcessor.process"><a class="viewcode-back" href="../../../generated/dcase_util.processors.NormalizationProcessor.process.html#dcase_util.processors.NormalizationProcessor.process">[docs]</a>    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">store_processing_chain</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">store_processing_chain</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Normalize feature matrix with internal statistics of the class</span>
 
 <span class="sd">        Parameters</span>
@@ -2056,7 +2057,7 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="k">import</span> <span class="n">ContainerMixin</span>
+        <span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="kn">import</span> <span class="n">ContainerMixin</span>
 
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">ContainerMixin</span><span class="p">):</span>
             <span class="c1"># Do processing</span>
@@ -2085,15 +2086,15 @@
                 <span class="n">input_type</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">input_type</span><span class="p">)</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></div></div>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="RepositoryNormalizationProcessor"><a class="viewcode-back" href="../../../generated/dcase_util.processors.RepositoryNormalizationProcessor.html#dcase_util.processors.RepositoryNormalizationProcessor">[docs]</a><span class="k">class</span> <span class="nc">RepositoryNormalizationProcessor</span><span class="p">(</span><span class="n">Processor</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">RepositoryNormalizationProcessor</span><span class="p">(</span><span class="n">Processor</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Data normalizer to accumulate data statistics inside repository&quot;&quot;&quot;</span>
     <span class="n">input_type</span> <span class="o">=</span> <span class="n">ProcessingChainItemType</span><span class="o">.</span><span class="n">DATA_REPOSITORY</span>
     <span class="n">output_type</span> <span class="o">=</span> <span class="n">ProcessingChainItemType</span><span class="o">.</span><span class="n">DATA_REPOSITORY</span>
 
-<div class="viewcode-block" id="RepositoryNormalizationProcessor.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.processors.RepositoryNormalizationProcessor.html#dcase_util.processors.RepositoryNormalizationProcessor.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">normalizers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">normalizers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;__init__ method.</span>
 
 <span class="sd">        Parameters</span>
@@ -2132,7 +2133,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span> <span class="o">=</span> <span class="n">parameters</span>
 
         <span class="c1"># Run super init to call init of mixins too</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">RepositoryNormalizationProcessor</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">(</span><span class="n">RepositoryNormalizationProcessor</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">__getstate__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">d</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">RepositoryNormalizationProcessor</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__getstate__</span><span class="p">()</span>
@@ -2147,7 +2148,7 @@
         <span class="nb">super</span><span class="p">(</span><span class="n">RepositoryNormalizationProcessor</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__setstate__</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;parameters&#39;</span><span class="p">]</span>
 
-<div class="viewcode-block" id="RepositoryNormalizationProcessor.process"><a class="viewcode-back" href="../../../generated/dcase_util.processors.RepositoryNormalizationProcessor.process.html#dcase_util.processors.RepositoryNormalizationProcessor.process">[docs]</a>    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">store_processing_chain</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">store_processing_chain</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Normalize data repository with internal statistics</span>
 
 <span class="sd">        Parameters</span>
@@ -2211,15 +2212,15 @@
                 <span class="n">input_type</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">input_type</span><span class="p">)</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></div></div>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="StackingProcessor"><a class="viewcode-back" href="../../../generated/dcase_util.processors.StackingProcessor.html#dcase_util.processors.StackingProcessor">[docs]</a><span class="k">class</span> <span class="nc">StackingProcessor</span><span class="p">(</span><span class="n">Processor</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">StackingProcessor</span><span class="p">(</span><span class="n">Processor</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Data stacking processor&quot;&quot;&quot;</span>
     <span class="n">input_type</span> <span class="o">=</span> <span class="n">ProcessingChainItemType</span><span class="o">.</span><span class="n">DATA_REPOSITORY</span>  <span class="c1">#: Input data type</span>
     <span class="n">output_type</span> <span class="o">=</span> <span class="n">ProcessingChainItemType</span><span class="o">.</span><span class="n">DATA_CONTAINER</span>  <span class="c1">#: Output data type</span>
 
-<div class="viewcode-block" id="StackingProcessor.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.processors.StackingProcessor.html#dcase_util.processors.StackingProcessor.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">recipe</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">hop</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">recipe</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">hop</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Constructor</span>
 
 <span class="sd">        Parameters</span>
@@ -2243,7 +2244,7 @@
         <span class="c1"># Run super init to call init of mixins too</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">StackingProcessor</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">stacker</span> <span class="o">=</span> <span class="n">Stacker</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">init_parameters</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stacker</span> <span class="o">=</span> <span class="n">Stacker</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">init_parameters</span><span class="p">)</span>
 
 <div class="viewcode-block" id="StackingProcessor.process"><a class="viewcode-back" href="../../../generated/dcase_util.processors.StackingProcessor.process.html#dcase_util.processors.StackingProcessor.process">[docs]</a>    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">store_processing_chain</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Vector creation based on recipe</span>
@@ -2263,7 +2264,7 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="k">import</span> <span class="n">RepositoryContainer</span>
+        <span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="kn">import</span> <span class="n">RepositoryContainer</span>
 
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">RepositoryContainer</span><span class="p">):</span>
             <span class="c1"># Do processing</span>
@@ -2294,24 +2295,24 @@
                 <span class="n">input_type</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">input_type</span><span class="p">)</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></div></div>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="RepositoryMaskingProcessor"><a class="viewcode-back" href="../../../generated/dcase_util.processors.RepositoryMaskingProcessor.html#dcase_util.processors.RepositoryMaskingProcessor">[docs]</a><span class="k">class</span> <span class="nc">RepositoryMaskingProcessor</span><span class="p">(</span><span class="n">Processor</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">RepositoryMaskingProcessor</span><span class="p">(</span><span class="n">Processor</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Data masking processor&quot;&quot;&quot;</span>
     <span class="n">input_type</span> <span class="o">=</span> <span class="n">ProcessingChainItemType</span><span class="o">.</span><span class="n">DATA_REPOSITORY</span>  <span class="c1">#: Input data type</span>
     <span class="n">output_type</span> <span class="o">=</span> <span class="n">ProcessingChainItemType</span><span class="o">.</span><span class="n">DATA_REPOSITORY</span>  <span class="c1">#: Output data type</span>
 
-<div class="viewcode-block" id="RepositoryMaskingProcessor.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.processors.RepositoryMaskingProcessor.html#dcase_util.processors.RepositoryMaskingProcessor.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Constructor</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># Run super init to call init of mixins too</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">RepositoryMaskingProcessor</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">masker</span> <span class="o">=</span> <span class="n">Masker</span><span class="p">()</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">masker</span> <span class="o">=</span> <span class="n">Masker</span><span class="p">()</span>
 
-<div class="viewcode-block" id="RepositoryMaskingProcessor.process"><a class="viewcode-back" href="../../../generated/dcase_util.processors.RepositoryMaskingProcessor.process.html#dcase_util.processors.RepositoryMaskingProcessor.process">[docs]</a>    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">mask_events</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">store_processing_chain</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">mask_events</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">store_processing_chain</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Vector creation based on recipe</span>
 
 <span class="sd">        Parameters</span>
@@ -2333,7 +2334,7 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="k">import</span> <span class="n">RepositoryContainer</span>
+        <span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="kn">import</span> <span class="n">RepositoryContainer</span>
 
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">RepositoryContainer</span><span class="p">):</span>
             <span class="c1"># Do processing</span>
@@ -2357,15 +2358,15 @@
                 <span class="n">input_type</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">input_type</span><span class="p">)</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></div></div>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="DataShapingProcessor"><a class="viewcode-back" href="../../../generated/dcase_util.processors.DataShapingProcessor.html#dcase_util.processors.DataShapingProcessor">[docs]</a><span class="k">class</span> <span class="nc">DataShapingProcessor</span><span class="p">(</span><span class="n">Processor</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">DataShapingProcessor</span><span class="p">(</span><span class="n">Processor</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Data shaping processor&quot;&quot;&quot;</span>
     <span class="n">input_type</span> <span class="o">=</span> <span class="n">ProcessingChainItemType</span><span class="o">.</span><span class="n">DATA_CONTAINER</span>  <span class="c1">#: Input data type</span>
     <span class="n">output_type</span> <span class="o">=</span> <span class="n">ProcessingChainItemType</span><span class="o">.</span><span class="n">DATA_CONTAINER</span>  <span class="c1">#: Output data type</span>
 
-<div class="viewcode-block" id="DataShapingProcessor.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.processors.DataShapingProcessor.html#dcase_util.processors.DataShapingProcessor.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">data_axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sequence_axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">channel_axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">data_axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sequence_axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">channel_axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Constructor</span>
 
 <span class="sd">        Parameters</span>
@@ -2428,9 +2429,9 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">channel_axis</span> <span class="o">=</span> <span class="n">channel_axis</span>
 
         <span class="c1"># Run super init to call init of mixins too</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">DataShapingProcessor</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">(</span><span class="n">DataShapingProcessor</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-<div class="viewcode-block" id="DataShapingProcessor.process"><a class="viewcode-back" href="../../../generated/dcase_util.processors.DataShapingProcessor.process.html#dcase_util.processors.DataShapingProcessor.process">[docs]</a>    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">store_processing_chain</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">store_processing_chain</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Process data</span>
 
 <span class="sd">        Parameters</span>
@@ -2448,7 +2449,7 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="k">import</span> <span class="n">DataContainer</span><span class="p">,</span> <span class="n">DataMatrix2DContainer</span><span class="p">,</span> <span class="n">DataMatrix3DContainer</span><span class="p">,</span> <span class="n">DataMatrix4DContainer</span>
+        <span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="kn">import</span> <span class="n">DataContainer</span><span class="p">,</span> <span class="n">DataMatrix2DContainer</span><span class="p">,</span> <span class="n">DataMatrix3DContainer</span><span class="p">,</span> <span class="n">DataMatrix4DContainer</span>
 
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">DataContainer</span><span class="p">):</span>
             <span class="c1"># Do processing</span>
@@ -2495,15 +2496,15 @@
             <span class="p">)</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></div></div>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="RepositoryToMatrixProcessor"><a class="viewcode-back" href="../../../generated/dcase_util.processors.RepositoryToMatrixProcessor.html#dcase_util.processors.RepositoryToMatrixProcessor">[docs]</a><span class="k">class</span> <span class="nc">RepositoryToMatrixProcessor</span><span class="p">(</span><span class="n">Processor</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">RepositoryToMatrixProcessor</span><span class="p">(</span><span class="n">Processor</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Repository converting processor&quot;&quot;&quot;</span>
     <span class="n">input_type</span> <span class="o">=</span> <span class="n">ProcessingChainItemType</span><span class="o">.</span><span class="n">DATA_REPOSITORY</span>  <span class="c1">#: Input data type</span>
     <span class="n">output_type</span> <span class="o">=</span> <span class="n">ProcessingChainItemType</span><span class="o">.</span><span class="n">DATA_CONTAINER</span>  <span class="c1">#: Output data type</span>
 
-<div class="viewcode-block" id="RepositoryToMatrixProcessor.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.processors.RepositoryToMatrixProcessor.html#dcase_util.processors.RepositoryToMatrixProcessor.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">expanded_dimension</span><span class="o">=</span><span class="s1">&#39;last&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">expanded_dimension</span><span class="o">=</span><span class="s1">&#39;last&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Constructor</span>
 
 <span class="sd">        Parameters</span>
@@ -2525,9 +2526,9 @@
         <span class="nb">super</span><span class="p">(</span><span class="n">RepositoryToMatrixProcessor</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="n">label</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">expanded_dimension</span> <span class="o">=</span> <span class="n">expanded_dimension</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">expanded_dimension</span> <span class="o">=</span> <span class="n">expanded_dimension</span>
 
-<div class="viewcode-block" id="RepositoryToMatrixProcessor.process"><a class="viewcode-back" href="../../../generated/dcase_util.processors.RepositoryToMatrixProcessor.process.html#dcase_util.processors.RepositoryToMatrixProcessor.process">[docs]</a>    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">store_processing_chain</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">store_processing_chain</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Process data</span>
 
 <span class="sd">        Parameters</span>
@@ -2544,7 +2545,7 @@
         <span class="k">if</span> <span class="n">label</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">label</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">label</span>
 
-        <span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="k">import</span> <span class="n">DataRepository</span><span class="p">,</span> <span class="n">DataMatrix3DContainer</span><span class="p">,</span>  <span class="n">DataMatrix4DContainer</span>
+        <span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="kn">import</span> <span class="n">DataRepository</span><span class="p">,</span> <span class="n">DataMatrix3DContainer</span><span class="p">,</span>  <span class="n">DataMatrix4DContainer</span>
 
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">DataRepository</span><span class="p">):</span>
             <span class="c1"># Do processing</span>
@@ -2639,7 +2640,7 @@
             <span class="p">)</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></div></div>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
 </pre></div>
 

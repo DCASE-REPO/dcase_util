@@ -3,4 +3,4 @@ dcase\_util.containers.AudioContainer.focus\_channel
 
 .. currentmodule:: dcase_util.containers
 
-.. autoattribute:: AudioContainer.focus_channel
+.. autoproperty:: AudioContainer.focus_channel

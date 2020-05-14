@@ -3,4 +3,4 @@ dcase\_util.containers.DataArrayContainer.shape
 
 .. currentmodule:: dcase_util.containers
 
-.. autoattribute:: DataArrayContainer.shape
+.. autoproperty:: DataArrayContainer.shape

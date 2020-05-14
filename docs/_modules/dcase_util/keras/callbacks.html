@@ -1474,6 +1474,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-12">v0.2.12</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-11">v0.2.11</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-10">v0.2.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-9">v0.2.9</a></li>
@@ -1561,22 +1562,22 @@
   <h1>Source code for dcase_util.keras.callbacks</h1><div class="highlight"><pre>
 <span></span><span class="c1"># !/usr/bin/env python</span>
 <span class="c1"># -*- coding: utf-8 -*-</span>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">absolute_import</span>
-<span class="kn">from</span> <span class="nn">six</span> <span class="k">import</span> <span class="n">iteritems</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">absolute_import</span>
+<span class="kn">from</span> <span class="nn">six</span> <span class="kn">import</span> <span class="n">iteritems</span>
 <span class="kn">import</span> <span class="nn">numpy</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">collections</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">datetime</span>
 
-<span class="kn">from</span> <span class="nn">dcase_util.ui</span> <span class="k">import</span> <span class="n">FancyStringifier</span><span class="p">,</span> <span class="n">FancyHTMLStringifier</span><span class="p">,</span> <span class="n">FancyLogger</span><span class="p">,</span> <span class="n">FancyPrinter</span><span class="p">,</span> <span class="n">FancyHTMLPrinter</span>
-<span class="kn">from</span> <span class="nn">dcase_util.utils</span> <span class="k">import</span> <span class="n">Timer</span><span class="p">,</span> <span class="n">setup_logging</span><span class="p">,</span> <span class="n">is_jupyter</span>
+<span class="kn">from</span> <span class="nn">dcase_util.ui</span> <span class="kn">import</span> <span class="n">FancyStringifier</span><span class="p">,</span> <span class="n">FancyHTMLStringifier</span><span class="p">,</span> <span class="n">FancyLogger</span><span class="p">,</span> <span class="n">FancyPrinter</span><span class="p">,</span> <span class="n">FancyHTMLPrinter</span>
+<span class="kn">from</span> <span class="nn">dcase_util.utils</span> <span class="kn">import</span> <span class="n">Timer</span><span class="p">,</span> <span class="n">setup_logging</span><span class="p">,</span> <span class="n">is_jupyter</span>
 
 
 <div class="viewcode-block" id="BaseCallback"><a class="viewcode-back" href="../../../generated/dcase_util.keras.BaseCallback.html#dcase_util.keras.BaseCallback">[docs]</a><span class="k">class</span> <span class="nc">BaseCallback</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Base class for Callbacks</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="BaseCallback.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.keras.BaseCallback.html#dcase_util.keras.BaseCallback.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">manual_update</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">external_metric_labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseCallback.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.keras.BaseCallback.html#dcase_util.keras.BaseCallback.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">manual_update</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">external_metric_labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">params</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="kc">None</span>
 
@@ -1663,7 +1664,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="ProgressLoggerCallback.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.keras.ProgressLoggerCallback.html#dcase_util.keras.ProgressLoggerCallback.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="ProgressLoggerCallback.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.keras.ProgressLoggerCallback.html#dcase_util.keras.ProgressLoggerCallback.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">manual_update</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">external_metric_labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">metric</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">manual_update_interval</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">output_type</span><span class="o">=</span><span class="s1">&#39;logging&#39;</span><span class="p">,</span> <span class="n">show_timing</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                  <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -2004,7 +2005,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="ProgressPlotterCallback.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.keras.ProgressPlotterCallback.html#dcase_util.keras.ProgressPlotterCallback.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="ProgressPlotterCallback.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.keras.ProgressPlotterCallback.html#dcase_util.keras.ProgressPlotterCallback.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">epochs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">manual_update</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">external_metric_labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">plotting_rate</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">interactive</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">focus_span</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
                  <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -2463,7 +2464,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="StopperCallback.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.keras.StopperCallback.html#dcase_util.keras.StopperCallback.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="StopperCallback.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.keras.StopperCallback.html#dcase_util.keras.StopperCallback.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">epochs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">manual_update</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                  <span class="n">monitor</span><span class="o">=</span><span class="s1">&#39;val_loss&#39;</span><span class="p">,</span> <span class="n">patience</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">min_delta</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">initial_delay</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
                  <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -2625,7 +2626,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="StasherCallback.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.keras.StasherCallback.html#dcase_util.keras.StasherCallback.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="StasherCallback.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.keras.StasherCallback.html#dcase_util.keras.StasherCallback.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">epochs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">manual_update</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                  <span class="n">monitor</span><span class="o">=</span><span class="s1">&#39;val_loss&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">initial_delay</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">save_weights</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -2875,7 +2876,7 @@
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;html&#39;</span><span class="p">:</span>
-            <span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="k">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">HTML</span>
+            <span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">HTML</span>
             <span class="n">display</span><span class="p">(</span>
                 <span class="n">HTML</span><span class="p">(</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">to_html</span><span class="p">(</span><span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="p">)</span>

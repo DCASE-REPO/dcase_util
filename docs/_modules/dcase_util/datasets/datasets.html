@@ -1474,6 +1474,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-12">v0.2.12</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-11">v0.2.11</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-10">v0.2.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-9">v0.2.9</a></li>
@@ -1562,8 +1563,8 @@
 <span></span><span class="ch">#!/usr/bin/env python</span>
 <span class="c1"># -*- coding: utf-8 -*-</span>
 
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">absolute_import</span>
-<span class="kn">from</span> <span class="nn">six</span> <span class="k">import</span> <span class="n">iteritems</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">absolute_import</span>
+<span class="kn">from</span> <span class="nn">six</span> <span class="kn">import</span> <span class="n">iteritems</span>
 
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">os</span>
@@ -1574,13 +1575,13 @@
 <span class="kn">import</span> <span class="nn">copy</span>
 <span class="kn">import</span> <span class="nn">importlib</span>
 
-<span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="k">import</span> <span class="n">DictContainer</span><span class="p">,</span> <span class="n">ListDictContainer</span><span class="p">,</span> <span class="n">TextContainer</span><span class="p">,</span> <span class="n">MetaDataContainer</span>
-<span class="kn">from</span> <span class="nn">dcase_util.files</span> <span class="k">import</span> <span class="n">RemoteFile</span><span class="p">,</span> <span class="n">RemotePackage</span><span class="p">,</span> <span class="n">File</span><span class="p">,</span> <span class="n">Package</span>
-<span class="kn">from</span> <span class="nn">dcase_util.utils</span> <span class="k">import</span> <span class="n">get_byte_string</span><span class="p">,</span> <span class="n">setup_logging</span><span class="p">,</span> <span class="n">Path</span><span class="p">,</span> <span class="n">is_jupyter</span><span class="p">,</span> <span class="n">get_parameter_hash</span><span class="p">,</span> <span class="n">get_class_inheritors</span>
-<span class="kn">from</span> <span class="nn">dcase_util.ui</span> <span class="k">import</span> <span class="n">FancyLogger</span><span class="p">,</span> <span class="n">FancyStringifier</span><span class="p">,</span> <span class="n">FancyHTMLStringifier</span>
+<span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="kn">import</span> <span class="n">DictContainer</span><span class="p">,</span> <span class="n">ListDictContainer</span><span class="p">,</span> <span class="n">TextContainer</span><span class="p">,</span> <span class="n">MetaDataContainer</span>
+<span class="kn">from</span> <span class="nn">dcase_util.files</span> <span class="kn">import</span> <span class="n">RemoteFile</span><span class="p">,</span> <span class="n">RemotePackage</span><span class="p">,</span> <span class="n">File</span><span class="p">,</span> <span class="n">Package</span>
+<span class="kn">from</span> <span class="nn">dcase_util.utils</span> <span class="kn">import</span> <span class="n">get_byte_string</span><span class="p">,</span> <span class="n">setup_logging</span><span class="p">,</span> <span class="n">Path</span><span class="p">,</span> <span class="n">is_jupyter</span><span class="p">,</span> <span class="n">get_parameter_hash</span><span class="p">,</span> <span class="n">get_class_inheritors</span>
+<span class="kn">from</span> <span class="nn">dcase_util.ui</span> <span class="kn">import</span> <span class="n">FancyLogger</span><span class="p">,</span> <span class="n">FancyStringifier</span><span class="p">,</span> <span class="n">FancyHTMLStringifier</span>
 
 
-<div class="viewcode-block" id="dataset_list"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.dataset_list.html#dcase_util.datasets.dataset_list">[docs]</a><span class="k">def</span> <span class="nf">dataset_list</span><span class="p">(</span><span class="n">data_path</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">dataset_list</span><span class="p">(</span><span class="n">data_path</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;List of datasets available</span>
 
 <span class="sd">    Parameters</span>
@@ -1718,17 +1719,17 @@
 
     <span class="k">if</span> <span class="n">display</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">is_jupyter</span><span class="p">():</span>
-            <span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="k">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">HTML</span>
+            <span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">HTML</span>
             <span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">output</span><span class="p">))</span>
 
         <span class="k">else</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
 
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">output</span></div>
+        <span class="k">return</span> <span class="n">output</span>
 
 
-<div class="viewcode-block" id="dataset_factory"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.dataset_factory.html#dcase_util.datasets.dataset_factory">[docs]</a><span class="k">def</span> <span class="nf">dataset_factory</span><span class="p">(</span><span class="n">dataset_class_name</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">dataset_factory</span><span class="p">(</span><span class="n">dataset_class_name</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Factory to get correct dataset class based on name</span>
 
 <span class="sd">    Parameters</span>
@@ -1778,10 +1779,10 @@
         <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
         <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">dataset_class</span><span class="p">(</span><span class="o">**</span><span class="nb">dict</span><span class="p">(</span><span class="n">kwargs</span><span class="p">))</span></div>
+    <span class="k">return</span> <span class="n">dataset_class</span><span class="p">(</span><span class="o">**</span><span class="nb">dict</span><span class="p">(</span><span class="n">kwargs</span><span class="p">))</span>
 
 
-<div class="viewcode-block" id="dataset_exists"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.dataset_exists.html#dcase_util.datasets.dataset_exists">[docs]</a><span class="k">def</span> <span class="nf">dataset_exists</span><span class="p">(</span><span class="n">dataset_class_name</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">dataset_exists</span><span class="p">(</span><span class="n">dataset_class_name</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Check dataset class based on name</span>
 
 <span class="sd">    Parameters</span>
@@ -1803,17 +1804,17 @@
         <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span> <span class="o">==</span> <span class="n">dataset_class_name</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">True</span>
 
-    <span class="k">return</span> <span class="kc">False</span></div>
+    <span class="k">return</span> <span class="kc">False</span>
 
 
-<div class="viewcode-block" id="Dataset"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.html#dcase_util.datasets.Dataset">[docs]</a><span class="k">class</span> <span class="nc">Dataset</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">Dataset</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Dataset base class</span>
 
 <span class="sd">    The specific dataset classes are inherited from this class, and only needed methods are reimplemented.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Dataset.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.html#dcase_util.datasets.Dataset.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">name</span><span class="o">=</span><span class="s1">&#39;dataset&#39;</span><span class="p">,</span>
                  <span class="n">storage_name</span><span class="o">=</span><span class="s1">&#39;dataset&#39;</span><span class="p">,</span>
                  <span class="n">data_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -2107,7 +2108,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">check_meta</span> <span class="o">=</span> <span class="kc">False</span>
 
         <span class="c1"># Load meta and cross-validation data in</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">load</span><span class="p">()</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">logger</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -2117,12 +2118,12 @@
 
         <span class="k">return</span> <span class="n">logger</span>
 
-<div class="viewcode-block" id="Dataset.load"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.load.html#dcase_util.datasets.Dataset.load">[docs]</a>    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Load dataset meta data and cross-validation sets into the container.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">load_meta</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">load_crossvalidation_data</span><span class="p">()</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">load_crossvalidation_data</span><span class="p">()</span>
 
-<div class="viewcode-block" id="Dataset.load_meta"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.load_meta.html#dcase_util.datasets.Dataset.load_meta">[docs]</a>    <span class="k">def</span> <span class="nf">load_meta</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">load_meta</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Load meta data into the container.&quot;&quot;&quot;</span>
         <span class="c1"># Initialize meta container</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">meta_container</span> <span class="o">=</span> <span class="n">MetaDataContainer</span><span class="p">(</span>
@@ -2137,9 +2138,9 @@
             <span class="c1"># Mark reference data being present</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">reference_data_present</span> <span class="o">=</span> <span class="kc">True</span>
 
-        <span class="k">return</span> <span class="bp">self</span></div>
+        <span class="k">return</span> <span class="bp">self</span>
 
-<div class="viewcode-block" id="Dataset.load_crossvalidation_data"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.load_crossvalidation_data.html#dcase_util.datasets.Dataset.load_crossvalidation_data">[docs]</a>    <span class="k">def</span> <span class="nf">load_crossvalidation_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">load_crossvalidation_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Load cross-validation into the container.</span>
 
 <span class="sd">        Returns</span>
@@ -2263,9 +2264,9 @@
                 <span class="c1"># Initialize data</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">crossvalidation_data</span><span class="p">[</span><span class="s1">&#39;evaluate&#39;</span><span class="p">][</span><span class="n">fold</span><span class="p">]</span> <span class="o">=</span> <span class="n">MetaDataContainer</span><span class="p">()</span>
 
-        <span class="k">return</span> <span class="bp">self</span></div>
+        <span class="k">return</span> <span class="bp">self</span>
 
-    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Getting meta data item</span>
 
 <span class="sd">        Parameters</span>
@@ -2286,7 +2287,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">None</span>
 
-    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Iterator for meta data items</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -2300,7 +2301,7 @@
             <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
             <span class="n">meta</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 
-<div class="viewcode-block" id="Dataset.initialize"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.initialize.html#dcase_util.datasets.Dataset.initialize">[docs]</a>    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Initialize the dataset, download, extract files and prepare the dataset for the usage.</span>
 
 <span class="sd">        Returns</span>
@@ -2333,9 +2334,9 @@
             <span class="c1"># Save new filelist hash to monitor change in the dataset.</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_save_filelist_hash</span><span class="p">()</span>
 
-        <span class="k">return</span> <span class="bp">self</span></div>
+        <span class="k">return</span> <span class="bp">self</span>
 
-<div class="viewcode-block" id="Dataset.show"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.show.html#dcase_util.datasets.Dataset.show">[docs]</a>    <span class="k">def</span> <span class="nf">show</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">show_meta</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">show</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">show_meta</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Show dataset information.</span>
 
 <span class="sd">        Parameters</span>
@@ -2361,9 +2362,9 @@
                 <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span>
                 <span class="n">show_data</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                 <span class="n">show_stats</span><span class="o">=</span><span class="kc">True</span>
-            <span class="p">)</span></div>
+            <span class="p">)</span>
 
-<div class="viewcode-block" id="Dataset.log"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.log.html#dcase_util.datasets.Dataset.log">[docs]</a>    <span class="k">def</span> <span class="nf">log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">show_meta</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">show_meta</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Log dataset information.&quot;&quot;&quot;</span>
         <span class="n">DictContainer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset_meta</span><span class="p">)</span><span class="o">.</span><span class="n">log</span><span class="p">()</span>
 
@@ -2371,7 +2372,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">meta_container</span><span class="o">.</span><span class="n">log</span><span class="p">(</span>
                 <span class="n">show_data</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                 <span class="n">show_stats</span><span class="o">=</span><span class="kc">True</span>
-            <span class="p">)</span></div>
+            <span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">audio_files</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -2513,7 +2514,7 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">crossvalidation_folds</span>
 
-<div class="viewcode-block" id="Dataset.scene_labels"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.scene_labels.html#dcase_util.datasets.Dataset.scene_labels">[docs]</a>    <span class="k">def</span> <span class="nf">scene_labels</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">scene_labels</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;List of unique scene labels in the meta data.</span>
 
 <span class="sd">        Returns</span>
@@ -2523,9 +2524,9 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta_container</span><span class="o">.</span><span class="n">unique_scene_labels</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta_container</span><span class="o">.</span><span class="n">unique_scene_labels</span>
 
-<div class="viewcode-block" id="Dataset.scene_label_count"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.scene_label_count.html#dcase_util.datasets.Dataset.scene_label_count">[docs]</a>    <span class="k">def</span> <span class="nf">scene_label_count</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">scene_label_count</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Number of unique scene labels in the meta data.</span>
 
 <span class="sd">        Returns</span>
@@ -2535,9 +2536,9 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta_container</span><span class="o">.</span><span class="n">scene_label_count</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta_container</span><span class="o">.</span><span class="n">scene_label_count</span>
 
-<div class="viewcode-block" id="Dataset.event_labels"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.event_labels.html#dcase_util.datasets.Dataset.event_labels">[docs]</a>    <span class="k">def</span> <span class="nf">event_labels</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">event_labels</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;List of unique event labels in the meta data.</span>
 
 <span class="sd">        Returns</span>
@@ -2547,9 +2548,9 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta_container</span><span class="o">.</span><span class="n">unique_event_labels</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta_container</span><span class="o">.</span><span class="n">unique_event_labels</span>
 
-<div class="viewcode-block" id="Dataset.event_label_count"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.event_label_count.html#dcase_util.datasets.Dataset.event_label_count">[docs]</a>    <span class="k">def</span> <span class="nf">event_label_count</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">event_label_count</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Number of unique event labels in the meta data.</span>
 
 <span class="sd">        Returns</span>
@@ -2559,9 +2560,9 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta_container</span><span class="o">.</span><span class="n">event_label_count</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta_container</span><span class="o">.</span><span class="n">event_label_count</span>
 
-<div class="viewcode-block" id="Dataset.tags"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.tags.html#dcase_util.datasets.Dataset.tags">[docs]</a>    <span class="k">def</span> <span class="nf">tags</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">tags</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;List of unique audio tags in the meta data.</span>
 
 <span class="sd">        Returns</span>
@@ -2571,9 +2572,9 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta_container</span><span class="o">.</span><span class="n">unique_tags</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta_container</span><span class="o">.</span><span class="n">unique_tags</span>
 
-<div class="viewcode-block" id="Dataset.tag_count"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.tag_count.html#dcase_util.datasets.Dataset.tag_count">[docs]</a>    <span class="k">def</span> <span class="nf">tag_count</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">tag_count</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Number of unique audio tags in the meta data.</span>
 
 <span class="sd">        Returns</span>
@@ -2583,9 +2584,9 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tags</span><span class="p">())</span></div>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tags</span><span class="p">())</span>
 
-<div class="viewcode-block" id="Dataset.debug_packages"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.debug_packages.html#dcase_util.datasets.Dataset.debug_packages">[docs]</a>    <span class="k">def</span> <span class="nf">debug_packages</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">local_check</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">remote_check</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">debug_packages</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">local_check</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">remote_check</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Debug remote packages associated to the dataset.</span>
 <span class="sd">        Use this to check remote file size and md5 hash when developing dataset class.</span>
 
@@ -2724,9 +2725,9 @@
 
             <span class="n">log</span><span class="o">.</span><span class="n">line</span><span class="p">()</span>
 
-        <span class="k">return</span> <span class="bp">self</span></div>
+        <span class="k">return</span> <span class="bp">self</span>
 
-<div class="viewcode-block" id="Dataset.download_packages"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.download_packages.html#dcase_util.datasets.Dataset.download_packages">[docs]</a>    <span class="k">def</span> <span class="nf">download_packages</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">download_packages</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Download dataset packages over the internet to the local path</span>
 
 <span class="sd">        Raises</span>
@@ -2741,9 +2742,9 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="n">is_jupyter</span><span class="p">():</span>
-            <span class="kn">from</span> <span class="nn">tqdm</span> <span class="k">import</span> <span class="n">tqdm_notebook</span> <span class="k">as</span> <span class="n">tqdm</span>
+            <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm_notebook</span> <span class="k">as</span> <span class="n">tqdm</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="kn">from</span> <span class="nn">tqdm</span> <span class="k">import</span> <span class="n">tqdm</span>
+            <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
 
         <span class="c1"># Create the dataset path if does not exist</span>
         <span class="n">Path</span><span class="p">()</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">local_path</span><span class="p">)</span>
@@ -2766,9 +2767,9 @@
                 <span class="p">):</span>
                     <span class="n">remote_file</span><span class="o">.</span><span class="n">download</span><span class="p">()</span>
 
-        <span class="k">return</span> <span class="bp">self</span></div>
+        <span class="k">return</span> <span class="bp">self</span>
 
-<div class="viewcode-block" id="Dataset.extract_packages"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.extract_packages.html#dcase_util.datasets.Dataset.extract_packages">[docs]</a>    <span class="k">def</span> <span class="nf">extract_packages</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">extract_packages</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Extract the dataset packages</span>
 
 <span class="sd">        Raises</span>
@@ -2783,9 +2784,9 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="n">is_jupyter</span><span class="p">():</span>
-            <span class="kn">from</span> <span class="nn">tqdm</span> <span class="k">import</span> <span class="n">tqdm_notebook</span> <span class="k">as</span> <span class="n">tqdm</span>
+            <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm_notebook</span> <span class="k">as</span> <span class="n">tqdm</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="kn">from</span> <span class="nn">tqdm</span> <span class="k">import</span> <span class="n">tqdm</span>
+            <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
 
         <span class="n">item_progress</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">package_list</span><span class="p">,</span>
@@ -2816,9 +2817,9 @@
                         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
                         <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="bp">self</span></div>
+        <span class="k">return</span> <span class="bp">self</span>
 
-<div class="viewcode-block" id="Dataset.prepare"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.prepare.html#dcase_util.datasets.Dataset.prepare">[docs]</a>    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Prepare dataset for the usage.</span>
 
 <span class="sd">        Returns</span>
@@ -2827,9 +2828,9 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">return</span> <span class="bp">self</span></div>
+        <span class="k">return</span> <span class="bp">self</span>
 
-<div class="viewcode-block" id="Dataset.check_filelist"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.check_filelist.html#dcase_util.datasets.Dataset.check_filelist">[docs]</a>    <span class="k">def</span> <span class="nf">check_filelist</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">check_filelist</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Generates hash from file list and check does it matches with one saved in filelist.hash.</span>
 <span class="sd">        If some files have been deleted or added, checking will result False.</span>
 
@@ -2856,7 +2857,7 @@
                 <span class="k">return</span> <span class="kc">True</span>
 
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">False</span></div>
+            <span class="k">return</span> <span class="kc">False</span>
 
     <span class="k">def</span> <span class="nf">check_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Checking meta data and cross-validation setup.</span>
@@ -3034,7 +3035,7 @@
 
         <span class="k">return</span> <span class="bp">self</span>
 
-<div class="viewcode-block" id="Dataset.process_meta_item"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.process_meta_item.html#dcase_util.datasets.Dataset.process_meta_item">[docs]</a>    <span class="k">def</span> <span class="nf">process_meta_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="n">absolute_path</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">process_meta_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="n">absolute_path</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Process single meta data item</span>
 
 <span class="sd">        Parameters</span>
@@ -3055,9 +3056,9 @@
 
         <span class="k">else</span><span class="p">:</span>
             <span class="c1"># Make sure filename has relative path</span>
-            <span class="n">item</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">absolute_to_relative_path</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span></div>
+            <span class="n">item</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">absolute_to_relative_path</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Dataset.evaluation_setup_filename"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.evaluation_setup_filename.html#dcase_util.datasets.Dataset.evaluation_setup_filename">[docs]</a>    <span class="k">def</span> <span class="nf">evaluation_setup_filename</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">setup_part</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="n">fold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">scene_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">file_extension</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">evaluation_setup_filename</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">setup_part</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="n">fold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">scene_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">file_extension</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Evaluation setup filename generation.</span>
 
 <span class="sd">        Parameters</span>
@@ -3121,9 +3122,9 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">evaluation_setup_path</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">parts</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="n">file_extension</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">evaluation_setup_path</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">parts</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="n">file_extension</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Dataset.train"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.train.html#dcase_util.datasets.Dataset.train">[docs]</a>    <span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">absolute_paths</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">absolute_paths</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;List of training items.</span>
 
 <span class="sd">        Parameters</span>
@@ -3157,9 +3158,9 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">item</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">absolute_to_relative_path</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">data</span></div>
+        <span class="k">return</span> <span class="n">data</span>
 
-<div class="viewcode-block" id="Dataset.test"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.test.html#dcase_util.datasets.Dataset.test">[docs]</a>    <span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">absolute_paths</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">absolute_paths</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;List of testing items.</span>
 
 <span class="sd">        Parameters</span>
@@ -3193,9 +3194,9 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">item</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">absolute_to_relative_path</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">data</span></div>
+        <span class="k">return</span> <span class="n">data</span>
 
-<div class="viewcode-block" id="Dataset.eval"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.eval.html#dcase_util.datasets.Dataset.eval">[docs]</a>    <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">absolute_paths</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">absolute_paths</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;List of evaluation items.</span>
 
 <span class="sd">        Parameters</span>
@@ -3229,9 +3230,9 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">item</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">absolute_to_relative_path</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">data</span></div>
+        <span class="k">return</span> <span class="n">data</span>
 
-<div class="viewcode-block" id="Dataset.train_files"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.train_files.html#dcase_util.datasets.Dataset.train_files">[docs]</a>    <span class="k">def</span> <span class="nf">train_files</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">absolute_paths</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">train_files</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">absolute_paths</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;List of training files.</span>
 
 <span class="sd">        Parameters</span>
@@ -3252,9 +3253,9 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">fold</span><span class="o">=</span><span class="n">fold</span><span class="p">,</span> <span class="n">absolute_paths</span><span class="o">=</span><span class="n">absolute_paths</span><span class="p">)</span><span class="o">.</span><span class="n">unique_files</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">fold</span><span class="o">=</span><span class="n">fold</span><span class="p">,</span> <span class="n">absolute_paths</span><span class="o">=</span><span class="n">absolute_paths</span><span class="p">)</span><span class="o">.</span><span class="n">unique_files</span>
 
-<div class="viewcode-block" id="Dataset.test_files"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.test_files.html#dcase_util.datasets.Dataset.test_files">[docs]</a>    <span class="k">def</span> <span class="nf">test_files</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">absolute_paths</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">test_files</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">absolute_paths</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;List of testing files.</span>
 
 <span class="sd">        Parameters</span>
@@ -3275,9 +3276,9 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="n">fold</span><span class="o">=</span><span class="n">fold</span><span class="p">,</span> <span class="n">absolute_paths</span><span class="o">=</span><span class="n">absolute_paths</span><span class="p">)</span><span class="o">.</span><span class="n">unique_files</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="n">fold</span><span class="o">=</span><span class="n">fold</span><span class="p">,</span> <span class="n">absolute_paths</span><span class="o">=</span><span class="n">absolute_paths</span><span class="p">)</span><span class="o">.</span><span class="n">unique_files</span>
 
-<div class="viewcode-block" id="Dataset.eval_files"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.eval_files.html#dcase_util.datasets.Dataset.eval_files">[docs]</a>    <span class="k">def</span> <span class="nf">eval_files</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">absolute_paths</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">eval_files</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">absolute_paths</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;List of evaluation files.</span>
 
 <span class="sd">        Parameters</span>
@@ -3298,9 +3299,9 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">fold</span><span class="o">=</span><span class="n">fold</span><span class="p">,</span> <span class="n">absolute_paths</span><span class="o">=</span><span class="n">absolute_paths</span><span class="p">)</span><span class="o">.</span><span class="n">unique_files</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">fold</span><span class="o">=</span><span class="n">fold</span><span class="p">,</span> <span class="n">absolute_paths</span><span class="o">=</span><span class="n">absolute_paths</span><span class="p">)</span><span class="o">.</span><span class="n">unique_files</span>
 
-<div class="viewcode-block" id="Dataset.validation_split"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.validation_split.html#dcase_util.datasets.Dataset.validation_split">[docs]</a>    <span class="k">def</span> <span class="nf">validation_split</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+    <span class="k">def</span> <span class="nf">validation_split</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                          <span class="n">fold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">training_meta</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                          <span class="n">split_type</span><span class="o">=</span><span class="s1">&#39;balanced&#39;</span><span class="p">,</span> <span class="n">validation_amount</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                          <span class="n">seed</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">scene_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">iterations</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
@@ -3386,9 +3387,9 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">training_files</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">training_meta</span><span class="o">.</span><span class="n">unique_files</span><span class="p">)</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">validation_files</span><span class="p">)))</span>
 
-        <span class="k">return</span> <span class="n">training_files</span><span class="p">,</span> <span class="n">validation_files</span></div>
+        <span class="k">return</span> <span class="n">training_files</span><span class="p">,</span> <span class="n">validation_files</span>
 
-<div class="viewcode-block" id="Dataset.validation_files_dataset"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.validation_files_dataset.html#dcase_util.datasets.Dataset.validation_files_dataset">[docs]</a>    <span class="k">def</span> <span class="nf">validation_files_dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">validation_files_dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;List of validation files delivered by the dataset.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -3397,9 +3398,9 @@
         <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></div>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Dataset.validation_files_random"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.validation_files_random.html#dcase_util.datasets.Dataset.validation_files_random">[docs]</a>    <span class="k">def</span> <span class="nf">validation_files_random</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+    <span class="k">def</span> <span class="nf">validation_files_random</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                                 <span class="n">fold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">training_meta</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                                 <span class="n">validation_amount</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                                 <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -3472,9 +3473,9 @@
                 <span class="n">indent</span><span class="o">=</span><span class="mi">2</span>
             <span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">validation_files</span></div>
+        <span class="k">return</span> <span class="n">validation_files</span>
 
-<div class="viewcode-block" id="Dataset.validation_files_balanced"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.validation_files_balanced.html#dcase_util.datasets.Dataset.validation_files_balanced">[docs]</a>    <span class="k">def</span> <span class="nf">validation_files_balanced</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+    <span class="k">def</span> <span class="nf">validation_files_balanced</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                                   <span class="n">fold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">training_meta</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                                   <span class="n">validation_amount</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                                   <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -3485,9 +3486,9 @@
         <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></div>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Dataset.folds"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.folds.html#dcase_util.datasets.Dataset.folds">[docs]</a>    <span class="k">def</span> <span class="nf">folds</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;folds&#39;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">folds</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;folds&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;List of fold ids</span>
 
 <span class="sd">        Parameters</span>
@@ -3511,9 +3512,9 @@
                 <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;all_data&#39;</span><span class="p">]</span>
 
         <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;full&#39;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;all_data&#39;</span><span class="p">]</span></div>
+            <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;all_data&#39;</span><span class="p">]</span>
 
-<div class="viewcode-block" id="Dataset.file_meta"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.file_meta.html#dcase_util.datasets.Dataset.file_meta">[docs]</a>    <span class="k">def</span> <span class="nf">file_meta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">file_meta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Meta data for given file</span>
 
 <span class="sd">        Parameters</span>
@@ -3545,9 +3546,9 @@
                 <span class="n">filename</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">relative_to_absolute_path</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
             <span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">file_meta</span></div>
+        <span class="k">return</span> <span class="n">file_meta</span>
 
-<div class="viewcode-block" id="Dataset.file_error_meta"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.file_error_meta.html#dcase_util.datasets.Dataset.file_error_meta">[docs]</a>    <span class="k">def</span> <span class="nf">file_error_meta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">file_error_meta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Error meta data for given file</span>
 
 <span class="sd">        Parameters</span>
@@ -3575,9 +3576,9 @@
                 <span class="n">filename</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">relative_to_absolute_path</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
             <span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">error_meta</span></div>
+        <span class="k">return</span> <span class="n">error_meta</span>
 
-<div class="viewcode-block" id="Dataset.file_features"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.file_features.html#dcase_util.datasets.Dataset.file_features">[docs]</a>    <span class="k">def</span> <span class="nf">file_features</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">file_features</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Pre-calculated acoustic features for given file</span>
 
 <span class="sd">        Parameters</span>
@@ -3592,9 +3593,9 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">pass</span></div>
+        <span class="k">pass</span>
 
-<div class="viewcode-block" id="Dataset.relative_to_absolute_path"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.relative_to_absolute_path.html#dcase_util.datasets.Dataset.relative_to_absolute_path">[docs]</a>    <span class="k">def</span> <span class="nf">relative_to_absolute_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">relative_to_absolute_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Converts relative path into absolute path.</span>
 
 <span class="sd">        Parameters</span>
@@ -3618,9 +3619,9 @@
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">local_path</span><span class="p">,</span> <span class="n">path</span><span class="p">)))</span></div>
+            <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">local_path</span><span class="p">,</span> <span class="n">path</span><span class="p">)))</span>
 
-<div class="viewcode-block" id="Dataset.absolute_to_relative_path"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.absolute_to_relative_path.html#dcase_util.datasets.Dataset.absolute_to_relative_path">[docs]</a>    <span class="k">def</span> <span class="nf">absolute_to_relative_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">absolute_to_relative_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Converts absolute path into relative path.</span>
 
 <span class="sd">        Parameters</span>
@@ -3648,9 +3649,9 @@
                 <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">local_path</span><span class="p">)</span>
 
             <span class="k">else</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">path</span></div>
+                <span class="k">return</span> <span class="n">path</span>
 
-<div class="viewcode-block" id="Dataset.dataset_bytes"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.dataset_bytes.html#dcase_util.datasets.Dataset.dataset_bytes">[docs]</a>    <span class="k">def</span> <span class="nf">dataset_bytes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">dataset_bytes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Total download size of the dataset in bytes.</span>
 
 <span class="sd">        Returns</span>
@@ -3670,9 +3671,9 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">total_bytes</span> <span class="o">+=</span> <span class="n">remote_package</span><span class="o">.</span><span class="n">remote_bytes</span>
 
-        <span class="k">return</span> <span class="n">total_bytes</span></div>
+        <span class="k">return</span> <span class="n">total_bytes</span>
 
-<div class="viewcode-block" id="Dataset.dataset_size_string"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.dataset_size_string.html#dcase_util.datasets.Dataset.dataset_size_string">[docs]</a>    <span class="k">def</span> <span class="nf">dataset_size_string</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">dataset_size_string</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Total download size of the dataset in a string.</span>
 
 <span class="sd">        Returns</span>
@@ -3682,9 +3683,9 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">return</span> <span class="n">get_byte_string</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset_bytes</span><span class="p">(),</span> <span class="n">show_bytes</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">get_byte_string</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset_bytes</span><span class="p">(),</span> <span class="n">show_bytes</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Dataset.dataset_size_on_disk"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.Dataset.dataset_size_on_disk.html#dcase_util.datasets.Dataset.dataset_size_on_disk">[docs]</a>    <span class="k">def</span> <span class="nf">dataset_size_on_disk</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">dataset_size_on_disk</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Total size of the dataset currently stored locally.</span>
 
 <span class="sd">        Returns</span>
@@ -3700,7 +3701,7 @@
                 <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dir_path</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
                 <span class="n">total_size</span> <span class="o">+=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">get_byte_string</span><span class="p">(</span><span class="n">total_size</span><span class="p">,</span> <span class="n">show_bytes</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">get_byte_string</span><span class="p">(</span><span class="n">total_size</span><span class="p">,</span> <span class="n">show_bytes</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_get_filelist</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exclude_dirs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;List of files under local_path</span>
@@ -3749,19 +3750,19 @@
 
         <span class="n">TextContainer</span><span class="p">([</span><span class="n">hash_value</span><span class="p">])</span><span class="o">.</span><span class="n">save</span><span class="p">(</span>
             <span class="n">filename</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">local_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">filelisthash_filename</span><span class="p">)</span>
-        <span class="p">)</span></div>
+        <span class="p">)</span>
 
 
 <span class="k">class</span> <span class="nc">SoundDataset</span><span class="p">(</span><span class="n">Dataset</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Sound dataset baseclass &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">SoundDataset</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="AcousticSceneDataset"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.AcousticSceneDataset.html#dcase_util.datasets.AcousticSceneDataset">[docs]</a><span class="k">class</span> <span class="nc">AcousticSceneDataset</span><span class="p">(</span><span class="n">Dataset</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">AcousticSceneDataset</span><span class="p">(</span><span class="n">Dataset</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Acoustic scene dataset baseclass &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="AcousticSceneDataset.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.AcousticSceneDataset.html#dcase_util.datasets.AcousticSceneDataset.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">AcousticSceneDataset</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">AcousticSceneDataset</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">validation_files_balanced</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                                   <span class="n">fold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">training_meta</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -3813,9 +3814,9 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="n">is_jupyter</span><span class="p">():</span>
-            <span class="kn">from</span> <span class="nn">tqdm</span> <span class="k">import</span> <span class="n">tqdm_notebook</span> <span class="k">as</span> <span class="n">tqdm</span>
+            <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm_notebook</span> <span class="k">as</span> <span class="n">tqdm</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="kn">from</span> <span class="nn">tqdm</span> <span class="k">import</span> <span class="n">tqdm</span>
+            <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
 
         <span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
 
@@ -4194,20 +4195,20 @@
             <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ui</span><span class="o">.</span><span class="n">line</span><span class="p">())</span>
             <span class="n">output</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">is_jupyter</span><span class="p">():</span>
-                <span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="k">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">HTML</span>
+                <span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">HTML</span>
                 <span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">output</span><span class="p">))</span>
 
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">log</span> <span class="o">=</span> <span class="n">FancyLogger</span><span class="p">()</span>
                 <span class="n">log</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">validation_files</span></div>
+        <span class="k">return</span> <span class="n">validation_files</span>
 
 
-<div class="viewcode-block" id="SoundEventDataset"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.SoundEventDataset.html#dcase_util.datasets.SoundEventDataset">[docs]</a><span class="k">class</span> <span class="nc">SoundEventDataset</span><span class="p">(</span><span class="n">Dataset</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">SoundEventDataset</span><span class="p">(</span><span class="n">Dataset</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Sound event dataset baseclass&quot;&quot;&quot;</span>
-<div class="viewcode-block" id="SoundEventDataset.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.SoundEventDataset.html#dcase_util.datasets.SoundEventDataset.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">SoundEventDataset</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">SoundEventDataset</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">load_crossvalidation_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Load cross-validation into the container.</span>
@@ -4286,7 +4287,7 @@
 
         <span class="k">return</span> <span class="bp">self</span>
 
-<div class="viewcode-block" id="SoundEventDataset.event_label_count"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.SoundEventDataset.event_label_count.html#dcase_util.datasets.SoundEventDataset.event_label_count">[docs]</a>    <span class="k">def</span> <span class="nf">event_label_count</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scene_label</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">event_label_count</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scene_label</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Number of unique scene labels in the meta data.</span>
 
 <span class="sd">        Parameters</span>
@@ -4302,9 +4303,9 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">event_labels</span><span class="p">(</span><span class="n">scene_label</span><span class="o">=</span><span class="n">scene_label</span><span class="p">))</span></div>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">event_labels</span><span class="p">(</span><span class="n">scene_label</span><span class="o">=</span><span class="n">scene_label</span><span class="p">))</span>
 
-<div class="viewcode-block" id="SoundEventDataset.event_labels"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.SoundEventDataset.event_labels.html#dcase_util.datasets.SoundEventDataset.event_labels">[docs]</a>    <span class="k">def</span> <span class="nf">event_labels</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scene_label</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">event_labels</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scene_label</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;List of unique event labels in the meta data.</span>
 
 <span class="sd">        Parameters</span>
@@ -4327,7 +4328,7 @@
             <span class="n">labels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta_container</span><span class="o">.</span><span class="n">unique_event_labels</span>
 
         <span class="n">labels</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">labels</span></div>
+        <span class="k">return</span> <span class="n">labels</span>
 
 <div class="viewcode-block" id="SoundEventDataset.train"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.SoundEventDataset.train.html#dcase_util.datasets.SoundEventDataset.train">[docs]</a>    <span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">absolute_paths</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">scene_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">event_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;List of training items.</span>
@@ -4747,11 +4748,11 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="n">is_jupyter</span><span class="p">():</span>
-            <span class="kn">from</span> <span class="nn">tqdm</span> <span class="k">import</span> <span class="n">tqdm_notebook</span> <span class="k">as</span> <span class="n">tqdm</span>
+            <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm_notebook</span> <span class="k">as</span> <span class="n">tqdm</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="kn">from</span> <span class="nn">tqdm</span> <span class="k">import</span> <span class="n">tqdm</span>
+            <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
 
-        <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="k">import</span> <span class="n">mean_absolute_error</span>
+        <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_absolute_error</span>
 
         <span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
 
@@ -5016,12 +5017,12 @@
                     <span class="n">indent</span><span class="o">=</span><span class="mi">6</span>
                 <span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">validation_files</span></div>
+        <span class="k">return</span> <span class="n">validation_files</span>
 
 
 <span class="k">class</span> <span class="nc">SyntheticSoundEventDataset</span><span class="p">(</span><span class="n">SoundEventDataset</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Synthetic sound event dataset baseclass&quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">SyntheticSoundEventDataset</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -5051,10 +5052,10 @@
         <span class="k">pass</span>
 
 
-<div class="viewcode-block" id="AudioTaggingDataset"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.AudioTaggingDataset.html#dcase_util.datasets.AudioTaggingDataset">[docs]</a><span class="k">class</span> <span class="nc">AudioTaggingDataset</span><span class="p">(</span><span class="n">Dataset</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">AudioTaggingDataset</span><span class="p">(</span><span class="n">Dataset</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Audio tag dataset baseclass&quot;&quot;&quot;</span>
-<div class="viewcode-block" id="AudioTaggingDataset.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.AudioTaggingDataset.html#dcase_util.datasets.AudioTaggingDataset.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">AudioTaggingDataset</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">AudioTaggingDataset</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">validation_files_random</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                                 <span class="n">fold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">training_meta</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -5192,11 +5193,11 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="n">is_jupyter</span><span class="p">():</span>
-            <span class="kn">from</span> <span class="nn">tqdm</span> <span class="k">import</span> <span class="n">tqdm_notebook</span> <span class="k">as</span> <span class="n">tqdm</span>
+            <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm_notebook</span> <span class="k">as</span> <span class="n">tqdm</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="kn">from</span> <span class="nn">tqdm</span> <span class="k">import</span> <span class="n">tqdm</span>
+            <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
 
-        <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="k">import</span> <span class="n">mean_absolute_error</span>
+        <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_absolute_error</span>
 
         <span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
 
@@ -5454,7 +5455,7 @@
                     <span class="n">indent</span><span class="o">=</span><span class="mi">6</span>
                 <span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">validation_files</span></div>
+        <span class="k">return</span> <span class="n">validation_files</span>
 </pre></div>
 
            </div>

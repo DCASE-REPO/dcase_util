@@ -3,4 +3,4 @@ dcase\_util.containers.MetaDataContainer.tag\_count
 
 .. currentmodule:: dcase_util.containers
 
-.. autoattribute:: MetaDataContainer.tag_count
+.. autoproperty:: MetaDataContainer.tag_count

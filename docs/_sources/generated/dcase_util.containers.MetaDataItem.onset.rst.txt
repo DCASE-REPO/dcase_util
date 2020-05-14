@@ -3,4 +3,4 @@ dcase\_util.containers.MetaDataItem.onset
 
 .. currentmodule:: dcase_util.containers
 
-.. autoattribute:: MetaDataItem.onset
+.. autoproperty:: MetaDataItem.onset

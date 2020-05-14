@@ -13,6 +13,7 @@ dcase\_util.files.Serializer
 
    .. autosummary::
    
+      ~Serializer.__init__
       ~Serializer.file_exists
       ~Serializer.load_cpickle
       ~Serializer.load_json

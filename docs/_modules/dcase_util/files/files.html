@@ -1474,6 +1474,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-12">v0.2.12</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-11">v0.2.11</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-10">v0.2.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-9">v0.2.9</a></li>
@@ -1562,24 +1563,24 @@
 <span></span><span class="ch">#!/usr/bin/env python</span>
 <span class="c1"># -*- coding: utf-8 -*-</span>
 
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">absolute_import</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">absolute_import</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">csv</span>
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">zipfile</span>
 <span class="kn">import</span> <span class="nn">tarfile</span>
 
-<span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="k">import</span> <span class="n">FileMixin</span><span class="p">,</span> <span class="n">ObjectContainer</span><span class="p">,</span> <span class="n">PackageMixin</span>
-<span class="kn">from</span> <span class="nn">dcase_util.utils</span> <span class="k">import</span> <span class="n">get_byte_string</span><span class="p">,</span> <span class="n">FileFormat</span>
-<span class="kn">from</span> <span class="nn">dcase_util.ui</span> <span class="k">import</span> <span class="n">FancyStringifier</span>
+<span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="kn">import</span> <span class="n">FileMixin</span><span class="p">,</span> <span class="n">ObjectContainer</span><span class="p">,</span> <span class="n">PackageMixin</span>
+<span class="kn">from</span> <span class="nn">dcase_util.utils</span> <span class="kn">import</span> <span class="n">get_byte_string</span><span class="p">,</span> <span class="n">FileFormat</span>
+<span class="kn">from</span> <span class="nn">dcase_util.ui</span> <span class="kn">import</span> <span class="n">FancyStringifier</span>
 
 
-<div class="viewcode-block" id="File"><a class="viewcode-back" href="../../../generated/dcase_util.files.File.html#dcase_util.files.File">[docs]</a><span class="k">class</span> <span class="nc">File</span><span class="p">(</span><span class="n">FileMixin</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">File</span><span class="p">(</span><span class="n">FileMixin</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Generic file class&quot;&quot;&quot;</span>
     <span class="n">valid_formats</span> <span class="o">=</span> <span class="p">[</span><span class="n">FileFormat</span><span class="o">.</span><span class="n">YAML</span><span class="p">,</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">JSON</span><span class="p">,</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">CPICKLE</span><span class="p">,</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">MARSHAL</span><span class="p">,</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">MSGPACK</span><span class="p">,</span>
                      <span class="n">FileFormat</span><span class="o">.</span><span class="n">TXT</span><span class="p">,</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">CSV</span><span class="p">,</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">ZIP</span><span class="p">,</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">TAR</span><span class="p">]</span>
 
-<div class="viewcode-block" id="File.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.files.File.html#dcase_util.files.File.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Constructor</span>
 
 <span class="sd">        Parameters</span>
@@ -1597,7 +1598,7 @@
         <span class="n">FileMixin</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="c1"># Run super init to call init of mixins too</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">File</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">(</span><span class="n">File</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
 <div class="viewcode-block" id="File.load"><a class="viewcode-back" href="../../../generated/dcase_util.files.File.load.html#dcase_util.files.File.load">[docs]</a>    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Load file</span>
@@ -1628,7 +1629,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">validate_format</span><span class="p">()</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
-            <span class="kn">from</span> <span class="nn">dcase_util.files</span> <span class="k">import</span> <span class="n">Serializer</span>
+            <span class="kn">from</span> <span class="nn">dcase_util.files</span> <span class="kn">import</span> <span class="n">Serializer</span>
 
             <span class="c1"># File exits</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">format</span> <span class="o">==</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">YAML</span><span class="p">:</span>
@@ -1712,7 +1713,7 @@
             <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
         <span class="k">try</span><span class="p">:</span>
-            <span class="kn">from</span> <span class="nn">dcase_util.files</span> <span class="k">import</span> <span class="n">Serializer</span>
+            <span class="kn">from</span> <span class="nn">dcase_util.files</span> <span class="kn">import</span> <span class="n">Serializer</span>
 
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">format</span> <span class="o">==</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">YAML</span><span class="p">:</span>
                 <span class="n">Serializer</span><span class="o">.</span><span class="n">save_yaml</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
@@ -1747,7 +1748,7 @@
             <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>        <span class="c1"># Delete the file, since most likely it was not saved fully</span>
             <span class="k">raise</span>
 
-        <span class="k">return</span> <span class="bp">self</span></div></div>
+        <span class="k">return</span> <span class="bp">self</span></div>
 
 
 <div class="viewcode-block" id="FileLock"><a class="viewcode-back" href="../../../generated/dcase_util.files.FileLock.html#dcase_util.files.FileLock">[docs]</a><span class="k">class</span> <span class="nc">FileLock</span><span class="p">(</span><span class="n">ObjectContainer</span><span class="p">):</span>
@@ -1759,7 +1760,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="FileLock.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.files.FileLock.html#dcase_util.files.FileLock.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span><span class="o">*</span><span class="mi">1</span><span class="p">,</span> <span class="n">lock_file_extension</span><span class="o">=</span><span class="s1">&#39;lock&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="FileLock.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.files.FileLock.html#dcase_util.files.FileLock.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span><span class="o">*</span><span class="mi">1</span><span class="p">,</span> <span class="n">lock_file_extension</span><span class="o">=</span><span class="s1">&#39;lock&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Constructor</span>
 
 <span class="sd">        Parameters</span>
@@ -1862,11 +1863,11 @@
 
         <span class="k">return</span> <span class="bp">self</span></div>
 
-    <span class="k">def</span> <span class="nf">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">lock</span><span class="p">()</span>
         <span class="k">return</span> <span class="bp">self</span>
 
-    <span class="k">def</span> <span class="nf">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">traceback</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">traceback</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
 
 <div class="viewcode-block" id="FileLock.lock"><a class="viewcode-back" href="../../../generated/dcase_util.files.FileLock.lock.html#dcase_util.files.FileLock.lock">[docs]</a>    <span class="k">def</span> <span class="nf">lock</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1921,7 +1922,7 @@
     <span class="sd">&quot;&quot;&quot;Generic package class&quot;&quot;&quot;</span>
     <span class="n">valid_formats</span> <span class="o">=</span> <span class="p">[</span><span class="n">FileFormat</span><span class="o">.</span><span class="n">ZIP</span><span class="p">,</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">TAR</span><span class="p">]</span>
 
-<div class="viewcode-block" id="Package.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.files.Package.html#dcase_util.files.Package.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Package.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.files.Package.html#dcase_util.files.Package.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="c1"># Run ContainerMixin init</span>
         <span class="n">PackageMixin</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 

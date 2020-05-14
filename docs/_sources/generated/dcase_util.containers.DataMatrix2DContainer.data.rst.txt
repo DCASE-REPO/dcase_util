@@ -3,4 +3,4 @@ dcase\_util.containers.DataMatrix2DContainer.data
 
 .. currentmodule:: dcase_util.containers
 
-.. autoattribute:: DataMatrix2DContainer.data
+.. autoproperty:: DataMatrix2DContainer.data

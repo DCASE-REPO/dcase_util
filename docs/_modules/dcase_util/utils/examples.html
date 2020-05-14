@@ -1474,6 +1474,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-12">v0.2.12</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-11">v0.2.11</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-10">v0.2.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-9">v0.2.9</a></li>
@@ -1562,7 +1563,7 @@
 <span></span><span class="ch">#!/usr/bin/env python</span>
 <span class="c1"># -*- coding: utf-8 -*-</span>
 
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">absolute_import</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">absolute_import</span>
 
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">pkg_resources</span>
@@ -1573,7 +1574,7 @@
     <span class="sd">&quot;&quot;&quot;Example files for tutorials&quot;&quot;&quot;</span>
     <span class="n">example_folder</span> <span class="o">=</span> <span class="s1">&#39;example_data&#39;</span>
 
-<div class="viewcode-block" id="Example.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.utils.Example.html#dcase_util.utils.Example.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Example.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.utils.Example.html#dcase_util.utils.Example.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">pass</span></div>
 
 <div class="viewcode-block" id="Example.audio_filename"><a class="viewcode-back" href="../../../generated/dcase_util.utils.Example.audio_filename.html#dcase_util.utils.Example.audio_filename">[docs]</a>    <span class="nd">@classmethod</span>
@@ -1594,7 +1595,7 @@
 
 <div class="viewcode-block" id="Example.audio_container"><a class="viewcode-back" href="../../../generated/dcase_util.utils.Example.audio_container.html#dcase_util.utils.Example.audio_container">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">audio_container</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
-        <span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="k">import</span> <span class="n">AudioContainer</span>
+        <span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="kn">import</span> <span class="n">AudioContainer</span>
         <span class="n">container</span> <span class="o">=</span> <span class="n">AudioContainer</span><span class="p">(</span><span class="n">fs</span><span class="o">=</span><span class="mi">44100</span><span class="p">)</span>
         <span class="n">t</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">container</span><span class="o">.</span><span class="n">fs</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="n">x1</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">220</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">numpy</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span>
@@ -1605,7 +1606,7 @@
 
     <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">audio_container_ch4</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
-        <span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="k">import</span> <span class="n">AudioContainer</span>
+        <span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="kn">import</span> <span class="n">AudioContainer</span>
         <span class="n">container</span> <span class="o">=</span> <span class="n">AudioContainer</span><span class="p">(</span><span class="n">fs</span><span class="o">=</span><span class="mi">44100</span><span class="p">)</span>
         <span class="n">t</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">container</span><span class="o">.</span><span class="n">fs</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="n">x1</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">220</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">numpy</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span>
@@ -1618,7 +1619,7 @@
 
 <div class="viewcode-block" id="Example.scene_metadata_container"><a class="viewcode-back" href="../../../generated/dcase_util.utils.Example.scene_metadata_container.html#dcase_util.utils.Example.scene_metadata_container">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">scene_metadata_container</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="k">import</span> <span class="n">MetaDataContainer</span>
+        <span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="kn">import</span> <span class="n">MetaDataContainer</span>
 
         <span class="k">if</span> <span class="n">filename</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">MetaDataContainer</span><span class="p">()</span><span class="o">.</span><span class="n">load</span><span class="p">(</span>
@@ -1653,7 +1654,7 @@
 
 <div class="viewcode-block" id="Example.event_metadata_container"><a class="viewcode-back" href="../../../generated/dcase_util.utils.Example.event_metadata_container.html#dcase_util.utils.Example.event_metadata_container">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">event_metadata_container</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="k">import</span> <span class="n">MetaDataContainer</span>
+        <span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="kn">import</span> <span class="n">MetaDataContainer</span>
 
         <span class="k">if</span> <span class="n">filename</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">MetaDataContainer</span><span class="p">()</span><span class="o">.</span><span class="n">load</span><span class="p">(</span>
@@ -1703,7 +1704,7 @@
 
 <div class="viewcode-block" id="Example.tag_metadata_container"><a class="viewcode-back" href="../../../generated/dcase_util.utils.Example.tag_metadata_container.html#dcase_util.utils.Example.tag_metadata_container">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">tag_metadata_container</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="k">import</span> <span class="n">MetaDataContainer</span>
+        <span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="kn">import</span> <span class="n">MetaDataContainer</span>
 
         <span class="k">if</span> <span class="n">filename</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">MetaDataContainer</span><span class="p">()</span><span class="o">.</span><span class="n">load</span><span class="p">(</span>
@@ -1726,8 +1727,8 @@
         <span class="k">if</span> <span class="n">filename</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">filename</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">audio_filename</span><span class="p">()</span>
 
-        <span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="k">import</span> <span class="n">AudioContainer</span><span class="p">,</span> <span class="n">FeatureContainer</span>
-        <span class="kn">from</span> <span class="nn">dcase_util.features</span> <span class="k">import</span> <span class="n">MelExtractor</span>
+        <span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="kn">import</span> <span class="n">AudioContainer</span><span class="p">,</span> <span class="n">FeatureContainer</span>
+        <span class="kn">from</span> <span class="nn">dcase_util.features</span> <span class="kn">import</span> <span class="n">MelExtractor</span>
         <span class="n">audio_container</span> <span class="o">=</span> <span class="n">AudioContainer</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">()</span><span class="o">.</span><span class="n">mixdown</span><span class="p">()</span>
         <span class="n">mel_extractor</span> <span class="o">=</span> <span class="n">MelExtractor</span><span class="p">(</span><span class="n">fs</span><span class="o">=</span><span class="n">audio_container</span><span class="o">.</span><span class="n">fs</span><span class="p">)</span>
         <span class="n">feature_data</span> <span class="o">=</span> <span class="n">mel_extractor</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="n">audio_container</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
@@ -1740,7 +1741,7 @@
 
 <div class="viewcode-block" id="Example.feature_repository"><a class="viewcode-back" href="../../../generated/dcase_util.utils.Example.feature_repository.html#dcase_util.utils.Example.feature_repository">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">feature_repository</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="kn">from</span> <span class="nn">dcase_util.processors</span> <span class="k">import</span> <span class="n">ProcessingChain</span>
+        <span class="kn">from</span> <span class="nn">dcase_util.processors</span> <span class="kn">import</span> <span class="n">ProcessingChain</span>
 
         <span class="k">if</span> <span class="n">filename</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">filename</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">audio_filename</span><span class="p">()</span>

@@ -13,6 +13,7 @@ dcase\_util.utils.FileFormat
 
    .. autosummary::
    
+      ~FileFormat.__init__
       ~FileFormat.detect
       ~FileFormat.detect_based_on_content
       ~FileFormat.detect_based_on_filename

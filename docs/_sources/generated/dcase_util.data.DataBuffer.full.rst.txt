@@ -3,4 +3,4 @@ dcase\_util.data.DataBuffer.full
 
 .. currentmodule:: dcase_util.data
 
-.. autoattribute:: DataBuffer.full
+.. autoproperty:: DataBuffer.full

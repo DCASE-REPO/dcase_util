@@ -1474,6 +1474,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-12">v0.2.12</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-11">v0.2.11</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-10">v0.2.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-9">v0.2.9</a></li>
@@ -1561,7 +1562,7 @@
   <h1>Source code for dcase_util.utils.math</h1><div class="highlight"><pre>
 <span></span><span class="ch">#!/usr/bin/env python</span>
 <span class="c1"># -*- coding: utf-8 -*-</span>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">absolute_import</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">absolute_import</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 
 
@@ -1574,9 +1575,9 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="SimpleMathStringEvaluator.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.utils.SimpleMathStringEvaluator.html#dcase_util.utils.SimpleMathStringEvaluator.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="SimpleMathStringEvaluator.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.utils.SimpleMathStringEvaluator.html#dcase_util.utils.SimpleMathStringEvaluator.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="kn">from</span> <span class="nn">pyparsing</span> <span class="k">import</span> <span class="n">Word</span><span class="p">,</span> <span class="n">nums</span><span class="p">,</span> <span class="n">alphas</span><span class="p">,</span> <span class="n">Combine</span><span class="p">,</span> <span class="n">oneOf</span><span class="p">,</span> <span class="n">opAssoc</span><span class="p">,</span> <span class="n">operatorPrecedence</span>
+            <span class="kn">from</span> <span class="nn">pyparsing</span> <span class="kn">import</span> <span class="n">Word</span><span class="p">,</span> <span class="n">nums</span><span class="p">,</span> <span class="n">alphas</span><span class="p">,</span> <span class="n">Combine</span><span class="p">,</span> <span class="n">oneOf</span><span class="p">,</span> <span class="n">opAssoc</span><span class="p">,</span> <span class="n">operatorPrecedence</span>
 
         <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
             <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Unable to import pyparsing module. You can install it with `pip install pyparsing`.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
@@ -1614,7 +1615,7 @@
         <span class="k">class</span> <span class="nc">EvalConstant</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
             <span class="sd">&quot;&quot;&quot;Class to evaluate a parsed constant or variable.&quot;&quot;&quot;</span>
 
-            <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tokens</span><span class="p">):</span>
+            <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tokens</span><span class="p">):</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">tokens</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
             <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">vars</span><span class="p">):</span>
@@ -1629,7 +1630,7 @@
         <span class="k">class</span> <span class="nc">EvalAddOp</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
             <span class="sd">&quot;&quot;&quot;Class to evaluate addition and subtraction expressions.&quot;&quot;&quot;</span>
 
-            <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tokens</span><span class="p">):</span>
+            <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tokens</span><span class="p">):</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">tokens</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
             <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">vars</span><span class="p">):</span>
@@ -1644,7 +1645,7 @@
         <span class="k">class</span> <span class="nc">EvalSignOp</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
             <span class="sd">&quot;&quot;&quot;Class to evaluate expressions with a leading + or - sign.&quot;&quot;&quot;</span>
 
-            <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tokens</span><span class="p">):</span>
+            <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tokens</span><span class="p">):</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">sign</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">tokens</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
             <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vars_</span><span class="p">):</span>
@@ -1654,7 +1655,7 @@
         <span class="k">class</span> <span class="nc">EvalMultiplicationOp</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
             <span class="sd">&quot;&quot;&quot;Class to evaluate multiplication and division expressions.&quot;&quot;&quot;</span>
 
-            <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tokens</span><span class="p">):</span>
+            <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tokens</span><span class="p">):</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">operator_map</span> <span class="o">=</span> <span class="p">{</span>
                     <span class="s1">&#39;*&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="p">,</span>
                     <span class="s1">&#39;/&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span><span class="p">,</span>
@@ -1672,7 +1673,7 @@
         <span class="k">class</span> <span class="nc">EvalComparisonOp</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
             <span class="sd">&quot;&quot;&quot;Class to evaluate comparison expressions&quot;&quot;&quot;</span>
 
-            <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tokens</span><span class="p">):</span>
+            <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tokens</span><span class="p">):</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">tokens</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">operator_map</span> <span class="o">=</span> <span class="p">{</span>
                     <span class="s2">&quot;&lt;&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">,</span>
@@ -1727,7 +1728,7 @@
 <span class="sd">            Evaluation result</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="kn">from</span> <span class="nn">pyparsing</span> <span class="k">import</span> <span class="n">ParseException</span>
+            <span class="kn">from</span> <span class="nn">pyparsing</span> <span class="kn">import</span> <span class="n">ParseException</span>
 
         <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
             <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Unable to import pyparsing module. You can install it with `pip install pyparsing`.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
@@ -1763,7 +1764,7 @@
     <span class="k">def</span> <span class="nf">logger</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">logger</span><span class="o">.</span><span class="n">handlers</span><span class="p">:</span>
-            <span class="kn">from</span> <span class="nn">dcase_util.utils</span> <span class="k">import</span> <span class="n">setup_logging</span>
+            <span class="kn">from</span> <span class="nn">dcase_util.utils</span> <span class="kn">import</span> <span class="n">setup_logging</span>
             <span class="n">setup_logging</span><span class="p">()</span>
 
         <span class="k">return</span> <span class="n">logger</span></div>

@@ -3,4 +3,4 @@ dcase\_util.containers.DataArrayContainer.data
 
 .. currentmodule:: dcase_util.containers
 
-.. autoattribute:: DataArrayContainer.data
+.. autoproperty:: DataArrayContainer.data

@@ -3,4 +3,4 @@ dcase\_util.containers.DataArrayContainer.focus\_start
 
 .. currentmodule:: dcase_util.containers
 
-.. autoattribute:: DataArrayContainer.focus_start
+.. autoproperty:: DataArrayContainer.focus_start

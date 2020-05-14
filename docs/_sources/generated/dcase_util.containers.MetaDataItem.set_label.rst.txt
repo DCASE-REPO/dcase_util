@@ -3,4 +3,4 @@ dcase\_util.containers.MetaDataItem.set\_label
 
 .. currentmodule:: dcase_util.containers
 
-.. autoattribute:: MetaDataItem.set_label
+.. autoproperty:: MetaDataItem.set_label

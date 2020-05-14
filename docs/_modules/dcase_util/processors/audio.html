@@ -1474,6 +1474,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-12">v0.2.12</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-11">v0.2.11</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-10">v0.2.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-9">v0.2.9</a></li>
@@ -1562,18 +1563,18 @@
 <span></span><span class="ch">#!/usr/bin/env python</span>
 <span class="c1"># -*- coding: utf-8 -*-</span>
 
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">absolute_import</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">absolute_import</span>
 <span class="kn">import</span> <span class="nn">copy</span>
 <span class="kn">import</span> <span class="nn">numpy</span>
-<span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="k">import</span> <span class="n">AudioContainer</span>
-<span class="kn">from</span> <span class="nn">dcase_util.processors</span> <span class="k">import</span> <span class="n">Processor</span><span class="p">,</span> <span class="n">ProcessingChainItemType</span><span class="p">,</span> <span class="n">ProcessingChain</span><span class="p">,</span> <span class="n">SequencingProcessor</span>
-<span class="kn">from</span> <span class="nn">dcase_util.data</span> <span class="k">import</span> <span class="n">Sequencer</span>
+<span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="kn">import</span> <span class="n">AudioContainer</span>
+<span class="kn">from</span> <span class="nn">dcase_util.processors</span> <span class="kn">import</span> <span class="n">Processor</span><span class="p">,</span> <span class="n">ProcessingChainItemType</span><span class="p">,</span> <span class="n">ProcessingChain</span><span class="p">,</span> <span class="n">SequencingProcessor</span>
+<span class="kn">from</span> <span class="nn">dcase_util.data</span> <span class="kn">import</span> <span class="n">Sequencer</span>
 
-<div class="viewcode-block" id="AudioReadingProcessor"><a class="viewcode-back" href="../../../generated/dcase_util.processors.AudioReadingProcessor.html#dcase_util.processors.AudioReadingProcessor">[docs]</a><span class="k">class</span> <span class="nc">AudioReadingProcessor</span><span class="p">(</span><span class="n">Processor</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">AudioReadingProcessor</span><span class="p">(</span><span class="n">Processor</span><span class="p">):</span>
     <span class="n">input_type</span> <span class="o">=</span> <span class="n">ProcessingChainItemType</span><span class="o">.</span><span class="n">NONE</span>  <span class="c1">#: Input data type</span>
     <span class="n">output_type</span> <span class="o">=</span> <span class="n">ProcessingChainItemType</span><span class="o">.</span><span class="n">AUDIO</span>  <span class="c1">#: Output data type</span>
 
-<div class="viewcode-block" id="AudioReadingProcessor.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.processors.AudioReadingProcessor.html#dcase_util.processors.AudioReadingProcessor.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="mi">44100</span><span class="p">,</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="mi">44100</span><span class="p">,</span>
                  <span class="n">focus_start_samples</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">focus_stop_samples</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">focus_channel</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mono</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                  <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Constructor</span>
@@ -1613,9 +1614,9 @@
         <span class="p">)</span>
 
         <span class="c1"># Run super init to call init of mixins too</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">AudioReadingProcessor</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">(</span><span class="n">AudioReadingProcessor</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-<div class="viewcode-block" id="AudioReadingProcessor.process"><a class="viewcode-back" href="../../../generated/dcase_util.processors.AudioReadingProcessor.process.html#dcase_util.processors.AudioReadingProcessor.process">[docs]</a>    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                 <span class="n">focus_start_samples</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">focus_stop_samples</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">focus_duration_samples</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                 <span class="n">focus_start_seconds</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">focus_stop_seconds</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">focus_duration_seconds</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                 <span class="n">focus_channel</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -1718,14 +1719,14 @@
                 <span class="n">input_type</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">input_type</span><span class="p">)</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></div></div>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="MonoAudioReadingProcessor"><a class="viewcode-back" href="../../../generated/dcase_util.processors.MonoAudioReadingProcessor.html#dcase_util.processors.MonoAudioReadingProcessor">[docs]</a><span class="k">class</span> <span class="nc">MonoAudioReadingProcessor</span><span class="p">(</span><span class="n">AudioReadingProcessor</span><span class="p">):</span>
     <span class="n">input_type</span> <span class="o">=</span> <span class="n">ProcessingChainItemType</span><span class="o">.</span><span class="n">NONE</span>  <span class="c1">#: Input data type</span>
     <span class="n">output_type</span> <span class="o">=</span> <span class="n">ProcessingChainItemType</span><span class="o">.</span><span class="n">AUDIO</span>  <span class="c1">#: Output data type</span>
 
-<div class="viewcode-block" id="MonoAudioReadingProcessor.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.processors.MonoAudioReadingProcessor.html#dcase_util.processors.MonoAudioReadingProcessor.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="MonoAudioReadingProcessor.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.processors.MonoAudioReadingProcessor.html#dcase_util.processors.MonoAudioReadingProcessor.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="mi">44100</span><span class="p">,</span>
                  <span class="n">focus_start_samples</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">focus_stop_samples</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">focus_channel</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -1771,17 +1772,17 @@
         <span class="nb">super</span><span class="p">(</span><span class="n">MonoAudioReadingProcessor</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div></div>
 
 
-<div class="viewcode-block" id="AudioWritingProcessor"><a class="viewcode-back" href="../../../generated/dcase_util.processors.AudioWritingProcessor.html#dcase_util.processors.AudioWritingProcessor">[docs]</a><span class="k">class</span> <span class="nc">AudioWritingProcessor</span><span class="p">(</span><span class="n">Processor</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">AudioWritingProcessor</span><span class="p">(</span><span class="n">Processor</span><span class="p">):</span>
     <span class="n">input_type</span> <span class="o">=</span> <span class="n">ProcessingChainItemType</span><span class="o">.</span><span class="n">AUDIO</span>  <span class="c1">#: Input data type</span>
     <span class="n">output_type</span> <span class="o">=</span> <span class="n">ProcessingChainItemType</span><span class="o">.</span><span class="n">NONE</span>  <span class="c1">#: Output data type</span>
 
-<div class="viewcode-block" id="AudioWritingProcessor.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.processors.AudioWritingProcessor.html#dcase_util.processors.AudioWritingProcessor.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Constructor&quot;&quot;&quot;</span>
 
         <span class="c1"># Run super init to call init of mixins too</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">AudioWritingProcessor</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">(</span><span class="n">AudioWritingProcessor</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-<div class="viewcode-block" id="AudioWritingProcessor.process"><a class="viewcode-back" href="../../../generated/dcase_util.processors.AudioWritingProcessor.process.html#dcase_util.processors.AudioWritingProcessor.process">[docs]</a>    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">output_filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">output_filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                 <span class="n">bit_depth</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">bit_rate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                 <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Audio writing</span>
@@ -1826,14 +1827,14 @@
             <span class="p">)</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></div></div>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="MonoAudioWritingProcessor"><a class="viewcode-back" href="../../../generated/dcase_util.processors.MonoAudioWritingProcessor.html#dcase_util.processors.MonoAudioWritingProcessor">[docs]</a><span class="k">class</span> <span class="nc">MonoAudioWritingProcessor</span><span class="p">(</span><span class="n">Processor</span><span class="p">):</span>
     <span class="n">input_type</span> <span class="o">=</span> <span class="n">ProcessingChainItemType</span><span class="o">.</span><span class="n">AUDIO</span>  <span class="c1">#: Input data type</span>
     <span class="n">output_type</span> <span class="o">=</span> <span class="n">ProcessingChainItemType</span><span class="o">.</span><span class="n">NONE</span>  <span class="c1">#: Output data type</span>
 
-<div class="viewcode-block" id="MonoAudioWritingProcessor.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.processors.MonoAudioWritingProcessor.html#dcase_util.processors.MonoAudioWritingProcessor.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="MonoAudioWritingProcessor.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.processors.MonoAudioWritingProcessor.html#dcase_util.processors.MonoAudioWritingProcessor.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Constructor&quot;&quot;&quot;</span>
 
         <span class="c1"># Run super init to call init of mixins too</span>
@@ -1894,7 +1895,7 @@
     <span class="n">input_type</span> <span class="o">=</span> <span class="n">ProcessingChainItemType</span><span class="o">.</span><span class="n">AUDIO</span>  <span class="c1">#: Input data type</span>
     <span class="n">output_type</span> <span class="o">=</span> <span class="n">ProcessingChainItemType</span><span class="o">.</span><span class="n">DATA_CONTAINER</span>  <span class="c1">#: Output data type</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sequence_length</span><span class="o">=</span><span class="mi">44100</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sequence_length</span><span class="o">=</span><span class="mi">44100</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">padding</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">shift_border</span><span class="o">=</span><span class="s1">&#39;roll&#39;</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
                  <span class="n">required_data_amount_per_segment</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>
@@ -1964,7 +1965,7 @@
 <span class="sd">        DataMatrix3DContainer</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="k">import</span> <span class="n">AudioContainer</span><span class="p">,</span> <span class="n">DataMatrix2DContainer</span>
+        <span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="kn">import</span> <span class="n">AudioContainer</span><span class="p">,</span> <span class="n">DataMatrix2DContainer</span>
 
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">AudioContainer</span><span class="p">):</span>
             <span class="n">audio_data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">data</span>

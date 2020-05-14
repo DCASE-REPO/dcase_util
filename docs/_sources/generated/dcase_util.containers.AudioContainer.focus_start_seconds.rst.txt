@@ -3,4 +3,4 @@ dcase\_util.containers.AudioContainer.focus\_start\_seconds
 
 .. currentmodule:: dcase_util.containers
 
-.. autoattribute:: AudioContainer.focus_start_seconds
+.. autoproperty:: AudioContainer.focus_start_seconds

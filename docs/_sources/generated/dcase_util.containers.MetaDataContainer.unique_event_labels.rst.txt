@@ -3,4 +3,4 @@ dcase\_util.containers.MetaDataContainer.unique\_event\_labels
 
 .. currentmodule:: dcase_util.containers
 
-.. autoattribute:: MetaDataContainer.unique_event_labels
+.. autoproperty:: MetaDataContainer.unique_event_labels

@@ -3,4 +3,4 @@ dcase\_util.containers.DataMatrix3DContainer.length
 
 .. currentmodule:: dcase_util.containers
 
-.. autoattribute:: DataMatrix3DContainer.length
+.. autoproperty:: DataMatrix3DContainer.length

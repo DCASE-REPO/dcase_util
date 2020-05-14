@@ -3,4 +3,4 @@ dcase\_util.data.Normalizer.mean
 
 .. currentmodule:: dcase_util.data
 
-.. autoattribute:: Normalizer.mean
+.. autoproperty:: Normalizer.mean

@@ -27,17 +27,19 @@ def no_op_wraps(func):
     import sys
     if func.__module__ is None or 'blessed' not in func.__module__:
         return functools.orig_wraps(func)
+
     def wrapper(decorator):
         sys.stderr.write('patched for function signature: {0!r}\n'.format(func))
         return func
+
     return wrapper
 
 
 functools.orig_wraps = functools.wraps
-functools.wraps = no_op_wraps
+#functools.wraps = no_op_wraps
 
-import contextlib
-contextlib.wraps = no_op_wraps
+#import contextlib
+#contextlib.wraps = no_op_wraps
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the

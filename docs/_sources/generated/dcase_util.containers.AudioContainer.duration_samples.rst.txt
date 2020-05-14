@@ -3,4 +3,4 @@ dcase\_util.containers.AudioContainer.duration\_samples
 
 .. currentmodule:: dcase_util.containers
 
-.. autoattribute:: AudioContainer.duration_samples
+.. autoproperty:: AudioContainer.duration_samples

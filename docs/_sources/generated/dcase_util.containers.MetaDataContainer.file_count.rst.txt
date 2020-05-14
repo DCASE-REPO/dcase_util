@@ -3,4 +3,4 @@ dcase\_util.containers.MetaDataContainer.file\_count
 
 .. currentmodule:: dcase_util.containers
 
-.. autoattribute:: MetaDataContainer.file_count
+.. autoproperty:: MetaDataContainer.file_count

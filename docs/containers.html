@@ -1476,6 +1476,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-2-12">v0.2.12</a></li>
 <li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-2-11">v0.2.11</a></li>
 <li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-2-10">v0.2.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-2-9">v0.2.9</a></li>
@@ -1608,7 +1609,7 @@ dictionary) to allow them to be used together with other tools and libraries.</p
 33
 34
 35</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Multiplier</span><span class="p">(</span><span class="n">dcase_util</span><span class="o">.</span><span class="n">containers</span><span class="o">.</span><span class="n">ObjectContainer</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">multiplier</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">multiplier</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Multiplier</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">multiplier</span> <span class="o">=</span> <span class="n">multiplier</span>
 
@@ -1626,7 +1627,7 @@ dictionary) to allow them to be used together with other tools and libraries.</p
 <span class="c1"># Multiplier :: Class</span>
 <span class="c1">#   multiplier                        : 10</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
 <span class="c1"># 50</span>
 
 <span class="c1"># Save object</span>
@@ -1635,7 +1636,7 @@ dictionary) to allow them to be used together with other tools and libraries.</p
 <span class="c1"># Load object</span>
 <span class="n">m2</span> <span class="o">=</span> <span class="n">Multiplier</span><span class="p">()</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;test.cpickle&#39;</span><span class="p">)</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">m2</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">m2</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
 <span class="c1"># 50</span>
 
 <span class="n">m2</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -1733,23 +1734,23 @@ dictionary) to allow them to be used together with other tools and libraries.</p
 <span class="c1">#     field2                          : 2</span>
 <span class="c1">#   test2                             : 100</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">get_path</span><span class="p">(</span><span class="s1">&#39;test.field1&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">get_path</span><span class="p">(</span><span class="s1">&#39;test.field1&#39;</span><span class="p">))</span>
 <span class="c1"># 1</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">get_path</span><span class="p">([</span><span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="s1">&#39;field1&#39;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">get_path</span><span class="p">([</span><span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="s1">&#39;field1&#39;</span><span class="p">]))</span>
 <span class="c1"># 1</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">get_path</span><span class="p">(</span><span class="s1">&#39;test2&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">get_path</span><span class="p">(</span><span class="s1">&#39;test2&#39;</span><span class="p">))</span>
 <span class="c1"># 100</span>
 
 <span class="n">d</span><span class="o">.</span><span class="n">set_path</span><span class="p">(</span><span class="s1">&#39;test.field2&#39;</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">get_path</span><span class="p">(</span><span class="s1">&#39;test.field2&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">get_path</span><span class="p">(</span><span class="s1">&#39;test.field2&#39;</span><span class="p">))</span>
 <span class="c1"># 200</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">get_leaf_path_list</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">get_leaf_path_list</span><span class="p">())</span>
 <span class="c1"># [&#39;test.field1&#39;, &#39;test.field2&#39;, &#39;test2&#39;]</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">get_leaf_path_list</span><span class="p">(</span><span class="n">target_field_startswith</span><span class="o">=</span><span class="s1">&#39;field&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">get_leaf_path_list</span><span class="p">(</span><span class="n">target_field_startswith</span><span class="o">=</span><span class="s1">&#39;field&#39;</span><span class="p">))</span>
 <span class="c1"># [&#39;test.field1&#39;, &#39;test.field2&#39;]</span>
 
 <span class="n">d</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -1894,12 +1895,12 @@ dictionary) to allow them to be used together with other tools and libraries.</p
 <span class="c1">#      field1                            : 3</span>
 <span class="c1">#      field2                            : 4</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">ld</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s1">&#39;field1&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ld</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s1">&#39;field1&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>
 <span class="c1"># DictContainer</span>
 <span class="c1">#   field1                            : 3</span>
 <span class="c1">#   field2                            : 4</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">ld</span><span class="o">.</span><span class="n">get_field</span><span class="p">(</span><span class="n">field_name</span><span class="o">=</span><span class="s1">&#39;field2&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ld</span><span class="o">.</span><span class="n">get_field</span><span class="p">(</span><span class="n">field_name</span><span class="o">=</span><span class="s1">&#39;field2&#39;</span><span class="p">))</span>
 <span class="c1"># [2, 4]</span>
 </pre></div>
 </td></tr></table></div>
@@ -2168,7 +2169,7 @@ dictionary) to allow them to be used together with other tools and libraries.</p
 <span class="c1"># When storing, e.g., acoustic features, time resolution corresponds to feature extraction frame hop length.</span>
 
 <span class="c1"># Access data matrix directly</span>
-<span class="k">print</span><span class="p">(</span><span class="n">data_container</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data_container</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="c1"># (10, 100)</span>
 
 <span class="c1"># Show container information</span>
@@ -2220,16 +2221,16 @@ resolution is defined), or based on frame ids.</p>
 24
 25
 26</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1"># Using focus to get part data between 0.5 sec and 1.0 sec</span>
-<span class="k">print</span><span class="p">(</span><span class="n">data_container</span><span class="o">.</span><span class="n">set_focus</span><span class="p">(</span><span class="n">start_seconds</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">stop_seconds</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span><span class="o">.</span><span class="n">get_focused</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data_container</span><span class="o">.</span><span class="n">set_focus</span><span class="p">(</span><span class="n">start_seconds</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">stop_seconds</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span><span class="o">.</span><span class="n">get_focused</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="c1"># (10, 25)</span>
 
 <span class="c1"># Using focus to get part data between frame 10 and 50</span>
-<span class="k">print</span><span class="p">(</span><span class="n">data_container</span><span class="o">.</span><span class="n">set_focus</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span><span class="o">.</span><span class="n">get_focused</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data_container</span><span class="o">.</span><span class="n">set_focus</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span><span class="o">.</span><span class="n">get_focused</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="c1"># (10, 40)</span>
 
 <span class="c1"># Resetting focus and accessing full data matrix</span>
 <span class="n">data_container</span><span class="o">.</span><span class="n">reset_focus</span><span class="p">()</span>
-<span class="k">print</span><span class="p">(</span><span class="n">data_container</span><span class="o">.</span><span class="n">get_focused</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data_container</span><span class="o">.</span><span class="n">get_focused</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="c1"># (10, 100)</span>
 
 <span class="c1"># Access frames 1, 2, 10, and 30</span>
@@ -2240,7 +2241,7 @@ resolution is defined), or based on frame ids.</p>
 
 <span class="c1"># Transpose matrix</span>
 <span class="n">transposed_data</span> <span class="o">=</span> <span class="n">data_container</span><span class="o">.</span><span class="n">T</span>
-<span class="k">print</span><span class="p">(</span><span class="n">transposed_data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">transposed_data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="c1"># (100, 10)</span>
 
 <span class="c1"># Plot data</span>
@@ -2573,7 +2574,7 @@ audio content directly from Youtube is also supported.</p>
 26
 27</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1"># Generating two-channel audio</span>
 <span class="n">audio_container</span> <span class="o">=</span> <span class="n">dcase_util</span><span class="o">.</span><span class="n">containers</span><span class="o">.</span><span class="n">AudioContainer</span><span class="p">(</span><span class="n">fs</span><span class="o">=</span><span class="mi">44100</span><span class="p">)</span>
-<span class="n">t</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">audio_container</span><span class="o">.</span><span class="n">fs</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">audio_container</span><span class="o">.</span><span class="n">fs</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">x1</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">220</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">numpy</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span>
 <span class="n">x2</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">440</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">numpy</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span>
 <span class="n">audio_container</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">])</span>
@@ -2639,37 +2640,37 @@ content can be replaced with focus segment by freezing it.</p>
 31
 32
 33</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1"># Using focus to get part data between 0.5 sec and 1.0 sec</span>
-<span class="k">print</span><span class="p">(</span><span class="n">audio_container</span><span class="o">.</span><span class="n">set_focus</span><span class="p">(</span><span class="n">start_seconds</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">stop_seconds</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span><span class="o">.</span><span class="n">get_focused</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">audio_container</span><span class="o">.</span><span class="n">set_focus</span><span class="p">(</span><span class="n">start_seconds</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">stop_seconds</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span><span class="o">.</span><span class="n">get_focused</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="c1"># (2, 22050)</span>
 
 <span class="c1"># Using focus to get part data starting 5 sec with 2 sec duration</span>
-<span class="k">print</span><span class="p">(</span><span class="n">audio_container</span><span class="o">.</span><span class="n">set_focus</span><span class="p">(</span><span class="n">start_seconds</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">duration_seconds</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span><span class="o">.</span><span class="n">get_focused</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">audio_container</span><span class="o">.</span><span class="n">set_focus</span><span class="p">(</span><span class="n">start_seconds</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">duration_seconds</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span><span class="o">.</span><span class="n">get_focused</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="c1"># (2, 88200)</span>
 
 <span class="c1"># Using focus to get part data starting 5 sec with 2 sec duration, mixdown of two stereo channels</span>
-<span class="k">print</span><span class="p">(</span><span class="n">audio_container</span><span class="o">.</span><span class="n">set_focus</span><span class="p">(</span><span class="n">start_seconds</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">duration_seconds</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">channel</span><span class="o">=</span><span class="s1">&#39;mixdown&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get_focused</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">audio_container</span><span class="o">.</span><span class="n">set_focus</span><span class="p">(</span><span class="n">start_seconds</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">duration_seconds</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">channel</span><span class="o">=</span><span class="s1">&#39;mixdown&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get_focused</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="c1"># (88200,)</span>
 
 <span class="c1"># Using focus to get part data starting 5 sec with 2 sec duration, left of two stereo channels</span>
-<span class="k">print</span><span class="p">(</span><span class="n">audio_container</span><span class="o">.</span><span class="n">set_focus</span><span class="p">(</span><span class="n">start_seconds</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">duration_seconds</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">channel</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get_focused</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">audio_container</span><span class="o">.</span><span class="n">set_focus</span><span class="p">(</span><span class="n">start_seconds</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">duration_seconds</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">channel</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get_focused</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="c1"># (88200,)</span>
 
 <span class="c1"># Using focus to get part data starting 5 sec with 2 sec duration, seconds audio channel (indexing starts from 0)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">audio_container</span><span class="o">.</span><span class="n">set_focus</span><span class="p">(</span><span class="n">start_seconds</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">duration_seconds</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">channel</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">get_focused</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">audio_container</span><span class="o">.</span><span class="n">set_focus</span><span class="p">(</span><span class="n">start_seconds</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">duration_seconds</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">channel</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">get_focused</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="c1"># (88200,)</span>
 
 <span class="c1"># Using focus to get part data between samples 44100 and 88200</span>
-<span class="k">print</span><span class="p">(</span><span class="n">audio_container</span><span class="o">.</span><span class="n">set_focus</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">44100</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="mi">88200</span><span class="p">)</span><span class="o">.</span><span class="n">get_focused</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">audio_container</span><span class="o">.</span><span class="n">set_focus</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">44100</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="mi">88200</span><span class="p">)</span><span class="o">.</span><span class="n">get_focused</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="c1"># (2, 44100)</span>
 
 <span class="c1"># Resetting focus and accessing full data matrix::</span>
 <span class="n">audio_container</span><span class="o">.</span><span class="n">reset_focus</span><span class="p">()</span>
-<span class="k">print</span><span class="p">(</span><span class="n">audio_container</span><span class="o">.</span><span class="n">get_focused</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">audio_container</span><span class="o">.</span><span class="n">get_focused</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="c1"># (2, 441001)</span>
 
 <span class="c1"># Using focus to get part data starting 5 sec with 2 sec duration, and freeze this segment ::</span>
 <span class="n">audio_container</span><span class="o">.</span><span class="n">set_focus</span><span class="p">(</span><span class="n">start_seconds</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">duration_seconds</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span><span class="o">.</span><span class="n">freeze</span><span class="p">()</span>
-<span class="k">print</span><span class="p">(</span><span class="n">audio_container</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">audio_container</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="c1"># (2, 88200)</span>
 </pre></div>
 </td></tr></table></div>

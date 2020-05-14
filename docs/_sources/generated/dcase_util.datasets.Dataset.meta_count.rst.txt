@@ -3,4 +3,4 @@ dcase\_util.datasets.Dataset.meta\_count
 
 .. currentmodule:: dcase_util.datasets
 
-.. autoattribute:: Dataset.meta_count
+.. autoproperty:: Dataset.meta_count

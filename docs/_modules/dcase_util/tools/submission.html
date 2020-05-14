@@ -1474,6 +1474,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-12">v0.2.12</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-11">v0.2.11</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-10">v0.2.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-9">v0.2.9</a></li>
@@ -1562,20 +1563,20 @@
 <span></span><span class="ch">#!/usr/bin/env python</span>
 <span class="c1"># -*- coding: utf-8 -*-</span>
 
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">absolute_import</span>
-<span class="kn">from</span> <span class="nn">six</span> <span class="k">import</span> <span class="n">iteritems</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">absolute_import</span>
+<span class="kn">from</span> <span class="nn">six</span> <span class="kn">import</span> <span class="n">iteritems</span>
 <span class="kn">import</span> <span class="nn">os</span>
 
-<span class="kn">from</span> <span class="nn">dcase_util.ui</span> <span class="k">import</span> <span class="n">FancyLogger</span>
-<span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="k">import</span> <span class="n">DictContainer</span><span class="p">,</span> <span class="n">MetaDataContainer</span><span class="p">,</span> \
+<span class="kn">from</span> <span class="nn">dcase_util.ui</span> <span class="kn">import</span> <span class="n">FancyLogger</span>
+<span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="kn">import</span> <span class="n">DictContainer</span><span class="p">,</span> <span class="n">MetaDataContainer</span><span class="p">,</span> \
     <span class="n">ProbabilityContainer</span><span class="p">,</span> <span class="n">ParameterContainer</span><span class="p">,</span> <span class="n">ObjectContainer</span>
-<span class="kn">from</span> <span class="nn">dcase_util.utils</span> <span class="k">import</span> <span class="n">FileFormat</span>
-<span class="kn">from</span> <span class="nn">dcase_util.ui</span> <span class="k">import</span> <span class="n">FancyStringifier</span>
+<span class="kn">from</span> <span class="nn">dcase_util.utils</span> <span class="kn">import</span> <span class="n">FileFormat</span>
+<span class="kn">from</span> <span class="nn">dcase_util.ui</span> <span class="kn">import</span> <span class="n">FancyStringifier</span>
 
 
 <div class="viewcode-block" id="SubmissionChecker"><a class="viewcode-back" href="../../../generated/dcase_util.tools.SubmissionChecker.html#dcase_util.tools.SubmissionChecker">[docs]</a><span class="k">class</span> <span class="nc">SubmissionChecker</span><span class="p">(</span><span class="n">ObjectContainer</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Submission meta data and system output checker class&quot;&quot;&quot;</span>
-<div class="viewcode-block" id="SubmissionChecker.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.tools.SubmissionChecker.html#dcase_util.tools.SubmissionChecker.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entry_label</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;submission&#39;</span><span class="p">,</span>
+<div class="viewcode-block" id="SubmissionChecker.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.tools.SubmissionChecker.html#dcase_util.tools.SubmissionChecker.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entry_label</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;submission&#39;</span><span class="p">,</span>
                  <span class="n">class_labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">file_count</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">task</span><span class="o">=</span><span class="s1">&#39;ASC&#39;</span><span class="p">,</span>
                  <span class="n">allow_placeholder_lines_in_output</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                  <span class="n">allowed_empty_fields_in_meta</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>

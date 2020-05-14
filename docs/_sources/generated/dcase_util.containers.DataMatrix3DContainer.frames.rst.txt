@@ -3,4 +3,4 @@ dcase\_util.containers.DataMatrix3DContainer.frames
 
 .. currentmodule:: dcase_util.containers
 
-.. autoattribute:: DataMatrix3DContainer.frames
+.. autoproperty:: DataMatrix3DContainer.frames

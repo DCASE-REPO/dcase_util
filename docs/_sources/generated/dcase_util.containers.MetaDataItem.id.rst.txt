@@ -3,4 +3,4 @@ dcase\_util.containers.MetaDataItem.id
 
 .. currentmodule:: dcase_util.containers
 
-.. autoattribute:: MetaDataItem.id
+.. autoproperty:: MetaDataItem.id

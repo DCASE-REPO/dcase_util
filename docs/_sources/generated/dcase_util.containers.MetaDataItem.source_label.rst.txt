@@ -3,4 +3,4 @@ dcase\_util.containers.MetaDataItem.source\_label
 
 .. currentmodule:: dcase_util.containers
 
-.. autoattribute:: MetaDataItem.source_label
+.. autoproperty:: MetaDataItem.source_label

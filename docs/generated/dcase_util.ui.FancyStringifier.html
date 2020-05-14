@@ -1476,6 +1476,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-12">v0.2.12</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-11">v0.2.11</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-10">v0.2.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-9">v0.2.9</a></li>
@@ -1564,13 +1565,13 @@
             
   <div class="section" id="dcase-util-ui-fancystringifier">
 <h1>dcase_util.ui.FancyStringifier<a class="headerlink" href="#dcase-util-ui-fancystringifier" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
+<dl class="py class">
 <dt id="dcase_util.ui.FancyStringifier">
 <em class="property">class </em><code class="sig-prename descclassname">dcase_util.ui.</code><code class="sig-name descname">FancyStringifier</code><a class="reference internal" href="../_modules/dcase_util/ui/ui.html#FancyStringifier"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.ui.FancyStringifier" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fancy UI</p>
-<dl class="method">
+<dl class="py method">
 <dt id="dcase_util.ui.FancyStringifier.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/ui/ui.html#FancyStringifier.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.ui.FancyStringifier.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/ui/ui.html#FancyStringifier.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.ui.FancyStringifier.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
 
@@ -1602,25 +1603,34 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="dcase_util.ui.FancyStringifier.row.html#dcase_util.ui.FancyStringifier.row" title="dcase_util.ui.FancyStringifier.row"><code class="xref py py-obj docutils literal notranslate"><span class="pre">row</span></code></a>(self, \*args, \*\*kwargs)</p></td>
 <td><p>Table row</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="dcase_util.ui.FancyStringifier.row_reset.html#dcase_util.ui.FancyStringifier.row_reset" title="dcase_util.ui.FancyStringifier.row_reset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">row_reset</span></code></a>(self)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="dcase_util.ui.FancyStringifier.row_average.html#dcase_util.ui.FancyStringifier.row_average" title="dcase_util.ui.FancyStringifier.row_average"><code class="xref py py-obj docutils literal notranslate"><span class="pre">row_average</span></code></a>(self[, label])</p></td>
+<td><p>Table row showing internally accumulated average of previous row values per column</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="dcase_util.ui.FancyStringifier.row_reset.html#dcase_util.ui.FancyStringifier.row_reset" title="dcase_util.ui.FancyStringifier.row_reset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">row_reset</span></code></a>(self)</p></td>
 <td><p>Reset table row formatting</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="dcase_util.ui.FancyStringifier.row_sep.html#dcase_util.ui.FancyStringifier.row_sep" title="dcase_util.ui.FancyStringifier.row_sep"><code class="xref py py-obj docutils literal notranslate"><span class="pre">row_sep</span></code></a>(self[, separator_char])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="dcase_util.ui.FancyStringifier.row_sep.html#dcase_util.ui.FancyStringifier.row_sep" title="dcase_util.ui.FancyStringifier.row_sep"><code class="xref py py-obj docutils literal notranslate"><span class="pre">row_sep</span></code></a>(self[, separator_char])</p></td>
 <td><p>Table separator row</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="dcase_util.ui.FancyStringifier.section_header.html#dcase_util.ui.FancyStringifier.section_header" title="dcase_util.ui.FancyStringifier.section_header"><code class="xref py py-obj docutils literal notranslate"><span class="pre">section_header</span></code></a>(self, text[, indent])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="dcase_util.ui.FancyStringifier.row_sum.html#dcase_util.ui.FancyStringifier.row_sum" title="dcase_util.ui.FancyStringifier.row_sum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">row_sum</span></code></a>(self[, label])</p></td>
+<td><p>Table row showing internally accumulated sum of previous row values per column</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">row_value_cache_reset</span></code>(self)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="dcase_util.ui.FancyStringifier.section_header.html#dcase_util.ui.FancyStringifier.section_header" title="dcase_util.ui.FancyStringifier.section_header"><code class="xref py py-obj docutils literal notranslate"><span class="pre">section_header</span></code></a>(self, text[, indent])</p></td>
 <td><p>Section header</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="dcase_util.ui.FancyStringifier.sep.html#dcase_util.ui.FancyStringifier.sep" title="dcase_util.ui.FancyStringifier.sep"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sep</span></code></a>(self[, length, indent])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="dcase_util.ui.FancyStringifier.sep.html#dcase_util.ui.FancyStringifier.sep" title="dcase_util.ui.FancyStringifier.sep"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sep</span></code></a>(self[, length, indent])</p></td>
 <td><p>Horizontal separator</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="dcase_util.ui.FancyStringifier.sub_header.html#dcase_util.ui.FancyStringifier.sub_header" title="dcase_util.ui.FancyStringifier.sub_header"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sub_header</span></code></a>(self[, text, indent])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="dcase_util.ui.FancyStringifier.sub_header.html#dcase_util.ui.FancyStringifier.sub_header" title="dcase_util.ui.FancyStringifier.sub_header"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sub_header</span></code></a>(self[, text, indent])</p></td>
 <td><p>Sub header</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="dcase_util.ui.FancyStringifier.table.html#dcase_util.ui.FancyStringifier.table" title="dcase_util.ui.FancyStringifier.table"><code class="xref py py-obj docutils literal notranslate"><span class="pre">table</span></code></a>(self[, cell_data, column_headers, …])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="dcase_util.ui.FancyStringifier.table.html#dcase_util.ui.FancyStringifier.table" title="dcase_util.ui.FancyStringifier.table"><code class="xref py py-obj docutils literal notranslate"><span class="pre">table</span></code></a>(self[, cell_data, column_headers, …])</p></td>
 <td><p>Data table</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="dcase_util.ui.FancyStringifier.title.html#dcase_util.ui.FancyStringifier.title" title="dcase_util.ui.FancyStringifier.title"><code class="xref py py-obj docutils literal notranslate"><span class="pre">title</span></code></a>(self, text)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="dcase_util.ui.FancyStringifier.title.html#dcase_util.ui.FancyStringifier.title" title="dcase_util.ui.FancyStringifier.title"><code class="xref py py-obj docutils literal notranslate"><span class="pre">title</span></code></a>(self, text)</p></td>
 <td><p>Title</p></td>
 </tr>
 </tbody>

@@ -3,4 +3,4 @@ dcase\_util.containers.MetaDataContainer.unique\_tags
 
 .. currentmodule:: dcase_util.containers
 
-.. autoattribute:: MetaDataContainer.unique_tags
+.. autoproperty:: MetaDataContainer.unique_tags
