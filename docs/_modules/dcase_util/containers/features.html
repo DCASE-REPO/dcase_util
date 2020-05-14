@@ -1474,6 +1474,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-12">v0.2.12</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-11">v0.2.11</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-10">v0.2.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-9">v0.2.9</a></li>
@@ -1563,17 +1564,17 @@
 <span class="c1"># -*- coding: utf-8 -*-</span>
 
 
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">absolute_import</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">absolute_import</span>
 
-<span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="k">import</span> <span class="n">DataMatrix2DContainer</span><span class="p">,</span> <span class="n">DataRepository</span>
-<span class="kn">from</span> <span class="nn">dcase_util.utils</span> <span class="k">import</span> <span class="n">FileFormat</span>
+<span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="kn">import</span> <span class="n">DataMatrix2DContainer</span><span class="p">,</span> <span class="n">DataRepository</span>
+<span class="kn">from</span> <span class="nn">dcase_util.utils</span> <span class="kn">import</span> <span class="n">FileFormat</span>
 
 
 <div class="viewcode-block" id="FeatureContainer"><a class="viewcode-back" href="../../../generated/dcase_util.containers.FeatureContainer.html#dcase_util.containers.FeatureContainer">[docs]</a><span class="k">class</span> <span class="nc">FeatureContainer</span><span class="p">(</span><span class="n">DataMatrix2DContainer</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Feature container class for a single feature matrix, inherited from DataContainer.&quot;&quot;&quot;</span>
     <span class="n">valid_formats</span> <span class="o">=</span> <span class="p">[</span><span class="n">FileFormat</span><span class="o">.</span><span class="n">CPICKLE</span><span class="p">]</span>  <span class="c1">#: Valid file formats</span>
 
-<div class="viewcode-block" id="FeatureContainer.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.containers.FeatureContainer.html#dcase_util.containers.FeatureContainer.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stats</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_resolution</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">processing_chain</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="FeatureContainer.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.containers.FeatureContainer.html#dcase_util.containers.FeatureContainer.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stats</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_resolution</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">processing_chain</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
             <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="n">data</span><span class="p">,</span>
             <span class="s1">&#39;stats&#39;</span><span class="p">:</span> <span class="n">stats</span><span class="p">,</span>
@@ -1606,7 +1607,7 @@
 
     <span class="n">valid_formats</span> <span class="o">=</span> <span class="p">[</span><span class="n">FileFormat</span><span class="o">.</span><span class="n">CPICKLE</span><span class="p">]</span>  <span class="c1">#: Valid file formats</span>
 
-<div class="viewcode-block" id="FeatureRepository.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.containers.FeatureRepository.html#dcase_util.containers.FeatureRepository.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">default_stream_id</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">processing_chain</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="FeatureRepository.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.containers.FeatureRepository.html#dcase_util.containers.FeatureRepository.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">default_stream_id</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">processing_chain</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Constructor</span>
 
 <span class="sd">        Parameters</span>

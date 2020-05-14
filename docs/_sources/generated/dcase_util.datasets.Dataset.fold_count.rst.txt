@@ -3,4 +3,4 @@ dcase\_util.datasets.Dataset.fold\_count
 
 .. currentmodule:: dcase_util.datasets
 
-.. autoattribute:: Dataset.fold_count
+.. autoproperty:: Dataset.fold_count

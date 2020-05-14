@@ -3,4 +3,4 @@ dcase\_util.containers.DataMatrix2DContainer.focus\_stop
 
 .. currentmodule:: dcase_util.containers
 
-.. autoattribute:: DataMatrix2DContainer.focus_stop
+.. autoproperty:: DataMatrix2DContainer.focus_stop

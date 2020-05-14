@@ -1474,6 +1474,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-12">v0.2.12</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-11">v0.2.11</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-10">v0.2.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-9">v0.2.9</a></li>
@@ -1561,16 +1562,16 @@
   <h1>Source code for dcase_util.features.features</h1><div class="highlight"><pre>
 <span></span><span class="ch">#!/usr/bin/env python</span>
 <span class="c1"># -*- coding: utf-8 -*-</span>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">absolute_import</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">absolute_import</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span>
 <span class="kn">import</span> <span class="nn">librosa</span>
 <span class="kn">import</span> <span class="nn">scipy</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">importlib</span>
-<span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="k">import</span> <span class="n">ContainerMixin</span>
-<span class="kn">from</span> <span class="nn">dcase_util.ui</span> <span class="k">import</span> <span class="n">FancyStringifier</span><span class="p">,</span> <span class="n">FancyHTMLStringifier</span>
-<span class="kn">from</span> <span class="nn">dcase_util.utils</span> <span class="k">import</span> <span class="n">setup_logging</span><span class="p">,</span> <span class="n">get_class_inheritors</span><span class="p">,</span> <span class="n">is_jupyter</span>
+<span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="kn">import</span> <span class="n">ContainerMixin</span>
+<span class="kn">from</span> <span class="nn">dcase_util.ui</span> <span class="kn">import</span> <span class="n">FancyStringifier</span><span class="p">,</span> <span class="n">FancyHTMLStringifier</span>
+<span class="kn">from</span> <span class="nn">dcase_util.utils</span> <span class="kn">import</span> <span class="n">setup_logging</span><span class="p">,</span> <span class="n">get_class_inheritors</span><span class="p">,</span> <span class="n">is_jupyter</span>
 
 
 <span class="k">def</span> <span class="nf">feature_extractor_list</span><span class="p">(</span><span class="n">display</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
@@ -1616,7 +1617,7 @@
 
     <span class="k">if</span> <span class="n">display</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">is_jupyter</span><span class="p">():</span>
-            <span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="k">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">HTML</span>
+            <span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">HTML</span>
             <span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">output</span><span class="p">))</span>
 
         <span class="k">else</span><span class="p">:</span>
@@ -1691,7 +1692,7 @@
     <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;extractor_base&#39;</span>  <span class="c1">#: Extractor label</span>
     <span class="n">description</span> <span class="o">=</span> <span class="s1">&#39;Feature extractor base class&#39;</span> <span class="c1">#: Extractor description</span>
 
-<div class="viewcode-block" id="FeatureExtractor.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.features.FeatureExtractor.html#dcase_util.features.FeatureExtractor.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="mi">44100</span><span class="p">,</span>
+<div class="viewcode-block" id="FeatureExtractor.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.features.FeatureExtractor.html#dcase_util.features.FeatureExtractor.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="mi">44100</span><span class="p">,</span>
                  <span class="n">win_length_samples</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">hop_length_samples</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">win_length_seconds</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span> <span class="n">hop_length_seconds</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Constructor</span>
@@ -1812,7 +1813,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">win_length_seconds</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;win_length_seconds&#39;</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">hop_length_seconds</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;hop_length_seconds&#39;</span><span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">extract</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
@@ -1837,7 +1838,7 @@
     <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;spectrogram&#39;</span>  <span class="c1">#: Extractor label</span>
     <span class="n">description</span> <span class="o">=</span> <span class="s1">&#39;Spectral feature extractor base class (Librosa)&#39;</span>  <span class="c1">#: Extractor description</span>
 
-<div class="viewcode-block" id="SpectralFeatureExtractor.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.features.SpectralFeatureExtractor.html#dcase_util.features.SpectralFeatureExtractor.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">spectrogram_type</span><span class="o">=</span><span class="s1">&#39;magnitude&#39;</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="mi">2048</span><span class="p">,</span> <span class="n">window_type</span><span class="o">=</span><span class="s1">&#39;hamming_asymmetric&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="SpectralFeatureExtractor.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.features.SpectralFeatureExtractor.html#dcase_util.features.SpectralFeatureExtractor.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">spectrogram_type</span><span class="o">=</span><span class="s1">&#39;magnitude&#39;</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="mi">2048</span><span class="p">,</span> <span class="n">window_type</span><span class="o">=</span><span class="s1">&#39;hamming_asymmetric&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Constructor</span>
 
 <span class="sd">        Parameters</span>
@@ -2017,7 +2018,7 @@
         <span class="k">if</span> <span class="n">spectrogram_type</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">spectrogram_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">spectrogram_type</span>
 
-        <span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="k">import</span> <span class="n">AudioContainer</span>
+        <span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="kn">import</span> <span class="n">AudioContainer</span>
 
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">AudioContainer</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">y</span><span class="o">.</span><span class="n">channels</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
@@ -2087,7 +2088,7 @@
     <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;mel&#39;</span>  <span class="c1">#: Extractor label</span>
     <span class="n">description</span> <span class="o">=</span> <span class="s1">&#39;Mel band energy (Librosa)&#39;</span>  <span class="c1">#: Extractor description</span>
 
-<div class="viewcode-block" id="MelExtractor.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.features.MelExtractor.html#dcase_util.features.MelExtractor.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="MelExtractor.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.features.MelExtractor.html#dcase_util.features.MelExtractor.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">fs</span><span class="o">=</span><span class="mi">44100</span><span class="p">,</span>
                  <span class="n">win_length_samples</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">hop_length_samples</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">win_length_seconds</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span> <span class="n">hop_length_seconds</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span>
                  <span class="n">spectrogram_type</span><span class="o">=</span><span class="s1">&#39;magnitude&#39;</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="mi">2048</span><span class="p">,</span> <span class="n">window_type</span><span class="o">=</span><span class="s1">&#39;hamming_asymmetric&#39;</span><span class="p">,</span>
@@ -2295,7 +2296,7 @@
     <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;mfcc&#39;</span>  <span class="c1">#: Extractor label</span>
     <span class="n">description</span> <span class="o">=</span> <span class="s1">&#39;MFCC (Librosa)&#39;</span>  <span class="c1">#: Extractor description</span>
 
-<div class="viewcode-block" id="MfccStaticExtractor.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.features.MfccStaticExtractor.html#dcase_util.features.MfccStaticExtractor.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="MfccStaticExtractor.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.features.MfccStaticExtractor.html#dcase_util.features.MfccStaticExtractor.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">fs</span><span class="o">=</span><span class="mi">44100</span><span class="p">,</span>
                  <span class="n">win_length_samples</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">hop_length_samples</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">win_length_seconds</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span> <span class="n">hop_length_seconds</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span>
                  <span class="n">spectrogram_type</span><span class="o">=</span><span class="s1">&#39;magnitude&#39;</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="mi">2048</span><span class="p">,</span> <span class="n">window_type</span><span class="o">=</span><span class="s1">&#39;hamming_asymmetric&#39;</span><span class="p">,</span>
@@ -2519,7 +2520,7 @@
     <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;mfcc_delta&#39;</span>  <span class="c1">#: Extractor label</span>
     <span class="n">description</span> <span class="o">=</span> <span class="s1">&#39;MFCC delta (Librosa)&#39;</span>  <span class="c1">#: Extractor description</span>
 
-<div class="viewcode-block" id="MfccDeltaExtractor.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.features.MfccDeltaExtractor.html#dcase_util.features.MfccDeltaExtractor.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="MfccDeltaExtractor.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.features.MfccDeltaExtractor.html#dcase_util.features.MfccDeltaExtractor.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">fs</span><span class="o">=</span><span class="mi">44100</span><span class="p">,</span>
                  <span class="n">win_length_samples</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">hop_length_samples</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">win_length_seconds</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span> <span class="n">hop_length_seconds</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span>
                  <span class="n">spectrogram_type</span><span class="o">=</span><span class="s1">&#39;magnitude&#39;</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="mi">2048</span><span class="p">,</span> <span class="n">window_type</span><span class="o">=</span><span class="s1">&#39;hamming_asymmetric&#39;</span><span class="p">,</span>
@@ -2675,7 +2676,7 @@
     <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;mfcc_acceleration&#39;</span>  <span class="c1">#: Extractor label</span>
     <span class="n">description</span> <span class="o">=</span> <span class="s1">&#39;MFCC acceleration (Librosa)&#39;</span>  <span class="c1">#: Extractor description</span>
 
-<div class="viewcode-block" id="MfccAccelerationExtractor.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.features.MfccAccelerationExtractor.html#dcase_util.features.MfccAccelerationExtractor.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="mi">44100</span><span class="p">,</span>
+<div class="viewcode-block" id="MfccAccelerationExtractor.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.features.MfccAccelerationExtractor.html#dcase_util.features.MfccAccelerationExtractor.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="mi">44100</span><span class="p">,</span>
                  <span class="n">win_length_samples</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">hop_length_samples</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">win_length_seconds</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span> <span class="n">hop_length_seconds</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span>
                  <span class="n">spectrogram_type</span><span class="o">=</span><span class="s1">&#39;magnitude&#39;</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="mi">2048</span><span class="p">,</span> <span class="n">window_type</span><span class="o">=</span><span class="s1">&#39;hamming_asymmetric&#39;</span><span class="p">,</span>
                  <span class="n">n_mels</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">fmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">fmax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">normalize_mel_bands</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">htk</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
@@ -2830,7 +2831,7 @@
     <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;zcr&#39;</span>  <span class="c1">#: Extractor label</span>
     <span class="n">description</span> <span class="o">=</span> <span class="s1">&#39;Zero crossing rate (Librosa)&#39;</span>  <span class="c1">#: Extractor description</span>
 
-<div class="viewcode-block" id="ZeroCrossingRateExtractor.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.features.ZeroCrossingRateExtractor.html#dcase_util.features.ZeroCrossingRateExtractor.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="ZeroCrossingRateExtractor.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.features.ZeroCrossingRateExtractor.html#dcase_util.features.ZeroCrossingRateExtractor.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">fs</span><span class="o">=</span><span class="mi">44100</span><span class="p">,</span>
                  <span class="n">win_length_samples</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">hop_length_samples</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">win_length_seconds</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span> <span class="n">hop_length_seconds</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span>
                  <span class="n">center</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
@@ -2935,7 +2936,7 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="k">import</span> <span class="n">AudioContainer</span>
+        <span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="kn">import</span> <span class="n">AudioContainer</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">AudioContainer</span><span class="p">):</span>
             <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">data</span>
 
@@ -2952,7 +2953,7 @@
     <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;rmse&#39;</span>  <span class="c1">#: Extractor label</span>
     <span class="n">description</span> <span class="o">=</span> <span class="s1">&#39;Root-mean-square energy (Librosa)&#39;</span>  <span class="c1">#: Extractor description</span>
 
-<div class="viewcode-block" id="RMSEnergyExtractor.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.features.RMSEnergyExtractor.html#dcase_util.features.RMSEnergyExtractor.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="RMSEnergyExtractor.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.features.RMSEnergyExtractor.html#dcase_util.features.RMSEnergyExtractor.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">fs</span><span class="o">=</span><span class="mi">44100</span><span class="p">,</span>
                  <span class="n">win_length_samples</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">hop_length_samples</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">win_length_seconds</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span> <span class="n">hop_length_seconds</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span>
                  <span class="n">spectrogram_type</span><span class="o">=</span><span class="s1">&#39;magnitude&#39;</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="mi">2048</span><span class="p">,</span> <span class="n">window_type</span><span class="o">=</span><span class="s1">&#39;hamming_asymmetric&#39;</span><span class="p">,</span>
@@ -3097,7 +3098,7 @@
     <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;centroid&#39;</span>  <span class="c1">#: Extractor label</span>
     <span class="n">description</span> <span class="o">=</span> <span class="s1">&#39;Centroid (Librosa)&#39;</span>  <span class="c1">#: Extractor description</span>
 
-<div class="viewcode-block" id="SpectralCentroidExtractor.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.features.SpectralCentroidExtractor.html#dcase_util.features.SpectralCentroidExtractor.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="SpectralCentroidExtractor.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.features.SpectralCentroidExtractor.html#dcase_util.features.SpectralCentroidExtractor.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">fs</span><span class="o">=</span><span class="mi">44100</span><span class="p">,</span>
                  <span class="n">win_length_samples</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">hop_length_samples</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">win_length_seconds</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span> <span class="n">hop_length_seconds</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span>
                  <span class="n">spectrogram_type</span><span class="o">=</span><span class="s1">&#39;magnitude&#39;</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="mi">2048</span><span class="p">,</span> <span class="n">window_type</span><span class="o">=</span><span class="s1">&#39;hamming_asymmetric&#39;</span><span class="p">,</span>
@@ -3240,7 +3241,7 @@
     <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;embedding&#39;</span>  <span class="c1">#: Extractor label</span>
     <span class="n">description</span> <span class="o">=</span> <span class="s1">&#39;Embedding extractor base class&#39;</span>  <span class="c1">#: Extractor description</span>
 
-<div class="viewcode-block" id="EmbeddingExtractor.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.features.EmbeddingExtractor.html#dcase_util.features.EmbeddingExtractor.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="EmbeddingExtractor.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.features.EmbeddingExtractor.html#dcase_util.features.EmbeddingExtractor.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Constructor</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -3299,7 +3300,7 @@
     <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;openl3&#39;</span>  <span class="c1">#: Extractor label</span>
     <span class="n">description</span> <span class="o">=</span> <span class="s1">&#39;OpenL3 (embedding)&#39;</span>  <span class="c1">#: Extractor description</span>
 
-<div class="viewcode-block" id="OpenL3Extractor.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.features.OpenL3Extractor.html#dcase_util.features.OpenL3Extractor.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="mi">48000</span><span class="p">,</span> <span class="n">hop_length_samples</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">hop_length_seconds</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span>
+<div class="viewcode-block" id="OpenL3Extractor.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.features.OpenL3Extractor.html#dcase_util.features.OpenL3Extractor.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="mi">48000</span><span class="p">,</span> <span class="n">hop_length_samples</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">hop_length_seconds</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span>
                  <span class="n">model</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">input_repr</span><span class="o">=</span><span class="s1">&#39;mel256&#39;</span><span class="p">,</span> <span class="n">content_type</span><span class="o">=</span><span class="s2">&quot;music&quot;</span><span class="p">,</span>
                  <span class="n">embedding_size</span><span class="o">=</span><span class="mi">6144</span><span class="p">,</span>
                  <span class="n">center</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
@@ -3509,7 +3510,7 @@
     <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;edgel3&#39;</span>  <span class="c1">#: Extractor label</span>
     <span class="n">description</span> <span class="o">=</span> <span class="s1">&#39;EdgeL3 (embedding)&#39;</span>  <span class="c1">#: Extractor description</span>
 
-<div class="viewcode-block" id="EdgeL3Extractor.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.features.EdgeL3Extractor.html#dcase_util.features.EdgeL3Extractor.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="mi">48000</span><span class="p">,</span> <span class="n">hop_length_samples</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">hop_length_seconds</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span>
+<div class="viewcode-block" id="EdgeL3Extractor.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.features.EdgeL3Extractor.html#dcase_util.features.EdgeL3Extractor.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="mi">48000</span><span class="p">,</span> <span class="n">hop_length_samples</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">hop_length_seconds</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span>
                  <span class="n">model</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">retrain_type</span><span class="o">=</span><span class="s1">&#39;ft&#39;</span><span class="p">,</span> <span class="n">sparsity</span><span class="o">=</span><span class="mf">95.45</span><span class="p">,</span>
                  <span class="n">center</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                  <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>

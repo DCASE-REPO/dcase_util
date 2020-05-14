@@ -3,4 +3,4 @@ dcase\_util.containers.DataContainer.frames
 
 .. currentmodule:: dcase_util.containers
 
-.. autoattribute:: DataContainer.frames
+.. autoproperty:: DataContainer.frames

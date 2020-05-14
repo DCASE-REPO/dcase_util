@@ -3,4 +3,4 @@ dcase\_util.datasets.Dataset.audio\_files
 
 .. currentmodule:: dcase_util.datasets
 
-.. autoattribute:: Dataset.audio_files
+.. autoproperty:: Dataset.audio_files

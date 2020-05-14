@@ -1474,6 +1474,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-12">v0.2.12</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-11">v0.2.11</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-10">v0.2.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-9">v0.2.9</a></li>
@@ -1565,9 +1566,9 @@
 <span class="kn">import</span> <span class="nn">importlib</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 
-<span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="k">import</span> <span class="n">DictContainer</span>
-<span class="kn">from</span> <span class="nn">dcase_util.ui</span> <span class="k">import</span> <span class="n">FancyStringifier</span><span class="p">,</span> <span class="n">FancyHTMLStringifier</span>
-<span class="kn">from</span> <span class="nn">dcase_util.utils</span> <span class="k">import</span> <span class="n">SimpleMathStringEvaluator</span><span class="p">,</span> <span class="n">setup_logging</span><span class="p">,</span> <span class="n">is_jupyter</span>
+<span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="kn">import</span> <span class="n">DictContainer</span>
+<span class="kn">from</span> <span class="nn">dcase_util.ui</span> <span class="kn">import</span> <span class="n">FancyStringifier</span><span class="p">,</span> <span class="n">FancyHTMLStringifier</span>
+<span class="kn">from</span> <span class="nn">dcase_util.utils</span> <span class="kn">import</span> <span class="n">SimpleMathStringEvaluator</span><span class="p">,</span> <span class="n">setup_logging</span><span class="p">,</span> <span class="n">is_jupyter</span>
 
 
 <div class="viewcode-block" id="create_sequential_model"><a class="viewcode-back" href="../../../generated/dcase_util.keras.create_sequential_model.html#dcase_util.keras.create_sequential_model">[docs]</a><span class="k">def</span> <span class="nf">create_sequential_model</span><span class="p">(</span><span class="n">model_parameter_list</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">output_shape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">constants</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_functional</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -1645,7 +1646,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="kn">from</span> <span class="nn">keras.models</span> <span class="k">import</span> <span class="n">Sequential</span>
+    <span class="kn">from</span> <span class="nn">keras.models</span> <span class="kn">import</span> <span class="n">Sequential</span>
     <span class="n">keras_model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">()</span>
 
     <span class="n">tuple_fields</span> <span class="o">=</span> <span class="p">[</span>
@@ -1788,8 +1789,8 @@
                 <span class="n">keras_model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">layer_class</span><span class="p">())</span>
 
     <span class="k">if</span> <span class="n">return_functional</span><span class="p">:</span>
-        <span class="kn">from</span> <span class="nn">keras.layers</span> <span class="k">import</span> <span class="n">Input</span>
-        <span class="kn">from</span> <span class="nn">keras.models</span> <span class="k">import</span> <span class="n">Model</span>
+        <span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="n">Input</span>
+        <span class="kn">from</span> <span class="nn">keras.models</span> <span class="kn">import</span> <span class="n">Model</span>
         <span class="n">input_layer</span> <span class="o">=</span> <span class="n">Input</span><span class="p">(</span><span class="n">batch_shape</span><span class="o">=</span><span class="n">keras_model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">input_shape</span><span class="p">)</span>
         <span class="n">prev_layer</span> <span class="o">=</span> <span class="n">input_layer</span>
         <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="n">keras_model</span><span class="o">.</span><span class="n">layers</span><span class="p">:</span>
@@ -1884,7 +1885,7 @@
         <span class="p">}</span>
 
         <span class="kn">import</span> <span class="nn">keras</span>
-        <span class="kn">from</span> <span class="nn">distutils.version</span> <span class="k">import</span> <span class="n">LooseVersion</span>
+        <span class="kn">from</span> <span class="nn">distutils.version</span> <span class="kn">import</span> <span class="n">LooseVersion</span>
         <span class="kn">import</span> <span class="nn">keras.backend</span> <span class="k">as</span> <span class="nn">keras_backend</span>
 
         <span class="n">table_data</span> <span class="o">=</span> <span class="p">{</span>
@@ -2025,7 +2026,7 @@
 
     <span class="k">if</span> <span class="n">display</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">is_jupyter</span><span class="p">():</span>
-            <span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="k">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">HTML</span>
+            <span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">HTML</span>
             <span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">output</span><span class="p">))</span>
 
         <span class="k">else</span><span class="p">:</span>

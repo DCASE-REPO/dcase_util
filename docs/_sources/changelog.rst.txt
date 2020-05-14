@@ -3,6 +3,13 @@
 Release notes
 =============
 
+v0.2.12
+-------
+
+**Updates**
+
+* Update ``TAUUrbanAcousticScenes_2020_Mobile_DevelopmentSet`` to use dataset version 2.0
+
 v0.2.11
 -------
 

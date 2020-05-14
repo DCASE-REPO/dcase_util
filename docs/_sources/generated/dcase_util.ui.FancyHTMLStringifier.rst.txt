@@ -21,8 +21,11 @@ dcase\_util.ui.FancyHTMLStringifier
       ~FancyHTMLStringifier.get_margin
       ~FancyHTMLStringifier.line
       ~FancyHTMLStringifier.row
+      ~FancyHTMLStringifier.row_average
       ~FancyHTMLStringifier.row_reset
       ~FancyHTMLStringifier.row_sep
+      ~FancyHTMLStringifier.row_sum
+      ~FancyHTMLStringifier.row_value_cache_reset
       ~FancyHTMLStringifier.section_header
       ~FancyHTMLStringifier.sep
       ~FancyHTMLStringifier.sub_header

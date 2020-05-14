@@ -1474,6 +1474,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-12">v0.2.12</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-11">v0.2.11</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-10">v0.2.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-9">v0.2.9</a></li>
@@ -1562,16 +1563,16 @@
 <span></span><span class="ch">#!/usr/bin/env python</span>
 <span class="c1"># -*- coding: utf-8 -*-</span>
 
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">absolute_import</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">absolute_import</span>
 <span class="kn">import</span> <span class="nn">numpy</span>
 
-<span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="k">import</span> <span class="n">BinaryMatrix2DContainer</span><span class="p">,</span> <span class="n">DataMatrix2DContainer</span>
-<span class="kn">from</span> <span class="nn">dcase_util.ui</span> <span class="k">import</span> <span class="n">FancyStringifier</span>
+<span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="kn">import</span> <span class="n">BinaryMatrix2DContainer</span><span class="p">,</span> <span class="n">DataMatrix2DContainer</span>
+<span class="kn">from</span> <span class="nn">dcase_util.ui</span> <span class="kn">import</span> <span class="n">FancyStringifier</span>
 
 
 <div class="viewcode-block" id="BinaryMatrixEncoder"><a class="viewcode-back" href="../../../generated/dcase_util.data.BinaryMatrixEncoder.html#dcase_util.data.BinaryMatrixEncoder">[docs]</a><span class="k">class</span> <span class="nc">BinaryMatrixEncoder</span><span class="p">(</span><span class="n">BinaryMatrix2DContainer</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Binary matrix encoder base class&quot;&quot;&quot;</span>
-<div class="viewcode-block" id="BinaryMatrixEncoder.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.data.BinaryMatrixEncoder.html#dcase_util.data.BinaryMatrixEncoder.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_resolution</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="BinaryMatrixEncoder.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.data.BinaryMatrixEncoder.html#dcase_util.data.BinaryMatrixEncoder.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_resolution</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Constructor</span>
 
 <span class="sd">        Parameters</span>
@@ -1598,13 +1599,13 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="OneHotEncoder"><a class="viewcode-back" href="../../../generated/dcase_util.data.OneHotEncoder.html#dcase_util.data.OneHotEncoder">[docs]</a><span class="k">class</span> <span class="nc">OneHotEncoder</span><span class="p">(</span><span class="n">BinaryMatrixEncoder</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">OneHotEncoder</span><span class="p">(</span><span class="n">BinaryMatrixEncoder</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;One hot encoder class&quot;&quot;&quot;</span>
-<div class="viewcode-block" id="OneHotEncoder.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.data.OneHotEncoder.html#dcase_util.data.OneHotEncoder.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_resolution</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">length_frames</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">length_seconds</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">allow_unknown_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_resolution</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">length_frames</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">length_seconds</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">allow_unknown_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Constructor</span>
 
 <span class="sd">        Parameters</span>
@@ -1647,7 +1648,7 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_list</span><span class="p">:</span>
             <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: No label_list set.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></div>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">to_string</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ui</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get container information in a string</span>
@@ -1693,7 +1694,7 @@
 
         <span class="k">return</span> <span class="n">output</span>
 
-<div class="viewcode-block" id="OneHotEncoder.encode"><a class="viewcode-back" href="../../../generated/dcase_util.data.OneHotEncoder.encode.html#dcase_util.data.OneHotEncoder.encode">[docs]</a>    <span class="k">def</span> <span class="nf">encode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">length_frames</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">length_seconds</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">encode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">length_frames</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">length_seconds</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Generate one hot binary matrix</span>
 
 <span class="sd">        Parameters</span>
@@ -1741,12 +1742,12 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">binary_matrix</span>
 
-        <span class="k">return</span> <span class="bp">self</span></div></div>
+        <span class="k">return</span> <span class="bp">self</span>
 
 
-<div class="viewcode-block" id="ManyHotEncoder"><a class="viewcode-back" href="../../../generated/dcase_util.data.ManyHotEncoder.html#dcase_util.data.ManyHotEncoder">[docs]</a><span class="k">class</span> <span class="nc">ManyHotEncoder</span><span class="p">(</span><span class="n">BinaryMatrixEncoder</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">ManyHotEncoder</span><span class="p">(</span><span class="n">BinaryMatrixEncoder</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Many hot encoder class&quot;&quot;&quot;</span>
-<div class="viewcode-block" id="ManyHotEncoder.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.data.ManyHotEncoder.html#dcase_util.data.ManyHotEncoder.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_resolution</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">length_frames</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">length_seconds</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">allow_unknown_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_resolution</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">length_frames</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">length_seconds</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">allow_unknown_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Constructor</span>
 
 <span class="sd">        Parameters</span>
@@ -1789,7 +1790,7 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_list</span><span class="p">:</span>
             <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: No label_list set.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></div>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">to_string</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ui</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get container information in a string</span>
@@ -1835,7 +1836,7 @@
 
         <span class="k">return</span> <span class="n">output</span>
 
-<div class="viewcode-block" id="ManyHotEncoder.encode"><a class="viewcode-back" href="../../../generated/dcase_util.data.ManyHotEncoder.encode.html#dcase_util.data.ManyHotEncoder.encode">[docs]</a>    <span class="k">def</span> <span class="nf">encode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label_list</span><span class="p">,</span> <span class="n">length_frames</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">length_seconds</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">encode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label_list</span><span class="p">,</span> <span class="n">length_frames</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">length_seconds</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Generate one hot binary matrix</span>
 
 <span class="sd">        Parameters</span>
@@ -1882,12 +1883,12 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">binary_matrix</span>
 
-        <span class="k">return</span> <span class="bp">self</span></div></div>
+        <span class="k">return</span> <span class="bp">self</span>
 
 
-<div class="viewcode-block" id="EventRollEncoder"><a class="viewcode-back" href="../../../generated/dcase_util.data.EventRollEncoder.html#dcase_util.data.EventRollEncoder">[docs]</a><span class="k">class</span> <span class="nc">EventRollEncoder</span><span class="p">(</span><span class="n">BinaryMatrixEncoder</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">EventRollEncoder</span><span class="p">(</span><span class="n">BinaryMatrixEncoder</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Event list encoder class&quot;&quot;&quot;</span>
-<div class="viewcode-block" id="EventRollEncoder.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.data.EventRollEncoder.html#dcase_util.data.EventRollEncoder.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_resolution</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;event_label&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_resolution</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;event_label&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Event roll</span>
 
 <span class="sd">        Event roll is binary matrix indicating event activity withing time segment defined by time_resolution.</span>
@@ -1921,7 +1922,7 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_list</span><span class="p">:</span>
             <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: No label_list set.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></div>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">to_string</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ui</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get container information in a string</span>
@@ -1968,7 +1969,7 @@
 
         <span class="k">return</span> <span class="n">output</span>
 
-<div class="viewcode-block" id="EventRollEncoder.encode"><a class="viewcode-back" href="../../../generated/dcase_util.data.EventRollEncoder.encode.html#dcase_util.data.EventRollEncoder.encode">[docs]</a>    <span class="k">def</span> <span class="nf">encode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metadata_container</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">length_frames</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">length_seconds</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">encode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metadata_container</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">length_frames</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">length_seconds</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Generate event roll from MetaDataContainer</span>
 
 <span class="sd">        Parameters</span>
@@ -2028,12 +2029,12 @@
                         <span class="n">event_roll</span><span class="p">[</span><span class="n">pos</span><span class="p">,</span> <span class="n">onset</span><span class="p">:</span><span class="n">offset</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">event_roll</span>
-        <span class="k">return</span> <span class="bp">self</span></div></div>
+        <span class="k">return</span> <span class="bp">self</span>
 
 
-<div class="viewcode-block" id="LabelMatrixEncoder"><a class="viewcode-back" href="../../../generated/dcase_util.data.LabelMatrixEncoder.html#dcase_util.data.LabelMatrixEncoder">[docs]</a><span class="k">class</span> <span class="nc">LabelMatrixEncoder</span><span class="p">(</span><span class="n">DataMatrix2DContainer</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">LabelMatrixEncoder</span><span class="p">(</span><span class="n">DataMatrix2DContainer</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Label matrix encoder base class&quot;&quot;&quot;</span>
-<div class="viewcode-block" id="LabelMatrixEncoder.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.data.LabelMatrixEncoder.html#dcase_util.data.LabelMatrixEncoder.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_resolution</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_resolution</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Constructor</span>
 
 <span class="sd">        Parameters</span>
@@ -2059,15 +2060,15 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_resolution</span><span class="p">:</span>
             <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: No time resolution set.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></div>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="OneHotLabelEncoder"><a class="viewcode-back" href="../../../generated/dcase_util.data.OneHotLabelEncoder.html#dcase_util.data.OneHotLabelEncoder">[docs]</a><span class="k">class</span> <span class="nc">OneHotLabelEncoder</span><span class="p">(</span><span class="n">LabelMatrixEncoder</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">OneHotLabelEncoder</span><span class="p">(</span><span class="n">LabelMatrixEncoder</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;One Hot label encoder class&quot;&quot;&quot;</span>
-<div class="viewcode-block" id="OneHotLabelEncoder.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.data.OneHotLabelEncoder.html#dcase_util.data.OneHotLabelEncoder.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_resolution</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">length_frames</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">length_seconds</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_resolution</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">length_frames</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">length_seconds</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Constructor</span>
 
 <span class="sd">        Parameters</span>
@@ -2105,7 +2106,7 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_list</span><span class="p">:</span>
             <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: No label_list set.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></div>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">to_string</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ui</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get container information in a string</span>
@@ -2151,7 +2152,7 @@
 
         <span class="k">return</span> <span class="n">output</span>
 
-<div class="viewcode-block" id="OneHotLabelEncoder.encode"><a class="viewcode-back" href="../../../generated/dcase_util.data.OneHotLabelEncoder.encode.html#dcase_util.data.OneHotLabelEncoder.encode">[docs]</a>    <span class="k">def</span> <span class="nf">encode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">length_frames</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">length_seconds</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">encode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">length_frames</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">length_seconds</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Generate one hot label matrix</span>
 
 <span class="sd">        Parameters</span>
@@ -2195,7 +2196,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">label_matrix</span>
 
-        <span class="k">return</span> <span class="bp">self</span></div></div>
+        <span class="k">return</span> <span class="bp">self</span>
 
 </pre></div>
 

@@ -3,4 +3,4 @@ dcase\_util.containers.DataMatrix2DContainer.shape
 
 .. currentmodule:: dcase_util.containers
 
-.. autoattribute:: DataMatrix2DContainer.shape
+.. autoproperty:: DataMatrix2DContainer.shape

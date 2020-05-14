@@ -9,6 +9,12 @@ dcase\_util.utils.DisableLogger
    .. automethod:: __init__
 
    
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~DisableLogger.__init__
+   
    
 
    

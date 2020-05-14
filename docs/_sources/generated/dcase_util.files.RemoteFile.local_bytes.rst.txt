@@ -3,4 +3,4 @@ dcase\_util.files.RemoteFile.local\_bytes
 
 .. currentmodule:: dcase_util.files
 
-.. autoattribute:: RemoteFile.local_bytes
+.. autoproperty:: RemoteFile.local_bytes

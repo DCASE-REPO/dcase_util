@@ -3,4 +3,4 @@ dcase\_util.files.FileLock.is\_locked
 
 .. currentmodule:: dcase_util.files
 
-.. autoattribute:: FileLock.is_locked
+.. autoproperty:: FileLock.is_locked

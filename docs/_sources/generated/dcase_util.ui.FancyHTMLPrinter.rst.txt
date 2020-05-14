@@ -21,8 +21,10 @@ dcase\_util.ui.FancyHTMLPrinter
       ~FancyHTMLPrinter.info
       ~FancyHTMLPrinter.line
       ~FancyHTMLPrinter.row
+      ~FancyHTMLPrinter.row_average
       ~FancyHTMLPrinter.row_reset
       ~FancyHTMLPrinter.row_sep
+      ~FancyHTMLPrinter.row_sum
       ~FancyHTMLPrinter.section_header
       ~FancyHTMLPrinter.sep
       ~FancyHTMLPrinter.sub_header

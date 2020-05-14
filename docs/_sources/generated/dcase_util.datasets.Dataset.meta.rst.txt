@@ -3,4 +3,4 @@ dcase\_util.datasets.Dataset.meta
 
 .. currentmodule:: dcase_util.datasets
 
-.. autoattribute:: Dataset.meta
+.. autoproperty:: Dataset.meta

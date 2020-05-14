@@ -3,4 +3,4 @@ dcase\_util.containers.BinaryMatrix2DContainer.frames
 
 .. currentmodule:: dcase_util.containers
 
-.. autoattribute:: BinaryMatrix2DContainer.frames
+.. autoproperty:: BinaryMatrix2DContainer.frames

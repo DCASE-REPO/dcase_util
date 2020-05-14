@@ -3,4 +3,4 @@ dcase\_util.containers.DataContainer.focus\_start
 
 .. currentmodule:: dcase_util.containers
 
-.. autoattribute:: DataContainer.focus_start
+.. autoproperty:: DataContainer.focus_start

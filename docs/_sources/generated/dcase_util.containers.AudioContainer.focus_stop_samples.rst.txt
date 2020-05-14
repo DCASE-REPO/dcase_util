@@ -3,4 +3,4 @@ dcase\_util.containers.AudioContainer.focus\_stop\_samples
 
 .. currentmodule:: dcase_util.containers
 
-.. autoattribute:: AudioContainer.focus_stop_samples
+.. autoproperty:: AudioContainer.focus_stop_samples

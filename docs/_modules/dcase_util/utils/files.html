@@ -1474,6 +1474,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-12">v0.2.12</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-11">v0.2.11</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-10">v0.2.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-9">v0.2.9</a></li>
@@ -1562,8 +1563,8 @@
 <span></span><span class="ch">#!/usr/bin/env python</span>
 <span class="c1"># -*- coding: utf-8 -*-</span>
 
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">absolute_import</span>
-<span class="kn">from</span> <span class="nn">six</span> <span class="k">import</span> <span class="n">iteritems</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">absolute_import</span>
+<span class="kn">from</span> <span class="nn">six</span> <span class="kn">import</span> <span class="n">iteritems</span>
 
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">argparse</span>
@@ -1572,7 +1573,7 @@
 <span class="kn">import</span> <span class="nn">logging</span>
 
 
-<div class="viewcode-block" id="argument_file_exists"><a class="viewcode-back" href="../../../generated/dcase_util.utils.argument_file_exists.html#dcase_util.utils.argument_file_exists">[docs]</a><span class="k">def</span> <span class="nf">argument_file_exists</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">argument_file_exists</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Argument file checker</span>
 
 <span class="sd">    Type for argparse. Checks that file exists but does not open.</span>
@@ -1591,10 +1592,10 @@
         <span class="c1"># Argparse uses the ArgumentTypeError to give a rejection message like:</span>
         <span class="c1"># error: argument input: x does not exist</span>
         <span class="k">raise</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentTypeError</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{0}</span><span class="s2"> does not exist&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">filename</span><span class="p">))</span>
-    <span class="k">return</span> <span class="n">filename</span></div>
+    <span class="k">return</span> <span class="n">filename</span>
 
 
-<div class="viewcode-block" id="filelist_exists"><a class="viewcode-back" href="../../../generated/dcase_util.utils.filelist_exists.html#dcase_util.utils.filelist_exists">[docs]</a><span class="k">def</span> <span class="nf">filelist_exists</span><span class="p">(</span><span class="n">filelist</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">filelist_exists</span><span class="p">(</span><span class="n">filelist</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Check that all file in the list exists</span>
 
 <span class="sd">    Parameters</span>
@@ -1618,10 +1619,10 @@
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item_value</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
             <span class="n">file_exist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">item_value</span><span class="p">))</span>
 
-    <span class="k">return</span> <span class="nb">all</span><span class="p">(</span><span class="n">file_exist</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="nb">all</span><span class="p">(</span><span class="n">file_exist</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="posix_path"><a class="viewcode-back" href="../../../generated/dcase_util.utils.posix_path.html#dcase_util.utils.posix_path">[docs]</a><span class="k">def</span> <span class="nf">posix_path</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">posix_path</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Converts path to POSIX format</span>
 
 <span class="sd">    Parameters</span>
@@ -1635,12 +1636,12 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">normpath</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;/&#39;</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">normpath</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;/&#39;</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="Path"><a class="viewcode-back" href="../../../generated/dcase_util.utils.Path.html#dcase_util.utils.Path">[docs]</a><span class="k">class</span> <span class="nc">Path</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">Path</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Utility class for paths&quot;&quot;&quot;</span>
-<div class="viewcode-block" id="Path.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.utils.Path.html#dcase_util.utils.Path.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Constructor</span>
 
 <span class="sd">        Parameters</span>
@@ -1652,19 +1653,19 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="n">path</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">posix</span><span class="p">()</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">posix</span><span class="p">()</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">logger</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Logger instance&quot;&quot;&quot;</span>
         <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">logger</span><span class="o">.</span><span class="n">handlers</span><span class="p">:</span>
-            <span class="kn">from</span> <span class="nn">dcase_util.utils</span> <span class="k">import</span> <span class="n">setup_logging</span>
+            <span class="kn">from</span> <span class="nn">dcase_util.utils</span> <span class="kn">import</span> <span class="n">setup_logging</span>
             <span class="n">setup_logging</span><span class="p">()</span>
 
         <span class="k">return</span> <span class="n">logger</span>
 
-<div class="viewcode-block" id="Path.posix"><a class="viewcode-back" href="../../../generated/dcase_util.utils.Path.posix.html#dcase_util.utils.Path.posix">[docs]</a>    <span class="k">def</span> <span class="nf">posix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">posix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Converts path to POSIX format</span>
 
 <span class="sd">        Parameters</span>
@@ -1686,9 +1687,9 @@
             <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">normpath</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;/&#39;</span><span class="p">)</span>
 
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">None</span></div>
+            <span class="k">return</span> <span class="kc">None</span>
 
-<div class="viewcode-block" id="Path.posix_to_nt"><a class="viewcode-back" href="../../../generated/dcase_util.utils.Path.posix_to_nt.html#dcase_util.utils.Path.posix_to_nt">[docs]</a>    <span class="k">def</span> <span class="nf">posix_to_nt</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">posix_to_nt</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Converts posix formatted path to nt</span>
 
 <span class="sd">        Parameters</span>
@@ -1706,7 +1707,7 @@
         <span class="k">if</span> <span class="n">path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span>
 
-        <span class="k">return</span> <span class="n">path</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">sep</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">path</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">sep</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">shorten</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">part_count</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Shorten path into given parts length</span>
@@ -1740,7 +1741,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">path</span>
 
-<div class="viewcode-block" id="Path.file_list"><a class="viewcode-back" href="../../../generated/dcase_util.utils.Path.file_list.html#dcase_util.utils.Path.file_list">[docs]</a>    <span class="k">def</span> <span class="nf">file_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">extensions</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="k">def</span> <span class="nf">file_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">extensions</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                   <span class="n">case_sensitive</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">absolute_paths</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 
         <span class="sd">&quot;&quot;&quot;Get file list</span>
@@ -1836,9 +1837,9 @@
         <span class="k">if</span> <span class="n">limit</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">limit</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">files</span><span class="p">):</span>
             <span class="n">files</span> <span class="o">=</span> <span class="n">files</span><span class="p">[:</span><span class="n">limit</span><span class="p">]</span>
 
-        <span class="k">return</span> <span class="n">files</span></div>
+        <span class="k">return</span> <span class="n">files</span>
 
-<div class="viewcode-block" id="Path.exists"><a class="viewcode-back" href="../../../generated/dcase_util.utils.Path.exists.html#dcase_util.utils.Path.exists">[docs]</a>    <span class="k">def</span> <span class="nf">exists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">exists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Checks that path exists</span>
 
 <span class="sd">        Parameters</span>
@@ -1856,9 +1857,9 @@
         <span class="k">if</span> <span class="n">path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span>
 
-        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Path.file_count"><a class="viewcode-back" href="../../../generated/dcase_util.utils.Path.file_count.html#dcase_util.utils.Path.file_count">[docs]</a>    <span class="k">def</span> <span class="nf">file_count</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">file_count</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;File count under given path including sub directories.</span>
 
 <span class="sd">        Parameters</span>
@@ -1880,9 +1881,9 @@
         <span class="k">for</span> <span class="n">root</span><span class="p">,</span> <span class="n">dirs</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
             <span class="n">total_files</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">files</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">total_files</span></div>
+        <span class="k">return</span> <span class="n">total_files</span>
 
-<div class="viewcode-block" id="Path.size_bytes"><a class="viewcode-back" href="../../../generated/dcase_util.utils.Path.size_bytes.html#dcase_util.utils.Path.size_bytes">[docs]</a>    <span class="k">def</span> <span class="nf">size_bytes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">size_bytes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Total byte count of all files under given path.</span>
 
 <span class="sd">        Parameters</span>
@@ -1904,9 +1905,9 @@
         <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">file_list</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">):</span>
             <span class="n">total_size</span> <span class="o">+=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">total_size</span></div>
+        <span class="k">return</span> <span class="n">total_size</span>
 
-<div class="viewcode-block" id="Path.size_string"><a class="viewcode-back" href="../../../generated/dcase_util.utils.Path.size_string.html#dcase_util.utils.Path.size_string">[docs]</a>    <span class="k">def</span> <span class="nf">size_string</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">show_bytes</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">size_string</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">show_bytes</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Total data size of all files under given path returned in human readable form.</span>
 
 <span class="sd">        Parameters</span>
@@ -1927,9 +1928,9 @@
 
         <span class="k">if</span> <span class="n">path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span>
-        <span class="k">return</span> <span class="n">get_byte_string</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">size_bytes</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">),</span> <span class="n">show_bytes</span><span class="o">=</span><span class="n">show_bytes</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">get_byte_string</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">size_bytes</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">),</span> <span class="n">show_bytes</span><span class="o">=</span><span class="n">show_bytes</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Path.makedirs"><a class="viewcode-back" href="../../../generated/dcase_util.utils.Path.makedirs.html#dcase_util.utils.Path.makedirs">[docs]</a>    <span class="k">def</span> <span class="nf">makedirs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">makedirs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Create given path.</span>
 
 <span class="sd">        Parameters</span>
@@ -1951,9 +1952,9 @@
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
             <span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">exception</span><span class="p">:</span>
-                <span class="k">pass</span></div>
+                <span class="k">pass</span>
 
-<div class="viewcode-block" id="Path.create"><a class="viewcode-back" href="../../../generated/dcase_util.utils.Path.create.html#dcase_util.utils.Path.create">[docs]</a>    <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">paths</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">paths</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Create given paths.</span>
 
 <span class="sd">        Parameters</span>
@@ -1985,7 +1986,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Unknown data type for paths.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></div>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">modify</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">path_base</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">filename_extension</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">filename_prefix</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">filename_postfix</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Modify path</span>
@@ -2034,12 +2035,12 @@
         <span class="k">if</span> <span class="n">filename_postfix</span><span class="p">:</span>
             <span class="n">current_filename_base</span> <span class="o">=</span> <span class="n">current_filename_base</span> <span class="o">+</span> <span class="n">filename_postfix</span>
 
-        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">current_path_base</span><span class="p">,</span> <span class="n">current_filename_base</span><span class="o">+</span><span class="n">current_extension</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">current_path_base</span><span class="p">,</span> <span class="n">current_filename_base</span><span class="o">+</span><span class="n">current_extension</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="ApplicationPaths"><a class="viewcode-back" href="../../../generated/dcase_util.utils.ApplicationPaths.html#dcase_util.utils.ApplicationPaths">[docs]</a><span class="k">class</span> <span class="nc">ApplicationPaths</span><span class="p">(</span><span class="n">Path</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Utility class for application paths, paths are automatically generated based on parameters through parameter hash.&quot;&quot;&quot;</span>
-<div class="viewcode-block" id="ApplicationPaths.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.utils.ApplicationPaths.html#dcase_util.utils.ApplicationPaths.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameter_container</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="ApplicationPaths.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.utils.ApplicationPaths.html#dcase_util.utils.ApplicationPaths.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameter_container</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Constructor</span>
 
 <span class="sd">        Parameters</span>
@@ -2152,7 +2153,7 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="k">import</span> <span class="n">ParameterContainer</span>
+        <span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="kn">import</span> <span class="n">ParameterContainer</span>
 
         <span class="n">path_parts</span> <span class="o">=</span> <span class="p">[</span><span class="n">path_base</span><span class="p">]</span>
         <span class="k">for</span> <span class="n">part</span> <span class="ow">in</span> <span class="n">structure</span><span class="p">:</span>
@@ -2300,7 +2301,7 @@
 
     <span class="n">UNKNOWN</span> <span class="o">=</span> <span class="s1">&#39;UNKNOWN&#39;</span>  <span class="c1">#: Unknown format</span>
 
-<div class="viewcode-block" id="FileFormat.detect_based_on_filename"><a class="viewcode-back" href="../../../generated/dcase_util.utils.FileFormat.detect_based_on_filename.html#dcase_util.utils.FileFormat.detect_based_on_filename">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">detect_based_on_filename</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Detect file format based on filename.</span>
 
@@ -2453,9 +2454,9 @@
             <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">RAW</span>
 
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">UNKNOWN</span></div>
+            <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">UNKNOWN</span>
 
-<div class="viewcode-block" id="FileFormat.detect_based_on_content"><a class="viewcode-back" href="../../../generated/dcase_util.utils.FileFormat.detect_based_on_content.html#dcase_util.utils.FileFormat.detect_based_on_content">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">detect_based_on_content</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Detect file format based on content by using python-magic.</span>
 
@@ -2620,9 +2621,9 @@
                 <span class="k">return</span> <span class="kc">None</span>
 
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">None</span></div>
+            <span class="k">return</span> <span class="kc">None</span>
 
-<div class="viewcode-block" id="FileFormat.detect"><a class="viewcode-back" href="../../../generated/dcase_util.utils.FileFormat.detect.html#dcase_util.utils.FileFormat.detect">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">detect</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">use_content_for_unknown</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Detect file format. First the file extension is used, if the format is not recognized based on filename alone then content is checked given that file exists.</span>
 
@@ -2652,9 +2653,9 @@
                 <span class="k">if</span> <span class="n">result2</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                     <span class="k">return</span> <span class="n">result2</span>
 
-        <span class="k">return</span> <span class="n">result1</span></div>
+        <span class="k">return</span> <span class="n">result1</span>
 
-<div class="viewcode-block" id="FileFormat.validate_label"><a class="viewcode-back" href="../../../generated/dcase_util.utils.FileFormat.validate_label.html#dcase_util.utils.FileFormat.validate_label">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">validate_label</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">label</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Validate file format label against labels known by this class</span>
 
@@ -2669,7 +2670,7 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">return</span> <span class="n">label</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span></div></div>
+        <span class="k">return</span> <span class="n">label</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span></div>
 </pre></div>
 
            </div>

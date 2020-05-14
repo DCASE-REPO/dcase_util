@@ -1474,6 +1474,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-12">v0.2.12</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-11">v0.2.11</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-10">v0.2.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-9">v0.2.9</a></li>
@@ -1563,27 +1564,27 @@
 <span class="c1"># -*- coding: utf-8 -*-</span>
 
 
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">absolute_import</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">absolute_import</span>
 <span class="kn">import</span> <span class="nn">six</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">numpy</span>
 <span class="kn">import</span> <span class="nn">datetime</span>
 <span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">from</span> <span class="nn">dcase_util.utils</span> <span class="k">import</span> <span class="n">setup_logging</span><span class="p">,</span> <span class="n">is_float</span><span class="p">,</span> <span class="n">is_int</span>
+<span class="kn">from</span> <span class="nn">dcase_util.utils</span> <span class="kn">import</span> <span class="n">setup_logging</span><span class="p">,</span> <span class="n">is_float</span><span class="p">,</span> <span class="n">is_int</span>
 
 
-<div class="viewcode-block" id="FancyStringifier"><a class="viewcode-back" href="../../../generated/dcase_util.ui.FancyStringifier.html#dcase_util.ui.FancyStringifier">[docs]</a><span class="k">class</span> <span class="nc">FancyStringifier</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">FancyStringifier</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Fancy UI</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="FancyStringifier.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.ui.FancyStringifier.html#dcase_util.ui.FancyStringifier.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">row_column_widths</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">row_data_types</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">row_indent</span> <span class="o">=</span> <span class="mi">2</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">row_column_separators</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">row_column_count</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">row_column_numerical_value_sum</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">row_column_numerical_value_count</span> <span class="o">=</span> <span class="p">{}</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">row_column_numerical_value_count</span> <span class="o">=</span> <span class="p">{}</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">logger</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1592,7 +1593,7 @@
             <span class="n">setup_logging</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">logger</span>
 
-<div class="viewcode-block" id="FancyStringifier.title"><a class="viewcode-back" href="../../../generated/dcase_util.ui.FancyStringifier.title.html#dcase_util.ui.FancyStringifier.title">[docs]</a>    <span class="k">def</span> <span class="nf">title</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">title</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Title</span>
 
 <span class="sd">        Parameters</span>
@@ -1606,9 +1607,9 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">return</span> <span class="n">text</span></div>
+        <span class="k">return</span> <span class="n">text</span>
 
-<div class="viewcode-block" id="FancyStringifier.section_header"><a class="viewcode-back" href="../../../generated/dcase_util.ui.FancyStringifier.section_header.html#dcase_util.ui.FancyStringifier.section_header">[docs]</a>    <span class="k">def</span> <span class="nf">section_header</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">section_header</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Section header</span>
 
 <span class="sd">        Parameters</span>
@@ -1626,9 +1627,9 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">return</span> <span class="s1">&#39; &#39;</span> <span class="o">*</span> <span class="n">indent</span> <span class="o">+</span> <span class="n">text</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">sep</span><span class="p">(</span><span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="s1">&#39; &#39;</span> <span class="o">*</span> <span class="n">indent</span> <span class="o">+</span> <span class="n">text</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">sep</span><span class="p">(</span><span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="p">)</span>
 
-<div class="viewcode-block" id="FancyStringifier.sub_header"><a class="viewcode-back" href="../../../generated/dcase_util.ui.FancyStringifier.sub_header.html#dcase_util.ui.FancyStringifier.sub_header">[docs]</a>    <span class="k">def</span> <span class="nf">sub_header</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">sub_header</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Sub header</span>
 
 <span class="sd">        Parameters</span>
@@ -1646,9 +1647,9 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">return</span> <span class="s1">&#39; &#39;</span> <span class="o">*</span> <span class="n">indent</span> <span class="o">+</span> <span class="s1">&#39;=== &#39;</span> <span class="o">+</span> <span class="n">text</span> <span class="o">+</span> <span class="s1">&#39; ===&#39;</span></div>
+        <span class="k">return</span> <span class="s1">&#39; &#39;</span> <span class="o">*</span> <span class="n">indent</span> <span class="o">+</span> <span class="s1">&#39;=== &#39;</span> <span class="o">+</span> <span class="n">text</span> <span class="o">+</span> <span class="s1">&#39; ===&#39;</span>
 
-<div class="viewcode-block" id="FancyStringifier.foot"><a class="viewcode-back" href="../../../generated/dcase_util.ui.FancyStringifier.foot.html#dcase_util.ui.FancyStringifier.foot">[docs]</a>    <span class="k">def</span> <span class="nf">foot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;DONE&#39;</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">item_count</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">foot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;DONE&#39;</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">item_count</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Footer</span>
 
 <span class="sd">        Parameters</span>
@@ -1692,9 +1693,9 @@
                     <span class="n">item_time</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="n">time</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">item_count</span><span class="p">)))</span>
                 <span class="p">)</span>
 
-        <span class="k">return</span> <span class="s1">&#39; &#39;</span> <span class="o">*</span> <span class="n">indent</span> <span class="o">+</span> <span class="n">output</span></div>
+        <span class="k">return</span> <span class="s1">&#39; &#39;</span> <span class="o">*</span> <span class="n">indent</span> <span class="o">+</span> <span class="n">output</span>
 
-<div class="viewcode-block" id="FancyStringifier.line"><a class="viewcode-back" href="../../../generated/dcase_util.ui.FancyStringifier.line.html#dcase_util.ui.FancyStringifier.line">[docs]</a>    <span class="k">def</span> <span class="nf">line</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">line</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Line</span>
 
 <span class="sd">        Parameters</span>
@@ -1721,9 +1722,9 @@
         <span class="k">for</span> <span class="n">line_id</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">lines</span><span class="p">):</span>
             <span class="n">lines</span><span class="p">[</span><span class="n">line_id</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span> <span class="o">*</span> <span class="n">indent</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="si">{field:}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">field</span><span class="o">=</span><span class="n">line</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
 
-<div class="viewcode-block" id="FancyStringifier.formatted_value"><a class="viewcode-back" href="../../../generated/dcase_util.ui.FancyStringifier.formatted_value.html#dcase_util.ui.FancyStringifier.formatted_value">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">formatted_value</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Format value into string.</span>
 
@@ -1893,9 +1894,9 @@
                 <span class="k">elif</span> <span class="n">value</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">value_width</span><span class="p">:</span>
                     <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="n">value_width</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">value</span></div>
+        <span class="k">return</span> <span class="n">value</span>
 
-<div class="viewcode-block" id="FancyStringifier.data"><a class="viewcode-back" href="../../../generated/dcase_util.ui.FancyStringifier.data.html#dcase_util.ui.FancyStringifier.data">[docs]</a>    <span class="k">def</span> <span class="nf">data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Data line</span>
 
 <span class="sd">        Parameters</span>
@@ -1960,9 +1961,9 @@
             <span class="p">)</span>
 
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="s1">&#39; &#39;</span> <span class="o">*</span> <span class="n">indent</span></div>
+            <span class="k">return</span> <span class="s1">&#39; &#39;</span> <span class="o">*</span> <span class="n">indent</span>
 
-<div class="viewcode-block" id="FancyStringifier.sep"><a class="viewcode-back" href="../../../generated/dcase_util.ui.FancyStringifier.sep.html#dcase_util.ui.FancyStringifier.sep">[docs]</a>    <span class="k">def</span> <span class="nf">sep</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">sep</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Horizontal separator</span>
 
 <span class="sd">        Parameters</span>
@@ -1981,9 +1982,9 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">return</span> <span class="s1">&#39; &#39;</span> <span class="o">*</span> <span class="n">indent</span> <span class="o">+</span> <span class="s1">&#39;=&#39;</span> <span class="o">*</span> <span class="p">(</span><span class="n">length</span> <span class="o">-</span> <span class="n">indent</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="s1">&#39; &#39;</span> <span class="o">*</span> <span class="n">indent</span> <span class="o">+</span> <span class="s1">&#39;=&#39;</span> <span class="o">*</span> <span class="p">(</span><span class="n">length</span> <span class="o">-</span> <span class="n">indent</span><span class="p">)</span>
 
-<div class="viewcode-block" id="FancyStringifier.table"><a class="viewcode-back" href="../../../generated/dcase_util.ui.FancyStringifier.table.html#dcase_util.ui.FancyStringifier.table">[docs]</a>    <span class="k">def</span> <span class="nf">table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cell_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">column_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">column_types</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="k">def</span> <span class="nf">table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cell_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">column_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">column_types</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
               <span class="n">column_separators</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">row_separators</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Data table</span>
 
@@ -2153,9 +2154,9 @@
                 <span class="n">output</span> <span class="o">+=</span> <span class="s1">&#39; &#39;</span><span class="o">*</span><span class="n">indent</span> <span class="o">+</span> <span class="n">line_template</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="n">sep_column</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
             <span class="n">output</span> <span class="o">+=</span> <span class="s1">&#39; &#39;</span><span class="o">*</span><span class="n">indent</span> <span class="o">+</span> <span class="n">line_template</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="n">row_data</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
 
-        <span class="k">return</span> <span class="n">output</span></div>
+        <span class="k">return</span> <span class="n">output</span>
 
-<div class="viewcode-block" id="FancyStringifier.row"><a class="viewcode-back" href="../../../generated/dcase_util.ui.FancyStringifier.row.html#dcase_util.ui.FancyStringifier.row">[docs]</a>    <span class="k">def</span> <span class="nf">row</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">row</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Table row</span>
 
 <span class="sd">        Parameters</span>
@@ -2258,9 +2259,9 @@
                 <span class="n">line_string</span> <span class="o">+=</span> <span class="s1">&#39; &#39;</span>
 
 
-        <span class="k">return</span> <span class="s1">&#39; &#39;</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">row_indent</span> <span class="o">+</span> <span class="n">line_string</span></div>
+        <span class="k">return</span> <span class="s1">&#39; &#39;</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">row_indent</span> <span class="o">+</span> <span class="n">line_string</span>
 
-<div class="viewcode-block" id="FancyStringifier.row_reset"><a class="viewcode-back" href="../../../generated/dcase_util.ui.FancyStringifier.row_reset.html#dcase_util.ui.FancyStringifier.row_reset">[docs]</a>    <span class="k">def</span> <span class="nf">row_reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">row_reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Reset table row formatting</span>
 
 <span class="sd">        Returns</span>
@@ -2276,9 +2277,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">row_column_count</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">row_value_cache_reset</span><span class="p">()</span>
 
-        <span class="k">return</span> <span class="bp">self</span></div>
+        <span class="k">return</span> <span class="bp">self</span>
 
-<div class="viewcode-block" id="FancyStringifier.row_sep"><a class="viewcode-back" href="../../../generated/dcase_util.ui.FancyStringifier.row_sep.html#dcase_util.ui.FancyStringifier.row_sep">[docs]</a>    <span class="k">def</span> <span class="nf">row_sep</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">separator_char</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">row_sep</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">separator_char</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Table separator row</span>
 
 <span class="sd">        Parameters</span>
@@ -2301,9 +2302,9 @@
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="o">*</span><span class="n">row_list</span><span class="p">)</span>
 
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="s1">&#39;&#39;</span></div>
+            <span class="k">return</span> <span class="s1">&#39;&#39;</span>
 
-<div class="viewcode-block" id="FancyStringifier.row_sum"><a class="viewcode-back" href="../../../generated/dcase_util.ui.FancyStringifier.row_sum.html#dcase_util.ui.FancyStringifier.row_sum">[docs]</a>    <span class="k">def</span> <span class="nf">row_sum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Sum&#39;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">row_sum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Sum&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Table row showing internally accumulated sum of previous row values per column</span>
 
 <span class="sd">        Parameters</span>
@@ -2329,9 +2330,9 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="o">*</span><span class="n">values</span><span class="p">,</span> <span class="n">accumulate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="o">*</span><span class="n">values</span><span class="p">,</span> <span class="n">accumulate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-<div class="viewcode-block" id="FancyStringifier.row_average"><a class="viewcode-back" href="../../../generated/dcase_util.ui.FancyStringifier.row_average.html#dcase_util.ui.FancyStringifier.row_average">[docs]</a>    <span class="k">def</span> <span class="nf">row_average</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Avg&#39;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">row_average</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Avg&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Table row showing internally accumulated average of previous row values per column</span>
 
 <span class="sd">        Parameters</span>
@@ -2359,13 +2360,13 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="o">*</span><span class="n">values</span><span class="p">,</span> <span class="n">accumulate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="o">*</span><span class="n">values</span><span class="p">,</span> <span class="n">accumulate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">row_value_cache_reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">row_column_numerical_value_sum</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">row_column_numerical_value_count</span> <span class="o">=</span> <span class="p">{}</span>
 
-<div class="viewcode-block" id="FancyStringifier.class_name"><a class="viewcode-back" href="../../../generated/dcase_util.ui.FancyStringifier.class_name.html#dcase_util.ui.FancyStringifier.class_name">[docs]</a>    <span class="k">def</span> <span class="nf">class_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">class_name</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">class_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">class_name</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Class name</span>
 
 <span class="sd">        Parameters</span>
@@ -2383,14 +2384,14 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">return</span> <span class="s1">&#39; &#39;</span> <span class="o">*</span> <span class="n">indent</span> <span class="o">+</span> <span class="n">class_name</span> <span class="o">+</span> <span class="s2">&quot; :: Class&quot;</span></div></div>
+        <span class="k">return</span> <span class="s1">&#39; &#39;</span> <span class="o">*</span> <span class="n">indent</span> <span class="o">+</span> <span class="n">class_name</span> <span class="o">+</span> <span class="s2">&quot; :: Class&quot;</span>
 
 
 <div class="viewcode-block" id="FancyHTMLStringifier"><a class="viewcode-back" href="../../../generated/dcase_util.ui.FancyHTMLStringifier.html#dcase_util.ui.FancyHTMLStringifier">[docs]</a><span class="k">class</span> <span class="nc">FancyHTMLStringifier</span><span class="p">(</span><span class="n">FancyStringifier</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Fancy UI to produce HTML output</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="FancyHTMLStringifier.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.ui.FancyHTMLStringifier.html#dcase_util.ui.FancyHTMLStringifier.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="FancyHTMLStringifier.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.ui.FancyHTMLStringifier.html#dcase_util.ui.FancyHTMLStringifier.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">FancyHTMLStringifier</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">indent_factor</span> <span class="o">=</span> <span class="mi">10</span>
 
@@ -3085,7 +3086,7 @@
 <div class="viewcode-block" id="FancyLogger"><a class="viewcode-back" href="../../../generated/dcase_util.ui.FancyLogger.html#dcase_util.ui.FancyLogger">[docs]</a><span class="k">class</span> <span class="nc">FancyLogger</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Logger class</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="FancyLogger.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.ui.FancyLogger.html#dcase_util.ui.FancyLogger.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="FancyLogger.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.ui.FancyLogger.html#dcase_util.ui.FancyLogger.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Constructor</span>
 
 <span class="sd">        Parameters</span>
@@ -3215,7 +3216,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">row_sep</span><span class="p">(</span><span class="n">separator_char</span><span class="o">=</span><span class="n">separator_char</span><span class="p">)</span>
         <span class="p">)</span></div>
 
-<div class="viewcode-block" id="FancyLogger.row_sum"><a class="viewcode-back" href="../../../generated/dcase_util.ui.FancyLogger.row_sum.html#dcase_util.ui.FancyLogger.row_sum">[docs]</a>    <span class="k">def</span> <span class="nf">row_sum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Sum&#39;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">row_sum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Sum&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Table row showing internally accumulated sum of previous row values per column</span>
 
 <span class="sd">        Parameters</span>
@@ -3231,7 +3232,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">line</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">row_sum</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
-        <span class="p">)</span></div>
+        <span class="p">)</span>
 
 <div class="viewcode-block" id="FancyLogger.row_average"><a class="viewcode-back" href="../../../generated/dcase_util.ui.FancyLogger.row_average.html#dcase_util.ui.FancyLogger.row_average">[docs]</a>    <span class="k">def</span> <span class="nf">row_average</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Avg&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Table row showing internally accumulated average of previous row values per column</span>
@@ -3251,7 +3252,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">row_average</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
         <span class="p">)</span></div>
 
-<div class="viewcode-block" id="FancyLogger.title"><a class="viewcode-back" href="../../../generated/dcase_util.ui.FancyLogger.title.html#dcase_util.ui.FancyLogger.title">[docs]</a>    <span class="k">def</span> <span class="nf">title</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="s1">&#39;info&#39;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">title</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="s1">&#39;info&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Title, logged at info level</span>
 
 <span class="sd">        Parameters</span>
@@ -3279,9 +3280,9 @@
                 <span class="n">text</span><span class="o">=</span><span class="n">text</span>
             <span class="p">),</span>
             <span class="n">level</span><span class="o">=</span><span class="n">level</span>
-        <span class="p">)</span></div>
+        <span class="p">)</span>
 
-<div class="viewcode-block" id="FancyLogger.section_header"><a class="viewcode-back" href="../../../generated/dcase_util.ui.FancyLogger.section_header.html#dcase_util.ui.FancyLogger.section_header">[docs]</a>    <span class="k">def</span> <span class="nf">section_header</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="s1">&#39;info&#39;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">section_header</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="s1">&#39;info&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Section header, logged at info level</span>
 
 <span class="sd">        Parameters</span>
@@ -3314,9 +3315,9 @@
                 <span class="n">indent</span><span class="o">=</span><span class="n">indent</span>
             <span class="p">),</span>
             <span class="n">level</span><span class="o">=</span><span class="n">level</span>
-        <span class="p">)</span></div>
+        <span class="p">)</span>
 
-<div class="viewcode-block" id="FancyLogger.sub_header"><a class="viewcode-back" href="../../../generated/dcase_util.ui.FancyLogger.sub_header.html#dcase_util.ui.FancyLogger.sub_header">[docs]</a>    <span class="k">def</span> <span class="nf">sub_header</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="s1">&#39;info&#39;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">sub_header</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="s1">&#39;info&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Sub header</span>
 
 <span class="sd">        Parameters</span>
@@ -3349,7 +3350,7 @@
                 <span class="n">indent</span><span class="o">=</span><span class="n">indent</span>
             <span class="p">),</span>
             <span class="n">level</span><span class="o">=</span><span class="n">level</span>
-        <span class="p">)</span></div>
+        <span class="p">)</span>
 
 <div class="viewcode-block" id="FancyLogger.foot"><a class="viewcode-back" href="../../../generated/dcase_util.ui.FancyLogger.foot.html#dcase_util.ui.FancyLogger.foot">[docs]</a>    <span class="k">def</span> <span class="nf">foot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;DONE&#39;</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">item_count</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="s1">&#39;info&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Footer, logged at info level</span>
@@ -3444,7 +3445,7 @@
             <span class="n">level</span><span class="o">=</span><span class="n">level</span>
         <span class="p">)</span></div>
 
-<div class="viewcode-block" id="FancyLogger.sep"><a class="viewcode-back" href="../../../generated/dcase_util.ui.FancyLogger.sep.html#dcase_util.ui.FancyLogger.sep">[docs]</a>    <span class="k">def</span> <span class="nf">sep</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="s1">&#39;info&#39;</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">sep</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="s1">&#39;info&#39;</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Horizontal separator, logged at info level</span>
 
 <span class="sd">        Parameters</span>
@@ -3478,9 +3479,9 @@
                 <span class="n">indent</span><span class="o">=</span><span class="n">indent</span>
             <span class="p">),</span>
             <span class="n">level</span><span class="o">=</span><span class="n">level</span>
-        <span class="p">)</span></div>
+        <span class="p">)</span>
 
-<div class="viewcode-block" id="FancyLogger.table"><a class="viewcode-back" href="../../../generated/dcase_util.ui.FancyLogger.table.html#dcase_util.ui.FancyLogger.table">[docs]</a>    <span class="k">def</span> <span class="nf">table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cell_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">column_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">column_types</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">column_separators</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="k">def</span> <span class="nf">table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cell_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">column_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">column_types</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">column_separators</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
               <span class="n">row_separators</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="s1">&#39;info&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Data table</span>
 
@@ -3537,7 +3538,7 @@
                 <span class="n">indent</span><span class="o">=</span><span class="n">indent</span>
             <span class="p">),</span>
             <span class="n">level</span><span class="o">=</span><span class="n">level</span>
-        <span class="p">)</span></div>
+        <span class="p">)</span>
 
 <div class="viewcode-block" id="FancyLogger.info"><a class="viewcode-back" href="../../../generated/dcase_util.ui.FancyLogger.info.html#dcase_util.ui.FancyLogger.info">[docs]</a>    <span class="k">def</span> <span class="nf">info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Info line logger</span>
@@ -3615,11 +3616,11 @@
         <span class="p">)</span></div></div>
 
 
-<div class="viewcode-block" id="FancyPrinter"><a class="viewcode-back" href="../../../generated/dcase_util.ui.FancyPrinter.html#dcase_util.ui.FancyPrinter">[docs]</a><span class="k">class</span> <span class="nc">FancyPrinter</span><span class="p">(</span><span class="n">FancyLogger</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">FancyPrinter</span><span class="p">(</span><span class="n">FancyLogger</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Printer class</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="FancyPrinter.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.ui.FancyPrinter.html#dcase_util.ui.FancyPrinter.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Constructor</span>
 
 <span class="sd">        Parameters</span>
@@ -3648,8 +3649,8 @@
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">colors</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
-                <span class="kn">from</span> <span class="nn">colorama</span> <span class="k">import</span> <span class="n">init</span>
-                <span class="kn">from</span> <span class="nn">colorama</span> <span class="k">import</span> <span class="n">Fore</span><span class="p">,</span> <span class="n">Back</span><span class="p">,</span> <span class="n">Style</span>
+                <span class="kn">from</span> <span class="nn">colorama</span> <span class="kn">import</span> <span class="n">init</span>
+                <span class="kn">from</span> <span class="nn">colorama</span> <span class="kn">import</span> <span class="n">Fore</span><span class="p">,</span> <span class="n">Back</span><span class="p">,</span> <span class="n">Style</span>
 
             <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
                 <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Unable to import colorama module. You can install it with `pip install colorama`.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
@@ -3665,7 +3666,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">levels</span><span class="p">[</span><span class="s1">&#39;debug&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Fore</span><span class="o">.</span><span class="n">YELLOW</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">levels</span><span class="p">[</span><span class="s1">&#39;warning&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Fore</span><span class="o">.</span><span class="n">MAGENTA</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">levels</span><span class="p">[</span><span class="s1">&#39;warn&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Fore</span><span class="o">.</span><span class="n">MAGENTA</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">levels</span><span class="p">[</span><span class="s1">&#39;error&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Back</span><span class="o">.</span><span class="n">RED</span> <span class="o">+</span> <span class="n">Fore</span><span class="o">.</span><span class="n">WHITE</span> <span class="o">+</span> <span class="n">Style</span><span class="o">.</span><span class="n">BRIGHT</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">levels</span><span class="p">[</span><span class="s1">&#39;error&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Back</span><span class="o">.</span><span class="n">RED</span> <span class="o">+</span> <span class="n">Fore</span><span class="o">.</span><span class="n">WHITE</span> <span class="o">+</span> <span class="n">Style</span><span class="o">.</span><span class="n">BRIGHT</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">logger</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -3675,7 +3676,7 @@
 
         <span class="k">return</span> <span class="n">logger</span>
 
-<div class="viewcode-block" id="FancyPrinter.line"><a class="viewcode-back" href="../../../generated/dcase_util.ui.FancyPrinter.line.html#dcase_util.ui.FancyPrinter.line">[docs]</a>    <span class="k">def</span> <span class="nf">line</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="s1">&#39;info&#39;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">line</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="s1">&#39;info&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Generic line logger</span>
 <span class="sd">        Multiple lines are split and logged separately</span>
 
@@ -3718,14 +3719,14 @@
                 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span> <span class="o">*</span> <span class="n">indent</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">levels</span><span class="p">[</span><span class="n">level</span><span class="p">]</span> <span class="o">+</span> <span class="n">line</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">levels</span><span class="p">[</span><span class="s1">&#39;reset&#39;</span><span class="p">])</span>
 
             <span class="k">else</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span> <span class="o">*</span> <span class="n">indent</span> <span class="o">+</span> <span class="n">line</span><span class="p">)</span></div></div>
+                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span> <span class="o">*</span> <span class="n">indent</span> <span class="o">+</span> <span class="n">line</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="FancyHTMLPrinter"><a class="viewcode-back" href="../../../generated/dcase_util.ui.FancyHTMLPrinter.html#dcase_util.ui.FancyHTMLPrinter">[docs]</a><span class="k">class</span> <span class="nc">FancyHTMLPrinter</span><span class="p">(</span><span class="n">FancyLogger</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">FancyHTMLPrinter</span><span class="p">(</span><span class="n">FancyLogger</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Printer class for rich HTML formatted output in IPython/Jupyter</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="FancyHTMLPrinter.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.ui.FancyHTMLPrinter.html#dcase_util.ui.FancyHTMLPrinter.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Constructor</span>
 
 <span class="sd">        Parameters</span>
@@ -3752,9 +3753,9 @@
             <span class="s1">&#39;warning&#39;</span><span class="p">:</span> <span class="s1">&#39;alert alert-block alert-warning&#39;</span><span class="p">,</span>
             <span class="s1">&#39;warn&#39;</span><span class="p">:</span> <span class="s1">&#39;alert alert-block alert-warning&#39;</span><span class="p">,</span>
             <span class="s1">&#39;error&#39;</span><span class="p">:</span> <span class="s1">&#39;alert alert-block alert-danger&#39;</span><span class="p">,</span>
-        <span class="p">}</span></div>
+        <span class="p">}</span>
 
-<div class="viewcode-block" id="FancyHTMLPrinter.line"><a class="viewcode-back" href="../../../generated/dcase_util.ui.FancyHTMLPrinter.line.html#dcase_util.ui.FancyHTMLPrinter.line">[docs]</a>    <span class="k">def</span> <span class="nf">line</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="s1">&#39;info&#39;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">line</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="s1">&#39;info&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Generic line logger</span>
 <span class="sd">        Multiple lines are split and logged separately</span>
 
@@ -3777,7 +3778,7 @@
 <span class="sd">        nothing</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="k">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">HTML</span>
+        <span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">HTML</span>
 
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">six</span><span class="o">.</span><span class="n">string_types</span><span class="p">):</span>
             <span class="n">lines</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
@@ -3799,7 +3800,7 @@
                     <span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="s1">&#39;&lt;div class=&quot;&#39;</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">levels</span><span class="p">[</span><span class="n">level</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;&quot;&gt;&#39;</span> <span class="o">+</span> <span class="n">line</span> <span class="o">+</span> <span class="s1">&#39;&lt;/div&gt;&#39;</span><span class="p">))</span>
 
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">line</span><span class="p">))</span></div>
+                    <span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">line</span><span class="p">))</span>
 
 <div class="viewcode-block" id="FancyHTMLPrinter.table"><a class="viewcode-back" href="../../../generated/dcase_util.ui.FancyHTMLPrinter.table.html#dcase_util.ui.FancyHTMLPrinter.table">[docs]</a>    <span class="k">def</span> <span class="nf">table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cell_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">column_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">column_types</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">column_separators</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
               <span class="n">row_separators</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="s1">&#39;info&#39;</span><span class="p">,</span> <span class="n">scaling</span><span class="o">=</span><span class="mi">110</span><span class="p">,</span> <span class="n">table_css_class</span><span class="o">=</span><span class="s1">&#39;table-striped table-condensed&#39;</span><span class="p">):</span>
@@ -3868,7 +3869,7 @@
                 <span class="n">table_css_class</span><span class="o">=</span><span class="n">table_css_class</span>
             <span class="p">),</span>
             <span class="n">level</span><span class="o">=</span><span class="n">level</span>
-        <span class="p">)</span></div></div>
+        <span class="p">)</span></div>
 </pre></div>
 
            </div>

@@ -3,4 +3,4 @@ dcase\_util.datasets.Dataset.error\_meta
 
 .. currentmodule:: dcase_util.datasets
 
-.. autoattribute:: Dataset.error_meta
+.. autoproperty:: Dataset.error_meta

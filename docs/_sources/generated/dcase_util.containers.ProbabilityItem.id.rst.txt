@@ -3,4 +3,4 @@ dcase\_util.containers.ProbabilityItem.id
 
 .. currentmodule:: dcase_util.containers
 
-.. autoattribute:: ProbabilityItem.id
+.. autoproperty:: ProbabilityItem.id

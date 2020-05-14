@@ -13,6 +13,7 @@ dcase\_util.utils.FieldValidator
 
    .. autosummary::
    
+      ~FieldValidator.__init__
       ~FieldValidator.is_alpha
       ~FieldValidator.is_audiofile
       ~FieldValidator.is_datafile

@@ -3,4 +3,4 @@ dcase\_util.containers.AudioContainer.streams
 
 .. currentmodule:: dcase_util.containers
 
-.. autoattribute:: AudioContainer.streams
+.. autoproperty:: AudioContainer.streams

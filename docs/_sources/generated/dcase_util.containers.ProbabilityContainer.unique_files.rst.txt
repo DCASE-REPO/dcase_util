@@ -3,4 +3,4 @@ dcase\_util.containers.ProbabilityContainer.unique\_files
 
 .. currentmodule:: dcase_util.containers
 
-.. autoattribute:: ProbabilityContainer.unique_files
+.. autoproperty:: ProbabilityContainer.unique_files

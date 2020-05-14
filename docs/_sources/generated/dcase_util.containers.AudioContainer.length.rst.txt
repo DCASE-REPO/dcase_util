@@ -3,4 +3,4 @@ dcase\_util.containers.AudioContainer.length
 
 .. currentmodule:: dcase_util.containers
 
-.. autoattribute:: AudioContainer.length
+.. autoproperty:: AudioContainer.length

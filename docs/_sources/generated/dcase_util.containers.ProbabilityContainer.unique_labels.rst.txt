@@ -3,4 +3,4 @@ dcase\_util.containers.ProbabilityContainer.unique\_labels
 
 .. currentmodule:: dcase_util.containers
 
-.. autoattribute:: ProbabilityContainer.unique_labels
+.. autoproperty:: ProbabilityContainer.unique_labels

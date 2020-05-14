@@ -3,4 +3,4 @@ dcase\_util.containers.DataContainer.length
 
 .. currentmodule:: dcase_util.containers
 
-.. autoattribute:: DataContainer.length
+.. autoproperty:: DataContainer.length

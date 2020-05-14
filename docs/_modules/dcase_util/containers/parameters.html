@@ -1474,6 +1474,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-12">v0.2.12</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-11">v0.2.11</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-10">v0.2.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-9">v0.2.9</a></li>
@@ -1561,8 +1562,8 @@
   <h1>Source code for dcase_util.containers.parameters</h1><div class="highlight"><pre>
 <span></span><span class="ch">#!/usr/bin/env python</span>
 <span class="c1"># -*- coding: utf-8 -*-</span>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">absolute_import</span>
-<span class="kn">from</span> <span class="nn">six</span> <span class="k">import</span> <span class="n">iteritems</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">absolute_import</span>
+<span class="kn">from</span> <span class="nn">six</span> <span class="kn">import</span> <span class="n">iteritems</span>
 
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">sys</span>
@@ -1570,8 +1571,8 @@
 <span class="kn">import</span> <span class="nn">numpy</span>
 <span class="kn">import</span> <span class="nn">platform</span>
 
-<span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="k">import</span> <span class="n">DictContainer</span><span class="p">,</span> <span class="n">ListDictContainer</span><span class="p">,</span> <span class="n">OneToOneMappingContainer</span>
-<span class="kn">from</span> <span class="nn">dcase_util.utils</span> <span class="k">import</span> <span class="n">VectorRecipeParser</span><span class="p">,</span> <span class="n">Path</span><span class="p">,</span> <span class="n">ApplicationPaths</span><span class="p">,</span> <span class="n">FileFormat</span>
+<span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="kn">import</span> <span class="n">DictContainer</span><span class="p">,</span> <span class="n">ListDictContainer</span><span class="p">,</span> <span class="n">OneToOneMappingContainer</span>
+<span class="kn">from</span> <span class="nn">dcase_util.utils</span> <span class="kn">import</span> <span class="n">VectorRecipeParser</span><span class="p">,</span> <span class="n">Path</span><span class="p">,</span> <span class="n">ApplicationPaths</span><span class="p">,</span> <span class="n">FileFormat</span>
 
 
 <div class="viewcode-block" id="ParameterContainer"><a class="viewcode-back" href="../../../generated/dcase_util.containers.ParameterContainer.html#dcase_util.containers.ParameterContainer">[docs]</a><span class="k">class</span> <span class="nc">ParameterContainer</span><span class="p">(</span><span class="n">DictContainer</span><span class="p">):</span>
@@ -1579,9 +1580,9 @@
     <span class="n">valid_formats</span> <span class="o">=</span> <span class="p">[</span><span class="n">FileFormat</span><span class="o">.</span><span class="n">YAML</span><span class="p">]</span>  <span class="c1">#: Valid file formats</span></div>
 
 
-<div class="viewcode-block" id="AppParameterContainer"><a class="viewcode-back" href="../../../generated/dcase_util.containers.AppParameterContainer.html#dcase_util.containers.AppParameterContainer">[docs]</a><span class="k">class</span> <span class="nc">AppParameterContainer</span><span class="p">(</span><span class="n">ParameterContainer</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">AppParameterContainer</span><span class="p">(</span><span class="n">ParameterContainer</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Parameter container class for application parameters, inherited from ParameterContainer.&quot;&quot;&quot;</span>
-<div class="viewcode-block" id="AppParameterContainer.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.containers.AppParameterContainer.html#dcase_util.containers.AppParameterContainer.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">app_base</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">application_directory_parameter_filename</span><span class="o">=</span><span class="s1">&#39;parameters.yaml&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">app_base</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">application_directory_parameter_filename</span><span class="o">=</span><span class="s1">&#39;parameters.yaml&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Constructor</span>
 
 <span class="sd">        Parameters</span>
@@ -1713,9 +1714,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">non_hashable_sections</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_non_hashable_sections</span>
 
         <span class="c1"># Reset container and inject parameters</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-<div class="viewcode-block" id="AppParameterContainer.reset"><a class="viewcode-back" href="../../../generated/dcase_util.containers.AppParameterContainer.reset.html#dcase_util.containers.AppParameterContainer.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
               <span class="n">field_labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
               <span class="n">section_labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">section_process_order</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
               <span class="n">path_structure</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -1792,9 +1793,9 @@
         <span class="c1"># Translate non_hashable_sections</span>
         <span class="k">for</span> <span class="n">order_id</span><span class="p">,</span> <span class="n">section_label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">non_hashable_sections</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">section_label</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">section_labels</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">non_hashable_sections</span><span class="p">[</span><span class="n">order_id</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">section_labels</span><span class="p">[</span><span class="n">section_label</span><span class="p">]</span></div>
+                <span class="bp">self</span><span class="o">.</span><span class="n">non_hashable_sections</span><span class="p">[</span><span class="n">order_id</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">section_labels</span><span class="p">[</span><span class="n">section_label</span><span class="p">]</span>
 
-<div class="viewcode-block" id="AppParameterContainer.process"><a class="viewcode-back" href="../../../generated/dcase_util.containers.AppParameterContainer.process.html#dcase_util.containers.AppParameterContainer.process">[docs]</a>    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">create_paths</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">create_parameter_hints</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">create_paths</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">create_parameter_hints</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Process parameters</span>
 
 <span class="sd">        Parameters</span>
@@ -1888,9 +1889,9 @@
             <span class="c1"># 8. Clean up</span>
             <span class="c1"># self._clean_unused_parameters()</span>
 
-        <span class="k">return</span> <span class="bp">self</span></div>
+        <span class="k">return</span> <span class="bp">self</span>
 
-<div class="viewcode-block" id="AppParameterContainer.process_set"><a class="viewcode-back" href="../../../generated/dcase_util.containers.AppParameterContainer.process_set.html#dcase_util.containers.AppParameterContainer.process_set">[docs]</a>    <span class="k">def</span> <span class="nf">process_set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">create_paths</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">create_parameter_hints</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">process_set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">create_paths</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">create_parameter_hints</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Process parameter set</span>
 
 <span class="sd">        Parameters</span>
@@ -2030,9 +2031,9 @@
             <span class="n">create_parameter_hints</span><span class="o">=</span><span class="n">create_parameter_hints</span>
         <span class="p">)</span>
 
-        <span class="k">return</span> <span class="bp">self</span></div>
+        <span class="k">return</span> <span class="bp">self</span>
 
-<div class="viewcode-block" id="AppParameterContainer.get_path_translated"><a class="viewcode-back" href="../../../generated/dcase_util.containers.AppParameterContainer.get_path_translated.html#dcase_util.containers.AppParameterContainer.get_path_translated">[docs]</a>    <span class="k">def</span> <span class="nf">get_path_translated</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get_path_translated</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get data with path, path can contain string constants which will be translated.</span>
 
 <span class="sd">        Parameters</span>
@@ -2055,9 +2056,9 @@
 
         <span class="k">return</span> <span class="n">parameters</span><span class="o">.</span><span class="n">get_path</span><span class="p">(</span>
             <span class="n">path</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_translated_path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
-        <span class="p">)</span></div>
+        <span class="p">)</span>
 
-<div class="viewcode-block" id="AppParameterContainer.set_path_translated"><a class="viewcode-back" href="../../../generated/dcase_util.containers.AppParameterContainer.set_path_translated.html#dcase_util.containers.AppParameterContainer.set_path_translated">[docs]</a>    <span class="k">def</span> <span class="nf">set_path_translated</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">new_value</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">set_path_translated</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">new_value</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Set data with path, path can contain string constants which will be translated.</span>
 
 <span class="sd">        Parameters</span>
@@ -2084,9 +2085,9 @@
         <span class="k">return</span> <span class="n">parameters</span><span class="o">.</span><span class="n">set_path</span><span class="p">(</span>
             <span class="n">path</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_translated_path</span><span class="p">(</span><span class="n">path</span><span class="p">),</span>
             <span class="n">new_value</span><span class="o">=</span><span class="n">new_value</span>
-        <span class="p">)</span></div>
+        <span class="p">)</span>
 
-<div class="viewcode-block" id="AppParameterContainer.override"><a class="viewcode-back" href="../../../generated/dcase_util.containers.AppParameterContainer.override.html#dcase_util.containers.AppParameterContainer.override">[docs]</a>    <span class="k">def</span> <span class="nf">override</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">override</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">override</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">override</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Override container content recursively.</span>
 
 <span class="sd">        Parameters</span>
@@ -2143,7 +2144,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="bp">self</span></div>
+        <span class="k">return</span> <span class="bp">self</span>
 
     <span class="k">def</span> <span class="nf">_process_method_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">section</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Process methods and recipes in the section</span>
@@ -2570,7 +2571,7 @@
 
         <span class="k">return</span> <span class="n">method_parameter_section</span>
 
-<div class="viewcode-block" id="AppParameterContainer.update_parameter_set"><a class="viewcode-back" href="../../../generated/dcase_util.containers.AppParameterContainer.update_parameter_set.html#dcase_util.containers.AppParameterContainer.update_parameter_set">[docs]</a>    <span class="k">def</span> <span class="nf">update_parameter_set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">set_id</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">update_parameter_set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">set_id</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Update active parameter set</span>
 
 <span class="sd">        Parameters</span>
@@ -2619,9 +2620,9 @@
         <span class="c1"># Set new active set</span>
         <span class="bp">self</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">field_labels</span><span class="p">[</span><span class="s1">&#39;ACTIVE-SET&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">set_id</span>
 
-        <span class="k">return</span> <span class="bp">self</span></div>
+        <span class="k">return</span> <span class="bp">self</span>
 
-<div class="viewcode-block" id="AppParameterContainer.set_ids"><a class="viewcode-back" href="../../../generated/dcase_util.containers.AppParameterContainer.set_ids.html#dcase_util.containers.AppParameterContainer.set_ids">[docs]</a>    <span class="k">def</span> <span class="nf">set_ids</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">set_ids</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get set ids</span>
 
 <span class="sd">        Returns</span>
@@ -2641,9 +2642,9 @@
             <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">set_ids</span><span class="p">)</span>
 
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">None</span></div>
+            <span class="k">return</span> <span class="kc">None</span>
 
-<div class="viewcode-block" id="AppParameterContainer.set_id_exists"><a class="viewcode-back" href="../../../generated/dcase_util.containers.AppParameterContainer.set_id_exists.html#dcase_util.containers.AppParameterContainer.set_id_exists">[docs]</a>    <span class="k">def</span> <span class="nf">set_id_exists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">set_id</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">set_id_exists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">set_id</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Set id exists</span>
 
 <span class="sd">        Parameters</span>
@@ -2660,9 +2661,9 @@
         <span class="k">if</span> <span class="n">set_id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_ids</span><span class="p">():</span>
             <span class="k">return</span> <span class="kc">True</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">False</span></div>
+            <span class="k">return</span> <span class="kc">False</span>
 
-<div class="viewcode-block" id="AppParameterContainer.active_set"><a class="viewcode-back" href="../../../generated/dcase_util.containers.AppParameterContainer.active_set.html#dcase_util.containers.AppParameterContainer.active_set">[docs]</a>    <span class="k">def</span> <span class="nf">active_set</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">active_set</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get active set id</span>
 
 
@@ -2672,9 +2673,9 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">return</span> <span class="bp">self</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">field_labels</span><span class="p">[</span><span class="s1">&#39;ACTIVE-SET&#39;</span><span class="p">]]</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">field_labels</span><span class="p">[</span><span class="s1">&#39;ACTIVE-SET&#39;</span><span class="p">]]</span>
 
-<div class="viewcode-block" id="AppParameterContainer.get_set"><a class="viewcode-back" href="../../../generated/dcase_util.containers.AppParameterContainer.get_set.html#dcase_util.containers.AppParameterContainer.get_set">[docs]</a>    <span class="k">def</span> <span class="nf">get_set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">set_id</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get_set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">set_id</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get parameter set</span>
 
 <span class="sd">        Parameters</span>
@@ -2694,12 +2695,12 @@
                     <span class="k">return</span> <span class="n">set_defined_parameters</span>
 
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">None</span></div></div>
+            <span class="k">return</span> <span class="kc">None</span>
 
 
-<div class="viewcode-block" id="DCASEAppParameterContainer"><a class="viewcode-back" href="../../../generated/dcase_util.containers.DCASEAppParameterContainer.html#dcase_util.containers.DCASEAppParameterContainer">[docs]</a><span class="k">class</span> <span class="nc">DCASEAppParameterContainer</span><span class="p">(</span><span class="n">AppParameterContainer</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">DCASEAppParameterContainer</span><span class="p">(</span><span class="n">AppParameterContainer</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Parameter container class for DCASE application parameter files, inherited from AppParameterContainer.&quot;&quot;&quot;</span>
-<div class="viewcode-block" id="DCASEAppParameterContainer.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.containers.DCASEAppParameterContainer.html#dcase_util.containers.DCASEAppParameterContainer.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">DCASEAppParameterContainer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">default_section_labels</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
@@ -2800,7 +2801,7 @@
             <span class="s1">&#39;EVALUATOR&#39;</span>
         <span class="p">]</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_get_dependency_parameters_feature_extraction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameters</span><span class="p">):</span>
         <span class="c1"># Get dependency parameters</span>
@@ -3494,7 +3495,7 @@
                     <span class="n">parameters</span><span class="o">=</span><span class="n">parameters</span><span class="p">,</span>
                     <span class="n">path</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GENERAL&#39;</span><span class="p">,</span> <span class="s1">&#39;active_events&#39;</span><span class="p">]</span>
                 <span class="p">)</span>
-            <span class="p">)</span></div>
+            <span class="p">)</span>
 
 
 <div class="viewcode-block" id="ParameterListContainer"><a class="viewcode-back" href="../../../generated/dcase_util.containers.ParameterListContainer.html#dcase_util.containers.ParameterListContainer">[docs]</a><span class="k">class</span> <span class="nc">ParameterListContainer</span><span class="p">(</span><span class="n">ListDictContainer</span><span class="p">):</span>

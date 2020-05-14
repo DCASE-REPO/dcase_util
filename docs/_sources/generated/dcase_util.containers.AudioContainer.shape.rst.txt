@@ -3,4 +3,4 @@ dcase\_util.containers.AudioContainer.shape
 
 .. currentmodule:: dcase_util.containers
 
-.. autoattribute:: AudioContainer.shape
+.. autoproperty:: AudioContainer.shape

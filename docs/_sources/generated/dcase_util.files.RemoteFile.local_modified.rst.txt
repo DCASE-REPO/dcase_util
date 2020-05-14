@@ -3,4 +3,4 @@ dcase\_util.files.RemoteFile.local\_modified
 
 .. currentmodule:: dcase_util.files
 
-.. autoattribute:: RemoteFile.local_modified
+.. autoproperty:: RemoteFile.local_modified

@@ -3,4 +3,4 @@ dcase\_util.files.FileLock.expired
 
 .. currentmodule:: dcase_util.files
 
-.. autoattribute:: FileLock.expired
+.. autoproperty:: FileLock.expired

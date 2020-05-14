@@ -3,4 +3,4 @@ dcase\_util.containers.MetaDataContainer.unique\_files
 
 .. currentmodule:: dcase_util.containers
 
-.. autoattribute:: MetaDataContainer.unique_files
+.. autoproperty:: MetaDataContainer.unique_files

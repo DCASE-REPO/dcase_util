@@ -1474,6 +1474,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-12">v0.2.12</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-11">v0.2.11</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-10">v0.2.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-9">v0.2.9</a></li>
@@ -1562,14 +1563,14 @@
 <span></span><span class="c1"># !/usr/bin/env python</span>
 <span class="c1"># -*- coding: utf-8 -*-</span>
 
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">absolute_import</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">absolute_import</span>
 
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 
-<span class="kn">from</span> <span class="nn">dcase_util.datasets</span> <span class="k">import</span> <span class="n">SoundEventDataset</span>
-<span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="k">import</span> <span class="n">MetaDataContainer</span><span class="p">,</span> <span class="n">MetaDataItem</span><span class="p">,</span> <span class="n">ListDictContainer</span><span class="p">,</span> <span class="n">AudioContainer</span>
-<span class="kn">from</span> <span class="nn">dcase_util.utils</span> <span class="k">import</span> <span class="n">Path</span><span class="p">,</span> <span class="n">is_jupyter</span>
+<span class="kn">from</span> <span class="nn">dcase_util.datasets</span> <span class="kn">import</span> <span class="n">SoundEventDataset</span>
+<span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="kn">import</span> <span class="n">MetaDataContainer</span><span class="p">,</span> <span class="n">MetaDataItem</span><span class="p">,</span> <span class="n">ListDictContainer</span><span class="p">,</span> <span class="n">AudioContainer</span>
+<span class="kn">from</span> <span class="nn">dcase_util.utils</span> <span class="kn">import</span> <span class="n">Path</span><span class="p">,</span> <span class="n">is_jupyter</span>
 
 
 <div class="viewcode-block" id="DCASE2017_Task4tagging_DevelopmentSet"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.DCASE2017_Task4tagging_DevelopmentSet.html#dcase_util.datasets.DCASE2017_Task4tagging_DevelopmentSet">[docs]</a><span class="k">class</span> <span class="nc">DCASE2017_Task4tagging_DevelopmentSet</span><span class="p">(</span><span class="n">SoundEventDataset</span><span class="p">):</span>
@@ -1577,7 +1578,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="DCASE2017_Task4tagging_DevelopmentSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.DCASE2017_Task4tagging_DevelopmentSet.html#dcase_util.datasets.DCASE2017_Task4tagging_DevelopmentSet.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="DCASE2017_Task4tagging_DevelopmentSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.DCASE2017_Task4tagging_DevelopmentSet.html#dcase_util.datasets.DCASE2017_Task4tagging_DevelopmentSet.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">storage_name</span><span class="o">=</span><span class="s1">&#39;DCASE2017-task4-development&#39;</span><span class="p">,</span>
                  <span class="n">data_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">included_content_types</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -1697,9 +1698,9 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="n">is_jupyter</span><span class="p">():</span>
-            <span class="kn">from</span> <span class="nn">tqdm</span> <span class="k">import</span> <span class="n">tqdm_notebook</span> <span class="k">as</span> <span class="n">tqdm</span>
+            <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm_notebook</span> <span class="k">as</span> <span class="n">tqdm</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="kn">from</span> <span class="nn">tqdm</span> <span class="k">import</span> <span class="n">tqdm</span>
+            <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
 
         <span class="c1"># Make sure audio directory exists</span>
         <span class="n">Path</span><span class="p">()</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">local_path</span><span class="p">,</span> <span class="s1">&#39;audio&#39;</span><span class="p">))</span>
@@ -1893,7 +1894,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="DCASE2017_Task4tagging_EvaluationSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.DCASE2017_Task4tagging_EvaluationSet.html#dcase_util.datasets.DCASE2017_Task4tagging_EvaluationSet.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="DCASE2017_Task4tagging_EvaluationSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.DCASE2017_Task4tagging_EvaluationSet.html#dcase_util.datasets.DCASE2017_Task4tagging_EvaluationSet.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">storage_name</span><span class="o">=</span><span class="s1">&#39;DCASE2017-task4-evaluation&#39;</span><span class="p">,</span>
                  <span class="n">data_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">included_content_types</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>

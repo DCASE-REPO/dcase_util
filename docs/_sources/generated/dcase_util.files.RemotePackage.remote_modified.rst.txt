@@ -3,4 +3,4 @@ dcase\_util.files.RemotePackage.remote\_modified
 
 .. currentmodule:: dcase_util.files
 
-.. autoattribute:: RemotePackage.remote_modified
+.. autoproperty:: RemotePackage.remote_modified

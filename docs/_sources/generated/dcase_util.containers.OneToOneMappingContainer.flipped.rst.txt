@@ -3,4 +3,4 @@ dcase\_util.containers.OneToOneMappingContainer.flipped
 
 .. currentmodule:: dcase_util.containers
 
-.. autoattribute:: OneToOneMappingContainer.flipped
+.. autoproperty:: OneToOneMappingContainer.flipped

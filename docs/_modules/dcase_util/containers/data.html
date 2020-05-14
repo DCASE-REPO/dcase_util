@@ -1474,6 +1474,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-12">v0.2.12</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-11">v0.2.11</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-10">v0.2.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-9">v0.2.9</a></li>
@@ -1563,24 +1564,24 @@
 <span class="c1"># -*- coding: utf-8 -*-</span>
 
 
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">absolute_import</span>
-<span class="kn">from</span> <span class="nn">six</span> <span class="k">import</span> <span class="n">iteritems</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">absolute_import</span>
+<span class="kn">from</span> <span class="nn">six</span> <span class="kn">import</span> <span class="n">iteritems</span>
 <span class="kn">import</span> <span class="nn">numpy</span>
 <span class="kn">import</span> <span class="nn">copy</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">glob</span>
-<span class="kn">from</span> <span class="nn">past.builtins</span> <span class="k">import</span> <span class="n">basestring</span>
+<span class="kn">from</span> <span class="nn">past.builtins</span> <span class="kn">import</span> <span class="n">basestring</span>
 
-<span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="k">import</span> <span class="n">ObjectContainer</span><span class="p">,</span> <span class="n">RepositoryContainer</span><span class="p">,</span> <span class="n">OneToOneMappingContainer</span>
-<span class="kn">from</span> <span class="nn">dcase_util.ui</span> <span class="k">import</span> <span class="n">FancyStringifier</span>
-<span class="kn">from</span> <span class="nn">dcase_util.utils</span> <span class="k">import</span> <span class="n">FileFormat</span><span class="p">,</span> <span class="n">filelist_exists</span>
+<span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="kn">import</span> <span class="n">ObjectContainer</span><span class="p">,</span> <span class="n">RepositoryContainer</span><span class="p">,</span> <span class="n">OneToOneMappingContainer</span>
+<span class="kn">from</span> <span class="nn">dcase_util.ui</span> <span class="kn">import</span> <span class="n">FancyStringifier</span>
+<span class="kn">from</span> <span class="nn">dcase_util.utils</span> <span class="kn">import</span> <span class="n">FileFormat</span><span class="p">,</span> <span class="n">filelist_exists</span>
 
 
-<div class="viewcode-block" id="DataContainer"><a class="viewcode-back" href="../../../generated/dcase_util.containers.DataContainer.html#dcase_util.containers.DataContainer">[docs]</a><span class="k">class</span> <span class="nc">DataContainer</span><span class="p">(</span><span class="n">ObjectContainer</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">DataContainer</span><span class="p">(</span><span class="n">ObjectContainer</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Container class for data, inherited from ObjectContainer.&quot;&quot;&quot;</span>
     <span class="n">valid_formats</span> <span class="o">=</span> <span class="p">[</span><span class="n">FileFormat</span><span class="o">.</span><span class="n">CPICKLE</span><span class="p">]</span>  <span class="c1">#: Valid file formats</span>
 
-<div class="viewcode-block" id="DataContainer.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.containers.DataContainer.html#dcase_util.containers.DataContainer.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stats</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_resolution</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">processing_chain</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stats</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_resolution</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">processing_chain</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Constructor</span>
 
 <span class="sd">        Parameters</span>
@@ -1644,7 +1645,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">time_resolution</span> <span class="o">=</span> <span class="n">time_resolution</span>
 
         <span class="c1"># Processing chain</span>
-        <span class="kn">from</span> <span class="nn">dcase_util.processors</span> <span class="k">import</span> <span class="n">ProcessingChain</span>
+        <span class="kn">from</span> <span class="nn">dcase_util.processors</span> <span class="kn">import</span> <span class="n">ProcessingChain</span>
         <span class="k">if</span> <span class="n">processing_chain</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">processing_chain</span> <span class="o">=</span> <span class="n">ProcessingChain</span><span class="p">()</span>
 
@@ -1664,7 +1665,7 @@
 
         <span class="c1"># Focus</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_focus_start</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_focus_stop</span> <span class="o">=</span> <span class="kc">None</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_focus_stop</span> <span class="o">=</span> <span class="kc">None</span>
 
     <span class="k">def</span> <span class="nf">__getstate__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">d</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">DataContainer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__getstate__</span><span class="p">()</span>
@@ -1698,7 +1699,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">focus_start</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;_focus_start&#39;</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">focus_stop</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;_focus_stop&#39;</span><span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="n">new</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">DataContainer</span><span class="p">):</span>
             <span class="n">new</span><span class="o">.</span><span class="n">data</span> <span class="o">+=</span> <span class="n">other</span><span class="o">.</span><span class="n">data</span>
@@ -1708,7 +1709,7 @@
 
         <span class="k">return</span> <span class="n">new</span>
 
-    <span class="k">def</span> <span class="nf">__iadd__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__iadd__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">DataContainer</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">+=</span> <span class="n">other</span><span class="o">.</span><span class="n">data</span>
 
@@ -1717,7 +1718,7 @@
 
         <span class="k">return</span> <span class="bp">self</span>
 
-    <span class="k">def</span> <span class="nf">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="n">new</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">DataContainer</span><span class="p">):</span>
             <span class="n">new</span><span class="o">.</span><span class="n">data</span> <span class="o">-=</span> <span class="n">other</span><span class="o">.</span><span class="n">data</span>
@@ -1727,7 +1728,7 @@
 
         <span class="k">return</span> <span class="n">new</span>
 
-    <span class="k">def</span> <span class="nf">__isub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__isub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">DataContainer</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">-=</span> <span class="n">other</span><span class="o">.</span><span class="n">data</span>
 
@@ -1946,10 +1947,10 @@
     <span class="k">def</span> <span class="nf">__nonzero__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">length</span> <span class="o">&gt;</span> <span class="mi">0</span>
 
-    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">length</span>
 
-<div class="viewcode-block" id="DataContainer.push_processing_chain_item"><a class="viewcode-back" href="../../../generated/dcase_util.containers.DataContainer.push_processing_chain_item.html#dcase_util.containers.DataContainer.push_processing_chain_item">[docs]</a>    <span class="k">def</span> <span class="nf">push_processing_chain_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">processor_name</span><span class="p">,</span> <span class="n">init_parameters</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">process_parameters</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="k">def</span> <span class="nf">push_processing_chain_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">processor_name</span><span class="p">,</span> <span class="n">init_parameters</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">process_parameters</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                                    <span class="n">preprocessing_callbacks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                                    <span class="n">input_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">output_type</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Push processing chain item</span>
@@ -1994,7 +1995,7 @@
             <span class="n">output_type</span><span class="o">=</span><span class="n">output_type</span><span class="p">,</span>
         <span class="p">)</span>
 
-        <span class="k">return</span> <span class="bp">self</span></div>
+        <span class="k">return</span> <span class="bp">self</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">focus_start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -2214,7 +2215,7 @@
 
         <span class="k">return</span> <span class="bp">self</span>
 
-<div class="viewcode-block" id="DataContainer.reset_focus"><a class="viewcode-back" href="../../../generated/dcase_util.containers.DataContainer.reset_focus.html#dcase_util.containers.DataContainer.reset_focus">[docs]</a>    <span class="k">def</span> <span class="nf">reset_focus</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">reset_focus</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Reset focus segment</span>
 
 <span class="sd">        Returns</span>
@@ -2224,9 +2225,9 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">set_focus</span><span class="p">()</span>
 
-        <span class="k">return</span> <span class="bp">self</span></div>
+        <span class="k">return</span> <span class="bp">self</span>
 
-<div class="viewcode-block" id="DataContainer.get_focused"><a class="viewcode-back" href="../../../generated/dcase_util.containers.DataContainer.get_focused.html#dcase_util.containers.DataContainer.get_focused">[docs]</a>    <span class="k">def</span> <span class="nf">get_focused</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get_focused</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get focus segment from data array.</span>
 
 <span class="sd">        Returns</span>
@@ -2241,9 +2242,9 @@
 
         <span class="k">else</span><span class="p">:</span>
             <span class="c1"># Return all features</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span></div>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span>
 
-<div class="viewcode-block" id="DataContainer.freeze"><a class="viewcode-back" href="../../../generated/dcase_util.containers.DataContainer.freeze.html#dcase_util.containers.DataContainer.freeze">[docs]</a>    <span class="k">def</span> <span class="nf">freeze</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">freeze</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Freeze focus segment, copy segment to be container&#39;s data.</span>
 
 <span class="sd">        Returns</span>
@@ -2255,9 +2256,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_focused</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">reset_focus</span><span class="p">()</span>
 
-        <span class="k">return</span> <span class="bp">self</span></div>
+        <span class="k">return</span> <span class="bp">self</span>
 
-<div class="viewcode-block" id="DataContainer.get_frames"><a class="viewcode-back" href="../../../generated/dcase_util.containers.DataContainer.get_frames.html#dcase_util.containers.DataContainer.get_frames">[docs]</a>    <span class="k">def</span> <span class="nf">get_frames</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame_ids</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">frame_hop</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get_frames</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame_ids</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">frame_hop</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get frames from data array.</span>
 
 <span class="sd">        Parameters</span>
@@ -2282,9 +2283,9 @@
         <span class="k">if</span> <span class="n">frame_ids</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">frame_ids</span><span class="p">]</span>
 
-        <span class="k">return</span> <span class="n">data</span><span class="p">[::</span><span class="n">frame_hop</span><span class="p">]</span></div>
+        <span class="k">return</span> <span class="n">data</span><span class="p">[::</span><span class="n">frame_hop</span><span class="p">]</span>
 
-<div class="viewcode-block" id="DataContainer.plot"><a class="viewcode-back" href="../../../generated/dcase_util.containers.DataContainer.plot.html#dcase_util.containers.DataContainer.plot">[docs]</a>    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Visualize data array.</span>
 
 <span class="sd">        Parameters</span>
@@ -2308,8 +2309,8 @@
             <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 
         <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-        <span class="kn">from</span> <span class="nn">librosa.core</span> <span class="k">import</span> <span class="n">frames_to_time</span>
-        <span class="kn">from</span> <span class="nn">librosa.display</span> <span class="k">import</span> <span class="n">TimeFormatter</span>
+        <span class="kn">from</span> <span class="nn">librosa.core</span> <span class="kn">import</span> <span class="n">frames_to_time</span>
+        <span class="kn">from</span> <span class="nn">librosa.display</span> <span class="kn">import</span> <span class="n">TimeFormatter</span>
 
         <span class="k">if</span> <span class="n">plot</span><span class="p">:</span>
             <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
@@ -2341,14 +2342,14 @@
 
         <span class="k">if</span> <span class="n">plot</span><span class="p">:</span>
             <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-            <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div></div>
+            <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
 
-<div class="viewcode-block" id="DataArrayContainer"><a class="viewcode-back" href="../../../generated/dcase_util.containers.DataArrayContainer.html#dcase_util.containers.DataArrayContainer">[docs]</a><span class="k">class</span> <span class="nc">DataArrayContainer</span><span class="p">(</span><span class="n">DataContainer</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">DataArrayContainer</span><span class="p">(</span><span class="n">DataContainer</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Array data container class, inherited from DataContainer.&quot;&quot;&quot;</span>
     <span class="n">valid_formats</span> <span class="o">=</span> <span class="p">[</span><span class="n">FileFormat</span><span class="o">.</span><span class="n">CPICKLE</span><span class="p">]</span>  <span class="c1">#: Valid file formats</span>
 
-<div class="viewcode-block" id="DataArrayContainer.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.containers.DataArrayContainer.html#dcase_util.containers.DataArrayContainer.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stats</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_resolution</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">processing_chain</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stats</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_resolution</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">processing_chain</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Constructor</span>
 
 <span class="sd">        Parameters</span>
@@ -2391,14 +2392,14 @@
         <span class="n">DataContainer</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="c1"># Run super init</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">DataArrayContainer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div></div>
+        <span class="nb">super</span><span class="p">(</span><span class="n">DataArrayContainer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="DataMatrix2DContainer"><a class="viewcode-back" href="../../../generated/dcase_util.containers.DataMatrix2DContainer.html#dcase_util.containers.DataMatrix2DContainer">[docs]</a><span class="k">class</span> <span class="nc">DataMatrix2DContainer</span><span class="p">(</span><span class="n">DataContainer</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">DataMatrix2DContainer</span><span class="p">(</span><span class="n">DataContainer</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Two-dimensional data matrix container class, inherited from DataContainer.&quot;&quot;&quot;</span>
     <span class="n">valid_formats</span> <span class="o">=</span> <span class="p">[</span><span class="n">FileFormat</span><span class="o">.</span><span class="n">CPICKLE</span><span class="p">]</span>  <span class="c1">#: Valid file formats</span>
 
-<div class="viewcode-block" id="DataMatrix2DContainer.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.containers.DataMatrix2DContainer.html#dcase_util.containers.DataMatrix2DContainer.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stats</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_resolution</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">processing_chain</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stats</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_resolution</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">processing_chain</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Constructor</span>
 
 <span class="sd">        Parameters</span>
@@ -2449,7 +2450,7 @@
 
         <span class="c1"># Matrix axis</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data_axis</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">time_axis</span> <span class="o">=</span> <span class="mi">1</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">time_axis</span> <span class="o">=</span> <span class="mi">1</span>
 
     <span class="k">def</span> <span class="nf">__getstate__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">d</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">DataMatrix2DContainer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__getstate__</span><span class="p">()</span>
@@ -2532,7 +2533,7 @@
 
         <span class="k">return</span> <span class="n">transposed</span>
 
-<div class="viewcode-block" id="DataMatrix2DContainer.get_focused"><a class="viewcode-back" href="../../../generated/dcase_util.containers.DataMatrix2DContainer.get_focused.html#dcase_util.containers.DataMatrix2DContainer.get_focused">[docs]</a>    <span class="k">def</span> <span class="nf">get_focused</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get_focused</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get focus segment from data matrix.</span>
 
 <span class="sd">        Returns</span>
@@ -2551,9 +2552,9 @@
 
         <span class="k">else</span><span class="p">:</span>
             <span class="c1"># Return all features</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span></div>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span>
 
-<div class="viewcode-block" id="DataMatrix2DContainer.get_frames"><a class="viewcode-back" href="../../../generated/dcase_util.containers.DataMatrix2DContainer.get_frames.html#dcase_util.containers.DataMatrix2DContainer.get_frames">[docs]</a>    <span class="k">def</span> <span class="nf">get_frames</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame_ids</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vector_ids</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">frame_hop</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get_frames</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame_ids</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vector_ids</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">frame_hop</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get frames from data matrix.</span>
 
 <span class="sd">        Parameters</span>
@@ -2606,7 +2607,7 @@
                 <span class="k">return</span> <span class="n">data</span><span class="p">[::</span><span class="n">frame_hop</span><span class="p">,</span> <span class="p">:]</span>
 
             <span class="k">else</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">data</span><span class="p">[::</span><span class="n">frame_hop</span><span class="p">]</span></div>
+                <span class="k">return</span> <span class="n">data</span><span class="p">[::</span><span class="n">frame_hop</span><span class="p">]</span>
 
     <span class="k">def</span> <span class="nf">change_axis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time_axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">data_axis</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Set axis</span>
@@ -2711,7 +2712,7 @@
 
         <span class="k">return</span> <span class="bp">self</span>
 
-<div class="viewcode-block" id="DataMatrix2DContainer.plot"><a class="viewcode-back" href="../../../generated/dcase_util.containers.DataMatrix2DContainer.plot.html#dcase_util.containers.DataMatrix2DContainer.plot">[docs]</a>    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">show_color_bar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">show_color_bar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Visualize data matrix.</span>
 
 <span class="sd">        Parameters</span>
@@ -2747,7 +2748,7 @@
         <span class="k">if</span> <span class="n">figsize</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 
-        <span class="kn">from</span> <span class="nn">librosa.display</span> <span class="k">import</span> <span class="n">specshow</span>
+        <span class="kn">from</span> <span class="nn">librosa.display</span> <span class="kn">import</span> <span class="n">specshow</span>
         <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
         <span class="k">if</span> <span class="n">plot</span><span class="p">:</span>
@@ -2789,14 +2790,14 @@
 
         <span class="k">if</span> <span class="n">plot</span><span class="p">:</span>
             <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-            <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div></div>
+            <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
 
-<div class="viewcode-block" id="DataMatrix3DContainer"><a class="viewcode-back" href="../../../generated/dcase_util.containers.DataMatrix3DContainer.html#dcase_util.containers.DataMatrix3DContainer">[docs]</a><span class="k">class</span> <span class="nc">DataMatrix3DContainer</span><span class="p">(</span><span class="n">DataMatrix2DContainer</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">DataMatrix3DContainer</span><span class="p">(</span><span class="n">DataMatrix2DContainer</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Three-dimensional data matrix container class, inherited from DataMatrix2DContainer.&quot;&quot;&quot;</span>
     <span class="n">valid_formats</span> <span class="o">=</span> <span class="p">[</span><span class="n">FileFormat</span><span class="o">.</span><span class="n">CPICKLE</span><span class="p">]</span>  <span class="c1">#: Valid file formats</span>
 
-<div class="viewcode-block" id="DataMatrix3DContainer.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.containers.DataMatrix3DContainer.html#dcase_util.containers.DataMatrix3DContainer.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stats</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_resolution</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">processing_chain</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stats</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_resolution</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">processing_chain</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Constructor</span>
 
 <span class="sd">        Parameters</span>
@@ -2848,7 +2849,7 @@
         <span class="c1"># Matrix axis</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data_axis</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">time_axis</span> <span class="o">=</span> <span class="mi">1</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">sequence_axis</span> <span class="o">=</span> <span class="mi">2</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sequence_axis</span> <span class="o">=</span> <span class="mi">2</span>
 
     <span class="k">def</span> <span class="nf">__getstate__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">d</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">DataMatrix3DContainer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__getstate__</span><span class="p">()</span>
@@ -3067,7 +3068,7 @@
         <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_focused</span><span class="p">()</span>
 
         <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">sequence_axis</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">20</span><span class="p">:</span>
-            <span class="kn">from</span> <span class="nn">librosa.display</span> <span class="k">import</span> <span class="n">specshow</span>
+            <span class="kn">from</span> <span class="nn">librosa.display</span> <span class="kn">import</span> <span class="n">specshow</span>
             <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
             <span class="k">if</span> <span class="n">plot</span><span class="p">:</span>
                 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
@@ -3119,14 +3120,14 @@
                 <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
             <span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></div>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
 
 <span class="k">class</span> <span class="nc">DataMatrix4DContainer</span><span class="p">(</span><span class="n">DataMatrix3DContainer</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Four-dimensional data matrix container class, inherited from DataMatrix3DContainer.&quot;&quot;&quot;</span>
     <span class="n">valid_formats</span> <span class="o">=</span> <span class="p">[</span><span class="n">FileFormat</span><span class="o">.</span><span class="n">CPICKLE</span><span class="p">]</span>  <span class="c1">#: Valid file formats</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stats</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_resolution</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">processing_chain</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stats</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_resolution</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">processing_chain</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Constructor</span>
 
 <span class="sd">        Parameters</span>
@@ -3435,7 +3436,7 @@
         <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_focused</span><span class="p">()</span>
 
         <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">sequence_axis</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">:</span>
-            <span class="kn">from</span> <span class="nn">librosa.display</span> <span class="k">import</span> <span class="n">specshow</span>
+            <span class="kn">from</span> <span class="nn">librosa.display</span> <span class="kn">import</span> <span class="n">specshow</span>
             <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
             <span class="k">if</span> <span class="n">plot</span><span class="p">:</span>
@@ -3534,11 +3535,11 @@
             <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="BinaryMatrix2DContainer"><a class="viewcode-back" href="../../../generated/dcase_util.containers.BinaryMatrix2DContainer.html#dcase_util.containers.BinaryMatrix2DContainer">[docs]</a><span class="k">class</span> <span class="nc">BinaryMatrix2DContainer</span><span class="p">(</span><span class="n">DataMatrix2DContainer</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">BinaryMatrix2DContainer</span><span class="p">(</span><span class="n">DataMatrix2DContainer</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Two-dimensional data matrix container class, inherited from DataContainer.&quot;&quot;&quot;</span>
     <span class="n">valid_formats</span> <span class="o">=</span> <span class="p">[</span><span class="n">FileFormat</span><span class="o">.</span><span class="n">CPICKLE</span><span class="p">]</span>  <span class="c1">#: Valid file formats</span>
 
-<div class="viewcode-block" id="BinaryMatrix2DContainer.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.containers.BinaryMatrix2DContainer.html#dcase_util.containers.BinaryMatrix2DContainer.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_resolution</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">label_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">processing_chain</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_resolution</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">label_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">processing_chain</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Constructor</span>
 
 <span class="sd">        Parameters</span>
@@ -3570,7 +3571,7 @@
         <span class="c1"># Run super init</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">BinaryMatrix2DContainer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">label_list</span> <span class="o">=</span> <span class="n">label_list</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_list</span> <span class="o">=</span> <span class="n">label_list</span>
 
     <span class="k">def</span> <span class="nf">__getstate__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">d</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">BinaryMatrix2DContainer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__getstate__</span><span class="p">()</span>
@@ -3614,7 +3615,7 @@
 
         <span class="k">return</span> <span class="n">output</span>
 
-<div class="viewcode-block" id="BinaryMatrix2DContainer.pad"><a class="viewcode-back" href="../../../generated/dcase_util.containers.BinaryMatrix2DContainer.pad.html#dcase_util.containers.BinaryMatrix2DContainer.pad">[docs]</a>    <span class="k">def</span> <span class="nf">pad</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">binary_matrix</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">pad</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">binary_matrix</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Pad binary matrix along time axis</span>
 
 <span class="sd">        Parameters</span>
@@ -3650,9 +3651,9 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">binary_matrix</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">:</span><span class="n">length</span><span class="p">]</span>
 
-        <span class="k">return</span> <span class="bp">self</span></div>
+        <span class="k">return</span> <span class="bp">self</span>
 
-<div class="viewcode-block" id="BinaryMatrix2DContainer.plot"><a class="viewcode-back" href="../../../generated/dcase_util.containers.BinaryMatrix2DContainer.plot.html#dcase_util.containers.BinaryMatrix2DContainer.plot">[docs]</a>    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">binary_matrix</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">data_container</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">panel_title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">binary_matrix</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">data_container</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">panel_title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
              <span class="n">binary_panel_title</span><span class="o">=</span><span class="s1">&#39;Binary matrix&#39;</span><span class="p">,</span> <span class="n">data_panel_title</span><span class="o">=</span><span class="s1">&#39;Data&#39;</span><span class="p">,</span> <span class="n">panel_title_position</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span>
              <span class="n">color</span><span class="o">=</span><span class="s1">&#39;binary&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Visualize binary matrix, and optionally synced data matrix.</span>
@@ -3708,7 +3709,7 @@
             <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 
         <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-        <span class="kn">from</span> <span class="nn">librosa.display</span> <span class="k">import</span> <span class="n">specshow</span>
+        <span class="kn">from</span> <span class="nn">librosa.display</span> <span class="kn">import</span> <span class="n">specshow</span>
 
         <span class="k">if</span> <span class="n">binary_matrix</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">binary_matrix</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span>
@@ -3804,7 +3805,7 @@
                 <span class="n">ax</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label_list</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">plot</span><span class="p">:</span>
-            <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div></div>
+            <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
 
 <div class="viewcode-block" id="DataRepository"><a class="viewcode-back" href="../../../generated/dcase_util.containers.DataRepository.html#dcase_util.containers.DataRepository">[docs]</a><span class="k">class</span> <span class="nc">DataRepository</span><span class="p">(</span><span class="n">RepositoryContainer</span><span class="p">):</span>
@@ -3816,7 +3817,7 @@
 
     <span class="n">valid_formats</span> <span class="o">=</span> <span class="p">[</span><span class="n">FileFormat</span><span class="o">.</span><span class="n">CPICKLE</span><span class="p">]</span>  <span class="c1">#: Valid file formats</span>
 
-<div class="viewcode-block" id="DataRepository.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.containers.DataRepository.html#dcase_util.containers.DataRepository.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">default_stream_id</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">processing_chain</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="DataRepository.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.containers.DataRepository.html#dcase_util.containers.DataRepository.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">default_stream_id</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">processing_chain</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Constructor</span>
 
 <span class="sd">        Parameters</span>
@@ -3843,7 +3844,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">default_stream_id</span> <span class="o">=</span> <span class="n">default_stream_id</span>
 
-        <span class="kn">from</span> <span class="nn">dcase_util.processors</span> <span class="k">import</span> <span class="n">ProcessingChain</span>
+        <span class="kn">from</span> <span class="nn">dcase_util.processors</span> <span class="kn">import</span> <span class="n">ProcessingChain</span>
         <span class="k">if</span> <span class="n">processing_chain</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">processing_chain</span> <span class="o">=</span> <span class="n">ProcessingChain</span><span class="p">()</span>
 
@@ -4269,7 +4270,7 @@
         <span class="k">if</span> <span class="n">figsize</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 
-        <span class="kn">from</span> <span class="nn">librosa.display</span> <span class="k">import</span> <span class="n">specshow</span>
+        <span class="kn">from</span> <span class="nn">librosa.display</span> <span class="kn">import</span> <span class="n">specshow</span>
         <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
         <span class="n">rows_count</span> <span class="o">=</span> <span class="mi">0</span>

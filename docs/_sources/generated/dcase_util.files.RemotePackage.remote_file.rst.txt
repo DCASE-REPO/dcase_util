@@ -3,4 +3,4 @@ dcase\_util.files.RemotePackage.remote\_file
 
 .. currentmodule:: dcase_util.files
 
-.. autoattribute:: RemotePackage.remote_file
+.. autoproperty:: RemotePackage.remote_file

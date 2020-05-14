@@ -3,4 +3,4 @@ dcase\_util.containers.MetaDataItem.filename
 
 .. currentmodule:: dcase_util.containers
 
-.. autoattribute:: MetaDataItem.filename
+.. autoproperty:: MetaDataItem.filename

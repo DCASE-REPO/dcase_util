@@ -1474,6 +1474,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-12">v0.2.12</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-11">v0.2.11</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-10">v0.2.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-9">v0.2.9</a></li>
@@ -1562,7 +1563,7 @@
 <span></span><span class="c1"># !/usr/bin/env python</span>
 <span class="c1"># -*- coding: utf-8 -*-</span>
 
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">absolute_import</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">absolute_import</span>
 
 <span class="kn">import</span> <span class="nn">collections</span>
 <span class="kn">import</span> <span class="nn">hashlib</span>
@@ -1572,12 +1573,12 @@
 
 <span class="kn">import</span> <span class="nn">numpy</span>
 <span class="kn">import</span> <span class="nn">yaml</span>
-<span class="kn">from</span> <span class="nn">six</span> <span class="k">import</span> <span class="n">iteritems</span>
+<span class="kn">from</span> <span class="nn">six</span> <span class="kn">import</span> <span class="n">iteritems</span>
 
-<span class="kn">from</span> <span class="nn">dcase_util.datasets</span> <span class="k">import</span> <span class="n">SoundDataset</span><span class="p">,</span> <span class="n">AcousticSceneDataset</span><span class="p">,</span> <span class="n">SyntheticSoundEventDataset</span><span class="p">,</span> <span class="n">SoundEventDataset</span>
-<span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="k">import</span> <span class="n">MetaDataContainer</span><span class="p">,</span> <span class="n">MetaDataItem</span><span class="p">,</span> <span class="n">OneToOneMappingContainer</span><span class="p">,</span> \
+<span class="kn">from</span> <span class="nn">dcase_util.datasets</span> <span class="kn">import</span> <span class="n">SoundDataset</span><span class="p">,</span> <span class="n">AcousticSceneDataset</span><span class="p">,</span> <span class="n">SyntheticSoundEventDataset</span><span class="p">,</span> <span class="n">SoundEventDataset</span>
+<span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="kn">import</span> <span class="n">MetaDataContainer</span><span class="p">,</span> <span class="n">MetaDataItem</span><span class="p">,</span> <span class="n">OneToOneMappingContainer</span><span class="p">,</span> \
     <span class="n">DictContainer</span><span class="p">,</span> <span class="n">ParameterContainer</span><span class="p">,</span> <span class="n">AudioContainer</span>
-<span class="kn">from</span> <span class="nn">dcase_util.utils</span> <span class="k">import</span> <span class="n">Path</span><span class="p">,</span> <span class="n">FileFormat</span><span class="p">,</span> <span class="n">is_jupyter</span>
+<span class="kn">from</span> <span class="nn">dcase_util.utils</span> <span class="kn">import</span> <span class="n">Path</span><span class="p">,</span> <span class="n">FileFormat</span><span class="p">,</span> <span class="n">is_jupyter</span>
 <span class="c1"># Datasets released by Tampere University (TAU), formerly known as Tampere University of Technology (TUT).</span>
 
 
@@ -1591,7 +1592,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="TAUUrbanAcousticScenes_2020_Mobile_DevelopmentSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TAUUrbanAcousticScenes_2020_Mobile_DevelopmentSet.html#dcase_util.datasets.TAUUrbanAcousticScenes_2020_Mobile_DevelopmentSet.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="TAUUrbanAcousticScenes_2020_Mobile_DevelopmentSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TAUUrbanAcousticScenes_2020_Mobile_DevelopmentSet.html#dcase_util.datasets.TAUUrbanAcousticScenes_2020_Mobile_DevelopmentSet.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">storage_name</span><span class="o">=</span><span class="s1">&#39;TAU-urban-acoustic-scenes-2020-mobile-development&#39;</span><span class="p">,</span>
                  <span class="n">data_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">included_content_types</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -1637,134 +1638,134 @@
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;meta_filename&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;meta.csv&#39;</span>
 
         <span class="n">filename_base</span> <span class="o">=</span> <span class="s1">&#39;TAU-urban-acoustic-scenes-2020-mobile-development&#39;</span>
-        <span class="n">source_url</span> <span class="o">=</span> <span class="s1">&#39;https://zenodo.org/record/3670167/files/&#39;</span>
+        <span class="n">source_url</span> <span class="o">=</span> <span class="s1">&#39;https://zenodo.org/record/3819968/files/&#39;</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;package_list&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
 
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;package_list&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
             <span class="p">{</span>
                 <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;documentation&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.doc.zip&#39;</span><span class="p">,</span>
-                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">16454</span><span class="p">,</span>
-                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;0239833f3a3b37e00d3fc8eb3a4922b2&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">18066</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;175f40dc3fec144347abad4d2962b7ae&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.doc.zip&#39;</span>
             <span class="p">},</span>
             <span class="p">{</span>
                 <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;meta&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.meta.zip&#39;</span><span class="p">,</span>
-                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">215206</span><span class="p">,</span>
-                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;ef33bf8d127a05938bd8bbfd3edb453e&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">214159</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;6eae9db553ce48e4ea246e34e50a3cf5&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.meta.zip&#39;</span>
             <span class="p">},</span>
             <span class="p">{</span>
                 <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;audio&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.1.zip&#39;</span><span class="p">,</span>
-                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1725644326</span><span class="p">,</span>
-                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;6d0700ebcfb9e6b12d32efad1fed2028&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1726039031</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;b1e85b8a908d3d6a6ab73268f385d5c8&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.1.zip&#39;</span>
             <span class="p">},</span>
             <span class="p">{</span>
                 <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;audio&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.2.zip&#39;</span><span class="p">,</span>
-                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1782268476</span><span class="p">,</span>
-                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;722366b35e17e5c3d2c890e92b10496c&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1782268370</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;4310a13cc2943d6ce3f70eba7ba4c784&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.2.zip&#39;</span>
             <span class="p">},</span>
             <span class="p">{</span>
                 <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;audio&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.3.zip&#39;</span><span class="p">,</span>
-                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1870460027</span><span class="p">,</span>
-                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;ad6979ac7c34e84efca1c1881d0d3999&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1870468865</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;ed38956c4246abb56190c1e9b602b7b8&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.3.zip&#39;</span>
             <span class="p">},</span>
             <span class="p">{</span>
                 <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;audio&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.4.zip&#39;</span><span class="p">,</span>
-                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1879942752</span><span class="p">,</span>
-                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;dcdb92a534c7bef41bbcd1673f012798&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1879413176</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;97ab8560056b6816808dedc044dcc023&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.4.zip&#39;</span>
             <span class="p">},</span>
             <span class="p">{</span>
                 <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;audio&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.5.zip&#39;</span><span class="p">,</span>
-                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1823312251</span><span class="p">,</span>
-                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;790621c26bd0f5b5c0741aedcc861bb9&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1823936584</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;b50f5e0bfed33cd8e52cb3e7f815c6cb&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.5.zip&#39;</span>
             <span class="p">},</span>
             <span class="p">{</span>
                 <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;audio&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.6.zip&#39;</span><span class="p">,</span>
-                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1828101190</span><span class="p">,</span>
-                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;f0cace66e7033280b69c8ab6bfa05e07&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1827246144</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;fbf856a3a86fff7520549c899dc94372&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.6.zip&#39;</span>
             <span class="p">},</span>
             <span class="p">{</span>
                 <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;audio&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.7.zip&#39;</span><span class="p">,</span>
-                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1728040374</span><span class="p">,</span>
-                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;543aa18b4dcc6d8ff37f1efd75d4f077&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1728630243</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;0dbffe7b6e45564da649378723284062&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.7.zip&#39;</span>
             <span class="p">},</span>
             <span class="p">{</span>
                 <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;audio&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.8.zip&#39;</span><span class="p">,</span>
-                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1748627076</span><span class="p">,</span>
-                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;ceba2fec17a888d92a7af37482bf4ac9&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1748646043</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;bb6f77832bf0bd9f786f965beb251b2e&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.8.zip&#39;</span>
             <span class="p">},</span>
             <span class="p">{</span>
                 <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;audio&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.9.zip&#39;</span><span class="p">,</span>
-                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1780517206</span><span class="p">,</span>
-                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;516293ffaa3a11323d9133ee3244710c&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1780487215</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;a65596a5372eab10c78e08a0de797c9e&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.9.zip&#39;</span>
             <span class="p">},</span>
             <span class="p">{</span>
                 <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;audio&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.10.zip&#39;</span><span class="p">,</span>
-                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1726310065</span><span class="p">,</span>
-                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;1062165b25a3598f0642747109a308e5&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1726068853</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;2ad595819ffa1d56d2de4c7ed43205a6&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.10.zip&#39;</span>
             <span class="p">},</span>
             <span class="p">{</span>
                 <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;audio&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.11.zip&#39;</span><span class="p">,</span>
-                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1743668224</span><span class="p">,</span>
-                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;750b289b80f3a3a1ed32458e7ce59f99&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1744480272</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;0ad29f7040a4e6a22cfd639b3a6738e5&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.11.zip&#39;</span>
             <span class="p">},</span>
             <span class="p">{</span>
                 <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;audio&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.12.zip&#39;</span><span class="p">,</span>
-                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1739731028</span><span class="p">,</span>
-                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;57e647a1988e3391296c8aa1dc97e806&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1738707195</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;e5f4400c6b9697295fab4cf507155a2f&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.12.zip&#39;</span>
             <span class="p">},</span>
             <span class="p">{</span>
                 <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;audio&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.13.zip&#39;</span><span class="p">,</span>
-                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1834647884</span><span class="p">,</span>
-                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;504b3baaf7ae288c022d430271c2a6a9&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1835797785</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;8855ab9f9896422746ab4c5d89d8da2f&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.13.zip&#39;</span>
             <span class="p">},</span>
             <span class="p">{</span>
                 <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;audio&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.14.zip&#39;</span><span class="p">,</span>
-                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1846325546</span><span class="p">,</span>
-                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;191657ce56acfcb87e893befe017ecc4&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1846390881</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;092ad744452cd3e7de78f988a3d13020&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.14.zip&#39;</span>
             <span class="p">},</span>
             <span class="p">{</span>
                 <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;audio&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.15.zip&#39;</span><span class="p">,</span>
-                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1868661026</span><span class="p">,</span>
-                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;a2c9f5bb65a2a8b0ded5f43b225e1125&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1869032508</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;4b5eb85f6592aebf846088d9df76b420&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.15.zip&#39;</span>
             <span class="p">},</span>
             <span class="p">{</span>
                 <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;audio&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.16.zip&#39;</span><span class="p">,</span>
-                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">443420112</span><span class="p">,</span>
-                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;1dba9bb4d53cfa6e6b424e1fd28c7013&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">436971777</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;2e0a89723e58a3836be019e6996ae460&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.16.zip&#39;</span>
             <span class="p">},</span>
         <span class="p">]</span>
@@ -1854,7 +1855,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="TAUUrbanAcousticScenes_2020_3Class_DevelopmentSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TAUUrbanAcousticScenes_2020_3Class_DevelopmentSet.html#dcase_util.datasets.TAUUrbanAcousticScenes_2020_3Class_DevelopmentSet.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="TAUUrbanAcousticScenes_2020_3Class_DevelopmentSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TAUUrbanAcousticScenes_2020_3Class_DevelopmentSet.html#dcase_util.datasets.TAUUrbanAcousticScenes_2020_3Class_DevelopmentSet.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">storage_name</span><span class="o">=</span><span class="s1">&#39;TAU-urban-acoustic-scenes-2020-3class-development&#39;</span><span class="p">,</span>
                  <span class="n">data_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">included_content_types</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -2157,7 +2158,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="TAUUrbanAcousticScenes_2019_DevelopmentSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TAUUrbanAcousticScenes_2019_DevelopmentSet.html#dcase_util.datasets.TAUUrbanAcousticScenes_2019_DevelopmentSet.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="TAUUrbanAcousticScenes_2019_DevelopmentSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TAUUrbanAcousticScenes_2019_DevelopmentSet.html#dcase_util.datasets.TAUUrbanAcousticScenes_2019_DevelopmentSet.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">storage_name</span><span class="o">=</span><span class="s1">&#39;TAU-urban-acoustic-scenes-2019-development&#39;</span><span class="p">,</span>
                  <span class="n">data_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">included_content_types</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -2452,7 +2453,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="TAUUrbanAcousticScenes_2019_LeaderboardSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TAUUrbanAcousticScenes_2019_LeaderboardSet.html#dcase_util.datasets.TAUUrbanAcousticScenes_2019_LeaderboardSet.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="TAUUrbanAcousticScenes_2019_LeaderboardSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TAUUrbanAcousticScenes_2019_LeaderboardSet.html#dcase_util.datasets.TAUUrbanAcousticScenes_2019_LeaderboardSet.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">storage_name</span><span class="o">=</span><span class="s1">&#39;TAU-urban-acoustic-scenes-2019-leaderboard&#39;</span><span class="p">,</span>
                  <span class="n">data_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">included_content_types</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -2610,7 +2611,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="TAUUrbanAcousticScenes_2019_EvaluationSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TAUUrbanAcousticScenes_2019_EvaluationSet.html#dcase_util.datasets.TAUUrbanAcousticScenes_2019_EvaluationSet.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="TAUUrbanAcousticScenes_2019_EvaluationSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TAUUrbanAcousticScenes_2019_EvaluationSet.html#dcase_util.datasets.TAUUrbanAcousticScenes_2019_EvaluationSet.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">storage_name</span><span class="o">=</span><span class="s1">&#39;TAU-urban-acoustic-scenes-2019-evaluation&#39;</span><span class="p">,</span>
                  <span class="n">data_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">included_content_types</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -2833,7 +2834,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="TAUUrbanAcousticScenes_2019_Mobile_DevelopmentSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TAUUrbanAcousticScenes_2019_Mobile_DevelopmentSet.html#dcase_util.datasets.TAUUrbanAcousticScenes_2019_Mobile_DevelopmentSet.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="TAUUrbanAcousticScenes_2019_Mobile_DevelopmentSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TAUUrbanAcousticScenes_2019_Mobile_DevelopmentSet.html#dcase_util.datasets.TAUUrbanAcousticScenes_2019_Mobile_DevelopmentSet.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">storage_name</span><span class="o">=</span><span class="s1">&#39;TAU-urban-acoustic-scenes-2019-mobile-development&#39;</span><span class="p">,</span>
                  <span class="n">data_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">included_content_types</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -3061,7 +3062,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="TAUUrbanAcousticScenes_2019_Mobile_LeaderboardSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TAUUrbanAcousticScenes_2019_Mobile_LeaderboardSet.html#dcase_util.datasets.TAUUrbanAcousticScenes_2019_Mobile_LeaderboardSet.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="TAUUrbanAcousticScenes_2019_Mobile_LeaderboardSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TAUUrbanAcousticScenes_2019_Mobile_LeaderboardSet.html#dcase_util.datasets.TAUUrbanAcousticScenes_2019_Mobile_LeaderboardSet.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">storage_name</span><span class="o">=</span><span class="s1">&#39;TAU-urban-acoustic-scenes-2019-mobile-leaderboard&#39;</span><span class="p">,</span>
                  <span class="n">data_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">included_content_types</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -3213,7 +3214,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="TAUUrbanAcousticScenes_2019_Mobile_EvaluationSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TAUUrbanAcousticScenes_2019_Mobile_EvaluationSet.html#dcase_util.datasets.TAUUrbanAcousticScenes_2019_Mobile_EvaluationSet.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="TAUUrbanAcousticScenes_2019_Mobile_EvaluationSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TAUUrbanAcousticScenes_2019_Mobile_EvaluationSet.html#dcase_util.datasets.TAUUrbanAcousticScenes_2019_Mobile_EvaluationSet.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">storage_name</span><span class="o">=</span><span class="s1">&#39;TAU-urban-acoustic-scenes-2019-mobile-evaluation&#39;</span><span class="p">,</span>
                  <span class="n">data_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">included_content_types</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -3414,7 +3415,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="TAUUrbanAcousticScenes_2019_Openset_DevelopmentSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_DevelopmentSet.html#dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_DevelopmentSet.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="TAUUrbanAcousticScenes_2019_Openset_DevelopmentSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_DevelopmentSet.html#dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_DevelopmentSet.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">storage_name</span><span class="o">=</span><span class="s1">&#39;TAU-urban-acoustic-scenes-2019-openset-development&#39;</span><span class="p">,</span>
                  <span class="n">data_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">included_content_types</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -3639,7 +3640,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="TAUUrbanAcousticScenes_2019_Openset_LeaderboardSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_LeaderboardSet.html#dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_LeaderboardSet.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="TAUUrbanAcousticScenes_2019_Openset_LeaderboardSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_LeaderboardSet.html#dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_LeaderboardSet.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">storage_name</span><span class="o">=</span><span class="s1">&#39;TAU-urban-acoustic-scenes-2019-openset-leaderboard&#39;</span><span class="p">,</span>
                  <span class="n">data_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">included_content_types</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -3791,7 +3792,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="TAUUrbanAcousticScenes_2019_Openset_EvaluationSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_EvaluationSet.html#dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_EvaluationSet.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="TAUUrbanAcousticScenes_2019_Openset_EvaluationSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_EvaluationSet.html#dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_EvaluationSet.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">storage_name</span><span class="o">=</span><span class="s1">&#39;TAU-urban-acoustic-scenes-2019-openset-evaluation&#39;</span><span class="p">,</span>
                  <span class="n">data_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">included_content_types</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -3976,7 +3977,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="TUTUrbanAcousticScenes_2018_DevelopmentSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_DevelopmentSet.html#dcase_util.datasets.TUTUrbanAcousticScenes_2018_DevelopmentSet.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="TUTUrbanAcousticScenes_2018_DevelopmentSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_DevelopmentSet.html#dcase_util.datasets.TUTUrbanAcousticScenes_2018_DevelopmentSet.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">storage_name</span><span class="o">=</span><span class="s1">&#39;TUT-urban-acoustic-scenes-2018-development&#39;</span><span class="p">,</span>
                  <span class="n">data_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">included_content_types</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -4214,7 +4215,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="TUTUrbanAcousticScenes_2018_LeaderboardSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_LeaderboardSet.html#dcase_util.datasets.TUTUrbanAcousticScenes_2018_LeaderboardSet.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="TUTUrbanAcousticScenes_2018_LeaderboardSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_LeaderboardSet.html#dcase_util.datasets.TUTUrbanAcousticScenes_2018_LeaderboardSet.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">storage_name</span><span class="o">=</span><span class="s1">&#39;TUT-urban-acoustic-scenes-2018-leaderboard&#39;</span><span class="p">,</span>
                  <span class="n">data_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">included_content_types</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -4372,7 +4373,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="TUTUrbanAcousticScenes_2018_EvaluationSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_EvaluationSet.html#dcase_util.datasets.TUTUrbanAcousticScenes_2018_EvaluationSet.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="TUTUrbanAcousticScenes_2018_EvaluationSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_EvaluationSet.html#dcase_util.datasets.TUTUrbanAcousticScenes_2018_EvaluationSet.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">storage_name</span><span class="o">=</span><span class="s1">&#39;TUT-urban-acoustic-scenes-2018-evaluation&#39;</span><span class="p">,</span>
                  <span class="n">data_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">included_content_types</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -4558,7 +4559,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="TUTUrbanAcousticScenes_2018_Mobile_DevelopmentSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_DevelopmentSet.html#dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_DevelopmentSet.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="TUTUrbanAcousticScenes_2018_Mobile_DevelopmentSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_DevelopmentSet.html#dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_DevelopmentSet.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">storage_name</span><span class="o">=</span><span class="s1">&#39;TUT-urban-acoustic-scenes-2018-mobile-development&#39;</span><span class="p">,</span>
                  <span class="n">data_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">included_content_types</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -4756,7 +4757,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="TUTUrbanAcousticScenes_2018_Mobile_LeaderboardSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_LeaderboardSet.html#dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_LeaderboardSet.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="TUTUrbanAcousticScenes_2018_Mobile_LeaderboardSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_LeaderboardSet.html#dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_LeaderboardSet.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">storage_name</span><span class="o">=</span><span class="s1">&#39;TUT-urban-acoustic-scenes-2018-mobile-leaderboard&#39;</span><span class="p">,</span>
                  <span class="n">data_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">included_content_types</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -4914,7 +4915,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="TUTUrbanAcousticScenes_2018_Mobile_EvaluationSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_EvaluationSet.html#dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_EvaluationSet.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="TUTUrbanAcousticScenes_2018_Mobile_EvaluationSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_EvaluationSet.html#dcase_util.datasets.TUTUrbanAcousticScenes_2018_Mobile_EvaluationSet.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">storage_name</span><span class="o">=</span><span class="s1">&#39;TUT-urban-acoustic-scenes-2018-mobile-evaluation&#39;</span><span class="p">,</span>
                  <span class="n">data_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">included_content_types</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -5139,7 +5140,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="TUTAcousticScenes_2017_DevelopmentSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TUTAcousticScenes_2017_DevelopmentSet.html#dcase_util.datasets.TUTAcousticScenes_2017_DevelopmentSet.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="TUTAcousticScenes_2017_DevelopmentSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TUTAcousticScenes_2017_DevelopmentSet.html#dcase_util.datasets.TUTAcousticScenes_2017_DevelopmentSet.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">storage_name</span><span class="o">=</span><span class="s1">&#39;TUT-acoustic-scenes-2017-development&#39;</span><span class="p">,</span>
                  <span class="n">data_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">included_content_types</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -5351,7 +5352,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="TUTAcousticScenes_2017_EvaluationSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TUTAcousticScenes_2017_EvaluationSet.html#dcase_util.datasets.TUTAcousticScenes_2017_EvaluationSet.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="TUTAcousticScenes_2017_EvaluationSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TUTAcousticScenes_2017_EvaluationSet.html#dcase_util.datasets.TUTAcousticScenes_2017_EvaluationSet.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">storage_name</span><span class="o">=</span><span class="s1">&#39;TUT-acoustic-scenes-2017-evaluation&#39;</span><span class="p">,</span>
                  <span class="n">data_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">included_content_types</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -5519,7 +5520,7 @@
     <span class="sd">&quot;&quot;&quot;TUT Acoustic scenes 2017 features dataset</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="TUTAcousticScenes_2017_FeaturesSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TUTAcousticScenes_2017_FeaturesSet.html#dcase_util.datasets.TUTAcousticScenes_2017_FeaturesSet.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="TUTAcousticScenes_2017_FeaturesSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TUTAcousticScenes_2017_FeaturesSet.html#dcase_util.datasets.TUTAcousticScenes_2017_FeaturesSet.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">storage_name</span><span class="o">=</span><span class="s1">&#39;TUT-acoustic-scenes-2017-features&#39;</span><span class="p">,</span>
                  <span class="n">data_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">included_content_types</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -5841,7 +5842,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="TUTRareSoundEvents_2017_DevelopmentSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TUTRareSoundEvents_2017_DevelopmentSet.html#dcase_util.datasets.TUTRareSoundEvents_2017_DevelopmentSet.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="TUTRareSoundEvents_2017_DevelopmentSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TUTRareSoundEvents_2017_DevelopmentSet.html#dcase_util.datasets.TUTRareSoundEvents_2017_DevelopmentSet.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">storage_name</span><span class="o">=</span><span class="s1">&#39;TUT-rare-sound-events-2017-development&#39;</span><span class="p">,</span>
                  <span class="n">data_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">included_content_types</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -6071,14 +6072,14 @@
             <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">local_path</span><span class="p">,</span> <span class="s1">&#39;TUT_Rare_sound_events_mixture_synthesizer&#39;</span><span class="p">,</span> <span class="s1">&#39;__init__.py&#39;</span><span class="p">),</span> <span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
         <span class="k">if</span> <span class="n">is_jupyter</span><span class="p">():</span>
-            <span class="kn">from</span> <span class="nn">tqdm</span> <span class="k">import</span> <span class="n">tqdm_notebook</span> <span class="k">as</span> <span class="n">tqdm</span>
+            <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm_notebook</span> <span class="k">as</span> <span class="n">tqdm</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="kn">from</span> <span class="nn">tqdm</span> <span class="k">import</span> <span class="n">tqdm</span>
+            <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
 
         <span class="c1"># Add synth code to the search path</span>
         <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">local_path</span><span class="p">,</span> <span class="s1">&#39;TUT_Rare_sound_events_mixture_synthesizer&#39;</span><span class="p">))</span>
-        <span class="kn">from</span> <span class="nn">core</span> <span class="k">import</span> <span class="n">generate_mixture_recipes</span>
-        <span class="kn">from</span> <span class="nn">core</span> <span class="k">import</span> <span class="n">do_mixing</span>
+        <span class="kn">from</span> <span class="nn">core</span> <span class="kn">import</span> <span class="n">generate_mixture_recipes</span>
+        <span class="kn">from</span> <span class="nn">core</span> <span class="kn">import</span> <span class="n">do_mixing</span>
 
         <span class="n">scene_label</span> <span class="o">=</span> <span class="s1">&#39;synthetic&#39;</span>
         <span class="n">subset_map</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;train&#39;</span><span class="p">:</span> <span class="s1">&#39;devtrain&#39;</span><span class="p">,</span>
@@ -6514,7 +6515,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="TUTRareSoundEvents_2017_EvaluationSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TUTRareSoundEvents_2017_EvaluationSet.html#dcase_util.datasets.TUTRareSoundEvents_2017_EvaluationSet.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="TUTRareSoundEvents_2017_EvaluationSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TUTRareSoundEvents_2017_EvaluationSet.html#dcase_util.datasets.TUTRareSoundEvents_2017_EvaluationSet.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">storage_name</span><span class="o">=</span><span class="s1">&#39;TUT-rare-sound-events-2017-evaluation&#39;</span><span class="p">,</span>
                  <span class="n">data_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">included_content_types</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -6963,7 +6964,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="TUTSoundEvents_2017_DevelopmentSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TUTSoundEvents_2017_DevelopmentSet.html#dcase_util.datasets.TUTSoundEvents_2017_DevelopmentSet.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="TUTSoundEvents_2017_DevelopmentSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TUTSoundEvents_2017_DevelopmentSet.html#dcase_util.datasets.TUTSoundEvents_2017_DevelopmentSet.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">storage_name</span><span class="o">=</span><span class="s1">&#39;TUT-sound-events-2017-development&#39;</span><span class="p">,</span>
                  <span class="n">data_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">included_content_types</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -7101,7 +7102,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="TUTSoundEvents_2017_EvaluationSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TUTSoundEvents_2017_EvaluationSet.html#dcase_util.datasets.TUTSoundEvents_2017_EvaluationSet.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="TUTSoundEvents_2017_EvaluationSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TUTSoundEvents_2017_EvaluationSet.html#dcase_util.datasets.TUTSoundEvents_2017_EvaluationSet.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">storage_name</span><span class="o">=</span><span class="s1">&#39;TUT-sound-events-2017-evaluation&#39;</span><span class="p">,</span>
                  <span class="n">data_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">included_content_types</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -7271,7 +7272,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="TUTAcousticScenes_2016_DevelopmentSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet.html#dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="TUTAcousticScenes_2016_DevelopmentSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet.html#dcase_util.datasets.TUTAcousticScenes_2016_DevelopmentSet.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">storage_name</span><span class="o">=</span><span class="s1">&#39;TUT-acoustic-scenes-2016-development&#39;</span><span class="p">,</span>
                  <span class="n">data_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">included_content_types</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -7467,7 +7468,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="TUTAcousticScenes_2016_EvaluationSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet.html#dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="TUTAcousticScenes_2016_EvaluationSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet.html#dcase_util.datasets.TUTAcousticScenes_2016_EvaluationSet.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">storage_name</span><span class="o">=</span><span class="s1">&#39;TUT-acoustic-scenes-2016-evaluation&#39;</span><span class="p">,</span>
                  <span class="n">data_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">included_content_types</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -7619,7 +7620,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="TUTSoundEvents_2016_DevelopmentSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TUTSoundEvents_2016_DevelopmentSet.html#dcase_util.datasets.TUTSoundEvents_2016_DevelopmentSet.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="TUTSoundEvents_2016_DevelopmentSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TUTSoundEvents_2016_DevelopmentSet.html#dcase_util.datasets.TUTSoundEvents_2016_DevelopmentSet.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">storage_name</span><span class="o">=</span><span class="s1">&#39;TUT-sound-events-2016-development&#39;</span><span class="p">,</span>
                  <span class="n">data_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">included_content_types</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -7760,7 +7761,7 @@
 <span class="sd">    This dataset is used in DCASE2016 - Task 3, Sound event detection in real life audio</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="TUTSoundEvents_2016_EvaluationSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TUTSoundEvents_2016_EvaluationSet.html#dcase_util.datasets.TUTSoundEvents_2016_EvaluationSet.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="TUTSoundEvents_2016_EvaluationSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TUTSoundEvents_2016_EvaluationSet.html#dcase_util.datasets.TUTSoundEvents_2016_EvaluationSet.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">storage_name</span><span class="o">=</span><span class="s1">&#39;TUT-sound-events-2016-evaluation&#39;</span><span class="p">,</span>
                  <span class="n">data_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">included_content_types</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -7885,7 +7886,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="TUT_SED_Synthetic_2016.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TUT_SED_Synthetic_2016.html#dcase_util.datasets.TUT_SED_Synthetic_2016.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<div class="viewcode-block" id="TUT_SED_Synthetic_2016.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TUT_SED_Synthetic_2016.html#dcase_util.datasets.TUT_SED_Synthetic_2016.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">storage_name</span><span class="o">=</span><span class="s1">&#39;TUT-SED-synthetic-2016&#39;</span><span class="p">,</span>
                  <span class="n">data_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">included_content_types</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -8076,7 +8077,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">storage_name</span><span class="o">=</span><span class="s1">&#39;dbr-dataset&#39;</span><span class="p">,</span>
                  <span class="n">data_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">included_content_types</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -8274,7 +8275,7 @@
 
             <span class="n">files</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">files</span><span class="p">)</span>
 
-            <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="k">import</span> <span class="n">StratifiedShuffleSplit</span>
+            <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">StratifiedShuffleSplit</span>
             <span class="n">sss</span> <span class="o">=</span> <span class="n">StratifiedShuffleSplit</span><span class="p">(</span>
                 <span class="n">n_splits</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">crossvalidation_folds</span><span class="p">,</span>
                 <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>

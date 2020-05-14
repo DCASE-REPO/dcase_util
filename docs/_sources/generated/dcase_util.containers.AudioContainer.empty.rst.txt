@@ -3,4 +3,4 @@ dcase\_util.containers.AudioContainer.empty
 
 .. currentmodule:: dcase_util.containers
 
-.. autoattribute:: AudioContainer.empty
+.. autoproperty:: AudioContainer.empty

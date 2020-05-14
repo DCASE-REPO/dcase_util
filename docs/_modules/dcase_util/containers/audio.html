@@ -1474,6 +1474,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-12">v0.2.12</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-11">v0.2.11</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-10">v0.2.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-9">v0.2.9</a></li>
@@ -1563,28 +1564,28 @@
 <span class="c1"># -*- coding: utf-8 -*-</span>
 
 
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">absolute_import</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">absolute_import</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">soundfile</span>
 <span class="kn">import</span> <span class="nn">tempfile</span>
 <span class="kn">import</span> <span class="nn">numpy</span>
 <span class="kn">import</span> <span class="nn">librosa</span>
-<span class="kn">from</span> <span class="nn">six.moves.http_client</span> <span class="k">import</span> <span class="n">BadStatusLine</span>
+<span class="kn">from</span> <span class="nn">six.moves.http_client</span> <span class="kn">import</span> <span class="n">BadStatusLine</span>
 
-<span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="k">import</span> <span class="n">ContainerMixin</span><span class="p">,</span> <span class="n">FileMixin</span>
-<span class="kn">from</span> <span class="nn">dcase_util.ui.ui</span> <span class="k">import</span> <span class="n">FancyStringifier</span><span class="p">,</span> <span class="n">FancyHTMLStringifier</span>
-<span class="kn">from</span> <span class="nn">dcase_util.utils</span> <span class="k">import</span> <span class="n">FileFormat</span><span class="p">,</span> <span class="n">Path</span><span class="p">,</span> <span class="n">is_int</span><span class="p">,</span> <span class="n">is_jupyter</span><span class="p">,</span> <span class="n">get_audio_info</span>
+<span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="kn">import</span> <span class="n">ContainerMixin</span><span class="p">,</span> <span class="n">FileMixin</span>
+<span class="kn">from</span> <span class="nn">dcase_util.ui.ui</span> <span class="kn">import</span> <span class="n">FancyStringifier</span><span class="p">,</span> <span class="n">FancyHTMLStringifier</span>
+<span class="kn">from</span> <span class="nn">dcase_util.utils</span> <span class="kn">import</span> <span class="n">FileFormat</span><span class="p">,</span> <span class="n">Path</span><span class="p">,</span> <span class="n">is_int</span><span class="p">,</span> <span class="n">is_jupyter</span><span class="p">,</span> <span class="n">get_audio_info</span>
 
 
-<div class="viewcode-block" id="AudioContainer"><a class="viewcode-back" href="../../../generated/dcase_util.containers.AudioContainer.html#dcase_util.containers.AudioContainer">[docs]</a><span class="k">class</span> <span class="nc">AudioContainer</span><span class="p">(</span><span class="n">ContainerMixin</span><span class="p">,</span> <span class="n">FileMixin</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">AudioContainer</span><span class="p">(</span><span class="n">ContainerMixin</span><span class="p">,</span> <span class="n">FileMixin</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Audio container class.&quot;&quot;&quot;</span>
     <span class="n">valid_formats</span> <span class="o">=</span> <span class="p">[</span><span class="n">FileFormat</span><span class="o">.</span><span class="n">WAV</span><span class="p">,</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">FLAC</span><span class="p">,</span>
                      <span class="n">FileFormat</span><span class="o">.</span><span class="n">OGG</span><span class="p">,</span>
                      <span class="n">FileFormat</span><span class="o">.</span><span class="n">M4A</span><span class="p">,</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">WEBM</span><span class="p">,</span>
                      <span class="n">FileFormat</span><span class="o">.</span><span class="n">MP3</span><span class="p">,</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">MP4</span><span class="p">]</span>  <span class="c1">#: Valid file formats</span>
 
-<div class="viewcode-block" id="AudioContainer.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.containers.AudioContainer.html#dcase_util.containers.AudioContainer.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="mi">44100</span><span class="p">,</span>
                  <span class="n">focus_start_samples</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">focus_stop_samples</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">focus_channel</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">channel_labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -1662,7 +1663,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">focus_stop_samples</span> <span class="o">=</span> <span class="n">focus_stop_samples</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">focus_channel</span> <span class="o">=</span> <span class="n">focus_channel</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">channel_labels</span> <span class="o">=</span> <span class="n">channel_labels</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">channel_labels</span> <span class="o">=</span> <span class="n">channel_labels</span>
 
     <span class="k">def</span> <span class="nf">__getstate__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">d</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">AudioContainer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__getstate__</span><span class="p">()</span>
@@ -1887,7 +1888,7 @@
     <span class="k">def</span> <span class="nf">__nonzero__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">loaded</span>
 
-    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get ith sample, in case of multiple channels array is across channels is returned&quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
@@ -1905,7 +1906,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">None</span>
 
-    <span class="k">def</span> <span class="nf">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Set ith sample&quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
@@ -1920,10 +1921,10 @@
         <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
 
-    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">length</span>
 
     <span class="nd">@property</span>
@@ -2700,9 +2701,9 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="n">is_jupyter</span><span class="p">():</span>
-            <span class="kn">from</span> <span class="nn">tqdm</span> <span class="k">import</span> <span class="n">tqdm_notebook</span> <span class="k">as</span> <span class="n">tqdm</span>
+            <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm_notebook</span> <span class="k">as</span> <span class="n">tqdm</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="kn">from</span> <span class="nn">tqdm</span> <span class="k">import</span> <span class="n">tqdm</span>
+            <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
 
         <span class="k">def</span> <span class="nf">progress_hook</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
             <span class="sd">&quot;&quot;&quot;Wraps tqdm instance. Don&#39;t forget to close() or __exit__()</span>
@@ -2727,7 +2728,7 @@
             <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
         <span class="k">try</span><span class="p">:</span>
-            <span class="kn">from</span> <span class="nn">youtube_dl.utils</span> <span class="k">import</span> <span class="n">ExtractorError</span>
+            <span class="kn">from</span> <span class="nn">youtube_dl.utils</span> <span class="kn">import</span> <span class="n">ExtractorError</span>
 
         <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
             <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Unable to import youtube_dl module. You can install it with `pip install youtube-dl`.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
@@ -3067,7 +3068,7 @@
 
         <span class="k">return</span> <span class="bp">self</span></div>
 
-<div class="viewcode-block" id="AudioContainer.frames"><a class="viewcode-back" href="../../../generated/dcase_util.containers.AudioContainer.frames.html#dcase_util.containers.AudioContainer.frames">[docs]</a>    <span class="k">def</span> <span class="nf">frames</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+    <span class="k">def</span> <span class="nf">frames</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                <span class="n">frame_length</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">hop_length</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                <span class="n">frame_length_seconds</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">hop_length_seconds</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Slice audio into overlapping frames.</span>
@@ -3140,7 +3141,7 @@
                     <span class="p">)</span>
                 <span class="p">)</span>
 
-            <span class="k">return</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
+            <span class="k">return</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">segments</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">segment_length</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">segment_length_seconds</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -3189,7 +3190,7 @@
 <span class="sd">        list, MetaDataContainer</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="k">import</span> <span class="n">MetaDataContainer</span>
+        <span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="kn">import</span> <span class="n">MetaDataContainer</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">segment_length</span> <span class="ow">and</span> <span class="n">segment_length_seconds</span><span class="p">:</span>
             <span class="c1"># Get segment_length from segment_length_seconds</span>
@@ -3473,7 +3474,7 @@
             <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 
         <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-        <span class="kn">from</span> <span class="nn">librosa.display</span> <span class="k">import</span> <span class="n">waveplot</span>
+        <span class="kn">from</span> <span class="nn">librosa.display</span> <span class="kn">import</span> <span class="n">waveplot</span>
         <span class="k">if</span> <span class="n">plot</span><span class="p">:</span>
             <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
 
@@ -3610,7 +3611,7 @@
         <span class="k">if</span> <span class="n">figsize</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 
-        <span class="kn">from</span> <span class="nn">librosa.display</span> <span class="k">import</span> <span class="n">specshow</span>
+        <span class="kn">from</span> <span class="nn">librosa.display</span> <span class="kn">import</span> <span class="n">specshow</span>
         <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
         <span class="k">if</span> <span class="n">plot</span><span class="p">:</span>
@@ -3807,7 +3808,7 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">return</span> <span class="n">sample</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fs</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">sample</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fs</span><span class="p">)</span>
 
 </pre></div>
 

@@ -1474,6 +1474,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-12">v0.2.12</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-11">v0.2.11</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-10">v0.2.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-9">v0.2.9</a></li>
@@ -1562,7 +1563,7 @@
 <span></span><span class="ch">#!/usr/bin/env python</span>
 <span class="c1"># -*- coding: utf-8 -*-</span>
 
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">absolute_import</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">absolute_import</span>
 <span class="kn">import</span> <span class="nn">six</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">os</span>
@@ -1571,15 +1572,15 @@
 <span class="kn">import</span> <span class="nn">csv</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">io</span>
-<span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="k">import</span> <span class="n">ListDictContainer</span>
-<span class="kn">from</span> <span class="nn">dcase_util.utils</span> <span class="k">import</span> <span class="n">posix_path</span><span class="p">,</span> <span class="n">get_parameter_hash</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="p">,</span> \
+<span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="kn">import</span> <span class="n">ListDictContainer</span>
+<span class="kn">from</span> <span class="nn">dcase_util.utils</span> <span class="kn">import</span> <span class="n">posix_path</span><span class="p">,</span> <span class="n">get_parameter_hash</span><span class="p">,</span> <span class="n">FieldValidator</span><span class="p">,</span> \
     <span class="n">setup_logging</span><span class="p">,</span> <span class="n">is_float</span><span class="p">,</span> <span class="n">is_int</span><span class="p">,</span> <span class="n">is_jupyter</span><span class="p">,</span> <span class="n">FileFormat</span>
-<span class="kn">from</span> <span class="nn">dcase_util.ui</span> <span class="k">import</span> <span class="n">FancyStringifier</span><span class="p">,</span>  <span class="n">FancyHTMLStringifier</span>
+<span class="kn">from</span> <span class="nn">dcase_util.ui</span> <span class="kn">import</span> <span class="n">FancyStringifier</span><span class="p">,</span>  <span class="n">FancyHTMLStringifier</span>
 
 
-<div class="viewcode-block" id="MetaDataItem"><a class="viewcode-back" href="../../../generated/dcase_util.containers.MetaDataItem.html#dcase_util.containers.MetaDataItem">[docs]</a><span class="k">class</span> <span class="nc">MetaDataItem</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">MetaDataItem</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Meta data item class, inherited from standard dict class.&quot;&quot;&quot;</span>
-<div class="viewcode-block" id="MetaDataItem.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.containers.MetaDataItem.html#dcase_util.containers.MetaDataItem.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Constructor</span>
 
 <span class="sd">        Parameters</span>
@@ -1663,9 +1664,9 @@
             <span class="bp">self</span><span class="p">[</span><span class="s1">&#39;tags&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="bp">self</span><span class="p">[</span><span class="s1">&#39;tags&#39;</span><span class="p">]))</span>
 
             <span class="c1"># Sort tags</span>
-            <span class="bp">self</span><span class="p">[</span><span class="s1">&#39;tags&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span></div>
+            <span class="bp">self</span><span class="p">[</span><span class="s1">&#39;tags&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_string</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">to_string</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ui</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
@@ -1748,7 +1749,7 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">ui</span><span class="o">=</span><span class="n">FancyHTMLStringifier</span><span class="p">(),</span> <span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="p">)</span>
 
-<div class="viewcode-block" id="MetaDataItem.show"><a class="viewcode-back" href="../../../generated/dcase_util.containers.MetaDataItem.show.html#dcase_util.containers.MetaDataItem.show">[docs]</a>    <span class="k">def</span> <span class="nf">show</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">show</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Print container content</span>
 
 <span class="sd">        If called inside Jupyter notebook, HTML formatted version is shown.</span>
@@ -1782,7 +1783,7 @@
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;html&#39;</span><span class="p">:</span>
-            <span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="k">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">HTML</span>
+            <span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">HTML</span>
             <span class="n">display</span><span class="p">(</span>
                 <span class="n">HTML</span><span class="p">(</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">to_html</span><span class="p">(</span><span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="p">)</span>
@@ -1790,9 +1791,9 @@
             <span class="p">)</span>
 
         <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;print&#39;</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="p">))</span></div>
+            <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="p">))</span>
 
-<div class="viewcode-block" id="MetaDataItem.log"><a class="viewcode-back" href="../../../generated/dcase_util.containers.MetaDataItem.log.html#dcase_util.containers.MetaDataItem.log">[docs]</a>    <span class="k">def</span> <span class="nf">log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="s1">&#39;info&#39;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="s1">&#39;info&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Log container content</span>
 
 <span class="sd">        Parameters</span>
@@ -1807,8 +1808,8 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="kn">from</span> <span class="nn">dcase_util.ui</span> <span class="k">import</span> <span class="n">FancyLogger</span>
-        <span class="n">FancyLogger</span><span class="p">()</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="fm">__str__</span><span class="p">(),</span> <span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">)</span></div>
+        <span class="kn">from</span> <span class="nn">dcase_util.ui</span> <span class="kn">import</span> <span class="n">FancyLogger</span>
+        <span class="n">FancyLogger</span><span class="p">()</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="fm">__str__</span><span class="p">(),</span> <span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">logger</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1861,7 +1862,7 @@
 
         <span class="k">return</span> <span class="n">get_parameter_hash</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
 
-<div class="viewcode-block" id="MetaDataItem.get_list"><a class="viewcode-back" href="../../../generated/dcase_util.containers.MetaDataItem.get_list.html#dcase_util.containers.MetaDataItem.get_list">[docs]</a>    <span class="k">def</span> <span class="nf">get_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return item values in a list with specified order.</span>
 
 <span class="sd">        Returns</span>
@@ -1935,7 +1936,7 @@
                 <span class="nb">format</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span>
             <span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></div>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">filename</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -2170,7 +2171,7 @@
         <span class="c1"># Sort tags</span>
         <span class="bp">self</span><span class="p">[</span><span class="s1">&#39;tags&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
 
-<div class="viewcode-block" id="MetaDataItem.active_within_segment"><a class="viewcode-back" href="../../../generated/dcase_util.containers.MetaDataItem.active_within_segment.html#dcase_util.containers.MetaDataItem.active_within_segment">[docs]</a>    <span class="k">def</span> <span class="nf">active_within_segment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">active_within_segment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Item active withing given segment.</span>
 
 <span class="sd">        Parameters</span>
@@ -2201,14 +2202,14 @@
             <span class="k">return</span> <span class="kc">True</span>
 
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">False</span></div></div>
+            <span class="k">return</span> <span class="kc">False</span>
 
 
 <div class="viewcode-block" id="MetaDataContainer"><a class="viewcode-back" href="../../../generated/dcase_util.containers.MetaDataContainer.html#dcase_util.containers.MetaDataContainer">[docs]</a><span class="k">class</span> <span class="nc">MetaDataContainer</span><span class="p">(</span><span class="n">ListDictContainer</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Meta data container class, inherited from ListDictContainer.&quot;&quot;&quot;</span>
     <span class="n">valid_formats</span> <span class="o">=</span> <span class="p">[</span><span class="n">FileFormat</span><span class="o">.</span><span class="n">CSV</span><span class="p">,</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">TXT</span><span class="p">,</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">ANN</span><span class="p">,</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">CPICKLE</span><span class="p">]</span>  <span class="c1">#: Valid file formats</span>
 
-<div class="viewcode-block" id="MetaDataContainer.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.containers.MetaDataContainer.html#dcase_util.containers.MetaDataContainer.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="MetaDataContainer.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.containers.MetaDataContainer.html#dcase_util.containers.MetaDataContainer.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">MetaDataContainer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">item_class</span> <span class="o">=</span> <span class="n">MetaDataItem</span>
 
@@ -2217,13 +2218,13 @@
             <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="p">[</span><span class="n">item_id</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">item_class</span><span class="p">):</span>
                 <span class="bp">self</span><span class="p">[</span><span class="n">item_id</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">item_class</span><span class="p">(</span><span class="bp">self</span><span class="p">[</span><span class="n">item_id</span><span class="p">])</span>
 
-        <span class="kn">from</span> <span class="nn">dcase_util.processors</span> <span class="k">import</span> <span class="n">ProcessingChain</span>
+        <span class="kn">from</span> <span class="nn">dcase_util.processors</span> <span class="kn">import</span> <span class="n">ProcessingChain</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">processing_chain</span> <span class="o">=</span> <span class="n">ProcessingChain</span><span class="p">()</span></div>
 
-    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_string</span><span class="p">()</span>
 
-<div class="viewcode-block" id="MetaDataContainer.to_string"><a class="viewcode-back" href="../../../generated/dcase_util.containers.MetaDataContainer.to_string.html#dcase_util.containers.MetaDataContainer.to_string">[docs]</a>    <span class="k">def</span> <span class="nf">to_string</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ui</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">show_info</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">show_data</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">show_stats</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">to_string</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ui</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">show_info</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">show_data</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">show_stats</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get container information in a string</span>
 
 <span class="sd">        Parameters</span>
@@ -2355,7 +2356,7 @@
                     <span class="n">indent</span><span class="o">=</span><span class="n">indent</span> <span class="o">+</span> <span class="mi">2</span>
                 <span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
 
-        <span class="k">return</span> <span class="n">output</span></div>
+        <span class="k">return</span> <span class="n">output</span>
 
     <span class="k">def</span> <span class="nf">to_html</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">show_info</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">show_data</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">show_stats</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get container information in a HTML formatted string</span>
@@ -2386,7 +2387,7 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">ui</span><span class="o">=</span><span class="n">FancyHTMLStringifier</span><span class="p">(),</span> <span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="p">,</span> <span class="n">show_info</span><span class="o">=</span><span class="n">show_info</span><span class="p">,</span> <span class="n">show_data</span><span class="o">=</span><span class="n">show_data</span><span class="p">,</span> <span class="n">show_stats</span><span class="o">=</span><span class="n">show_stats</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">super</span><span class="p">(</span><span class="n">MetaDataContainer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__add__</span><span class="p">(</span><span class="n">other</span><span class="p">))</span>
 
 <div class="viewcode-block" id="MetaDataContainer.append"><a class="viewcode-back" href="../../../generated/dcase_util.containers.MetaDataContainer.append.html#dcase_util.containers.MetaDataContainer.append">[docs]</a>    <span class="k">def</span> <span class="nf">append</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
@@ -2674,7 +2675,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">,</span> <span class="n">show_data</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">show_stats</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="MetaDataContainer.show"><a class="viewcode-back" href="../../../generated/dcase_util.containers.MetaDataContainer.show.html#dcase_util.containers.MetaDataContainer.show">[docs]</a>    <span class="k">def</span> <span class="nf">show</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">show_info</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">show_data</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">show_stats</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">show</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">show_info</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">show_data</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">show_stats</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Print container content</span>
 
 <span class="sd">        If called inside Jupyter notebook, HTML formatted version is shown.</span>
@@ -2720,7 +2721,7 @@
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;html&#39;</span><span class="p">:</span>
-            <span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="k">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">HTML</span>
+            <span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">HTML</span>
             <span class="n">display</span><span class="p">(</span>
                 <span class="n">HTML</span><span class="p">(</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">to_html</span><span class="p">(</span><span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="p">,</span> <span class="n">show_info</span><span class="o">=</span><span class="n">show_info</span><span class="p">,</span> <span class="n">show_data</span><span class="o">=</span><span class="n">show_data</span><span class="p">,</span> <span class="n">show_stats</span><span class="o">=</span><span class="n">show_stats</span><span class="p">)</span>
@@ -2728,9 +2729,9 @@
             <span class="p">)</span>
 
         <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;print&#39;</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="p">,</span> <span class="n">show_info</span><span class="o">=</span><span class="n">show_info</span><span class="p">,</span> <span class="n">show_data</span><span class="o">=</span><span class="n">show_data</span><span class="p">,</span> <span class="n">show_stats</span><span class="o">=</span><span class="n">show_stats</span><span class="p">))</span></div>
+            <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="p">,</span> <span class="n">show_info</span><span class="o">=</span><span class="n">show_info</span><span class="p">,</span> <span class="n">show_data</span><span class="o">=</span><span class="n">show_data</span><span class="p">,</span> <span class="n">show_stats</span><span class="o">=</span><span class="n">show_stats</span><span class="p">))</span>
 
-<div class="viewcode-block" id="MetaDataContainer.show_all"><a class="viewcode-back" href="../../../generated/dcase_util.containers.MetaDataContainer.show_all.html#dcase_util.containers.MetaDataContainer.show_all">[docs]</a>    <span class="k">def</span> <span class="nf">show_all</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">show_all</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Print container content with all meta data items.</span>
 
 <span class="sd">        Parameters</span>
@@ -2749,7 +2750,7 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="p">,</span> <span class="n">show_data</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">show_stats</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="p">,</span> <span class="n">show_data</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">show_stats</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <div class="viewcode-block" id="MetaDataContainer.load"><a class="viewcode-back" href="../../../generated/dcase_util.containers.MetaDataContainer.load.html#dcase_util.containers.MetaDataContainer.load">[docs]</a>    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fields</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">csv_header</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">file_format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">decimal</span><span class="o">=</span><span class="s1">&#39;point&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Load event list from delimited text file (csv-formatted)</span>
@@ -3385,7 +3386,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
 
             <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">format</span> <span class="o">==</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">CPICKLE</span><span class="p">:</span>
-                <span class="kn">from</span> <span class="nn">dcase_util.files</span> <span class="k">import</span> <span class="n">Serializer</span>
+                <span class="kn">from</span> <span class="nn">dcase_util.files</span> <span class="kn">import</span> <span class="n">Serializer</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
                     <span class="n">data</span><span class="o">=</span><span class="n">Serializer</span><span class="o">.</span><span class="n">load_cpickle</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
                 <span class="p">)</span>
@@ -3405,7 +3406,7 @@
 
         <span class="k">return</span> <span class="bp">self</span></div>
 
-<div class="viewcode-block" id="MetaDataContainer.save"><a class="viewcode-back" href="../../../generated/dcase_util.containers.MetaDataContainer.save.html#dcase_util.containers.MetaDataContainer.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fields</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">csv_header</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">file_format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span>  <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fields</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">csv_header</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">file_format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span>  <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Save content to csv file</span>
 
 <span class="sd">        Parameters</span>
@@ -3497,7 +3498,7 @@
                 <span class="n">csv_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">format</span> <span class="o">==</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">CPICKLE</span><span class="p">:</span>
-            <span class="kn">from</span> <span class="nn">dcase_util.files</span> <span class="k">import</span> <span class="n">Serializer</span>
+            <span class="kn">from</span> <span class="nn">dcase_util.files</span> <span class="kn">import</span> <span class="n">Serializer</span>
             <span class="n">Serializer</span><span class="o">.</span><span class="n">save_cpickle</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
 
         <span class="k">else</span><span class="p">:</span>
@@ -3505,7 +3506,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
             <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="bp">self</span></div>
+        <span class="k">return</span> <span class="bp">self</span>
 
 <div class="viewcode-block" id="MetaDataContainer.filter"><a class="viewcode-back" href="../../../generated/dcase_util.containers.MetaDataContainer.filter.html#dcase_util.containers.MetaDataContainer.filter">[docs]</a>    <span class="k">def</span> <span class="nf">filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -3642,7 +3643,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">result</span></div>
 
-<div class="viewcode-block" id="MetaDataContainer.process_events"><a class="viewcode-back" href="../../../generated/dcase_util.containers.MetaDataContainer.process_events.html#dcase_util.containers.MetaDataContainer.process_events">[docs]</a>    <span class="k">def</span> <span class="nf">process_events</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">minimum_event_length</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">minimum_event_gap</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">process_events</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">minimum_event_length</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">minimum_event_gap</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Process event content</span>
 
 <span class="sd">        Makes sure that minimum event length and minimum event gap conditions are met per event label class.</span>
@@ -3721,7 +3722,7 @@
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">processed_events</span> <span class="o">+=</span> <span class="n">event_results_1</span>
 
-        <span class="k">return</span> <span class="n">MetaDataContainer</span><span class="p">(</span><span class="n">processed_events</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">MetaDataContainer</span><span class="p">(</span><span class="n">processed_events</span><span class="p">)</span>
 
 <div class="viewcode-block" id="MetaDataContainer.map_events"><a class="viewcode-back" href="../../../generated/dcase_util.containers.MetaDataContainer.map_events.html#dcase_util.containers.MetaDataContainer.map_events">[docs]</a>    <span class="k">def</span> <span class="nf">map_events</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target_event_label</span><span class="p">,</span> <span class="n">source_event_labels</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Map events with varying event labels into single target event label</span>
@@ -3955,7 +3956,7 @@
 
         <span class="k">return</span> <span class="n">filtered_data</span></div>
 
-<div class="viewcode-block" id="MetaDataContainer.stats"><a class="viewcode-back" href="../../../generated/dcase_util.containers.MetaDataContainer.stats.html#dcase_util.containers.MetaDataContainer.stats">[docs]</a>    <span class="k">def</span> <span class="nf">stats</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event_label_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">scene_label_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tag_list</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">stats</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event_label_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">scene_label_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tag_list</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Statistics of the container content</span>
 
 <span class="sd">        Parameters</span>
@@ -4026,9 +4027,9 @@
                 <span class="s1">&#39;tag_list&#39;</span><span class="p">:</span> <span class="n">tag_list</span><span class="p">,</span>
                 <span class="s1">&#39;count&#39;</span><span class="p">:</span> <span class="n">tag_counts</span>
             <span class="p">}</span>
-        <span class="p">}</span></div>
+        <span class="p">}</span>
 
-<div class="viewcode-block" id="MetaDataContainer.scene_stat_counts"><a class="viewcode-back" href="../../../generated/dcase_util.containers.MetaDataContainer.scene_stat_counts.html#dcase_util.containers.MetaDataContainer.scene_stat_counts">[docs]</a>    <span class="k">def</span> <span class="nf">scene_stat_counts</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">scene_stat_counts</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Scene count statistics</span>
 
 <span class="sd">        Returns</span>
@@ -4041,7 +4042,7 @@
         <span class="k">for</span> <span class="n">scene_label</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">unique_scene_labels</span><span class="p">:</span>
             <span class="n">stats</span><span class="p">[</span><span class="n">scene_label</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">scene_label</span><span class="o">=</span><span class="n">scene_label</span><span class="p">))</span>
 
-        <span class="k">return</span> <span class="n">stats</span></div>
+        <span class="k">return</span> <span class="n">stats</span>
 
 <div class="viewcode-block" id="MetaDataContainer.event_stat_counts"><a class="viewcode-back" href="../../../generated/dcase_util.containers.MetaDataContainer.event_stat_counts.html#dcase_util.containers.MetaDataContainer.event_stat_counts">[docs]</a>    <span class="k">def</span> <span class="nf">event_stat_counts</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Event count statistics</span>
@@ -4058,7 +4059,7 @@
 
         <span class="k">return</span> <span class="n">stats</span></div>
 
-<div class="viewcode-block" id="MetaDataContainer.tag_stat_counts"><a class="viewcode-back" href="../../../generated/dcase_util.containers.MetaDataContainer.tag_stat_counts.html#dcase_util.containers.MetaDataContainer.tag_stat_counts">[docs]</a>    <span class="k">def</span> <span class="nf">tag_stat_counts</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">tag_stat_counts</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Tag count statistics</span>
 
 <span class="sd">        Returns</span>
@@ -4071,9 +4072,9 @@
         <span class="k">for</span> <span class="n">tag</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">unique_tags</span><span class="p">:</span>
             <span class="n">stats</span><span class="p">[</span><span class="n">tag</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">tag</span><span class="o">=</span><span class="n">tag</span><span class="p">))</span>
 
-        <span class="k">return</span> <span class="n">stats</span></div>
+        <span class="k">return</span> <span class="n">stats</span>
 
-<div class="viewcode-block" id="MetaDataContainer.to_event_roll"><a class="viewcode-back" href="../../../generated/dcase_util.containers.MetaDataContainer.to_event_roll.html#dcase_util.containers.MetaDataContainer.to_event_roll">[docs]</a>    <span class="k">def</span> <span class="nf">to_event_roll</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_resolution</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;event_label&#39;</span><span class="p">,</span> <span class="n">length_seconds</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">to_event_roll</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_resolution</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;event_label&#39;</span><span class="p">,</span> <span class="n">length_seconds</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Event roll</span>
 
 <span class="sd">        Event roll is binary matrix indicating event activity withing time segment defined by time_resolution.</span>
@@ -4106,7 +4107,7 @@
             <span class="n">label_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">unique_event_labels</span>
 
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">unique_files</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="kn">from</span> <span class="nn">dcase_util.data</span> <span class="k">import</span> <span class="n">EventRollEncoder</span>
+            <span class="kn">from</span> <span class="nn">dcase_util.data</span> <span class="kn">import</span> <span class="n">EventRollEncoder</span>
             <span class="n">event_roll</span> <span class="o">=</span> <span class="n">EventRollEncoder</span><span class="p">(</span>
                 <span class="n">label_list</span><span class="o">=</span><span class="n">label_list</span><span class="p">,</span>
                 <span class="n">time_resolution</span><span class="o">=</span><span class="n">time_resolution</span><span class="p">,</span>
@@ -4121,7 +4122,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Meta data contains items for multiple files.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></div>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
 <div class="viewcode-block" id="MetaDataContainer.intersection"><a class="viewcode-back" href="../../../generated/dcase_util.containers.MetaDataContainer.intersection.html#dcase_util.containers.MetaDataContainer.intersection">[docs]</a>    <span class="k">def</span> <span class="nf">intersection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">second_metadata</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Intersection of two meta containers</span>

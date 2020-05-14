@@ -1474,6 +1474,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-12">v0.2.12</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-11">v0.2.11</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-10">v0.2.10</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-9">v0.2.9</a></li>
@@ -1562,17 +1563,17 @@
 <span></span><span class="ch">#!/usr/bin/env python</span>
 <span class="c1"># -*- coding: utf-8 -*-</span>
 
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">absolute_import</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">absolute_import</span>
 
-<span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="k">import</span> <span class="n">MetaDataContainer</span>
-<span class="kn">from</span> <span class="nn">dcase_util.processors</span> <span class="k">import</span> <span class="n">Processor</span><span class="p">,</span> <span class="n">ProcessingChainItemType</span>
+<span class="kn">from</span> <span class="nn">dcase_util.containers</span> <span class="kn">import</span> <span class="n">MetaDataContainer</span>
+<span class="kn">from</span> <span class="nn">dcase_util.processors</span> <span class="kn">import</span> <span class="n">Processor</span><span class="p">,</span> <span class="n">ProcessingChainItemType</span>
 
 
 <div class="viewcode-block" id="MetadataReadingProcessor"><a class="viewcode-back" href="../../../generated/dcase_util.processors.MetadataReadingProcessor.html#dcase_util.processors.MetadataReadingProcessor">[docs]</a><span class="k">class</span> <span class="nc">MetadataReadingProcessor</span><span class="p">(</span><span class="n">Processor</span><span class="p">):</span>
     <span class="n">input_type</span> <span class="o">=</span> <span class="n">ProcessingChainItemType</span><span class="o">.</span><span class="n">NONE</span>  <span class="c1">#: Input data type</span>
     <span class="n">output_type</span> <span class="o">=</span> <span class="n">ProcessingChainItemType</span><span class="o">.</span><span class="n">METADATA</span>  <span class="c1">#: Output data type</span>
 
-<div class="viewcode-block" id="MetadataReadingProcessor.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.processors.MetadataReadingProcessor.html#dcase_util.processors.MetadataReadingProcessor.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="MetadataReadingProcessor.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.processors.MetadataReadingProcessor.html#dcase_util.processors.MetadataReadingProcessor.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Constructor&quot;&quot;&quot;</span>
 
         <span class="c1"># Run super init to call init of mixins too</span>
