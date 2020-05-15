@@ -20,6 +20,7 @@ before_install:
 # command to install dependencies
 install:
     - "pip install scikit-learn==0.20.3"
+    - "pip install llvmlite==0.31.0"
     - "pip install -r requirements.txt"
     - "pip install python-coveralls"
     - "pip install coveralls"
