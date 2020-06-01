@@ -1474,6 +1474,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-13">v0.2.13</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-12">v0.2.12</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-11">v0.2.11</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-10">v0.2.10</a></li>
@@ -2698,9 +2699,9 @@
             <span class="k">return</span> <span class="kc">None</span>
 
 
-<span class="k">class</span> <span class="nc">DCASEAppParameterContainer</span><span class="p">(</span><span class="n">AppParameterContainer</span><span class="p">):</span>
+<div class="viewcode-block" id="DCASEAppParameterContainer"><a class="viewcode-back" href="../../../generated/dcase_util.containers.DCASEAppParameterContainer.html#dcase_util.containers.DCASEAppParameterContainer">[docs]</a><span class="k">class</span> <span class="nc">DCASEAppParameterContainer</span><span class="p">(</span><span class="n">AppParameterContainer</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Parameter container class for DCASE application parameter files, inherited from AppParameterContainer.&quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="DCASEAppParameterContainer.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.containers.DCASEAppParameterContainer.html#dcase_util.containers.DCASEAppParameterContainer.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">DCASEAppParameterContainer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">default_section_labels</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
@@ -2801,7 +2802,7 @@
             <span class="s1">&#39;EVALUATOR&#39;</span>
         <span class="p">]</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">_get_dependency_parameters_feature_extraction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameters</span><span class="p">):</span>
         <span class="c1"># Get dependency parameters</span>
@@ -3495,7 +3496,7 @@
                     <span class="n">parameters</span><span class="o">=</span><span class="n">parameters</span><span class="p">,</span>
                     <span class="n">path</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GENERAL&#39;</span><span class="p">,</span> <span class="s1">&#39;active_events&#39;</span><span class="p">]</span>
                 <span class="p">)</span>
-            <span class="p">)</span>
+            <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="ParameterListContainer"><a class="viewcode-back" href="../../../generated/dcase_util.containers.ParameterListContainer.html#dcase_util.containers.ParameterListContainer">[docs]</a><span class="k">class</span> <span class="nc">ParameterListContainer</span><span class="p">(</span><span class="n">ListDictContainer</span><span class="p">):</span>

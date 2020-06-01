@@ -1474,6 +1474,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-13">v0.2.13</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-12">v0.2.12</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-11">v0.2.11</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-10">v0.2.10</a></li>
@@ -1845,7 +1846,7 @@
     <span class="k">def</span> <span class="nf">remote_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_remote_status</span> <span class="o">=</span> <span class="n">value</span>
 
-    <span class="k">def</span> <span class="nf">remote_size_string</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="RemoteFile.remote_size_string"><a class="viewcode-back" href="../../../generated/dcase_util.files.RemoteFile.remote_size_string.html#dcase_util.files.RemoteFile.remote_size_string">[docs]</a>    <span class="k">def</span> <span class="nf">remote_size_string</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;File size of remote file in human readable form.</span>
 
 <span class="sd">        Returns</span>
@@ -1854,9 +1855,9 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">return</span> <span class="n">get_byte_string</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">remote_bytes</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">get_byte_string</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">remote_bytes</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">remote_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="RemoteFile.remote_info"><a class="viewcode-back" href="../../../generated/dcase_util.files.RemoteFile.remote_info.html#dcase_util.files.RemoteFile.remote_info">[docs]</a>    <span class="k">def</span> <span class="nf">remote_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get information about the remove file (status, size, checksum, last modification time).</span>
 
 <span class="sd">        Returns</span>
@@ -1896,7 +1897,7 @@
         <span class="k">elif</span> <span class="s1">&#39;Date&#39;</span> <span class="ow">in</span> <span class="n">resp</span><span class="o">.</span><span class="n">headers</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">remote_modified</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">mktime</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">],</span> <span class="s1">&#39;</span><span class="si">%a</span><span class="s1">, </span><span class="si">%d</span><span class="s1"> %b %Y %H:%M:%S %Z&#39;</span><span class="p">))</span>
 
-        <span class="k">return</span> <span class="bp">self</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
 
 <div class="viewcode-block" id="RemoteFile.remote_exists"><a class="viewcode-back" href="../../../generated/dcase_util.files.RemoteFile.remote_exists.html#dcase_util.files.RemoteFile.remote_exists">[docs]</a>    <span class="k">def</span> <span class="nf">remote_exists</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Check does the remote file exists (based on HTTP status code).</span>
@@ -2104,9 +2105,9 @@
             <span class="k">return</span> <span class="kc">True</span></div></div>
 
 
-<span class="k">class</span> <span class="nc">RemotePackage</span><span class="p">(</span><span class="n">RemoteFile</span><span class="p">,</span> <span class="n">PackageMixin</span><span class="p">):</span>
+<div class="viewcode-block" id="RemotePackage"><a class="viewcode-back" href="../../../generated/dcase_util.files.RemotePackage.html#dcase_util.files.RemotePackage">[docs]</a><span class="k">class</span> <span class="nc">RemotePackage</span><span class="p">(</span><span class="n">RemoteFile</span><span class="p">,</span> <span class="n">PackageMixin</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Remote package class&quot;&quot;&quot;</span>
-    <span class="n">valid_formats</span> <span class="o">=</span> <span class="p">[</span><span class="n">FileFormat</span><span class="o">.</span><span class="n">ZIP</span><span class="p">,</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">TAR</span><span class="p">]</span>
+    <span class="n">valid_formats</span> <span class="o">=</span> <span class="p">[</span><span class="n">FileFormat</span><span class="o">.</span><span class="n">ZIP</span><span class="p">,</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">TAR</span><span class="p">]</span></div>
 </pre></div>
 
            </div>

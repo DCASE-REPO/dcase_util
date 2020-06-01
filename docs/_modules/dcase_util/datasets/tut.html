@@ -1474,6 +1474,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-13">v0.2.13</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-12">v0.2.12</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-11">v0.2.11</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-10">v0.2.10</a></li>
@@ -1848,6 +1849,211 @@
 
         <span class="k">return</span> <span class="bp">self</span></div>
 
+
+<span class="k">class</span> <span class="nc">TAUUrbanAcousticScenes_2020_Mobile_EvaluationSet</span><span class="p">(</span><span class="n">AcousticSceneDataset</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;TAU Urban Acoustic Scenes 2020 Mobile Evaluation dataset</span>
+
+<span class="sd">    This dataset is used in DCASE2020 - Task 1, Acoustic scene classification / Subtask A / Evaluation</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                 <span class="n">storage_name</span><span class="o">=</span><span class="s1">&#39;TAU-urban-acoustic-scenes-2020-mobile-evaluation&#39;</span><span class="p">,</span>
+                 <span class="n">data_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">included_content_types</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+
+<span class="sd">        storage_name : str</span>
+<span class="sd">            Name to be used when storing dataset on disk</span>
+<span class="sd">            Default value &#39;TAU-urban-acoustic-scenes-2020-mobile-evaluation&#39;</span>
+
+<span class="sd">        data_path : str</span>
+<span class="sd">            Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), &#39;dcase_util_datasets&#39;)</span>
+<span class="sd">            is used.</span>
+<span class="sd">            Default value None</span>
+
+<span class="sd">        included_content_types : list of str or str</span>
+<span class="sd">            Indicates what content type should be processed. One or multiple from [&#39;all&#39;, &#39;audio&#39;, &#39;meta&#39;, &#39;code&#39;,</span>
+<span class="sd">            &#39;documentation&#39;]. If None given, [&#39;all&#39;] is used. Parameter can be also comma separated string.</span>
+<span class="sd">            Default value None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;included_content_types&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">included_content_types</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;data_path&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_path</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;storage_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">storage_name</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;dataset_group&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;scene&#39;</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;dataset_meta&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;authors&#39;</span><span class="p">:</span> <span class="s1">&#39;Toni Heittola, Annamaria Mesaros, and Tuomas Virtanen&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;TAU Urban Acoustic Scenes 2020 Mobile, evaluation dataset&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s1">&#39;audio_source&#39;</span><span class="p">:</span> <span class="s1">&#39;Field recording&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;audio_type&#39;</span><span class="p">:</span> <span class="s1">&#39;Natural/Synthetic&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;recording_device_model&#39;</span><span class="p">:</span> <span class="s1">&#39;Zoom F8&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;microphone_model&#39;</span><span class="p">:</span> <span class="s1">&#39;Soundman OKM II Klassik/studio A3 electret microphone&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;licence&#39;</span><span class="p">:</span> <span class="s1">&#39;free non-commercial&#39;</span>
+        <span class="p">}</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;reference_data_present&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;crossvalidation_folds&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;evaluation_setup_file_extension&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;csv&#39;</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;meta_filename&#39;</span><span class="p">]</span> <span class="o">=</span><span class="s1">&#39;meta.csv&#39;</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;check_meta&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="n">filename_base</span> <span class="o">=</span> <span class="s1">&#39;TAU-urban-acoustic-scenes-2020-mobile-evaluation&#39;</span>
+        <span class="n">source_url</span> <span class="o">=</span> <span class="s1">&#39;https://zenodo.org/record/3685828/files/&#39;</span>
+
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;package_list&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;documentation&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.doc.zip&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">8030</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;2f1ac2991111c6ee1d51bec6e27bd825&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.doc.zip&#39;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;meta&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.meta.zip&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">28811</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;b8d9bb50faa282be170b81dc57e2b8b3&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.meta.zip&#39;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;audio&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.1.zip&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1668607729</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;632841f6b1ef9ed962ea61f879967411&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.1.zip&#39;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;audio&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.2.zip&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1674217327</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;711fb0469f9b66669a300ebd1de24e9b&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.2.zip&#39;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;audio&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.3.zip&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1672649006</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;575e517b826a5faf020be22ce766adf8&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.3.zip&#39;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;audio&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.4.zip&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1665432028</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;5919fcbe217964756892a9661323c020&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.4.zip&#39;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;audio&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.5.zip&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1680713648</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;c733767217f16c746f50796c65ca1dd6&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.5.zip&#39;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;audio&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.6.zip&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1670741441</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;f39feb24910ffc97413e9c94b418f7ab&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.6.zip&#39;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;audio&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.7.zip&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1673394812</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;90bad61f14163146702d430cf8241932&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.7.zip&#39;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;audio&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.8.zip&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1433443122</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;4db5255382a5e5cab2d463c0d836b888&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.8.zip&#39;</span>
+            <span class="p">}</span>
+        <span class="p">]</span>
+
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;audio_paths&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s1">&#39;audio&#39;</span>
+        <span class="p">]</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">TAUUrbanAcousticScenes_2020_Mobile_EvaluationSet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">process_meta_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="n">absolute_path</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Process single meta data item</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        item :  MetaDataItem</span>
+<span class="sd">            Meta data item</span>
+
+<span class="sd">        absolute_path : bool</span>
+<span class="sd">            Convert file paths to be absolute</span>
+<span class="sd">            Default value True</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">absolute_path</span><span class="p">:</span>
+            <span class="n">item</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relative_to_absolute_path</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">item</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">absolute_to_relative_path</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Prepare dataset for the usage.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        self</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta_container</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">reference_data_present</span><span class="p">:</span>
+            <span class="n">meta_data</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">OrderedDict</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">fold</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">folds</span><span class="p">():</span>
+                <span class="c1"># Read train files in</span>
+                <span class="n">fold_data</span> <span class="o">=</span> <span class="n">MetaDataContainer</span><span class="p">(</span>
+                    <span class="n">filename</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">evaluation_setup_filename</span><span class="p">(</span>
+                        <span class="n">setup_part</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">,</span>
+                        <span class="n">fold</span><span class="o">=</span><span class="n">fold</span>
+                    <span class="p">)</span>
+                <span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+
+                <span class="c1"># Read eval files in</span>
+                <span class="n">fold_data</span> <span class="o">+=</span> <span class="n">MetaDataContainer</span><span class="p">(</span>
+                    <span class="n">filename</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">evaluation_setup_filename</span><span class="p">(</span>
+                        <span class="n">setup_part</span><span class="o">=</span><span class="s1">&#39;evaluate&#39;</span><span class="p">,</span>
+                        <span class="n">fold</span><span class="o">=</span><span class="n">fold</span>
+                    <span class="p">)</span>
+                <span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+
+                <span class="c1"># Process, make sure each file is included only once.</span>
+                <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">fold_data</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">filename</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">meta_data</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">process_meta_item</span><span class="p">(</span>
+                            <span class="n">item</span><span class="o">=</span><span class="n">item</span><span class="p">,</span>
+                            <span class="n">absolute_path</span><span class="o">=</span><span class="kc">False</span>
+                        <span class="p">)</span>
+
+                        <span class="n">meta_data</span><span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">filename</span><span class="p">]</span> <span class="o">=</span> <span class="n">item</span>
+
+            <span class="c1"># Save meta</span>
+            <span class="n">MetaDataContainer</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">meta_data</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span><span class="o">.</span><span class="n">save</span><span class="p">(</span>
+                <span class="n">filename</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">meta_file</span>
+            <span class="p">)</span>
+
+            <span class="c1"># Load meta and cross validation</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="bp">self</span>
+
+
 <div class="viewcode-block" id="TAUUrbanAcousticScenes_2020_3Class_DevelopmentSet"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TAUUrbanAcousticScenes_2020_3Class_DevelopmentSet.html#dcase_util.datasets.TAUUrbanAcousticScenes_2020_3Class_DevelopmentSet">[docs]</a><span class="k">class</span> <span class="nc">TAUUrbanAcousticScenes_2020_3Class_DevelopmentSet</span><span class="p">(</span><span class="n">AcousticSceneDataset</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;TAU Urban Acoustic Scenes 2020 3Class Development dataset</span>
 
@@ -2145,6 +2351,246 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
 
         <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<span class="k">class</span> <span class="nc">TAUUrbanAcousticScenes_2020_3Class_EvaluationSet</span><span class="p">(</span><span class="n">AcousticSceneDataset</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;TAU Urban Acoustic Scenes 2020 3Class Evaluation dataset</span>
+
+<span class="sd">    This dataset is used in DCASE2020 - Low-Complexity Acoustic Scene Classification / Subtask B / Evaluation</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                 <span class="n">storage_name</span><span class="o">=</span><span class="s1">&#39;TAU-urban-acoustic-scenes-2020-3class-evaluation&#39;</span><span class="p">,</span>
+                 <span class="n">data_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">included_content_types</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+
+<span class="sd">        storage_name : str</span>
+<span class="sd">            Name to be used when storing dataset on disk</span>
+<span class="sd">            Default value &#39;TAU-urban-acoustic-scenes-2020-3class-evaluation&#39;</span>
+
+<span class="sd">        data_path : str</span>
+<span class="sd">            Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), &#39;dcase_util_datasets&#39;)</span>
+<span class="sd">            is used.</span>
+<span class="sd">            Default value None</span>
+
+<span class="sd">        included_content_types : list of str or str</span>
+<span class="sd">            Indicates what content type should be processed. One or multiple from [&#39;all&#39;, &#39;audio&#39;, &#39;meta&#39;, &#39;code&#39;,</span>
+<span class="sd">            &#39;documentation&#39;]. If None given, [&#39;all&#39;] is used. Parameter can be also comma separated string.</span>
+<span class="sd">            Default value None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;included_content_types&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">included_content_types</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;data_path&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_path</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;storage_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">storage_name</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;dataset_group&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;scene&#39;</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;dataset_meta&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;authors&#39;</span><span class="p">:</span> <span class="s1">&#39;Toni Heittola, Annamaria Mesaros, and Tuomas Virtanen&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;TAU Urban Acoustic Scenes 2020 Mobile, evaluation dataset&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s1">&#39;audio_source&#39;</span><span class="p">:</span> <span class="s1">&#39;Field recording&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;audio_type&#39;</span><span class="p">:</span> <span class="s1">&#39;Natural&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;recording_device_model&#39;</span><span class="p">:</span> <span class="s1">&#39;Zoom F8&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;microphone_model&#39;</span><span class="p">:</span> <span class="s1">&#39;Soundman OKM II Klassik/studio A3 electret microphone&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;licence&#39;</span><span class="p">:</span> <span class="s1">&#39;free non-commercial&#39;</span>
+        <span class="p">}</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;reference_data_present&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;crossvalidation_folds&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;evaluation_setup_file_extension&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;csv&#39;</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;meta_filename&#39;</span><span class="p">]</span> <span class="o">=</span><span class="s1">&#39;meta.csv&#39;</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;check_meta&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="n">filename_base</span> <span class="o">=</span> <span class="s1">&#39;TAU-urban-acoustic-scenes-2020-3class-evaluation&#39;</span>
+        <span class="n">source_url</span> <span class="o">=</span> <span class="s1">&#39;https://zenodo.org/record/3685835/files/&#39;</span>
+
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;package_list&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;documentation&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.doc.zip&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">8040</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;68a8e716297ed3dc465f904477d139f4&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.doc.zip&#39;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;meta&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.meta.zip&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">21179</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;6ec871d4f4f8d92171d2f60e7aa157f7&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.meta.zip&#39;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;audio&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.1.zip&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1665288283</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;fb976f1075f42d8e4d856cc10bd52435&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.1.zip&#39;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;audio&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.2.zip&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1682331176</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;e6a90881ca11c3da660d94477c530790&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.2.zip&#39;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;audio&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.3.zip&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1674975498</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;b70694a133d785af635de8dfdf7fde66&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.3.zip&#39;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;audio&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.4.zip&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1664063924</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;dcb5bea4fe1ce3f4707d35f19ea6009e&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.4.zip&#39;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;audio&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.5.zip&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1667987928</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;1ebfcca602a91187f375e4d6cb448c80&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.5.zip&#39;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;audio&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.6.zip&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1677609880</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;31d1843f3dc150bbbeca3424e8ca5e1e&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.6.zip&#39;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;audio&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.7.zip&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1676918579</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;7818751f0900b5792be7065c7b7c2743&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.7.zip&#39;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;audio&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.8.zip&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1671901774</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;f75aba3f7f2d4afb46e9ea5479716498&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.8.zip&#39;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;audio&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.9.zip&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1684951879</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;75dc6da551f012ed26f91fd0ed37b828&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.9.zip&#39;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;audio&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.10.zip&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1689314640</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;8527a1a990503ccf06ad061c0a82ff3c&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.10.zip&#39;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;audio&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.11.zip&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1666392095</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;e401f04f505fa41316c2b1a27c62c1d7&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.11.zip&#39;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;audio&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.12.zip&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1678306939</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;16399ebaeb036126c38aee6a56e66d07&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.12.zip&#39;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;audio&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.13.zip&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">756614443</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;694f9abe00682f05929e6dbbd160e0e2&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.13.zip&#39;</span>
+            <span class="p">}</span>
+        <span class="p">]</span>
+
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;audio_paths&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s1">&#39;audio&#39;</span>
+        <span class="p">]</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">TAUUrbanAcousticScenes_2020_3Class_EvaluationSet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">process_meta_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="n">absolute_path</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Process single meta data item</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        item :  MetaDataItem</span>
+<span class="sd">            Meta data item</span>
+
+<span class="sd">        absolute_path : bool</span>
+<span class="sd">            Convert file paths to be absolute</span>
+<span class="sd">            Default value True</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">absolute_path</span><span class="p">:</span>
+            <span class="n">item</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relative_to_absolute_path</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">item</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">absolute_to_relative_path</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Prepare dataset for the usage.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        self</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta_container</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">reference_data_present</span><span class="p">:</span>
+            <span class="n">meta_data</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">OrderedDict</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">fold</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">folds</span><span class="p">():</span>
+                <span class="c1"># Read train files in</span>
+                <span class="n">fold_data</span> <span class="o">=</span> <span class="n">MetaDataContainer</span><span class="p">(</span>
+                    <span class="n">filename</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">evaluation_setup_filename</span><span class="p">(</span>
+                        <span class="n">setup_part</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">,</span>
+                        <span class="n">fold</span><span class="o">=</span><span class="n">fold</span>
+                    <span class="p">)</span>
+                <span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+
+                <span class="c1"># Read eval files in</span>
+                <span class="n">fold_data</span> <span class="o">+=</span> <span class="n">MetaDataContainer</span><span class="p">(</span>
+                    <span class="n">filename</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">evaluation_setup_filename</span><span class="p">(</span>
+                        <span class="n">setup_part</span><span class="o">=</span><span class="s1">&#39;evaluate&#39;</span><span class="p">,</span>
+                        <span class="n">fold</span><span class="o">=</span><span class="n">fold</span>
+                    <span class="p">)</span>
+                <span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+
+                <span class="c1"># Process, make sure each file is included only once.</span>
+                <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">fold_data</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">filename</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">meta_data</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">process_meta_item</span><span class="p">(</span>
+                            <span class="n">item</span><span class="o">=</span><span class="n">item</span><span class="p">,</span>
+                            <span class="n">absolute_path</span><span class="o">=</span><span class="kc">False</span>
+                        <span class="p">)</span>
+
+                        <span class="n">meta_data</span><span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">filename</span><span class="p">]</span> <span class="o">=</span> <span class="n">item</span>
+
+            <span class="c1"># Save meta</span>
+            <span class="n">MetaDataContainer</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">meta_data</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span><span class="o">.</span><span class="n">save</span><span class="p">(</span>
+                <span class="n">filename</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">meta_file</span>
+            <span class="p">)</span>
+
+            <span class="c1"># Load meta and cross validation</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="bp">self</span>
+
 
 <span class="c1"># =====================================================</span>
 <span class="c1"># DCASE 2019</span>
