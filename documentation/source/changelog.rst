@@ -3,6 +3,13 @@
 Release notes
 =============
 
+v0.2.13
+-------
+
+**New features**
+
+* ``TAUUrbanAcousticScenes_2020_Mobile_EvaluationSet`` and ``TAUUrbanAcousticScenes_2020_3Class_EvaluationSet`` datasets
+
 v0.2.12
 -------
 

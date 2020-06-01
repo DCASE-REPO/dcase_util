@@ -286,6 +286,211 @@ class TAUUrbanAcousticScenes_2020_Mobile_DevelopmentSet(AcousticSceneDataset):
 
         return self
 
+
+class TAUUrbanAcousticScenes_2020_Mobile_EvaluationSet(AcousticSceneDataset):
+    """TAU Urban Acoustic Scenes 2020 Mobile Evaluation dataset
+
+    This dataset is used in DCASE2020 - Task 1, Acoustic scene classification / Subtask A / Evaluation
+
+    """
+
+    def __init__(self,
+                 storage_name='TAU-urban-acoustic-scenes-2020-mobile-evaluation',
+                 data_path=None,
+                 included_content_types=None,
+                 **kwargs):
+        """
+        Constructor
+
+        Parameters
+        ----------
+
+        storage_name : str
+            Name to be used when storing dataset on disk
+            Default value 'TAU-urban-acoustic-scenes-2020-mobile-evaluation'
+
+        data_path : str
+            Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), 'dcase_util_datasets')
+            is used.
+            Default value None
+
+        included_content_types : list of str or str
+            Indicates what content type should be processed. One or multiple from ['all', 'audio', 'meta', 'code',
+            'documentation']. If None given, ['all'] is used. Parameter can be also comma separated string.
+            Default value None
+
+        """
+
+        kwargs['included_content_types'] = included_content_types
+        kwargs['data_path'] = data_path
+        kwargs['storage_name'] = storage_name
+        kwargs['dataset_group'] = 'scene'
+        kwargs['dataset_meta'] = {
+            'authors': 'Toni Heittola, Annamaria Mesaros, and Tuomas Virtanen',
+            'title': 'TAU Urban Acoustic Scenes 2020 Mobile, evaluation dataset',
+            'url': None,
+            'audio_source': 'Field recording',
+            'audio_type': 'Natural/Synthetic',
+            'recording_device_model': 'Zoom F8',
+            'microphone_model': 'Soundman OKM II Klassik/studio A3 electret microphone',
+            'licence': 'free non-commercial'
+        }
+        kwargs['reference_data_present'] = False
+        kwargs['crossvalidation_folds'] = 1
+        kwargs['evaluation_setup_file_extension'] = 'csv'
+        kwargs['meta_filename'] ='meta.csv'
+        kwargs['check_meta'] = False
+
+        filename_base = 'TAU-urban-acoustic-scenes-2020-mobile-evaluation'
+        source_url = 'https://zenodo.org/record/3685828/files/'
+
+        kwargs['package_list'] = [
+            {
+                'content_type': 'documentation',
+                'remote_file': source_url + filename_base + '.doc.zip',
+                'remote_bytes': 8030,
+                'remote_md5': '2f1ac2991111c6ee1d51bec6e27bd825',
+                'filename': filename_base + '.doc.zip'
+            },
+            {
+                'content_type': 'meta',
+                'remote_file': source_url + filename_base + '.meta.zip',
+                'remote_bytes': 28811,
+                'remote_md5': 'b8d9bb50faa282be170b81dc57e2b8b3',
+                'filename': filename_base + '.meta.zip'
+            },
+            {
+                'content_type': 'audio',
+                'remote_file': source_url + filename_base + '.audio.1.zip',
+                'remote_bytes': 1668607729,
+                'remote_md5': '632841f6b1ef9ed962ea61f879967411',
+                'filename': filename_base + '.audio.1.zip'
+            },
+            {
+                'content_type': 'audio',
+                'remote_file': source_url + filename_base + '.audio.2.zip',
+                'remote_bytes': 1674217327,
+                'remote_md5': '711fb0469f9b66669a300ebd1de24e9b',
+                'filename': filename_base + '.audio.2.zip'
+            },
+            {
+                'content_type': 'audio',
+                'remote_file': source_url + filename_base + '.audio.3.zip',
+                'remote_bytes': 1672649006,
+                'remote_md5': '575e517b826a5faf020be22ce766adf8',
+                'filename': filename_base + '.audio.3.zip'
+            },
+            {
+                'content_type': 'audio',
+                'remote_file': source_url + filename_base + '.audio.4.zip',
+                'remote_bytes': 1665432028,
+                'remote_md5': '5919fcbe217964756892a9661323c020',
+                'filename': filename_base + '.audio.4.zip'
+            },
+            {
+                'content_type': 'audio',
+                'remote_file': source_url + filename_base + '.audio.5.zip',
+                'remote_bytes': 1680713648,
+                'remote_md5': 'c733767217f16c746f50796c65ca1dd6',
+                'filename': filename_base + '.audio.5.zip'
+            },
+            {
+                'content_type': 'audio',
+                'remote_file': source_url + filename_base + '.audio.6.zip',
+                'remote_bytes': 1670741441,
+                'remote_md5': 'f39feb24910ffc97413e9c94b418f7ab',
+                'filename': filename_base + '.audio.6.zip'
+            },
+            {
+                'content_type': 'audio',
+                'remote_file': source_url + filename_base + '.audio.7.zip',
+                'remote_bytes': 1673394812,
+                'remote_md5': '90bad61f14163146702d430cf8241932',
+                'filename': filename_base + '.audio.7.zip'
+            },
+            {
+                'content_type': 'audio',
+                'remote_file': source_url + filename_base + '.audio.8.zip',
+                'remote_bytes': 1433443122,
+                'remote_md5': '4db5255382a5e5cab2d463c0d836b888',
+                'filename': filename_base + '.audio.8.zip'
+            }
+        ]
+
+        kwargs['audio_paths'] = [
+            'audio'
+        ]
+        super(TAUUrbanAcousticScenes_2020_Mobile_EvaluationSet, self).__init__(**kwargs)
+
+    def process_meta_item(self, item, absolute_path=True, **kwargs):
+        """Process single meta data item
+
+        Parameters
+        ----------
+        item :  MetaDataItem
+            Meta data item
+
+        absolute_path : bool
+            Convert file paths to be absolute
+            Default value True
+
+        """
+
+        if absolute_path:
+            item.filename = self.relative_to_absolute_path(item.filename)
+
+        else:
+            item.filename = self.absolute_to_relative_path(item.filename)
+
+    def prepare(self):
+        """Prepare dataset for the usage.
+
+        Returns
+        -------
+        self
+
+        """
+
+        if not self.meta_container.exists() and self.reference_data_present:
+            meta_data = collections.OrderedDict()
+            for fold in self.folds():
+                # Read train files in
+                fold_data = MetaDataContainer(
+                    filename=self.evaluation_setup_filename(
+                        setup_part='train',
+                        fold=fold
+                    )
+                ).load()
+
+                # Read eval files in
+                fold_data += MetaDataContainer(
+                    filename=self.evaluation_setup_filename(
+                        setup_part='evaluate',
+                        fold=fold
+                    )
+                ).load()
+
+                # Process, make sure each file is included only once.
+                for item in fold_data:
+                    if item.filename not in meta_data:
+                        self.process_meta_item(
+                            item=item,
+                            absolute_path=False
+                        )
+
+                        meta_data[item.filename] = item
+
+            # Save meta
+            MetaDataContainer(list(meta_data.values())).save(
+                filename=self.meta_file
+            )
+
+            # Load meta and cross validation
+            self.load()
+
+        return self
+
+
 class TAUUrbanAcousticScenes_2020_3Class_DevelopmentSet(AcousticSceneDataset):
     """TAU Urban Acoustic Scenes 2020 3Class Development dataset
 
@@ -583,6 +788,246 @@ class TAUUrbanAcousticScenes_2020_3Class_DevelopmentSet(AcousticSceneDataset):
             self.load()
 
         return self
+
+
+class TAUUrbanAcousticScenes_2020_3Class_EvaluationSet(AcousticSceneDataset):
+    """TAU Urban Acoustic Scenes 2020 3Class Evaluation dataset
+
+    This dataset is used in DCASE2020 - Low-Complexity Acoustic Scene Classification / Subtask B / Evaluation
+
+    """
+
+    def __init__(self,
+                 storage_name='TAU-urban-acoustic-scenes-2020-3class-evaluation',
+                 data_path=None,
+                 included_content_types=None,
+                 **kwargs):
+        """
+        Constructor
+
+        Parameters
+        ----------
+
+        storage_name : str
+            Name to be used when storing dataset on disk
+            Default value 'TAU-urban-acoustic-scenes-2020-3class-evaluation'
+
+        data_path : str
+            Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), 'dcase_util_datasets')
+            is used.
+            Default value None
+
+        included_content_types : list of str or str
+            Indicates what content type should be processed. One or multiple from ['all', 'audio', 'meta', 'code',
+            'documentation']. If None given, ['all'] is used. Parameter can be also comma separated string.
+            Default value None
+
+        """
+
+        kwargs['included_content_types'] = included_content_types
+        kwargs['data_path'] = data_path
+        kwargs['storage_name'] = storage_name
+        kwargs['dataset_group'] = 'scene'
+        kwargs['dataset_meta'] = {
+            'authors': 'Toni Heittola, Annamaria Mesaros, and Tuomas Virtanen',
+            'title': 'TAU Urban Acoustic Scenes 2020 Mobile, evaluation dataset',
+            'url': None,
+            'audio_source': 'Field recording',
+            'audio_type': 'Natural',
+            'recording_device_model': 'Zoom F8',
+            'microphone_model': 'Soundman OKM II Klassik/studio A3 electret microphone',
+            'licence': 'free non-commercial'
+        }
+        kwargs['reference_data_present'] = False
+        kwargs['crossvalidation_folds'] = 1
+        kwargs['evaluation_setup_file_extension'] = 'csv'
+        kwargs['meta_filename'] ='meta.csv'
+        kwargs['check_meta'] = False
+
+        filename_base = 'TAU-urban-acoustic-scenes-2020-3class-evaluation'
+        source_url = 'https://zenodo.org/record/3685835/files/'
+
+        kwargs['package_list'] = [
+            {
+                'content_type': 'documentation',
+                'remote_file': source_url + filename_base + '.doc.zip',
+                'remote_bytes': 8040,
+                'remote_md5': '68a8e716297ed3dc465f904477d139f4',
+                'filename': filename_base + '.doc.zip'
+            },
+            {
+                'content_type': 'meta',
+                'remote_file': source_url + filename_base + '.meta.zip',
+                'remote_bytes': 21179,
+                'remote_md5': '6ec871d4f4f8d92171d2f60e7aa157f7',
+                'filename': filename_base + '.meta.zip'
+            },
+            {
+                'content_type': 'audio',
+                'remote_file': source_url + filename_base + '.audio.1.zip',
+                'remote_bytes': 1665288283,
+                'remote_md5': 'fb976f1075f42d8e4d856cc10bd52435',
+                'filename': filename_base + '.audio.1.zip'
+            },
+            {
+                'content_type': 'audio',
+                'remote_file': source_url + filename_base + '.audio.2.zip',
+                'remote_bytes': 1682331176,
+                'remote_md5': 'e6a90881ca11c3da660d94477c530790',
+                'filename': filename_base + '.audio.2.zip'
+            },
+            {
+                'content_type': 'audio',
+                'remote_file': source_url + filename_base + '.audio.3.zip',
+                'remote_bytes': 1674975498,
+                'remote_md5': 'b70694a133d785af635de8dfdf7fde66',
+                'filename': filename_base + '.audio.3.zip'
+            },
+            {
+                'content_type': 'audio',
+                'remote_file': source_url + filename_base + '.audio.4.zip',
+                'remote_bytes': 1664063924,
+                'remote_md5': 'dcb5bea4fe1ce3f4707d35f19ea6009e',
+                'filename': filename_base + '.audio.4.zip'
+            },
+            {
+                'content_type': 'audio',
+                'remote_file': source_url + filename_base + '.audio.5.zip',
+                'remote_bytes': 1667987928,
+                'remote_md5': '1ebfcca602a91187f375e4d6cb448c80',
+                'filename': filename_base + '.audio.5.zip'
+            },
+            {
+                'content_type': 'audio',
+                'remote_file': source_url + filename_base + '.audio.6.zip',
+                'remote_bytes': 1677609880,
+                'remote_md5': '31d1843f3dc150bbbeca3424e8ca5e1e',
+                'filename': filename_base + '.audio.6.zip'
+            },
+            {
+                'content_type': 'audio',
+                'remote_file': source_url + filename_base + '.audio.7.zip',
+                'remote_bytes': 1676918579,
+                'remote_md5': '7818751f0900b5792be7065c7b7c2743',
+                'filename': filename_base + '.audio.7.zip'
+            },
+            {
+                'content_type': 'audio',
+                'remote_file': source_url + filename_base + '.audio.8.zip',
+                'remote_bytes': 1671901774,
+                'remote_md5': 'f75aba3f7f2d4afb46e9ea5479716498',
+                'filename': filename_base + '.audio.8.zip'
+            },
+            {
+                'content_type': 'audio',
+                'remote_file': source_url + filename_base + '.audio.9.zip',
+                'remote_bytes': 1684951879,
+                'remote_md5': '75dc6da551f012ed26f91fd0ed37b828',
+                'filename': filename_base + '.audio.9.zip'
+            },
+            {
+                'content_type': 'audio',
+                'remote_file': source_url + filename_base + '.audio.10.zip',
+                'remote_bytes': 1689314640,
+                'remote_md5': '8527a1a990503ccf06ad061c0a82ff3c',
+                'filename': filename_base + '.audio.10.zip'
+            },
+            {
+                'content_type': 'audio',
+                'remote_file': source_url + filename_base + '.audio.11.zip',
+                'remote_bytes': 1666392095,
+                'remote_md5': 'e401f04f505fa41316c2b1a27c62c1d7',
+                'filename': filename_base + '.audio.11.zip'
+            },
+            {
+                'content_type': 'audio',
+                'remote_file': source_url + filename_base + '.audio.12.zip',
+                'remote_bytes': 1678306939,
+                'remote_md5': '16399ebaeb036126c38aee6a56e66d07',
+                'filename': filename_base + '.audio.12.zip'
+            },
+            {
+                'content_type': 'audio',
+                'remote_file': source_url + filename_base + '.audio.13.zip',
+                'remote_bytes': 756614443,
+                'remote_md5': '694f9abe00682f05929e6dbbd160e0e2',
+                'filename': filename_base + '.audio.13.zip'
+            }
+        ]
+
+        kwargs['audio_paths'] = [
+            'audio'
+        ]
+        super(TAUUrbanAcousticScenes_2020_3Class_EvaluationSet, self).__init__(**kwargs)
+
+    def process_meta_item(self, item, absolute_path=True, **kwargs):
+        """Process single meta data item
+
+        Parameters
+        ----------
+        item :  MetaDataItem
+            Meta data item
+
+        absolute_path : bool
+            Convert file paths to be absolute
+            Default value True
+
+        """
+
+        if absolute_path:
+            item.filename = self.relative_to_absolute_path(item.filename)
+
+        else:
+            item.filename = self.absolute_to_relative_path(item.filename)
+
+    def prepare(self):
+        """Prepare dataset for the usage.
+
+        Returns
+        -------
+        self
+
+        """
+
+        if not self.meta_container.exists() and self.reference_data_present:
+            meta_data = collections.OrderedDict()
+            for fold in self.folds():
+                # Read train files in
+                fold_data = MetaDataContainer(
+                    filename=self.evaluation_setup_filename(
+                        setup_part='train',
+                        fold=fold
+                    )
+                ).load()
+
+                # Read eval files in
+                fold_data += MetaDataContainer(
+                    filename=self.evaluation_setup_filename(
+                        setup_part='evaluate',
+                        fold=fold
+                    )
+                ).load()
+
+                # Process, make sure each file is included only once.
+                for item in fold_data:
+                    if item.filename not in meta_data:
+                        self.process_meta_item(
+                            item=item,
+                            absolute_path=False
+                        )
+
+                        meta_data[item.filename] = item
+
+            # Save meta
+            MetaDataContainer(list(meta_data.values())).save(
+                filename=self.meta_file
+            )
+
+            # Load meta and cross validation
+            self.load()
+
+        return self
+
 
 # =====================================================
 # DCASE 2019
