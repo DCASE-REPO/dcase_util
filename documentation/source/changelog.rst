@@ -3,6 +3,13 @@
 Release notes
 =============
 
+v0.2.14
+-------
+
+**Updates**
+
+* Update PIP package
+
 v0.2.13
 -------
 

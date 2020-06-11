@@ -14,7 +14,7 @@ Create source distributions
     
 Test release first by uploading it to test.pypi.org      
     
-    twine upload -–repository-url https://test.pypi.org/legacy/ dist/*
+    twine upload --repository-url https://test.pypi.org/legacy/ dist/dcase_util-0.2.X.tar.gz
     
 Or    
     
@@ -26,7 +26,7 @@ You can test the release by installing it from test.pypi.org
         
 Release package    
 
-    twine upload dist/*
+    twine upload dist/dcase_util-0.2.X.tar.gz
     
 Or    
     
