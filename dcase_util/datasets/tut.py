@@ -490,6 +490,69 @@ class TAUUrbanAcousticScenes_2020_Mobile_EvaluationSet(AcousticSceneDataset):
 
         return self
 
+    def load_crossvalidation_data(self):
+        """Load cross-validation into the container.
+
+        Returns
+        -------
+        self
+
+        """
+
+        # Reset cross validation data and insert 'all_data'
+        if self.meta_container:
+            # Meta data is available
+            self.crossvalidation_data = DictContainer({
+                'train': {
+                    'all_data': self.meta_container
+                },
+                'test': {
+                    'all_data': self.meta_container
+                },
+                'evaluate': {
+                    'all_data': self.meta_container
+                },
+            })
+
+        else:
+            # No meta data available, load data from evaluation setup files (if they exists).
+            self.crossvalidation_data = DictContainer({
+                'train': {
+                    'all_data': MetaDataContainer()
+                },
+                'test': {
+                    'all_data': MetaDataContainer()
+                },
+                'evaluate': {
+                    'all_data': MetaDataContainer()
+                },
+            })
+
+            test_filename = self.evaluation_setup_filename(setup_part='test', fold=1)
+            evaluate_filename = self.evaluation_setup_filename(setup_part='evaluate', fold=1)
+
+            if os.path.isfile(test_filename):
+                # Testing data exists, load and process it
+                self.crossvalidation_data['test']['all_data'] = MetaDataContainer(filename=test_filename).load()
+
+                # Process items
+                for item in self.crossvalidation_data['test']['all_data']:
+                    self.process_meta_item(item=item)
+
+            if os.path.isfile(evaluate_filename):
+                # Evaluation data exists, load and process it
+                self.crossvalidation_data['evaluate']['all_data'] = MetaDataContainer(filename=evaluate_filename).load()
+
+                # Process items
+                for item in self.crossvalidation_data['evaluate']['all_data']:
+                    self.process_meta_item(item=item)
+
+        for crossvalidation_set in list(self.crossvalidation_data.keys()):
+            for item in self.crossvalidation_data[crossvalidation_set]['all_data']:
+                self.process_meta_item(item=item)
+
+        return self
+
 
 class TAUUrbanAcousticScenes_2020_3Class_DevelopmentSet(AcousticSceneDataset):
     """TAU Urban Acoustic Scenes 2020 3Class Development dataset
@@ -1025,6 +1088,69 @@ class TAUUrbanAcousticScenes_2020_3Class_EvaluationSet(AcousticSceneDataset):
 
             # Load meta and cross validation
             self.load()
+
+        return self
+
+    def load_crossvalidation_data(self):
+        """Load cross-validation into the container.
+
+        Returns
+        -------
+        self
+
+        """
+
+        # Reset cross validation data and insert 'all_data'
+        if self.meta_container:
+            # Meta data is available
+            self.crossvalidation_data = DictContainer({
+                'train': {
+                    'all_data': self.meta_container
+                },
+                'test': {
+                    'all_data': self.meta_container
+                },
+                'evaluate': {
+                    'all_data': self.meta_container
+                },
+            })
+
+        else:
+            # No meta data available, load data from evaluation setup files (if they exists).
+            self.crossvalidation_data = DictContainer({
+                'train': {
+                    'all_data': MetaDataContainer()
+                },
+                'test': {
+                    'all_data': MetaDataContainer()
+                },
+                'evaluate': {
+                    'all_data': MetaDataContainer()
+                },
+            })
+
+            test_filename = self.evaluation_setup_filename(setup_part='test', fold=1)
+            evaluate_filename = self.evaluation_setup_filename(setup_part='evaluate', fold=1)
+
+            if os.path.isfile(test_filename):
+                # Testing data exists, load and process it
+                self.crossvalidation_data['test']['all_data'] = MetaDataContainer(filename=test_filename).load()
+
+                # Process items
+                for item in self.crossvalidation_data['test']['all_data']:
+                    self.process_meta_item(item=item)
+
+            if os.path.isfile(evaluate_filename):
+                # Evaluation data exists, load and process it
+                self.crossvalidation_data['evaluate']['all_data'] = MetaDataContainer(filename=evaluate_filename).load()
+
+                # Process items
+                for item in self.crossvalidation_data['evaluate']['all_data']:
+                    self.process_meta_item(item=item)
+
+        for crossvalidation_set in list(self.crossvalidation_data.keys()):
+            for item in self.crossvalidation_data[crossvalidation_set]['all_data']:
+                self.process_meta_item(item=item)
 
         return self
 
