@@ -3,6 +3,13 @@
 Release notes
 =============
 
+v0.2.15
+-------
+
+**Bug fixes**
+
+* Fix all_data fold handling in ``TAUUrbanAcousticScenes_2020_Mobile_EvaluationSet`` and ``TAUUrbanAcousticScenes_2020_3Class_EvaluationSet`` to be uniform.
+
 v0.2.14
 -------
 
