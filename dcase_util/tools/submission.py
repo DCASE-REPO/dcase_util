@@ -17,7 +17,8 @@ class SubmissionChecker(ObjectContainer):
     def __init__(self, entry_label, mode='submission',
                  class_labels=None, file_count=None, task='ASC',
                  allow_placeholder_lines_in_output=False,
-                 allowed_empty_fields_in_meta=None):
+                 allowed_empty_fields_in_meta=None,
+                 output_file_header=False, output_file_fields=None):
         """Constructor
 
         Parameters
@@ -41,6 +42,13 @@ class SubmissionChecker(ObjectContainer):
             Allow placeholder lines in the output, in case of sound event system output only audio file is outputted
             if no sound events were detected for the file.
 
+        output_file_header : bool
+            System output has header
+            Default value False
+
+        output_file_fields : list of str
+            System output fields
+
         """
 
         # Run super init
@@ -53,6 +61,13 @@ class SubmissionChecker(ObjectContainer):
         self.task = task
         self.allow_placeholder_lines_in_output = allow_placeholder_lines_in_output
         self.allowed_empty_fields_in_meta = allowed_empty_fields_in_meta
+        self.output_file_header = output_file_header
+
+        self.output_file_fields = output_file_fields
+
+        if self.output_file_fields is None:
+            if self.task == 'ASC':
+                self.output_file_fields = ['filename', 'scene_label']
 
         self.ui = FancyLogger()
         self.stringifier = FancyStringifier()
@@ -231,8 +246,8 @@ class SubmissionChecker(ObjectContainer):
                     if FileFormat.detect(filename) == FileFormat.CSV:
                         data = MetaDataContainer().load(
                             filename=filename,
-                            csv_header=False,
-                            fields=['filename', 'scene_label']
+                            csv_header=self.output_file_header,
+                            fields=self.output_file_fields
                         )
 
                     else:
