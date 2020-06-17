@@ -553,6 +553,18 @@ class TAUUrbanAcousticScenes_2020_Mobile_EvaluationSet(AcousticSceneDataset):
 
         return self
 
+    def scene_labels(self):
+        """List of unique scene labels in the meta data.
+
+        Returns
+        -------
+        list
+            List of scene labels in alphabetical order.
+
+        """
+
+        return ['airport', 'bus', 'metro', 'metro_station', 'park', 'public_square', 'shopping_mall', 'street_pedestrian', 'street_traffic', 'tram']
+
 
 class TAUUrbanAcousticScenes_2020_3Class_DevelopmentSet(AcousticSceneDataset):
     """TAU Urban Acoustic Scenes 2020 3Class Development dataset
@@ -1154,6 +1166,17 @@ class TAUUrbanAcousticScenes_2020_3Class_EvaluationSet(AcousticSceneDataset):
 
         return self
 
+    def scene_labels(self):
+        """List of unique scene labels in the meta data.
+
+        Returns
+        -------
+        list
+            List of scene labels in alphabetical order.
+
+        """
+
+        return ['indoor', 'outdoor', 'transportation']
 
 # =====================================================
 # DCASE 2019
