@@ -261,7 +261,20 @@ class SubmissionChecker(ObjectContainer):
                         filename=filename
                     )
 
-                return data, error_log
+                if len(data[0]) <= 1:
+                    error_log.append(
+                        self._file_error_message(
+                            type_label='Parsing',
+                            subtype_label='Output file',
+                            description='{filename:s}'.format(
+                                filename=filename
+                            )
+                        )
+                    )
+                    return False, error_log
+
+                else:
+                    return data, error_log
 
             except Exception:
                 error_log.append(
