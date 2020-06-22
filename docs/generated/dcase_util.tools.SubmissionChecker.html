@@ -1476,6 +1476,8 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-16">v0.2.16</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-15">v0.2.15</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-14">v0.2.14</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-13">v0.2.13</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-12">v0.2.12</a></li>
@@ -1569,7 +1571,7 @@
 <h1>dcase_util.tools.SubmissionChecker<a class="headerlink" href="#dcase-util-tools-submissionchecker" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt id="dcase_util.tools.SubmissionChecker">
-<em class="property">class </em><code class="sig-prename descclassname">dcase_util.tools.</code><code class="sig-name descname">SubmissionChecker</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">entry_label</span></em>, <em class="sig-param"><span class="n">mode</span><span class="o">=</span><span class="default_value">'submission'</span></em>, <em class="sig-param"><span class="n">class_labels</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">file_count</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">task</span><span class="o">=</span><span class="default_value">'ASC'</span></em>, <em class="sig-param"><span class="n">allow_placeholder_lines_in_output</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">allowed_empty_fields_in_meta</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/tools/submission.html#SubmissionChecker"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.tools.SubmissionChecker" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">dcase_util.tools.</code><code class="sig-name descname">SubmissionChecker</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">entry_label</span></em>, <em class="sig-param"><span class="n">mode</span><span class="o">=</span><span class="default_value">'submission'</span></em>, <em class="sig-param"><span class="n">class_labels</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">file_count</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">task</span><span class="o">=</span><span class="default_value">'ASC'</span></em>, <em class="sig-param"><span class="n">allow_placeholder_lines_in_output</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">allowed_empty_fields_in_meta</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">output_file_header</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">output_file_fields</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/tools/submission.html#SubmissionChecker"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.tools.SubmissionChecker" title="Permalink to this definition">¶</a></dt>
 <dd><p>Submission meta data and system output checker class</p>
 <p>Constructor</p>
 <dl class="field-list simple">
@@ -1588,12 +1590,17 @@
 <dt><strong>allow_placeholder_lines_in_output</strong><span class="classifier">bool</span></dt><dd><p>Allow placeholder lines in the output, in case of sound event system output only audio file is outputted
 if no sound events were detected for the file.</p>
 </dd>
+<dt><strong>output_file_header</strong><span class="classifier">bool</span></dt><dd><p>System output has header
+Default value False</p>
+</dd>
+<dt><strong>output_file_fields</strong><span class="classifier">list of str</span></dt><dd><p>System output fields</p>
+</dd>
 </dl>
 </dd>
 </dl>
 <dl class="py method">
 <dt id="dcase_util.tools.SubmissionChecker.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">entry_label</span></em>, <em class="sig-param"><span class="n">mode</span><span class="o">=</span><span class="default_value">'submission'</span></em>, <em class="sig-param"><span class="n">class_labels</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">file_count</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">task</span><span class="o">=</span><span class="default_value">'ASC'</span></em>, <em class="sig-param"><span class="n">allow_placeholder_lines_in_output</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">allowed_empty_fields_in_meta</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/tools/submission.html#SubmissionChecker.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.tools.SubmissionChecker.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">entry_label</span></em>, <em class="sig-param"><span class="n">mode</span><span class="o">=</span><span class="default_value">'submission'</span></em>, <em class="sig-param"><span class="n">class_labels</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">file_count</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">task</span><span class="o">=</span><span class="default_value">'ASC'</span></em>, <em class="sig-param"><span class="n">allow_placeholder_lines_in_output</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">allowed_empty_fields_in_meta</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">output_file_header</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">output_file_fields</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/tools/submission.html#SubmissionChecker.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.tools.SubmissionChecker.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Constructor</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1610,6 +1617,11 @@ if no sound events were detected for the file.</p>
 </dd>
 <dt><strong>allow_placeholder_lines_in_output</strong><span class="classifier">bool</span></dt><dd><p>Allow placeholder lines in the output, in case of sound event system output only audio file is outputted
 if no sound events were detected for the file.</p>
+</dd>
+<dt><strong>output_file_header</strong><span class="classifier">bool</span></dt><dd><p>System output has header
+Default value False</p>
+</dd>
+<dt><strong>output_file_fields</strong><span class="classifier">list of str</span></dt><dd><p>System output fields</p>
 </dd>
 </dl>
 </dd>

@@ -3,6 +3,14 @@
 Release notes
 =============
 
+v0.2.16
+-------
+
+**Updates**
+
+* Add scene_labels for ``TAUUrbanAcousticScenes_2020_Mobile_EvaluationSet`` and ``TAUUrbanAcousticScenes_2020_3Class_EvaluationSet``.
+* Update ``SubmissionChecker``
+
 v0.2.15
 -------
 
