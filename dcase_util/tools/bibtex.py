@@ -302,9 +302,9 @@ class BibtexProcessor(object):
             abbr_list += ['GMM', 'DNN', 'CNN', 'RNN', 'CRNN', 'HMM', 'LSTM', 'MP', 'MLP', 'NMF']
             abbr_list += ['VGG', 'SVM', 'LTE', 'CQT', 'MFCC', 'GRU', 'I', 'AA']
             abbr_list += ['1D', '2D', '3D']
-            abbr_list += ['DCASE', 'DCASE2017', 'DCASE2016', 'TUT', 'USTC', 'CP-JKU', 'IIT', 'SEIE-SCUT']
+            abbr_list += ['DCASE', 'DCASE’20', 'DCASE2020', 'DCASE2019', 'DCASE2018', 'DCASE2017', 'DCASE2016', 'TUNI', 'TUT', 'USTC', 'CP-JKU', 'IIT', 'SEIE-SCUT']
             abbr_list += ['B2C', 'IEEE', 'AASP', 'ADSC', 'BUET', 'CVSSP', 'CMU', 'COCAI', 'MTG', 'UPM',
-                          'NCU', 'SINICA', 'CERTH', 'B2C', 'R-FCN']
+                          'NCU', 'SINICA', 'CERTH', 'B2C', 'R-FCN', 'INRS-EMT', 'CAU-ET', 'RF', '1A', '1B', '1C', 'QTI', ' A', ' B']
             abbr_list += ['ASC', 'SED']
 
             if word.upper() in abbr_list:
@@ -324,7 +324,7 @@ class BibtexProcessor(object):
 
                 return '-'.join(word_list) + word_postfix
 
-            mixed_list = ['FrameCNN', 'LightGBM']
+            mixed_list = ['FrameCNN', 'LightGBM', 'ResNet', 'XGBoost', 'RNNs']
             mixed_list_upper = []
             for i in mixed_list:
                 mixed_list_upper.append(i.upper())
@@ -338,6 +338,10 @@ class BibtexProcessor(object):
                 return word_prefix + word.lower() + word_postfix
 
         title = titlecase(title.lower(), callback=abbreviations)
+
+        if 'Task' in title:
+            title = title.replace('Task a', 'Task {A}').replace('Task A', 'Task {A}').replace('Task b', 'Task {B}').replace('Task B', 'Task {B}')
+
         return title
 
     @staticmethod
