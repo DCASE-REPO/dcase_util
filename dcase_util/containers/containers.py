@@ -163,7 +163,7 @@ class DictContainer(dict, ContainerMixin, FileMixin):
         ]
 
         if kwargs.get('non_hashable_fields'):
-            self.non_hashable_fields.update(kwargs.get('non_hashable_fields'))
+            self.non_hashable_fields = list(dict.fromkeys(self.non_hashable_fields + kwargs.get('non_hashable_fields')))
 
     def __getstate__(self):
         d = super(DictContainer, self).__getstate__()
