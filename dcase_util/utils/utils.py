@@ -366,6 +366,124 @@ def get_audio_info(filename, logger=None):
     return info
 
 
+def get_media_duration(filename, logger=None):
+    """Get media file duration using ffprobe.
+
+    Parameters
+    ----------
+    filename : str
+        filename
+
+    logger : Logger class
+        Logger class
+        Default value None
+
+    Returns
+    -------
+    float
+        Media duration in seconds
+
+    """
+    import subprocess
+
+    if logger is None:
+        logger = logging.getLogger(__name__)
+
+    if not os.path.exists(filename):
+        # File does not exists
+        message = '{name}: File does not exists [{filename}] '.format(
+            name=__name__,
+            filename=filename
+        )
+        logger.exception(message)
+
+        raise IOError(message)
+
+    try:
+        result = subprocess.run(
+            ['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'default=noprint_wrappers=1:nokey=1', filename],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT
+        )
+
+    except subprocess.CalledProcessError as e:
+        raise RuntimeError("command '{}' return with error (code {}): {}".format(e.cmd, e.returncode, e.output))
+
+    return float(result.stdout)
+
+
+def merge_media_files(source_a_filename, source_b_filename, target_filename, overwrite=False, logger=None):
+    """Merge media files using ffmpeg.
+
+    Parameters
+    ----------
+    source_a_filename : str
+        source file A, filename
+
+    source_b_filename : str
+        source file B, filename
+
+    target_filename : str
+        target filename
+
+    overwrite : bool
+        overwrite existing target file
+
+    logger : Logger class
+        Logger class
+        Default value None
+
+    """
+    import subprocess
+
+    if logger is None:
+        logger = logging.getLogger(__name__)
+
+    if not os.path.exists(source_a_filename):
+        # Source file A does not exists
+        message = '{name}: Source file A does not exists [{filename}] '.format(
+            name=__name__,
+            filename=source_a_filename
+        )
+        logger.exception(message)
+
+        raise IOError(message)
+
+    if not os.path.exists(source_b_filename):
+        # Source file B does not exists
+        message = '{name}: Source File B does not exists [{filename}] '.format(
+            name=__name__,
+            filename=source_b_filename
+        )
+        logger.exception(message)
+
+        raise IOError(message)
+
+    if not overwrite and os.path.exists(target_filename):
+        # Target file does exists
+        message = '{name}: Target file exists already [{filename}]. Enable overwrite flag or change target filename.'.format(
+            name=__name__,
+            filename=target_filename
+        )
+        logger.exception(message)
+
+        raise IOError(message)
+
+    try:
+        cmd = ['ffmpeg', '-i', source_a_filename, '-i', source_b_filename, '-shortest', '-strict', '-2', target_filename]
+        if overwrite:
+            cmd.append('-y')
+
+        result = subprocess.run(
+            cmd,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT
+        )
+
+    except subprocess.CalledProcessError as e:
+        raise RuntimeError("command '{}' return with error (code {}): {}".format(e.cmd, e.returncode, e.output))
+
+
 class SuppressStdoutAndStderr(object):
     """Context manager to suppress STDOUT and STDERR
 
