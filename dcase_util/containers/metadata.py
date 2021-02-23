@@ -389,6 +389,53 @@ class MetaDataItem(dict):
 
         if 'filename' in self:
             return self['filename']
+
+        elif 'filename_audio' in self:
+            return self['filename_audio']
+
+        elif 'filename_video' in self:
+            return self['filename_video']
+
+        else:
+            return None
+
+    @property
+    def filename_audio(self):
+        """Audio filename
+
+        Returns
+        -------
+        str or None
+            filename
+
+        """
+
+        if 'filename_audio' in self:
+            return self['filename_audio']
+
+        elif 'filename' in self:
+            return self['filename']
+
+        else:
+            return None
+
+    @property
+    def filename_video(self):
+        """Video filename
+
+        Returns
+        -------
+        str or None
+            filename
+
+        """
+
+        if 'filename_video' in self:
+            return self['filename_video']
+
+        elif 'filename' in self:
+            return self['filename']
+
         else:
             return None
 
