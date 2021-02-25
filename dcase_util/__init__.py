@@ -15,6 +15,7 @@ from . import data
 from . import processors
 from . import tools
 from . import keras
+from . import tfkeras
 
 __version__ = '0.2.11'
 
