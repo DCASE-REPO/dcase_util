@@ -1139,7 +1139,10 @@ class Sequencer(ObjectContainer):
 
             if len(processed_data) == 0:
                 message = '{name}: Cannot create valid segment, adjust segment length and hop size, or use ' \
-                          'padding flag.'.format(name=self.__class__.__name__)
+                          'padding flag. (Data length was {length})'.format(
+                    name=self.__class__.__name__,
+                    length=data.length
+                )
 
                 self.logger.exception(message)
                 raise IOError(message)
