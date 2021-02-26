@@ -67,7 +67,7 @@ class TAUUrbanAcousticScenes_2020_Mobile_DevelopmentSet(AcousticSceneDataset):
             'url': None,
             'audio_source': 'Field recording',
             'audio_type': 'Natural/Synthetic',
-            'recording_device_model': 'Various',
+            'audio_recording_device_model': 'Various',
             'microphone_model': 'Various',
             'licence': 'free non-commercial'
         }
@@ -331,7 +331,7 @@ class TAUUrbanAcousticScenes_2020_Mobile_EvaluationSet(AcousticSceneDataset):
             'url': None,
             'audio_source': 'Field recording',
             'audio_type': 'Natural/Synthetic',
-            'recording_device_model': 'Zoom F8',
+            'audio_recording_device_model': 'Zoom F8',
             'microphone_model': 'Soundman OKM II Klassik/studio A3 electret microphone',
             'licence': 'free non-commercial'
         }
@@ -610,7 +610,7 @@ class TAUUrbanAcousticScenes_2020_3Class_DevelopmentSet(AcousticSceneDataset):
             'url': None,
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Various',
+            'audio_recording_device_model': 'Various',
             'microphone_model': 'Various',
             'licence': 'free non-commercial'
         }
@@ -909,7 +909,7 @@ class TAUUrbanAcousticScenes_2020_3Class_EvaluationSet(AcousticSceneDataset):
             'url': None,
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Zoom F8',
+            'audio_recording_device_model': 'Zoom F8',
             'microphone_model': 'Soundman OKM II Klassik/studio A3 electret microphone',
             'licence': 'free non-commercial'
         }
@@ -1227,7 +1227,7 @@ class TAUUrbanAcousticScenes_2019_DevelopmentSet(AcousticSceneDataset):
             'url': None,
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Zoom F8',
+            'audio_recording_device_model': 'Zoom F8',
             'microphone_model': 'Soundman OKM II Klassik/studio A3 electret microphone',
             'licence': 'free non-commercial'
         }
@@ -1522,7 +1522,7 @@ class TAUUrbanAcousticScenes_2019_LeaderboardSet(AcousticSceneDataset):
             'url': None,
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Zoom F8',
+            'audio_recording_device_model': 'Zoom F8',
             'microphone_model': 'Soundman OKM II Klassik/studio A3 electret microphone',
             'licence': 'free non-commercial'
         }
@@ -1680,7 +1680,7 @@ class TAUUrbanAcousticScenes_2019_EvaluationSet(AcousticSceneDataset):
             'url': None,
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Zoom F8',
+            'audio_recording_device_model': 'Zoom F8',
             'microphone_model': 'Soundman OKM II Klassik/studio A3 electret microphone',
             'licence': 'free non-commercial'
         }
@@ -1903,7 +1903,7 @@ class TAUUrbanAcousticScenes_2019_Mobile_DevelopmentSet(AcousticSceneDataset):
             'url': None,
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Various',
+            'audio_recording_device_model': 'Various',
             'microphone_model': 'Various',
             'licence': 'free non-commercial'
         }
@@ -2131,7 +2131,7 @@ class TAUUrbanAcousticScenes_2019_Mobile_LeaderboardSet(AcousticSceneDataset):
             'url': None,
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Various',
+            'audio_recording_device_model': 'Various',
             'microphone_model': 'Various',
             'licence': 'free non-commercial'
         }
@@ -2283,7 +2283,7 @@ class TAUUrbanAcousticScenes_2019_Mobile_EvaluationSet(AcousticSceneDataset):
             'url': None,
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Various',
+            'audio_recording_device_model': 'Various',
             'microphone_model': 'Various',
             'licence': 'free non-commercial'
         }
@@ -2484,7 +2484,7 @@ class TAUUrbanAcousticScenes_2019_Openset_DevelopmentSet(AcousticSceneDataset):
             'url': None,
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Zoom F8',
+            'audio_recording_device_model': 'Zoom F8',
             'microphone_model': 'Soundman OKM II Klassik/studio A3 electret microphone',
             'licence': 'free non-commercial'
         }
@@ -2709,7 +2709,7 @@ class TAUUrbanAcousticScenes_2019_Openset_LeaderboardSet(AcousticSceneDataset):
             'url': None,
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Zoom F8',
+            'audio_recording_device_model': 'Zoom F8',
             'microphone_model': 'Soundman OKM II Klassik/studio A3 electret microphone',
             'licence': 'free non-commercial'
         }
@@ -2861,7 +2861,7 @@ class TAUUrbanAcousticScenes_2019_Openset_EvaluationSet(AcousticSceneDataset):
             'url': None,
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Zoom F8',
+            'audio_recording_device_model': 'Zoom F8',
             'microphone_model': 'Soundman OKM II Klassik/studio A3 electret microphone',
             'licence': 'free non-commercial'
         }
@@ -3046,7 +3046,7 @@ class TUTUrbanAcousticScenes_2018_DevelopmentSet(AcousticSceneDataset):
             'url': None,
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Zoom F8',
+            'audio_recording_device_model': 'Zoom F8',
             'microphone_model': 'Soundman OKM II Klassik/studio A3 electret microphone',
             'licence': 'free non-commercial'
         }
@@ -3284,7 +3284,7 @@ class TUTUrbanAcousticScenes_2018_LeaderboardSet(AcousticSceneDataset):
             'url': None,
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Zoom F8',
+            'audio_recording_device_model': 'Zoom F8',
             'microphone_model': 'Soundman OKM II Klassik/studio A3 electret microphone',
             'licence': 'free non-commercial'
         }
@@ -3442,7 +3442,7 @@ class TUTUrbanAcousticScenes_2018_EvaluationSet(AcousticSceneDataset):
             'url': None,
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Zoom F8',
+            'audio_recording_device_model': 'Zoom F8',
             'microphone_model': 'Soundman OKM II Klassik/studio A3 electret microphone',
             'licence': 'free non-commercial'
         }
@@ -3628,7 +3628,7 @@ class TUTUrbanAcousticScenes_2018_Mobile_DevelopmentSet(AcousticSceneDataset):
             'url': None,
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Various',
+            'audio_recording_device_model': 'Various',
             'microphone_model': 'Various',
             'licence': 'free non-commercial'
         }
@@ -3826,7 +3826,7 @@ class TUTUrbanAcousticScenes_2018_Mobile_LeaderboardSet(AcousticSceneDataset):
             'url': None,
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Various',
+            'audio_recording_device_model': 'Various',
             'microphone_model': 'Various',
             'licence': 'free non-commercial'
         }
@@ -3984,7 +3984,7 @@ class TUTUrbanAcousticScenes_2018_Mobile_EvaluationSet(AcousticSceneDataset):
             'url': None,
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Various',
+            'audio_recording_device_model': 'Various',
             'microphone_model': 'Various',
             'licence': 'free non-commercial'
         }
@@ -4209,7 +4209,7 @@ class TUTAcousticScenes_2017_DevelopmentSet(AcousticSceneDataset):
             'url': None,
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Roland Edirol R-09',
+            'audio_recording_device_model': 'Roland Edirol R-09',
             'microphone_model': 'Soundman OKM II Klassik/studio A3 electret microphone',
             'licence': 'free non-commercial'
         }
@@ -4421,7 +4421,7 @@ class TUTAcousticScenes_2017_EvaluationSet(AcousticSceneDataset):
             'url': None,
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Roland Edirol R-09',
+            'audio_recording_device_model': 'Roland Edirol R-09',
             'microphone_model': 'Soundman OKM II Klassik/studio A3 electret microphone',
             'licence': 'free non-commercial'
         }
@@ -4589,7 +4589,7 @@ class TUTAcousticScenes_2017_FeaturesSet(AcousticSceneDataset):
             'url': None,
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Roland Edirol R-09',
+            'audio_recording_device_model': 'Roland Edirol R-09',
             'microphone_model': 'Soundman OKM II Klassik/studio A3 electret microphone',
             'licence': 'free non-commercial'
         }
@@ -4925,7 +4925,7 @@ class TUTRareSoundEvents_2017_DevelopmentSet(SyntheticSoundEventDataset):
             'url': None,
             'audio_source': 'Synthetic',
             'audio_type': 'Natural',
-            'recording_device_model': 'Unknown',
+            'audio_recording_device_model': 'Unknown',
             'microphone_model': 'Unknown',
         }
         kwargs['crossvalidation_folds'] = 1
@@ -5585,7 +5585,7 @@ class TUTRareSoundEvents_2017_EvaluationSet(SyntheticSoundEventDataset):
             'url': None,
             'audio_source': 'Synthetic',
             'audio_type': 'Natural',
-            'recording_device_model': 'Unknown',
+            'audio_recording_device_model': 'Unknown',
             'microphone_model': 'Unknown',
         }
         kwargs['crossvalidation_folds'] = None
@@ -6033,7 +6033,7 @@ class TUTSoundEvents_2017_DevelopmentSet(SoundEventDataset):
             'url': 'https://zenodo.org/record/45759',
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Roland Edirol R-09',
+            'audio_recording_device_model': 'Roland Edirol R-09',
             'microphone_model': 'Soundman OKM II Klassik/studio A3 electret microphone',
             'licence': 'free non-commercial'
         }
@@ -6171,7 +6171,7 @@ class TUTSoundEvents_2017_EvaluationSet(SoundEventDataset):
             'url': 'https://zenodo.org/record/45759',
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Roland Edirol R-09',
+            'audio_recording_device_model': 'Roland Edirol R-09',
             'microphone_model': 'Soundman OKM II Klassik/studio A3 electret microphone',
             'licence': 'free non-commercial'
         }
@@ -6341,7 +6341,7 @@ class TUTAcousticScenes_2016_DevelopmentSet(AcousticSceneDataset):
             'url': 'https://zenodo.org/record/45739',
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Roland Edirol R-09',
+            'audio_recording_device_model': 'Roland Edirol R-09',
             'microphone_model': 'Soundman OKM II Klassik/studio A3 electret microphone',
             'licence': 'free non-commercial'
         }
@@ -6537,7 +6537,7 @@ class TUTAcousticScenes_2016_EvaluationSet(AcousticSceneDataset):
             'url': 'https://zenodo.org/record/165995',
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Roland Edirol R-09',
+            'audio_recording_device_model': 'Roland Edirol R-09',
             'microphone_model': 'Soundman OKM II Klassik/studio A3 electret microphone',
             'licence': 'free non-commercial'
         }
@@ -6689,7 +6689,7 @@ class TUTSoundEvents_2016_DevelopmentSet(SoundEventDataset):
             'url': 'https://zenodo.org/record/45759',
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Roland Edirol R-09',
+            'audio_recording_device_model': 'Roland Edirol R-09',
             'microphone_model': 'Soundman OKM II Klassik/studio A3 electret microphone',
             'licence': 'free non-commercial'
         }
@@ -6830,7 +6830,7 @@ class TUTSoundEvents_2016_EvaluationSet(SoundEventDataset):
             'url': 'http://www.cs.tut.fi/sgn/arg/dcase2016/download/',
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Roland Edirol R-09',
+            'audio_recording_device_model': 'Roland Edirol R-09',
             'microphone_model': 'Soundman OKM II Klassik/studio A3 electret microphone',
             'licence': 'free non-commercial'
         }
@@ -6955,7 +6955,7 @@ class TUT_SED_Synthetic_2016(SoundEventDataset):
             'url': 'http://www.cs.tut.fi/sgn/arg/taslp2017-crnn-sed/tut-sed-synthetic-2016',
             'audio_source': 'Field recording',
             'audio_type': 'Synthetic',
-            'recording_device_model': 'Unknown',
+            'audio_recording_device_model': 'Unknown',
             'microphone_model': 'Unknown',
         }
         kwargs['crossvalidation_folds'] = 1
@@ -7146,7 +7146,7 @@ class DBR_Dataset(SoundDataset):
             'url': 'https://zenodo.org/record/1069747',
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'unknown',
+            'audio_recording_device_model': 'unknown',
             'microphone_model': 'unknown',
             'licence': 'free non-commercial'
         }

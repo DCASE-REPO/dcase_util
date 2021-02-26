@@ -53,7 +53,7 @@ class DCASE2017_Task4tagging_DevelopmentSet(SoundEventDataset):
             'url': 'https://github.com/ankitshah009/Task-4-Large-scale-weakly-supervised-sound-event-detection-for-smart-cars',
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': None,
+            'audio_recording_device_model': None,
             'microphone_model': None,
             'licence': 'Apache'
         }
@@ -370,7 +370,7 @@ class DCASE2017_Task4tagging_EvaluationSet(DCASE2017_Task4tagging_DevelopmentSet
             'url': 'https://github.com/ankitshah009/Task-4-Large-scale-weakly-supervised-sound-event-detection-for-smart-cars',
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': None,
+            'audio_recording_device_model': None,
             'microphone_model': None,
         }
         kwargs['crossvalidation_folds'] = None

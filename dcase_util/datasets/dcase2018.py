@@ -52,7 +52,7 @@ class DCASE2018_Task5_DevelopmentSet(AcousticSceneDataset):
             'url': None,
             'audio_source': 'Daily living activities in a domestic environment',
             'audio_type': 'Natural',
-            'recording_device_model': 'Silicon Labs (EFM32WG980) microcontroller',
+            'audio_recording_device_model': 'Silicon Labs (EFM32WG980) microcontroller',
             'microphone_model': 'Sonion N8AC03 MEMS microphone',
             'licence': 'free non-commercial'
         }
@@ -287,7 +287,7 @@ class DCASE2018_Task5_EvaluationSet(AcousticSceneDataset):
             'url': None,
             'audio_source': 'Daily living activities in a domestic environment',
             'audio_type': 'Natural',
-            'recording_device_model': 'Silicon Labs (EFM32WG980) microcontroller',
+            'audio_recording_device_model': 'Silicon Labs (EFM32WG980) microcontroller',
             'microphone_model': 'Sonion N8AC03 MEMS microphone',
             'licence': 'free non-commercial'
         }

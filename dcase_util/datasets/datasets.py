@@ -368,8 +368,8 @@ class Dataset(object):
             Default value None
 
         included_content_types : list of str or str
-            Indicates what content type should be processed. One or multiple from ['all', 'audio', 'features', 'meta', 'code',
-            'documentation']. If None given, ['all'] is used. Parameter can be also comma separated string.
+            Indicates what content type should be processed. One or multiple from ['all', 'audio', 'video', 'features', 'meta', 'code',
+            'documentation', 'examples']. If None given, ['all'] is used. Parameter can be also comma separated string.
             Default value None
 
         audio_paths : list of str

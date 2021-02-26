@@ -53,7 +53,7 @@ class CHiMEHome_DomesticAudioTag_DevelopmentSet(AudioTaggingDataset):
             'url': None,
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Unknown',
+            'audio_recording_device_model': 'Unknown',
             'microphone_model': 'Unknown',
         }
         kwargs['crossvalidation_folds'] = 5
@@ -368,7 +368,7 @@ class CHiMEHome_DomesticAudioTag_EvaluationSet(CHiMEHome_DomesticAudioTag_Develo
             'url': None,
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Unknown',
+            'audio_recording_device_model': 'Unknown',
             'microphone_model': 'Unknown',
         }
 
