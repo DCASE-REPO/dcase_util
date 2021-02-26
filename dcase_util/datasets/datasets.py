@@ -355,7 +355,8 @@ class Dataset(object):
             Package list, remote files associated to the dataset.
             Item format:
             {
-                'content_type': 'documentation',                            # Possible values ['meta', 'documentation', 'audio', 'code', 'features']
+                'content_type': 'documentation',                            # Possible values ['all', 'audio', 'video', 'features', 'meta', 'code',
+            'documentation', 'examples']
                 'remote_file': 'https://zenodo.org/record/45759/files/TUT-sound-events-2016-development.doc.zip', # URL
                 'remote_bytes': 70918,                                      # Size of remote file in bytes
                 'remote_md5': '33fd26a895530aef607a07b08704eacd',           # MD5 hash of remote file
@@ -2641,6 +2642,85 @@ class AcousticSceneDataset(Dataset):
                 log.line(lines)
 
         return validation_files
+
+
+class AudioVisualSceneDataset(Dataset):
+    """Audio-visual scene dataset baseclass"""
+    def __init__(self,
+                 video_paths=None,
+                 default_video_extension='mp4',
+                 *args, **kwargs):
+        """Constructor
+
+        Parameters
+        ----------
+        video_paths : list of str
+            List of paths to include video material associated to the dataset. If None given, ['video'] is used.
+            Default value None
+
+        default_video_extension : str
+            Default audio extension
+            Default value 'mp4'
+
+        """
+
+        super(AudioVisualSceneDataset, self).__init__(*args, **kwargs)
+
+        # List of audio files
+        self.files_video = None
+
+        # List of directories to contain the video material
+        if video_paths is None:
+            video_paths = ['video']
+
+        self.video_paths = video_paths
+
+        # Expand local filenames to be related to local path
+        for path_id, path in enumerate(self.video_paths):
+            self.video_paths[path_id] = os.path.join(self.local_path, path)
+
+        # Recognized video extensions
+        self.video_extensions = ['mp4']
+
+        self.default_video_extension = default_video_extension
+
+    @property
+    def video_files(self):
+        """Get all video files in the dataset
+
+        Returns
+        -------
+        list
+            File list with absolute paths
+
+        """
+
+        if self.files_video is None:
+            self.files_video = []
+            for path in self.video_paths:
+                if path and os.path.exists(path):
+                    dir_list = os.listdir(path)
+                    for f in dir_list:
+                        file_name, file_extension = os.path.splitext(f)
+                        if file_extension[1:] in self.video_extensions:
+                            if os.path.abspath(os.path.join(path, f)) not in self.files_video:
+                                self.files_video.append(os.path.abspath(os.path.join(path, f)))
+
+            self.files_video.sort()
+        return self.files_video
+
+    @property
+    def video_file_count(self):
+        """Get number of video files in dataset
+
+        Returns
+        -------
+        int
+            Number of video files
+
+        """
+
+        return len(self.video_files)
 
 
 class SoundEventDataset(Dataset):
