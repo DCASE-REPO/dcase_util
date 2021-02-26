@@ -139,6 +139,12 @@ class MetaDataItem(dict):
         if self.filename_original:
             output += ui.data(indent=indent + 2, field='filename_original', value=self.filename_original) + '\n'
 
+        if self.filename_audio:
+            output += ui.data(indent=indent + 2, field='filename_audio', value=self.filename_audio) + '\n'
+
+        if self.filename_video:
+            output += ui.data(indent=indent + 2, field='filename_audio', value=self.filename_video) + '\n'
+
         if self.identifier:
             output += ui.data(indent=indent + 2, field='identifier', value=self.identifier) + '\n'
 
@@ -467,6 +473,22 @@ class MetaDataItem(dict):
     def filename_original(self, value):
         # Keep paths in unix format even under Windows
         self['filename_original'] = posix_path(value)
+
+    @filename_audio.setter
+    def filename_audio(self, value):
+        if not os.path.isabs(value):
+            # Force relative file paths into unix format even under Windows
+            value = posix_path(value)
+
+        self['filename_audio'] = value
+
+    @filename_video.setter
+    def filename_video(self, value):
+        if not os.path.isabs(value):
+            # Force relative file paths into unix format even under Windows
+            value = posix_path(value)
+
+        self['filename_video'] = value
 
     @property
     def scene_label(self):
