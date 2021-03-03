@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 tf.keras utilities
-===============
+==================
 
 Utilities to be used with Keras deep learning framework within TensorFlow (>= 2.0).
 
