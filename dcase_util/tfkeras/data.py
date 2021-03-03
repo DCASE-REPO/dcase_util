@@ -433,3 +433,20 @@ def get_keras_data_sequence_class():
     return KerasDataSequence
 
 
+def data_collector(item_list=None,
+                   data_processing_chain=None, meta_processing_chain=None,
+                   target_format='single_target_per_sequence',
+                   channel_dimension='channels_last',
+                   verbose=True,
+                   print_indent=2
+                   ):
+    from dcase_util.keras import data_collector
+
+    data_collector(item_list=item_list,
+                   data_processing_chain=data_processing_chain,
+                   meta_processing_chain=meta_processing_chain,
+                   target_format=target_format,
+                   channel_dimension=channel_dimension,
+                   verbose=verbose,
+                   print_indent=print_indent
+                   )
