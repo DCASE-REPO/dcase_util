@@ -53,7 +53,7 @@ class CHiMEHome_DomesticAudioTag_DevelopmentSet(AudioTaggingDataset):
             'url': None,
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Unknown',
+            'audio_recording_device_model': 'Unknown',
             'microphone_model': 'Unknown',
         }
         kwargs['crossvalidation_folds'] = 5
@@ -180,7 +180,7 @@ class CHiMEHome_DomesticAudioTag_DevelopmentSet(AudioTaggingDataset):
                 current_meta_data = DictContainer(filename=os.path.join(self.local_path, data['meta'])).load()
                 tags = []
                 for i, tag in enumerate(current_meta_data['majorityvote']):
-                    if tag is not 'S' and tag is not 'U':
+                    if tag != 'S' and tag != 'U':
                         tags.append(self.tagcode_to_taglabel(tag))
 
                 name = os.path.split(audio_filename)[1]
@@ -368,7 +368,7 @@ class CHiMEHome_DomesticAudioTag_EvaluationSet(CHiMEHome_DomesticAudioTag_Develo
             'url': None,
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Unknown',
+            'audio_recording_device_model': 'Unknown',
             'microphone_model': 'Unknown',
         }
 
@@ -431,7 +431,7 @@ class CHiMEHome_DomesticAudioTag_EvaluationSet(CHiMEHome_DomesticAudioTag_Develo
                 current_meta_data = DictContainer(filename=os.path.join(self.local_path, data['meta'])).load()
                 tags = []
                 for i, tag in enumerate(current_meta_data['majorityvote']):
-                    if tag is not 'S' and tag is not 'U':
+                    if tag != 'S' and tag != 'U':
                         tags.append(self.tagcode_to_taglabel(tag))
 
                 name = os.path.split(audio_filename)[1]

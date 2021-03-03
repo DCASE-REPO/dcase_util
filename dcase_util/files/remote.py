@@ -17,7 +17,7 @@ from dcase_util.containers import DictContainer, PackageMixin
 class RemoteFile(DictContainer):
     """Remote file class"""
     valid_formats = []
-    valid_content_types = ['code', 'documentation', 'meta', 'audio', 'features']
+    valid_content_types = ['code', 'documentation', 'meta', 'audio', 'features', 'video', 'examples']
 
     def __init__(self, filename=None, content_type=None, local_md5=None,
                  remote_file=None, remote_md5=None, remote_bytes=None,

@@ -13,11 +13,348 @@ import numpy
 import yaml
 from six import iteritems
 
-from dcase_util.datasets import SoundDataset, AcousticSceneDataset, SyntheticSoundEventDataset, SoundEventDataset
+from dcase_util.datasets import SoundDataset, AcousticSceneDataset, SyntheticSoundEventDataset, SoundEventDataset, AudioVisualSceneDataset
 from dcase_util.containers import MetaDataContainer, MetaDataItem, OneToOneMappingContainer, \
     DictContainer, ParameterContainer, AudioContainer
 from dcase_util.utils import Path, FileFormat, is_jupyter
 # Datasets released by Tampere University (TAU), formerly known as Tampere University of Technology (TUT).
+
+# =====================================================
+# DCASE 2021
+# =====================================================
+class TAUUrbanAudioVisualScenes_2021_DevelopmentSet(AudioVisualSceneDataset):
+    """TAU Urban Audio-Visual Scenes 2021 Development dataset
+
+    This dataset is used in DCASE2021 - Task 1, Acoustic scene classification / Subtask B / Development
+
+    """
+
+    def __init__(self,
+                 storage_name='TAU-urban-audio-visual-scenes-2021-development',
+                 data_path=None,
+                 included_content_types=None,
+                 **kwargs):
+        """
+        Constructor
+
+        Parameters
+        ----------
+
+        storage_name : str
+            Name to be used when storing dataset on disk
+            Default value 'TAU-urban-audio-visual-scenes-2021-development'
+
+        data_path : str
+            Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), 'dcase_util_datasets')
+            is used.
+            Default value None
+
+        included_content_types : list of str or str
+            Indicates what content type should be processed. One or multiple from ['all', 'audio', 'video', 'features',
+            'meta', 'code', 'documentation', 'examples']. If None given, ['all'] is used. Parameter can be also
+            comma separated string.
+            Default value None
+
+        """
+
+        kwargs['included_content_types'] = included_content_types
+        kwargs['data_path'] = data_path
+        kwargs['storage_name'] = storage_name
+        kwargs['dataset_group'] = 'scene'
+        kwargs['dataset_meta'] = {
+            'authors': 'Toni Heittola, Annamaria Mesaros, and Tuomas Virtanen',
+            'title': 'TAU Urban Audio-Visual Scenes 2021, development dataset',
+            'url': None,
+            'audio_source': 'Field recording',
+            'audio_type': 'Natural',
+            'video_source': 'Field recording',
+            'video_type': 'Natural',
+            'audio_recording_device_model': 'Zoom F8',
+            'video_recording_device_model': 'GoPro Hero5 Session',
+            'microphone_model': 'Various',
+            'licence': 'free non-commercial'
+        }
+        kwargs['crossvalidation_folds'] = 1
+        kwargs['evaluation_setup_file_extension'] = 'csv'
+        kwargs['meta_filename'] = 'meta.csv'
+
+        filename_base = 'TAU-urban-audio-visual-scenes-2021-development'
+        source_url = 'https://zenodo.org/record/4477542/files/'
+        kwargs['package_list'] = []
+
+        kwargs['package_list'] = [
+            {
+                'content_type': 'documentation',
+                'remote_file': source_url + filename_base + '.doc.zip',
+                'remote_bytes': 12466,
+                'remote_md5': '26960140f453d31bbd315ed7e35675f8',
+                'filename': filename_base + '.doc.zip'
+            },
+            {
+                'content_type': 'meta',
+                'remote_file': source_url + filename_base + '.meta.zip',
+                'remote_bytes': 235316,
+                'remote_md5': '76e3d7ed5291b118372e06379cb2b490',
+                'filename': filename_base + '.meta.zip'
+            },
+            {
+                'content_type': 'examples',
+                'remote_file': source_url + filename_base + '.examples.zip',
+                'remote_bytes': 128196031,
+                'remote_md5': 'c66777ed4af358f01f0bdb1f83d45483',
+                'filename': filename_base + '.examples.zip'
+            },
+            {
+                'content_type': 'audio',
+                'remote_file': source_url + filename_base + '.audio.1.zip',
+                'remote_bytes': 4349199235,
+                'remote_md5': 'b243e03f79923681d4f1dedb45df4272',
+                'filename': filename_base + '.audio.1.zip'
+            },
+            {
+                'content_type': 'audio',
+                'remote_file': source_url + filename_base + '.audio.2.zip',
+                'remote_bytes': 4490957254,
+                'remote_md5': 'e5e467951f42438ede718160a5df9916',
+                'filename': filename_base + '.audio.2.zip'
+            },
+            {
+                'content_type': 'audio',
+                'remote_file': source_url + filename_base + '.audio.3.zip',
+                'remote_bytes': 4223482584,
+                'remote_md5': '9842640afafa2624c77f2d0111cd4fff',
+                'filename': filename_base + '.audio.3.zip'
+            },
+            {
+                'content_type': 'audio',
+                'remote_file': source_url + filename_base + '.audio.4.zip',
+                'remote_bytes': 4172851021,
+                'remote_md5': 'bfe73124eb887ade43490e6a1e5777a5',
+                'filename': filename_base + '.audio.4.zip'
+            },
+            {
+                'content_type': 'audio',
+                'remote_file': source_url + filename_base + '.audio.5.zip',
+                'remote_bytes': 4185564865,
+                'remote_md5': '22ff45d1e2f908105c9bcf5e741585d5',
+                'filename': filename_base + '.audio.5.zip'
+            },
+            {
+                'content_type': 'audio',
+                'remote_file': source_url + filename_base + '.audio.6.zip',
+                'remote_bytes': 4215398592,
+                'remote_md5': '220fe666a2223839b4c90151ec5ef84b',
+                'filename': filename_base + '.audio.6.zip'
+            },
+            {
+                'content_type': 'audio',
+                'remote_file': source_url + filename_base + '.audio.7.zip',
+                'remote_bytes': 4407219443,
+                'remote_md5': '3ed6f52ab55961dc119cce7ae086ded7',
+                'filename': filename_base + '.audio.7.zip'
+            },
+            {
+                'content_type': 'audio',
+                'remote_file': source_url + filename_base + '.audio.8.zip',
+                'remote_bytes': 345864178,
+                'remote_md5': 'f255fef65a756fe783234a04fb925bd3',
+                'filename': filename_base + '.audio.8.zip'
+            },
+            {
+                'content_type': 'video',
+                'remote_file': source_url + filename_base + '.video.1.zip',
+                'remote_bytes': 4996888956,
+                'remote_md5': 'f6e85c9aff91d97c18fa03e3e45f904e',
+                'filename': filename_base + '.video.1.zip'
+            },
+            {
+                'content_type': 'video',
+                'remote_file': source_url + filename_base + '.video.2.zip',
+                'remote_bytes': 4997054229,
+                'remote_md5': 'b58d56880cc8d4dfb088d1fca09e07ba',
+                'filename': filename_base + '.video.2.zip'
+            },
+            {
+                'content_type': 'video',
+                'remote_file': source_url + filename_base + '.video.3.zip',
+                'remote_bytes': 4995962362,
+                'remote_md5': 'fca054b6bbcee6d4884c87960bfae9ef',
+                'filename': filename_base + '.video.3.zip'
+            },
+            {
+                'content_type': 'video',
+                'remote_file': source_url + filename_base + '.video.4.zip',
+                'remote_bytes': 4991031188,
+                'remote_md5': '812ab2ce8c8f8431466755cbe0eec8d9',
+                'filename': filename_base + '.video.4.zip'
+            },
+            {
+                'content_type': 'video',
+                'remote_file': source_url + filename_base + '.video.5.zip',
+                'remote_bytes': 4997080568,
+                'remote_md5': 'de6671f284f15c019254ef5c405c16bf',
+                'filename': filename_base + '.video.5.zip'
+            },
+            {
+                'content_type': 'video',
+                'remote_file': source_url + filename_base + '.video.6.zip',
+                'remote_bytes': 4991169614,
+                'remote_md5': '21c488a70e3ec73df88e5c9a9e27ed3a',
+                'filename': filename_base + '.video.6.zip'
+            },
+            {
+                'content_type': 'video',
+                'remote_file': source_url + filename_base + '.video.7.zip',
+                'remote_bytes': 4996593184,
+                'remote_md5': 'e4754c1b09fcec28992edee99a4b64ea',
+                'filename': filename_base + '.video.7.zip'
+            },
+            {
+                'content_type': 'video',
+                'remote_file': source_url + filename_base + '.video.8.zip',
+                'remote_bytes': 4992533550,
+                'remote_md5': '5fb451f235fc25d15213ed600e33677b',
+                'filename': filename_base + '.video.8.zip'
+            },
+            {
+                'content_type': 'video',
+                'remote_file': source_url + filename_base + '.video.9.zip',
+                'remote_bytes': 4998328257,
+                'remote_md5': '8da4d7cebcac12ee0dbeacb583f5bd1e',
+                'filename': filename_base + '.video.9.zip'
+            },
+            {
+                'content_type': 'video',
+                'remote_file': source_url + filename_base + '.video.10.zip',
+                'remote_bytes': 4993015177,
+                'remote_md5': '033bfc48c13e956b31080e4b74b00539',
+                'filename': filename_base + '.video.10.zip'
+            },
+            {
+                'content_type': 'video',
+                'remote_file': source_url + filename_base + '.video.11.zip',
+                'remote_bytes': 4993424273,
+                'remote_md5': '142baef2d2e06c004b8736eb93617770',
+                'filename': filename_base + '.video.11.zip'
+            },
+            {
+                'content_type': 'video',
+                'remote_file': source_url + filename_base + '.video.12.zip',
+                'remote_bytes': 4994718416,
+                'remote_md5': '1778e71e093b64eb3afbcc3dc402390e',
+                'filename': filename_base + '.video.12.zip'
+            },
+            {
+                'content_type': 'video',
+                'remote_file': source_url + filename_base + '.video.13.zip',
+                'remote_bytes': 4996974688,
+                'remote_md5': '81d7c7cf9122bddd2bfd503d84675b49',
+                'filename': filename_base + '.video.13.zip'
+            },
+            {
+                'content_type': 'video',
+                'remote_file': source_url + filename_base + '.video.14.zip',
+                'remote_bytes': 4999887078,
+                'remote_md5': '3bc8586dd05e0ee114bbb858832ac277',
+                'filename': filename_base + '.video.14.zip'
+            },
+            {
+                'content_type': 'video',
+                'remote_file': source_url + filename_base + '.video.15.zip',
+                'remote_bytes': 4995884861,
+                'remote_md5': 'b65a84281a5c3a5b008c8e8512c0c66a',
+                'filename': filename_base + '.video.15.zip'
+            },
+            {
+                'content_type': 'video',
+                'remote_file': source_url + filename_base + '.video.16.zip',
+                'remote_bytes': 2286204338,
+                'remote_md5': '9ccb4946f530b53bf3feba2b5efa3b41',
+                'filename': filename_base + '.video.16.zip'
+            },
+        ]
+        kwargs['audio_paths'] = [
+            'audio'
+        ]
+        kwargs['video_paths'] = [
+            'video'
+        ]
+        super(TAUUrbanAudioVisualScenes_2021_DevelopmentSet, self).__init__(**kwargs)
+
+    def process_meta_item(self, item, absolute_path=True, **kwargs):
+        """Process single meta data item
+
+        Parameters
+        ----------
+        item :  MetaDataItem
+            Meta data item
+
+        absolute_path : bool
+            Convert file paths to be absolute
+            Default value True
+
+        """
+
+        if absolute_path:
+            item.filename = self.relative_to_absolute_path(item.filename)
+            item.filename_audio = self.relative_to_absolute_path(item.filename_audio)
+            item.filename_video = self.relative_to_absolute_path(item.filename_video)
+
+        else:
+            item.filename = self.absolute_to_relative_path(item.filename)
+            item.filename_audio = self.absolute_to_relative_path(item.filename_audio)
+            item.filename_video = self.absolute_to_relative_path(item.filename_video)
+
+        if not item.identifier:
+            item.identifier = '-'.join(os.path.splitext(os.path.split(item.filename)[-1])[0].split('-')[1:-2])
+
+    def prepare(self):
+        """Prepare dataset for the usage.
+
+        Returns
+        -------
+        self
+
+        """
+
+        if not self.meta_container.exists():
+            meta_data = collections.OrderedDict()
+            for fold in self.folds():
+                # Read train files in
+                fold_data = MetaDataContainer(
+                    filename=self.evaluation_setup_filename(
+                        setup_part='train',
+                        fold=fold
+                    )
+                ).load()
+
+                # Read eval files in
+                fold_data += MetaDataContainer(
+                    filename=self.evaluation_setup_filename(
+                        setup_part='evaluate',
+                        fold=fold
+                    )
+                ).load()
+
+                # Process, make sure each file is included only once.
+                for item in fold_data:
+                    if item.filename not in meta_data:
+                        self.process_meta_item(
+                            item=item,
+                            absolute_path=False
+                        )
+
+                        meta_data[item.filename] = item
+
+            # Save meta
+            MetaDataContainer(list(meta_data.values())).save(
+                filename=self.meta_file
+            )
+
+            # Load meta and cross validation
+            self.load()
+
+        return self
 
 
 # =====================================================
@@ -67,7 +404,7 @@ class TAUUrbanAcousticScenes_2020_Mobile_DevelopmentSet(AcousticSceneDataset):
             'url': None,
             'audio_source': 'Field recording',
             'audio_type': 'Natural/Synthetic',
-            'recording_device_model': 'Various',
+            'audio_recording_device_model': 'Various',
             'microphone_model': 'Various',
             'licence': 'free non-commercial'
         }
@@ -331,7 +668,7 @@ class TAUUrbanAcousticScenes_2020_Mobile_EvaluationSet(AcousticSceneDataset):
             'url': None,
             'audio_source': 'Field recording',
             'audio_type': 'Natural/Synthetic',
-            'recording_device_model': 'Zoom F8',
+            'audio_recording_device_model': 'Zoom F8',
             'microphone_model': 'Soundman OKM II Klassik/studio A3 electret microphone',
             'licence': 'free non-commercial'
         }
@@ -610,7 +947,7 @@ class TAUUrbanAcousticScenes_2020_3Class_DevelopmentSet(AcousticSceneDataset):
             'url': None,
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Various',
+            'audio_recording_device_model': 'Various',
             'microphone_model': 'Various',
             'licence': 'free non-commercial'
         }
@@ -909,7 +1246,7 @@ class TAUUrbanAcousticScenes_2020_3Class_EvaluationSet(AcousticSceneDataset):
             'url': None,
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Zoom F8',
+            'audio_recording_device_model': 'Zoom F8',
             'microphone_model': 'Soundman OKM II Klassik/studio A3 electret microphone',
             'licence': 'free non-commercial'
         }
@@ -1227,7 +1564,7 @@ class TAUUrbanAcousticScenes_2019_DevelopmentSet(AcousticSceneDataset):
             'url': None,
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Zoom F8',
+            'audio_recording_device_model': 'Zoom F8',
             'microphone_model': 'Soundman OKM II Klassik/studio A3 electret microphone',
             'licence': 'free non-commercial'
         }
@@ -1522,7 +1859,7 @@ class TAUUrbanAcousticScenes_2019_LeaderboardSet(AcousticSceneDataset):
             'url': None,
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Zoom F8',
+            'audio_recording_device_model': 'Zoom F8',
             'microphone_model': 'Soundman OKM II Klassik/studio A3 electret microphone',
             'licence': 'free non-commercial'
         }
@@ -1680,7 +2017,7 @@ class TAUUrbanAcousticScenes_2019_EvaluationSet(AcousticSceneDataset):
             'url': None,
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Zoom F8',
+            'audio_recording_device_model': 'Zoom F8',
             'microphone_model': 'Soundman OKM II Klassik/studio A3 electret microphone',
             'licence': 'free non-commercial'
         }
@@ -1903,7 +2240,7 @@ class TAUUrbanAcousticScenes_2019_Mobile_DevelopmentSet(AcousticSceneDataset):
             'url': None,
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Various',
+            'audio_recording_device_model': 'Various',
             'microphone_model': 'Various',
             'licence': 'free non-commercial'
         }
@@ -2131,7 +2468,7 @@ class TAUUrbanAcousticScenes_2019_Mobile_LeaderboardSet(AcousticSceneDataset):
             'url': None,
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Various',
+            'audio_recording_device_model': 'Various',
             'microphone_model': 'Various',
             'licence': 'free non-commercial'
         }
@@ -2283,7 +2620,7 @@ class TAUUrbanAcousticScenes_2019_Mobile_EvaluationSet(AcousticSceneDataset):
             'url': None,
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Various',
+            'audio_recording_device_model': 'Various',
             'microphone_model': 'Various',
             'licence': 'free non-commercial'
         }
@@ -2484,7 +2821,7 @@ class TAUUrbanAcousticScenes_2019_Openset_DevelopmentSet(AcousticSceneDataset):
             'url': None,
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Zoom F8',
+            'audio_recording_device_model': 'Zoom F8',
             'microphone_model': 'Soundman OKM II Klassik/studio A3 electret microphone',
             'licence': 'free non-commercial'
         }
@@ -2709,7 +3046,7 @@ class TAUUrbanAcousticScenes_2019_Openset_LeaderboardSet(AcousticSceneDataset):
             'url': None,
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Zoom F8',
+            'audio_recording_device_model': 'Zoom F8',
             'microphone_model': 'Soundman OKM II Klassik/studio A3 electret microphone',
             'licence': 'free non-commercial'
         }
@@ -2861,7 +3198,7 @@ class TAUUrbanAcousticScenes_2019_Openset_EvaluationSet(AcousticSceneDataset):
             'url': None,
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Zoom F8',
+            'audio_recording_device_model': 'Zoom F8',
             'microphone_model': 'Soundman OKM II Klassik/studio A3 electret microphone',
             'licence': 'free non-commercial'
         }
@@ -3046,7 +3383,7 @@ class TUTUrbanAcousticScenes_2018_DevelopmentSet(AcousticSceneDataset):
             'url': None,
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Zoom F8',
+            'audio_recording_device_model': 'Zoom F8',
             'microphone_model': 'Soundman OKM II Klassik/studio A3 electret microphone',
             'licence': 'free non-commercial'
         }
@@ -3284,7 +3621,7 @@ class TUTUrbanAcousticScenes_2018_LeaderboardSet(AcousticSceneDataset):
             'url': None,
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Zoom F8',
+            'audio_recording_device_model': 'Zoom F8',
             'microphone_model': 'Soundman OKM II Klassik/studio A3 electret microphone',
             'licence': 'free non-commercial'
         }
@@ -3442,7 +3779,7 @@ class TUTUrbanAcousticScenes_2018_EvaluationSet(AcousticSceneDataset):
             'url': None,
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Zoom F8',
+            'audio_recording_device_model': 'Zoom F8',
             'microphone_model': 'Soundman OKM II Klassik/studio A3 electret microphone',
             'licence': 'free non-commercial'
         }
@@ -3628,7 +3965,7 @@ class TUTUrbanAcousticScenes_2018_Mobile_DevelopmentSet(AcousticSceneDataset):
             'url': None,
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Various',
+            'audio_recording_device_model': 'Various',
             'microphone_model': 'Various',
             'licence': 'free non-commercial'
         }
@@ -3826,7 +4163,7 @@ class TUTUrbanAcousticScenes_2018_Mobile_LeaderboardSet(AcousticSceneDataset):
             'url': None,
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Various',
+            'audio_recording_device_model': 'Various',
             'microphone_model': 'Various',
             'licence': 'free non-commercial'
         }
@@ -3984,7 +4321,7 @@ class TUTUrbanAcousticScenes_2018_Mobile_EvaluationSet(AcousticSceneDataset):
             'url': None,
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Various',
+            'audio_recording_device_model': 'Various',
             'microphone_model': 'Various',
             'licence': 'free non-commercial'
         }
@@ -4209,7 +4546,7 @@ class TUTAcousticScenes_2017_DevelopmentSet(AcousticSceneDataset):
             'url': None,
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Roland Edirol R-09',
+            'audio_recording_device_model': 'Roland Edirol R-09',
             'microphone_model': 'Soundman OKM II Klassik/studio A3 electret microphone',
             'licence': 'free non-commercial'
         }
@@ -4421,7 +4758,7 @@ class TUTAcousticScenes_2017_EvaluationSet(AcousticSceneDataset):
             'url': None,
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Roland Edirol R-09',
+            'audio_recording_device_model': 'Roland Edirol R-09',
             'microphone_model': 'Soundman OKM II Klassik/studio A3 electret microphone',
             'licence': 'free non-commercial'
         }
@@ -4589,7 +4926,7 @@ class TUTAcousticScenes_2017_FeaturesSet(AcousticSceneDataset):
             'url': None,
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Roland Edirol R-09',
+            'audio_recording_device_model': 'Roland Edirol R-09',
             'microphone_model': 'Soundman OKM II Klassik/studio A3 electret microphone',
             'licence': 'free non-commercial'
         }
@@ -4925,7 +5262,7 @@ class TUTRareSoundEvents_2017_DevelopmentSet(SyntheticSoundEventDataset):
             'url': None,
             'audio_source': 'Synthetic',
             'audio_type': 'Natural',
-            'recording_device_model': 'Unknown',
+            'audio_recording_device_model': 'Unknown',
             'microphone_model': 'Unknown',
         }
         kwargs['crossvalidation_folds'] = 1
@@ -5585,7 +5922,7 @@ class TUTRareSoundEvents_2017_EvaluationSet(SyntheticSoundEventDataset):
             'url': None,
             'audio_source': 'Synthetic',
             'audio_type': 'Natural',
-            'recording_device_model': 'Unknown',
+            'audio_recording_device_model': 'Unknown',
             'microphone_model': 'Unknown',
         }
         kwargs['crossvalidation_folds'] = None
@@ -6033,7 +6370,7 @@ class TUTSoundEvents_2017_DevelopmentSet(SoundEventDataset):
             'url': 'https://zenodo.org/record/45759',
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Roland Edirol R-09',
+            'audio_recording_device_model': 'Roland Edirol R-09',
             'microphone_model': 'Soundman OKM II Klassik/studio A3 electret microphone',
             'licence': 'free non-commercial'
         }
@@ -6171,7 +6508,7 @@ class TUTSoundEvents_2017_EvaluationSet(SoundEventDataset):
             'url': 'https://zenodo.org/record/45759',
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Roland Edirol R-09',
+            'audio_recording_device_model': 'Roland Edirol R-09',
             'microphone_model': 'Soundman OKM II Klassik/studio A3 electret microphone',
             'licence': 'free non-commercial'
         }
@@ -6341,7 +6678,7 @@ class TUTAcousticScenes_2016_DevelopmentSet(AcousticSceneDataset):
             'url': 'https://zenodo.org/record/45739',
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Roland Edirol R-09',
+            'audio_recording_device_model': 'Roland Edirol R-09',
             'microphone_model': 'Soundman OKM II Klassik/studio A3 electret microphone',
             'licence': 'free non-commercial'
         }
@@ -6537,7 +6874,7 @@ class TUTAcousticScenes_2016_EvaluationSet(AcousticSceneDataset):
             'url': 'https://zenodo.org/record/165995',
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Roland Edirol R-09',
+            'audio_recording_device_model': 'Roland Edirol R-09',
             'microphone_model': 'Soundman OKM II Klassik/studio A3 electret microphone',
             'licence': 'free non-commercial'
         }
@@ -6689,7 +7026,7 @@ class TUTSoundEvents_2016_DevelopmentSet(SoundEventDataset):
             'url': 'https://zenodo.org/record/45759',
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Roland Edirol R-09',
+            'audio_recording_device_model': 'Roland Edirol R-09',
             'microphone_model': 'Soundman OKM II Klassik/studio A3 electret microphone',
             'licence': 'free non-commercial'
         }
@@ -6830,7 +7167,7 @@ class TUTSoundEvents_2016_EvaluationSet(SoundEventDataset):
             'url': 'http://www.cs.tut.fi/sgn/arg/dcase2016/download/',
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Roland Edirol R-09',
+            'audio_recording_device_model': 'Roland Edirol R-09',
             'microphone_model': 'Soundman OKM II Klassik/studio A3 electret microphone',
             'licence': 'free non-commercial'
         }
@@ -6955,7 +7292,7 @@ class TUT_SED_Synthetic_2016(SoundEventDataset):
             'url': 'http://www.cs.tut.fi/sgn/arg/taslp2017-crnn-sed/tut-sed-synthetic-2016',
             'audio_source': 'Field recording',
             'audio_type': 'Synthetic',
-            'recording_device_model': 'Unknown',
+            'audio_recording_device_model': 'Unknown',
             'microphone_model': 'Unknown',
         }
         kwargs['crossvalidation_folds'] = 1
@@ -7146,7 +7483,7 @@ class DBR_Dataset(SoundDataset):
             'url': 'https://zenodo.org/record/1069747',
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'unknown',
+            'audio_recording_device_model': 'unknown',
             'microphone_model': 'unknown',
             'licence': 'free non-commercial'
         }

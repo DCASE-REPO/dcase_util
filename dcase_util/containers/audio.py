@@ -860,7 +860,7 @@ class AudioContainer(ContainerMixin, FileMixin):
                     duration=duration
                 )
 
-                if not auto_trimming and duration is not None and duration != self.duration_sec:
+                if not auto_trimming and duration is not None and round(duration, 6) != self.duration_sec:
                     message = '{name}: Check start and stop parameter, requested duration exceeds the file length [{file}]'.format(
                         name=self.__class__.__name__,
                         file=self.filename

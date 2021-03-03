@@ -139,6 +139,12 @@ class MetaDataItem(dict):
         if self.filename_original:
             output += ui.data(indent=indent + 2, field='filename_original', value=self.filename_original) + '\n'
 
+        if self.filename_audio:
+            output += ui.data(indent=indent + 2, field='filename_audio', value=self.filename_audio) + '\n'
+
+        if self.filename_video:
+            output += ui.data(indent=indent + 2, field='filename_audio', value=self.filename_video) + '\n'
+
         if self.identifier:
             output += ui.data(indent=indent + 2, field='identifier', value=self.identifier) + '\n'
 
@@ -389,6 +395,53 @@ class MetaDataItem(dict):
 
         if 'filename' in self:
             return self['filename']
+
+        elif 'filename_audio' in self:
+            return self['filename_audio']
+
+        elif 'filename_video' in self:
+            return self['filename_video']
+
+        else:
+            return None
+
+    @property
+    def filename_audio(self):
+        """Audio filename
+
+        Returns
+        -------
+        str or None
+            filename
+
+        """
+
+        if 'filename_audio' in self:
+            return self['filename_audio']
+
+        elif 'filename' in self:
+            return self['filename']
+
+        else:
+            return None
+
+    @property
+    def filename_video(self):
+        """Video filename
+
+        Returns
+        -------
+        str or None
+            filename
+
+        """
+
+        if 'filename_video' in self:
+            return self['filename_video']
+
+        elif 'filename' in self:
+            return self['filename']
+
         else:
             return None
 
@@ -420,6 +473,22 @@ class MetaDataItem(dict):
     def filename_original(self, value):
         # Keep paths in unix format even under Windows
         self['filename_original'] = posix_path(value)
+
+    @filename_audio.setter
+    def filename_audio(self, value):
+        if not os.path.isabs(value):
+            # Force relative file paths into unix format even under Windows
+            value = posix_path(value)
+
+        self['filename_audio'] = value
+
+    @filename_video.setter
+    def filename_video(self, value):
+        if not os.path.isabs(value):
+            # Force relative file paths into unix format even under Windows
+            value = posix_path(value)
+
+        self['filename_video'] = value
 
     @property
     def scene_label(self):

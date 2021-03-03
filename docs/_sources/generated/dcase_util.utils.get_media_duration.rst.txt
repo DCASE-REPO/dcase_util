@@ -1,0 +1,6 @@
+dcase\_util.utils.get\_media\_duration
+======================================
+
+.. currentmodule:: dcase_util.utils
+
+.. autofunction:: get_media_duration

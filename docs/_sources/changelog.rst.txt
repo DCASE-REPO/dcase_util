@@ -3,6 +3,21 @@
 Release notes
 =============
 
+v0.2.17
+-------
+
+**Updates**
+
+* Add TensorFlow keras utilities (tf.keras)
+* Add ``get_media_duration`` and ``merge_media_files`` functions
+* Add ``filename_audio`` and ``filename_video`` properties to ``MetaDataItem`` class
+* Add ``TAUUrbanAudioVisualScenes_2021_DevelopmentSet`` class
+* Update travis tests: Python 2.7 tests are dropped, only Python 3.X tests are used
+
+**Bug fixes**
+
+* Fix base_path removal in ``DatasetPacker``
+
 v0.2.16
 -------
 

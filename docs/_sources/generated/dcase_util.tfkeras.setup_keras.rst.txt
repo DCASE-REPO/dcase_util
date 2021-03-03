@@ -1,0 +1,6 @@
+dcase\_util.tfkeras.setup\_keras
+================================
+
+.. currentmodule:: dcase_util.tfkeras
+
+.. autodata:: setup_keras

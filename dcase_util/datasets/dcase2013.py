@@ -56,7 +56,7 @@ class DCASE2013_Scenes_DevelopmentSet(AcousticSceneDataset):
             'url': 'https://archive.org/details/dcase2013_scene_classification',
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Unknown',
+            'audio_recording_device_model': 'Unknown',
             'microphone_model': 'Soundman OKM II Klassik/studio A3 electret microphone',
         }
         kwargs['crossvalidation_folds'] = 5
@@ -256,7 +256,7 @@ class DCASE2013_Scenes_EvaluationSet(AcousticSceneDataset):
             'url': 'https://archive.org/details/dcase2013_scene_classification_testset',
             'audio_source': 'Field recording',
             'audio_type': 'Natural',
-            'recording_device_model': 'Unknown',
+            'audio_recording_device_model': 'Unknown',
             'microphone_model': 'Soundman OKM II Klassik/studio A3 electret microphone',
         }
         kwargs['crossvalidation_folds'] = 5

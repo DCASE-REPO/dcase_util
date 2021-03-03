@@ -2181,7 +2181,7 @@ class BinaryMatrix2DContainer(DataMatrix2DContainer):
 
             # Features
             ax1 = plt.subplot(2, 1, 1)
-            specshow(
+            img = specshow(
                 binary_matrix,
                 x_axis='time',
                 sr=int(1 / float(self.time_resolution)),
@@ -2199,7 +2199,7 @@ class BinaryMatrix2DContainer(DataMatrix2DContainer):
             # Binary matrix
             ax2 = plt.subplot(2, 1, 2)
 
-            specshow(
+            img = specshow(
                 data_container.data,
                 x_axis='time',
                 sr=int(1 / float(data_container.hop_length_seconds)),
@@ -2211,7 +2211,8 @@ class BinaryMatrix2DContainer(DataMatrix2DContainer):
 
         elif binary_matrix is not None and data_container is None:
             if plot:
-                plt.figure(figsize=figsize)
+                fig = plt.figure(figsize=figsize)
+                ax = plt.gca()
 
             # Binary matrix
             if self.time_resolution:
@@ -2221,7 +2222,7 @@ class BinaryMatrix2DContainer(DataMatrix2DContainer):
                 sr = 1.0
                 x_axis = None
 
-            ax = specshow(
+            img = specshow(
                 binary_matrix,
                 x_axis=x_axis,
                 sr=sr,
@@ -2229,18 +2230,19 @@ class BinaryMatrix2DContainer(DataMatrix2DContainer):
                 cmap=cmap
             )
 
-            if panel_title:
-                ax.yaxis.set_label_position(panel_title_position)
-                plt.ylabel(panel_title, fontsize=20)
+            if plot:
+                if panel_title:
+                    ax.yaxis.set_label_position(panel_title_position)
+                    plt.ylabel(panel_title, fontsize=20)
 
-            if self.time_resolution:
-                plt.xlabel('Time', fontsize=20)
+                if self.time_resolution:
+                    plt.xlabel('Time', fontsize=20)
 
-            if self.label_list:
-                ax.yaxis.set_label_position("right")
-                y_ticks = numpy.arange(0, len(self.label_list)) + 0.5
-                ax.set_yticks(y_ticks)
-                ax.set_yticklabels(self.label_list, fontsize=20)
+                if self.label_list:
+                    ax.yaxis.set_label_position("right")
+                    y_ticks = numpy.arange(0, len(self.label_list)) + 0.5
+                    ax.set_yticks(y_ticks)
+                    ax.set_yticklabels(self.label_list, fontsize=20)
 
         if plot:
             plt.show()

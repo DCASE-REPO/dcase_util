@@ -182,17 +182,22 @@ class DatasetPacker(object):
                     raise IOError(message)
 
                 if 'target' not in item:
-                    item['target'] = item['source'].replace(base_path, '')
+                    if item['source'].startswith(base_path):
+                        item['target'] = item['source'][len(base_path):]
+                    else:
+                        item['target'] = item['source']
 
                 timestamp = os.path.getmtime(item['source'])
                 if newest_source < timestamp:
                     newest_source = timestamp
 
             # Get newest package, take care of split packages
-            all_packages = Path().file_list(path=os.path.split(package_filename)[0], extensions=os.path.splitext(package_filename)[1][1:])
+            all_packages = Path().file_list(path=os.path.split(os.path.abspath(package_filename))[0], extensions=os.path.splitext(package_filename)[1][1:])
+
             newest_package = 0
             for package in all_packages:
-                base_name = os.path.splitext(package)[0]
+                base_name = os.path.splitext(os.path.split(package)[-1])[0]
+
                 if base_name[-1].isdigit():
                     base_name = os.path.splitext(base_name)[0]
 

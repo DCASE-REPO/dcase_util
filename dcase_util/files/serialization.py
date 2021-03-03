@@ -280,7 +280,7 @@ class Serializer(object):
                 cls.logger().exception(message)
                 raise ImportError(message)
 
-        pickle.dump(data, open(filename, 'wb'), protocol=pickle.HIGHEST_PROTOCOL)
+        pickle.dump(data, open(filename, 'wb'), protocol=4)  # Make compatible between 3.6-3.8, otherwise use => pickle.HIGHEST_PROTOCOL
 
     @classmethod
     def save_json(cls, filename, data):

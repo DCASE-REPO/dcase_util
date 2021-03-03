@@ -15,6 +15,8 @@ General functions
     :toctree: generated/
 
     get_audio_info
+    get_media_duration
+    merge_media_files
     get_class_inheritors
     get_byte_string
     check_pkg_resources
