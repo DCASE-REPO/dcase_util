@@ -442,11 +442,11 @@ def data_collector(item_list=None,
                    ):
     from dcase_util.keras import data_collector
 
-    data_collector(item_list=item_list,
-                   data_processing_chain=data_processing_chain,
-                   meta_processing_chain=meta_processing_chain,
-                   target_format=target_format,
-                   channel_dimension=channel_dimension,
-                   verbose=verbose,
-                   print_indent=print_indent
-                   )
+    return data_collector(item_list=item_list,
+                          data_processing_chain=data_processing_chain,
+                          meta_processing_chain=meta_processing_chain,
+                          target_format=target_format,
+                          channel_dimension=channel_dimension,
+                          verbose=verbose,
+                          print_indent=print_indent
+                          )
