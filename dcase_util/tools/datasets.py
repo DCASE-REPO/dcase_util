@@ -182,7 +182,10 @@ class DatasetPacker(object):
                     raise IOError(message)
 
                 if 'target' not in item:
-                    item['target'] = item['source'].replace(base_path, '')
+                    if item['source'].startswith(base_path):
+                        item['target'] = item['source'][len(base_path):]
+                    else:
+                        item['target'] = item['source']
 
                 timestamp = os.path.getmtime(item['source'])
                 if newest_source < timestamp:
