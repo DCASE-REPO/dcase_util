@@ -1,0 +1,6 @@
+dcase\_util.tfkeras.get\_keras\_data\_sequence\_class
+=====================================================
+
+.. currentmodule:: dcase_util.tfkeras
+
+.. autofunction:: get_keras_data_sequence_class

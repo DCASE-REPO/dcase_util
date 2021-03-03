@@ -1,0 +1,6 @@
+dcase\_util.tfkeras.data\_collector
+===================================
+
+.. currentmodule:: dcase_util.tfkeras
+
+.. autofunction:: data_collector

@@ -1,0 +1,6 @@
+dcase\_util.tfkeras.model\_summary\_string
+==========================================
+
+.. currentmodule:: dcase_util.tfkeras
+
+.. autofunction:: model_summary_string

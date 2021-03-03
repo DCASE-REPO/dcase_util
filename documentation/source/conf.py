@@ -110,8 +110,8 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'DCASE Utilities'
-copyright = u'2017, Toni Heittola et al.'
-author = u'Toni Heittola'
+copyright = u'2021, Toni Heittola et al.'
+author = u'Toni Heittola (toni.heittola@gmail.com)'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the

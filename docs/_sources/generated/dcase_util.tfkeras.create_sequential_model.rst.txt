@@ -1,0 +1,6 @@
+dcase\_util.tfkeras.create\_sequential\_model
+=============================================
+
+.. currentmodule:: dcase_util.tfkeras
+
+.. autofunction:: create_sequential_model

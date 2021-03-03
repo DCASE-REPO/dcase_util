@@ -1,0 +1,6 @@
+dcase\_util.tfkeras.create\_optimizer
+=====================================
+
+.. currentmodule:: dcase_util.tfkeras
+
+.. autofunction:: create_optimizer
