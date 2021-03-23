@@ -100,176 +100,176 @@ class TAUUrbanAudioVisualScenes_2021_DevelopmentSet(AudioVisualSceneDataset):
             {
                 'content_type': 'examples',
                 'remote_file': source_url + filename_base + '.examples.zip',
-                'remote_bytes': 128196031,
-                'remote_md5': 'c66777ed4af358f01f0bdb1f83d45483',
+                'remote_bytes': 128196071,
+                'remote_md5': '27aca1ec51f856f59604cf22e93ebf80',
                 'filename': filename_base + '.examples.zip'
             },
             {
                 'content_type': 'audio',
                 'remote_file': source_url + filename_base + '.audio.1.zip',
-                'remote_bytes': 4349199235,
-                'remote_md5': 'b243e03f79923681d4f1dedb45df4272',
+                'remote_bytes': 4349202707,
+                'remote_md5': '186f6273f8f69ed9dbdc18ad65ac234f',
                 'filename': filename_base + '.audio.1.zip'
             },
             {
                 'content_type': 'audio',
                 'remote_file': source_url + filename_base + '.audio.2.zip',
-                'remote_bytes': 4490957254,
-                'remote_md5': 'e5e467951f42438ede718160a5df9916',
+                'remote_bytes': 4490960726,
+                'remote_md5': '7fd6bb63127f5785874a55aba4e77aa5',
                 'filename': filename_base + '.audio.2.zip'
             },
             {
                 'content_type': 'audio',
                 'remote_file': source_url + filename_base + '.audio.3.zip',
-                'remote_bytes': 4223482584,
-                'remote_md5': '9842640afafa2624c77f2d0111cd4fff',
+                'remote_bytes': 4223486056,
+                'remote_md5': '61396bede29d7c8c89729a01a6f6b2e2',
                 'filename': filename_base + '.audio.3.zip'
             },
             {
                 'content_type': 'audio',
                 'remote_file': source_url + filename_base + '.audio.4.zip',
-                'remote_bytes': 4172851021,
-                'remote_md5': 'bfe73124eb887ade43490e6a1e5777a5',
+                'remote_bytes': 4172854493,
+                'remote_md5': '6ddac89717fcf9c92c451868eed77fe1',
                 'filename': filename_base + '.audio.4.zip'
             },
             {
                 'content_type': 'audio',
                 'remote_file': source_url + filename_base + '.audio.5.zip',
-                'remote_bytes': 4185564865,
-                'remote_md5': '22ff45d1e2f908105c9bcf5e741585d5',
+                'remote_bytes': 4185568337,
+                'remote_md5': 'af4820756cdf1a7d4bd6037dc034d384',
                 'filename': filename_base + '.audio.5.zip'
             },
             {
                 'content_type': 'audio',
                 'remote_file': source_url + filename_base + '.audio.6.zip',
-                'remote_bytes': 4215398592,
-                'remote_md5': '220fe666a2223839b4c90151ec5ef84b',
+                'remote_bytes': 4215402064,
+                'remote_md5': 'ebd11ec24411f2a17a64723bd4aa7fff',
                 'filename': filename_base + '.audio.6.zip'
             },
             {
                 'content_type': 'audio',
                 'remote_file': source_url + filename_base + '.audio.7.zip',
-                'remote_bytes': 4407219443,
-                'remote_md5': '3ed6f52ab55961dc119cce7ae086ded7',
+                'remote_bytes': 4407222915,
+                'remote_md5': '2be39a76aeed704d5929d020a2909efd',
                 'filename': filename_base + '.audio.7.zip'
             },
             {
                 'content_type': 'audio',
                 'remote_file': source_url + filename_base + '.audio.8.zip',
-                'remote_bytes': 345864178,
-                'remote_md5': 'f255fef65a756fe783234a04fb925bd3',
+                'remote_bytes': 345864456,
+                'remote_md5': '972d8afe0874720fc2f28086e7cb22a9',
                 'filename': filename_base + '.audio.8.zip'
             },
             {
                 'content_type': 'video',
                 'remote_file': source_url + filename_base + '.video.1.zip',
-                'remote_bytes': 4996888956,
-                'remote_md5': 'f6e85c9aff91d97c18fa03e3e45f904e',
+                'remote_bytes': 4996891312,
+                'remote_md5': 'f89b88f6ff44b109e842bff063612bf1',
                 'filename': filename_base + '.video.1.zip'
             },
             {
                 'content_type': 'video',
                 'remote_file': source_url + filename_base + '.video.2.zip',
-                'remote_bytes': 4997054229,
-                'remote_md5': 'b58d56880cc8d4dfb088d1fca09e07ba',
+                'remote_bytes': 4997056221,
+                'remote_md5': '433053f76ae028f6c4a86094b91af69c',
                 'filename': filename_base + '.video.2.zip'
             },
             {
                 'content_type': 'video',
                 'remote_file': source_url + filename_base + '.video.3.zip',
-                'remote_bytes': 4995962362,
-                'remote_md5': 'fca054b6bbcee6d4884c87960bfae9ef',
+                'remote_bytes': 4995965420,
+                'remote_md5': '974c8e4f3741e065e5c2775f4b9e3ffc',
                 'filename': filename_base + '.video.3.zip'
             },
             {
                 'content_type': 'video',
                 'remote_file': source_url + filename_base + '.video.4.zip',
-                'remote_bytes': 4991031188,
-                'remote_md5': '812ab2ce8c8f8431466755cbe0eec8d9',
+                'remote_bytes': 4991033216,
+                'remote_md5': 'b558fe62fb8fd9b1864d256ead8a24d1',
                 'filename': filename_base + '.video.4.zip'
             },
             {
                 'content_type': 'video',
                 'remote_file': source_url + filename_base + '.video.5.zip',
-                'remote_bytes': 4997080568,
-                'remote_md5': 'de6671f284f15c019254ef5c405c16bf',
+                'remote_bytes': 4997081324,
+                'remote_md5': 'fb3036c31e66be1caddb48834e0ea304',
                 'filename': filename_base + '.video.5.zip'
             },
             {
                 'content_type': 'video',
                 'remote_file': source_url + filename_base + '.video.6.zip',
-                'remote_bytes': 4991169614,
-                'remote_md5': '21c488a70e3ec73df88e5c9a9e27ed3a',
+                'remote_bytes': 4991170406,
+                'remote_md5': '140f331750406eaa16756b5cfdf0a336',
                 'filename': filename_base + '.video.6.zip'
             },
             {
                 'content_type': 'video',
                 'remote_file': source_url + filename_base + '.video.7.zip',
-                'remote_bytes': 4996593184,
-                'remote_md5': 'e4754c1b09fcec28992edee99a4b64ea',
+                'remote_bytes': 4996594150,
+                'remote_md5': 'bac47d3da9bffb89318e662c6af68539',
                 'filename': filename_base + '.video.7.zip'
             },
             {
                 'content_type': 'video',
                 'remote_file': source_url + filename_base + '.video.8.zip',
-                'remote_bytes': 4992533550,
-                'remote_md5': '5fb451f235fc25d15213ed600e33677b',
+                'remote_bytes': 4992534816,
+                'remote_md5': '95c231ee549c6e74ab8b57a27047ff71',
                 'filename': filename_base + '.video.8.zip'
             },
             {
                 'content_type': 'video',
                 'remote_file': source_url + filename_base + '.video.9.zip',
-                'remote_bytes': 4998328257,
-                'remote_md5': '8da4d7cebcac12ee0dbeacb583f5bd1e',
+                'remote_bytes': 4998329385,
+                'remote_md5': '294daf6f7de15adcae3a97a8d176eb3a',
                 'filename': filename_base + '.video.9.zip'
             },
             {
                 'content_type': 'video',
                 'remote_file': source_url + filename_base + '.video.10.zip',
-                'remote_bytes': 4993015177,
-                'remote_md5': '033bfc48c13e956b31080e4b74b00539',
+                'remote_bytes': 4993017199,
+                'remote_md5': 'c6778f4ddbab163394f7cd26011f1452',
                 'filename': filename_base + '.video.10.zip'
             },
             {
                 'content_type': 'video',
                 'remote_file': source_url + filename_base + '.video.11.zip',
-                'remote_bytes': 4993424273,
-                'remote_md5': '142baef2d2e06c004b8736eb93617770',
+                'remote_bytes': 4993425875,
+                'remote_md5': '856ecd8fb1df96adcd2cc6928441bbe6',
                 'filename': filename_base + '.video.11.zip'
             },
             {
                 'content_type': 'video',
                 'remote_file': source_url + filename_base + '.video.12.zip',
-                'remote_bytes': 4994718416,
-                'remote_md5': '1778e71e093b64eb3afbcc3dc402390e',
+                'remote_bytes': 4994719640,
+                'remote_md5': '57b898b19d991fde6df595fda85eb28d',
                 'filename': filename_base + '.video.12.zip'
             },
             {
                 'content_type': 'video',
                 'remote_file': source_url + filename_base + '.video.13.zip',
-                'remote_bytes': 4996974688,
-                'remote_md5': '81d7c7cf9122bddd2bfd503d84675b49',
+                'remote_bytes': 4996976020,
+                'remote_md5': '920562ed29a63abeabfb11b6c0a17a2c',
                 'filename': filename_base + '.video.13.zip'
             },
             {
                 'content_type': 'video',
                 'remote_file': source_url + filename_base + '.video.14.zip',
-                'remote_bytes': 4999887078,
-                'remote_md5': '3bc8586dd05e0ee114bbb858832ac277',
+                'remote_bytes': 4999888160,
+                'remote_md5': '1febab0738a622dea95926e70d2fc7c4',
                 'filename': filename_base + '.video.14.zip'
             },
             {
                 'content_type': 'video',
                 'remote_file': source_url + filename_base + '.video.15.zip',
-                'remote_bytes': 4995884861,
-                'remote_md5': 'b65a84281a5c3a5b008c8e8512c0c66a',
+                'remote_bytes': 4995886583,
+                'remote_md5': 'd6d57cc85f65b1a589a1d628ca936fc9',
                 'filename': filename_base + '.video.15.zip'
             },
             {
                 'content_type': 'video',
                 'remote_file': source_url + filename_base + '.video.16.zip',
-                'remote_bytes': 2286204338,
-                'remote_md5': '9ccb4946f530b53bf3feba2b5efa3b41',
+                'remote_bytes': 2286205594,
+                'remote_md5': '4e1ab47f0d180b818491ef3c3f45ebc6',
                 'filename': filename_base + '.video.16.zip'
             },
         ]
