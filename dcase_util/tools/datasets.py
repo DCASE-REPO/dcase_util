@@ -201,7 +201,7 @@ class DatasetPacker(object):
                 if base_name[-1].isdigit():
                     base_name = os.path.splitext(base_name)[0]
 
-                if base_name == os.path.splitext(package_filename)[0]:
+                if base_name == os.path.splitext(os.path.split(package_filename)[-1])[0]:
                     timestamp = os.path.getmtime(package)
                     if newest_package < timestamp:
                         newest_package = timestamp
@@ -212,8 +212,7 @@ class DatasetPacker(object):
                     new_files = []
                     for item in group['file_list']:
                         if os.path.splitext(item['source'])[-1] == '.md':
-                            if not os.path.exists(os.path.splitext(item['source'])[0] + '.html') or (os.path.exists(os.path.splitext(item['source'])[0] + '.html') and os.path.getmtime(item['source']) > os.path.getmtime(os.path.splitext(item['source'])[0] + '.html')) or overwrite:
-
+                            if not os.path.exists(os.path.splitext(item['source'])[0] + '.html') or ( os.path.exists(os.path.splitext(item['source'])[0] + '.html') and os.path.getmtime(item['source']) > os.path.getmtime(os.path.splitext(item['source'])[0] + '.html') ) or overwrite:
                                 # Convert
                                 self.convert_markdown(
                                     source_filename=item['source'],
