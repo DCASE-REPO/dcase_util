@@ -1297,7 +1297,11 @@ class AudioContainer(ContainerMixin, FileMixin):
             mean_value = numpy.mean(self._data)
             self._data -= mean_value
 
-            max_value = max(abs(self._data)) + headroom
+            if len(self._data.shape) == 2:
+                max_value = max(abs(self._data[self.channel_axis, :])) + headroom
+            else:
+                max_value = max(abs(self._data)) + headroom
+
             self._data /= max_value
 
         return self
