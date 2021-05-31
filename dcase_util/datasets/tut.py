@@ -356,6 +356,7 @@ class TAUUrbanAudioVisualScenes_2021_DevelopmentSet(AudioVisualSceneDataset):
 
         return self
 
+
 class TAUUrbanAudioVisualScenes_2021_EvaluationSet(AudioVisualSceneDataset):
     """TAU Urban Audio-Visual Scenes 2021 Evaluation dataset
 
@@ -612,6 +613,7 @@ class TAUUrbanAudioVisualScenes_2021_EvaluationSet(AudioVisualSceneDataset):
             self.load()
 
         return self
+
 
 class TAUUrbanAcousticScenes_2021_Mobile_EvaluationSet(AcousticSceneDataset):
     """TAU Urban Acoustic Scenes 2021 Mobile Evaluation dataset
