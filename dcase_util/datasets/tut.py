@@ -281,6 +281,10 @@ class TAUUrbanAudioVisualScenes_2021_DevelopmentSet(AudioVisualSceneDataset):
         ]
         super(TAUUrbanAudioVisualScenes_2021_DevelopmentSet, self).__init__(**kwargs)
 
+        self.package_extract_parameters = DictContainer({
+            'omit_first_level': False
+        })
+
     def process_meta_item(self, item, absolute_path=True, **kwargs):
         """Process single meta data item
 
@@ -409,6 +413,7 @@ class TAUUrbanAudioVisualScenes_2021_EvaluationSet(AudioVisualSceneDataset):
             'microphone_model': 'Various',
             'licence': 'free non-commercial'
         }
+        kwargs['reference_data_present'] = False
         kwargs['crossvalidation_folds'] = 1
         kwargs['evaluation_setup_file_extension'] = 'csv'
         kwargs['meta_filename'] = 'meta.csv'
@@ -539,6 +544,10 @@ class TAUUrbanAudioVisualScenes_2021_EvaluationSet(AudioVisualSceneDataset):
         ]
         super(TAUUrbanAudioVisualScenes_2021_EvaluationSet, self).__init__(**kwargs)
 
+        self.package_extract_parameters = DictContainer({
+            'omit_first_level': False
+        })
+
     def process_meta_item(self, item, absolute_path=True, **kwargs):
         """Process single meta data item
 
@@ -575,7 +584,7 @@ class TAUUrbanAudioVisualScenes_2021_EvaluationSet(AudioVisualSceneDataset):
 
         """
 
-        if not self.meta_container.exists():
+        if not self.meta_container.exists() and self.reference_data_present:
             meta_data = collections.OrderedDict()
             for fold in self.folds():
                 # Read train files in
