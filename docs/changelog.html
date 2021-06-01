@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Release notes &mdash; DCASE Utilities 0.2.17 documentation</title>
+  <title>Release notes &mdash; DCASE Utilities 1.0 documentation</title>
   
 
   
@@ -771,7 +771,12 @@
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_LeaderboardSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_LeaderboardSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_EvaluationSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2019_Openset_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.TAUUrbanAcousticScenes_2020_Mobile_DevelopmentSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2020_Mobile_DevelopmentSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.TAUUrbanAcousticScenes_2020_Mobile_EvaluationSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2020_Mobile_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.TAUUrbanAcousticScenes_2020_3Class_DevelopmentSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2020_3Class_DevelopmentSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.TAUUrbanAcousticScenes_2020_3Class_EvaluationSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2020_3Class_EvaluationSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.TAUUrbanAudioVisualScenes_2021_DevelopmentSet.html">dcase_util.datasets.TAUUrbanAudioVisualScenes_2021_DevelopmentSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.TAUUrbanAudioVisualScenes_2021_EvaluationSet.html">dcase_util.datasets.TAUUrbanAudioVisualScenes_2021_EvaluationSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.TAUUrbanAcousticScenes_2021_Mobile_EvaluationSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2021_Mobile_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.DCASE2018_Task5_DevelopmentSet.html">dcase_util.datasets.DCASE2018_Task5_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.DCASE2018_Task5_EvaluationSet.html">dcase_util.datasets.DCASE2018_Task5_EvaluationSet</a></li>
 </ul>
@@ -1525,6 +1530,7 @@
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#v0-2-18">v0.2.18</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#v0-2-17">v0.2.17</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#v0-2-16">v0.2.16</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#v0-2-15">v0.2.15</a></li>
@@ -1617,6 +1623,19 @@
             
   <div class="section" id="release-notes">
 <span id="changelog"></span><h1>Release notes<a class="headerlink" href="#release-notes" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="v0-2-18">
+<h2>v0.2.18<a class="headerlink" href="#v0-2-18" title="Permalink to this headline">¶</a></h2>
+<p><strong>Updates</strong></p>
+<ul class="simple">
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">TAUUrbanAudioVisualScenes_2021_EvaluationSet</span></code> class <code class="docutils literal notranslate"><span class="pre">TAUUrbanAcousticScenes_2021_Mobile_EvaluationSet</span></code></p></li>
+</ul>
+<p><strong>Bug fixes</strong></p>
+<ul class="simple">
+<li><p>Fix <code class="docutils literal notranslate"><span class="pre">normalize</span></code> method in <code class="docutils literal notranslate"><span class="pre">AudioContainer</span></code> to work with multi and single channel audio.</p></li>
+<li><p>Fix <code class="docutils literal notranslate"><span class="pre">pack</span></code> method in <code class="docutils literal notranslate"><span class="pre">DatasetPacker</span></code> correctly identify changed files and trigger package regeneration</p></li>
+<li><p>Fix <code class="docutils literal notranslate"><span class="pre">TAUUrbanAcousticScenes_2021_Mobile_EvaluationSet</span></code> to correctly extract zip-packages</p></li>
+</ul>
+</div>
 <div class="section" id="v0-2-17">
 <h2>v0.2.17<a class="headerlink" href="#v0-2-17" title="Permalink to this headline">¶</a></h2>
 <p><strong>Updates</strong></p>
