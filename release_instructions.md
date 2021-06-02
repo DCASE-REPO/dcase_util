@@ -27,9 +27,5 @@ You can test the release by installing it from test.pypi.org
 Release package    
 
     twine upload dist/dcase_util-0.2.X.tar.gz
-    
-Or    
-    
-    twine upload dist/dcase_util-0.2.X.tar.gz
-    
+
 After the pip release, create release tag in Github. 
