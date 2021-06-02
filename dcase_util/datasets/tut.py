@@ -100,176 +100,176 @@ class TAUUrbanAudioVisualScenes_2021_DevelopmentSet(AudioVisualSceneDataset):
             {
                 'content_type': 'examples',
                 'remote_file': source_url + filename_base + '.examples.zip',
-                'remote_bytes': 128196031,
-                'remote_md5': 'c66777ed4af358f01f0bdb1f83d45483',
+                'remote_bytes': 128196071,
+                'remote_md5': '27aca1ec51f856f59604cf22e93ebf80',
                 'filename': filename_base + '.examples.zip'
             },
             {
                 'content_type': 'audio',
                 'remote_file': source_url + filename_base + '.audio.1.zip',
-                'remote_bytes': 4349199235,
-                'remote_md5': 'b243e03f79923681d4f1dedb45df4272',
+                'remote_bytes': 4349202707,
+                'remote_md5': '186f6273f8f69ed9dbdc18ad65ac234f',
                 'filename': filename_base + '.audio.1.zip'
             },
             {
                 'content_type': 'audio',
                 'remote_file': source_url + filename_base + '.audio.2.zip',
-                'remote_bytes': 4490957254,
-                'remote_md5': 'e5e467951f42438ede718160a5df9916',
+                'remote_bytes': 4490960726,
+                'remote_md5': '7fd6bb63127f5785874a55aba4e77aa5',
                 'filename': filename_base + '.audio.2.zip'
             },
             {
                 'content_type': 'audio',
                 'remote_file': source_url + filename_base + '.audio.3.zip',
-                'remote_bytes': 4223482584,
-                'remote_md5': '9842640afafa2624c77f2d0111cd4fff',
+                'remote_bytes': 4223486056,
+                'remote_md5': '61396bede29d7c8c89729a01a6f6b2e2',
                 'filename': filename_base + '.audio.3.zip'
             },
             {
                 'content_type': 'audio',
                 'remote_file': source_url + filename_base + '.audio.4.zip',
-                'remote_bytes': 4172851021,
-                'remote_md5': 'bfe73124eb887ade43490e6a1e5777a5',
+                'remote_bytes': 4172854493,
+                'remote_md5': '6ddac89717fcf9c92c451868eed77fe1',
                 'filename': filename_base + '.audio.4.zip'
             },
             {
                 'content_type': 'audio',
                 'remote_file': source_url + filename_base + '.audio.5.zip',
-                'remote_bytes': 4185564865,
-                'remote_md5': '22ff45d1e2f908105c9bcf5e741585d5',
+                'remote_bytes': 4185568337,
+                'remote_md5': 'af4820756cdf1a7d4bd6037dc034d384',
                 'filename': filename_base + '.audio.5.zip'
             },
             {
                 'content_type': 'audio',
                 'remote_file': source_url + filename_base + '.audio.6.zip',
-                'remote_bytes': 4215398592,
-                'remote_md5': '220fe666a2223839b4c90151ec5ef84b',
+                'remote_bytes': 4215402064,
+                'remote_md5': 'ebd11ec24411f2a17a64723bd4aa7fff',
                 'filename': filename_base + '.audio.6.zip'
             },
             {
                 'content_type': 'audio',
                 'remote_file': source_url + filename_base + '.audio.7.zip',
-                'remote_bytes': 4407219443,
-                'remote_md5': '3ed6f52ab55961dc119cce7ae086ded7',
+                'remote_bytes': 4407222915,
+                'remote_md5': '2be39a76aeed704d5929d020a2909efd',
                 'filename': filename_base + '.audio.7.zip'
             },
             {
                 'content_type': 'audio',
                 'remote_file': source_url + filename_base + '.audio.8.zip',
-                'remote_bytes': 345864178,
-                'remote_md5': 'f255fef65a756fe783234a04fb925bd3',
+                'remote_bytes': 345864456,
+                'remote_md5': '972d8afe0874720fc2f28086e7cb22a9',
                 'filename': filename_base + '.audio.8.zip'
             },
             {
                 'content_type': 'video',
                 'remote_file': source_url + filename_base + '.video.1.zip',
-                'remote_bytes': 4996888956,
-                'remote_md5': 'f6e85c9aff91d97c18fa03e3e45f904e',
+                'remote_bytes': 4996891312,
+                'remote_md5': 'f89b88f6ff44b109e842bff063612bf1',
                 'filename': filename_base + '.video.1.zip'
             },
             {
                 'content_type': 'video',
                 'remote_file': source_url + filename_base + '.video.2.zip',
-                'remote_bytes': 4997054229,
-                'remote_md5': 'b58d56880cc8d4dfb088d1fca09e07ba',
+                'remote_bytes': 4997056221,
+                'remote_md5': '433053f76ae028f6c4a86094b91af69c',
                 'filename': filename_base + '.video.2.zip'
             },
             {
                 'content_type': 'video',
                 'remote_file': source_url + filename_base + '.video.3.zip',
-                'remote_bytes': 4995962362,
-                'remote_md5': 'fca054b6bbcee6d4884c87960bfae9ef',
+                'remote_bytes': 4995965420,
+                'remote_md5': '974c8e4f3741e065e5c2775f4b9e3ffc',
                 'filename': filename_base + '.video.3.zip'
             },
             {
                 'content_type': 'video',
                 'remote_file': source_url + filename_base + '.video.4.zip',
-                'remote_bytes': 4991031188,
-                'remote_md5': '812ab2ce8c8f8431466755cbe0eec8d9',
+                'remote_bytes': 4991033216,
+                'remote_md5': 'b558fe62fb8fd9b1864d256ead8a24d1',
                 'filename': filename_base + '.video.4.zip'
             },
             {
                 'content_type': 'video',
                 'remote_file': source_url + filename_base + '.video.5.zip',
-                'remote_bytes': 4997080568,
-                'remote_md5': 'de6671f284f15c019254ef5c405c16bf',
+                'remote_bytes': 4997081324,
+                'remote_md5': 'fb3036c31e66be1caddb48834e0ea304',
                 'filename': filename_base + '.video.5.zip'
             },
             {
                 'content_type': 'video',
                 'remote_file': source_url + filename_base + '.video.6.zip',
-                'remote_bytes': 4991169614,
-                'remote_md5': '21c488a70e3ec73df88e5c9a9e27ed3a',
+                'remote_bytes': 4991170406,
+                'remote_md5': '140f331750406eaa16756b5cfdf0a336',
                 'filename': filename_base + '.video.6.zip'
             },
             {
                 'content_type': 'video',
                 'remote_file': source_url + filename_base + '.video.7.zip',
-                'remote_bytes': 4996593184,
-                'remote_md5': 'e4754c1b09fcec28992edee99a4b64ea',
+                'remote_bytes': 4996594150,
+                'remote_md5': 'bac47d3da9bffb89318e662c6af68539',
                 'filename': filename_base + '.video.7.zip'
             },
             {
                 'content_type': 'video',
                 'remote_file': source_url + filename_base + '.video.8.zip',
-                'remote_bytes': 4992533550,
-                'remote_md5': '5fb451f235fc25d15213ed600e33677b',
+                'remote_bytes': 4992534816,
+                'remote_md5': '95c231ee549c6e74ab8b57a27047ff71',
                 'filename': filename_base + '.video.8.zip'
             },
             {
                 'content_type': 'video',
                 'remote_file': source_url + filename_base + '.video.9.zip',
-                'remote_bytes': 4998328257,
-                'remote_md5': '8da4d7cebcac12ee0dbeacb583f5bd1e',
+                'remote_bytes': 4998329385,
+                'remote_md5': '294daf6f7de15adcae3a97a8d176eb3a',
                 'filename': filename_base + '.video.9.zip'
             },
             {
                 'content_type': 'video',
                 'remote_file': source_url + filename_base + '.video.10.zip',
-                'remote_bytes': 4993015177,
-                'remote_md5': '033bfc48c13e956b31080e4b74b00539',
+                'remote_bytes': 4993017199,
+                'remote_md5': 'c6778f4ddbab163394f7cd26011f1452',
                 'filename': filename_base + '.video.10.zip'
             },
             {
                 'content_type': 'video',
                 'remote_file': source_url + filename_base + '.video.11.zip',
-                'remote_bytes': 4993424273,
-                'remote_md5': '142baef2d2e06c004b8736eb93617770',
+                'remote_bytes': 4993425875,
+                'remote_md5': '856ecd8fb1df96adcd2cc6928441bbe6',
                 'filename': filename_base + '.video.11.zip'
             },
             {
                 'content_type': 'video',
                 'remote_file': source_url + filename_base + '.video.12.zip',
-                'remote_bytes': 4994718416,
-                'remote_md5': '1778e71e093b64eb3afbcc3dc402390e',
+                'remote_bytes': 4994719640,
+                'remote_md5': '57b898b19d991fde6df595fda85eb28d',
                 'filename': filename_base + '.video.12.zip'
             },
             {
                 'content_type': 'video',
                 'remote_file': source_url + filename_base + '.video.13.zip',
-                'remote_bytes': 4996974688,
-                'remote_md5': '81d7c7cf9122bddd2bfd503d84675b49',
+                'remote_bytes': 4996976020,
+                'remote_md5': '920562ed29a63abeabfb11b6c0a17a2c',
                 'filename': filename_base + '.video.13.zip'
             },
             {
                 'content_type': 'video',
                 'remote_file': source_url + filename_base + '.video.14.zip',
-                'remote_bytes': 4999887078,
-                'remote_md5': '3bc8586dd05e0ee114bbb858832ac277',
+                'remote_bytes': 4999888160,
+                'remote_md5': '1febab0738a622dea95926e70d2fc7c4',
                 'filename': filename_base + '.video.14.zip'
             },
             {
                 'content_type': 'video',
                 'remote_file': source_url + filename_base + '.video.15.zip',
-                'remote_bytes': 4995884861,
-                'remote_md5': 'b65a84281a5c3a5b008c8e8512c0c66a',
+                'remote_bytes': 4995886583,
+                'remote_md5': 'd6d57cc85f65b1a589a1d628ca936fc9',
                 'filename': filename_base + '.video.15.zip'
             },
             {
                 'content_type': 'video',
                 'remote_file': source_url + filename_base + '.video.16.zip',
-                'remote_bytes': 2286204338,
-                'remote_md5': '9ccb4946f530b53bf3feba2b5efa3b41',
+                'remote_bytes': 2286205594,
+                'remote_md5': '4e1ab47f0d180b818491ef3c3f45ebc6',
                 'filename': filename_base + '.video.16.zip'
             },
         ]
@@ -280,6 +280,10 @@ class TAUUrbanAudioVisualScenes_2021_DevelopmentSet(AudioVisualSceneDataset):
             'video'
         ]
         super(TAUUrbanAudioVisualScenes_2021_DevelopmentSet, self).__init__(**kwargs)
+
+        self.package_extract_parameters = DictContainer({
+            'omit_first_level': False
+        })
 
     def process_meta_item(self, item, absolute_path=True, **kwargs):
         """Process single meta data item
@@ -356,6 +360,542 @@ class TAUUrbanAudioVisualScenes_2021_DevelopmentSet(AudioVisualSceneDataset):
 
         return self
 
+
+class TAUUrbanAudioVisualScenes_2021_EvaluationSet(AudioVisualSceneDataset):
+    """TAU Urban Audio-Visual Scenes 2021 Evaluation dataset
+
+    This dataset is used in DCASE2021 - Task 1, Acoustic scene classification / Subtask B / Evaluation
+
+    """
+
+    def __init__(self,
+                 storage_name='TAU-urban-audio-visual-scenes-2021-evaluation',
+                 data_path=None,
+                 included_content_types=None,
+                 **kwargs):
+        """
+        Constructor
+
+        Parameters
+        ----------
+
+        storage_name : str
+            Name to be used when storing dataset on disk
+            Default value 'TAU-urban-audio-visual-scenes-2021-evaluation'
+
+        data_path : str
+            Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), 'dcase_util_datasets')
+            is used.
+            Default value None
+
+        included_content_types : list of str or str
+            Indicates what content type should be processed. One or multiple from ['all', 'audio', 'video', 'features',
+            'meta', 'code', 'documentation', 'examples']. If None given, ['all'] is used. Parameter can be also
+            comma separated string.
+            Default value None
+
+        """
+
+        kwargs['included_content_types'] = included_content_types
+        kwargs['data_path'] = data_path
+        kwargs['storage_name'] = storage_name
+        kwargs['dataset_group'] = 'scene'
+        kwargs['dataset_meta'] = {
+            'authors': 'Toni Heittola, Annamaria Mesaros, and Tuomas Virtanen',
+            'title': 'TAU Urban Audio-Visual Scenes 2021, evaluation dataset',
+            'url': None,
+            'audio_source': 'Field recording',
+            'audio_type': 'Natural',
+            'video_source': 'Field recording',
+            'video_type': 'Natural',
+            'audio_recording_device_model': 'Zoom F8',
+            'video_recording_device_model': 'GoPro Hero5 Session',
+            'microphone_model': 'Various',
+            'licence': 'free non-commercial'
+        }
+        kwargs['reference_data_present'] = False
+        kwargs['crossvalidation_folds'] = 1
+        kwargs['evaluation_setup_file_extension'] = 'csv'
+        kwargs['meta_filename'] = 'meta.csv'
+
+        filename_base = 'TAU-urban-audio-visual-scenes-2021-evaluation'
+        source_url = 'https://zenodo.org/record/4767103/files/'
+        kwargs['package_list'] = []
+
+        kwargs['package_list'] = [
+            {
+                'content_type': 'documentation',
+                'remote_file': source_url + filename_base + '.doc.zip',
+                'remote_bytes': 6203,
+                'remote_md5': 'd06aadc86e63010ae02d8b7ab8ec5ee8',
+                'filename': filename_base + '.doc.zip'
+            },
+            {
+                'content_type': 'meta',
+                'remote_file': source_url + filename_base + '.meta.zip',
+                'remote_bytes': 347743,
+                'remote_md5': '53b513214059d272ae1441d8fd427f10',
+                'filename': filename_base + '.meta.zip'
+            },
+            {
+                'content_type': 'audio',
+                'remote_file': source_url + filename_base + '.audio.1.zip',
+                'remote_bytes': 4310710828,
+                'remote_md5': '6ea9c6f8e6995716cc2d453caa9e8a78',
+                'filename': filename_base + '.audio.1.zip'
+            },
+            {
+                'content_type': 'audio',
+                'remote_file': source_url + filename_base + '.audio.2.zip',
+                'remote_bytes': 4312972013,
+                'remote_md5': 'd68fe751f772da8f1d43b47a452e1df6',
+                'filename': filename_base + '.audio.2.zip'
+            },
+            {
+                'content_type': 'audio',
+                'remote_file': source_url + filename_base + '.audio.3.zip',
+                'remote_bytes': 4312718628,
+                'remote_md5': '9c22dfb7453412990786efac3820af31',
+                'filename': filename_base + '.audio.3.zip'
+            },
+            {
+                'content_type': 'audio',
+                'remote_file': source_url + filename_base + '.audio.4.zip',
+                'remote_bytes': 4310825192,
+                'remote_md5': '6fc7339060dce0a6cd922199a0024bb0',
+                'filename': filename_base + '.audio.4.zip'
+            },
+            {
+                'content_type': 'audio',
+                'remote_file': source_url + filename_base + '.audio.5.zip',
+                'remote_bytes': 637362159,
+                'remote_md5': '69af0bf61d0001e9a17d162b89cde99b',
+                'filename': filename_base + '.audio.5.zip'
+            },
+            {
+                'content_type': 'video',
+                'remote_file': source_url + filename_base + '.video.1.zip',
+                'remote_bytes': 4997118112,
+                'remote_md5': '01c5401aaba7a3d8fcf9f648ba970fde',
+                'filename': filename_base + '.video.1.zip'
+            },
+            {
+                'content_type': 'video',
+                'remote_file': source_url + filename_base + '.video.2.zip',
+                'remote_bytes': 4996463273,
+                'remote_md5': '853a3d22a90d654865e35de46028b819',
+                'filename': filename_base + '.video.2.zip'
+            },
+            {
+                'content_type': 'video',
+                'remote_file': source_url + filename_base + '.video.3.zip',
+                'remote_bytes': 4996976890,
+                'remote_md5': '5d50efe515eb25b5aae82b472a6bfac6',
+                'filename': filename_base + '.video.3.zip'
+            },
+            {
+                'content_type': 'video',
+                'remote_file': source_url + filename_base + '.video.4.zip',
+                'remote_bytes': 4997033752,
+                'remote_md5': '94b4668fc3a312f7d14c1d3a0d4f2d38',
+                'filename': filename_base + '.video.4.zip'
+            },
+            {
+                'content_type': 'video',
+                'remote_file': source_url + filename_base + '.video.5.zip',
+                'remote_bytes': 4996682290,
+                'remote_md5': '27fe375618804b85fe255a4ff4c19686',
+                'filename': filename_base + '.video.5.zip'
+            },
+            {
+                'content_type': 'video',
+                'remote_file': source_url + filename_base + '.video.6.zip',
+                'remote_bytes': 4996976391,
+                'remote_md5': 'decc607fe2065e05ed7b975c26fde9f7',
+                'filename': filename_base + '.video.6.zip'
+            },
+            {
+                'content_type': 'video',
+                'remote_file': source_url + filename_base + '.video.7.zip',
+                'remote_bytes': 4996874274,
+                'remote_md5': 'ea6ccdb3ea67fd63490010711a7846a2',
+                'filename': filename_base + '.video.7.zip'
+            },
+            {
+                'content_type': 'video',
+                'remote_file': source_url + filename_base + '.video.8.zip',
+                'remote_bytes': 4996186525,
+                'remote_md5': '1aadb88d44977bdcf1f8ab114e2efb57',
+                'filename': filename_base + '.video.8.zip'
+            },
+            {
+                'content_type': 'video',
+                'remote_file': source_url + filename_base + '.video.9.zip',
+                'remote_bytes': 3389954201,
+                'remote_md5': 'fe5b131914528d8d3809e4449680d0d6',
+                'filename': filename_base + '.video.9.zip'
+            },
+        ]
+        kwargs['audio_paths'] = [
+            'audio'
+        ]
+        kwargs['video_paths'] = [
+            'video'
+        ]
+        super(TAUUrbanAudioVisualScenes_2021_EvaluationSet, self).__init__(**kwargs)
+
+        self.package_extract_parameters = DictContainer({
+            'omit_first_level': False
+        })
+
+    def process_meta_item(self, item, absolute_path=True, **kwargs):
+        """Process single meta data item
+
+        Parameters
+        ----------
+        item :  MetaDataItem
+            Meta data item
+
+        absolute_path : bool
+            Convert file paths to be absolute
+            Default value True
+
+        """
+
+        if absolute_path:
+            item.filename = self.relative_to_absolute_path(item.filename)
+            item.filename_audio = self.relative_to_absolute_path(item.filename_audio)
+            item.filename_video = self.relative_to_absolute_path(item.filename_video)
+
+        else:
+            item.filename = self.absolute_to_relative_path(item.filename)
+            item.filename_audio = self.absolute_to_relative_path(item.filename_audio)
+            item.filename_video = self.absolute_to_relative_path(item.filename_video)
+
+        if not item.identifier:
+            item.identifier = '-'.join(os.path.splitext(os.path.split(item.filename)[-1])[0].split('-')[1:-2])
+
+    def prepare(self):
+        """Prepare dataset for the usage.
+
+        Returns
+        -------
+        self
+
+        """
+
+        if not self.meta_container.exists() and self.reference_data_present:
+            meta_data = collections.OrderedDict()
+            for fold in self.folds():
+                # Read train files in
+                fold_data = MetaDataContainer(
+                    filename=self.evaluation_setup_filename(
+                        setup_part='train',
+                        fold=fold
+                    )
+                ).load()
+
+                # Read eval files in
+                fold_data += MetaDataContainer(
+                    filename=self.evaluation_setup_filename(
+                        setup_part='evaluate',
+                        fold=fold
+                    )
+                ).load()
+
+                # Process, make sure each file is included only once.
+                for item in fold_data:
+                    if item.filename not in meta_data:
+                        self.process_meta_item(
+                            item=item,
+                            absolute_path=False
+                        )
+
+                        meta_data[item.filename] = item
+
+            # Save meta
+            MetaDataContainer(list(meta_data.values())).save(
+                filename=self.meta_file
+            )
+
+            # Load meta and cross validation
+            self.load()
+
+        return self
+
+
+class TAUUrbanAcousticScenes_2021_Mobile_EvaluationSet(AcousticSceneDataset):
+    """TAU Urban Acoustic Scenes 2021 Mobile Evaluation dataset
+
+    This dataset is used in DCASE2021 - Task 1, Acoustic scene classification / Subtask A / Evaluation
+
+    """
+
+    def __init__(self,
+                 storage_name='TAU-urban-acoustic-scenes-2021-mobile-evaluation',
+                 data_path=None,
+                 included_content_types=None,
+                 **kwargs):
+        """
+        Constructor
+
+        Parameters
+        ----------
+
+        storage_name : str
+            Name to be used when storing dataset on disk
+            Default value 'TAU-urban-acoustic-scenes-2021-mobile-evaluation'
+
+        data_path : str
+            Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), 'dcase_util_datasets')
+            is used.
+            Default value None
+
+        included_content_types : list of str or str
+            Indicates what content type should be processed. One or multiple from ['all', 'audio', 'meta', 'code',
+            'documentation']. If None given, ['all'] is used. Parameter can be also comma separated string.
+            Default value None
+
+        """
+
+        kwargs['included_content_types'] = included_content_types
+        kwargs['data_path'] = data_path
+        kwargs['storage_name'] = storage_name
+        kwargs['dataset_group'] = 'scene'
+        kwargs['dataset_meta'] = {
+            'authors': 'Toni Heittola, Annamaria Mesaros, and Tuomas Virtanen',
+            'title': 'TAU Urban Acoustic Scenes 2021 Mobile, evaluation dataset',
+            'url': None,
+            'audio_source': 'Field recording',
+            'audio_type': 'Natural/Synthetic',
+            'audio_recording_device_model': 'Zoom F8',
+            'microphone_model': 'Soundman OKM II Klassik/studio A3 electret microphone',
+            'licence': 'free non-commercial'
+        }
+        kwargs['reference_data_present'] = False
+        kwargs['crossvalidation_folds'] = 1
+        kwargs['evaluation_setup_file_extension'] = 'csv'
+        kwargs['meta_filename'] ='meta.csv'
+        kwargs['check_meta'] = False
+
+        filename_base = 'TAU-urban-acoustic-scenes-2021-mobile-evaluation'
+        source_url = 'https://zenodo.org/record/4767109/files/'
+
+        kwargs['package_list'] = [
+            {
+                'content_type': 'documentation',
+                'remote_file': source_url + filename_base + '.doc.zip',
+                'remote_bytes': 8027,
+                'remote_md5': '7dd256cce7c35e21cec698920d4cf36e',
+                'filename': filename_base + '.doc.zip'
+            },
+            {
+                'content_type': 'meta',
+                'remote_file': source_url + filename_base + '.meta.zip',
+                'remote_bytes': 19406,
+                'remote_md5': 'be3554af014e9dcdb478c4f7222dd69d',
+                'filename': filename_base + '.meta.zip'
+            },
+            {
+                'content_type': 'audio',
+                'remote_file': source_url + filename_base + '.audio.1.zip',
+                'remote_bytes': 1665087697,
+                'remote_md5': '7d05e0e2f5c3a58953730c1afc5a42ef',
+                'filename': filename_base + '.audio.1.zip'
+            },
+            {
+                'content_type': 'audio',
+                'remote_file': source_url + filename_base + '.audio.2.zip',
+                'remote_bytes': 1680965749,
+                'remote_md5': 'adf02e847fe1e18c4759d1801b96b9a9',
+                'filename': filename_base + '.audio.2.zip'
+            },
+            {
+                'content_type': 'audio',
+                'remote_file': source_url + filename_base + '.audio.3.zip',
+                'remote_bytes': 1674040348,
+                'remote_md5': 'a8d8b85816281d447881ff4caef1e2f0',
+                'filename': filename_base + '.audio.3.zip'
+            },
+            {
+                'content_type': 'audio',
+                'remote_file': source_url + filename_base + '.audio.4.zip',
+                'remote_bytes': 1672276680,
+                'remote_md5': 'daca8e2845c243612e893beff4636ae6',
+                'filename': filename_base + '.audio.4.zip'
+            },
+            {
+                'content_type': 'audio',
+                'remote_file': source_url + filename_base + '.audio.5.zip',
+                'remote_bytes': 1678313663,
+                'remote_md5': '5935f186840b6036c182c894f3b02f0a',
+                'filename': filename_base + '.audio.5.zip'
+            },
+            {
+                'content_type': 'audio',
+                'remote_file': source_url + filename_base + '.audio.6.zip',
+                'remote_bytes': 399169995,
+                'remote_md5': '81dd7c8ffa561369fc86c4c90de2c60a',
+                'filename': filename_base + '.audio.6.zip'
+            }
+        ]
+
+        kwargs['audio_paths'] = [
+            'audio'
+        ]
+        super(TAUUrbanAcousticScenes_2021_Mobile_EvaluationSet, self).__init__(**kwargs)
+
+    def process_meta_item(self, item, absolute_path=True, **kwargs):
+        """Process single meta data item
+
+        Parameters
+        ----------
+        item :  MetaDataItem
+            Meta data item
+
+        absolute_path : bool
+            Convert file paths to be absolute
+            Default value True
+
+        """
+
+        if absolute_path:
+            item.filename = self.relative_to_absolute_path(item.filename)
+
+        else:
+            item.filename = self.absolute_to_relative_path(item.filename)
+
+    def prepare(self):
+        """Prepare dataset for the usage.
+
+        Returns
+        -------
+        self
+
+        """
+
+        if not self.meta_container.exists() and self.reference_data_present:
+            meta_data = collections.OrderedDict()
+            for fold in self.folds():
+                # Read train files in
+                fold_data = MetaDataContainer(
+                    filename=self.evaluation_setup_filename(
+                        setup_part='train',
+                        fold=fold
+                    )
+                ).load()
+
+                # Read eval files in
+                fold_data += MetaDataContainer(
+                    filename=self.evaluation_setup_filename(
+                        setup_part='evaluate',
+                        fold=fold
+                    )
+                ).load()
+
+                # Process, make sure each file is included only once.
+                for item in fold_data:
+                    if item.filename not in meta_data:
+                        self.process_meta_item(
+                            item=item,
+                            absolute_path=False
+                        )
+
+                        meta_data[item.filename] = item
+
+            # Save meta
+            MetaDataContainer(list(meta_data.values())).save(
+                filename=self.meta_file
+            )
+
+            # Load meta and cross validation
+            self.load()
+
+        return self
+
+    def load_crossvalidation_data(self):
+        """Load cross-validation into the container.
+
+        Returns
+        -------
+        self
+
+        """
+
+        # Reset cross validation data and insert 'all_data'
+        if self.meta_container:
+            # Meta data is available
+            self.crossvalidation_data = DictContainer({
+                'train': {
+                    'all_data': self.meta_container
+                },
+                'test': {
+                    'all_data': self.meta_container
+                },
+                'evaluate': {
+                    'all_data': self.meta_container
+                },
+            })
+
+        else:
+            # No meta data available, load data from evaluation setup files (if they exists).
+            self.crossvalidation_data = DictContainer({
+                'train': {
+                    'all_data': MetaDataContainer()
+                },
+                'test': {
+                    'all_data': MetaDataContainer()
+                },
+                'evaluate': {
+                    'all_data': MetaDataContainer()
+                },
+            })
+
+            test_filename = self.evaluation_setup_filename(setup_part='test', fold=1)
+            evaluate_filename = self.evaluation_setup_filename(setup_part='evaluate', fold=1)
+
+            if os.path.isfile(test_filename):
+                # Testing data exists, load and process it
+                self.crossvalidation_data['test']['all_data'] = MetaDataContainer(filename=test_filename).load()
+
+                # Process items
+                for item in self.crossvalidation_data['test']['all_data']:
+                    self.process_meta_item(item=item)
+
+            if os.path.isfile(evaluate_filename):
+                # Evaluation data exists, load and process it
+                self.crossvalidation_data['evaluate']['all_data'] = MetaDataContainer(filename=evaluate_filename).load()
+
+                # Process items
+                for item in self.crossvalidation_data['evaluate']['all_data']:
+                    self.process_meta_item(item=item)
+
+        for crossvalidation_set in list(self.crossvalidation_data.keys()):
+            for item in self.crossvalidation_data[crossvalidation_set]['all_data']:
+                self.process_meta_item(item=item)
+
+        return self
+
+    def scene_labels(self):
+        """List of unique scene labels in the meta data.
+
+        Returns
+        -------
+        list
+            List of scene labels in alphabetical order.
+
+        """
+
+        return ['airport',
+                'bus',
+                'metro',
+                'metro_station',
+                'park',
+                'public_square',
+                'shopping_mall',
+                'street_pedestrian',
+                'street_traffic',
+                'tram']
 
 # =====================================================
 # DCASE 2020
@@ -900,7 +1440,16 @@ class TAUUrbanAcousticScenes_2020_Mobile_EvaluationSet(AcousticSceneDataset):
 
         """
 
-        return ['airport', 'bus', 'metro', 'metro_station', 'park', 'public_square', 'shopping_mall', 'street_pedestrian', 'street_traffic', 'tram']
+        return ['airport',
+                'bus',
+                'metro',
+                'metro_station',
+                'park',
+                'public_square',
+                'shopping_mall',
+                'street_pedestrian',
+                'street_traffic',
+                'tram']
 
 
 class TAUUrbanAcousticScenes_2020_3Class_DevelopmentSet(AcousticSceneDataset):

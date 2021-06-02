@@ -1,0 +1,76 @@
+dcase\_util.datasets.TAUUrbanAudioVisualScenes\_2021\_DevelopmentSet
+====================================================================
+
+.. currentmodule:: dcase_util.datasets
+
+.. autoclass:: TAUUrbanAudioVisualScenes_2021_DevelopmentSet
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~TAUUrbanAudioVisualScenes_2021_DevelopmentSet.__init__
+      ~TAUUrbanAudioVisualScenes_2021_DevelopmentSet.absolute_to_relative_path
+      ~TAUUrbanAudioVisualScenes_2021_DevelopmentSet.check_filelist
+      ~TAUUrbanAudioVisualScenes_2021_DevelopmentSet.check_metadata
+      ~TAUUrbanAudioVisualScenes_2021_DevelopmentSet.dataset_bytes
+      ~TAUUrbanAudioVisualScenes_2021_DevelopmentSet.dataset_size_on_disk
+      ~TAUUrbanAudioVisualScenes_2021_DevelopmentSet.dataset_size_string
+      ~TAUUrbanAudioVisualScenes_2021_DevelopmentSet.debug_packages
+      ~TAUUrbanAudioVisualScenes_2021_DevelopmentSet.download_packages
+      ~TAUUrbanAudioVisualScenes_2021_DevelopmentSet.eval
+      ~TAUUrbanAudioVisualScenes_2021_DevelopmentSet.eval_files
+      ~TAUUrbanAudioVisualScenes_2021_DevelopmentSet.evaluation_setup_filename
+      ~TAUUrbanAudioVisualScenes_2021_DevelopmentSet.event_label_count
+      ~TAUUrbanAudioVisualScenes_2021_DevelopmentSet.event_labels
+      ~TAUUrbanAudioVisualScenes_2021_DevelopmentSet.extract_packages
+      ~TAUUrbanAudioVisualScenes_2021_DevelopmentSet.file_error_meta
+      ~TAUUrbanAudioVisualScenes_2021_DevelopmentSet.file_features
+      ~TAUUrbanAudioVisualScenes_2021_DevelopmentSet.file_meta
+      ~TAUUrbanAudioVisualScenes_2021_DevelopmentSet.folds
+      ~TAUUrbanAudioVisualScenes_2021_DevelopmentSet.initialize
+      ~TAUUrbanAudioVisualScenes_2021_DevelopmentSet.load
+      ~TAUUrbanAudioVisualScenes_2021_DevelopmentSet.load_crossvalidation_data
+      ~TAUUrbanAudioVisualScenes_2021_DevelopmentSet.load_meta
+      ~TAUUrbanAudioVisualScenes_2021_DevelopmentSet.log
+      ~TAUUrbanAudioVisualScenes_2021_DevelopmentSet.prepare
+      ~TAUUrbanAudioVisualScenes_2021_DevelopmentSet.process_meta_item
+      ~TAUUrbanAudioVisualScenes_2021_DevelopmentSet.relative_to_absolute_path
+      ~TAUUrbanAudioVisualScenes_2021_DevelopmentSet.scene_label_count
+      ~TAUUrbanAudioVisualScenes_2021_DevelopmentSet.scene_labels
+      ~TAUUrbanAudioVisualScenes_2021_DevelopmentSet.show
+      ~TAUUrbanAudioVisualScenes_2021_DevelopmentSet.tag_count
+      ~TAUUrbanAudioVisualScenes_2021_DevelopmentSet.tags
+      ~TAUUrbanAudioVisualScenes_2021_DevelopmentSet.test
+      ~TAUUrbanAudioVisualScenes_2021_DevelopmentSet.test_files
+      ~TAUUrbanAudioVisualScenes_2021_DevelopmentSet.train
+      ~TAUUrbanAudioVisualScenes_2021_DevelopmentSet.train_files
+      ~TAUUrbanAudioVisualScenes_2021_DevelopmentSet.validation_files_balanced
+      ~TAUUrbanAudioVisualScenes_2021_DevelopmentSet.validation_files_dataset
+      ~TAUUrbanAudioVisualScenes_2021_DevelopmentSet.validation_files_random
+      ~TAUUrbanAudioVisualScenes_2021_DevelopmentSet.validation_split
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~TAUUrbanAudioVisualScenes_2021_DevelopmentSet.audio_file_count
+      ~TAUUrbanAudioVisualScenes_2021_DevelopmentSet.audio_files
+      ~TAUUrbanAudioVisualScenes_2021_DevelopmentSet.error_meta
+      ~TAUUrbanAudioVisualScenes_2021_DevelopmentSet.error_meta_count
+      ~TAUUrbanAudioVisualScenes_2021_DevelopmentSet.fold_count
+      ~TAUUrbanAudioVisualScenes_2021_DevelopmentSet.logger
+      ~TAUUrbanAudioVisualScenes_2021_DevelopmentSet.meta
+      ~TAUUrbanAudioVisualScenes_2021_DevelopmentSet.meta_count
+      ~TAUUrbanAudioVisualScenes_2021_DevelopmentSet.video_file_count
+      ~TAUUrbanAudioVisualScenes_2021_DevelopmentSet.video_files
+   
+   

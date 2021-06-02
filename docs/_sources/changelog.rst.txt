@@ -3,6 +3,19 @@
 Release notes
 =============
 
+v0.2.18
+-------
+
+**Updates**
+
+* Add ``TAUUrbanAudioVisualScenes_2021_EvaluationSet`` class ``TAUUrbanAcousticScenes_2021_Mobile_EvaluationSet``
+
+**Bug fixes**
+
+* Fix ``normalize`` method in ``AudioContainer`` to work with multi and single channel audio.
+* Fix ``pack`` method in ``DatasetPacker`` correctly identify changed files and trigger package regeneration
+* Fix ``TAUUrbanAcousticScenes_2021_Mobile_EvaluationSet`` to correctly extract zip-packages
+
 v0.2.17
 -------
 
