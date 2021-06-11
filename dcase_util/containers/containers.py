@@ -509,7 +509,8 @@ class DictContainer(dict, ContainerMixin, FileMixin):
 
             if self.format == FileFormat.YAML or self.format == FileFormat.META:
                 data = Serializer.load_yaml(filename=self.filename)
-                dict.update(self, data)
+                if data:
+                    dict.update(self, data)
 
             elif self.format == FileFormat.CPICKLE:
                 dict.update(self, Serializer.load_cpickle(filename=self.filename))
