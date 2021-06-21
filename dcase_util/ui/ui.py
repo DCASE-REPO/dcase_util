@@ -241,14 +241,26 @@ class FancyStringifier(object):
         elif data_type == 'float1_percentage+ci' and isinstance(value, tuple):
             value = '{:3.1f}% (+/-{:3.1f})'.format(float(value[0]), float(value[1]))
 
+        elif data_type == 'float1_percentage+ci' and is_float(value):
+            value = '{:3.1f}% (+/-)'.format(float(value))
+
         elif data_type == 'float2_percentage+ci' and isinstance(value, tuple):
             value = '{:3.2f}% (+/-{:3.2f})'.format(float(value[0]), float(value[1]))
+
+        elif data_type == 'float2_percentage+ci' and is_float(value):
+            value = '{:3.2f}% (+/-)'.format(float(value))
 
         elif data_type == 'float3_percentage+ci' and isinstance(value, tuple):
             value = '{:3.3f}% (+/-{:3.3f})'.format(float(value[0]), float(value[1]))
 
+        elif data_type == 'float3_percentage+ci' and is_float(value):
+            value = '{:3.3f}% (+/-)'.format(float(value))
+
         elif data_type == 'float4_percentage+ci' and isinstance(value, tuple):
             value = '{:3.4f}% (+/-{:3.4f})'.format(float(value[0]), float(value[1]))
+
+        elif data_type == 'float4_percentage+ci' and is_float(value):
+            value = '{:3.4f}% (+/-)'.format(float(value))
 
         # Float + confidence interval
         elif data_type == 'float1+ci' and isinstance(value, tuple):
@@ -672,7 +684,6 @@ class FancyStringifier(object):
                     self.row_column_numerical_value_count[column_id] += 1
                     self.row_column_numerical_value_sum[column_id] += column_data
 
-
             column_data = self.formatted_value(column_data, data_type=data_type)
 
             if isinstance(column_data, int):
@@ -695,7 +706,6 @@ class FancyStringifier(object):
 
             else:
                 line_string += ' '
-
 
         return ' ' * self.row_indent + line_string
 
