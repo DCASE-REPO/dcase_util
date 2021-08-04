@@ -66,9 +66,11 @@ class MetaDataItem(dict):
 
         # Event label assigned to the meta data item
         if 'event_label' in self:
-            self['event_label'] = self['event_label'].strip()
-            if self['event_label'].lower() == 'none' or self['event_label'] == '':
-                self['event_label'] = None
+            if type(self['event_label']) == str:
+                self['event_label'] = self['event_label'].strip()
+
+                if self['event_label'].lower() == 'none' or self['event_label'] == '':
+                    self['event_label'] = None
 
         # Acoustic scene label assigned to the meta data item
         if 'scene_label' in self and self.scene_label:
