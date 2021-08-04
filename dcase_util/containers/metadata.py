@@ -10,6 +10,7 @@ import numpy
 import csv
 import logging
 import io
+from past.builtins import basestring
 from dcase_util.containers import ListDictContainer
 from dcase_util.utils import posix_path, get_parameter_hash, FieldValidator, \
     setup_logging, is_float, is_int, is_jupyter, FileFormat
@@ -66,7 +67,7 @@ class MetaDataItem(dict):
 
         # Event label assigned to the meta data item
         if 'event_label' in self:
-            if type(self['event_label']) == str:
+            if isinstance(self['event_label'], basestring):
                 self['event_label'] = self['event_label'].strip()
 
                 if self['event_label'].lower() == 'none' or self['event_label'] == '':
