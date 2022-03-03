@@ -6,7 +6,8 @@ from six import iteritems
 import copy
 from dcase_util.containers import FeatureContainer, FeatureRepository
 from dcase_util.features import MelExtractor, MfccStaticExtractor, MfccDeltaExtractor, \
-    MfccAccelerationExtractor, ZeroCrossingRateExtractor, RMSEnergyExtractor, SpectralCentroidExtractor, OpenL3Extractor, EdgeL3Extractor
+    MfccAccelerationExtractor, ZeroCrossingRateExtractor, RMSEnergyExtractor, SpectralCentroidExtractor, \
+    OpenL3Extractor, TorchOpenL3Extractor, EdgeL3Extractor
 from dcase_util.processors import Processor, ProcessingChainItemType, ProcessingChain
 from dcase_util.utils import get_class_inheritors
 
@@ -1123,6 +1124,84 @@ class OpenL3ExtractorProcessor(FeatureExtractorProcessor, OpenL3Extractor):
 
         # Run super init to call init of mixins too
         super(OpenL3ExtractorProcessor, self).__init__(**kwargs)
+
+
+class TorchOpenL3ExtractorProcessor(FeatureExtractorProcessor, TorchOpenL3Extractor):
+    def __init__(self,
+                 fs=44100,
+                 hop_length_samples=None, hop_length_seconds=0.02,
+                 model=None, input_repr='mel256', content_type="music",
+                 embedding_size=6144,
+                 center=True, batch_size=32, verbose=False,
+                 **kwargs):
+        """Constructor
+
+        Parameters
+        ----------
+        fs : int
+            Sampling rate of the incoming signal.
+
+        hop_length_samples : int
+            Hop length in samples.
+            Default value None
+
+        hop_length_seconds : float
+            Hop length in seconds.
+            Default value 0.02
+
+        model : keras.models.Model or None
+            Loaded model object. If a model is provided, then `input_repr`, `content_type`, and `embedding_size` will be ignored. If None is provided, the model will be loaded using the provided values of `input_repr`, `content_type` and `embedding_size`.
+            Default value None
+
+        input_repr : "linear", "mel128", or "mel256"
+            Spectrogram representation used for model. Ignored if `model` is
+            a valid Keras model.
+            Default value "mel256"
+
+        content_type : "music" or "env"
+            Type of content used to train the embedding model. Ignored if `model` is
+            a valid Keras model.
+            Default value "music"
+
+        embedding_size : 6144 or 512
+            Embedding dimensionality. Ignored if `model` is a valid Keras model.
+            Default value 6144
+
+        center : bool
+            If True, pads beginning of signal so timestamps correspond to center of window.
+            Default value True
+
+        batch_size : int
+            Batch size used for input to embedding model
+            Default value 32
+
+        verbose : bool
+            If True, prints verbose messages.
+            Default value False
+
+        """
+
+        kwargs.update({
+            'fs': fs,
+            'hop_length_samples': hop_length_samples,
+            'hop_length_seconds': hop_length_seconds,
+            'model': model,
+            'input_repr': input_repr,
+            'content_type': content_type,
+            'embedding_size': embedding_size,
+            'center': center,
+            'batch_size': batch_size,
+            'verbose': verbose,
+        })
+
+        # Run FeatureExtractorProcessor init
+        FeatureExtractorProcessor.__init__(self, **kwargs)
+
+        # Run SpectralCentroidExtractor init
+        TorchOpenL3Extractor.__init__(self, **kwargs)
+
+        # Run super init to call init of mixins too
+        super(TorchOpenL3ExtractorProcessor, self).__init__(**kwargs)
 
 
 class EdgeL3ExtractorProcessor(FeatureExtractorProcessor, EdgeL3Extractor):

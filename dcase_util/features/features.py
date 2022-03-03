@@ -1739,7 +1739,7 @@ class OpenL3Extractor(EmbeddingExtractor):
     description = 'OpenL3 (embedding)'  #: Extractor description
 
     def __init__(self, fs=48000, hop_length_samples=None, hop_length_seconds=0.02,
-                 model=None, input_repr='mel256', content_type="music",
+                 model=None, input_repr='mel256', content_type='music',
                  embedding_size=6144,
                  center=True, batch_size=32, verbose=False,
                  **kwargs):
@@ -1938,6 +1938,256 @@ class OpenL3Extractor(EmbeddingExtractor):
             center=self.center,
             hop_size=self.hop_length_seconds,
             batch_size=self.batch_size,
+            verbose=self.verbose
+        )
+        return embedding.T
+
+
+class TorchOpenL3Extractor(EmbeddingExtractor):
+    """TorchOpenL3 Embedding extractor class"""
+    label = 'torchopenl3'  #: Extractor label
+    description = 'TorchOpenL3 (embedding)'  #: Extractor description
+
+    def __init__(self, fs=48000, hop_length_samples=None, hop_length_seconds=0.02,
+                 model=None, input_repr='mel256', content_type="music",
+                 embedding_size=6144,
+                 center=True, batch_size=32, sampler="resampy",
+                 verbose=False,
+                 **kwargs):
+        """Constructor
+
+        Parameters
+        ----------
+        fs : int
+            Sampling rate of the incoming signal. If not 48kHz audio will be resampled.
+            Default value 48000
+
+        hop_length_samples : int
+            Hop length in samples.
+            Default value None
+
+        hop_length_seconds : float
+            Hop length in seconds.
+            Default value 0.02
+
+        model : keras.models.Model or None
+            Loaded model object. If a model is provided, then `input_repr`, `content_type`, and `embedding_size` will be ignored. If None is provided, the model will be loaded using the provided values of `input_repr`, `content_type` and `embedding_size`.
+            Default value None
+
+        input_repr : "linear", "mel128", or "mel256"
+            Spectrogram representation used for model. Ignored if `model` is
+            a valid Keras model.
+            Default value "mel256"
+
+        content_type : "music" or "env"
+            Type of content used to train the embedding model. Ignored if `model` is
+            a valid Keras model.
+            Default value "music"
+
+        embedding_size : 6144 or 512
+            Embedding dimensionality. Ignored if `model` is a valid Keras model.
+            Default value 6144
+
+        center : bool
+            If True, pads beginning of signal so timestamps correspond to center of window.
+            Default value True
+
+        batch_size : int
+            Batch size used for input to embedding model
+            Default value 32
+
+        sampler : str
+            Resampling library to be used. Possible values are "resampy" or "julian"
+            Default value "resampy"
+
+        verbose : bool
+            If True, prints verbose messages.
+            Default value False
+
+        """
+        # Inject parameters for the parent classes back to kwargs. For the convenience they are expose explicitly here.
+        kwargs.update({
+            'fs': fs,
+            'win_length_samples': fs,
+            'hop_length_samples': hop_length_samples,
+            'win_length_seconds': 1.0,
+            'hop_length_seconds': hop_length_seconds,
+        })
+
+        # Run EmbeddingExtractor init
+        EmbeddingExtractor.__init__(self, **kwargs)
+
+        super(TorchOpenL3Extractor, self).__init__(**kwargs)
+
+        self.model = model
+        self.input_repr = input_repr
+        self.content_type = content_type
+        self.embedding_size = embedding_size
+        self.center = center
+        self.batch_size = batch_size
+        self.sampler = sampler
+        self.verbose = verbose
+
+        try:
+            import torchopenl3
+
+        except ImportError:
+            message = '{name}: Unable to import TorchOpenL3 module. You can install it with `pip install torchopenl3`.'.format(
+                name=self.__class__.__name__
+            )
+            self.logger.exception(message)
+            raise ImportError(message)
+
+        if self.model is None:
+            self.model = torchopenl3.models.load_audio_embedding_model(
+                input_repr=self.input_repr ,
+                content_type=self.content_type,
+                embedding_size=self.embedding_size
+            )
+
+    def to_string(self, ui=None, indent=0):
+        """Get container information in a string
+
+        Parameters
+        ----------
+        ui : FancyStringifier or FancyHTMLStringifier
+            Stringifier class
+            Default value FancyStringifier
+
+        indent : int
+            Amount of indention used
+            Default value 0
+
+        Returns
+        -------
+        str
+
+        """
+
+        if ui is None:
+            ui = FancyStringifier()
+
+        output = super(TorchOpenL3Extractor, self).to_string(ui=ui, indent=indent)
+
+        output += ui.line(field='TorchOpenL3Extractor', indent=indent) + '\n'
+        output += ui.data(indent=indent + 2, field='input_repr', value=self.input_repr) + '\n'
+        output += ui.data(indent=indent + 2, field='content_type', value=self.content_type) + '\n'
+        output += ui.data(indent=indent + 2, field='embedding_size', value=self.embedding_size) + '\n'
+        output += ui.data(indent=indent + 2, field='center', value=self.center) + '\n'
+        output += ui.data(indent=indent + 2, field='batch_size', value=self.batch_size) + '\n'
+        output += ui.data(indent=indent + 2, field='sampler', value=self.sampler) + '\n'
+        output += ui.data(indent=indent + 2, field='verbose', value=self.verbose) + '\n'
+
+        return output
+
+    def __getstate__(self):
+        d = super(TorchOpenL3Extractor, self).__getstate__()
+        d.update({
+            'input_repr': self.input_repr,
+            'content_type': self.content_type,
+            'embedding_size': self.embedding_size,
+            'center': self.center,
+            'batch_size': self.batch_size,
+            'sampler': self.sampler,
+            'verbose': self.verbose
+        })
+
+        return d
+
+    def __setstate__(self, d):
+        super(TorchOpenL3Extractor, self).__setstate__(d)
+        self.input_repr =  d['input_repr']
+        self.content_type =  d['content_type']
+        self.embedding_size =  d['embedding_size']
+        self.center =  d['center']
+        self.batch_size =  d['batch_size']
+        self.sampler = d['sampler']
+        self.verbose =  d['verbose']
+
+        try:
+            import torchopenl3
+
+        except ImportError:
+            message = '{name}: Unable to import OpenL3 module. You can install it with `pip install torchopenl3`.'.format(
+                name=self.__class__.__name__
+            )
+            self.logger.exception(message)
+            raise ImportError(message)
+
+        self.model = torchopenl3.models.load_audio_embedding_model(
+            input_repr=self.input_repr,
+            content_type=self.content_type,
+            embedding_size=self.embedding_size
+        )
+
+    def extract(self, y):
+        """Extract features for the audio signal.
+
+        Parameters
+        ----------
+        y : numpy.ndarray [shape=(n,)]
+            Audio signal
+
+        Returns
+        -------
+        embedding : np.ndarray [shape=(T, D)] or list[np.ndarray]
+            Array of embeddings for each window or list of such arrays for multiple audio clips.
+
+        """
+        try:
+            import torchopenl3
+
+        except ImportError:
+            message = '{name}: Unable to import OpenL3 module. You can install it with `pip install torchopenl3`.'.format(
+                name=self.__class__.__name__
+            )
+            self.logger.exception(message)
+            raise ImportError(message)
+
+        embedding, timestamps = torchopenl3.get_audio_embedding(
+            audio=y,
+            sr=self.fs,
+            model=self.model,
+            center=self.center,
+            hop_size=self.hop_length_seconds,
+            batch_size=self.batch_size,
+            sampler=self.sampler,
+            verbose=self.verbose
+        )
+        return embedding.T.cpu().detach().numpy()
+
+    def forward(self, y):
+        """Extract features for the audio signal, using torch.Tensors
+
+        Parameters
+        ----------
+        y : torch.Tensor [shape=(n,)]
+            Audio signal
+
+        Returns
+        -------
+        embedding : torch.Tensor [shape=(T, D)]
+            Tensor of embeddings for each window or list of such arrays for multiple audio clips.
+
+        """
+        try:
+            import torchopenl3
+
+        except ImportError:
+            message = '{name}: Unable to import OpenL3 module. You can install it with `pip install torchopenl3`.'.format(
+                name=self.__class__.__name__
+            )
+            self.logger.exception(message)
+            raise ImportError(message)
+
+        embedding, timestamps = torchopenl3.get_audio_embedding(
+            audio=y,
+            sr=self.fs,
+            model=self.model,
+            center=self.center,
+            hop_size=self.hop_length_seconds,
+            batch_size=self.batch_size,
+            sampler=self.sampler,
             verbose=self.verbose
         )
         return embedding.T
