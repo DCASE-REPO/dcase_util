@@ -171,7 +171,7 @@ class FancyStringifier(object):
         - auto
         - str or stf (fixed width string, padded with white space)
         - bool
-        - float1, float2, float3, float4
+        - float1, float2, float3, float4, float5, float6
         - float1_percentage, float2_percentage, float3_percentage, float4_percentage
         - float1_percentage+ci, float2_percentage+ci, float3_percentage+ci, float4_percentage+ci
         - float1_ci, float2_ci, float3_ci, float4_ci
@@ -220,6 +220,12 @@ class FancyStringifier(object):
 
         elif data_type == 'float4' and is_float(value):
             value = '{:.4f}'.format(float(value))
+
+        elif data_type == 'float5' and is_float(value):
+            value = '{:.5f}'.format(float(value))
+
+        elif data_type == 'float6' and is_float(value):
+            value = '{:.6f}'.format(float(value))
 
         elif data_type == 'int' and is_int(value):
             value = '{:d}'.format(int(value))
@@ -451,7 +457,7 @@ class FancyStringifier(object):
 
         column_types : list of str
             Column data types, if None given type is determined automatically.
-            Possible values: ['int', 'float1', 'float2', 'float3', 'float4', 'str10', 'str20']]
+            Possible values: ['int', 'float1', 'float2', 'float3', 'float4', 'float5', 'float6', 'str10', 'str20']]
             Default value None
 
         column_separators : list of int
@@ -579,6 +585,12 @@ class FancyStringifier(object):
 
                 elif data_type == 'float4' and is_float(cell_value):
                     row_data.append('{:6.4f}'.format(float(cell_value)))
+
+                elif data_type == 'float5' and is_float(cell_value):
+                    row_data.append('{:6.5f}'.format(float(cell_value)))
+
+                elif data_type == 'float6' and is_float(cell_value):
+                    row_data.append('{:6.6f}'.format(float(cell_value)))
 
                 elif data_type == 'int' and is_int(cell_value):
                     row_data.append('{:d}'.format(int(cell_value)))
@@ -1320,7 +1332,7 @@ class FancyHTMLStringifier(FancyStringifier):
 
         column_types : list of str
             Column data types, if None given type is determined automatically.
-            Possible values: ['int', 'float1', 'float2', 'float3', 'float4', 'str10', 'str20']]
+            Possible values: ['int', 'float1', 'float2', 'float3', 'float4', 'float5', 'float6','str10', 'str20']]
             Default value None
 
         column_separators : list of int
@@ -1478,6 +1490,12 @@ class FancyHTMLStringifier(FancyStringifier):
 
                 elif data_type == 'float4' and is_float(cell_value):
                     html += '{:6.4f}'.format(float(cell_value))
+
+                elif data_type == 'float5' and is_float(cell_value):
+                    html += '{:6.5f}'.format(float(cell_value))
+
+                elif data_type == 'float6' and is_float(cell_value):
+                    html += '{:6.6f}'.format(float(cell_value))
 
                 elif data_type == 'int' and is_int(cell_value):
                     html += '{:d}'.format(int(cell_value))
@@ -2267,7 +2285,7 @@ class FancyHTMLPrinter(FancyLogger):
 
         column_types : list of str
             Column data types, if None given type is determined automatically.
-            Possible values: ['int', 'float1', 'float2', 'float3', 'float4', 'str10', 'str20']]
+            Possible values: ['int', 'float1', 'float2', 'float3', 'float4', 'float5', 'float6', 'str10', 'str20']]
             Default value None
 
         column_separators : list of int
