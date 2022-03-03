@@ -133,7 +133,7 @@ class FancyStringifier(object):
 
         return ' ' * indent + output
 
-    def line(self, field=None, indent=2):
+    def line(self, field=None, indent=2, data=None):
         """Line
 
         Parameters
@@ -151,6 +151,9 @@ class FancyStringifier(object):
         str
 
         """
+
+        if field is None and data is not None:
+            field = data
 
         if field is not None:
             lines = field.split('\n')
@@ -885,7 +888,7 @@ class FancyHTMLStringifier(FancyStringifier):
         else:
             return 'margin-left:' + str(indent * self.indent_factor) + 'px;'
 
-    def line(self, field=None, indent=2):
+    def line(self, field=None, indent=2, data=None):
         """Line
 
         Parameters
@@ -903,6 +906,9 @@ class FancyHTMLStringifier(FancyStringifier):
         str
 
         """
+
+        if not field and data:
+            field = data
 
         indent_px = indent * self.indent_factor
         if field is not None:
@@ -1574,13 +1580,13 @@ class FancyLogger(object):
 
         return logger
 
-    def line(self, data='', indent=0, level='info'):
+    def line(self, field='', indent=0, level='info', data=None):
         """Generic line logger
         Multiple lines are split and logged separately
 
         Parameters
         ----------
-        data : str or list, optional
+        field : str or list, optional
             String or list of strings
 
         indent : int
@@ -1595,16 +1601,19 @@ class FancyLogger(object):
 
         """
 
-        if isinstance(data, six.string_types):
-            lines = data.split('\n')
+        if not field and data:
+            field = data
 
-        elif isinstance(data, list):
-            lines = data
+        if isinstance(field, six.string_types):
+            lines = field.split('\n')
+
+        elif isinstance(field, list):
+            lines = field
 
         else:
             message = '{name}: Unknown data type [{data}].'.format(
                 name=self.__class__.__name__,
-                data=data
+                data=field
             )
             self.logger.exception(message)
             raise ValueError(message)
@@ -1964,7 +1973,7 @@ class FancyLogger(object):
 
         column_types : list of str
             Column data types, if None given type is determined automatically.
-            Possible values: ['int', 'float1', 'float2', 'float3', 'float4', 'str10', 'str20']]
+            Possible values: ['int', 'float1', 'float2', 'float3', 'float4', 'float5', 'float6', 'str10', 'str20']]
             Default value None
 
         column_separators : list of int
@@ -2026,7 +2035,7 @@ class FancyLogger(object):
         """
 
         self.line(
-            data=text,
+            field=text,
             level='info',
             indent=indent
         )
@@ -2051,7 +2060,7 @@ class FancyLogger(object):
         """
 
         self.line(
-            data=text,
+            field=text,
             level='debug',
             indent=indent
         )
@@ -2076,7 +2085,7 @@ class FancyLogger(object):
         """
 
         self.line(
-            data=text,
+            field=text,
             level='error',
             indent=indent
         )
@@ -2142,13 +2151,13 @@ class FancyPrinter(FancyLogger):
 
         return logger
 
-    def line(self, data='', indent=0, level='info'):
+    def line(self, field='', indent=0, level='info'):
         """Generic line logger
         Multiple lines are split and logged separately
 
         Parameters
         ----------
-        data : str or list, optional
+        field : str or list, optional
             String or list of strings
             Default value ''
 
@@ -2166,16 +2175,16 @@ class FancyPrinter(FancyLogger):
 
         """
 
-        if isinstance(data, six.string_types):
-            lines = data.split('\n')
+        if isinstance(field, six.string_types):
+            lines = field.split('\n')
 
-        elif isinstance(data, list):
-            lines = data
+        elif isinstance(field, list):
+            lines = field
 
         else:
             message = '{name}: Unknown data type [{data}].'.format(
                 name=self.__class__.__name__,
-                data=data
+                data=field
             )
             self.logger.exception(message)
             raise ValueError(message)
@@ -2221,13 +2230,13 @@ class FancyHTMLPrinter(FancyLogger):
             'error': 'alert alert-block alert-danger',
         }
 
-    def line(self, data='', indent=0, level='info'):
+    def line(self, field='', indent=0, level='info'):
         """Generic line logger
         Multiple lines are split and logged separately
 
         Parameters
         ----------
-        data : str or list, optional
+        field : str or list, optional
             String or list of strings
             Default value ''
 
@@ -2246,16 +2255,16 @@ class FancyHTMLPrinter(FancyLogger):
         """
         from IPython.core.display import display, HTML
 
-        if isinstance(data, six.string_types):
-            lines = data.split('\n')
+        if isinstance(field, six.string_types):
+            lines = field.split('\n')
 
-        elif isinstance(data, list):
-            lines = data
+        elif isinstance(field, list):
+            lines = field
 
         else:
             message = '{name}: Unknown data type [{data}].'.format(
                 name=self.__class__.__name__,
-                data=data
+                data=field
             )
             self.logger.exception(message)
             raise ValueError(message)

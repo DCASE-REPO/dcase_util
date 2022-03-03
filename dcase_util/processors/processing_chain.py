@@ -188,7 +188,7 @@ class ProcessingChain(ListDictContainer):
         """
 
         ui = FancyLogger()
-        ui.line(data=self.chain_string(), level=level)
+        ui.line(field=self.chain_string(), level=level)
 
     def _check_item(self, item):
         """Check validity of processing chain item.
