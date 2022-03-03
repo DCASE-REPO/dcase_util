@@ -120,6 +120,8 @@ class AppParameterContainer(ParameterContainer):
             'plotting_rate',
             'focus_span',
             'output_format',
+            'description',
+            'set_id'
         ]
 
         self.default_non_hashable_sections = [
