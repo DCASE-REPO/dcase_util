@@ -856,7 +856,9 @@ class TAUUrbanAcousticScenes_2021_Mobile_EvaluationSet(AcousticSceneDataset):
 
             if os.path.isfile(test_filename):
                 # Testing data exists, load and process it
-                self.crossvalidation_data['test']['all_data'] = MetaDataContainer(filename=test_filename).load()
+                self.crossvalidation_data['test']['all_data'] = self.process_meta_container(
+                    container=MetaDataContainer(filename=test_filename).load()
+                )
 
                 # Process items
                 for item in self.crossvalidation_data['test']['all_data']:
@@ -864,7 +866,9 @@ class TAUUrbanAcousticScenes_2021_Mobile_EvaluationSet(AcousticSceneDataset):
 
             if os.path.isfile(evaluate_filename):
                 # Evaluation data exists, load and process it
-                self.crossvalidation_data['evaluate']['all_data'] = MetaDataContainer(filename=evaluate_filename).load()
+                self.crossvalidation_data['evaluate']['all_data'] = self.process_meta_container(
+                    container=MetaDataContainer(filename=evaluate_filename).load()
+                )
 
                 # Process items
                 for item in self.crossvalidation_data['evaluate']['all_data']:
@@ -1410,7 +1414,9 @@ class TAUUrbanAcousticScenes_2020_Mobile_EvaluationSet(AcousticSceneDataset):
 
             if os.path.isfile(test_filename):
                 # Testing data exists, load and process it
-                self.crossvalidation_data['test']['all_data'] = MetaDataContainer(filename=test_filename).load()
+                self.crossvalidation_data['test']['all_data'] = self.process_meta_container(
+                    container=MetaDataContainer(filename=test_filename).load()
+                )
 
                 # Process items
                 for item in self.crossvalidation_data['test']['all_data']:
@@ -1418,7 +1424,9 @@ class TAUUrbanAcousticScenes_2020_Mobile_EvaluationSet(AcousticSceneDataset):
 
             if os.path.isfile(evaluate_filename):
                 # Evaluation data exists, load and process it
-                self.crossvalidation_data['evaluate']['all_data'] = MetaDataContainer(filename=evaluate_filename).load()
+                self.crossvalidation_data['evaluate']['all_data'] = self.process_meta_container(
+                    container=MetaDataContainer(filename=evaluate_filename).load()
+                )
 
                 # Process items
                 for item in self.crossvalidation_data['evaluate']['all_data']:
@@ -2032,7 +2040,9 @@ class TAUUrbanAcousticScenes_2020_3Class_EvaluationSet(AcousticSceneDataset):
 
             if os.path.isfile(test_filename):
                 # Testing data exists, load and process it
-                self.crossvalidation_data['test']['all_data'] = MetaDataContainer(filename=test_filename).load()
+                self.crossvalidation_data['test']['all_data'] = self.process_meta_container(
+                    container=MetaDataContainer(filename=test_filename).load()
+                )
 
                 # Process items
                 for item in self.crossvalidation_data['test']['all_data']:
@@ -2040,7 +2050,9 @@ class TAUUrbanAcousticScenes_2020_3Class_EvaluationSet(AcousticSceneDataset):
 
             if os.path.isfile(evaluate_filename):
                 # Evaluation data exists, load and process it
-                self.crossvalidation_data['evaluate']['all_data'] = MetaDataContainer(filename=evaluate_filename).load()
+                self.crossvalidation_data['evaluate']['all_data'] = self.process_meta_container(
+                    container=MetaDataContainer(filename=evaluate_filename).load()
+                )
 
                 # Process items
                 for item in self.crossvalidation_data['evaluate']['all_data']:
@@ -7644,7 +7656,11 @@ class TUTSoundEvents_2016_DevelopmentSet(SoundEventDataset):
 
         """
 
-        if not self.meta_container.exists():
+        meta_container = MetaDataContainer(
+            filename=os.path.join(self.local_path, self.meta_filename)
+        )
+
+        if not meta_container.exists():
             meta_data = MetaDataContainer()
             annotation_files = Path().file_list(path=os.path.join(self.local_path, 'meta'), extensions=['ann'])
             for annotation_filename in annotation_files:
