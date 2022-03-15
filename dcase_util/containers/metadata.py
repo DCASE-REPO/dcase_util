@@ -1024,8 +1024,9 @@ class MetaDataContainer(ListDictContainer):
 
         files = []
         for item in self:
-            if item.filename and item.filename not in files:
-                files.append(str(item.filename))
+            files.append(str(item.filename))
+
+        files = list(set(files))
 
         files.sort()
         return files
