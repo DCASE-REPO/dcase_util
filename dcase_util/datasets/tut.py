@@ -6560,6 +6560,9 @@ class TUTRareSoundEvents_2017_DevelopmentSet(SyntheticSoundEventDataset):
         elif setup_part == 'evaluate':
             parts.append('evaluate')
 
+        elif setup_part == 'validate':
+            parts.append('validate')
+
         else:
             message = '{name}: Unknown setup_part [{setup_part}]'.format(
                 name=self.__class__.__name__,
@@ -6998,6 +7001,9 @@ class TUTRareSoundEvents_2017_EvaluationSet(SyntheticSoundEventDataset):
 
         elif setup_part == 'evaluate':
             parts.append('evaluate')
+
+        elif setup_part == 'validate':
+            parts.append('validate')
 
         else:
             message = '{name}: Unknown setup_part [{setup_part}]'.format(
