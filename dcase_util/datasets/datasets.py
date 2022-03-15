@@ -281,6 +281,8 @@ class Dataset(object):
                  reference_data_present=True,
 
                  check_meta=True,
+                 active_scenes=None,
+                 active_events=None,
                  **kwargs):
         """Constructor
 
@@ -385,6 +387,17 @@ class Dataset(object):
             Reference data is delivered with the dataset
             Default value True
 
+        check_meta : bool
+            Check meta data during the initilization.
+            Default value True
+
+        active_scenes: list of str
+            List of active scene classes, if none given all classes are considered.
+            Default value None
+
+        active_events: list of str
+            List of active event classes, if none given all classes are considered.
+            Default value None
         """
 
         self.disable_progress_bar = not show_progress_in_console
@@ -546,6 +559,18 @@ class Dataset(object):
         if self.check_meta and not self.reference_data_present:
             self.check_meta = False
 
+        # Active scenes:
+        self.active_scenes = active_scenes
+
+        if self.active_scenes:
+            self.active_scenes.sort()
+
+        # Active events:
+        self.active_events = active_events
+
+        if self.active_events:
+            self.active_events.sort()
+
         # Load meta and cross-validation data in
         self.load()
 
@@ -574,6 +599,10 @@ class Dataset(object):
             # Load meta data
             self.meta_container.load()
 
+            self.meta_container = self.process_meta_container(
+                container=self.meta_container
+            )
+
             # Mark reference data being present
             self.reference_data_present = True
 
@@ -601,6 +630,9 @@ class Dataset(object):
                 'evaluate': {
                     'all_data': self.meta_container
                 },
+                'validate': {
+                    'all_data': MetaDataContainer()
+                }
             })
 
         else:
@@ -615,6 +647,9 @@ class Dataset(object):
                 'evaluate': {
                     'all_data': MetaDataContainer()
                 },
+                'validate': {
+                    'all_data': MetaDataContainer()
+                },
             })
 
             train_filename = self.evaluation_setup_filename(setup_part='train')
@@ -623,7 +658,9 @@ class Dataset(object):
 
             if os.path.isfile(train_filename):
                 # Training data exists, load and process it
-                self.crossvalidation_data['train']['all_data'] = MetaDataContainer(filename=train_filename).load()
+                self.crossvalidation_data['train']['all_data'] = self.process_meta_container(
+                    container=MetaDataContainer(filename=train_filename).load()
+                )
 
                 # Process items
                 for item in self.crossvalidation_data['train']['all_data']:
@@ -631,7 +668,9 @@ class Dataset(object):
 
             if os.path.isfile(test_filename):
                 # Testing data exists, load and process it
-                self.crossvalidation_data['test']['all_data'] = MetaDataContainer(filename=test_filename).load()
+                self.crossvalidation_data['test']['all_data'] = self.process_meta_container(
+                    container=MetaDataContainer(filename=test_filename).load()
+                )
 
                 # Process items
                 for item in self.crossvalidation_data['test']['all_data']:
@@ -639,7 +678,9 @@ class Dataset(object):
 
             if os.path.isfile(evaluate_filename):
                 # Evaluation data exists, load and process it
-                self.crossvalidation_data['evaluate']['all_data'] = MetaDataContainer(filename=evaluate_filename).load()
+                self.crossvalidation_data['evaluate']['all_data'] = self.process_meta_container(
+                    container=MetaDataContainer(filename=evaluate_filename).load()
+                )
 
                 # Process items
                 for item in self.crossvalidation_data['evaluate']['all_data']:
@@ -651,6 +692,7 @@ class Dataset(object):
 
         # Load cross validation folds
         for fold in self.folds():
+
             # Get filenames
             train_filename = self.evaluation_setup_filename(
                 setup_part='train',
@@ -667,9 +709,16 @@ class Dataset(object):
                 fold=fold
             )
 
+            validate_filename = self.evaluation_setup_filename(
+                setup_part='validate',
+                fold=fold
+            )
+
             if os.path.isfile(train_filename):
                 # Training data for fold exists, load and process it
-                self.crossvalidation_data['train'][fold] = MetaDataContainer(filename=train_filename).load()
+                self.crossvalidation_data['train'][fold] = self.process_meta_container(
+                    container=MetaDataContainer(filename=train_filename).load()
+                )
 
                 # Process items
                 for item in self.crossvalidation_data['train'][fold]:
@@ -681,7 +730,9 @@ class Dataset(object):
 
             if os.path.isfile(test_filename):
                 # Testing data for fold exists, load and process it
-                self.crossvalidation_data['test'][fold] = MetaDataContainer(filename=test_filename).load()
+                self.crossvalidation_data['test'][fold] = self.process_meta_container(
+                    container=MetaDataContainer(filename=test_filename).load()
+                )
 
                 # Process items
                 for item in self.crossvalidation_data['test'][fold]:
@@ -693,7 +744,9 @@ class Dataset(object):
 
             if os.path.isfile(evaluate_filename):
                 # Evaluation data for fold exists, load and process it
-                self.crossvalidation_data['evaluate'][fold] = MetaDataContainer(filename=evaluate_filename).load()
+                self.crossvalidation_data['evaluate'][fold] = self.process_meta_container(
+                    container=MetaDataContainer(filename=evaluate_filename).load()
+                )
 
                 # Process items
                 for item in self.crossvalidation_data['evaluate'][fold]:
@@ -702,6 +755,20 @@ class Dataset(object):
             else:
                 # Initialize data
                 self.crossvalidation_data['evaluate'][fold] = MetaDataContainer()
+
+            if os.path.isfile(validate_filename):
+                # Evaluation data for fold exists, load and process it
+                self.crossvalidation_data['validate'][fold] = self.process_meta_container(
+                    container=MetaDataContainer(filename=validate_filename).load()
+                )
+
+                # Process items
+                for item in self.crossvalidation_data['validate'][fold]:
+                    self.process_meta_item(item=item)
+
+            else:
+                # Initialize data
+                self.crossvalidation_data['validate'][fold] = MetaDataContainer()
 
         return self
 
@@ -775,7 +842,7 @@ class Dataset(object):
 
         return self
 
-    def show(self, mode='auto', show_meta=True):
+    def show(self, mode='auto', indent=0, show_meta=True):
         """Show dataset information.
 
         Parameters
@@ -783,6 +850,10 @@ class Dataset(object):
         mode : str
             Output type, possible values ['auto', 'print', 'html']. 'html' will work in Jupyter notebook only.
             Default value 'auto'
+
+        indent : int
+            Amount of indent
+            Default value 0
 
         show_meta : bool
             Include statistics of meta data
@@ -794,13 +865,14 @@ class Dataset(object):
 
         """
 
-        DictContainer(self.dataset_meta).show(mode=mode)
+        DictContainer(self.dataset_meta).show(mode=mode, indent=indent)
 
         if show_meta:
             self.meta_container.show(
                 mode=mode,
                 show_data=False,
-                show_stats=True
+                show_stats=True,
+                indent=indent
             )
 
     def log(self, show_meta=True):
@@ -870,6 +942,7 @@ class Dataset(object):
         if self.meta_container.empty():
             if self.meta_container.exists():
                 self.meta_container.load()
+                self.meta_container = self.process_meta_container(container=self.meta_container)
 
             else:
                 message = '{name}: Meta file not found [{filename}]'.format(
@@ -1318,7 +1391,7 @@ class Dataset(object):
 
         error_log = []
 
-        meta_files = self.meta_container.unique_files
+        meta_files = set(self.meta_container.unique_files)
         if 'audio' in self.included_content_types:
             for filename in meta_files:
                 if not os.path.exists(filename):
@@ -1381,6 +1454,7 @@ class Dataset(object):
                                 description='Field missing [filename].'
                             )
                         )
+
                     else:
                         if item['filename'] not in meta_files:
                             error_log.append(
@@ -1472,7 +1546,14 @@ class Dataset(object):
             self.logger.exception(message)
             raise ValueError(message)
 
+
         return self
+
+    def process_meta_container(self, container):
+        """Process meta container.
+        """
+
+        return container
 
     def process_meta_item(self, item, absolute_path=True, **kwargs):
         """Process single meta data item
@@ -1503,7 +1584,7 @@ class Dataset(object):
         Parameters
         ----------
         setup_part :  str
-            Setup part 'train', 'test', 'evaluate'
+            Setup part 'train', 'validate', 'test', 'evaluate'
             Default value 'train'
 
         fold : int
@@ -1551,6 +1632,9 @@ class Dataset(object):
 
         elif setup_part == 'evaluate':
             parts.append('evaluate')
+
+        elif setup_part == 'validate':
+            parts.append('validate')
 
         else:
             message = '{name}: Unknown setup_part [{setup_part}]'.format(
@@ -1828,8 +1912,20 @@ class Dataset(object):
 
         return training_files, validation_files
 
-    def validation_files_dataset(self, fold=None, verbose=False, **kwargs):
+    def validation_files_dataset(self, fold=None, **kwargs):
         """List of validation files delivered by the dataset.
+
+        Parameters
+        ----------
+        fold : int
+            Fold id, if None all meta data is returned.
+            Default value None
+
+        Returns
+        -------
+        list of str
+            List containing all files assigned for validation
+
         """
 
         message = '{name}: Dataset does not have fixed validation sets, use validation set generation to get sets'.format(
@@ -2643,6 +2739,17 @@ class AcousticSceneDataset(Dataset):
 
         return validation_files
 
+    def process_meta_container(self, container):
+        """Process meta container.
+        """
+
+        output = container
+
+        if self.active_scenes:
+            output =  output.filter(scene_list=self.active_scenes)
+
+        return output
+
 
 class AudioVisualSceneDataset(Dataset):
     """Audio-visual scene dataset baseclass"""
@@ -2748,6 +2855,9 @@ class SoundEventDataset(Dataset):
             'evaluate': {
                 'all_data': self.meta_container
             },
+            'validate': {
+                'all_data': MetaDataContainer()
+            }
         })
 
         for crossvalidation_set in list(self.crossvalidation_data.keys()):
@@ -2760,6 +2870,7 @@ class SoundEventDataset(Dataset):
             self.crossvalidation_data['train'][fold] = MetaDataContainer()
             self.crossvalidation_data['test'][fold] = MetaDataContainer()
             self.crossvalidation_data['evaluate'][fold] = MetaDataContainer()
+            self.crossvalidation_data['validate'][fold] = MetaDataContainer()
 
             for scene_label in self.scene_labels():
                 # Get filenames
@@ -2781,17 +2892,34 @@ class SoundEventDataset(Dataset):
                     scene_label=scene_label
                 )
 
+                validate_filename = self.evaluation_setup_filename(
+                    setup_part='validate',
+                    fold=fold
+                )
+
                 if os.path.isfile(train_filename):
                     # Training data for fold exists, load and process it
-                    self.crossvalidation_data['train'][fold] += MetaDataContainer(filename=train_filename).load()
+                    self.crossvalidation_data['train'][fold] += self.process_meta_container(
+                        container=MetaDataContainer(filename=train_filename).load()
+                    )
 
                 if os.path.isfile(test_filename):
                     # Testing data for fold exists, load and process it
-                    self.crossvalidation_data['test'][fold] += MetaDataContainer(filename=test_filename).load()
+                    self.crossvalidation_data['test'][fold] += self.process_meta_container(
+                        container=MetaDataContainer(filename=test_filename).load()
+                    )
 
                 if os.path.isfile(evaluate_filename):
                     # Evaluation data for fold exists, load and process it
-                    self.crossvalidation_data['evaluate'][fold] += MetaDataContainer(filename=evaluate_filename).load()
+                    self.crossvalidation_data['evaluate'][fold] += self.process_meta_container(
+                        container=MetaDataContainer(filename=evaluate_filename).load()
+                    )
+
+                if os.path.isfile(validate_filename):
+                    # Evaluation data for fold exists, load and process it
+                    self.crossvalidation_data['validate'][fold] += self.process_meta_container(
+                        container=MetaDataContainer(filename=validate_filename).load()
+                    )
 
             # Process items
             for item in self.crossvalidation_data['train'][fold]:
@@ -3536,6 +3664,20 @@ class SoundEventDataset(Dataset):
                 )
 
         return validation_files
+
+    def process_meta_container(self, container):
+        """Process meta container.
+        """
+
+        output = container
+
+        if self.active_scenes:
+            output = output.filter(scene_list=self.active_scenes)
+
+        if self.active_events:
+            output = output.filter(event_list=self.active_events)
+
+        return output
 
 
 class SyntheticSoundEventDataset(SoundEventDataset):

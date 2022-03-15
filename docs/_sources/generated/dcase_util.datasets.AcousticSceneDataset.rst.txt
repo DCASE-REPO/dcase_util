@@ -1,4 +1,4 @@
-dcase\_util.datasets.AcousticSceneDataset
+﻿dcase\_util.datasets.AcousticSceneDataset
 =========================================
 
 .. currentmodule:: dcase_util.datasets
@@ -38,6 +38,7 @@ dcase\_util.datasets.AcousticSceneDataset
       ~AcousticSceneDataset.load_meta
       ~AcousticSceneDataset.log
       ~AcousticSceneDataset.prepare
+      ~AcousticSceneDataset.process_meta_container
       ~AcousticSceneDataset.process_meta_item
       ~AcousticSceneDataset.relative_to_absolute_path
       ~AcousticSceneDataset.scene_label_count

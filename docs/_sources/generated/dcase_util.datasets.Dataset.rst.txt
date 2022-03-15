@@ -1,4 +1,4 @@
-dcase\_util.datasets.Dataset
+﻿dcase\_util.datasets.Dataset
 ============================
 
 .. currentmodule:: dcase_util.datasets
@@ -38,6 +38,7 @@ dcase\_util.datasets.Dataset
       ~Dataset.load_meta
       ~Dataset.log
       ~Dataset.prepare
+      ~Dataset.process_meta_container
       ~Dataset.process_meta_item
       ~Dataset.relative_to_absolute_path
       ~Dataset.scene_label_count

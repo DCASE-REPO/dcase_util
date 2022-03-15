@@ -1,4 +1,4 @@
-dcase\_util.datasets.TUTAcousticScenes\_2017\_EvaluationSet
+﻿dcase\_util.datasets.TUTAcousticScenes\_2017\_EvaluationSet
 ===========================================================
 
 .. currentmodule:: dcase_util.datasets
@@ -38,6 +38,7 @@ dcase\_util.datasets.TUTAcousticScenes\_2017\_EvaluationSet
       ~TUTAcousticScenes_2017_EvaluationSet.load_meta
       ~TUTAcousticScenes_2017_EvaluationSet.log
       ~TUTAcousticScenes_2017_EvaluationSet.prepare
+      ~TUTAcousticScenes_2017_EvaluationSet.process_meta_container
       ~TUTAcousticScenes_2017_EvaluationSet.process_meta_item
       ~TUTAcousticScenes_2017_EvaluationSet.relative_to_absolute_path
       ~TUTAcousticScenes_2017_EvaluationSet.scene_label_count

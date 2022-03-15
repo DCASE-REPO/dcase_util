@@ -128,6 +128,17 @@ OpenL3Extractor
     OpenL3Extractor
     OpenL3Extractor.extract
 
+TorchOpenL3Extractor
+---------------
+
+*dcase_util.features.TorchOpenL3Extractor*
+
+.. autosummary::
+    :toctree: generated/
+
+    TorchOpenL3Extractor
+    TorchOpenL3Extractor.extract
+
 EdgeL3Extractor
 ---------------
 

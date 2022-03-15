@@ -14,7 +14,7 @@ structured data, and provide standardized usage API to audio datasets from vario
 
 Initial version written by Toni Heittola from
 `Audio Research Group, Tampere University <http://arg.cs.tut.fi/>`_, you can contact him
-via `personal website <http://www.cs.tut.fi/~heittolt/>`_ or `github <https://github.com/toni-heittola>`_.
+via `personal website <https://homepages.tuni.fi/toni.heittola/>`_ or `github <https://github.com/toni-heittola>`_.
 
 Getting started
 ---------------

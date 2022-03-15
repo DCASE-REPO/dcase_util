@@ -415,6 +415,17 @@ OpenL3ExtractorProcessor
     OpenL3ExtractorProcessor
     OpenL3ExtractorProcessor.process
 
+TorchOpenL3ExtractorProcessor
+------------------------
+
+*dcase_util.processors.TorchOpenL3ExtractorProcessor*
+
+.. autosummary::
+    :toctree: generated/
+
+    TorchOpenL3ExtractorProcessor
+    TorchOpenL3ExtractorProcessor.process
+
 EdgeL3ExtractorProcessor
 ------------------------
 

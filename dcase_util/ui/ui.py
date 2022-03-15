@@ -133,7 +133,7 @@ class FancyStringifier(object):
 
         return ' ' * indent + output
 
-    def line(self, field=None, indent=2):
+    def line(self, field=None, indent=2, data=None):
         """Line
 
         Parameters
@@ -151,6 +151,9 @@ class FancyStringifier(object):
         str
 
         """
+
+        if field is None and data is not None:
+            field = data
 
         if field is not None:
             lines = field.split('\n')
@@ -171,7 +174,7 @@ class FancyStringifier(object):
         - auto
         - str or stf (fixed width string, padded with white space)
         - bool
-        - float1, float2, float3, float4
+        - float1, float2, float3, float4, float5, float6
         - float1_percentage, float2_percentage, float3_percentage, float4_percentage
         - float1_percentage+ci, float2_percentage+ci, float3_percentage+ci, float4_percentage+ci
         - float1_ci, float2_ci, float3_ci, float4_ci
@@ -221,6 +224,12 @@ class FancyStringifier(object):
         elif data_type == 'float4' and is_float(value):
             value = '{:.4f}'.format(float(value))
 
+        elif data_type == 'float5' and is_float(value):
+            value = '{:.5f}'.format(float(value))
+
+        elif data_type == 'float6' and is_float(value):
+            value = '{:.6f}'.format(float(value))
+
         elif data_type == 'int' and is_int(value):
             value = '{:d}'.format(int(value))
 
@@ -241,14 +250,26 @@ class FancyStringifier(object):
         elif data_type == 'float1_percentage+ci' and isinstance(value, tuple):
             value = '{:3.1f}% (+/-{:3.1f})'.format(float(value[0]), float(value[1]))
 
+        elif data_type == 'float1_percentage+ci' and is_float(value):
+            value = '{:3.1f}% (+/-)'.format(float(value))
+
         elif data_type == 'float2_percentage+ci' and isinstance(value, tuple):
             value = '{:3.2f}% (+/-{:3.2f})'.format(float(value[0]), float(value[1]))
+
+        elif data_type == 'float2_percentage+ci' and is_float(value):
+            value = '{:3.2f}% (+/-)'.format(float(value))
 
         elif data_type == 'float3_percentage+ci' and isinstance(value, tuple):
             value = '{:3.3f}% (+/-{:3.3f})'.format(float(value[0]), float(value[1]))
 
+        elif data_type == 'float3_percentage+ci' and is_float(value):
+            value = '{:3.3f}% (+/-)'.format(float(value))
+
         elif data_type == 'float4_percentage+ci' and isinstance(value, tuple):
             value = '{:3.4f}% (+/-{:3.4f})'.format(float(value[0]), float(value[1]))
+
+        elif data_type == 'float4_percentage+ci' and is_float(value):
+            value = '{:3.4f}% (+/-)'.format(float(value))
 
         # Float + confidence interval
         elif data_type == 'float1+ci' and isinstance(value, tuple):
@@ -439,7 +460,7 @@ class FancyStringifier(object):
 
         column_types : list of str
             Column data types, if None given type is determined automatically.
-            Possible values: ['int', 'float1', 'float2', 'float3', 'float4', 'str10', 'str20']]
+            Possible values: ['int', 'float1', 'float2', 'float3', 'float4', 'float5', 'float6', 'str10', 'str20']]
             Default value None
 
         column_separators : list of int
@@ -568,6 +589,12 @@ class FancyStringifier(object):
                 elif data_type == 'float4' and is_float(cell_value):
                     row_data.append('{:6.4f}'.format(float(cell_value)))
 
+                elif data_type == 'float5' and is_float(cell_value):
+                    row_data.append('{:6.5f}'.format(float(cell_value)))
+
+                elif data_type == 'float6' and is_float(cell_value):
+                    row_data.append('{:6.6f}'.format(float(cell_value)))
+
                 elif data_type == 'int' and is_int(cell_value):
                     row_data.append('{:d}'.format(int(cell_value)))
 
@@ -672,7 +699,6 @@ class FancyStringifier(object):
                     self.row_column_numerical_value_count[column_id] += 1
                     self.row_column_numerical_value_sum[column_id] += column_data
 
-
             column_data = self.formatted_value(column_data, data_type=data_type)
 
             if isinstance(column_data, int):
@@ -695,7 +721,6 @@ class FancyStringifier(object):
 
             else:
                 line_string += ' '
-
 
         return ' ' * self.row_indent + line_string
 
@@ -863,7 +888,7 @@ class FancyHTMLStringifier(FancyStringifier):
         else:
             return 'margin-left:' + str(indent * self.indent_factor) + 'px;'
 
-    def line(self, field=None, indent=2):
+    def line(self, field=None, indent=2, data=None):
         """Line
 
         Parameters
@@ -881,6 +906,9 @@ class FancyHTMLStringifier(FancyStringifier):
         str
 
         """
+
+        if not field and data:
+            field = data
 
         indent_px = indent * self.indent_factor
         if field is not None:
@@ -1310,7 +1338,7 @@ class FancyHTMLStringifier(FancyStringifier):
 
         column_types : list of str
             Column data types, if None given type is determined automatically.
-            Possible values: ['int', 'float1', 'float2', 'float3', 'float4', 'str10', 'str20']]
+            Possible values: ['int', 'float1', 'float2', 'float3', 'float4', 'float5', 'float6','str10', 'str20']]
             Default value None
 
         column_separators : list of int
@@ -1469,6 +1497,12 @@ class FancyHTMLStringifier(FancyStringifier):
                 elif data_type == 'float4' and is_float(cell_value):
                     html += '{:6.4f}'.format(float(cell_value))
 
+                elif data_type == 'float5' and is_float(cell_value):
+                    html += '{:6.5f}'.format(float(cell_value))
+
+                elif data_type == 'float6' and is_float(cell_value):
+                    html += '{:6.6f}'.format(float(cell_value))
+
                 elif data_type == 'int' and is_int(cell_value):
                     html += '{:d}'.format(int(cell_value))
 
@@ -1546,13 +1580,13 @@ class FancyLogger(object):
 
         return logger
 
-    def line(self, data='', indent=0, level='info'):
+    def line(self, field='', indent=0, level='info', data=None):
         """Generic line logger
         Multiple lines are split and logged separately
 
         Parameters
         ----------
-        data : str or list, optional
+        field : str or list, optional
             String or list of strings
 
         indent : int
@@ -1567,16 +1601,19 @@ class FancyLogger(object):
 
         """
 
-        if isinstance(data, six.string_types):
-            lines = data.split('\n')
+        if not field and data:
+            field = data
 
-        elif isinstance(data, list):
-            lines = data
+        if isinstance(field, six.string_types):
+            lines = field.split('\n')
+
+        elif isinstance(field, list):
+            lines = field
 
         else:
             message = '{name}: Unknown data type [{data}].'.format(
                 name=self.__class__.__name__,
-                data=data
+                data=field
             )
             self.logger.exception(message)
             raise ValueError(message)
@@ -1936,7 +1973,7 @@ class FancyLogger(object):
 
         column_types : list of str
             Column data types, if None given type is determined automatically.
-            Possible values: ['int', 'float1', 'float2', 'float3', 'float4', 'str10', 'str20']]
+            Possible values: ['int', 'float1', 'float2', 'float3', 'float4', 'float5', 'float6', 'str10', 'str20']]
             Default value None
 
         column_separators : list of int
@@ -1998,7 +2035,7 @@ class FancyLogger(object):
         """
 
         self.line(
-            data=text,
+            field=text,
             level='info',
             indent=indent
         )
@@ -2023,7 +2060,7 @@ class FancyLogger(object):
         """
 
         self.line(
-            data=text,
+            field=text,
             level='debug',
             indent=indent
         )
@@ -2048,7 +2085,7 @@ class FancyLogger(object):
         """
 
         self.line(
-            data=text,
+            field=text,
             level='error',
             indent=indent
         )
@@ -2114,13 +2151,13 @@ class FancyPrinter(FancyLogger):
 
         return logger
 
-    def line(self, data='', indent=0, level='info'):
+    def line(self, field='', indent=0, level='info'):
         """Generic line logger
         Multiple lines are split and logged separately
 
         Parameters
         ----------
-        data : str or list, optional
+        field : str or list, optional
             String or list of strings
             Default value ''
 
@@ -2138,16 +2175,16 @@ class FancyPrinter(FancyLogger):
 
         """
 
-        if isinstance(data, six.string_types):
-            lines = data.split('\n')
+        if isinstance(field, six.string_types):
+            lines = field.split('\n')
 
-        elif isinstance(data, list):
-            lines = data
+        elif isinstance(field, list):
+            lines = field
 
         else:
             message = '{name}: Unknown data type [{data}].'.format(
                 name=self.__class__.__name__,
-                data=data
+                data=field
             )
             self.logger.exception(message)
             raise ValueError(message)
@@ -2193,13 +2230,13 @@ class FancyHTMLPrinter(FancyLogger):
             'error': 'alert alert-block alert-danger',
         }
 
-    def line(self, data='', indent=0, level='info'):
+    def line(self, field='', indent=0, level='info'):
         """Generic line logger
         Multiple lines are split and logged separately
 
         Parameters
         ----------
-        data : str or list, optional
+        field : str or list, optional
             String or list of strings
             Default value ''
 
@@ -2218,16 +2255,16 @@ class FancyHTMLPrinter(FancyLogger):
         """
         from IPython.core.display import display, HTML
 
-        if isinstance(data, six.string_types):
-            lines = data.split('\n')
+        if isinstance(field, six.string_types):
+            lines = field.split('\n')
 
-        elif isinstance(data, list):
-            lines = data
+        elif isinstance(field, list):
+            lines = field
 
         else:
             message = '{name}: Unknown data type [{data}].'.format(
                 name=self.__class__.__name__,
-                data=data
+                data=field
             )
             self.logger.exception(message)
             raise ValueError(message)
@@ -2257,7 +2294,7 @@ class FancyHTMLPrinter(FancyLogger):
 
         column_types : list of str
             Column data types, if None given type is determined automatically.
-            Possible values: ['int', 'float1', 'float2', 'float3', 'float4', 'str10', 'str20']]
+            Possible values: ['int', 'float1', 'float2', 'float3', 'float4', 'float5', 'float6', 'str10', 'str20']]
             Default value None
 
         column_separators : list of int

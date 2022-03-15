@@ -1,4 +1,4 @@
-dcase\_util.datasets.AudioTaggingDataset
+﻿dcase\_util.datasets.AudioTaggingDataset
 ========================================
 
 .. currentmodule:: dcase_util.datasets
@@ -38,6 +38,7 @@ dcase\_util.datasets.AudioTaggingDataset
       ~AudioTaggingDataset.load_meta
       ~AudioTaggingDataset.log
       ~AudioTaggingDataset.prepare
+      ~AudioTaggingDataset.process_meta_container
       ~AudioTaggingDataset.process_meta_item
       ~AudioTaggingDataset.relative_to_absolute_path
       ~AudioTaggingDataset.scene_label_count

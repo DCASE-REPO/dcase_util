@@ -10,9 +10,10 @@ import numpy
 import csv
 import logging
 import io
+from past.builtins import basestring
 from dcase_util.containers import ListDictContainer
 from dcase_util.utils import posix_path, get_parameter_hash, FieldValidator, \
-    setup_logging, is_float, is_int, is_jupyter, FileFormat
+    setup_logging, is_float, is_int, is_jupyter, FileFormat, get_audio_info
 from dcase_util.ui import FancyStringifier,  FancyHTMLStringifier
 
 
@@ -66,9 +67,11 @@ class MetaDataItem(dict):
 
         # Event label assigned to the meta data item
         if 'event_label' in self:
-            self['event_label'] = self['event_label'].strip()
-            if self['event_label'].lower() == 'none' or self['event_label'] == '':
-                self['event_label'] = None
+            if isinstance(self['event_label'], basestring):
+                self['event_label'] = self['event_label'].strip()
+
+                if self['event_label'].lower() == 'none' or self['event_label'] == '':
+                    self['event_label'] = None
 
         # Acoustic scene label assigned to the meta data item
         if 'scene_label' in self and self.scene_label:
@@ -768,7 +771,7 @@ class MetaDataContainer(ListDictContainer):
         output = ''
 
         if show_info:
-            output += ui.class_name(self.__class__.__name__) + '\n'
+            output += ui.class_name(self.__class__.__name__, indent=indent) + '\n'
 
             if hasattr(self, 'filename') and self.filename:
                 output += ui.data(
@@ -832,18 +835,29 @@ class MetaDataContainer(ListDictContainer):
             if 'events' in stats and 'event_label_list' in stats['events'] and stats['events']['event_label_list']:
                 output += ui.line('Event statistics', indent=indent) + '\n'
 
-                cell_data = [[], [], [], []]
+                cell_data = [[], [], [], [], [], [], []]
 
                 for event_id, event_label in enumerate(stats['events']['event_label_list']):
                     cell_data[0].append(event_label)
                     cell_data[1].append(int(stats['events']['count'][event_id]))
-                    cell_data[2].append(stats['events']['length'][event_id])
-                    cell_data[3].append(stats['events']['avg_length'][event_id])
+                    cell_data[2].append(stats['events']['avg_length'][event_id])
+                    cell_data[3].append(stats['events']['length'][event_id])
+                    cell_data[4].append(stats['events']['flatten_active_length'][event_id])
+                    cell_data[5].append(stats['events']['flatten_inactive_length'][event_id])
+                    cell_data[6].append(stats['events']['activity_percentage'][event_id])
+
+                cell_data[0].append('OVERALL')
+                cell_data[1].append(stats['events']['overall_event_count'])
+                cell_data[2].append(stats['events']['overall_avg_length'])
+                cell_data[3].append(stats['events']['overall_length'])
+                cell_data[4].append(stats['events']['overall_event_flatten_active_length'])
+                cell_data[5].append(stats['events']['overall_event_flatten_inactive_length'])
+                cell_data[6].append(stats['events']['overall_activity_percentage'])
 
                 output += ui.table(
                     cell_data=cell_data,
-                    column_headers=['Event label', 'Count', 'Tot. Length', 'Avg. Length'],
-                    column_types=['str20', 'int', 'float2', 'float2'],
+                    column_headers=['Event label', 'Count', 'Avg (sec)', 'Total (sec)', 'Active (sec)', 'Inactive (sec)', 'Activity %'],
+                    column_types=['str20', 'int', 'float2', 'float2', 'float1', 'float1', 'float1'],
                     indent=indent + 2
                 ) + '\n'
 
@@ -1010,8 +1024,9 @@ class MetaDataContainer(ListDictContainer):
 
         files = []
         for item in self:
-            if item.filename and item.filename not in files:
-                files.append(str(item.filename))
+            files.append(str(item.filename))
+
+        files = list(set(files))
 
         files.sort()
         return files
@@ -2463,7 +2478,7 @@ class MetaDataContainer(ListDictContainer):
 
         return filtered_data
 
-    def stats(self, event_label_list=None, scene_label_list=None, tag_list=None):
+    def stats(self, event_label_list=None, scene_label_list=None, tag_list=None, calculate_event_activity=False, duration_list=None):
         """Statistics of the container content
 
         Parameters
@@ -2478,6 +2493,14 @@ class MetaDataContainer(ListDictContainer):
 
         tag_list : list of str
             List of tags to be included in the statistics. If none given, all unique tags used
+            Default value None
+
+        calculate_event_activity : bool
+            Calculate event activity and inactivity, might be slow as the corresponding audio recording length has to be loaded.
+            Default value False
+
+        duration_list : dict
+            Dictionary where filename is a key and value is the total duration of the file.
             Default value None
 
         Returns
@@ -2505,12 +2528,69 @@ class MetaDataContainer(ListDictContainer):
         event_lengths = numpy.zeros(len(event_label_list))
         event_counts = numpy.zeros(len(event_label_list))
 
+        if calculate_event_activity:
+            event_flatten_active_lengths = numpy.zeros(len(event_label_list))
+            event_flatten_inactive_lengths = numpy.zeros(len(event_label_list))
+
+            if duration_list is None:
+                duration_list = {}
+                for filename in self.unique_files:
+                    info = get_audio_info(filename)
+                    duration_list[filename] = info['duration_sec']
+
+            file_map = {}
+            for item in self:
+                if item.filename not in file_map:
+                    file_map[item.filename] = MetaDataContainer()
+
+                file_map[item.filename].append(item)
+        else:
+            event_flatten_active_lengths = [None] * len(event_label_list)
+            event_flatten_inactive_lengths = [None] * len(event_label_list)
+
         for event_id, event_label in enumerate(event_label_list):
             for item in self:
                 if item.onset is not None and item.offset is not None and item.event_label == event_label:
                     event_lengths[event_id] += item.offset - item.onset
+
                 if item.event_label == event_label:
                     event_counts[event_id] += 1
+
+            if calculate_event_activity:
+                for filename in self.unique_files:
+                    meta_flatten = file_map[filename].filter(event_label=event_label).map_events(
+                        target_event_label='activity'
+                    ).process_events(
+                        minimum_event_gap=numpy.spacing(1),
+                        minimum_event_length=numpy.spacing(1)
+                    )
+                    for e in meta_flatten:
+                        event_flatten_active_lengths[event_id] += e.offset - e.onset
+
+                    for e in meta_flatten.event_inactivity(duration_list=duration_list):
+                        event_flatten_inactive_lengths[event_id] += e.offset - e.onset
+
+        if calculate_event_activity:
+            overall_event_flatten_active_length = 0
+            overall_event_flatten_inactive_length = 0
+            for filename in self.unique_files:
+                meta_flatten = file_map[filename].map_events(
+                    target_event_label='activity'
+                ).process_events(
+                    minimum_event_gap=numpy.spacing(1),
+                    minimum_event_length=numpy.spacing(1)
+                )
+
+                current_event_inactivity = meta_flatten.event_inactivity(duration_list=duration_list)
+
+                for item in meta_flatten:
+                    overall_event_flatten_active_length += item['offset'] - item['onset']
+
+                for item in current_event_inactivity:
+                    overall_event_flatten_inactive_length += item['offset'] - item['onset']
+        else:
+            overall_event_flatten_active_length = None
+            overall_event_flatten_inactive_length = None
 
         tag_counts = numpy.zeros(len(tag_list))
         for tag_id, tag in enumerate(tag_list):
@@ -2527,8 +2607,17 @@ class MetaDataContainer(ListDictContainer):
             'events': {
                 'event_label_list': event_label_list,
                 'length': event_lengths,
+                'flatten_active_length': event_flatten_active_lengths,
+                'flatten_inactive_length': event_flatten_inactive_lengths,
+                'activity_percentage': event_flatten_active_lengths / (event_flatten_active_lengths + event_flatten_inactive_lengths)*100.0 if calculate_event_activity else event_flatten_active_lengths,
                 'count': event_counts,
-                'avg_length': event_lengths/(event_counts + numpy.spacing(1))
+                'avg_length': event_lengths/(event_counts + numpy.spacing(1)),
+                'overall_event_count': numpy.sum(event_counts),
+                'overall_length': numpy.sum(event_lengths),
+                'overall_avg_length': numpy.mean(event_lengths/(event_counts + numpy.spacing(1))) if calculate_event_activity else None,
+                'overall_event_flatten_active_length': overall_event_flatten_active_length,
+                'overall_event_flatten_inactive_length': overall_event_flatten_inactive_length,
+                'overall_activity_percentage': overall_event_flatten_active_length / (overall_event_flatten_active_length + overall_event_flatten_inactive_length) * 100.0 if calculate_event_activity else None,
             },
             'tags': {
                 'tag_list': tag_list,

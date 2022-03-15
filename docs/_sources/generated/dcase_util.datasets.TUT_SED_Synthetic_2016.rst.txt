@@ -1,4 +1,4 @@
-dcase\_util.datasets.TUT\_SED\_Synthetic\_2016
+﻿dcase\_util.datasets.TUT\_SED\_Synthetic\_2016
 ==============================================
 
 .. currentmodule:: dcase_util.datasets
@@ -38,6 +38,7 @@ dcase\_util.datasets.TUT\_SED\_Synthetic\_2016
       ~TUT_SED_Synthetic_2016.load_meta
       ~TUT_SED_Synthetic_2016.log
       ~TUT_SED_Synthetic_2016.prepare
+      ~TUT_SED_Synthetic_2016.process_meta_container
       ~TUT_SED_Synthetic_2016.process_meta_item
       ~TUT_SED_Synthetic_2016.relative_to_absolute_path
       ~TUT_SED_Synthetic_2016.scene_label_count

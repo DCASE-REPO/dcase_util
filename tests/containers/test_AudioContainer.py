@@ -56,18 +56,18 @@ def test_load():
     nose.tools.eq_(audio.data.shape[0], 88200)
 
 
-def test_load_youtube():
-    with dcase_util.utils.DisableLogger():
-        audio_container = dcase_util.containers.AudioContainer().load_from_youtube(
-          query_id='2ceUOv8A3FE',
-          start=1,
-          stop=5
-        )
-
-    nose.tools.eq_(audio_container.fs, 44100)
-    nose.tools.eq_(len(audio_container.data.shape), 2)
-    nose.tools.eq_(audio_container.streams, 2)
-    nose.tools.eq_(audio_container.shape, (2, 176400))
+#def test_load_youtube():
+#    with dcase_util.utils.DisableLogger():
+#        audio_container = dcase_util.containers.AudioContainer().load_from_youtube(
+#          query_id='2ceUOv8A3FE',
+#          start=1,
+#          stop=5
+#        )
+#
+#    nose.tools.eq_(audio_container.fs, 44100)
+#    nose.tools.eq_(len(audio_container.data.shape), 2)
+#    nose.tools.eq_(audio_container.streams, 2)
+#    nose.tools.eq_(audio_container.shape, (2, 176400))
 
 
 def test_container():

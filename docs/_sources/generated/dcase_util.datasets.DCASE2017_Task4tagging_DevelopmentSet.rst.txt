@@ -1,4 +1,4 @@
-dcase\_util.datasets.DCASE2017\_Task4tagging\_DevelopmentSet
+﻿dcase\_util.datasets.DCASE2017\_Task4tagging\_DevelopmentSet
 ============================================================
 
 .. currentmodule:: dcase_util.datasets
@@ -38,6 +38,7 @@ dcase\_util.datasets.DCASE2017\_Task4tagging\_DevelopmentSet
       ~DCASE2017_Task4tagging_DevelopmentSet.load_meta
       ~DCASE2017_Task4tagging_DevelopmentSet.log
       ~DCASE2017_Task4tagging_DevelopmentSet.prepare
+      ~DCASE2017_Task4tagging_DevelopmentSet.process_meta_container
       ~DCASE2017_Task4tagging_DevelopmentSet.process_meta_item
       ~DCASE2017_Task4tagging_DevelopmentSet.relative_to_absolute_path
       ~DCASE2017_Task4tagging_DevelopmentSet.scene_label_count

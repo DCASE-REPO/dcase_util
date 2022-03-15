@@ -1,4 +1,4 @@
-dcase\_util.datasets.SoundEventDataset
+﻿dcase\_util.datasets.SoundEventDataset
 ======================================
 
 .. currentmodule:: dcase_util.datasets
@@ -38,6 +38,7 @@ dcase\_util.datasets.SoundEventDataset
       ~SoundEventDataset.load_meta
       ~SoundEventDataset.log
       ~SoundEventDataset.prepare
+      ~SoundEventDataset.process_meta_container
       ~SoundEventDataset.process_meta_item
       ~SoundEventDataset.relative_to_absolute_path
       ~SoundEventDataset.scene_label_count

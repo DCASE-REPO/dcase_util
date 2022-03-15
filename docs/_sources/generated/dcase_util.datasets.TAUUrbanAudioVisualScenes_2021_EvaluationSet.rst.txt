@@ -1,4 +1,4 @@
-dcase\_util.datasets.TAUUrbanAudioVisualScenes\_2021\_EvaluationSet
+﻿dcase\_util.datasets.TAUUrbanAudioVisualScenes\_2021\_EvaluationSet
 ===================================================================
 
 .. currentmodule:: dcase_util.datasets
@@ -38,6 +38,7 @@ dcase\_util.datasets.TAUUrbanAudioVisualScenes\_2021\_EvaluationSet
       ~TAUUrbanAudioVisualScenes_2021_EvaluationSet.load_meta
       ~TAUUrbanAudioVisualScenes_2021_EvaluationSet.log
       ~TAUUrbanAudioVisualScenes_2021_EvaluationSet.prepare
+      ~TAUUrbanAudioVisualScenes_2021_EvaluationSet.process_meta_container
       ~TAUUrbanAudioVisualScenes_2021_EvaluationSet.process_meta_item
       ~TAUUrbanAudioVisualScenes_2021_EvaluationSet.relative_to_absolute_path
       ~TAUUrbanAudioVisualScenes_2021_EvaluationSet.scene_label_count
