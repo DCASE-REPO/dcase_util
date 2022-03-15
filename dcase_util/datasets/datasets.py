@@ -1391,7 +1391,7 @@ class Dataset(object):
 
         error_log = []
 
-        meta_files = self.meta_container.unique_files
+        meta_files = set(self.meta_container.unique_files)
         if 'audio' in self.included_content_types:
             for filename in meta_files:
                 if not os.path.exists(filename):
@@ -1454,6 +1454,7 @@ class Dataset(object):
                                 description='Field missing [filename].'
                             )
                         )
+
                     else:
                         if item['filename'] not in meta_files:
                             error_log.append(
