@@ -1,4 +1,4 @@
-dcase\_util.datasets.DCASE2018\_Task5\_EvaluationSet
+﻿dcase\_util.datasets.DCASE2018\_Task5\_EvaluationSet
 ====================================================
 
 .. currentmodule:: dcase_util.datasets
@@ -38,6 +38,7 @@ dcase\_util.datasets.DCASE2018\_Task5\_EvaluationSet
       ~DCASE2018_Task5_EvaluationSet.load_meta
       ~DCASE2018_Task5_EvaluationSet.log
       ~DCASE2018_Task5_EvaluationSet.prepare
+      ~DCASE2018_Task5_EvaluationSet.process_meta_container
       ~DCASE2018_Task5_EvaluationSet.process_meta_item
       ~DCASE2018_Task5_EvaluationSet.relative_to_absolute_path
       ~DCASE2018_Task5_EvaluationSet.scene_label_count

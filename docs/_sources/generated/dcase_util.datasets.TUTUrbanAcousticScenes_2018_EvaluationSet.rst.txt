@@ -1,4 +1,4 @@
-dcase\_util.datasets.TUTUrbanAcousticScenes\_2018\_EvaluationSet
+﻿dcase\_util.datasets.TUTUrbanAcousticScenes\_2018\_EvaluationSet
 ================================================================
 
 .. currentmodule:: dcase_util.datasets
@@ -38,6 +38,7 @@ dcase\_util.datasets.TUTUrbanAcousticScenes\_2018\_EvaluationSet
       ~TUTUrbanAcousticScenes_2018_EvaluationSet.load_meta
       ~TUTUrbanAcousticScenes_2018_EvaluationSet.log
       ~TUTUrbanAcousticScenes_2018_EvaluationSet.prepare
+      ~TUTUrbanAcousticScenes_2018_EvaluationSet.process_meta_container
       ~TUTUrbanAcousticScenes_2018_EvaluationSet.process_meta_item
       ~TUTUrbanAcousticScenes_2018_EvaluationSet.relative_to_absolute_path
       ~TUTUrbanAcousticScenes_2018_EvaluationSet.scene_label_count

@@ -1,4 +1,4 @@
-dcase\_util.datasets.TAUUrbanAcousticScenes\_2019\_Mobile\_DevelopmentSet
+﻿dcase\_util.datasets.TAUUrbanAcousticScenes\_2019\_Mobile\_DevelopmentSet
 =========================================================================
 
 .. currentmodule:: dcase_util.datasets
@@ -38,6 +38,7 @@ dcase\_util.datasets.TAUUrbanAcousticScenes\_2019\_Mobile\_DevelopmentSet
       ~TAUUrbanAcousticScenes_2019_Mobile_DevelopmentSet.load_meta
       ~TAUUrbanAcousticScenes_2019_Mobile_DevelopmentSet.log
       ~TAUUrbanAcousticScenes_2019_Mobile_DevelopmentSet.prepare
+      ~TAUUrbanAcousticScenes_2019_Mobile_DevelopmentSet.process_meta_container
       ~TAUUrbanAcousticScenes_2019_Mobile_DevelopmentSet.process_meta_item
       ~TAUUrbanAcousticScenes_2019_Mobile_DevelopmentSet.relative_to_absolute_path
       ~TAUUrbanAcousticScenes_2019_Mobile_DevelopmentSet.scene_label_count

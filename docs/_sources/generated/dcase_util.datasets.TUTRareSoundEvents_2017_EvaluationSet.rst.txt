@@ -1,4 +1,4 @@
-dcase\_util.datasets.TUTRareSoundEvents\_2017\_EvaluationSet
+﻿dcase\_util.datasets.TUTRareSoundEvents\_2017\_EvaluationSet
 ============================================================
 
 .. currentmodule:: dcase_util.datasets
@@ -38,6 +38,7 @@ dcase\_util.datasets.TUTRareSoundEvents\_2017\_EvaluationSet
       ~TUTRareSoundEvents_2017_EvaluationSet.load_meta
       ~TUTRareSoundEvents_2017_EvaluationSet.log
       ~TUTRareSoundEvents_2017_EvaluationSet.prepare
+      ~TUTRareSoundEvents_2017_EvaluationSet.process_meta_container
       ~TUTRareSoundEvents_2017_EvaluationSet.process_meta_item
       ~TUTRareSoundEvents_2017_EvaluationSet.relative_to_absolute_path
       ~TUTRareSoundEvents_2017_EvaluationSet.scene_label_count

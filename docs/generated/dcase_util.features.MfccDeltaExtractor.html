@@ -1,70 +1,38 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>dcase_util.features.MfccDeltaExtractor &mdash; DCASE Utilities 1.0 documentation</title>
-  
-
-  
-  
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-  
-  
-
-  
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="dcase_util.features.MfccDeltaExtractor.extract" href="dcase_util.features.MfccDeltaExtractor.extract.html" />
     <link rel="prev" title="dcase_util.features.MfccStaticExtractor.extract" href="dcase_util.features.MfccStaticExtractor.extract.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="../index.html" class="icon icon-home"> DCASE Utilities
-          
-
-          
-            
             <img src="../_static/dcase_util.png" class="logo" alt="Logo"/>
-          
           </a>
-
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -72,17 +40,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation instructions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../installation.html#pypi">PyPI</a></li>
@@ -100,7 +58,7 @@
 </ul>
 </li>
 </ul>
-<p class="caption"><span class="caption-text">Tutorials</span></p>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../tutorial_introduction.html">Introduction</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../tutorial_introduction.html#concepts">Concepts</a></li>
@@ -179,7 +137,7 @@
 </ul>
 </li>
 </ul>
-<p class="caption"><span class="caption-text">Utilities</span></p>
+<p class="caption" role="heading"><span class="caption-text">Utilities</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../containers.html">Containers</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../containers.html#basic-containers">Basic containers</a><ul>
@@ -777,6 +735,7 @@
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TAUUrbanAudioVisualScenes_2021_DevelopmentSet.html">dcase_util.datasets.TAUUrbanAudioVisualScenes_2021_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TAUUrbanAudioVisualScenes_2021_EvaluationSet.html">dcase_util.datasets.TAUUrbanAudioVisualScenes_2021_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TAUUrbanAcousticScenes_2021_Mobile_EvaluationSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2021_Mobile_EvaluationSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TAUUrbanAcousticScenes_2022_Mobile_DevelopmentSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2022_Mobile_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.DCASE2018_Task5_DevelopmentSet.html">dcase_util.datasets.DCASE2018_Task5_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.DCASE2018_Task5_EvaluationSet.html">dcase_util.datasets.DCASE2018_Task5_EvaluationSet</a></li>
 </ul>
@@ -872,6 +831,11 @@
 <li class="toctree-l2"><a class="reference internal" href="../features.html#openl3extractor">OpenL3Extractor</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.features.OpenL3Extractor.html">dcase_util.features.OpenL3Extractor</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.features.OpenL3Extractor.extract.html">dcase_util.features.OpenL3Extractor.extract</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../features.html#torchopenl3extractor">TorchOpenL3Extractor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.features.TorchOpenL3Extractor.html">dcase_util.features.TorchOpenL3Extractor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.features.TorchOpenL3Extractor.extract.html">dcase_util.features.TorchOpenL3Extractor.extract</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../features.html#edgel3extractor">EdgeL3Extractor</a><ul>
@@ -1257,6 +1221,11 @@
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.OpenL3ExtractorProcessor.process.html">dcase_util.processors.OpenL3ExtractorProcessor.process</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../processors.html#torchopenl3extractorprocessor">TorchOpenL3ExtractorProcessor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.TorchOpenL3ExtractorProcessor.html">dcase_util.processors.TorchOpenL3ExtractorProcessor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.TorchOpenL3ExtractorProcessor.process.html">dcase_util.processors.TorchOpenL3ExtractorProcessor.process</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../processors.html#edgel3extractorprocessor">EdgeL3ExtractorProcessor</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.EdgeL3ExtractorProcessor.html">dcase_util.processors.EdgeL3ExtractorProcessor</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.processors.EdgeL3ExtractorProcessor.process.html">dcase_util.processors.EdgeL3ExtractorProcessor.process</a></li>
@@ -1497,7 +1466,7 @@
 </ul>
 </li>
 </ul>
-<p class="caption"><span class="caption-text">Tools</span></p>
+<p class="caption" role="heading"><span class="caption-text">Tools</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../tools.html">Tools</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../tools.html#datasetpacker">DatasetPacker</a><ul>
@@ -1527,9 +1496,10 @@
 </ul>
 </li>
 </ul>
-<p class="caption"><span class="caption-text">Reference</span></p>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-19">v0.2.19</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-18">v0.2.18</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-17">v0.2.17</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-16">v0.2.16</a></li>
@@ -1561,73 +1531,35 @@
 <li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
 </ul>
 
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">DCASE Utilities</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../index.html">Docs</a> &raquo;</li>
-        
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../features.html">Features</a> &raquo;</li>
-        
       <li>dcase_util.features.MfccDeltaExtractor</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-            
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="dcase-util-features-mfccdeltaextractor">
-<h1>dcase_util.features.MfccDeltaExtractor<a class="headerlink" href="#dcase-util-features-mfccdeltaextractor" title="Permalink to this headline">¶</a></h1>
+             
+  <section id="dcase-util-features-mfccdeltaextractor">
+<h1>dcase_util.features.MfccDeltaExtractor<a class="headerlink" href="#dcase-util-features-mfccdeltaextractor" title="Permalink to this headline"></a></h1>
 <dl class="py class">
-<dt id="dcase_util.features.MfccDeltaExtractor">
-<em class="property">class </em><code class="sig-prename descclassname">dcase_util.features.</code><code class="sig-name descname">MfccDeltaExtractor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">fs</span><span class="o">=</span><span class="default_value">44100</span></em>, <em class="sig-param"><span class="n">win_length_samples</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">hop_length_samples</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">win_length_seconds</span><span class="o">=</span><span class="default_value">0.04</span></em>, <em class="sig-param"><span class="n">hop_length_seconds</span><span class="o">=</span><span class="default_value">0.02</span></em>, <em class="sig-param"><span class="n">spectrogram_type</span><span class="o">=</span><span class="default_value">'magnitude'</span></em>, <em class="sig-param"><span class="n">n_fft</span><span class="o">=</span><span class="default_value">2048</span></em>, <em class="sig-param"><span class="n">window_type</span><span class="o">=</span><span class="default_value">'hamming_asymmetric'</span></em>, <em class="sig-param"><span class="n">n_mels</span><span class="o">=</span><span class="default_value">40</span></em>, <em class="sig-param"><span class="n">fmin</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">fmax</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">normalize_mel_bands</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">htk</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">n_mfcc</span><span class="o">=</span><span class="default_value">20</span></em>, <em class="sig-param"><span class="n">omit_zeroth</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">width</span><span class="o">=</span><span class="default_value">9</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/features/features.html#MfccDeltaExtractor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.features.MfccDeltaExtractor" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dcase_util.features.MfccDeltaExtractor">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">dcase_util.features.</span></span><span class="sig-name descname"><span class="pre">MfccDeltaExtractor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">44100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">win_length_samples</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hop_length_samples</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">win_length_seconds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.04</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hop_length_seconds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.02</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spectrogram_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'magnitude'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_fft</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2048</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'hamming_asymmetric'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_mels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">40</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize_mel_bands</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">htk</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_mfcc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">omit_zeroth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">9</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/features/features.html#MfccDeltaExtractor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dcase_util.features.MfccDeltaExtractor" title="Permalink to this definition"></a></dt>
 <dd><p>Feature extractor class to extract MFCC delta features</p>
 <p>Constructor</p>
 <dl class="field-list simple">
@@ -1685,8 +1617,8 @@ Default value 9</p>
 </dd>
 </dl>
 <dl class="py method">
-<dt id="dcase_util.features.MfccDeltaExtractor.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">fs=44100</em>, <em class="sig-param">win_length_samples=None</em>, <em class="sig-param">hop_length_samples=None</em>, <em class="sig-param">win_length_seconds=0.04</em>, <em class="sig-param">hop_length_seconds=0.02</em>, <em class="sig-param">spectrogram_type='magnitude'</em>, <em class="sig-param">n_fft=2048</em>, <em class="sig-param">window_type='hamming_asymmetric'</em>, <em class="sig-param">n_mels=40</em>, <em class="sig-param">fmin=0</em>, <em class="sig-param">fmax=None</em>, <em class="sig-param">normalize_mel_bands=False</em>, <em class="sig-param">htk=False</em>, <em class="sig-param">n_mfcc=20</em>, <em class="sig-param">omit_zeroth=False</em>, <em class="sig-param">width=9</em>, <em class="sig-param">\*\*kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/features/features.html#MfccDeltaExtractor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dcase_util.features.MfccDeltaExtractor.__init__" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dcase_util.features.MfccDeltaExtractor.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">44100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">win_length_samples</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hop_length_samples</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">win_length_seconds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.04</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hop_length_seconds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.02</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spectrogram_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'magnitude'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_fft</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2048</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'hamming_asymmetric'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_mels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">40</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize_mel_bands</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">htk</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_mfcc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">omit_zeroth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">9</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dcase_util/features/features.html#MfccDeltaExtractor.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dcase_util.features.MfccDeltaExtractor.__init__" title="Permalink to this definition"></a></dt>
 <dd><p>Constructor</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1751,28 +1683,28 @@ Default value 9</p>
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dcase_util.features.MfccDeltaExtractor.__init__" title="dcase_util.features.MfccDeltaExtractor.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(self[, fs, win_length_samples, …])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dcase_util.features.MfccDeltaExtractor.__init__" title="dcase_util.features.MfccDeltaExtractor.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>([fs, win_length_samples, ...])</p></td>
 <td><p>Constructor</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="dcase_util.features.MfccDeltaExtractor.extract.html#dcase_util.features.MfccDeltaExtractor.extract" title="dcase_util.features.MfccDeltaExtractor.extract"><code class="xref py py-obj docutils literal notranslate"><span class="pre">extract</span></code></a>(self, y)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="dcase_util.features.MfccDeltaExtractor.extract.html#dcase_util.features.MfccDeltaExtractor.extract" title="dcase_util.features.MfccDeltaExtractor.extract"><code class="xref py py-obj docutils literal notranslate"><span class="pre">extract</span></code></a>(y)</p></td>
 <td><p>Extract features for the audio signal.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_spectrogram</span></code>(self, y[, n_fft, …])</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_spectrogram</span></code>(y[, n_fft, ...])</p></td>
 <td><p>Spectrogram</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_window_function</span></code>(self, n[, window_type])</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_window_function</span></code>(n[, window_type])</p></td>
 <td><p>Window function</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">log</span></code>(self[, level])</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">log</span></code>([level])</p></td>
 <td><p>Log container content</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">show</span></code>(self[, mode, indent, visualize])</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">show</span></code>([mode, indent, visualize])</p></td>
 <td><p>Print container content</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_html</span></code>(self[, indent])</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_html</span></code>([indent])</p></td>
 <td><p>Get container information in a HTML formatted string</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_string</span></code>(self[, ui, indent])</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_string</span></code>([ui, indent])</p></td>
 <td><p>Get container information in a string</p></td>
 </tr>
 </tbody>
@@ -1797,54 +1729,34 @@ Default value 9</p>
 </table>
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="dcase_util.features.MfccDeltaExtractor.extract.html" class="btn btn-neutral float-right" title="dcase_util.features.MfccDeltaExtractor.extract" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="dcase_util.features.MfccStaticExtractor.extract.html" class="btn btn-neutral float-left" title="dcase_util.features.MfccStaticExtractor.extract" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="dcase_util.features.MfccStaticExtractor.extract.html" class="btn btn-neutral float-left" title="dcase_util.features.MfccStaticExtractor.extract" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dcase_util.features.MfccDeltaExtractor.extract.html" class="btn btn-neutral float-right" title="dcase_util.features.MfccDeltaExtractor.extract" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright 2021, Toni Heittola et al.
+    <p>&#169; Copyright 2022, Toni Heittola et al..</p>
+  </div>
 
-    </p>
-  </div> 
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

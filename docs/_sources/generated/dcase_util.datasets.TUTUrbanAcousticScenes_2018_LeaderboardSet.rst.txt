@@ -1,4 +1,4 @@
-dcase\_util.datasets.TUTUrbanAcousticScenes\_2018\_LeaderboardSet
+﻿dcase\_util.datasets.TUTUrbanAcousticScenes\_2018\_LeaderboardSet
 =================================================================
 
 .. currentmodule:: dcase_util.datasets
@@ -38,6 +38,7 @@ dcase\_util.datasets.TUTUrbanAcousticScenes\_2018\_LeaderboardSet
       ~TUTUrbanAcousticScenes_2018_LeaderboardSet.load_meta
       ~TUTUrbanAcousticScenes_2018_LeaderboardSet.log
       ~TUTUrbanAcousticScenes_2018_LeaderboardSet.prepare
+      ~TUTUrbanAcousticScenes_2018_LeaderboardSet.process_meta_container
       ~TUTUrbanAcousticScenes_2018_LeaderboardSet.process_meta_item
       ~TUTUrbanAcousticScenes_2018_LeaderboardSet.relative_to_absolute_path
       ~TUTUrbanAcousticScenes_2018_LeaderboardSet.scene_label_count

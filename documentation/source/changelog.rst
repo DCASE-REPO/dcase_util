@@ -3,6 +3,26 @@
 Release notes
 =============
 
+v0.2.19
+-------
+
+**Updates**
+
+* Add ``TAUUrbanAcousticScenes_2022_Mobile_DevelopmentSet``
+* Add ``active_scenes`` and ``active_events`` parameter for Datasets class to select scene and event classes.
+* Add event activity and inactivity calculation for ``MetaDataContainer``
+* Add ``TorchOpenL3Extractor`` and ``TorchOpenL3ExtractorProcessor``
+* Add ``float5`` and ``float6`` value types to ``formatted_value`` method in ``FancyStringifier``.
+* Add valid content type 'all' for ``RemoteFile``
+
+**Bug fixes**
+
+* Fix ``unique_files`` in ``MetaDataContainer`` to be more efficient with large number of files.
+* Fix ``check_metadata`` in ``Dataset`` to be more efficient with large number of files.
+* Fix field 'event_label' processing to be robust for non-string values in ``MetaDataItem``
+* Fix data loading to be robust for empty files in ``DictContainer``
+* Fix 'float1_percentage+ci', 'float2_percentage+ci', 'float3_percentage+ci', and 'float4_percentage+ci' value types in ``FancyStringifier`` to have fallback data types if values do not have full data.
+
 v0.2.18
 -------
 
