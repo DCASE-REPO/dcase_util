@@ -245,7 +245,8 @@ def get_audio_info(filename, logger=None):
             FileFormat.MP3,
             FileFormat.M4A,
             FileFormat.MP4,
-            FileFormat.WEBM
+            FileFormat.WEBM,
+            FileFormat.MKV,
         ]
     )
 
@@ -302,7 +303,7 @@ def get_audio_info(filename, logger=None):
 
     elif file.format in [FileFormat.FLAC, FileFormat.OGG,
                          FileFormat.MP3, FileFormat.M4A, FileFormat.MP4,
-                         FileFormat.WEBM]:
+                         FileFormat.WEBM, FileFormat.MKV]:
         # Use ffprobe to get file info from other formats
         import subprocess
         import json
