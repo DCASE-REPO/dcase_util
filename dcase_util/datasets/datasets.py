@@ -3724,6 +3724,9 @@ class SoundEventDataset(Dataset):
         if self.active_events:
             output = output.filter(event_list=self.active_events)
 
+        if container.filename:
+            output.filename = container.filename
+
         return output
 
 
