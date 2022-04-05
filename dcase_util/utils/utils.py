@@ -205,7 +205,7 @@ def is_jupyter():
         else:
             return False
 
-    except NameError:
+    except (ModuleNotFoundError, NameError):
         # Normal python interpreter
         return False
 
