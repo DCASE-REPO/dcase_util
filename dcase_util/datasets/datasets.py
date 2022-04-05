@@ -2748,6 +2748,9 @@ class AcousticSceneDataset(Dataset):
         if self.active_scenes:
             output = output.filter(scene_list=self.active_scenes)
 
+        if container.filename:
+            output.filename = container.filename
+
         return output
 
 
