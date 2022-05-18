@@ -146,7 +146,7 @@ class MetaDataItem(dict):
             output += ui.data(indent=indent + 2, field='filename_audio', value=self.filename_audio) + '\n'
 
         if self.filename_video:
-            output += ui.data(indent=indent + 2, field='filename_audio', value=self.filename_video) + '\n'
+            output += ui.data(indent=indent + 2, field='filename_video', value=self.filename_video) + '\n'
 
         if self.identifier:
             output += ui.data(indent=indent + 2, field='identifier', value=self.identifier) + '\n'
