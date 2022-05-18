@@ -2370,6 +2370,43 @@ class MetaDataContainer(ListDictContainer):
 
         return processed_events
 
+    def map_tags(self, target_tag, source_tags=None):
+        """Map tags with varying tags into single target tag
+
+        Parameters
+        ----------
+        target_tag : str
+            Target tag
+
+        source_tags : list of str
+            Tags to be processed. If none given, all tags are merged
+            Default value None
+
+        Returns
+        -------
+        MetaDataContainer
+
+        """
+
+        processed_tags = MetaDataContainer()
+        files = self.unique_files
+        if not files:
+            files = [None]
+
+        if source_tags is None:
+            source_tags = self.unique_tags
+
+        for item in self:
+            i = copy.deepcopy(item)
+            for tag in source_tags:
+                if tag in i.tags:
+                    i.tags[item.tags.index(tag)] = target_tag
+
+            processed_tags.append(i)
+
+        return processed_tags
+
+
     def event_inactivity(self, event_label='inactivity', source_event_labels=None, duration_list=None):
         """Get inactivity segments between events as event list
 
