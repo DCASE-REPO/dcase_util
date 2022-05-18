@@ -1165,7 +1165,6 @@ class MetaDataContainer(ListDictContainer):
         labels.sort()
         return labels
 
-
     @property
     def unique_source_labels(self):
         """Unique source labels
@@ -2347,26 +2346,10 @@ class MetaDataContainer(ListDictContainer):
         for event_label in source_event_labels:
             current_events_items = self.filter(event_label=event_label)
 
-            # Sort events
-            #current_events_items = sorted(current_events_items, key=lambda k: k.onset)
-
             for item in current_events_items:
                 item.event_label = target_event_label
 
             processed_events += current_events_items
-        if 0:
-            for filename in files:
-                for event_label in source_event_labels:
-                    print(filename, event_label)
-                    current_events_items = self.filter(filename=filename, event_label=event_label)
-
-                    # Sort events
-                    current_events_items = sorted(current_events_items, key=lambda k: k.onset)
-
-                    for item in current_events_items:
-                        item.event_label = target_event_label
-
-                    processed_events += current_events_items
 
         return processed_events
 
