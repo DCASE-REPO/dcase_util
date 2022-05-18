@@ -888,16 +888,16 @@ class MetaDataContainer(ListDictContainer):
             if 'tags' in stats and 'tag_list' in stats['tags'] and stats['tags']['tag_list']:
                 output += ui.line('Tag statistics', indent=indent) + '\n'
 
-                cell_data = [[], []]
-
+                cell_data = [[], [], []]
                 for tag_id, tag in enumerate(stats['tags']['tag_list']):
                     cell_data[0].append(tag)
                     cell_data[1].append(int(stats['tags']['count'][tag_id]))
+                    cell_data[2].append(int(stats['tags']['identifiers'][tag_id]))
 
                 output += ui.table(
                     cell_data=cell_data,
-                    column_headers=['Tag', 'Count'],
-                    column_types=['str20', 'int'],
+                    column_headers=['Tag', 'Count', 'Identifiers'],
+                    column_types=['str20', 'int', 'int'],
                     indent=indent + 2
                 ) + '\n'
 
@@ -2677,10 +2677,12 @@ class MetaDataContainer(ListDictContainer):
             overall_event_flatten_inactive_length = None
 
         tag_counts = numpy.zeros(len(tag_list))
+        tag_identifiers = numpy.zeros(len(tag_list))
         for tag_id, tag in enumerate(tag_list):
             for item in self:
                 if item.tags and tag in item.tags:
                     tag_counts[tag_id] += 1
+            tag_identifiers[tag_id] = len(self.filter(tag=tag).unique_identifiers)
 
         return {
             'scenes': {
@@ -2705,7 +2707,8 @@ class MetaDataContainer(ListDictContainer):
             },
             'tags': {
                 'tag_list': tag_list,
-                'count': tag_counts
+                'count': tag_counts,
+                'identifiers': tag_identifiers
             }
         }
 
