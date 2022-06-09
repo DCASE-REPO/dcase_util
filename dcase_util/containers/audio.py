@@ -1811,9 +1811,14 @@ class AudioContainer(ContainerMixin, FileMixin):
             self.plot_spec(**kwargs)
 
         elif plot_type == 'dual':
+            if kwargs.get('figsize') is None:
+                figsize = (10, 8)
+            else:
+                figsize = kwargs.get('figsize')
+
             if self.channels == 1:
                 import matplotlib.pyplot as plt
-                plt.figure()
+                plt.figure(figsize=figsize)
                 plt.subplot(2, 1, 1)
                 self.plot_wave(
                     x_axis=kwargs.get('x_axis', 'time'),
