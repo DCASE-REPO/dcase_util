@@ -338,9 +338,14 @@ def model_summary_string(keras_model, mode='keras', show_parameters=True, displa
 
         row_separators = []
         prev_name = None
+
+
         for layer_id, layer in enumerate(keras_model.layers):
             connections = []
-            if LooseVersion(keras.__version__) >= LooseVersion('2.1.3'):
+            if LooseVersion(keras.__version__) >= LooseVersion('2.7.0'):
+                pass
+
+            elif LooseVersion(keras.__version__) >= LooseVersion('2.1.3'):
                 for node_index, node in enumerate(layer._inbound_nodes):
                     for i in range(len(node.inbound_layers)):
                         inbound_layer = node.inbound_layers[i].name
@@ -386,17 +391,28 @@ def model_summary_string(keras_model, mode='keras', show_parameters=True, displa
             table_data['output'].append(str(layer.output_shape))
             table_data['parameter_count'].append(str(layer.count_params()))
             table_data['name'].append(layer.name)
-            table_data['connected_to'].append(str(connections[0]) if len(connections) > 0 else '-')
+            if connections:
+                table_data['connected_to'].append(str(connections[0]) if len(connections) > 0 else '-')
             table_data['activation'].append(str(config.get('activation', '-')))
             table_data['initialization'].append(init)
 
-        trainable_count = int(
-            numpy.sum([keras_backend.count_params(p) for p in set(keras_model.trainable_weights)])
-        )
+        if LooseVersion(keras.__version__) >= LooseVersion('2.7.0'):
+            trainable_count = 0
+            for p in keras_model.trainable_weights:
+                trainable_count += keras_backend.count_params(p)
 
-        non_trainable_count = int(
-            numpy.sum([keras_backend.count_params(p) for p in set(keras_model.non_trainable_weights)])
-        )
+            non_trainable_count = 0
+            for p in keras_model.non_trainable_weights:
+                non_trainable_count += keras_backend.count_params(p)
+
+        else:
+            trainable_count = int(
+                numpy.sum([keras_backend.count_params(p) for p in set(keras_model.trainable_weights)])
+            )
+
+            non_trainable_count = int(
+                numpy.sum([keras_backend.count_params(p) for p in set(keras_model.non_trainable_weights)])
+            )
 
         # Show row separators only if they are useful
         if len(row_separators) == len(keras_model.layers):
