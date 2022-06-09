@@ -820,8 +820,8 @@ class AudioContainer(ContainerMixin, FileMixin):
                     if fs != source_fs:
                         self._data = librosa.core.resample(
                             self._data,
-                            source_fs,
-                            fs,
+                            orig_sr=source_fs,
+                            target_fs=fs,
                             res_type=res_type
                         )
 
