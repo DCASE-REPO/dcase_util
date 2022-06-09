@@ -821,7 +821,7 @@ class AudioContainer(ContainerMixin, FileMixin):
                         self._data = librosa.core.resample(
                             self._data,
                             orig_sr=source_fs,
-                            target_fs=fs,
+                            target_sr=fs,
                             res_type=res_type
                         )
 
