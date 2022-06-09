@@ -2258,3 +2258,32 @@ class AudioContainer(ContainerMixin, FileMixin):
 
         return sample / float(self.fs)
 
+    def overlay(self, audio, start_seconds=0, multiplier=0):
+        """Simple sample overlay method
+
+        Parameters
+        ----------
+        audio : AudioContainer
+            Audio to be mixed
+
+        start_seconds : float
+            Time stamp (in seconds) of segment start.
+            Default value 0
+
+        multiplier : float
+            Audio data multiplier
+            Default value 0
+
+        Returns
+        -------
+        self
+
+        """
+
+        start_samples = int(start_seconds * self.fs)
+        audio_data = audio.get_focused()
+        segment_length = len(audio_data)
+
+        self._data[start_samples:start_samples+segment_length] +=  audio_data * multiplier
+
+        return self
