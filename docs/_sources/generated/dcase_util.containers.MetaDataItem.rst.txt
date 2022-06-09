@@ -1,4 +1,4 @@
-dcase\_util.containers.MetaDataItem
+﻿dcase\_util.containers.MetaDataItem
 ===================================
 
 .. currentmodule:: dcase_util.containers
@@ -40,6 +40,7 @@ dcase\_util.containers.MetaDataItem
 
    .. autosummary::
    
+      ~MetaDataItem.dataset
       ~MetaDataItem.event_label
       ~MetaDataItem.filename
       ~MetaDataItem.filename_audio

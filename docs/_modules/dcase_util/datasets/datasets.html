@@ -4,6 +4,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>dcase_util.datasets.datasets &mdash; DCASE Utilities 1.0 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/plot_directive.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/theme_overrides.css" type="text/css" />
     <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
   <!--[if lt IE 9]>
@@ -325,6 +328,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.AudioContainer.normalize.html">dcase_util.containers.AudioContainer.normalize</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.AudioContainer.resample.html">dcase_util.containers.AudioContainer.resample</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.AudioContainer.mixdown.html">dcase_util.containers.AudioContainer.mixdown</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.AudioContainer.overlay.html">dcase_util.containers.AudioContainer.overlay</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.AudioContainer.plot.html">dcase_util.containers.AudioContainer.plot</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.AudioContainer.plot_wave.html">dcase_util.containers.AudioContainer.plot_wave</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.AudioContainer.plot_spec.html">dcase_util.containers.AudioContainer.plot_spec</a></li>
@@ -730,6 +734,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TAUUrbanAudioVisualScenes_2021_EvaluationSet.html">dcase_util.datasets.TAUUrbanAudioVisualScenes_2021_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TAUUrbanAcousticScenes_2021_Mobile_EvaluationSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2021_Mobile_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TAUUrbanAcousticScenes_2022_Mobile_DevelopmentSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2022_Mobile_DevelopmentSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TAUUrbanAcousticScenes_2022_Mobile_EvaluationSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2022_Mobile_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.DCASE2018_Task5_DevelopmentSet.html">dcase_util.datasets.DCASE2018_Task5_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.DCASE2018_Task5_EvaluationSet.html">dcase_util.datasets.DCASE2018_Task5_EvaluationSet</a></li>
 </ul>
@@ -1493,6 +1498,7 @@
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-20">v0.2.20</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-19">v0.2.19</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-18">v0.2.18</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-17">v0.2.17</a></li>
@@ -4298,7 +4304,10 @@
         <span class="n">output</span> <span class="o">=</span> <span class="n">container</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">active_scenes</span><span class="p">:</span>
-            <span class="n">output</span> <span class="o">=</span>  <span class="n">output</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">scene_list</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">active_scenes</span><span class="p">)</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="n">output</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">scene_list</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">active_scenes</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">container</span><span class="o">.</span><span class="n">filename</span><span class="p">:</span>
+            <span class="n">output</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="n">container</span><span class="o">.</span><span class="n">filename</span>
 
         <span class="k">return</span> <span class="n">output</span></div>
 
@@ -4904,6 +4913,7 @@
                                   <span class="n">fold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">training_meta</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                                   <span class="n">validation_amount</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
                                   <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">scene_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">iterations</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+                                  <span class="n">balancing_mode</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">identifier_hierarchy_separator</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span>
                                   <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;List of validation files randomly selecting while maintaining data balance.</span>
 
@@ -4937,6 +4947,14 @@
 <span class="sd">        iterations : int</span>
 <span class="sd">            How many randomization iterations will be done before selecting best matched.</span>
 <span class="sd">            Default value 100</span>
+
+<span class="sd">        balancing_mode : str</span>
+<span class="sd">            Balancing mode [&#39;auto&#39;, &#39;class&#39;, &#39;identifier&#39;]</span>
+<span class="sd">            Default value &#39;auto&#39;</span>
+
+<span class="sd">        identifier_hierarchy_separator : str</span>
+<span class="sd">            Hierarchy separator character to split identifiers</span>
+<span class="sd">            Default value &#39;-&#39;</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -4972,7 +4990,137 @@
                 <span class="n">identifier_present</span> <span class="o">=</span> <span class="kc">True</span>
                 <span class="k">break</span>
 
+        <span class="n">identifier_hierarchical</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">identifier_hierarchy_level</span> <span class="o">=</span> <span class="kc">None</span>
+
         <span class="k">if</span> <span class="n">identifier_present</span><span class="p">:</span>
+            <span class="c1"># Check type of identifier</span>
+            <span class="n">identifier_hierarchical</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">hierarchy_levels</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">training_meta</span><span class="p">:</span>
+                <span class="n">hierarchy_levels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">identifier</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">identifier_hierarchy_separator</span><span class="p">)))</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">identifier</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">))</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">identifier_hierarchical</span> <span class="o">=</span> <span class="kc">False</span>
+                    <span class="k">break</span>
+
+            <span class="k">if</span> <span class="n">identifier_hierarchical</span><span class="p">:</span>
+                <span class="n">hierarchy_levels</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">hierarchy_levels</span><span class="p">))</span>
+
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">hierarchy_levels</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">identifier_hierarchy_level</span> <span class="o">=</span> <span class="n">hierarchy_levels</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Multiple hierarchy levels detected in the identifiers. Use different balancing_mode.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                        <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+                    <span class="p">)</span>
+
+                    <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+                    <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">balancing_mode</span> <span class="o">==</span> <span class="s1">&#39;auto&#39;</span><span class="p">:</span>
+            <span class="c1"># Handle auto mode</span>
+            <span class="k">if</span> <span class="n">identifier_present</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">identifier_hierarchical</span><span class="p">:</span>
+                <span class="n">balancing_mode</span> <span class="o">=</span> <span class="s1">&#39;identifier&#39;</span>
+
+            <span class="k">elif</span> <span class="ow">not</span> <span class="n">identifier_present</span><span class="p">:</span>
+                <span class="n">balancing_mode</span> <span class="o">=</span> <span class="s1">&#39;class&#39;</span>
+
+        <span class="k">if</span> <span class="n">balancing_mode</span> <span class="o">==</span> <span class="s1">&#39;class&#39;</span><span class="p">:</span>
+            <span class="c1"># Do the balance based on scene class, identifier and event class</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">for</span> <span class="n">scene_id</span><span class="p">,</span> <span class="n">scene_label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">scene_labels</span><span class="p">):</span>
+                <span class="n">data</span><span class="p">[</span><span class="n">scene_label</span><span class="p">]</span> <span class="o">=</span> <span class="n">training_meta</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">scene_label</span><span class="o">=</span><span class="n">scene_label</span><span class="p">)</span><span class="o">.</span><span class="n">unique_files</span>
+
+            <span class="c1"># Get event amounts per class</span>
+            <span class="n">event_amounts</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">for</span> <span class="n">scene_id</span><span class="p">,</span> <span class="n">scene_label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">scene_labels</span><span class="p">):</span>
+                <span class="n">event_amounts</span><span class="p">[</span><span class="n">scene_label</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+                <span class="n">current_event_amounts</span> <span class="o">=</span> <span class="n">training_meta</span><span class="o">.</span><span class="n">filter</span><span class="p">()</span><span class="o">.</span><span class="n">event_stat_counts</span><span class="p">()</span>
+                <span class="k">for</span> <span class="n">event_label</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">iteritems</span><span class="p">(</span><span class="n">current_event_amounts</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="n">event_label</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">event_amounts</span><span class="p">[</span><span class="n">scene_label</span><span class="p">]:</span>
+                        <span class="n">event_amounts</span><span class="p">[</span><span class="n">scene_label</span><span class="p">][</span><span class="n">event_label</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+                    <span class="n">event_amounts</span><span class="p">[</span><span class="n">scene_label</span><span class="p">][</span><span class="n">event_label</span><span class="p">]</span> <span class="o">+=</span> <span class="n">count</span>
+
+            <span class="n">validation_files</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">scene_id</span><span class="p">,</span> <span class="n">scene_label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">scene_labels</span><span class="p">):</span>
+                <span class="c1"># Optimize scene sets separately</span>
+                <span class="n">validation_set_candidates</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="n">validation_set_mae</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="n">validation_set_event_amounts</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="n">training_set_event_amounts</span> <span class="o">=</span> <span class="p">[]</span>
+
+                <span class="n">iteration_progress</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span>
+                    <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">iterations</span><span class="p">),</span>
+                    <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{0: &lt;25s}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;Generate validation split candidates&#39;</span><span class="p">),</span>
+                    <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span>
+                    <span class="n">leave</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                    <span class="n">disable</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;disable_progress_bar&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">disable_progress_bar</span><span class="p">),</span>
+                    <span class="n">ascii</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;use_ascii_progress_bar&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_ascii_progress_bar</span><span class="p">)</span>
+                <span class="p">)</span>
+
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">iteration_progress</span><span class="p">:</span>
+                    <span class="n">item_ids</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">scene_label</span><span class="p">])))</span>
+                    <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">item_ids</span><span class="p">,</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">)</span>
+
+                    <span class="n">valid_percentage_index</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">validation_amount</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">item_ids</span><span class="p">)))</span>
+
+                    <span class="n">current_validation_files</span> <span class="o">=</span> <span class="p">[]</span>
+                    <span class="k">for</span> <span class="n">loc_id</span> <span class="ow">in</span> <span class="n">item_ids</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">valid_percentage_index</span><span class="p">]:</span>
+                        <span class="n">current_validation_files</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">scene_label</span><span class="p">][</span><span class="n">loc_id</span><span class="p">])</span>
+
+                    <span class="n">current_training_files</span> <span class="o">=</span> <span class="p">[]</span>
+                    <span class="k">for</span> <span class="n">loc_id</span> <span class="ow">in</span> <span class="n">item_ids</span><span class="p">[</span><span class="n">valid_percentage_index</span><span class="p">:]:</span>
+                        <span class="n">current_training_files</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">scene_label</span><span class="p">][</span><span class="n">loc_id</span><span class="p">])</span>
+
+                    <span class="c1"># Event count in training set candidate</span>
+                    <span class="n">training_set_event_counts</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">event_amounts</span><span class="p">[</span><span class="n">scene_label</span><span class="p">]))</span>
+
+                    <span class="n">current_event_amounts</span> <span class="o">=</span> <span class="n">training_meta</span><span class="o">.</span><span class="n">event_stat_counts</span><span class="p">()</span>
+                    <span class="k">for</span> <span class="n">event_label_id</span><span class="p">,</span> <span class="n">event_label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">event_amounts</span><span class="p">[</span><span class="n">scene_label</span><span class="p">]):</span>
+                        <span class="k">if</span> <span class="n">event_label</span> <span class="ow">in</span> <span class="n">current_event_amounts</span><span class="p">:</span>
+                            <span class="n">training_set_event_counts</span><span class="p">[</span><span class="n">event_label_id</span><span class="p">]</span> <span class="o">+=</span> <span class="n">current_event_amounts</span><span class="p">[</span><span class="n">event_label</span><span class="p">]</span>
+
+                    <span class="c1"># Accept only sets which leave at least one example for training</span>
+                    <span class="k">if</span> <span class="n">numpy</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">training_set_event_counts</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
+                        <span class="c1"># Event counts in validation set candidate</span>
+                        <span class="n">validation_set_event_counts</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">event_amounts</span><span class="p">[</span><span class="n">scene_label</span><span class="p">]))</span>
+
+                        <span class="n">current_event_amounts</span> <span class="o">=</span> <span class="n">training_meta</span><span class="o">.</span><span class="n">event_stat_counts</span><span class="p">()</span>
+                        <span class="k">for</span> <span class="n">event_label_id</span><span class="p">,</span> <span class="n">event_label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">event_amounts</span><span class="p">[</span><span class="n">scene_label</span><span class="p">]):</span>
+                            <span class="k">if</span> <span class="n">event_label</span> <span class="ow">in</span> <span class="n">current_event_amounts</span><span class="p">:</span>
+                                <span class="n">validation_set_event_counts</span><span class="p">[</span><span class="n">event_label_id</span><span class="p">]</span> <span class="o">+=</span> <span class="n">current_event_amounts</span><span class="p">[</span><span class="n">event_label</span><span class="p">]</span>
+
+                        <span class="c1"># Accept only sets which have examples from each event class</span>
+                        <span class="k">if</span> <span class="n">numpy</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">validation_set_event_counts</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
+                            <span class="n">current_validation_amount</span> <span class="o">=</span> <span class="n">validation_set_event_counts</span> <span class="o">/</span> <span class="p">(</span>
+                                        <span class="n">validation_set_event_counts</span> <span class="o">+</span> <span class="n">training_set_event_counts</span><span class="p">)</span>
+                            <span class="n">validation_set_candidates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_validation_files</span><span class="p">)</span>
+                            <span class="n">validation_set_mae</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                                <span class="n">mean_absolute_error</span><span class="p">(</span>
+                                    <span class="n">numpy</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">current_validation_amount</span><span class="p">))</span> <span class="o">*</span> <span class="n">validation_amount</span><span class="p">,</span>
+                                    <span class="n">current_validation_amount</span><span class="p">)</span>
+                            <span class="p">)</span>
+                            <span class="n">validation_set_event_amounts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">validation_set_event_counts</span><span class="p">)</span>
+                            <span class="n">training_set_event_amounts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">training_set_event_counts</span><span class="p">)</span>
+
+                <span class="c1"># Generate balance validation set</span>
+                <span class="c1"># Selection done based on event counts (per scene class)</span>
+                <span class="c1"># Target count specified percentage of training event count</span>
+                <span class="k">if</span> <span class="n">validation_set_mae</span><span class="p">:</span>
+                    <span class="n">best_set_id</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">validation_set_mae</span><span class="p">)</span>
+                    <span class="n">validation_files</span> <span class="o">+=</span> <span class="n">validation_set_candidates</span><span class="p">[</span><span class="n">best_set_id</span><span class="p">]</span>
+
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Validation setup creation was not successful! Could not find a set with &#39;</span> \
+                              <span class="s1">&#39;examples for each event class in both training and validation.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                        <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+                    <span class="p">)</span>
+
+                    <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+                    <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">balancing_mode</span> <span class="o">==</span> <span class="s1">&#39;identifier&#39;</span><span class="p">:</span>
             <span class="c1"># Do the balance based on scene class, identifier and event class</span>
             <span class="n">data</span> <span class="o">=</span> <span class="p">{}</span>
             <span class="k">for</span> <span class="n">scene_id</span><span class="p">,</span> <span class="n">scene_label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">scene_labels</span><span class="p">):</span>
@@ -5047,7 +5195,8 @@
 
                         <span class="c1"># Accept only sets which have examples from each event class</span>
                         <span class="k">if</span> <span class="n">numpy</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">validation_set_event_counts</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
-                            <span class="n">current_validation_amount</span> <span class="o">=</span> <span class="n">validation_set_event_counts</span> <span class="o">/</span> <span class="p">(</span><span class="n">validation_set_event_counts</span> <span class="o">+</span> <span class="n">training_set_event_counts</span><span class="p">)</span>
+                            <span class="n">current_validation_amount</span> <span class="o">=</span> <span class="n">validation_set_event_counts</span> <span class="o">/</span> <span class="p">(</span>
+                                        <span class="n">validation_set_event_counts</span> <span class="o">+</span> <span class="n">training_set_event_counts</span><span class="p">)</span>
                             <span class="n">validation_set_candidates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_validation_files</span><span class="p">)</span>
                             <span class="n">validation_set_mae</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                                 <span class="n">mean_absolute_error</span><span class="p">(</span>
@@ -5068,108 +5217,12 @@
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Validation setup creation was not successful! Could not find a set with &#39;</span> \
                               <span class="s1">&#39;examples for each event class in both training and validation.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
-                              <span class="p">)</span>
-
-                    <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-                    <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-
-        <span class="k">else</span><span class="p">:</span>
-            <span class="c1"># Do the balance based on scene class, identifier and event class</span>
-            <span class="n">data</span> <span class="o">=</span> <span class="p">{}</span>
-            <span class="k">for</span> <span class="n">scene_id</span><span class="p">,</span> <span class="n">scene_label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">scene_labels</span><span class="p">):</span>
-                <span class="n">data</span><span class="p">[</span><span class="n">scene_label</span><span class="p">]</span> <span class="o">=</span> <span class="n">training_meta</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">scene_label</span><span class="o">=</span><span class="n">scene_label</span><span class="p">)</span><span class="o">.</span><span class="n">unique_files</span>
-
-            <span class="c1"># Get event amounts per class</span>
-            <span class="n">event_amounts</span> <span class="o">=</span> <span class="p">{}</span>
-            <span class="k">for</span> <span class="n">scene_id</span><span class="p">,</span> <span class="n">scene_label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">scene_labels</span><span class="p">):</span>
-                <span class="n">event_amounts</span><span class="p">[</span><span class="n">scene_label</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
-                <span class="k">for</span> <span class="n">audio_filename</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="n">scene_label</span><span class="p">]:</span>
-                    <span class="n">current_event_amounts</span> <span class="o">=</span> <span class="n">training_meta</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">audio_filename</span><span class="p">)</span><span class="o">.</span><span class="n">event_stat_counts</span><span class="p">()</span>
-
-                    <span class="k">for</span> <span class="n">event_label</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">iteritems</span><span class="p">(</span><span class="n">current_event_amounts</span><span class="p">):</span>
-                        <span class="k">if</span> <span class="n">event_label</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">event_amounts</span><span class="p">[</span><span class="n">scene_label</span><span class="p">]:</span>
-                            <span class="n">event_amounts</span><span class="p">[</span><span class="n">scene_label</span><span class="p">][</span><span class="n">event_label</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-
-                        <span class="n">event_amounts</span><span class="p">[</span><span class="n">scene_label</span><span class="p">][</span><span class="n">event_label</span><span class="p">]</span> <span class="o">+=</span> <span class="n">count</span>
-
-            <span class="n">validation_files</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="k">for</span> <span class="n">scene_id</span><span class="p">,</span> <span class="n">scene_label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">scene_labels</span><span class="p">):</span>
-                <span class="c1"># Optimize scene sets separately</span>
-                <span class="n">validation_set_candidates</span> <span class="o">=</span> <span class="p">[]</span>
-                <span class="n">validation_set_mae</span> <span class="o">=</span> <span class="p">[]</span>
-                <span class="n">validation_set_event_amounts</span> <span class="o">=</span> <span class="p">[]</span>
-                <span class="n">training_set_event_amounts</span> <span class="o">=</span> <span class="p">[]</span>
-
-                <span class="n">iteration_progress</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span>
-                    <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">iterations</span><span class="p">),</span>
-                    <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{0: &lt;25s}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;Generate validation split candidates&#39;</span><span class="p">),</span>
-                    <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span>
-                    <span class="n">leave</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                    <span class="n">disable</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;disable_progress_bar&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">disable_progress_bar</span><span class="p">),</span>
-                    <span class="n">ascii</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;use_ascii_progress_bar&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_ascii_progress_bar</span><span class="p">)</span>
-                <span class="p">)</span>
-
-                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">iteration_progress</span><span class="p">:</span>
-                    <span class="n">item_ids</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">scene_label</span><span class="p">])))</span>
-                    <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">item_ids</span><span class="p">,</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">)</span>
-
-                    <span class="n">valid_percentage_index</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">validation_amount</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">item_ids</span><span class="p">)))</span>
-
-                    <span class="n">current_validation_files</span> <span class="o">=</span> <span class="p">[]</span>
-                    <span class="k">for</span> <span class="n">loc_id</span> <span class="ow">in</span> <span class="n">item_ids</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">valid_percentage_index</span><span class="p">]:</span>
-                        <span class="n">current_validation_files</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">scene_label</span><span class="p">][</span><span class="n">loc_id</span><span class="p">])</span>
-
-                    <span class="n">current_training_files</span> <span class="o">=</span> <span class="p">[]</span>
-                    <span class="k">for</span> <span class="n">loc_id</span> <span class="ow">in</span> <span class="n">item_ids</span><span class="p">[</span><span class="n">valid_percentage_index</span><span class="p">:]:</span>
-                        <span class="n">current_training_files</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">scene_label</span><span class="p">][</span><span class="n">loc_id</span><span class="p">])</span>
-
-                    <span class="c1"># Event count in training set candidate</span>
-                    <span class="n">training_set_event_counts</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">event_amounts</span><span class="p">[</span><span class="n">scene_label</span><span class="p">]))</span>
-                    <span class="k">for</span> <span class="n">audio_filename</span> <span class="ow">in</span> <span class="n">current_training_files</span><span class="p">:</span>
-                        <span class="n">current_event_amounts</span> <span class="o">=</span> <span class="n">training_meta</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">audio_filename</span><span class="p">)</span><span class="o">.</span><span class="n">event_stat_counts</span><span class="p">()</span>
-                        <span class="k">for</span> <span class="n">event_label_id</span><span class="p">,</span> <span class="n">event_label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">event_amounts</span><span class="p">[</span><span class="n">scene_label</span><span class="p">]):</span>
-                            <span class="k">if</span> <span class="n">event_label</span> <span class="ow">in</span> <span class="n">current_event_amounts</span><span class="p">:</span>
-                                <span class="n">training_set_event_counts</span><span class="p">[</span><span class="n">event_label_id</span><span class="p">]</span> <span class="o">+=</span> <span class="n">current_event_amounts</span><span class="p">[</span><span class="n">event_label</span><span class="p">]</span>
-
-                    <span class="c1"># Accept only sets which leave at least one example for training</span>
-                    <span class="k">if</span> <span class="n">numpy</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">training_set_event_counts</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
-                        <span class="c1"># Event counts in validation set candidate</span>
-                        <span class="n">validation_set_event_counts</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">event_amounts</span><span class="p">[</span><span class="n">scene_label</span><span class="p">]))</span>
-                        <span class="k">for</span> <span class="n">audio_filename</span> <span class="ow">in</span> <span class="n">current_validation_files</span><span class="p">:</span>
-                            <span class="n">current_event_amounts</span> <span class="o">=</span> <span class="n">training_meta</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">audio_filename</span><span class="p">)</span><span class="o">.</span><span class="n">event_stat_counts</span><span class="p">()</span>
-
-                            <span class="k">for</span> <span class="n">event_label_id</span><span class="p">,</span> <span class="n">event_label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">event_amounts</span><span class="p">[</span><span class="n">scene_label</span><span class="p">]):</span>
-                                <span class="k">if</span> <span class="n">event_label</span> <span class="ow">in</span> <span class="n">current_event_amounts</span><span class="p">:</span>
-                                    <span class="n">validation_set_event_counts</span><span class="p">[</span><span class="n">event_label_id</span><span class="p">]</span> <span class="o">+=</span> <span class="n">current_event_amounts</span><span class="p">[</span><span class="n">event_label</span><span class="p">]</span>
-
-                        <span class="c1"># Accept only sets which have examples from each event class</span>
-                        <span class="k">if</span> <span class="n">numpy</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">validation_set_event_counts</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
-                            <span class="n">current_validation_amount</span> <span class="o">=</span> <span class="n">validation_set_event_counts</span> <span class="o">/</span> <span class="p">(</span><span class="n">validation_set_event_counts</span> <span class="o">+</span> <span class="n">training_set_event_counts</span><span class="p">)</span>
-                            <span class="n">validation_set_candidates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_validation_files</span><span class="p">)</span>
-                            <span class="n">validation_set_mae</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                                <span class="n">mean_absolute_error</span><span class="p">(</span>
-                                    <span class="n">numpy</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">current_validation_amount</span><span class="p">))</span> <span class="o">*</span> <span class="n">validation_amount</span><span class="p">,</span>
-                                    <span class="n">current_validation_amount</span><span class="p">)</span>
-                            <span class="p">)</span>
-                            <span class="n">validation_set_event_amounts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">validation_set_event_counts</span><span class="p">)</span>
-                            <span class="n">training_set_event_amounts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">training_set_event_counts</span><span class="p">)</span>
-
-                <span class="c1"># Generate balance validation set</span>
-                <span class="c1"># Selection done based on event counts (per scene class)</span>
-                <span class="c1"># Target count specified percentage of training event count</span>
-                <span class="k">if</span> <span class="n">validation_set_mae</span><span class="p">:</span>
-                    <span class="n">best_set_id</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">validation_set_mae</span><span class="p">)</span>
-                    <span class="n">validation_files</span> <span class="o">+=</span> <span class="n">validation_set_candidates</span><span class="p">[</span><span class="n">best_set_id</span><span class="p">]</span>
-
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Validation setup creation was not successful! Could not find a set with &#39;</span> \
-                              <span class="s1">&#39;examples for each event class in both training and validation.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
                         <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
                     <span class="p">)</span>
 
                     <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
                     <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
 
         <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
             <span class="n">logger</span> <span class="o">=</span> <span class="n">FancyLogger</span><span class="p">()</span>
@@ -5228,6 +5281,9 @@
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">active_events</span><span class="p">:</span>
             <span class="n">output</span> <span class="o">=</span> <span class="n">output</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">event_list</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">active_events</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">container</span><span class="o">.</span><span class="n">filename</span><span class="p">:</span>
+            <span class="n">output</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="n">container</span><span class="o">.</span><span class="n">filename</span>
 
         <span class="k">return</span> <span class="n">output</span></div>
 
@@ -5677,7 +5733,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021, Toni Heittola et al..</p>
+    <p>&#169; Copyright 2022, Toni Heittola et al..</p>
   </div>
 
    

@@ -331,6 +331,7 @@
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.AudioContainer.normalize.html">dcase_util.containers.AudioContainer.normalize</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.AudioContainer.resample.html">dcase_util.containers.AudioContainer.resample</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.AudioContainer.mixdown.html">dcase_util.containers.AudioContainer.mixdown</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.AudioContainer.overlay.html">dcase_util.containers.AudioContainer.overlay</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.AudioContainer.plot.html">dcase_util.containers.AudioContainer.plot</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.AudioContainer.plot_wave.html">dcase_util.containers.AudioContainer.plot_wave</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.AudioContainer.plot_spec.html">dcase_util.containers.AudioContainer.plot_spec</a></li>
@@ -736,6 +737,7 @@
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.TAUUrbanAudioVisualScenes_2021_EvaluationSet.html">dcase_util.datasets.TAUUrbanAudioVisualScenes_2021_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.TAUUrbanAcousticScenes_2021_Mobile_EvaluationSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2021_Mobile_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.TAUUrbanAcousticScenes_2022_Mobile_DevelopmentSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2022_Mobile_DevelopmentSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.TAUUrbanAcousticScenes_2022_Mobile_EvaluationSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2022_Mobile_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.DCASE2018_Task5_DevelopmentSet.html">dcase_util.datasets.DCASE2018_Task5_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.DCASE2018_Task5_EvaluationSet.html">dcase_util.datasets.DCASE2018_Task5_EvaluationSet</a></li>
 </ul>
@@ -1499,6 +1501,7 @@
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#v0-2-20">v0.2.20</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#v0-2-19">v0.2.19</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#v0-2-18">v0.2.18</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#v0-2-17">v0.2.17</a></li>
@@ -1556,6 +1559,28 @@
              
   <section id="release-notes">
 <span id="changelog"></span><h1>Release notes<a class="headerlink" href="#release-notes" title="Permalink to this headline"></a></h1>
+<section id="v0-2-20">
+<h2>v0.2.20<a class="headerlink" href="#v0-2-20" title="Permalink to this headline"></a></h2>
+<p><strong>Updates</strong></p>
+<ul class="simple">
+<li><p>Add MKV as valid file extension in <code class="docutils literal notranslate"><span class="pre">AudioContainer</span></code></p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">overlay</span></code> method in <code class="docutils literal notranslate"><span class="pre">AudioContainer</span></code></p></li>
+<li><p>Add balancing_mode parameter to <code class="docutils literal notranslate"><span class="pre">validation_files_balanced</span></code> method in <code class="docutils literal notranslate"><span class="pre">SoundEventDataset</span></code></p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">dataset</span></code> field to <code class="docutils literal notranslate"><span class="pre">MetaDataItem</span></code> and add <code class="docutils literal notranslate"><span class="pre">dataset</span></code> field related properties to <code class="docutils literal notranslate"><span class="pre">MetaDataContainer</span></code></p></li>
+<li><p>Add identifier count reporting for tags in <code class="docutils literal notranslate"><span class="pre">MetaDataContainer</span></code></p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">map_tags</span></code> method in <code class="docutils literal notranslate"><span class="pre">MetaDataContainer</span></code></p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">TAUUrbanAcousticScenes_2022_Mobile_EvaluationSet</span></code> dataset</p></li>
+<li><p>Update <code class="docutils literal notranslate"><span class="pre">unique_source_labels</span></code> method in <code class="docutils literal notranslate"><span class="pre">MetaDataContainer</span></code> to be more efficient</p></li>
+<li><p>Update <code class="docutils literal notranslate"><span class="pre">model_summary_string</span></code> function to work with latest Keras versions</p></li>
+</ul>
+<p><strong>Bug fixes</strong></p>
+<ul class="simple">
+<li><p>Fix field override in <code class="docutils literal notranslate"><span class="pre">non_hashable_fields</span></code> method in <code class="docutils literal notranslate"><span class="pre">AppParameterContainer</span></code></p></li>
+<li><p>Fix <code class="docutils literal notranslate"><span class="pre">process_meta_container</span></code> in <code class="docutils literal notranslate"><span class="pre">AcousticSceneDataset</span></code> to retain container filename</p></li>
+<li><p>Fix <code class="docutils literal notranslate"><span class="pre">is_jupyter</span></code> function to work when IPython is not installed</p></li>
+<li><p>Fix <code class="docutils literal notranslate"><span class="pre">plot</span></code> in <code class="docutils literal notranslate"><span class="pre">AudioContainer</span></code> method to use figsize parameter for dual plots</p></li>
+</ul>
+</section>
 <section id="v0-2-19">
 <h2>v0.2.19<a class="headerlink" href="#v0-2-19" title="Permalink to this headline"></a></h2>
 <p><strong>Updates</strong></p>
