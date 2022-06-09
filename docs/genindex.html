@@ -328,6 +328,7 @@
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.AudioContainer.normalize.html">dcase_util.containers.AudioContainer.normalize</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.AudioContainer.resample.html">dcase_util.containers.AudioContainer.resample</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.AudioContainer.mixdown.html">dcase_util.containers.AudioContainer.mixdown</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.AudioContainer.overlay.html">dcase_util.containers.AudioContainer.overlay</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.AudioContainer.plot.html">dcase_util.containers.AudioContainer.plot</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.AudioContainer.plot_wave.html">dcase_util.containers.AudioContainer.plot_wave</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/dcase_util.containers.AudioContainer.plot_spec.html">dcase_util.containers.AudioContainer.plot_spec</a></li>
@@ -733,6 +734,7 @@
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.TAUUrbanAudioVisualScenes_2021_EvaluationSet.html">dcase_util.datasets.TAUUrbanAudioVisualScenes_2021_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.TAUUrbanAcousticScenes_2021_Mobile_EvaluationSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2021_Mobile_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.TAUUrbanAcousticScenes_2022_Mobile_DevelopmentSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2022_Mobile_DevelopmentSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.TAUUrbanAcousticScenes_2022_Mobile_EvaluationSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2022_Mobile_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.DCASE2018_Task5_DevelopmentSet.html">dcase_util.datasets.DCASE2018_Task5_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/dcase_util.datasets.DCASE2018_Task5_EvaluationSet.html">dcase_util.datasets.DCASE2018_Task5_EvaluationSet</a></li>
 </ul>
@@ -1496,6 +1498,7 @@
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-2-20">v0.2.20</a></li>
 <li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-2-19">v0.2.19</a></li>
 <li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-2-18">v0.2.18</a></li>
 <li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-2-17">v0.2.17</a></li>
@@ -1715,6 +1718,8 @@
         <li><a href="generated/dcase_util.datasets.TAUUrbanAcousticScenes_2021_Mobile_EvaluationSet.html#dcase_util.datasets.TAUUrbanAcousticScenes_2021_Mobile_EvaluationSet.__init__">(dcase_util.datasets.TAUUrbanAcousticScenes_2021_Mobile_EvaluationSet method)</a>
 </li>
         <li><a href="generated/dcase_util.datasets.TAUUrbanAcousticScenes_2022_Mobile_DevelopmentSet.html#dcase_util.datasets.TAUUrbanAcousticScenes_2022_Mobile_DevelopmentSet.__init__">(dcase_util.datasets.TAUUrbanAcousticScenes_2022_Mobile_DevelopmentSet method)</a>
+</li>
+        <li><a href="generated/dcase_util.datasets.TAUUrbanAcousticScenes_2022_Mobile_EvaluationSet.html#dcase_util.datasets.TAUUrbanAcousticScenes_2022_Mobile_EvaluationSet.__init__">(dcase_util.datasets.TAUUrbanAcousticScenes_2022_Mobile_EvaluationSet method)</a>
 </li>
         <li><a href="generated/dcase_util.datasets.TAUUrbanAudioVisualScenes_2021_DevelopmentSet.html#dcase_util.datasets.TAUUrbanAudioVisualScenes_2021_DevelopmentSet.__init__">(dcase_util.datasets.TAUUrbanAudioVisualScenes_2021_DevelopmentSet method)</a>
 </li>
@@ -3104,10 +3109,10 @@
 </li>
       <li><a href="generated/dcase_util.data.OneHotLabelEncoder.html#dcase_util.data.OneHotLabelEncoder">OneHotLabelEncoder (class in dcase_util.data)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="generated/dcase_util.processors.OneHotLabelEncodingProcessor.html#dcase_util.processors.OneHotLabelEncodingProcessor">OneHotLabelEncodingProcessor (class in dcase_util.processors)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="generated/dcase_util.containers.OneToOneMappingContainer.html#dcase_util.containers.OneToOneMappingContainer">OneToOneMappingContainer (class in dcase_util.containers)</a>
 </li>
       <li><a href="generated/dcase_util.containers.MetaDataItem.onset.html#dcase_util.containers.MetaDataItem.onset">onset (dcase_util.containers.MetaDataItem property)</a>
@@ -3115,6 +3120,8 @@
       <li><a href="generated/dcase_util.features.OpenL3Extractor.html#dcase_util.features.OpenL3Extractor">OpenL3Extractor (class in dcase_util.features)</a>
 </li>
       <li><a href="generated/dcase_util.processors.OpenL3ExtractorProcessor.html#dcase_util.processors.OpenL3ExtractorProcessor">OpenL3ExtractorProcessor (class in dcase_util.processors)</a>
+</li>
+      <li><a href="generated/dcase_util.containers.AudioContainer.overlay.html#dcase_util.containers.AudioContainer.overlay">overlay() (dcase_util.containers.AudioContainer method)</a>
 </li>
       <li><a href="generated/dcase_util.containers.AppParameterContainer.override.html#dcase_util.containers.AppParameterContainer.override">override() (dcase_util.containers.AppParameterContainer method)</a>
 </li>
@@ -3826,6 +3833,8 @@
 </li>
       <li><a href="generated/dcase_util.datasets.TAUUrbanAcousticScenes_2022_Mobile_DevelopmentSet.html#dcase_util.datasets.TAUUrbanAcousticScenes_2022_Mobile_DevelopmentSet">TAUUrbanAcousticScenes_2022_Mobile_DevelopmentSet (class in dcase_util.datasets)</a>
 </li>
+      <li><a href="generated/dcase_util.datasets.TAUUrbanAcousticScenes_2022_Mobile_EvaluationSet.html#dcase_util.datasets.TAUUrbanAcousticScenes_2022_Mobile_EvaluationSet">TAUUrbanAcousticScenes_2022_Mobile_EvaluationSet (class in dcase_util.datasets)</a>
+</li>
       <li><a href="generated/dcase_util.datasets.TAUUrbanAudioVisualScenes_2021_DevelopmentSet.html#dcase_util.datasets.TAUUrbanAudioVisualScenes_2021_DevelopmentSet">TAUUrbanAudioVisualScenes_2021_DevelopmentSet (class in dcase_util.datasets)</a>
 </li>
       <li><a href="generated/dcase_util.datasets.TAUUrbanAudioVisualScenes_2021_EvaluationSet.html#dcase_util.datasets.TAUUrbanAudioVisualScenes_2021_EvaluationSet">TAUUrbanAudioVisualScenes_2021_EvaluationSet (class in dcase_util.datasets)</a>
@@ -3838,10 +3847,10 @@
       </ul></li>
       <li><a href="generated/dcase_util.datasets.Dataset.test_files.html#dcase_util.datasets.Dataset.test_files">test_files() (dcase_util.datasets.Dataset method)</a>
 </li>
-      <li><a href="generated/dcase_util.containers.TextContainer.html#dcase_util.containers.TextContainer">TextContainer (class in dcase_util.containers)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/dcase_util.containers.TextContainer.html#dcase_util.containers.TextContainer">TextContainer (class in dcase_util.containers)</a>
+</li>
       <li><a href="generated/dcase_util.utils.Timer.html#dcase_util.utils.Timer">Timer (class in dcase_util.utils)</a>
 </li>
       <li><a href="generated/dcase_util.tools.BibtexProcessor.title.html#dcase_util.tools.BibtexProcessor.title">title() (dcase_util.tools.BibtexProcessor method)</a>

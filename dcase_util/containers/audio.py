@@ -21,7 +21,8 @@ class AudioContainer(ContainerMixin, FileMixin):
     valid_formats = [FileFormat.WAV, FileFormat.FLAC,
                      FileFormat.OGG,
                      FileFormat.M4A, FileFormat.WEBM,
-                     FileFormat.MP3, FileFormat.MP4]  #: Valid file formats
+                     FileFormat.MP3, FileFormat.MP4,
+                     FileFormat.MKV]  #: Valid file formats
 
     def __init__(self,
                  data=None, fs=44100,
@@ -819,8 +820,8 @@ class AudioContainer(ContainerMixin, FileMixin):
                     if fs != source_fs:
                         self._data = librosa.core.resample(
                             self._data,
-                            source_fs,
-                            fs,
+                            orig_sr=source_fs,
+                            target_sr=fs,
                             res_type=res_type
                         )
 
@@ -829,7 +830,7 @@ class AudioContainer(ContainerMixin, FileMixin):
 
             elif self.format in [FileFormat.FLAC, FileFormat.OGG,
                                  FileFormat.MP3,
-                                 FileFormat.M4A, FileFormat.MP4, FileFormat.WEBM]:
+                                 FileFormat.M4A, FileFormat.MP4, FileFormat.WEBM, FileFormat.MKV]:
                 # Handle segment start and stop
                 if start is not None and stop is not None:
                     offset = start
@@ -1810,9 +1811,14 @@ class AudioContainer(ContainerMixin, FileMixin):
             self.plot_spec(**kwargs)
 
         elif plot_type == 'dual':
+            if kwargs.get('figsize') is None:
+                figsize = (10, 8)
+            else:
+                figsize = kwargs.get('figsize')
+
             if self.channels == 1:
                 import matplotlib.pyplot as plt
-                plt.figure()
+                plt.figure(figsize=figsize)
                 plt.subplot(2, 1, 1)
                 self.plot_wave(
                     x_axis=kwargs.get('x_axis', 'time'),
@@ -2252,3 +2258,32 @@ class AudioContainer(ContainerMixin, FileMixin):
 
         return sample / float(self.fs)
 
+    def overlay(self, audio, start_seconds=0, multiplier=0):
+        """Simple sample overlay method
+
+        Parameters
+        ----------
+        audio : AudioContainer
+            Audio to be mixed
+
+        start_seconds : float
+            Time stamp (in seconds) of segment start.
+            Default value 0
+
+        multiplier : float
+            Audio data multiplier
+            Default value 0
+
+        Returns
+        -------
+        self
+
+        """
+
+        start_samples = int(start_seconds * self.fs)
+        audio_data = audio.get_focused()
+        segment_length = len(audio_data)
+
+        self._data[start_samples:start_samples+segment_length] +=  audio_data * multiplier
+
+        return self

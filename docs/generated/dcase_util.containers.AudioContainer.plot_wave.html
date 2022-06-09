@@ -331,6 +331,7 @@
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AudioContainer.normalize.html">dcase_util.containers.AudioContainer.normalize</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AudioContainer.resample.html">dcase_util.containers.AudioContainer.resample</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AudioContainer.mixdown.html">dcase_util.containers.AudioContainer.mixdown</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AudioContainer.overlay.html">dcase_util.containers.AudioContainer.overlay</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AudioContainer.plot.html">dcase_util.containers.AudioContainer.plot</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">dcase_util.containers.AudioContainer.plot_wave</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dcase_util.containers.AudioContainer.plot_spec.html">dcase_util.containers.AudioContainer.plot_spec</a></li>
@@ -736,6 +737,7 @@
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TAUUrbanAudioVisualScenes_2021_EvaluationSet.html">dcase_util.datasets.TAUUrbanAudioVisualScenes_2021_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TAUUrbanAcousticScenes_2021_Mobile_EvaluationSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2021_Mobile_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TAUUrbanAcousticScenes_2022_Mobile_DevelopmentSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2022_Mobile_DevelopmentSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.TAUUrbanAcousticScenes_2022_Mobile_EvaluationSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2022_Mobile_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.DCASE2018_Task5_DevelopmentSet.html">dcase_util.datasets.DCASE2018_Task5_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dcase_util.datasets.DCASE2018_Task5_EvaluationSet.html">dcase_util.datasets.DCASE2018_Task5_EvaluationSet</a></li>
 </ul>
@@ -1499,6 +1501,7 @@
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-20">v0.2.20</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-19">v0.2.19</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-18">v0.2.18</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-2-17">v0.2.17</a></li>
@@ -1567,13 +1570,13 @@
 <dt><strong>x_axis</strong><span class="classifier">str</span></dt><dd><p>X-axis type.
 Default value ‘time’</p>
 </dd>
-<dt><strong>max_points</strong><span class="classifier">float</span></dt><dd><p>Maximum number of time-points to plot (see <code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.display.waveplot</span></code>).
+<dt><strong>max_points</strong><span class="classifier">float</span></dt><dd><p>Maximum number of time-points to plot (see <em class="xref py py-obj">librosa.display.waveplot</em>).
 Default value 50000</p>
 </dd>
 <dt><strong>max_sr</strong><span class="classifier">number</span></dt><dd><p>Maximum sampling rate for the visualization
 Default value 1000</p>
 </dd>
-<dt><strong>offset</strong><span class="classifier">float</span></dt><dd><p>Horizontal offset (in time) to start the waveform plot (see <code class="xref py py-obj docutils literal notranslate"><span class="pre">librosa.display.waveplot</span></code>).
+<dt><strong>offset</strong><span class="classifier">float</span></dt><dd><p>Horizontal offset (in time) to start the waveform plot (see <em class="xref py py-obj">librosa.display.waveplot</em>).
 Default value 0.0</p>
 </dd>
 <dt><strong>color</strong><span class="classifier">str or list of str</span></dt><dd><p>Waveform fill color in hex-code. Per channel colors can be given as list of str.

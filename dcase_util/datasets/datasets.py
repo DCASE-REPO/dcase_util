@@ -2746,7 +2746,10 @@ class AcousticSceneDataset(Dataset):
         output = container
 
         if self.active_scenes:
-            output =  output.filter(scene_list=self.active_scenes)
+            output = output.filter(scene_list=self.active_scenes)
+
+        if container.filename:
+            output.filename = container.filename
 
         return output
 
@@ -3352,6 +3355,7 @@ class SoundEventDataset(Dataset):
                                   fold=None, training_meta=None,
                                   validation_amount=0.3, seed=0,
                                   verbose=False, scene_label=None, iterations=100,
+                                  balancing_mode='auto', identifier_hierarchy_separator='-',
                                   **kwargs):
         """List of validation files randomly selecting while maintaining data balance.
 
@@ -3385,6 +3389,14 @@ class SoundEventDataset(Dataset):
         iterations : int
             How many randomization iterations will be done before selecting best matched.
             Default value 100
+
+        balancing_mode : str
+            Balancing mode ['auto', 'class', 'identifier']
+            Default value 'auto'
+
+        identifier_hierarchy_separator : str
+            Hierarchy separator character to split identifiers
+            Default value '-'
 
         Returns
         -------
@@ -3420,7 +3432,137 @@ class SoundEventDataset(Dataset):
                 identifier_present = True
                 break
 
+        identifier_hierarchical = False
+        identifier_hierarchy_level = None
+
         if identifier_present:
+            # Check type of identifier
+            identifier_hierarchical = True
+            hierarchy_levels = []
+            for item in training_meta:
+                hierarchy_levels.append(len(item.identifier.split(identifier_hierarchy_separator)))
+                if len(item.identifier.split('-')) == 1:
+                    identifier_hierarchical = False
+                    break
+
+            if identifier_hierarchical:
+                hierarchy_levels = list(set(hierarchy_levels))
+
+                if len(hierarchy_levels) == 1:
+                    identifier_hierarchy_level = hierarchy_levels[0]
+
+                else:
+                    message = '{name}: Multiple hierarchy levels detected in the identifiers. Use different balancing_mode.'.format(
+                        name=self.__class__.__name__
+                    )
+
+                    self.logger.exception(message)
+                    raise AssertionError(message)
+
+        if balancing_mode == 'auto':
+            # Handle auto mode
+            if identifier_present and not identifier_hierarchical:
+                balancing_mode = 'identifier'
+
+            elif not identifier_present:
+                balancing_mode = 'class'
+
+        if balancing_mode == 'class':
+            # Do the balance based on scene class, identifier and event class
+            data = {}
+            for scene_id, scene_label in enumerate(scene_labels):
+                data[scene_label] = training_meta.filter(scene_label=scene_label).unique_files
+
+            # Get event amounts per class
+            event_amounts = {}
+            for scene_id, scene_label in enumerate(scene_labels):
+                event_amounts[scene_label] = {}
+                current_event_amounts = training_meta.filter().event_stat_counts()
+                for event_label, count in iteritems(current_event_amounts):
+                    if event_label not in event_amounts[scene_label]:
+                        event_amounts[scene_label][event_label] = 0
+
+                    event_amounts[scene_label][event_label] += count
+
+            validation_files = []
+            for scene_id, scene_label in enumerate(scene_labels):
+                # Optimize scene sets separately
+                validation_set_candidates = []
+                validation_set_mae = []
+                validation_set_event_amounts = []
+                training_set_event_amounts = []
+
+                iteration_progress = tqdm(
+                    range(0, iterations),
+                    desc="{0: <25s}".format('Generate validation split candidates'),
+                    file=sys.stdout,
+                    leave=False,
+                    disable=kwargs.get('disable_progress_bar', self.disable_progress_bar),
+                    ascii=kwargs.get('use_ascii_progress_bar', self.use_ascii_progress_bar)
+                )
+
+                for i in iteration_progress:
+                    item_ids = list(range(0, len(data[scene_label])))
+                    random.shuffle(item_ids, random.random)
+
+                    valid_percentage_index = int(numpy.ceil(validation_amount * len(item_ids)))
+
+                    current_validation_files = []
+                    for loc_id in item_ids[0:valid_percentage_index]:
+                        current_validation_files.append(data[scene_label][loc_id])
+
+                    current_training_files = []
+                    for loc_id in item_ids[valid_percentage_index:]:
+                        current_training_files.append(data[scene_label][loc_id])
+
+                    # Event count in training set candidate
+                    training_set_event_counts = numpy.zeros(len(event_amounts[scene_label]))
+
+                    current_event_amounts = training_meta.event_stat_counts()
+                    for event_label_id, event_label in enumerate(event_amounts[scene_label]):
+                        if event_label in current_event_amounts:
+                            training_set_event_counts[event_label_id] += current_event_amounts[event_label]
+
+                    # Accept only sets which leave at least one example for training
+                    if numpy.all(training_set_event_counts > 0):
+                        # Event counts in validation set candidate
+                        validation_set_event_counts = numpy.zeros(len(event_amounts[scene_label]))
+
+                        current_event_amounts = training_meta.event_stat_counts()
+                        for event_label_id, event_label in enumerate(event_amounts[scene_label]):
+                            if event_label in current_event_amounts:
+                                validation_set_event_counts[event_label_id] += current_event_amounts[event_label]
+
+                        # Accept only sets which have examples from each event class
+                        if numpy.all(validation_set_event_counts > 0):
+                            current_validation_amount = validation_set_event_counts / (
+                                        validation_set_event_counts + training_set_event_counts)
+                            validation_set_candidates.append(current_validation_files)
+                            validation_set_mae.append(
+                                mean_absolute_error(
+                                    numpy.ones(len(current_validation_amount)) * validation_amount,
+                                    current_validation_amount)
+                            )
+                            validation_set_event_amounts.append(validation_set_event_counts)
+                            training_set_event_amounts.append(training_set_event_counts)
+
+                # Generate balance validation set
+                # Selection done based on event counts (per scene class)
+                # Target count specified percentage of training event count
+                if validation_set_mae:
+                    best_set_id = numpy.argmin(validation_set_mae)
+                    validation_files += validation_set_candidates[best_set_id]
+
+                else:
+                    message = '{name}: Validation setup creation was not successful! Could not find a set with ' \
+                              'examples for each event class in both training and validation.'.format(
+                        name=self.__class__.__name__
+                    )
+
+                    self.logger.exception(message)
+                    raise AssertionError(message)
+
+        elif balancing_mode == 'identifier':
             # Do the balance based on scene class, identifier and event class
             data = {}
             for scene_id, scene_label in enumerate(scene_labels):
@@ -3495,7 +3637,8 @@ class SoundEventDataset(Dataset):
 
                         # Accept only sets which have examples from each event class
                         if numpy.all(validation_set_event_counts > 0):
-                            current_validation_amount = validation_set_event_counts / (validation_set_event_counts + training_set_event_counts)
+                            current_validation_amount = validation_set_event_counts / (
+                                        validation_set_event_counts + training_set_event_counts)
                             validation_set_candidates.append(current_validation_files)
                             validation_set_mae.append(
                                 mean_absolute_error(
@@ -3516,108 +3659,12 @@ class SoundEventDataset(Dataset):
                 else:
                     message = '{name}: Validation setup creation was not successful! Could not find a set with ' \
                               'examples for each event class in both training and validation.'.format(
-                                name=self.__class__.__name__
-                              )
-
-                    self.logger.exception(message)
-                    raise AssertionError(message)
-
-        else:
-            # Do the balance based on scene class, identifier and event class
-            data = {}
-            for scene_id, scene_label in enumerate(scene_labels):
-                data[scene_label] = training_meta.filter(scene_label=scene_label).unique_files
-
-            # Get event amounts per class
-            event_amounts = {}
-            for scene_id, scene_label in enumerate(scene_labels):
-                event_amounts[scene_label] = {}
-                for audio_filename in data[scene_label]:
-                    current_event_amounts = training_meta.filter(filename=audio_filename).event_stat_counts()
-
-                    for event_label, count in iteritems(current_event_amounts):
-                        if event_label not in event_amounts[scene_label]:
-                            event_amounts[scene_label][event_label] = 0
-
-                        event_amounts[scene_label][event_label] += count
-
-            validation_files = []
-            for scene_id, scene_label in enumerate(scene_labels):
-                # Optimize scene sets separately
-                validation_set_candidates = []
-                validation_set_mae = []
-                validation_set_event_amounts = []
-                training_set_event_amounts = []
-
-                iteration_progress = tqdm(
-                    range(0, iterations),
-                    desc="{0: <25s}".format('Generate validation split candidates'),
-                    file=sys.stdout,
-                    leave=False,
-                    disable=kwargs.get('disable_progress_bar', self.disable_progress_bar),
-                    ascii=kwargs.get('use_ascii_progress_bar', self.use_ascii_progress_bar)
-                )
-
-                for i in iteration_progress:
-                    item_ids = list(range(0, len(data[scene_label])))
-                    random.shuffle(item_ids, random.random)
-
-                    valid_percentage_index = int(numpy.ceil(validation_amount * len(item_ids)))
-
-                    current_validation_files = []
-                    for loc_id in item_ids[0:valid_percentage_index]:
-                        current_validation_files.append(data[scene_label][loc_id])
-
-                    current_training_files = []
-                    for loc_id in item_ids[valid_percentage_index:]:
-                        current_training_files.append(data[scene_label][loc_id])
-
-                    # Event count in training set candidate
-                    training_set_event_counts = numpy.zeros(len(event_amounts[scene_label]))
-                    for audio_filename in current_training_files:
-                        current_event_amounts = training_meta.filter(filename=audio_filename).event_stat_counts()
-                        for event_label_id, event_label in enumerate(event_amounts[scene_label]):
-                            if event_label in current_event_amounts:
-                                training_set_event_counts[event_label_id] += current_event_amounts[event_label]
-
-                    # Accept only sets which leave at least one example for training
-                    if numpy.all(training_set_event_counts > 0):
-                        # Event counts in validation set candidate
-                        validation_set_event_counts = numpy.zeros(len(event_amounts[scene_label]))
-                        for audio_filename in current_validation_files:
-                            current_event_amounts = training_meta.filter(filename=audio_filename).event_stat_counts()
-
-                            for event_label_id, event_label in enumerate(event_amounts[scene_label]):
-                                if event_label in current_event_amounts:
-                                    validation_set_event_counts[event_label_id] += current_event_amounts[event_label]
-
-                        # Accept only sets which have examples from each event class
-                        if numpy.all(validation_set_event_counts > 0):
-                            current_validation_amount = validation_set_event_counts / (validation_set_event_counts + training_set_event_counts)
-                            validation_set_candidates.append(current_validation_files)
-                            validation_set_mae.append(
-                                mean_absolute_error(
-                                    numpy.ones(len(current_validation_amount)) * validation_amount,
-                                    current_validation_amount)
-                            )
-                            validation_set_event_amounts.append(validation_set_event_counts)
-                            training_set_event_amounts.append(training_set_event_counts)
-
-                # Generate balance validation set
-                # Selection done based on event counts (per scene class)
-                # Target count specified percentage of training event count
-                if validation_set_mae:
-                    best_set_id = numpy.argmin(validation_set_mae)
-                    validation_files += validation_set_candidates[best_set_id]
-
-                else:
-                    message = '{name}: Validation setup creation was not successful! Could not find a set with ' \
-                              'examples for each event class in both training and validation.'.format(
                         name=self.__class__.__name__
                     )
 
                     self.logger.exception(message)
                     raise AssertionError(message)
+
 
         if verbose:
             logger = FancyLogger()
@@ -3676,6 +3723,9 @@ class SoundEventDataset(Dataset):
 
         if self.active_events:
             output = output.filter(event_list=self.active_events)
+
+        if container.filename:
+            output.filename = container.filename
 
         return output
 

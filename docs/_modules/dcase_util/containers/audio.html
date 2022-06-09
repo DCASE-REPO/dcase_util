@@ -4,6 +4,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>dcase_util.containers.audio &mdash; DCASE Utilities 1.0 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/plot_directive.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/theme_overrides.css" type="text/css" />
     <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
   <!--[if lt IE 9]>
@@ -325,6 +328,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.AudioContainer.normalize.html">dcase_util.containers.AudioContainer.normalize</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.AudioContainer.resample.html">dcase_util.containers.AudioContainer.resample</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.AudioContainer.mixdown.html">dcase_util.containers.AudioContainer.mixdown</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.AudioContainer.overlay.html">dcase_util.containers.AudioContainer.overlay</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.AudioContainer.plot.html">dcase_util.containers.AudioContainer.plot</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.AudioContainer.plot_wave.html">dcase_util.containers.AudioContainer.plot_wave</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.AudioContainer.plot_spec.html">dcase_util.containers.AudioContainer.plot_spec</a></li>
@@ -730,6 +734,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TAUUrbanAudioVisualScenes_2021_EvaluationSet.html">dcase_util.datasets.TAUUrbanAudioVisualScenes_2021_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TAUUrbanAcousticScenes_2021_Mobile_EvaluationSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2021_Mobile_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TAUUrbanAcousticScenes_2022_Mobile_DevelopmentSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2022_Mobile_DevelopmentSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TAUUrbanAcousticScenes_2022_Mobile_EvaluationSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2022_Mobile_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.DCASE2018_Task5_DevelopmentSet.html">dcase_util.datasets.DCASE2018_Task5_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.DCASE2018_Task5_EvaluationSet.html">dcase_util.datasets.DCASE2018_Task5_EvaluationSet</a></li>
 </ul>
@@ -1493,6 +1498,7 @@
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-20">v0.2.20</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-19">v0.2.19</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-18">v0.2.18</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-17">v0.2.17</a></li>
@@ -1573,7 +1579,8 @@
     <span class="n">valid_formats</span> <span class="o">=</span> <span class="p">[</span><span class="n">FileFormat</span><span class="o">.</span><span class="n">WAV</span><span class="p">,</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">FLAC</span><span class="p">,</span>
                      <span class="n">FileFormat</span><span class="o">.</span><span class="n">OGG</span><span class="p">,</span>
                      <span class="n">FileFormat</span><span class="o">.</span><span class="n">M4A</span><span class="p">,</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">WEBM</span><span class="p">,</span>
-                     <span class="n">FileFormat</span><span class="o">.</span><span class="n">MP3</span><span class="p">,</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">MP4</span><span class="p">]</span>  <span class="c1">#: Valid file formats</span>
+                     <span class="n">FileFormat</span><span class="o">.</span><span class="n">MP3</span><span class="p">,</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">MP4</span><span class="p">,</span>
+                     <span class="n">FileFormat</span><span class="o">.</span><span class="n">MKV</span><span class="p">]</span>  <span class="c1">#: Valid file formats</span>
 
 <div class="viewcode-block" id="AudioContainer.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.containers.AudioContainer.html#dcase_util.containers.AudioContainer.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="mi">44100</span><span class="p">,</span>
@@ -2371,8 +2378,8 @@
                     <span class="k">if</span> <span class="n">fs</span> <span class="o">!=</span> <span class="n">source_fs</span><span class="p">:</span>
                         <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span>
                             <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">,</span>
-                            <span class="n">source_fs</span><span class="p">,</span>
-                            <span class="n">fs</span><span class="p">,</span>
+                            <span class="n">orig_sr</span><span class="o">=</span><span class="n">source_fs</span><span class="p">,</span>
+                            <span class="n">target_sr</span><span class="o">=</span><span class="n">fs</span><span class="p">,</span>
                             <span class="n">res_type</span><span class="o">=</span><span class="n">res_type</span>
                         <span class="p">)</span>
 
@@ -2381,7 +2388,7 @@
 
             <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">format</span> <span class="ow">in</span> <span class="p">[</span><span class="n">FileFormat</span><span class="o">.</span><span class="n">FLAC</span><span class="p">,</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">OGG</span><span class="p">,</span>
                                  <span class="n">FileFormat</span><span class="o">.</span><span class="n">MP3</span><span class="p">,</span>
-                                 <span class="n">FileFormat</span><span class="o">.</span><span class="n">M4A</span><span class="p">,</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">MP4</span><span class="p">,</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">WEBM</span><span class="p">]:</span>
+                                 <span class="n">FileFormat</span><span class="o">.</span><span class="n">M4A</span><span class="p">,</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">MP4</span><span class="p">,</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">WEBM</span><span class="p">,</span> <span class="n">FileFormat</span><span class="o">.</span><span class="n">MKV</span><span class="p">]:</span>
                 <span class="c1"># Handle segment start and stop</span>
                 <span class="k">if</span> <span class="n">start</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">stop</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                     <span class="n">offset</span> <span class="o">=</span> <span class="n">start</span>
@@ -3362,9 +3369,14 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">plot_spec</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="k">elif</span> <span class="n">plot_type</span> <span class="o">==</span> <span class="s1">&#39;dual&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;figsize&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">figsize</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;figsize&#39;</span><span class="p">)</span>
+
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">channels</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
                 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-                <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
                 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">plot_wave</span><span class="p">(</span>
                     <span class="n">x_axis</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;x_axis&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">),</span>
@@ -3802,8 +3814,37 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">return</span> <span class="n">sample</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fs</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">sample</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fs</span><span class="p">)</span>
 
+<div class="viewcode-block" id="AudioContainer.overlay"><a class="viewcode-back" href="../../../generated/dcase_util.containers.AudioContainer.overlay.html#dcase_util.containers.AudioContainer.overlay">[docs]</a>    <span class="k">def</span> <span class="nf">overlay</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">audio</span><span class="p">,</span> <span class="n">start_seconds</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">multiplier</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Simple sample overlay method</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        audio : AudioContainer</span>
+<span class="sd">            Audio to be mixed</span>
+
+<span class="sd">        start_seconds : float</span>
+<span class="sd">            Time stamp (in seconds) of segment start.</span>
+<span class="sd">            Default value 0</span>
+
+<span class="sd">        multiplier : float</span>
+<span class="sd">            Audio data multiplier</span>
+<span class="sd">            Default value 0</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        self</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">start_samples</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">start_seconds</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">fs</span><span class="p">)</span>
+        <span class="n">audio_data</span> <span class="o">=</span> <span class="n">audio</span><span class="o">.</span><span class="n">get_focused</span><span class="p">()</span>
+        <span class="n">segment_length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">audio_data</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="n">start_samples</span><span class="p">:</span><span class="n">start_samples</span><span class="o">+</span><span class="n">segment_length</span><span class="p">]</span> <span class="o">+=</span>  <span class="n">audio_data</span> <span class="o">*</span> <span class="n">multiplier</span>
+
+        <span class="k">return</span> <span class="bp">self</span></div></div>
 </pre></div>
 
            </div>
@@ -3813,7 +3854,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021, Toni Heittola et al..</p>
+    <p>&#169; Copyright 2022, Toni Heittola et al..</p>
   </div>
 
    

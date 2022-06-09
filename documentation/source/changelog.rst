@@ -3,6 +3,28 @@
 Release notes
 =============
 
+v0.2.20
+-------
+
+**Updates**
+
+* Add MKV as valid file extension in ``AudioContainer``
+* Add ``overlay`` method in ``AudioContainer``
+* Add balancing_mode parameter to ``validation_files_balanced`` method in ``SoundEventDataset``
+* Add ``dataset`` field to ``MetaDataItem`` and add ``dataset`` field related properties to ``MetaDataContainer``
+* Add identifier count reporting for tags in ``MetaDataContainer``
+* Add ``map_tags`` method in ``MetaDataContainer``
+* Add ``TAUUrbanAcousticScenes_2022_Mobile_EvaluationSet`` dataset
+* Update ``unique_source_labels`` method in ``MetaDataContainer`` to be more efficient
+* Update ``model_summary_string`` function to work with latest Keras versions
+
+**Bug fixes**
+
+* Fix field override in ``non_hashable_fields`` method in ``AppParameterContainer``
+* Fix ``process_meta_container`` in ``AcousticSceneDataset`` to retain container filename
+* Fix ``is_jupyter`` function to work when IPython is not installed
+* Fix ``plot`` in ``AudioContainer`` method to use figsize parameter for dual plots
+
 v0.2.19
 -------
 

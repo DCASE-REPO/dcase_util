@@ -4,6 +4,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>dcase_util.datasets.tut &mdash; DCASE Utilities 1.0 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/plot_directive.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/theme_overrides.css" type="text/css" />
     <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
   <!--[if lt IE 9]>
@@ -325,6 +328,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.AudioContainer.normalize.html">dcase_util.containers.AudioContainer.normalize</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.AudioContainer.resample.html">dcase_util.containers.AudioContainer.resample</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.AudioContainer.mixdown.html">dcase_util.containers.AudioContainer.mixdown</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.AudioContainer.overlay.html">dcase_util.containers.AudioContainer.overlay</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.AudioContainer.plot.html">dcase_util.containers.AudioContainer.plot</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.AudioContainer.plot_wave.html">dcase_util.containers.AudioContainer.plot_wave</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.AudioContainer.plot_spec.html">dcase_util.containers.AudioContainer.plot_spec</a></li>
@@ -730,6 +734,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TAUUrbanAudioVisualScenes_2021_EvaluationSet.html">dcase_util.datasets.TAUUrbanAudioVisualScenes_2021_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TAUUrbanAcousticScenes_2021_Mobile_EvaluationSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2021_Mobile_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TAUUrbanAcousticScenes_2022_Mobile_DevelopmentSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2022_Mobile_DevelopmentSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TAUUrbanAcousticScenes_2022_Mobile_EvaluationSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2022_Mobile_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.DCASE2018_Task5_DevelopmentSet.html">dcase_util.datasets.DCASE2018_Task5_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.DCASE2018_Task5_EvaluationSet.html">dcase_util.datasets.DCASE2018_Task5_EvaluationSet</a></li>
 </ul>
@@ -1493,6 +1498,7 @@
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-20">v0.2.20</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-19">v0.2.19</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-18">v0.2.18</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-17">v0.2.17</a></li>
@@ -1837,6 +1843,297 @@
 
         <span class="k">return</span> <span class="bp">self</span></div>
 
+
+<div class="viewcode-block" id="TAUUrbanAcousticScenes_2022_Mobile_EvaluationSet"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TAUUrbanAcousticScenes_2022_Mobile_EvaluationSet.html#dcase_util.datasets.TAUUrbanAcousticScenes_2022_Mobile_EvaluationSet">[docs]</a><span class="k">class</span> <span class="nc">TAUUrbanAcousticScenes_2022_Mobile_EvaluationSet</span><span class="p">(</span><span class="n">AcousticSceneDataset</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;TAU Urban Acoustic Scenes 2022 Mobile Evaluation dataset</span>
+
+<span class="sd">    This dataset is used in DCASE2022 - Task 1, Low-Complexity Acoustic Scene Classification / Evaluation</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="TAUUrbanAcousticScenes_2022_Mobile_EvaluationSet.__init__"><a class="viewcode-back" href="../../../generated/dcase_util.datasets.TAUUrbanAcousticScenes_2022_Mobile_EvaluationSet.html#dcase_util.datasets.TAUUrbanAcousticScenes_2022_Mobile_EvaluationSet.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                 <span class="n">storage_name</span><span class="o">=</span><span class="s1">&#39;TAU-urban-acoustic-scenes-2022-mobile-evaluation&#39;</span><span class="p">,</span>
+                 <span class="n">data_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">included_content_types</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+
+<span class="sd">        storage_name : str</span>
+<span class="sd">            Name to be used when storing dataset on disk</span>
+<span class="sd">            Default value &#39;TAU-urban-acoustic-scenes-2022-mobile-evaluation&#39;</span>
+
+<span class="sd">        data_path : str</span>
+<span class="sd">            Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), &#39;dcase_util_datasets&#39;)</span>
+<span class="sd">            is used.</span>
+<span class="sd">            Default value None</span>
+
+<span class="sd">        included_content_types : list of str or str</span>
+<span class="sd">            Indicates what content type should be processed. One or multiple from [&#39;all&#39;, &#39;audio&#39;, &#39;meta&#39;, &#39;code&#39;,</span>
+<span class="sd">            &#39;documentation&#39;]. If None given, [&#39;all&#39;] is used. Parameter can be also comma separated string.</span>
+<span class="sd">            Default value None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;included_content_types&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">included_content_types</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;data_path&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_path</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;storage_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">storage_name</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;dataset_group&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;scene&#39;</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;dataset_meta&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;authors&#39;</span><span class="p">:</span> <span class="s1">&#39;Toni Heittola, Annamaria Mesaros, and Tuomas Virtanen&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;TAU Urban Acoustic Scenes 2022 Mobile, evaluation dataset&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s1">&#39;audio_source&#39;</span><span class="p">:</span> <span class="s1">&#39;Field recording&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;audio_type&#39;</span><span class="p">:</span> <span class="s1">&#39;Natural/Synthetic&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;audio_recording_device_model&#39;</span><span class="p">:</span> <span class="s1">&#39;Zoom F8&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;microphone_model&#39;</span><span class="p">:</span> <span class="s1">&#39;Soundman OKM II Klassik/studio A3 electret microphone&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;licence&#39;</span><span class="p">:</span> <span class="s1">&#39;free non-commercial&#39;</span>
+        <span class="p">}</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;reference_data_present&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;crossvalidation_folds&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;evaluation_setup_file_extension&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;csv&#39;</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;meta_filename&#39;</span><span class="p">]</span> <span class="o">=</span><span class="s1">&#39;meta.csv&#39;</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;check_meta&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="n">filename_base</span> <span class="o">=</span> <span class="s1">&#39;TAU-urban-acoustic-scenes-2022-mobile-evaluation&#39;</span>
+        <span class="n">source_url</span> <span class="o">=</span> <span class="s1">&#39;https://zenodo.org/record/6591203/files/&#39;</span>
+
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;package_list&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;documentation&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.doc.zip&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">8056</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;885bcd97d13c12571348250a9e132fae&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.doc.zip&#39;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;meta&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.meta.zip&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">294726</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;53ff714b17293c5f973ce233db393416&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.meta.zip&#39;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;audio&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.1.zip&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1684954408</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;740f80e5a62821f80d0d2c2660fa616c&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.1.zip&#39;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;audio&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.2.zip&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1685855969</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;4accb0bd9486c429540770ef4fdd5595&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.2.zip&#39;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;audio&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.3.zip&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1684186384</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;bf8c5c3c6d49c1517ee6e7402e1e7121&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.3.zip&#39;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;audio&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.4.zip&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1683652385</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;bb086c4225119d332e0ceea8234b4435&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.4.zip&#39;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;audio&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.5.zip&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1685227691</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;e4ab8505774526279d6231d6769c3c79&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.5.zip&#39;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;audio&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.6.zip&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1688648060</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;270f122ebe737fd2e463165a76f6abbd&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.6.zip&#39;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;audio&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.7.zip&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1685304723</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;86d975ee1b4d09b26e1b998f122189e1&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.7.zip&#39;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s1">&#39;content_type&#39;</span><span class="p">:</span> <span class="s1">&#39;audio&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_file&#39;</span><span class="p">:</span> <span class="n">source_url</span> <span class="o">+</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.8.zip&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;remote_bytes&#39;</span><span class="p">:</span> <span class="mi">1451063404</span><span class="p">,</span>
+                <span class="s1">&#39;remote_md5&#39;</span><span class="p">:</span> <span class="s1">&#39;93b3c7dc8be152f9bf1edbbe8cf8d1b1&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename_base</span> <span class="o">+</span> <span class="s1">&#39;.audio.8.zip&#39;</span>
+            <span class="p">}</span>
+        <span class="p">]</span>
+
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;audio_paths&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s1">&#39;audio&#39;</span>
+        <span class="p">]</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">TAUUrbanAcousticScenes_2022_Mobile_EvaluationSet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">process_meta_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="n">absolute_path</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Process single meta data item</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        item :  MetaDataItem</span>
+<span class="sd">            Meta data item</span>
+
+<span class="sd">        absolute_path : bool</span>
+<span class="sd">            Convert file paths to be absolute</span>
+<span class="sd">            Default value True</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">absolute_path</span><span class="p">:</span>
+            <span class="n">item</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relative_to_absolute_path</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">item</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">absolute_to_relative_path</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Prepare dataset for the usage.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        self</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta_container</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">reference_data_present</span><span class="p">:</span>
+            <span class="n">meta_data</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">OrderedDict</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">fold</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">folds</span><span class="p">():</span>
+                <span class="c1"># Read train files in</span>
+                <span class="n">fold_data</span> <span class="o">=</span> <span class="n">MetaDataContainer</span><span class="p">(</span>
+                    <span class="n">filename</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">evaluation_setup_filename</span><span class="p">(</span>
+                        <span class="n">setup_part</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">,</span>
+                        <span class="n">fold</span><span class="o">=</span><span class="n">fold</span>
+                    <span class="p">)</span>
+                <span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+
+                <span class="c1"># Read eval files in</span>
+                <span class="n">fold_data</span> <span class="o">+=</span> <span class="n">MetaDataContainer</span><span class="p">(</span>
+                    <span class="n">filename</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">evaluation_setup_filename</span><span class="p">(</span>
+                        <span class="n">setup_part</span><span class="o">=</span><span class="s1">&#39;evaluate&#39;</span><span class="p">,</span>
+                        <span class="n">fold</span><span class="o">=</span><span class="n">fold</span>
+                    <span class="p">)</span>
+                <span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+
+                <span class="c1"># Process, make sure each file is included only once.</span>
+                <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">fold_data</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">filename</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">meta_data</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">process_meta_item</span><span class="p">(</span>
+                            <span class="n">item</span><span class="o">=</span><span class="n">item</span><span class="p">,</span>
+                            <span class="n">absolute_path</span><span class="o">=</span><span class="kc">False</span>
+                        <span class="p">)</span>
+
+                        <span class="n">meta_data</span><span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">filename</span><span class="p">]</span> <span class="o">=</span> <span class="n">item</span>
+
+            <span class="c1"># Save meta</span>
+            <span class="n">MetaDataContainer</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">meta_data</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span><span class="o">.</span><span class="n">save</span><span class="p">(</span>
+                <span class="n">filename</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">meta_file</span>
+            <span class="p">)</span>
+
+            <span class="c1"># Load meta and cross validation</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span> <span class="nf">load_crossvalidation_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Load cross-validation into the container.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        self</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Reset cross validation data and insert &#39;all_data&#39;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta_container</span><span class="p">:</span>
+            <span class="c1"># Meta data is available</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">crossvalidation_data</span> <span class="o">=</span> <span class="n">DictContainer</span><span class="p">({</span>
+                <span class="s1">&#39;train&#39;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s1">&#39;all_data&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta_container</span>
+                <span class="p">},</span>
+                <span class="s1">&#39;test&#39;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s1">&#39;all_data&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta_container</span>
+                <span class="p">},</span>
+                <span class="s1">&#39;evaluate&#39;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s1">&#39;all_data&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta_container</span>
+                <span class="p">},</span>
+            <span class="p">})</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># No meta data available, load data from evaluation setup files (if they exists).</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">crossvalidation_data</span> <span class="o">=</span> <span class="n">DictContainer</span><span class="p">({</span>
+                <span class="s1">&#39;train&#39;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s1">&#39;all_data&#39;</span><span class="p">:</span> <span class="n">MetaDataContainer</span><span class="p">()</span>
+                <span class="p">},</span>
+                <span class="s1">&#39;test&#39;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s1">&#39;all_data&#39;</span><span class="p">:</span> <span class="n">MetaDataContainer</span><span class="p">()</span>
+                <span class="p">},</span>
+                <span class="s1">&#39;evaluate&#39;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s1">&#39;all_data&#39;</span><span class="p">:</span> <span class="n">MetaDataContainer</span><span class="p">()</span>
+                <span class="p">},</span>
+            <span class="p">})</span>
+
+            <span class="n">test_filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">evaluation_setup_filename</span><span class="p">(</span><span class="n">setup_part</span><span class="o">=</span><span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="n">fold</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">evaluate_filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">evaluation_setup_filename</span><span class="p">(</span><span class="n">setup_part</span><span class="o">=</span><span class="s1">&#39;evaluate&#39;</span><span class="p">,</span> <span class="n">fold</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">test_filename</span><span class="p">):</span>
+                <span class="c1"># Testing data exists, load and process it</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">crossvalidation_data</span><span class="p">[</span><span class="s1">&#39;test&#39;</span><span class="p">][</span><span class="s1">&#39;all_data&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_meta_container</span><span class="p">(</span>
+                    <span class="n">container</span><span class="o">=</span><span class="n">MetaDataContainer</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">test_filename</span><span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+                <span class="p">)</span>
+
+                <span class="c1"># Process items</span>
+                <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">crossvalidation_data</span><span class="p">[</span><span class="s1">&#39;test&#39;</span><span class="p">][</span><span class="s1">&#39;all_data&#39;</span><span class="p">]:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">process_meta_item</span><span class="p">(</span><span class="n">item</span><span class="o">=</span><span class="n">item</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">evaluate_filename</span><span class="p">):</span>
+                <span class="c1"># Evaluation data exists, load and process it</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">crossvalidation_data</span><span class="p">[</span><span class="s1">&#39;evaluate&#39;</span><span class="p">][</span><span class="s1">&#39;all_data&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_meta_container</span><span class="p">(</span>
+                    <span class="n">container</span><span class="o">=</span><span class="n">MetaDataContainer</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">evaluate_filename</span><span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+                <span class="p">)</span>
+
+                <span class="c1"># Process items</span>
+                <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">crossvalidation_data</span><span class="p">[</span><span class="s1">&#39;evaluate&#39;</span><span class="p">][</span><span class="s1">&#39;all_data&#39;</span><span class="p">]:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">process_meta_item</span><span class="p">(</span><span class="n">item</span><span class="o">=</span><span class="n">item</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">crossvalidation_set</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">crossvalidation_data</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">crossvalidation_data</span><span class="p">[</span><span class="n">crossvalidation_set</span><span class="p">][</span><span class="s1">&#39;all_data&#39;</span><span class="p">]:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">process_meta_item</span><span class="p">(</span><span class="n">item</span><span class="o">=</span><span class="n">item</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span> <span class="nf">scene_labels</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;List of unique scene labels in the meta data.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        list</span>
+<span class="sd">            List of scene labels in alphabetical order.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;airport&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;bus&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;metro&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;metro_station&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;park&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;public_square&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;shopping_mall&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;street_pedestrian&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;street_traffic&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;tram&#39;</span><span class="p">]</span></div>
 
 
 <span class="c1"># =====================================================</span>
@@ -8112,6 +8409,9 @@
         <span class="k">elif</span> <span class="n">setup_part</span> <span class="o">==</span> <span class="s1">&#39;evaluate&#39;</span><span class="p">:</span>
             <span class="n">parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;evaluate&#39;</span><span class="p">)</span>
 
+        <span class="k">elif</span> <span class="n">setup_part</span> <span class="o">==</span> <span class="s1">&#39;validate&#39;</span><span class="p">:</span>
+            <span class="n">parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;validate&#39;</span><span class="p">)</span>
+
         <span class="k">else</span><span class="p">:</span>
             <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Unknown setup_part [</span><span class="si">{setup_part}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
                 <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
@@ -8550,6 +8850,9 @@
 
         <span class="k">elif</span> <span class="n">setup_part</span> <span class="o">==</span> <span class="s1">&#39;evaluate&#39;</span><span class="p">:</span>
             <span class="n">parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;evaluate&#39;</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">setup_part</span> <span class="o">==</span> <span class="s1">&#39;validate&#39;</span><span class="p">:</span>
+            <span class="n">parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;validate&#39;</span><span class="p">)</span>
 
         <span class="k">else</span><span class="p">:</span>
             <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Unknown setup_part [</span><span class="si">{setup_part}</span><span class="s1">]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
@@ -10121,7 +10424,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021, Toni Heittola et al..</p>
+    <p>&#169; Copyright 2022, Toni Heittola et al..</p>
   </div>
 
    

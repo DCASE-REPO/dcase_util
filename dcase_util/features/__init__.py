@@ -129,7 +129,7 @@ OpenL3Extractor
     OpenL3Extractor.extract
 
 TorchOpenL3Extractor
----------------
+--------------------
 
 *dcase_util.features.TorchOpenL3Extractor*
 

@@ -221,9 +221,10 @@ class AppParameterContainer(ParameterContainer):
             self.method_dependencies.update(method_dependencies)
 
         # Fields to be skipped when parameter hash is calculated
-        self.non_hashable_fields = self.default_non_hashable_fields
         if non_hashable_fields is not None:
-            self.non_hashable_fields.update(non_hashable_fields)
+            self.non_hashable_fields = non_hashable_fields
+        else:
+            self.non_hashable_fields = self.default_non_hashable_fields
 
         # Parameters sections which will not be included in the master parameter hash
         self.non_hashable_sections = self.default_non_hashable_sections
@@ -899,6 +900,7 @@ class AppParameterContainer(ParameterContainer):
                     parameters[field]['_hash'] = self.get_hash(
                         data=parameters[field]
                     )
+
 
     def _add_hash_to_method_parameters(self, parameters):
         """Add has to the method parameter sections.

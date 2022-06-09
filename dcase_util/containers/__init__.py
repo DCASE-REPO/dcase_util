@@ -686,6 +686,7 @@ Visualizations examples:
     AudioContainer.normalize
     AudioContainer.resample
     AudioContainer.mixdown
+    AudioContainer.overlay
     AudioContainer.plot
     AudioContainer.plot_wave
     AudioContainer.plot_spec

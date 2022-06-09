@@ -1,4 +1,4 @@
-dcase\_util.containers.AudioContainer
+﻿dcase\_util.containers.AudioContainer
 =====================================
 
 .. currentmodule:: dcase_util.containers
@@ -27,6 +27,7 @@ dcase\_util.containers.AudioContainer
       ~AudioContainer.log
       ~AudioContainer.mixdown
       ~AudioContainer.normalize
+      ~AudioContainer.overlay
       ~AudioContainer.pad
       ~AudioContainer.plot
       ~AudioContainer.plot_spec

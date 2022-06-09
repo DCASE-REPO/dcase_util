@@ -4,6 +4,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>dcase_util.containers.metadata &mdash; DCASE Utilities 1.0 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/plot_directive.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/theme_overrides.css" type="text/css" />
     <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
   <!--[if lt IE 9]>
@@ -325,6 +328,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.AudioContainer.normalize.html">dcase_util.containers.AudioContainer.normalize</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.AudioContainer.resample.html">dcase_util.containers.AudioContainer.resample</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.AudioContainer.mixdown.html">dcase_util.containers.AudioContainer.mixdown</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.AudioContainer.overlay.html">dcase_util.containers.AudioContainer.overlay</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.AudioContainer.plot.html">dcase_util.containers.AudioContainer.plot</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.AudioContainer.plot_wave.html">dcase_util.containers.AudioContainer.plot_wave</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../generated/dcase_util.containers.AudioContainer.plot_spec.html">dcase_util.containers.AudioContainer.plot_spec</a></li>
@@ -730,6 +734,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TAUUrbanAudioVisualScenes_2021_EvaluationSet.html">dcase_util.datasets.TAUUrbanAudioVisualScenes_2021_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TAUUrbanAcousticScenes_2021_Mobile_EvaluationSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2021_Mobile_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TAUUrbanAcousticScenes_2022_Mobile_DevelopmentSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2022_Mobile_DevelopmentSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.TAUUrbanAcousticScenes_2022_Mobile_EvaluationSet.html">dcase_util.datasets.TAUUrbanAcousticScenes_2022_Mobile_EvaluationSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.DCASE2018_Task5_DevelopmentSet.html">dcase_util.datasets.DCASE2018_Task5_DevelopmentSet</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/dcase_util.datasets.DCASE2018_Task5_EvaluationSet.html">dcase_util.datasets.DCASE2018_Task5_EvaluationSet</a></li>
 </ul>
@@ -1493,6 +1498,7 @@
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-20">v0.2.20</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-19">v0.2.19</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-18">v0.2.18</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#v0-2-17">v0.2.17</a></li>
@@ -1698,10 +1704,13 @@
             <span class="n">output</span> <span class="o">+=</span> <span class="n">ui</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">indent</span><span class="o">=</span><span class="n">indent</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="s1">&#39;filename_audio&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">filename_audio</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">filename_video</span><span class="p">:</span>
-            <span class="n">output</span> <span class="o">+=</span> <span class="n">ui</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">indent</span><span class="o">=</span><span class="n">indent</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="s1">&#39;filename_audio&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">filename_video</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+            <span class="n">output</span> <span class="o">+=</span> <span class="n">ui</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">indent</span><span class="o">=</span><span class="n">indent</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="s1">&#39;filename_video&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">filename_video</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">identifier</span><span class="p">:</span>
             <span class="n">output</span> <span class="o">+=</span> <span class="n">ui</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">indent</span><span class="o">=</span><span class="n">indent</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="s1">&#39;identifier&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">identifier</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">:</span>
+            <span class="n">output</span> <span class="o">+=</span> <span class="n">ui</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">indent</span><span class="o">=</span><span class="n">indent</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="s1">&#39;dataset&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">source_label</span><span class="p">:</span>
             <span class="n">output</span> <span class="o">+=</span> <span class="n">ui</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">indent</span><span class="o">=</span><span class="n">indent</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="s1">&#39;source_label&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">source_label</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
@@ -2154,6 +2163,26 @@
         <span class="bp">self</span><span class="p">[</span><span class="s1">&#39;identifier&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
 
     <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Dataset</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        str or None</span>
+<span class="sd">            dataset identifier</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="s1">&#39;dataset&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="nd">@dataset</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">source_label</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Source label</span>
 
@@ -2339,6 +2368,7 @@
             <span class="n">output</span> <span class="o">+=</span> <span class="n">ui</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">indent</span><span class="o">=</span><span class="n">indent</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="s1">&#39;Event labels&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">unique_event_labels</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
             <span class="n">output</span> <span class="o">+=</span> <span class="n">ui</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">indent</span><span class="o">=</span><span class="n">indent</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="s1">&#39;Tags&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">unique_tags</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
             <span class="n">output</span> <span class="o">+=</span> <span class="n">ui</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">indent</span><span class="o">=</span><span class="n">indent</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="s1">&#39;Identifiers&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">unique_identifiers</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+            <span class="n">output</span> <span class="o">+=</span> <span class="n">ui</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">indent</span><span class="o">=</span><span class="n">indent</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="s1">&#39;Datasets&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">unique_datasets</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
             <span class="n">output</span> <span class="o">+=</span> <span class="n">ui</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">indent</span><span class="o">=</span><span class="n">indent</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="s1">&#39;Source labels&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">unique_source_labels</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
             <span class="n">output</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
 
@@ -2416,16 +2446,16 @@
             <span class="k">if</span> <span class="s1">&#39;tags&#39;</span> <span class="ow">in</span> <span class="n">stats</span> <span class="ow">and</span> <span class="s1">&#39;tag_list&#39;</span> <span class="ow">in</span> <span class="n">stats</span><span class="p">[</span><span class="s1">&#39;tags&#39;</span><span class="p">]</span> <span class="ow">and</span> <span class="n">stats</span><span class="p">[</span><span class="s1">&#39;tags&#39;</span><span class="p">][</span><span class="s1">&#39;tag_list&#39;</span><span class="p">]:</span>
                 <span class="n">output</span> <span class="o">+=</span> <span class="n">ui</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="s1">&#39;Tag statistics&#39;</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
 
-                <span class="n">cell_data</span> <span class="o">=</span> <span class="p">[[],</span> <span class="p">[]]</span>
-
+                <span class="n">cell_data</span> <span class="o">=</span> <span class="p">[[],</span> <span class="p">[],</span> <span class="p">[]]</span>
                 <span class="k">for</span> <span class="n">tag_id</span><span class="p">,</span> <span class="n">tag</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;tags&#39;</span><span class="p">][</span><span class="s1">&#39;tag_list&#39;</span><span class="p">]):</span>
                     <span class="n">cell_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tag</span><span class="p">)</span>
                     <span class="n">cell_data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;tags&#39;</span><span class="p">][</span><span class="s1">&#39;count&#39;</span><span class="p">][</span><span class="n">tag_id</span><span class="p">]))</span>
+                    <span class="n">cell_data</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;tags&#39;</span><span class="p">][</span><span class="s1">&#39;identifiers&#39;</span><span class="p">][</span><span class="n">tag_id</span><span class="p">]))</span>
 
                 <span class="n">output</span> <span class="o">+=</span> <span class="n">ui</span><span class="o">.</span><span class="n">table</span><span class="p">(</span>
                     <span class="n">cell_data</span><span class="o">=</span><span class="n">cell_data</span><span class="p">,</span>
-                    <span class="n">column_headers</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Tag&#39;</span><span class="p">,</span> <span class="s1">&#39;Count&#39;</span><span class="p">],</span>
-                    <span class="n">column_types</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;str20&#39;</span><span class="p">,</span> <span class="s1">&#39;int&#39;</span><span class="p">],</span>
+                    <span class="n">column_headers</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Tag&#39;</span><span class="p">,</span> <span class="s1">&#39;Count&#39;</span><span class="p">,</span> <span class="s1">&#39;Identifiers&#39;</span><span class="p">],</span>
+                    <span class="n">column_types</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;str20&#39;</span><span class="p">,</span> <span class="s1">&#39;int&#39;</span><span class="p">,</span> <span class="s1">&#39;int&#39;</span><span class="p">],</span>
                     <span class="n">indent</span><span class="o">=</span><span class="n">indent</span> <span class="o">+</span> <span class="mi">2</span>
                 <span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
 
@@ -2552,6 +2582,18 @@
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">unique_identifiers</span><span class="p">)</span>
 
     <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">dataset_count</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Number of unique dataset identifiers</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dataset_count: float &gt;= 0</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">unique_datasets</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">tag_count</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Number of unique tags</span>
 
@@ -2658,6 +2700,25 @@
         <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">identifier</span> <span class="ow">and</span> <span class="n">item</span><span class="o">.</span><span class="n">identifier</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">labels</span><span class="p">:</span>
                 <span class="n">labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">identifier</span><span class="p">)</span>
+
+        <span class="n">labels</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">labels</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">unique_datasets</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Unique datasets</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        labels: list, shape=(n,)</span>
+<span class="sd">            Unique dataset identifier labels in alphabetical order</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">labels</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">dataset</span> <span class="ow">and</span> <span class="n">item</span><span class="o">.</span><span class="n">dataset</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">labels</span><span class="p">:</span>
+                <span class="n">labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">dataset</span><span class="p">)</span>
 
         <span class="n">labels</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">labels</span>
@@ -3593,6 +3654,8 @@
                <span class="n">tag_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                <span class="n">identifier</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                <span class="n">identifier_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+               <span class="n">dataset</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+               <span class="n">dataset_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                <span class="n">source_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                <span class="n">source_label_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                <span class="o">**</span><span class="n">kwargs</span>
@@ -3641,6 +3704,14 @@
 <span class="sd">            List of identifiers to be matched</span>
 <span class="sd">            Default value None</span>
 
+<span class="sd">        dataset : str, optional</span>
+<span class="sd">            Dataset identifier to be matched</span>
+<span class="sd">            Default value None</span>
+
+<span class="sd">        dataset_list : list of str, optional</span>
+<span class="sd">            List of dataset identifiers to be matched</span>
+<span class="sd">            Default value None</span>
+
 <span class="sd">        source_label : str, optional</span>
 <span class="sd">            Source label to be matched</span>
 <span class="sd">            Default value None</span>
@@ -3668,6 +3739,9 @@
         <span class="k">if</span> <span class="n">identifier</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;identifier&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">identifier</span>
 
+        <span class="k">if</span> <span class="n">dataset</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dataset</span>
+
         <span class="k">if</span> <span class="n">source_label</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;source_label&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">source_label</span>
 
@@ -3682,6 +3756,9 @@
 
         <span class="k">if</span> <span class="n">identifier_list</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;identifier&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">identifier_list</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">dataset_list</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;dataset_list&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">dataset_list</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">source_label_list</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;source_label&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">source_label_list</span><span class="p">)</span>
@@ -3824,19 +3901,52 @@
         <span class="k">if</span> <span class="n">source_event_labels</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">source_event_labels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">unique_event_labels</span>
 
-        <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">event_label</span> <span class="ow">in</span> <span class="n">source_event_labels</span><span class="p">:</span>
-                <span class="n">current_events_items</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span> <span class="n">event_label</span><span class="o">=</span><span class="n">event_label</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">event_label</span> <span class="ow">in</span> <span class="n">source_event_labels</span><span class="p">:</span>
+            <span class="n">current_events_items</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">event_label</span><span class="o">=</span><span class="n">event_label</span><span class="p">)</span>
 
-                <span class="c1"># Sort events</span>
-                <span class="n">current_events_items</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">current_events_items</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">k</span><span class="p">:</span> <span class="n">k</span><span class="o">.</span><span class="n">onset</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">current_events_items</span><span class="p">:</span>
+                <span class="n">item</span><span class="o">.</span><span class="n">event_label</span> <span class="o">=</span> <span class="n">target_event_label</span>
 
-                <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">current_events_items</span><span class="p">:</span>
-                    <span class="n">item</span><span class="o">.</span><span class="n">event_label</span> <span class="o">=</span> <span class="n">target_event_label</span>
-
-                <span class="n">processed_events</span> <span class="o">+=</span> <span class="n">current_events_items</span>
+            <span class="n">processed_events</span> <span class="o">+=</span> <span class="n">current_events_items</span>
 
         <span class="k">return</span> <span class="n">processed_events</span></div>
+
+    <span class="k">def</span> <span class="nf">map_tags</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target_tag</span><span class="p">,</span> <span class="n">source_tags</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Map tags with varying tags into single target tag</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        target_tag : str</span>
+<span class="sd">            Target tag</span>
+
+<span class="sd">        source_tags : list of str</span>
+<span class="sd">            Tags to be processed. If none given, all tags are merged</span>
+<span class="sd">            Default value None</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        MetaDataContainer</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">processed_tags</span> <span class="o">=</span> <span class="n">MetaDataContainer</span><span class="p">()</span>
+        <span class="n">files</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">unique_files</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">files</span><span class="p">:</span>
+            <span class="n">files</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">source_tags</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">source_tags</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">unique_tags</span>
+
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+            <span class="n">i</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">tag</span> <span class="ow">in</span> <span class="n">source_tags</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">tag</span> <span class="ow">in</span> <span class="n">i</span><span class="o">.</span><span class="n">tags</span><span class="p">:</span>
+                    <span class="n">i</span><span class="o">.</span><span class="n">tags</span><span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">tags</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">tag</span><span class="p">)]</span> <span class="o">=</span> <span class="n">target_tag</span>
+
+            <span class="n">processed_tags</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">processed_tags</span>
+
 
 <div class="viewcode-block" id="MetaDataContainer.event_inactivity"><a class="viewcode-back" href="../../../generated/dcase_util.containers.MetaDataContainer.event_inactivity.html#dcase_util.containers.MetaDataContainer.event_inactivity">[docs]</a>    <span class="k">def</span> <span class="nf">event_inactivity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event_label</span><span class="o">=</span><span class="s1">&#39;inactivity&#39;</span><span class="p">,</span> <span class="n">source_event_labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">duration_list</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get inactivity segments between events as event list</span>
@@ -4145,10 +4255,12 @@
             <span class="n">overall_event_flatten_inactive_length</span> <span class="o">=</span> <span class="kc">None</span>
 
         <span class="n">tag_counts</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tag_list</span><span class="p">))</span>
+        <span class="n">tag_identifiers</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tag_list</span><span class="p">))</span>
         <span class="k">for</span> <span class="n">tag_id</span><span class="p">,</span> <span class="n">tag</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tag_list</span><span class="p">):</span>
             <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">tags</span> <span class="ow">and</span> <span class="n">tag</span> <span class="ow">in</span> <span class="n">item</span><span class="o">.</span><span class="n">tags</span><span class="p">:</span>
                     <span class="n">tag_counts</span><span class="p">[</span><span class="n">tag_id</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">tag_identifiers</span><span class="p">[</span><span class="n">tag_id</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">tag</span><span class="o">=</span><span class="n">tag</span><span class="p">)</span><span class="o">.</span><span class="n">unique_identifiers</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="p">{</span>
             <span class="s1">&#39;scenes&#39;</span><span class="p">:</span> <span class="p">{</span>
@@ -4173,7 +4285,8 @@
             <span class="p">},</span>
             <span class="s1">&#39;tags&#39;</span><span class="p">:</span> <span class="p">{</span>
                 <span class="s1">&#39;tag_list&#39;</span><span class="p">:</span> <span class="n">tag_list</span><span class="p">,</span>
-                <span class="s1">&#39;count&#39;</span><span class="p">:</span> <span class="n">tag_counts</span>
+                <span class="s1">&#39;count&#39;</span><span class="p">:</span> <span class="n">tag_counts</span><span class="p">,</span>
+                <span class="s1">&#39;identifiers&#39;</span><span class="p">:</span> <span class="n">tag_identifiers</span>
             <span class="p">}</span>
         <span class="p">}</span></div>
 
@@ -4424,7 +4537,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021, Toni Heittola et al..</p>
+    <p>&#169; Copyright 2022, Toni Heittola et al..</p>
   </div>
 
    

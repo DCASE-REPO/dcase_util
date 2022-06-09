@@ -146,10 +146,13 @@ class MetaDataItem(dict):
             output += ui.data(indent=indent + 2, field='filename_audio', value=self.filename_audio) + '\n'
 
         if self.filename_video:
-            output += ui.data(indent=indent + 2, field='filename_audio', value=self.filename_video) + '\n'
+            output += ui.data(indent=indent + 2, field='filename_video', value=self.filename_video) + '\n'
 
         if self.identifier:
             output += ui.data(indent=indent + 2, field='identifier', value=self.identifier) + '\n'
+
+        if self.dataset:
+            output += ui.data(indent=indent + 2, field='dataset', value=self.dataset) + '\n'
 
         if self.source_label:
             output += ui.data(indent=indent + 2, field='source_label', value=self.source_label) + '\n'
@@ -602,6 +605,26 @@ class MetaDataItem(dict):
         self['identifier'] = value
 
     @property
+    def dataset(self):
+        """Dataset
+
+        Returns
+        -------
+        str or None
+            dataset identifier
+
+        """
+
+        if 'dataset' in self:
+            return self['dataset']
+        else:
+            return None
+
+    @dataset.setter
+    def dataset(self, value):
+        self['dataset'] = value
+
+    @property
     def source_label(self):
         """Source label
 
@@ -787,6 +810,7 @@ class MetaDataContainer(ListDictContainer):
             output += ui.data(indent=indent + 2, field='Event labels', value=len(self.unique_event_labels)) + '\n'
             output += ui.data(indent=indent + 2, field='Tags', value=len(self.unique_tags)) + '\n'
             output += ui.data(indent=indent + 2, field='Identifiers', value=len(self.unique_identifiers)) + '\n'
+            output += ui.data(indent=indent + 2, field='Datasets', value=len(self.unique_datasets)) + '\n'
             output += ui.data(indent=indent + 2, field='Source labels', value=len(self.unique_source_labels)) + '\n'
             output += '\n'
 
@@ -864,16 +888,16 @@ class MetaDataContainer(ListDictContainer):
             if 'tags' in stats and 'tag_list' in stats['tags'] and stats['tags']['tag_list']:
                 output += ui.line('Tag statistics', indent=indent) + '\n'
 
-                cell_data = [[], []]
-
+                cell_data = [[], [], []]
                 for tag_id, tag in enumerate(stats['tags']['tag_list']):
                     cell_data[0].append(tag)
                     cell_data[1].append(int(stats['tags']['count'][tag_id]))
+                    cell_data[2].append(int(stats['tags']['identifiers'][tag_id]))
 
                 output += ui.table(
                     cell_data=cell_data,
-                    column_headers=['Tag', 'Count'],
-                    column_types=['str20', 'int'],
+                    column_headers=['Tag', 'Count', 'Identifiers'],
+                    column_types=['str20', 'int', 'int'],
                     indent=indent + 2
                 ) + '\n'
 
@@ -1000,6 +1024,18 @@ class MetaDataContainer(ListDictContainer):
         return len(self.unique_identifiers)
 
     @property
+    def dataset_count(self):
+        """Number of unique dataset identifiers
+
+        Returns
+        -------
+        dataset_count: float >= 0
+
+        """
+
+        return len(self.unique_datasets)
+
+    @property
     def tag_count(self):
         """Number of unique tags
 
@@ -1106,6 +1142,25 @@ class MetaDataContainer(ListDictContainer):
         for item in self:
             if item.identifier and item.identifier not in labels:
                 labels.append(item.identifier)
+
+        labels.sort()
+        return labels
+
+    @property
+    def unique_datasets(self):
+        """Unique datasets
+
+        Returns
+        -------
+        labels: list, shape=(n,)
+            Unique dataset identifier labels in alphabetical order
+
+        """
+
+        labels = []
+        for item in self:
+            if item.dataset and item.dataset not in labels:
+                labels.append(item.dataset)
 
         labels.sort()
         return labels
@@ -2041,6 +2096,8 @@ class MetaDataContainer(ListDictContainer):
                tag_list=None,
                identifier=None,
                identifier_list=None,
+               dataset=None,
+               dataset_list=None,
                source_label=None,
                source_label_list=None,
                **kwargs
@@ -2089,6 +2146,14 @@ class MetaDataContainer(ListDictContainer):
             List of identifiers to be matched
             Default value None
 
+        dataset : str, optional
+            Dataset identifier to be matched
+            Default value None
+
+        dataset_list : list of str, optional
+            List of dataset identifiers to be matched
+            Default value None
+
         source_label : str, optional
             Source label to be matched
             Default value None
@@ -2116,6 +2181,9 @@ class MetaDataContainer(ListDictContainer):
         if identifier is not None:
             kwargs['identifier'] = identifier
 
+        if dataset is not None:
+            kwargs['dataset'] = dataset
+
         if source_label is not None:
             kwargs['source_label'] = source_label
 
@@ -2130,6 +2198,9 @@ class MetaDataContainer(ListDictContainer):
 
         if identifier_list is not None:
             kwargs['identifier'] = list(identifier_list)
+
+        if dataset_list is not None:
+            kwargs['dataset_list'] = list(dataset_list)
 
         if source_label_list is not None:
             kwargs['source_label'] = list(source_label_list)
@@ -2272,19 +2343,52 @@ class MetaDataContainer(ListDictContainer):
         if source_event_labels is None:
             source_event_labels = self.unique_event_labels
 
-        for filename in files:
-            for event_label in source_event_labels:
-                current_events_items = self.filter(filename=filename, event_label=event_label)
+        for event_label in source_event_labels:
+            current_events_items = self.filter(event_label=event_label)
 
-                # Sort events
-                current_events_items = sorted(current_events_items, key=lambda k: k.onset)
+            for item in current_events_items:
+                item.event_label = target_event_label
 
-                for item in current_events_items:
-                    item.event_label = target_event_label
-
-                processed_events += current_events_items
+            processed_events += current_events_items
 
         return processed_events
+
+    def map_tags(self, target_tag, source_tags=None):
+        """Map tags with varying tags into single target tag
+
+        Parameters
+        ----------
+        target_tag : str
+            Target tag
+
+        source_tags : list of str
+            Tags to be processed. If none given, all tags are merged
+            Default value None
+
+        Returns
+        -------
+        MetaDataContainer
+
+        """
+
+        processed_tags = MetaDataContainer()
+        files = self.unique_files
+        if not files:
+            files = [None]
+
+        if source_tags is None:
+            source_tags = self.unique_tags
+
+        for item in self:
+            i = copy.deepcopy(item)
+            for tag in source_tags:
+                if tag in i.tags:
+                    i.tags[item.tags.index(tag)] = target_tag
+
+            processed_tags.append(i)
+
+        return processed_tags
+
 
     def event_inactivity(self, event_label='inactivity', source_event_labels=None, duration_list=None):
         """Get inactivity segments between events as event list
@@ -2593,10 +2697,12 @@ class MetaDataContainer(ListDictContainer):
             overall_event_flatten_inactive_length = None
 
         tag_counts = numpy.zeros(len(tag_list))
+        tag_identifiers = numpy.zeros(len(tag_list))
         for tag_id, tag in enumerate(tag_list):
             for item in self:
                 if item.tags and tag in item.tags:
                     tag_counts[tag_id] += 1
+            tag_identifiers[tag_id] = len(self.filter(tag=tag).unique_identifiers)
 
         return {
             'scenes': {
@@ -2621,7 +2727,8 @@ class MetaDataContainer(ListDictContainer):
             },
             'tags': {
                 'tag_list': tag_list,
-                'count': tag_counts
+                'count': tag_counts,
+                'identifiers': tag_identifiers
             }
         }
 
