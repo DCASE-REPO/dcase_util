@@ -282,7 +282,7 @@ class AudioContainer(ContainerMixin, FileMixin):
                 indent=indent + 4,
                 field='Samples',
                 value=self.focus_stop_samples - self.focus_start_samples,
-                unit='sec'
+                unit='samples'
             ) + '\n'
 
             output += ui.line(
