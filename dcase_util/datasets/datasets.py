@@ -807,8 +807,18 @@ class Dataset(object):
             i += 1
             meta = self[i]
 
-    def initialize(self):
+    def initialize(self, skip_download=False, skip_extraction=False):
         """Initialize the dataset, download, extract files and prepare the dataset for the usage.
+
+        Parameters
+        ----------
+        skip_download : bool
+            skip package downloading
+            Default value False
+
+        skip_extraction : bool
+            skip package extraction
+            Default value False
 
         Returns
         -------
@@ -821,11 +831,13 @@ class Dataset(object):
 
         # Check file changes
         if not self.check_filelist():
-            # Download packages
-            self.download_packages()
+            if not skip_download:
+                # Download packages
+                self.download_packages()
 
-            # Extract content from packages
-            self.extract_packages()
+            if not skip_extraction:
+                # Extract content from packages
+                self.extract_packages()
 
             # Load meta data in
             self.load()
