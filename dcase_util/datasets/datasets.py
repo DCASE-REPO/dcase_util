@@ -13,7 +13,7 @@ import tempfile
 import copy
 import importlib
 
-from dcase_util.containers import DictContainer, ListDictContainer, TextContainer, MetaDataContainer
+from dcase_util.containers import DictContainer, ListDictContainer, TextContainer, MetaDataContainer, MetaDataItem
 from dcase_util.files import RemoteFile, RemotePackage, File, Package
 from dcase_util.utils import get_byte_string, setup_logging, Path, is_jupyter, get_parameter_hash, get_class_inheritors
 from dcase_util.ui import FancyLogger, FancyStringifier, FancyHTMLStringifier
@@ -3712,8 +3712,14 @@ class SoundEventDataset(Dataset):
 
         return validation_files
 
-    def process_meta_container(self, container):
+    def process_meta_container(self, container, retain_files_list=True):
         """Process meta container.
+
+         Parameters
+        ----------
+        retain_files_list : bool
+            Retain file list
+            Default value True
         """
 
         output = container
@@ -3722,7 +3728,16 @@ class SoundEventDataset(Dataset):
             output = output.filter(scene_list=self.active_scenes)
 
         if self.active_events:
+            unique_files = output.unique_files
             output = output.filter(event_list=self.active_events)
+
+            if retain_files_list and len(unique_files) != len(output.unique_files):
+                unique_files_diff = list(set(unique_files) - set(output.unique_files))
+
+                for item in unique_files_diff:
+                    output.append(
+                        MetaDataItem({'filename':item})
+                    )
 
         if container.filename:
             output.filename = container.filename
