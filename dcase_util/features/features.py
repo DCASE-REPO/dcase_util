@@ -2040,7 +2040,7 @@ class TorchOpenL3Extractor(EmbeddingExtractor):
 
         if self.model is None:
             self.model = torchopenl3.models.load_audio_embedding_model(
-                input_repr=self.input_repr ,
+                input_repr=self.input_repr,
                 content_type=self.content_type,
                 embedding_size=self.embedding_size
             )
@@ -2096,13 +2096,13 @@ class TorchOpenL3Extractor(EmbeddingExtractor):
 
     def __setstate__(self, d):
         super(TorchOpenL3Extractor, self).__setstate__(d)
-        self.input_repr =  d['input_repr']
-        self.content_type =  d['content_type']
-        self.embedding_size =  d['embedding_size']
-        self.center =  d['center']
-        self.batch_size =  d['batch_size']
+        self.input_repr = d['input_repr']
+        self.content_type = d['content_type']
+        self.embedding_size = d['embedding_size']
+        self.center = d['center']
+        self.batch_size = d['batch_size']
         self.sampler = d['sampler']
-        self.verbose =  d['verbose']
+        self.verbose = d['verbose']
 
         try:
             import torchopenl3
