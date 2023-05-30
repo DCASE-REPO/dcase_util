@@ -862,7 +862,7 @@ class MetaDataContainer(ListDictContainer):
             output += ui.table(
                 cell_data=cell_data,
                 column_headers=['Source', 'Onset', 'Offset', 'Scene', 'Event', 'Tags', 'Identifier'],
-                column_types=['str20', 'float2', 'float2', 'str15', 'str15', 'str15', 'str5'],
+                column_types=['str40', 'float2', 'float2', 'str15', 'str15', 'str15', 'str5'],
                 indent=indent + 2
             )
             output += '\n'
@@ -882,7 +882,7 @@ class MetaDataContainer(ListDictContainer):
                 output += ui.table(
                     cell_data=cell_data,
                     column_headers=['Scene label', 'Count', 'Identifiers'],
-                    column_types=['str20', 'int', 'int'],
+                    column_types=['str40', 'int', 'int'],
                     indent=indent + 2
                 )
                 output += '\n'
@@ -912,7 +912,7 @@ class MetaDataContainer(ListDictContainer):
                 output += ui.table(
                     cell_data=cell_data,
                     column_headers=['Event label', 'Count', 'Avg (sec)', 'Total (sec)', 'Active (sec)', 'Inactive (sec)', 'Activity %'],
-                    column_types=['str20', 'int', 'float2', 'float2', 'float1', 'float1', 'float1'],
+                    column_types=['str40', 'int', 'float2', 'float2', 'float1', 'float1', 'float1'],
                     indent=indent + 2
                 ) + '\n'
 

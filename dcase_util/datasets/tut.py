@@ -20,6 +20,301 @@ from dcase_util.utils import Path, FileFormat, is_jupyter
 # Datasets released by Tampere University (TAU), formerly known as Tampere University of Technology (TUT).
 
 # =====================================================
+# DCASE 2023
+# =====================================================
+class TAUUrbanAcousticScenes_2023_Mobile_EvaluationSet(AcousticSceneDataset):
+    """TAU Urban Acoustic Scenes 2023 Mobile Evaluation dataset
+
+    This dataset is used in DCASE2023 - Task 1, Low-Complexity Acoustic Scene Classification / Evaluation
+
+    """
+
+    def __init__(self,
+                 storage_name='TAU-urban-acoustic-scenes-2023-mobile-evaluation',
+                 data_path=None,
+                 included_content_types=None,
+                 **kwargs):
+        """
+        Constructor
+
+        Parameters
+        ----------
+
+        storage_name : str
+            Name to be used when storing dataset on disk
+            Default value 'TAU-urban-acoustic-scenes-2023-mobile-evaluation'
+
+        data_path : str
+            Root path where the dataset is stored. If None, os.path.join(tempfile.gettempdir(), 'dcase_util_datasets')
+            is used.
+            Default value None
+
+        included_content_types : list of str or str
+            Indicates what content type should be processed. One or multiple from ['all', 'audio', 'meta', 'code',
+            'documentation']. If None given, ['all'] is used. Parameter can be also comma separated string.
+            Default value None
+
+        """
+
+        kwargs['included_content_types'] = included_content_types
+        kwargs['data_path'] = data_path
+        kwargs['storage_name'] = storage_name
+        kwargs['dataset_group'] = 'scene'
+        kwargs['dataset_meta'] = {
+            'authors': 'Toni Heittola, Annamaria Mesaros, and Tuomas Virtanen',
+            'title': 'TAU Urban Acoustic Scenes 2023 Mobile, evaluation dataset',
+            'url': None,
+            'audio_source': 'Field recording',
+            'audio_type': 'Natural/Synthetic',
+            'audio_recording_device_model': 'Zoom F8',
+            'microphone_model': 'Soundman OKM II Klassik/studio A3 electret microphone',
+            'licence': 'free non-commercial'
+        }
+        kwargs['reference_data_present'] = False
+        kwargs['crossvalidation_folds'] = 1
+        kwargs['evaluation_setup_file_extension'] = 'csv'
+        kwargs['meta_filename'] ='meta.csv'
+        kwargs['check_meta'] = False
+
+        filename_base = 'TAU-urban-acoustic-scenes-2023-mobile-evaluation'
+        source_url = 'https://zenodo.org/record/7870258/files/'
+
+        kwargs['package_list'] = [
+            {
+                'content_type': 'documentation',
+                'remote_file': source_url + filename_base + '.doc.zip',
+                'remote_bytes': 8058,
+                'remote_md5': '6cbdacf7eed2718a987f88023c1bc104',
+                'filename': filename_base + '.doc.zip'
+            },
+            {
+                'content_type': 'meta',
+                'remote_file': source_url + filename_base + '.meta.zip',
+                'remote_bytes': 294726,
+                'remote_md5': '21deb3451741b6dab46287eb220261c2',
+                'filename': filename_base + '.meta.zip'
+            },
+            {
+                'content_type': 'audio',
+                'remote_file': source_url + filename_base + '.audio.1.zip',
+                'remote_bytes': 1686424758,
+                'remote_md5': '9f085fb1f4678a2f54eb3ef89f68693c',
+                'filename': filename_base + '.audio.1.zip'
+            },
+            {
+                'content_type': 'audio',
+                'remote_file': source_url + filename_base + '.audio.2.zip',
+                'remote_bytes': 1686355388,
+                'remote_md5': 'f463be49f71247c4eb683a0fb36e3ae5',
+                'filename': filename_base + '.audio.2.zip'
+            },
+            {
+                'content_type': 'audio',
+                'remote_file': source_url + filename_base + '.audio.3.zip',
+                'remote_bytes': 1680078809,
+                'remote_md5': 'e711abc5c287d5f1c768848c50b38c49',
+                'filename': filename_base + '.audio.3.zip'
+            },
+            {
+                'content_type': 'audio',
+                'remote_file': source_url + filename_base + '.audio.4.zip',
+                'remote_bytes': 1685546437,
+                'remote_md5': 'fc4b798897a067b67e80799bef4a3b9f',
+                'filename': filename_base + '.audio.4.zip'
+            },
+            {
+                'content_type': 'audio',
+                'remote_file': source_url + filename_base + '.audio.5.zip',
+                'remote_bytes': 1687760448,
+                'remote_md5': 'f317da857edaa9de7a1b8ef5d67f15e7',
+                'filename': filename_base + '.audio.5.zip'
+            },
+            {
+                'content_type': 'audio',
+                'remote_file': source_url + filename_base + '.audio.6.zip',
+                'remote_bytes': 1685233742,
+                'remote_md5': '9b533e27c01b603773e61bd4ad2d2d97',
+                'filename': filename_base + '.audio.6.zip'
+            },
+            {
+                'content_type': 'audio',
+                'remote_file': source_url + filename_base + '.audio.7.zip',
+                'remote_bytes': 1683307045,
+                'remote_md5': 'bbc3c7a86d7c04149059525808fd9389',
+                'filename': filename_base + '.audio.7.zip'
+            },
+            {
+                'content_type': 'audio',
+                'remote_file': source_url + filename_base + '.audio.8.zip',
+                'remote_bytes': 1454186397,
+                'remote_md5': '658213f02ee4737fb17d11daaa1bc0b4',
+                'filename': filename_base + '.audio.8.zip'
+            }
+        ]
+
+        kwargs['audio_paths'] = [
+            'audio'
+        ]
+        super(TAUUrbanAcousticScenes_2023_Mobile_EvaluationSet, self).__init__(**kwargs)
+
+    def process_meta_item(self, item, absolute_path=True, **kwargs):
+        """Process single meta data item
+
+        Parameters
+        ----------
+        item :  MetaDataItem
+            Meta data item
+
+        absolute_path : bool
+            Convert file paths to be absolute
+            Default value True
+
+        """
+
+        if absolute_path:
+            item.filename = self.relative_to_absolute_path(item.filename)
+
+        else:
+            item.filename = self.absolute_to_relative_path(item.filename)
+
+    def prepare(self):
+        """Prepare dataset for the usage.
+
+        Returns
+        -------
+        self
+
+        """
+
+        if not self.meta_container.exists() and self.reference_data_present:
+            meta_data = collections.OrderedDict()
+            for fold in self.folds():
+                # Read train files in
+                fold_data = MetaDataContainer(
+                    filename=self.evaluation_setup_filename(
+                        setup_part='train',
+                        fold=fold
+                    )
+                ).load()
+
+                # Read eval files in
+                fold_data += MetaDataContainer(
+                    filename=self.evaluation_setup_filename(
+                        setup_part='evaluate',
+                        fold=fold
+                    )
+                ).load()
+
+                # Process, make sure each file is included only once.
+                for item in fold_data:
+                    if item.filename not in meta_data:
+                        self.process_meta_item(
+                            item=item,
+                            absolute_path=False
+                        )
+
+                        meta_data[item.filename] = item
+
+            # Save meta
+            MetaDataContainer(list(meta_data.values())).save(
+                filename=self.meta_file
+            )
+
+            # Load meta and cross validation
+            self.load()
+
+        return self
+
+    def load_crossvalidation_data(self):
+        """Load cross-validation into the container.
+
+        Returns
+        -------
+        self
+
+        """
+
+        # Reset cross validation data and insert 'all_data'
+        if self.meta_container:
+            # Meta data is available
+            self.crossvalidation_data = DictContainer({
+                'train': {
+                    'all_data': self.meta_container
+                },
+                'test': {
+                    'all_data': self.meta_container
+                },
+                'evaluate': {
+                    'all_data': self.meta_container
+                },
+            })
+
+        else:
+            # No meta data available, load data from evaluation setup files (if they exists).
+            self.crossvalidation_data = DictContainer({
+                'train': {
+                    'all_data': MetaDataContainer()
+                },
+                'test': {
+                    'all_data': MetaDataContainer()
+                },
+                'evaluate': {
+                    'all_data': MetaDataContainer()
+                },
+            })
+
+            test_filename = self.evaluation_setup_filename(setup_part='test', fold=1)
+            evaluate_filename = self.evaluation_setup_filename(setup_part='evaluate', fold=1)
+
+            if os.path.isfile(test_filename):
+                # Testing data exists, load and process it
+                self.crossvalidation_data['test']['all_data'] = self.process_meta_container(
+                    container=MetaDataContainer(filename=test_filename).load()
+                )
+
+                # Process items
+                for item in self.crossvalidation_data['test']['all_data']:
+                    self.process_meta_item(item=item)
+
+            if os.path.isfile(evaluate_filename):
+                # Evaluation data exists, load and process it
+                self.crossvalidation_data['evaluate']['all_data'] = self.process_meta_container(
+                    container=MetaDataContainer(filename=evaluate_filename).load()
+                )
+
+                # Process items
+                for item in self.crossvalidation_data['evaluate']['all_data']:
+                    self.process_meta_item(item=item)
+
+        for crossvalidation_set in list(self.crossvalidation_data.keys()):
+            for item in self.crossvalidation_data[crossvalidation_set]['all_data']:
+                self.process_meta_item(item=item)
+
+        return self
+
+    def scene_labels(self):
+        """List of unique scene labels in the meta data.
+
+        Returns
+        -------
+        list
+            List of scene labels in alphabetical order.
+
+        """
+
+        return ['airport',
+                'bus',
+                'metro',
+                'metro_station',
+                'park',
+                'public_square',
+                'shopping_mall',
+                'street_pedestrian',
+                'street_traffic',
+                'tram']
+
+
+# =====================================================
 # DCASE 2022
 # =====================================================
 class TAUUrbanAcousticScenes_2022_Mobile_DevelopmentSet(AcousticSceneDataset):
