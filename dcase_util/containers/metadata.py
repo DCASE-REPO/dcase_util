@@ -101,11 +101,17 @@ class MetaDataItem(dict):
                 else:
                     self['tags'] = [self['tags']]
 
-                    # Remove empty tags
+            # Remove empty tags
             self['tags'] = list(filter(None, self['tags']))
 
             # Sort tags
             self['tags'].sort()
+
+        # Caption
+        if 'caption' in self and self.caption:
+            self['caption'] = self['caption'].strip()
+            if self['caption'].lower() == 'none':
+                self['caption'] = None
 
     def __str__(self):
         return self.to_string()
@@ -177,6 +183,9 @@ class MetaDataItem(dict):
 
         if self.tags:
             output += ui.data(indent=indent + 2, field='tags', value=self.tags) + '\n'
+
+        if self.caption:
+            output += ui.data(indent=indent + 2, field='caption', value=self.caption) + '\n'
 
         output += ui.line(field='Item', indent=indent) + '\n'
         output += ui.data(indent=indent + 2, field='id', value=self.id) + '\n'
@@ -704,6 +713,27 @@ class MetaDataItem(dict):
         # Sort tags
         self['tags'].sort()
 
+    @property
+    def caption(self):
+        """Caption
+
+        Returns
+        -------
+        str or None
+            caption text
+
+        """
+
+        if 'caption' in self:
+            return self['caption']
+        else:
+            return None
+
+    @caption.setter
+    def caption(self, value):
+        self['caption'] = value
+
+
     def active_within_segment(self, start, stop):
         """Item active withing given segment.
 
@@ -809,6 +839,7 @@ class MetaDataContainer(ListDictContainer):
             output += ui.data(indent=indent + 2, field='Scene labels', value=len(self.unique_scene_labels)) + '\n'
             output += ui.data(indent=indent + 2, field='Event labels', value=len(self.unique_event_labels)) + '\n'
             output += ui.data(indent=indent + 2, field='Tags', value=len(self.unique_tags)) + '\n'
+            output += ui.data(indent=indent + 2, field='Captions', value=len(self.unique_captions)) + '\n'
             output += ui.data(indent=indent + 2, field='Identifiers', value=len(self.unique_identifiers)) + '\n'
             output += ui.data(indent=indent + 2, field='Datasets', value=len(self.unique_datasets)) + '\n'
             output += ui.data(indent=indent + 2, field='Source labels', value=len(self.unique_source_labels)) + '\n'
@@ -1012,6 +1043,18 @@ class MetaDataContainer(ListDictContainer):
         return len(self.unique_event_labels)
 
     @property
+    def caption_count(self):
+        """Number of unique captions
+
+        Returns
+        -------
+        caption_count: int >= 0
+
+        """
+
+        return len(self.unique_captions)
+
+    @property
     def identifier_count(self):
         """Number of unique identifiers
 
@@ -1128,6 +1171,25 @@ class MetaDataContainer(ListDictContainer):
         return tags
 
     @property
+    def unique_captions(self):
+        """Unique captions
+
+        Returns
+        -------
+        labels: list, shape=(n,)
+            Unique captions in alphabetical order
+
+        """
+
+        captions = []
+        for item in self:
+            if item.caption and item.caption not in captions:
+                captions.append(item.caption)
+
+        captions.sort()
+        return captions
+
+    @property
     def unique_identifiers(self):
         """Unique identifiers
 
@@ -1230,7 +1292,7 @@ class MetaDataContainer(ListDictContainer):
         Parameters
         ----------
         level : str
-            Logging level, possible values [info, debug, warn, warning, error, critical]
+            Logging level, possible values [info, debug, warn, warning, error, critical]
 
         show_data : bool
             Include data
@@ -2070,6 +2132,12 @@ class MetaDataContainer(ListDictContainer):
                         item_values.append(value)
 
                     csv_writer.writerow(item_values)
+
+            except KeyError:
+                # In case of error, remove file that was created at the begin of the writing process.
+                csv_file.close()
+                os.remove(self.filename)
+                raise
 
             finally:
                 csv_file.close()
