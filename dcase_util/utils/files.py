@@ -780,7 +780,7 @@ class FileFormat(object):
         elif extension == '.msgpack':
             return cls.MSGPACK
 
-        elif extension in ['.txt', '.hash']:
+        elif extension in ['.txt', '.hash', '.md']:
             return cls.TXT
 
         elif extension == '.csv':
@@ -867,7 +867,7 @@ class FileFormat(object):
             else:
                 return cls.GZ
 
-        elif extension == '.zip':
+        elif extension in ['.zip', '.z01', '.z02', '.z03', '.z04', '.z05', '.z06', '.z07', '.z08', '.z09', '.z10']:
             return cls.ZIP
 
         elif extension == '.rar':
