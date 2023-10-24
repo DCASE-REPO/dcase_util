@@ -11,7 +11,7 @@ from dcase_util.utils import setup_logging
 
 class BibtexProcessor(object):
     """Simple Bibtex field processing class to prepare bibtex entries for the challenge and workshop submissions."""
-    def __init__(self, year=None):
+    def __init__(self, year=None, abbreviation_list=None, abbreviation_mixed_list=None):
         """Constructor
 
         Parameters
@@ -24,6 +24,8 @@ class BibtexProcessor(object):
         self.keys = {}
         self.num2alpha = dict(zip(range(1, 27), string.ascii_lowercase))
         self.num2alpha[0] = ''
+        self.abbreviation_list = abbreviation_list
+        self.abbreviation_mixed_list = abbreviation_mixed_list
 
     def key(self, authors, title=None, year=None):
         """Bibtex key generation. Keeps track internally seen keys to avoid identical keys.
@@ -54,6 +56,10 @@ class BibtexProcessor(object):
         # Handle special characters
         key = key.replace(u'ö', 'oe')
         key = key.replace(u'ä', 'ae')
+        key = key.replace(u'ó', 'o')
+        key = key.replace(u'í', 'i')
+        key = key.replace(u'é', 'a')
+        key = key.replace(u'ñ', 'n')
 
         if key not in self.keys:
             self.keys[key] = []
@@ -259,7 +265,7 @@ class BibtexProcessor(object):
                 output += sub+', '
         return output
 
-    def title(self, title):
+    def title(self, title, abbreviation_list=None, abbreviation_mixed_list=None):
         """Process publication title.
 
         Parameters
@@ -267,12 +273,24 @@ class BibtexProcessor(object):
         title : str
             Publication title
 
+        abbreviation_list : list of strings
+            List of abbreviations to be capitalized
+
+        abbreviation_mixed_list : list of strings
+            List of mixed abbreviations with lower and upper letters
+
         Returns
         -------
         str
             Processed title
 
         """
+
+        if abbreviation_list:
+            self.abbreviation_list = abbreviation_list
+
+        if abbreviation_mixed_list:
+            self.abbreviation_mixed_list = abbreviation_mixed_list
 
         try:
             from titlecase import titlecase
@@ -285,64 +303,83 @@ class BibtexProcessor(object):
             self.logger.exception(message)
             raise ImportError(message)
 
-        def abbreviations(word, **kwargs):
 
-            word_prefix = ''
-            word_postfix = ''
-
-            if word.startswith('('):
-                word_prefix = word[0]
-                word = word[1:]
-
-            if word.endswith(':') or word.endswith(')'):
-                word_postfix = word[-1]
-                word = word[:-1]
-
-            abbr_list = []
-            abbr_list += ['GMM', 'DNN', 'CNN', 'RNN', 'CRNN', 'HMM', 'LSTM', 'MP', 'MLP', 'NMF']
-            abbr_list += ['VGG', 'SVM', 'LTE', 'CQT', 'MFCC', 'GRU', 'I', 'AA']
-            abbr_list += ['1D', '2D', '3D']
-            abbr_list += ['DCASE', 'DCASE’20', 'DCASE2020', 'DCASE2019', 'DCASE2018', 'DCASE2017', 'DCASE2016', 'TUNI', 'TUT', 'USTC', 'CP-JKU', 'IIT', 'SEIE-SCUT']
-            abbr_list += ['B2C', 'IEEE', 'AASP', 'ADSC', 'BUET', 'CVSSP', 'CMU', 'COCAI', 'MTG', 'UPM',
-                          'NCU', 'SINICA', 'CERTH', 'B2C', 'R-FCN', 'INRS-EMT', 'CAU-ET', 'RF', '1A', '1B', '1C', 'QTI', ' A', ' B']
-            abbr_list += ['ASC', 'SED']
-
-            if word.upper() in abbr_list:
-                return word_prefix + '{'+word.upper()+'}' + word_postfix
-
-            if word.upper().endswith('S'):
-                if word[:-1].upper() in abbr_list:
-                    return word_prefix + '{' + word[:-1].upper() + 's}' + word_postfix
-
-            if '-' in word:
-                word_list = []
-                for w in word.split('-'):
-                    if w.upper() in abbr_list:
-                        word_list.append('{' + w.upper() + '}')
-                    else:
-                        word_list.append(titlecase(w))
-
-                return '-'.join(word_list) + word_postfix
-
-            mixed_list = ['FrameCNN', 'LightGBM', 'ResNet', 'XGBoost', 'RNNs']
-            mixed_list_upper = []
-            for i in mixed_list:
-                mixed_list_upper.append(i.upper())
-            if word.upper() in mixed_list_upper:
-                return word_prefix + '{' + mixed_list[mixed_list_upper.index(word.upper())] + '}' + word_postfix
-
-            # titlecase library implements AP-style (where all shorter than 4 letter words are not capitalized)
-            # let's make exception for "with"
-            lower_exceptions = ['with', 'WITH']
-            if word in lower_exceptions:
-                return word_prefix + word.lower() + word_postfix
-
-        title = titlecase(title.lower(), callback=abbreviations)
+        title = titlecase(title.lower(), callback=self.titlecase_callback)
 
         if 'Task' in title:
             title = title.replace('Task a', 'Task {A}').replace('Task A', 'Task {A}').replace('Task b', 'Task {B}').replace('Task B', 'Task {B}')
 
         return title
+
+    def titlecase_callback(self, word, **kwargs):
+        try:
+            from titlecase import titlecase
+
+        except ImportError:
+            message = '{name}: Unable to import titlecase module. You can install it with `pip install titlecase`.'.format(
+                name=self.__class__.__name__
+            )
+
+            self.logger.exception(message)
+            raise ImportError(message)
+
+        word_prefix = ''
+        word_postfix = ''
+
+        if word.startswith('('):
+            word_prefix = word[0]
+            word = word[1:]
+
+        if word.endswith(':') or word.endswith(')'):
+            word_postfix = word[-1]
+            word = word[:-1]
+
+        abbr_list = []
+        if self.abbreviation_list:
+            abbr_list += self.abbreviation_list
+
+        abbr_list += ['GMM', 'DNN', 'CNN', 'RNN', 'CRNN', 'HMM', 'LSTM', 'MP', 'MLP', 'NMF']
+        abbr_list += ['VGG', 'SVM', 'LTE', 'CQT', 'MFCC', 'GRU', 'I', 'AA']
+        abbr_list += ['1D', '2D', '3D']
+        abbr_list += ['DCASE', 'DCASE2025', 'DCASE2024', 'DCASE2023', 'DCASE2022', 'DCASE2022', 'DCASE2021', 'DCASE’20', 'DCASE2020', 'DCASE2019', 'DCASE2018', 'DCASE2017', 'DCASE2016', 'TUNI',
+                      'TUT', 'USTC', 'CP-JKU', 'IIT', 'SEIE-SCUT']
+        abbr_list += ['B2C', 'IEEE', 'AASP', 'ADSC', 'BUET', 'CVSSP', 'CMU', 'COCAI', 'MTG', 'UPM',
+                      'NCU', 'SINICA', 'CERTH', 'B2C', 'R-FCN', 'INRS-EMT', 'CAU-ET', 'RF', '1A', '1B', '1C', 'QTI',
+                      ' A', ' B']
+        abbr_list += ['ASC', 'SED']
+
+        if word.upper() in abbr_list:
+            return word_prefix + '{' + word.upper() + '}' + word_postfix
+
+        if word.upper().endswith('S'):
+            if word[:-1].upper() in abbr_list:
+                return word_prefix + '{' + word[:-1].upper() + 's}' + word_postfix
+
+        if '-' in word:
+            word_list = []
+            for w in word.split('-'):
+                if w.upper() in abbr_list:
+                    word_list.append('{' + w.upper() + '}')
+                else:
+                    word_list.append(titlecase(w))
+
+            return '-'.join(word_list) + word_postfix
+        mixed_list = []
+        if self.abbreviation_mixed_list:
+            mixed_list += self.abbreviation_mixed_list
+
+        mixed_list += ['FrameCNN', 'LightGBM', 'ResNet', 'XGBoost', 'RNNs']
+        mixed_list_upper = []
+        for i in mixed_list:
+            mixed_list_upper.append(i.upper())
+        if word.upper() in mixed_list_upper:
+            return word_prefix + '{' + mixed_list[mixed_list_upper.index(word.upper())] + '}' + word_postfix
+
+        # titlecase library implements AP-style (where all shorter than 4 letter words are not capitalized)
+        # let's make exception for "with"
+        lower_exceptions = ['with', 'WITH']
+        if word in lower_exceptions:
+            return word_prefix + word.lower() + word_postfix
 
     @staticmethod
     def abstract(abstract):
