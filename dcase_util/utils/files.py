@@ -726,7 +726,6 @@ class FileFormat(object):
     TAR = 'TAR'  #: Consolidated Unix File Archive
     GZ = 'GZ'  #: Compressed file, Gnu Zipped Archive
     ZIP = 'ZIP'  #: Compressed file, Zipped File
-    
     RAR = 'RAR'  #: Compressed file, WinRAR Compressed Archive
 
     PDF = 'PDF'  #: Document file, Portable Document Format File
@@ -781,7 +780,7 @@ class FileFormat(object):
         elif extension == '.msgpack':
             return cls.MSGPACK
 
-        elif extension in ['.txt', '.hash']:
+        elif extension in ['.txt', '.hash', '.md']:
             return cls.TXT
 
         elif extension == '.csv':

@@ -40,6 +40,11 @@ class MetaDataItem(dict):
         if 'event_offset' in self and 'offset' not in self:
             self['offset'] = self['event_offset']
 
+        if 'event_azimuth' in self and 'azimuth' not in self:
+            self['azimuth'] = self['event_azimuth']
+        if 'event_elevation' in self and 'elevation' not in self:
+            self['elevation'] = self['event_elevation']
+
         # Process meta data fields
 
         # File target for the meta data item
@@ -108,10 +113,12 @@ class MetaDataItem(dict):
             self['tags'].sort()
 
         # Caption
-        if 'caption' in self and self.caption:
-            self['caption'] = self['caption'].strip()
-            if self['caption'].lower() == 'none':
-                self['caption'] = None
+        if 'caption' in self:
+            if isinstance(self['caption'], basestring):
+                self['caption'] = self['caption'].strip()
+
+                if self['caption'].lower() == 'none' or self['caption'] == '':
+                    self['caption'] = None
 
     def __str__(self):
         return self.to_string()
@@ -301,6 +308,9 @@ class MetaDataItem(dict):
         if self.event_label:
             string += self.event_label
 
+        if self.caption:
+            string += self.caption
+
         if self.identifier:
             string += self.identifier
 
@@ -334,8 +344,8 @@ class MetaDataItem(dict):
 
         # Select only valid fields
 
-        valid_fields = ['event_label', 'filename', 'offset', 'onset',
-                        'scene_label', 'identifier', 'source_label', 'tags']
+        valid_fields = ['event_label', 'filename', 'offset', 'onset', 'azimuth', 'elevation',
+                        'scene_label', 'identifier', 'source_label', 'tags', 'caption']
 
         fields = list(set(fields).intersection(valid_fields))
         fields.sort()
@@ -388,6 +398,18 @@ class MetaDataItem(dict):
 
         elif fields == ['filename', 'offset', 'onset', 'scene_label', 'tags']:
             return [self.filename, self.scene_label, self.onset, self.offset, ";".join(self.tags)+";"]
+
+        elif fields == ['caption', 'filename', 'offset', 'onset']:
+            return [self.filename, self.onset, self.offset, self.caption]
+
+        elif fields == ['caption', 'offset', 'onset']:
+            return [self.onset, self.offset, self.caption]
+
+        elif fields == ['azimuth', 'event_label', 'offset', 'onset']:
+            return [self.onset, self.offset, self.azimuth, self.event_label]
+
+        elif fields == ['azimuth', 'elevation', 'event_label', 'offset', 'onset']:
+            return [self.onset, self.offset, self.azimuth, self.elevation, self.event_label]
 
         else:
             message = '{name}: Invalid meta data format [{format}]'.format(
@@ -546,6 +568,27 @@ class MetaDataItem(dict):
         self['event_label'] = value
 
     @property
+    def caption(self):
+        """Event label
+
+        Returns
+        -------
+        str or None
+            event label
+
+        """
+
+        if 'caption' in self:
+            return self['caption']
+        else:
+            return None
+
+    @caption.setter
+    def caption(self, value):
+        self['caption'] = value
+
+
+    @property
     def onset(self):
         """Onset
 
@@ -592,6 +635,55 @@ class MetaDataItem(dict):
         if 'event_offset' in self:
             # Mirror onset to event_onset
             self['event_offset'] = self['offset']
+
+
+    @property
+    def azimuth(self):
+        """Azimuth
+
+        Returns
+        -------
+        float or None
+            onset
+
+        """
+
+        if 'azimuth' in self:
+            return self['azimuth']
+        else:
+            return None
+
+    @azimuth.setter
+    def azimuth(self, value):
+        self['azimuth'] = float(value)
+
+        if 'event_azimuth' in self:
+            # Mirror azimuth to event_azimuth
+            self['event_azimuth'] = self['azimuth']
+
+    @property
+    def elevation(self):
+        """Elevation
+
+        Returns
+        -------
+        float or None
+            onset
+
+        """
+
+        if 'elevation' in self:
+            return self['elevation']
+        else:
+            return None
+
+    @elevation.setter
+    def elevation(self, value):
+        self['elevation'] = float(value)
+
+        if 'event_elevation' in self:
+            # Mirror elevation to event_azimuth
+            self['event_elevation'] = self['elevation']
 
     @property
     def identifier(self):
@@ -713,27 +805,6 @@ class MetaDataItem(dict):
         # Sort tags
         self['tags'].sort()
 
-    @property
-    def caption(self):
-        """Caption
-
-        Returns
-        -------
-        str or None
-            caption text
-
-        """
-
-        if 'caption' in self:
-            return self['caption']
-        else:
-            return None
-
-    @caption.setter
-    def caption(self, value):
-        self['caption'] = value
-
-
     def active_within_segment(self, start, stop):
         """Item active withing given segment.
 
@@ -838,8 +909,8 @@ class MetaDataContainer(ListDictContainer):
             output += ui.data(indent=indent + 2, field='Files', value=len(self.unique_files)) + '\n'
             output += ui.data(indent=indent + 2, field='Scene labels', value=len(self.unique_scene_labels)) + '\n'
             output += ui.data(indent=indent + 2, field='Event labels', value=len(self.unique_event_labels)) + '\n'
-            output += ui.data(indent=indent + 2, field='Tags', value=len(self.unique_tags)) + '\n'
             output += ui.data(indent=indent + 2, field='Captions', value=len(self.unique_captions)) + '\n'
+            output += ui.data(indent=indent + 2, field='Tags', value=len(self.unique_tags)) + '\n'
             output += ui.data(indent=indent + 2, field='Identifiers', value=len(self.unique_identifiers)) + '\n'
             output += ui.data(indent=indent + 2, field='Datasets', value=len(self.unique_datasets)) + '\n'
             output += ui.data(indent=indent + 2, field='Source labels', value=len(self.unique_source_labels)) + '\n'
@@ -1131,6 +1202,26 @@ class MetaDataContainer(ListDictContainer):
         return labels
 
     @property
+    def unique_captions(self):
+        """Unique captions
+
+        Returns
+        -------
+        captions: list, shape=(n,)
+            Unique captions in alphabetical order
+
+        """
+
+        captions = []
+        for item in self:
+            if item.caption and item.caption not in captions:
+                captions.append(item.caption)
+
+        captions.sort()
+
+        return captions
+
+    @property
     def unique_scene_labels(self):
         """Unique scene labels
 
@@ -1169,25 +1260,6 @@ class MetaDataContainer(ListDictContainer):
 
         tags.sort()
         return tags
-
-    @property
-    def unique_captions(self):
-        """Unique captions
-
-        Returns
-        -------
-        labels: list, shape=(n,)
-            Unique captions in alphabetical order
-
-        """
-
-        captions = []
-        for item in self:
-            if item.caption and item.caption not in captions:
-                captions.append(item.caption)
-
-        captions.sort()
-        return captions
 
     @property
     def unique_identifiers(self):
@@ -1968,6 +2040,26 @@ class MetaDataContainer(ListDictContainer):
                                         'onset': row[2],
                                         'offset': row[3],
                                         'tags': row[4]
+                                    })
+                                )
+
+                            elif validate(row_format=row_format,
+                                          valid_formats=[
+                                              [FieldValidator.NUMBER,
+                                               FieldValidator.NUMBER,
+                                               FieldValidator.NUMBER,
+                                               FieldValidator.NUMBER,
+                                               FieldValidator.STRING]
+                                          ]):
+
+                                # Format: [onset offset azimuth elevation event_label]
+                                data.append(
+                                    self.item_class({
+                                        'onset': row[0],
+                                        'offset': row[1],
+                                        'azimuth': row[2],
+                                        'elevation': row[3],
+                                        'event_label': row[4],
                                     })
                                 )
 
