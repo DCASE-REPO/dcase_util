@@ -668,7 +668,7 @@ class DictContainer(dict, ContainerMixin, FileMixin):
             data = dict(data)
             for k, v in iteritems(data):
                 if isinstance(v, numpy.generic):
-                    data[k] = numpy.asscalar(v)
+                    data[k] = v.item()
 
                 elif isinstance(v, DictContainer):
                     data[k] = self.get_dump_content(data=dict(data[k]))
@@ -1168,7 +1168,7 @@ class ListContainer(list, ContainerMixin, FileMixin):
             data = dict(data)
             for k, v in iteritems(data):
                 if isinstance(v, numpy.generic):
-                    data[k] = numpy.asscalar(v)
+                    data[k] = v.item()
 
                 elif isinstance(v, DictContainer):
                     data[k] = self.get_dump_content(data=dict(data[k]))
