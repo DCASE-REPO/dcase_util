@@ -1590,7 +1590,8 @@ class AudioContainer(ContainerMixin, FileMixin):
                  segment_length=None, segment_length_seconds=None,
                  segments=None,
                  active_segments=None,
-                 skip_segments=None):
+                 skip_segments=None,
+                 randomize_segment_gaps=False, segment_gaps_randomization_bracket=None, seed=None):
         """Slice audio into segments.
 
         Parameters
