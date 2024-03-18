@@ -5,7 +5,6 @@
 from __future__ import print_function, absolute_import
 import sys
 import os
-import soundfile
 import tempfile
 import numpy
 import librosa
@@ -799,6 +798,7 @@ class AudioContainer(ContainerMixin, FileMixin):
                     start_sample = None
                     stop_sample = None
 
+                import soundfile
                 self._data, source_fs = soundfile.read(
                     file=self.filename,
                     start=start_sample,
@@ -964,6 +964,7 @@ class AudioContainer(ContainerMixin, FileMixin):
                 self.logger.exception(message)
                 raise IOError(message)
 
+            import soundfile
             soundfile.write(
                 file=self.filename,
                 data=self._data.T,
@@ -990,6 +991,7 @@ class AudioContainer(ContainerMixin, FileMixin):
                 self.logger.exception(message)
                 raise IOError(message)
 
+            import soundfile
             soundfile.write(
                 file=self.filename,
                 data=self._data.T,
@@ -999,6 +1001,7 @@ class AudioContainer(ContainerMixin, FileMixin):
             )
 
         elif self.format == FileFormat.OGG:
+            import soundfile
             soundfile.write(
                 file=self.filename,
                 data=self._data.T,
@@ -1721,6 +1724,7 @@ class AudioContainer(ContainerMixin, FileMixin):
 
             else:
                 # No segments given, get segments based on segment_length
+
                 segment_start = 0
                 if randomize_segment_gaps:
                     segment_start += int(get_gap_size(segment_gaps_randomization_bracket) * self.fs)
