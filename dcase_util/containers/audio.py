@@ -1623,6 +1623,18 @@ class AudioContainer(ContainerMixin, FileMixin):
             within this method.
             Default value None
 
+        randomize_segment_gaps : bool, optional
+            Add random gap between segments. Use segment_gaps_randomization_bracket to give min and max values for uniform random function.
+            Default value False
+
+        segment_gaps_randomization_bracket : list of floats, optional
+            List of min and max values.
+            Default value None
+
+        seed : int
+            Randomization seed. Only set if value given.
+            Default value None
+
         Raises
         ------
         ValueError:
@@ -1634,6 +1646,22 @@ class AudioContainer(ContainerMixin, FileMixin):
 
         """
         from dcase_util.containers import MetaDataContainer
+        import random
+
+        if seed:
+            random.seed(seed)
+        def get_gap_size(segment_gaps_randomization_bracket):
+            if len(segment_gaps_randomization_bracket) == 2:
+                return random.uniform(
+                    segment_gaps_randomization_bracket[0],
+                    segment_gaps_randomization_bracket[1]
+                )
+
+            elif len(segment_gaps_randomization_bracket) == 1:
+                return random.uniform(
+                    0,
+                    segment_gaps_randomization_bracket[0]
+                )
 
         if not segment_length and segment_length_seconds:
             # Get segment_length from segment_length_seconds
@@ -1651,6 +1679,8 @@ class AudioContainer(ContainerMixin, FileMixin):
                 segments = MetaDataContainer()
                 for active_seg in active_segments:
                     segment_start = int(self.fs * active_seg.onset)
+                    if randomize_segment_gaps:
+                        segment_start += int(get_gap_size(segment_gaps_randomization_bracket) * self.fs)
 
                     while segment_start + segment_length < int(self.fs * active_seg.offset):
                         # Segment stop
@@ -1664,6 +1694,9 @@ class AudioContainer(ContainerMixin, FileMixin):
                                 ):
                                     # Adjust segment start to avoid current skip segment
                                     segment_start = int(self.fs * item.offset)
+                                    if randomize_segment_gaps:
+                                        segment_start += int(get_gap_size(segment_gaps_randomization_bracket) * self.fs)
+
                                     # Adjust segment stop accordingly
                                     segment_stop = segment_start + segment_length
 
@@ -1678,6 +1711,8 @@ class AudioContainer(ContainerMixin, FileMixin):
 
                         # Set next segment start
                         segment_start = segment_stop
+                        if randomize_segment_gaps:
+                            segment_start += int(get_gap_size(segment_gaps_randomization_bracket) * self.fs)
 
                         # Stop loop if segment_start is out of signal
                         if segment_start > self.length:
@@ -1686,6 +1721,9 @@ class AudioContainer(ContainerMixin, FileMixin):
             else:
                 # No segments given, get segments based on segment_length
                 segment_start = 0
+                if randomize_segment_gaps:
+                    segment_start += int(get_gap_size(segment_gaps_randomization_bracket) * self.fs)
+
                 segments = MetaDataContainer()
                 while True:
                     # Segment stop
@@ -1699,6 +1737,9 @@ class AudioContainer(ContainerMixin, FileMixin):
                             ):
                                 # Adjust segment start to avoid current skip segment
                                 segment_start = int(self.fs * item.offset)
+                                if randomize_segment_gaps:
+                                    segment_start += int(get_gap_size(segment_gaps_randomization_bracket) * self.fs)
+
                                 # Adjust segment stop accordingly
                                 segment_stop = segment_start + segment_length
 
@@ -1713,6 +1754,8 @@ class AudioContainer(ContainerMixin, FileMixin):
 
                     # Set next segment start
                     segment_start = segment_stop
+                    if randomize_segment_gaps:
+                        segment_start += int(get_gap_size(segment_gaps_randomization_bracket) * self.fs)
 
                     # Stop loop if segment_start is out of signal
                     if segment_start > self.length:
