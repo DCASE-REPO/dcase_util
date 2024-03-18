@@ -1867,7 +1867,6 @@ class AudioContainer(ContainerMixin, FileMixin):
                 self.plot_wave(
                     x_axis=kwargs.get('x_axis', 'time'),
                     max_points=kwargs.get('max_points', 50000.0),
-                    max_sr=kwargs.get('max_sr', 1000),
                     offset=kwargs.get('offset', 0.0),
                     color=kwargs.get('color', '#333333'),
                     alpha=kwargs.get('alpha', 1.0),
@@ -1901,7 +1900,7 @@ class AudioContainer(ContainerMixin, FileMixin):
                 self.logger.exception(message)
                 raise NotImplementedError(message)
 
-    def plot_wave(self, x_axis='time', max_points=50000.0, max_sr=1000, offset=0.0, color='#333333', alpha=1.0,
+    def plot_wave(self, x_axis='time', max_points=50000, offset=0.0, color='#333333', alpha=1.0,
                   show_filename=True, show_xaxis=True, plot=True, figsize=None, channel_labels=None):
         """Visualize audio data as waveform.
 
@@ -1913,15 +1912,11 @@ class AudioContainer(ContainerMixin, FileMixin):
             Default value 'time'
 
         max_points : float
-            Maximum number of time-points to plot (see `librosa.display.waveplot`).
+            Maximum number of time-points to plot (see `librosa.display.waveshow`).
             Default value 50000
 
-        max_sr : number
-            Maximum sampling rate for the visualization
-            Default value 1000
-
         offset : float
-            Horizontal offset (in time) to start the waveform plot (see `librosa.display.waveplot`).
+            Horizontal offset (in time) to start the waveform plot (see `librosa.display.waveshow`).
             Default value 0.0
 
         color : str or list of str
@@ -1966,7 +1961,7 @@ class AudioContainer(ContainerMixin, FileMixin):
             figsize = (10, 5)
 
         import matplotlib.pyplot as plt
-        from librosa.display import waveplot
+        from librosa.display import waveshow
         if plot:
             plt.figure(figsize=figsize)
 
@@ -1987,12 +1982,11 @@ class AudioContainer(ContainerMixin, FileMixin):
                 else:
                     current_color = color
 
-                waveplot(
+                waveshow(
                     y=channel_data.ravel(),
                     sr=self.fs,
-                    x_axis=current_x_axis,
+                    axis=current_x_axis,
                     max_points=max_points,
-                    max_sr=max_sr,
                     offset=offset,
                     color=current_color,
                     alpha=alpha
@@ -2021,12 +2015,11 @@ class AudioContainer(ContainerMixin, FileMixin):
             else:
                 current_color = color
 
-            ax = waveplot(
+            ax = waveshow(
                 y=self.get_focused().ravel(),
                 sr=self.fs,
-                x_axis=x_axis,
+                axis=x_axis,
                 max_points=max_points,
-                max_sr=max_sr,
                 offset=offset,
                 color=current_color,
                 alpha=alpha
