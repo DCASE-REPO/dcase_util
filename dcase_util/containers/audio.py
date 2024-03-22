@@ -2075,6 +2075,8 @@ class AudioContainer(ContainerMixin, FileMixin):
                 if channel_id+1 != self.channels or not show_xaxis:
                     ax.axes.get_xaxis().set_visible(False)
 
+                # Make x-axis tight
+                plt.autoscale(enable=True, axis='x', tight=True)
         else:
             # Plotting for single channel audio
             if isinstance(color, list) and len(color):
@@ -2103,6 +2105,9 @@ class AudioContainer(ContainerMixin, FileMixin):
 
             if not show_xaxis:
                 ax.axes.get_xaxis().set_visible(False)
+
+            # Make x-axis tight
+            plt.autoscale(enable=True, axis='x', tight=True)
 
         if plot:
             plt.show()
