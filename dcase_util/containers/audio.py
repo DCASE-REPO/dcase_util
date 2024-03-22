@@ -2108,9 +2108,14 @@ class AudioContainer(ContainerMixin, FileMixin):
 
         title = Path(self.filename).shorten()
 
-        if self.channels > 1:
+        if len(self.get_focused().shape) == 1:
+            channel_count = 1
+        else:
+            channel_count = self.get_focused().shape[0]
+
+        if channel_count > 1:
             for channel_id, channel_data in enumerate(self.get_focused()):
-                ax = plt.subplot(self.channels, 1, channel_id+1)
+                ax = plt.subplot(channel_count, 1, channel_id+1)
 
                 if spec_type in ['linear', 'log']:
                     D = librosa.core.amplitude_to_db(numpy.abs(librosa.stft(channel_data.ravel())) ** 2, ref=numpy.max)
@@ -2181,7 +2186,7 @@ class AudioContainer(ContainerMixin, FileMixin):
                 if channel_id == 0 and self.filename:
                     plt.title(title)
 
-                if channel_id+1 != self.channels or not show_xaxis:
+                if channel_id+1 != channel_count or not show_xaxis:
                     ax.axes.get_xaxis().set_visible(False)
 
         else:
