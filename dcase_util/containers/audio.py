@@ -1166,7 +1166,7 @@ class AudioContainer(ContainerMixin, FileMixin):
                 name=self.__class__.__name__
             )
 
-            self.logger().exception(message)
+            self.logger.exception(message)
             raise ImportError(message)
 
         try:
@@ -1177,7 +1177,7 @@ class AudioContainer(ContainerMixin, FileMixin):
                 name=self.__class__.__name__
             )
 
-            self.logger().exception(message)
+            self.logger.exception(message)
             raise ImportError(message)
 
         try:
