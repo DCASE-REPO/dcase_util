@@ -1361,6 +1361,7 @@ class SubmissionChecker(ObjectContainer):
                     error_log.append(
                         self._meta_error_message(
                             type_label='Author',
+                            datapath='affiliation.abbreviation',
                             subtype_label='No abbreviation',
                             description='{last_name:s}, {first_name:s}'.format(
                                 last_name=author['lastname'],
@@ -1372,6 +1373,7 @@ class SubmissionChecker(ObjectContainer):
                 if author.get_path('affiliation.department') is None:
                     error_log.append(
                         self._meta_error_message(
+                            datapath='affiliation.department',
                             type_label='Author',
                             subtype_label='No department',
                             description='{last_name:s}, {first_name:s}'.format(
@@ -1407,13 +1409,17 @@ class SubmissionChecker(ObjectContainer):
 
         return error_log
 
-    def _error_message(self, error_class='', type_label='', subtype_label='', description=''):
+    def _error_message(self, error_class='', datapath='', type_label='', subtype_label='', description=''):
         """Error message
         
         Parameters
         ----------
         error_class : str, optional
             Error class
+            Default value ""
+
+        datapath : str, optional
+            Error data path
             Default value ""
 
         type_label : str, optional
@@ -1434,16 +1440,24 @@ class SubmissionChecker(ObjectContainer):
 
         """
 
-        return u'{error_class} {type_label}  {subtype_label}  {message}'.format(
-            error_class=self.stringifier.formatted_value(error_class, data_type='stf6').upper(),
-            type_label=self.stringifier.formatted_value(type_label, data_type='stf10').upper(),
-            subtype_label=self.stringifier.formatted_value(subtype_label, data_type='stf20'),
-            message=description
-        )
+        #return u'{error_class} {type_label}  {subtype_label}  {message}'.format(
+        #    error_class=self.stringifier.formatted_value(error_class, data_type='stf6').upper(),
+        #    type_label=self.stringifier.formatted_value(type_label, data_type='stf10').upper(),
+        #    subtype_label=self.stringifier.formatted_value(subtype_label, data_type='stf20'),
+        #    message=description
+        #)
+        return {
+            'class': error_class,
+            'datapath': datapath,
+            'type': type_label,
+            'subtype': subtype_label,
+            'message': description
+        }
 
-    def _meta_error_message(self, type_label='', subtype_label='', description=''):
+    def _meta_error_message(self, datapath='', type_label='', subtype_label='', description=''):
         return self._error_message(
             error_class='Meta',
+            datapath=datapath,
             type_label=type_label,
             subtype_label=subtype_label,
             description=description
