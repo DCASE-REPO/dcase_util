@@ -2260,6 +2260,7 @@ class MetaDataContainer(ListDictContainer):
                dataset_list=None,
                source_label=None,
                source_label_list=None,
+               multiprocessing=True,
                **kwargs
                ):
         """Filter content
@@ -2322,6 +2323,10 @@ class MetaDataContainer(ListDictContainer):
             List of source labels to be matched
             Default value None
 
+        multiprocessing : bool
+            Selector to use multiprocessing version of filter.
+            Default value True
+
         Returns
         -------
         MetaDataContainer
@@ -2364,8 +2369,11 @@ class MetaDataContainer(ListDictContainer):
 
         if source_label_list is not None:
             kwargs['source_label'] = list(source_label_list)
-
-        result = MetaDataContainer(super(MetaDataContainer, self).filter(**kwargs))
+        
+        if multiprocessing:
+            result = MetaDataContainer(super(MetaDataContainer, self).filter_multiprocessing(**kwargs))
+        else:
+            result = MetaDataContainer(super(MetaDataContainer, self).filter(**kwargs))
 
         # Handle tags separately
         if tag is not None or tag_list is not None:
@@ -2548,7 +2556,6 @@ class MetaDataContainer(ListDictContainer):
             processed_tags.append(i)
 
         return processed_tags
-
 
     def event_inactivity(self, event_label='inactivity', source_event_labels=None, duration_list=None):
         """Get inactivity segments between events as event list
