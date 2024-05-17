@@ -1166,7 +1166,7 @@ class AudioContainer(ContainerMixin, FileMixin):
                 name=self.__class__.__name__
             )
 
-            self.logger().exception(message)
+            self.logger.exception(message)
             raise ImportError(message)
 
         try:
@@ -1177,7 +1177,7 @@ class AudioContainer(ContainerMixin, FileMixin):
                 name=self.__class__.__name__
             )
 
-            self.logger().exception(message)
+            self.logger.exception(message)
             raise ImportError(message)
 
         try:
@@ -1794,8 +1794,70 @@ class AudioContainer(ContainerMixin, FileMixin):
 
         return data, segments
 
-    def pad(self, type='silence', length=None, length_seconds=None):
+    def generate(self, type='silence', position='begin', length=None, length_seconds=None, tone_frequency=440, amplification_factor=0.5):
         """Generate signal
+
+        Parameters
+        ----------
+        type : str
+            Possible values 'silence', 'tone', 'noise_white'
+            Default value 'silence'
+
+        position : str, optional
+            Where the padding is done, possible values 'begin' and 'end'
+            Default value 'end'
+
+        length : int, optional
+            Default value None
+
+        length_seconds : float, optional
+            Default value None
+
+        tone_frequency : float: optional
+            Default value 440
+
+        amplification_factor : float: optional
+            Default value 0.5
+
+        Returns
+        -------
+        list, MetaDataContainer
+
+        """
+
+        if not length and length_seconds is not None:
+            # Get length from length_seconds
+            length = int(self.fs * length_seconds)
+
+        if type == 'silence':
+            if len(self.data.shape) == 1:
+                # Single channel case
+                generated_signal = numpy.zeros(length)
+            else:
+                generated_signal = numpy.zeros([self.data.shape[0], length])
+        elif type == 'tone':
+            if len(self.data.shape) == 1:
+                generated_signal = librosa.tone(tone_frequency, length=length)*amplification_factor
+            else:
+                generated_signal = []
+                for ch in range(self.data.shape[0]):
+                    generated_signal.append(librosa.tone(tone_frequency, length=length)*amplification_factor)
+                generated_signal = numpy.vstack(generated_signal)
+        elif type == 'noise_white':
+            if len(self.data.shape) == 1:
+                generated_signal = numpy.random.random(size=length)*amplification_factor
+            else:
+                generated_signal = numpy.random.random(size=[self.data.shape[0], length])*amplification_factor
+
+        if position == 'begin':
+            self._data = numpy.hstack([generated_signal, self._data])
+        elif position == 'end':
+            self._data = numpy.hstack([self._data, generated_signal])
+
+        return self
+
+    def pad(self, type='silence', length=None, length_seconds=None):
+        """Pad signal to length
 
         Parameters
         ----------
@@ -1813,7 +1875,6 @@ class AudioContainer(ContainerMixin, FileMixin):
         list, MetaDataContainer
 
         """
-
         if not length and length_seconds is not None:
             # Get length from length_seconds
             length = int(self.fs * length_seconds)
@@ -1821,6 +1882,7 @@ class AudioContainer(ContainerMixin, FileMixin):
         if self.length < length:
             if type == 'silence':
                 if len(self.data.shape) == 1:
+                    # Single channel case
                     self._data = numpy.pad(
                         array=self._data,
                         pad_width=(0, length-self.length),
@@ -1828,6 +1890,7 @@ class AudioContainer(ContainerMixin, FileMixin):
                     )
 
                 else:
+                    # Multichannel case
                     self._data = numpy.pad(
                         array=self._data,
                         pad_width=((0, 0), (0, length-self.length)),
@@ -2012,6 +2075,8 @@ class AudioContainer(ContainerMixin, FileMixin):
                 if channel_id+1 != self.channels or not show_xaxis:
                     ax.axes.get_xaxis().set_visible(False)
 
+                # Make x-axis tight
+                plt.autoscale(enable=True, axis='x', tight=True)
         else:
             # Plotting for single channel audio
             if isinstance(color, list) and len(color):
@@ -2040,6 +2105,9 @@ class AudioContainer(ContainerMixin, FileMixin):
 
             if not show_xaxis:
                 ax.axes.get_xaxis().set_visible(False)
+
+            # Make x-axis tight
+            plt.autoscale(enable=True, axis='x', tight=True)
 
         if plot:
             plt.show()
@@ -2108,9 +2176,14 @@ class AudioContainer(ContainerMixin, FileMixin):
 
         title = Path(self.filename).shorten()
 
-        if self.channels > 1:
+        if len(self.get_focused().shape) == 1:
+            channel_count = 1
+        else:
+            channel_count = self.get_focused().shape[0]
+
+        if channel_count > 1:
             for channel_id, channel_data in enumerate(self.get_focused()):
-                ax = plt.subplot(self.channels, 1, channel_id+1)
+                ax = plt.subplot(channel_count, 1, channel_id+1)
 
                 if spec_type in ['linear', 'log']:
                     D = librosa.core.amplitude_to_db(numpy.abs(librosa.stft(channel_data.ravel())) ** 2, ref=numpy.max)
@@ -2181,7 +2254,7 @@ class AudioContainer(ContainerMixin, FileMixin):
                 if channel_id == 0 and self.filename:
                     plt.title(title)
 
-                if channel_id+1 != self.channels or not show_xaxis:
+                if channel_id+1 != channel_count or not show_xaxis:
                     ax.axes.get_xaxis().set_visible(False)
 
         else:

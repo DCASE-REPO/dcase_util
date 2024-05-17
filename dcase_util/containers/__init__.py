@@ -683,10 +683,13 @@ Visualizations examples:
     AudioContainer.get_focused
     AudioContainer.freeze
     AudioContainer.frames
+    AudioContainer.segments
     AudioContainer.normalize
     AudioContainer.resample
     AudioContainer.mixdown
     AudioContainer.overlay
+    AudioContainer.pad
+    AudioContainer.generate
     AudioContainer.plot
     AudioContainer.plot_wave
     AudioContainer.plot_spec

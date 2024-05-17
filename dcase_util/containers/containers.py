@@ -11,10 +11,11 @@ import copy
 import csv
 import json
 import hashlib
+import itertools
 
 from dcase_util.containers import ContainerMixin, FileMixin
 from dcase_util.ui import FancyStringifier, FancyHTMLStringifier
-from dcase_util.utils import is_float, is_int, FileFormat
+from dcase_util.utils import is_float, is_int, FileFormat, get_process_count
 
 
 class ObjectContainer(ContainerMixin, FileMixin):
@@ -1591,9 +1592,9 @@ class ListDictContainer(ListContainer):
                 filter_fields[field] = kwargs[field]
 
         data = []
-
         for item in self:
             matched = []
+
             item_field_list = list(item.keys())
             item_field_map = {}
             for field in item_field_list:
@@ -1609,7 +1610,6 @@ class ListDictContainer(ListContainer):
                     if isinstance(filter_fields[condition_field], list):
                         if item[item_field_map[condition_field]] in filter_fields[condition_field]:
                             matched.append(True)
-
                         else:
                             matched.append(False)
 
@@ -1640,6 +1640,41 @@ class ListDictContainer(ListContainer):
 
         return ListDictContainer(data)
 
+    def filter_multiprocessing(self, case_insensitive_fields=True, **kwargs):
+        """Filter content based on field values.
+
+        Parameters
+        ----------
+        case_insensitive_fields : bool
+            Use case insensitive fields for filtering
+            Default value True
+
+        kwargs
+            Use filtered field name and parameter name, and target value for the field as parameter value.
+            Underscore is parameter name is replace with whitespace when matching with field names.
+            If value can be a single value or list of values.
+
+        Returns
+        -------
+        ListDictContainer
+
+        """
+
+        filter_fields = {}
+        for field in kwargs:
+            if case_insensitive_fields:
+                filter_fields[field.lower()] = kwargs[field]
+
+            else:
+                filter_fields[field] = kwargs[field]
+
+        import multiprocessing
+        pool = multiprocessing.Pool(processes=get_process_count())
+
+        outputs = pool.starmap(match_item, zip(self, itertools.repeat(filter_fields), itertools.repeat(case_insensitive_fields)))
+        data = [i for i in outputs if i is not None]
+        return ListDictContainer(data)
+
 
 class RepositoryContainer(DictContainer):
     """Container class for repository, inherited from DictContainer."""
@@ -1651,3 +1686,66 @@ class TextContainer(ListContainer):
     valid_formats = [FileFormat.TXT]  #: Valid file formats
 
 
+def match_item(item, filter_fields, case_insensitive_fields):
+    """Helper function for multiprocessing version of filter function. Function is used to match list items.
+
+    Parameters
+    ----------
+    item : dict
+
+    filter_fields : dict
+
+    case_insensitive_fields : bool
+
+    Returns
+    -------
+    DictContainer
+
+
+    """
+    matched = []
+
+    item_field_list = list(item.keys())
+    item_field_map = {}
+    for field in item_field_list:
+        if case_insensitive_fields:
+            item_field_map[field.lower()] = field
+
+        else:
+            item_field_map[field] = field
+
+    for condition_field in filter_fields:
+        condition_field_alternative = condition_field.replace('_', ' ')
+        if condition_field in item_field_map:
+            if isinstance(filter_fields[condition_field], list):
+                if item[item_field_map[condition_field]] in filter_fields[condition_field]:
+                    matched.append(True)
+                else:
+                    matched.append(False)
+
+            else:
+                if item[item_field_map[condition_field]] == filter_fields[condition_field]:
+                    matched.append(True)
+
+                else:
+                    matched.append(False)
+
+        elif condition_field_alternative in item_field_map:
+            if isinstance(filter_fields[condition_field], list):
+                if item[item_field_map[condition_field_alternative]] in filter_fields[condition_field]:
+                    matched.append(True)
+
+                else:
+                    matched.append(False)
+
+            else:
+                if item[item_field_map[condition_field_alternative]] == filter_fields[condition_field]:
+                    matched.append(True)
+
+                else:
+                    matched.append(False)
+    if all(matched):
+        return copy.deepcopy(item)
+
+    else:
+        return None
