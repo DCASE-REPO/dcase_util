@@ -245,7 +245,7 @@ class Serializer(object):
             raise ImportError(message)
 
         with open(filename, 'w') as outfile:
-            outfile.write(yaml.dump(data, default_flow_style=False))
+            outfile.write(yaml.dump(data, allow_unicode=True, default_flow_style=False, sort_keys=False))
 
     @classmethod
     def save_cpickle(cls, filename, data):
