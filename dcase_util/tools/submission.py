@@ -76,6 +76,7 @@ class SubmissionChecker(ObjectContainer):
                 entry_meta_filename=None,
                 entry_results1_filename=None,
                 entry_results2_filename=None,
+                entry_result_filenames=None,
                 entry_info_filename=None,
                 meta_template=None):
         """Process submission entry and apply all check-ups
@@ -91,6 +92,10 @@ class SubmissionChecker(ObjectContainer):
             Default value None
 
         entry_results2_filename : str, optional
+            File path to system output file
+            Default value None
+
+        entry_result_filenames : str, optional
             File path to system output file
             Default value None
 
@@ -128,6 +133,13 @@ class SubmissionChecker(ObjectContainer):
                 filename=entry_results2_filename
             )
             error_log += err
+
+        if entry_result_filenames:
+            for entry_results_filename in entry_result_filenames:
+                results1, err = self._system_output_file(
+                    filename=entry_results_filename
+                )
+                error_log += err
 
         if entry_info_filename:
             info, err = self._parameter_file(
