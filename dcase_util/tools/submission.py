@@ -256,12 +256,49 @@ class SubmissionChecker(ObjectContainer):
 
                 elif self.task == 'ASC':
                     if FileFormat.detect(filename) == FileFormat.CSV:
-                        data = MetaDataContainer().load(
-                            filename=filename,
-                            csv_header=self.output_file_header,
-                            fields=self.output_file_fields
-                        )
+                        if self.output_file_header:
+                            data = MetaDataContainer().load(
+                                filename=filename,
+                                csv_header=self.output_file_header
+                            )
+                        else:
+                            data = MetaDataContainer().load(
+                                filename=filename,
+                                csv_header=self.output_file_header,
+                                fields=self.output_file_fields
+                            )
 
+                        # In case failed reading, force test a few different delimiters
+                        if len(data[0]) <= 1:
+                            if self.output_file_header:
+                                data = MetaDataContainer().load(
+                                    filename=filename,
+                                    csv_header=self.output_file_header,
+                                    delimiter='\t'
+                                )
+                            else:
+                                data = MetaDataContainer().load(
+                                    filename=filename,
+                                    csv_header=self.output_file_header,
+                                    fields=self.output_file_fields,
+                                    delimiter='\t'
+                                )
+
+
+                        if len(data[0]) <= 1:
+                            if self.output_file_header:
+                                data = MetaDataContainer().load(
+                                    filename=filename,
+                                    csv_header=self.output_file_header,
+                                    delimiter=','
+                                )
+                            else:
+                                data = MetaDataContainer().load(
+                                    filename=filename,
+                                    csv_header=self.output_file_header,
+                                    fields=self.output_file_fields,
+                                    delimiter=','
+                                )
                     else:
                         data = MetaDataContainer().load(
                             filename=filename
