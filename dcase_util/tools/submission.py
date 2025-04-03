@@ -244,11 +244,21 @@ class SubmissionChecker(ObjectContainer):
 
                 elif self.task == 'ASC':
                     if FileFormat.detect(filename) == FileFormat.CSV:
+                        # Use detection for delimiter
                         data = MetaDataContainer().load(
                             filename=filename,
                             csv_header=self.output_file_header,
                             fields=self.output_file_fields
                         )
+
+                        if len(data) == 0:
+                            # Fallback to forced delimiter to be ','
+                            data = MetaDataContainer().load(
+                                filename=filename,
+                                csv_header=self.output_file_header,
+                                fields=self.output_file_fields,
+                                delimiter=','
+                            )
 
                     else:
                         data = MetaDataContainer().load(
