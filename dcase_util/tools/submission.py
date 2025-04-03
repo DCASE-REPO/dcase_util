@@ -76,6 +76,7 @@ class SubmissionChecker(ObjectContainer):
                 entry_meta_filename=None,
                 entry_results1_filename=None,
                 entry_results2_filename=None,
+                entry_result_filenames=None,
                 entry_info_filename=None,
                 meta_template=None):
         """Process submission entry and apply all check-ups
@@ -91,6 +92,10 @@ class SubmissionChecker(ObjectContainer):
             Default value None
 
         entry_results2_filename : str, optional
+            File path to system output file
+            Default value None
+
+        entry_result_filenames : str, optional
             File path to system output file
             Default value None
 
@@ -128,6 +133,13 @@ class SubmissionChecker(ObjectContainer):
                 filename=entry_results2_filename
             )
             error_log += err
+
+        if entry_result_filenames:
+            for entry_results_filename in entry_result_filenames:
+                results1, err = self._system_output_file(
+                    filename=entry_results_filename
+                )
+                error_log += err
 
         if entry_info_filename:
             info, err = self._parameter_file(
@@ -244,22 +256,49 @@ class SubmissionChecker(ObjectContainer):
 
                 elif self.task == 'ASC':
                     if FileFormat.detect(filename) == FileFormat.CSV:
-                        # Use detection for delimiter
-                        data = MetaDataContainer().load(
-                            filename=filename,
-                            csv_header=self.output_file_header,
-                            fields=self.output_file_fields
-                        )
-
-                        if len(data) == 0:
-                            # Fallback to forced delimiter to be ','
+                        if self.output_file_header:
+                            data = MetaDataContainer().load(
+                                filename=filename,
+                                csv_header=self.output_file_header
+                            )
+                        else:
                             data = MetaDataContainer().load(
                                 filename=filename,
                                 csv_header=self.output_file_header,
-                                fields=self.output_file_fields,
-                                delimiter=','
+                                fields=self.output_file_fields
                             )
 
+                        # In case failed reading, force test a few different delimiters
+                        if len(data[0]) <= 1:
+                            if self.output_file_header:
+                                data = MetaDataContainer().load(
+                                    filename=filename,
+                                    csv_header=self.output_file_header,
+                                    delimiter='\t'
+                                )
+                            else:
+                                data = MetaDataContainer().load(
+                                    filename=filename,
+                                    csv_header=self.output_file_header,
+                                    fields=self.output_file_fields,
+                                    delimiter='\t'
+                                )
+
+
+                        if len(data[0]) <= 1:
+                            if self.output_file_header:
+                                data = MetaDataContainer().load(
+                                    filename=filename,
+                                    csv_header=self.output_file_header,
+                                    delimiter=','
+                                )
+                            else:
+                                data = MetaDataContainer().load(
+                                    filename=filename,
+                                    csv_header=self.output_file_header,
+                                    fields=self.output_file_fields,
+                                    delimiter=','
+                                )
                     else:
                         data = MetaDataContainer().load(
                             filename=filename
@@ -1371,6 +1410,7 @@ class SubmissionChecker(ObjectContainer):
                     error_log.append(
                         self._meta_error_message(
                             type_label='Author',
+                            datapath='affiliation.abbreviation',
                             subtype_label='No abbreviation',
                             description='{last_name:s}, {first_name:s}'.format(
                                 last_name=author['lastname'],
@@ -1382,6 +1422,7 @@ class SubmissionChecker(ObjectContainer):
                 if author.get_path('affiliation.department') is None:
                     error_log.append(
                         self._meta_error_message(
+                            datapath='affiliation.department',
                             type_label='Author',
                             subtype_label='No department',
                             description='{last_name:s}, {first_name:s}'.format(
@@ -1417,13 +1458,17 @@ class SubmissionChecker(ObjectContainer):
 
         return error_log
 
-    def _error_message(self, error_class='', type_label='', subtype_label='', description=''):
+    def _error_message(self, error_class='', datapath='', type_label='', subtype_label='', description=''):
         """Error message
         
         Parameters
         ----------
         error_class : str, optional
             Error class
+            Default value ""
+
+        datapath : str, optional
+            Error data path
             Default value ""
 
         type_label : str, optional
@@ -1444,16 +1489,24 @@ class SubmissionChecker(ObjectContainer):
 
         """
 
-        return u'{error_class} {type_label}  {subtype_label}  {message}'.format(
-            error_class=self.stringifier.formatted_value(error_class, data_type='stf6').upper(),
-            type_label=self.stringifier.formatted_value(type_label, data_type='stf10').upper(),
-            subtype_label=self.stringifier.formatted_value(subtype_label, data_type='stf20'),
-            message=description
-        )
+        #return u'{error_class} {type_label}  {subtype_label}  {message}'.format(
+        #    error_class=self.stringifier.formatted_value(error_class, data_type='stf6').upper(),
+        #    type_label=self.stringifier.formatted_value(type_label, data_type='stf10').upper(),
+        #    subtype_label=self.stringifier.formatted_value(subtype_label, data_type='stf20'),
+        #    message=description
+        #)
+        return {
+            'class': error_class,
+            'datapath': datapath,
+            'type': type_label,
+            'subtype': subtype_label,
+            'message': description
+        }
 
-    def _meta_error_message(self, type_label='', subtype_label='', description=''):
+    def _meta_error_message(self, datapath='', type_label='', subtype_label='', description=''):
         return self._error_message(
             error_class='Meta',
+            datapath=datapath,
             type_label=type_label,
             subtype_label=subtype_label,
             description=description

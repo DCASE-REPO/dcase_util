@@ -5,7 +5,6 @@
 from __future__ import print_function, absolute_import
 import sys
 import os
-import soundfile
 import tempfile
 import numpy
 import librosa
@@ -799,6 +798,7 @@ class AudioContainer(ContainerMixin, FileMixin):
                     start_sample = None
                     stop_sample = None
 
+                import soundfile
                 self._data, source_fs = soundfile.read(
                     file=self.filename,
                     start=start_sample,
@@ -964,6 +964,7 @@ class AudioContainer(ContainerMixin, FileMixin):
                 self.logger.exception(message)
                 raise IOError(message)
 
+            import soundfile
             soundfile.write(
                 file=self.filename,
                 data=self._data.T,
@@ -990,6 +991,7 @@ class AudioContainer(ContainerMixin, FileMixin):
                 self.logger.exception(message)
                 raise IOError(message)
 
+            import soundfile
             soundfile.write(
                 file=self.filename,
                 data=self._data.T,
@@ -999,6 +1001,7 @@ class AudioContainer(ContainerMixin, FileMixin):
             )
 
         elif self.format == FileFormat.OGG:
+            import soundfile
             soundfile.write(
                 file=self.filename,
                 data=self._data.T,
@@ -1163,7 +1166,7 @@ class AudioContainer(ContainerMixin, FileMixin):
                 name=self.__class__.__name__
             )
 
-            self.logger().exception(message)
+            self.logger.exception(message)
             raise ImportError(message)
 
         try:
@@ -1174,7 +1177,7 @@ class AudioContainer(ContainerMixin, FileMixin):
                 name=self.__class__.__name__
             )
 
-            self.logger().exception(message)
+            self.logger.exception(message)
             raise ImportError(message)
 
         try:
@@ -1590,7 +1593,8 @@ class AudioContainer(ContainerMixin, FileMixin):
                  segment_length=None, segment_length_seconds=None,
                  segments=None,
                  active_segments=None,
-                 skip_segments=None):
+                 skip_segments=None,
+                 randomize_segment_gaps=False, segment_gaps_randomization_bracket=None, seed=None):
         """Slice audio into segments.
 
         Parameters
@@ -1623,6 +1627,18 @@ class AudioContainer(ContainerMixin, FileMixin):
             within this method.
             Default value None
 
+        randomize_segment_gaps : bool, optional
+            Add random gap between segments. Use segment_gaps_randomization_bracket to give min and max values for uniform random function.
+            Default value False
+
+        segment_gaps_randomization_bracket : list of floats, optional
+            List of min and max values.
+            Default value None
+
+        seed : int
+            Randomization seed. Only set if value given.
+            Default value None
+
         Raises
         ------
         ValueError:
@@ -1634,6 +1650,22 @@ class AudioContainer(ContainerMixin, FileMixin):
 
         """
         from dcase_util.containers import MetaDataContainer
+        import random
+
+        if seed:
+            random.seed(seed)
+        def get_gap_size(segment_gaps_randomization_bracket):
+            if len(segment_gaps_randomization_bracket) == 2:
+                return random.uniform(
+                    segment_gaps_randomization_bracket[0],
+                    segment_gaps_randomization_bracket[1]
+                )
+
+            elif len(segment_gaps_randomization_bracket) == 1:
+                return random.uniform(
+                    0,
+                    segment_gaps_randomization_bracket[0]
+                )
 
         if not segment_length and segment_length_seconds:
             # Get segment_length from segment_length_seconds
@@ -1651,6 +1683,8 @@ class AudioContainer(ContainerMixin, FileMixin):
                 segments = MetaDataContainer()
                 for active_seg in active_segments:
                     segment_start = int(self.fs * active_seg.onset)
+                    if randomize_segment_gaps:
+                        segment_start += int(get_gap_size(segment_gaps_randomization_bracket) * self.fs)
 
                     while segment_start + segment_length < int(self.fs * active_seg.offset):
                         # Segment stop
@@ -1664,6 +1698,9 @@ class AudioContainer(ContainerMixin, FileMixin):
                                 ):
                                     # Adjust segment start to avoid current skip segment
                                     segment_start = int(self.fs * item.offset)
+                                    if randomize_segment_gaps:
+                                        segment_start += int(get_gap_size(segment_gaps_randomization_bracket) * self.fs)
+
                                     # Adjust segment stop accordingly
                                     segment_stop = segment_start + segment_length
 
@@ -1678,6 +1715,8 @@ class AudioContainer(ContainerMixin, FileMixin):
 
                         # Set next segment start
                         segment_start = segment_stop
+                        if randomize_segment_gaps:
+                            segment_start += int(get_gap_size(segment_gaps_randomization_bracket) * self.fs)
 
                         # Stop loop if segment_start is out of signal
                         if segment_start > self.length:
@@ -1685,7 +1724,11 @@ class AudioContainer(ContainerMixin, FileMixin):
 
             else:
                 # No segments given, get segments based on segment_length
+
                 segment_start = 0
+                if randomize_segment_gaps:
+                    segment_start += int(get_gap_size(segment_gaps_randomization_bracket) * self.fs)
+
                 segments = MetaDataContainer()
                 while True:
                     # Segment stop
@@ -1699,6 +1742,9 @@ class AudioContainer(ContainerMixin, FileMixin):
                             ):
                                 # Adjust segment start to avoid current skip segment
                                 segment_start = int(self.fs * item.offset)
+                                if randomize_segment_gaps:
+                                    segment_start += int(get_gap_size(segment_gaps_randomization_bracket) * self.fs)
+
                                 # Adjust segment stop accordingly
                                 segment_stop = segment_start + segment_length
 
@@ -1713,6 +1759,8 @@ class AudioContainer(ContainerMixin, FileMixin):
 
                     # Set next segment start
                     segment_start = segment_stop
+                    if randomize_segment_gaps:
+                        segment_start += int(get_gap_size(segment_gaps_randomization_bracket) * self.fs)
 
                     # Stop loop if segment_start is out of signal
                     if segment_start > self.length:
@@ -1746,8 +1794,70 @@ class AudioContainer(ContainerMixin, FileMixin):
 
         return data, segments
 
-    def pad(self, type='silence', length=None, length_seconds=None):
+    def generate(self, type='silence', position='begin', length=None, length_seconds=None, tone_frequency=440, amplification_factor=0.5):
         """Generate signal
+
+        Parameters
+        ----------
+        type : str
+            Possible values 'silence', 'tone', 'noise_white'
+            Default value 'silence'
+
+        position : str, optional
+            Where the padding is done, possible values 'begin' and 'end'
+            Default value 'end'
+
+        length : int, optional
+            Default value None
+
+        length_seconds : float, optional
+            Default value None
+
+        tone_frequency : float: optional
+            Default value 440
+
+        amplification_factor : float: optional
+            Default value 0.5
+
+        Returns
+        -------
+        list, MetaDataContainer
+
+        """
+
+        if not length and length_seconds is not None:
+            # Get length from length_seconds
+            length = int(self.fs * length_seconds)
+
+        if type == 'silence':
+            if len(self.data.shape) == 1:
+                # Single channel case
+                generated_signal = numpy.zeros(length)
+            else:
+                generated_signal = numpy.zeros([self.data.shape[0], length])
+        elif type == 'tone':
+            if len(self.data.shape) == 1:
+                generated_signal = librosa.tone(tone_frequency, length=length)*amplification_factor
+            else:
+                generated_signal = []
+                for ch in range(self.data.shape[0]):
+                    generated_signal.append(librosa.tone(tone_frequency, length=length)*amplification_factor)
+                generated_signal = numpy.vstack(generated_signal)
+        elif type == 'noise_white':
+            if len(self.data.shape) == 1:
+                generated_signal = numpy.random.random(size=length)*amplification_factor
+            else:
+                generated_signal = numpy.random.random(size=[self.data.shape[0], length])*amplification_factor
+
+        if position == 'begin':
+            self._data = numpy.hstack([generated_signal, self._data])
+        elif position == 'end':
+            self._data = numpy.hstack([self._data, generated_signal])
+
+        return self
+
+    def pad(self, type='silence', length=None, length_seconds=None):
+        """Pad signal to length
 
         Parameters
         ----------
@@ -1765,7 +1875,6 @@ class AudioContainer(ContainerMixin, FileMixin):
         list, MetaDataContainer
 
         """
-
         if not length and length_seconds is not None:
             # Get length from length_seconds
             length = int(self.fs * length_seconds)
@@ -1773,6 +1882,7 @@ class AudioContainer(ContainerMixin, FileMixin):
         if self.length < length:
             if type == 'silence':
                 if len(self.data.shape) == 1:
+                    # Single channel case
                     self._data = numpy.pad(
                         array=self._data,
                         pad_width=(0, length-self.length),
@@ -1780,6 +1890,7 @@ class AudioContainer(ContainerMixin, FileMixin):
                     )
 
                 else:
+                    # Multichannel case
                     self._data = numpy.pad(
                         array=self._data,
                         pad_width=((0, 0), (0, length-self.length)),
@@ -1823,7 +1934,6 @@ class AudioContainer(ContainerMixin, FileMixin):
                 self.plot_wave(
                     x_axis=kwargs.get('x_axis', 'time'),
                     max_points=kwargs.get('max_points', 50000.0),
-                    max_sr=kwargs.get('max_sr', 1000),
                     offset=kwargs.get('offset', 0.0),
                     color=kwargs.get('color', '#333333'),
                     alpha=kwargs.get('alpha', 1.0),
@@ -1857,7 +1967,7 @@ class AudioContainer(ContainerMixin, FileMixin):
                 self.logger.exception(message)
                 raise NotImplementedError(message)
 
-    def plot_wave(self, x_axis='time', max_points=50000.0, max_sr=1000, offset=0.0, color='#333333', alpha=1.0,
+    def plot_wave(self, x_axis='time', max_points=50000, offset=0.0, color='#333333', alpha=1.0,
                   show_filename=True, show_xaxis=True, plot=True, figsize=None, channel_labels=None):
         """Visualize audio data as waveform.
 
@@ -1869,15 +1979,11 @@ class AudioContainer(ContainerMixin, FileMixin):
             Default value 'time'
 
         max_points : float
-            Maximum number of time-points to plot (see `librosa.display.waveplot`).
+            Maximum number of time-points to plot (see `librosa.display.waveshow`).
             Default value 50000
 
-        max_sr : number
-            Maximum sampling rate for the visualization
-            Default value 1000
-
         offset : float
-            Horizontal offset (in time) to start the waveform plot (see `librosa.display.waveplot`).
+            Horizontal offset (in time) to start the waveform plot (see `librosa.display.waveshow`).
             Default value 0.0
 
         color : str or list of str
@@ -1922,7 +2028,7 @@ class AudioContainer(ContainerMixin, FileMixin):
             figsize = (10, 5)
 
         import matplotlib.pyplot as plt
-        from librosa.display import waveplot
+        from librosa.display import waveshow
         if plot:
             plt.figure(figsize=figsize)
 
@@ -1943,12 +2049,11 @@ class AudioContainer(ContainerMixin, FileMixin):
                 else:
                     current_color = color
 
-                waveplot(
+                waveshow(
                     y=channel_data.ravel(),
                     sr=self.fs,
-                    x_axis=current_x_axis,
+                    axis=current_x_axis,
                     max_points=max_points,
-                    max_sr=max_sr,
                     offset=offset,
                     color=current_color,
                     alpha=alpha
@@ -1970,6 +2075,8 @@ class AudioContainer(ContainerMixin, FileMixin):
                 if channel_id+1 != self.channels or not show_xaxis:
                     ax.axes.get_xaxis().set_visible(False)
 
+                # Make x-axis tight
+                plt.autoscale(enable=True, axis='x', tight=True)
         else:
             # Plotting for single channel audio
             if isinstance(color, list) and len(color):
@@ -1977,12 +2084,11 @@ class AudioContainer(ContainerMixin, FileMixin):
             else:
                 current_color = color
 
-            ax = waveplot(
+            ax = waveshow(
                 y=self.get_focused().ravel(),
                 sr=self.fs,
-                x_axis=x_axis,
+                axis=x_axis,
                 max_points=max_points,
-                max_sr=max_sr,
                 offset=offset,
                 color=current_color,
                 alpha=alpha
@@ -1999,6 +2105,9 @@ class AudioContainer(ContainerMixin, FileMixin):
 
             if not show_xaxis:
                 ax.axes.get_xaxis().set_visible(False)
+
+            # Make x-axis tight
+            plt.autoscale(enable=True, axis='x', tight=True)
 
         if plot:
             plt.show()
@@ -2067,9 +2176,14 @@ class AudioContainer(ContainerMixin, FileMixin):
 
         title = Path(self.filename).shorten()
 
-        if self.channels > 1:
+        if len(self.get_focused().shape) == 1:
+            channel_count = 1
+        else:
+            channel_count = self.get_focused().shape[0]
+
+        if channel_count > 1:
             for channel_id, channel_data in enumerate(self.get_focused()):
-                ax = plt.subplot(self.channels, 1, channel_id+1)
+                ax = plt.subplot(channel_count, 1, channel_id+1)
 
                 if spec_type in ['linear', 'log']:
                     D = librosa.core.amplitude_to_db(numpy.abs(librosa.stft(channel_data.ravel())) ** 2, ref=numpy.max)
@@ -2140,7 +2254,7 @@ class AudioContainer(ContainerMixin, FileMixin):
                 if channel_id == 0 and self.filename:
                     plt.title(title)
 
-                if channel_id+1 != self.channels or not show_xaxis:
+                if channel_id+1 != channel_count or not show_xaxis:
                     ax.axes.get_xaxis().set_visible(False)
 
         else:

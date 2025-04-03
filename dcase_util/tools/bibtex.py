@@ -76,13 +76,19 @@ class BibtexProcessor(object):
             return str(key.encode('ascii', 'ignore'), 'utf-8')
 
     @staticmethod
-    def authors(authors):
+    def authors(authors, name_style='lastname, firstname', join_style='all_and'):
         """Author list in format [lastname1], [firstname1] and [lastname2], [firstname2].
 
         Parameters
         ----------
         authors : list of dict
             List of author dicts
+
+        name_style: str
+            Name style, possible values ('lastname, firstname', 'firstname lastname')
+
+        join_style: str
+            Name joining style, possible values ('all_and', 'comma_and')
 
         Returns
         -------
@@ -93,9 +99,18 @@ class BibtexProcessor(object):
 
         bibtex_authors = []
         for author in authors:
-            bibtex_authors.append(author['lastname']+', '+author['firstname'])
+            if name_style == 'lastname, firstname':
+                bibtex_authors.append(author['lastname']+', '+author['firstname'])
+            elif name_style == 'firstname lastname':
+                bibtex_authors.append(author['firstname'] + ' ' + author['lastname'])
 
-        return ' and '.join(bibtex_authors)
+        if join_style == 'all_and':
+            return ' and '.join(bibtex_authors)
+        elif join_style == 'comma_and':
+            if len(bibtex_authors) > 2:
+                return ', '.join(bibtex_authors[0:-1]) + ' and ' + bibtex_authors[-1]
+            elif len(bibtex_authors) == 2:
+                return bibtex_authors[0] + ' and ' + bibtex_authors[1]
 
     def authors_fancy(self, authors, affiliation_list=None):
         """Author list with affiliation indexes.

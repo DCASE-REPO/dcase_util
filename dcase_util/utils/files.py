@@ -867,7 +867,7 @@ class FileFormat(object):
             else:
                 return cls.GZ
 
-        elif extension in ['.zip', '.z01', '.z02', '.z03', '.z04', '.z05', '.z06', '.z07', '.z08', '.z09', '.z10']:
+        elif extension == '.zip' or extension in ['.z01', '.z02', '.z03', '.z04', '.z05', '.z06', '.z07', '.z08', '.z09', '.z10', '.z11', '.z12', '.z13', '.z14', '.z15', '.z16', '.z17', '.z18', '.z19', '.z20']:
             return cls.ZIP
 
         elif extension == '.rar':

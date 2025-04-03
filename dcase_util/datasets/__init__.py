@@ -142,6 +142,8 @@ Specialized classes inherited AcousticSceneDataset:
     TAUUrbanAcousticScenes_2021_Mobile_EvaluationSet
     TAUUrbanAcousticScenes_2022_Mobile_DevelopmentSet
     TAUUrbanAcousticScenes_2022_Mobile_EvaluationSet
+    TAUUrbanAcousticScenes_2023_Mobile_EvaluationSet
+    TAUUrbanAcousticScenes_2024_Mobile_EvaluationSet
     DCASE2018_Task5_DevelopmentSet
     DCASE2018_Task5_EvaluationSet
 

@@ -485,6 +485,22 @@ def merge_media_files(source_a_filename, source_b_filename, target_filename, ove
         raise RuntimeError("command '{}' return with error (code {}): {}".format(e.cmd, e.returncode, e.output))
 
 
+def get_process_count():
+    """Estimate of usable processes for multiprocessing. Number of cores minus one used.
+
+    Returns
+    -------
+    int
+        Process count
+    """
+
+    import multiprocessing
+    core_count = multiprocessing.cpu_count()
+    if core_count > 1:
+        core_count -= 1
+
+    return core_count
+
 class SuppressStdoutAndStderr(object):
     """Context manager to suppress STDOUT and STDERR
 
