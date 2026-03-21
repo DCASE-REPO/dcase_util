@@ -176,14 +176,28 @@ class Serializer(object):
             import msgpack
 
         except ImportError:
-            message = '{name}: Unable to import msgpack module. You can install it with `pip install msgpack-python`.'.format(
+            message = '{name}: Unable to import msgpack module. You can install it with `pip install msgpack`.'.format(
                 name=cls.__class__.__name__
             )
 
             cls.logger().exception(message)
             raise ImportError(message)
 
-        return msgpack.load(open(filename, "rb"), encoding='utf-8')
+        with open(filename, 'rb') as file_handle:
+            # Keep compatibility with both modern msgpack and older environments.
+            try:
+                return msgpack.load(file_handle, raw=False, strict_map_key=False)
+            except TypeError:
+                file_handle.seek(0)
+                try:
+                    return msgpack.load(file_handle, raw=False)
+                except TypeError:
+                    file_handle.seek(0)
+                    try:
+                        return msgpack.load(file_handle, encoding='utf-8')
+                    except TypeError:
+                        file_handle.seek(0)
+                        return msgpack.load(file_handle)
 
     @classmethod
     def load_marshal(cls, filename):
@@ -339,14 +353,15 @@ class Serializer(object):
             import msgpack
 
         except ImportError:
-            message = '{name}: Unable to import msgpack module. You can install it with `pip install msgpack-python`.'.format(
+            message = '{name}: Unable to import msgpack module. You can install it with `pip install msgpack`.'.format(
                 name=cls.__class__.__name__
             )
 
             cls.logger().exception(message)
             raise ImportError(message)
 
-        msgpack.dump(data, open(filename, 'wb'), use_bin_type=True)
+        with open(filename, 'wb') as file_handle:
+            msgpack.dump(data, file_handle, use_bin_type=True)
 
     @classmethod
     def save_marshal(cls, filename, data):

@@ -1,8 +1,5 @@
 """ Unit tests for Challenge tools """
-
-import nose.tools
 import dcase_util
-
 
 def test_key():
     authors = [
@@ -24,18 +21,17 @@ def test_key():
     key1 = bib.key(authors=authors, title='Test title 1', year=2017)
     key2 = bib.key(authors=authors, title='Test title 2', year=2017)
 
-    nose.tools.eq_(key1, 'Lastname2017')
-    nose.tools.eq_(key2, 'Lastname2017a')
+    assert key1 == 'Lastname2017'
+    assert key2 == 'Lastname2017a'
 
     key3 = bib.key(authors=authors, title='Test title 1')
     key4 = bib.key(authors=authors, title='Test title 2')
 
-    nose.tools.eq_(key3, 'Lastname2017')
-    nose.tools.eq_(key4, 'Lastname2017a')
+    assert key3 == 'Lastname2017'
+    assert key4 == 'Lastname2017a'
 
     key5 = bib.key(authors=authors)
-    nose.tools.eq_(key5, 'Lastname2017b')
-
+    assert key5 == 'Lastname2017b'
 
 def test_authors():
     authors1 = [
@@ -59,11 +55,8 @@ def test_authors():
         },
     ]
     bib = dcase_util.tools.BibtexProcessor()
-    nose.tools.eq_(bib.authors(authors=authors1),
-                   'Lastname, Firstname')
-    nose.tools.eq_(bib.authors(authors=authors2),
-                   'Lastname, Firstname and Lastname2, Firstname2 and Lastname3, Firstname3')
-
+    assert bib.authors(authors=authors1) == 'Lastname, Firstname'
+    assert bib.authors(authors=authors2) == 'Lastname, Firstname and Lastname2, Firstname2 and Lastname3, Firstname3'
 
 def test_authors_fancy():
     authors = [
@@ -96,10 +89,7 @@ def test_authors_fancy():
         },
     ]
     bib = dcase_util.tools.BibtexProcessor()
-    nose.tools.eq_(
-        bib.authors_fancy(authors=authors),
-        'Firstname Lastname<sup>1</sup>, Firstname2 Lastname2<sup>2</sup> and Firstname3 Lastname3<sup>1</sup>'
-    )
+    assert bib.authors_fancy(authors=authors) == 'Firstname Lastname<sup>1</sup>, Firstname2 Lastname2<sup>2</sup> and Firstname3 Lastname3<sup>1</sup>'
 
     authors = [
         {
@@ -122,10 +112,7 @@ def test_authors_fancy():
         },
     ]
     bib = dcase_util.tools.BibtexProcessor()
-    nose.tools.eq_(
-        bib.authors_fancy(authors=authors),
-        'Firstname Lastname and Firstname2 Lastname2'
-    )
+    assert bib.authors_fancy(authors=authors) == 'Firstname Lastname and Firstname2 Lastname2'
 
     authors = [
         {
@@ -139,10 +126,7 @@ def test_authors_fancy():
         }
     ]
     bib = dcase_util.tools.BibtexProcessor()
-    nose.tools.eq_(
-        bib.authors_fancy(authors=authors),
-        'Firstname Lastname'
-    )
+    assert bib.authors_fancy(authors=authors) == 'Firstname Lastname'
 
     authors = [
         {
@@ -182,11 +166,7 @@ def test_authors_fancy():
         },
     ]
     bib = dcase_util.tools.BibtexProcessor()
-    nose.tools.eq_(
-        bib.authors_fancy(authors=authors),
-        'Firstname Lastname<sup>1,2</sup>, Firstname2 Lastname2<sup>2</sup> and Firstname3 Lastname3<sup>1</sup>'
-    )
-
+    assert bib.authors_fancy(authors=authors) == 'Firstname Lastname<sup>1,2</sup>, Firstname2 Lastname2<sup>2</sup> and Firstname3 Lastname3<sup>1</sup>'
 
 def test_affiliation_str():
     affiliation = {
@@ -195,10 +175,7 @@ def test_affiliation_str():
         'location': 'Tampere, Finland',
     }
     bib = dcase_util.tools.BibtexProcessor()
-    nose.tools.eq_(
-        bib.affiliation_str(data=affiliation),
-        'Laboratory of Signal Processing, Tampere University of Technology, Tampere, Finland'
-    )
+    assert bib.affiliation_str(data=affiliation) == 'Laboratory of Signal Processing, Tampere University of Technology, Tampere, Finland'
 
     affiliation = [
         {
@@ -214,11 +191,7 @@ def test_affiliation_str():
     ]
 
     bib = dcase_util.tools.BibtexProcessor()
-    nose.tools.eq_(
-        bib.affiliation_str(data=affiliation),
-        'Laboratory of Signal Processing, Tampere University of Technology, Tampere, Finland; Music Technology Group, Universitat Pompeu Fabra, Barcelona, Spain'
-    )
-
+    assert bib.affiliation_str(data=affiliation) == 'Laboratory of Signal Processing, Tampere University of Technology, Tampere, Finland; Music Technology Group, Universitat Pompeu Fabra, Barcelona, Spain'
 
 def test_affiliation_list():
     authors = [
@@ -251,12 +224,8 @@ def test_affiliation_list():
         },
     ]
     bib = dcase_util.tools.BibtexProcessor()
-    nose.tools.eq_(
-        bib.affiliation_list(authors=authors),
-        ['Laboratory of Signal Processing, Tampere University of Technology, Tampere, Finland',
+    assert bib.affiliation_list(authors=authors) == ['Laboratory of Signal Processing, Tampere University of Technology, Tampere, Finland',
          'Music Technology Group, Universitat Pompeu Fabra, Barcelona, Spain']
-    )
-
 
 def test_affiliation_list_fancy():
     authors = [
@@ -289,10 +258,7 @@ def test_affiliation_list_fancy():
         },
     ]
     bib = dcase_util.tools.BibtexProcessor()
-    nose.tools.eq_(
-        bib.affiliation_list_fancy(authors=authors),
-        '<sup>1</sup>Laboratory of Signal Processing, Tampere University of Technology, Tampere, Finland, <sup>2</sup>Music Technology Group, Universitat Pompeu Fabra, Barcelona, Spain'
-    )
+    assert bib.affiliation_list_fancy(authors=authors) == '<sup>1</sup>Laboratory of Signal Processing, Tampere University of Technology, Tampere, Finland, <sup>2</sup>Music Technology Group, Universitat Pompeu Fabra, Barcelona, Spain'
 
     authors = [
         {
@@ -315,11 +281,7 @@ def test_affiliation_list_fancy():
         },
     ]
     bib = dcase_util.tools.BibtexProcessor()
-    nose.tools.eq_(
-        bib.affiliation_list_fancy(authors=authors),
-        'Laboratory of Signal Processing, Tampere University of Technology, Tampere, Finland'
-    )
-
+    assert bib.affiliation_list_fancy(authors=authors) == 'Laboratory of Signal Processing, Tampere University of Technology, Tampere, Finland'
 
 def test_title():
     data = [
@@ -360,14 +322,10 @@ def test_title():
     bib = dcase_util.tools.BibtexProcessor()
 
     for title in data:
-        nose.tools.eq_(bib.title(title['input']), title['target'])
-
+        assert bib.title(title['input']) == title['target']
 
 def test_abstract():
     abstract = 'This is test abstract.'
 
     bib = dcase_util.tools.BibtexProcessor()
-    nose.tools.eq_(
-        bib.abstract(abstract=abstract),
-        u'This is test abstract.'
-    )
+    assert bib.abstract(abstract=abstract) == u'This is test abstract.'

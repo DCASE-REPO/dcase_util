@@ -1,12 +1,10 @@
 """ Unit tests for DictFile """
 
-import nose.tools
+import pytest
 import dcase_util
 from dcase_util.containers import ListContainer
-from nose.tools import *
 import tempfile
 import os
-
 
 def test_load():
     # Txt
@@ -19,7 +17,7 @@ def test_load():
 
         m = ListContainer().load(filename=tmp.name)
 
-        nose.tools.assert_list_equal(m, ['line1', 'line2', 'line3'])
+        assert m == ['line1', 'line2', 'line3']
     finally:
         try:
             tmp.close()
@@ -27,32 +25,29 @@ def test_load():
         except:
             pass
 
-
 def test_save():
     ListContainer(['line1', 'line2', 'line3']).save(filename=os.path.join(tempfile.gettempdir(), 'saved.txt'))
     d = ListContainer().load(filename=os.path.join(tempfile.gettempdir(), 'saved.txt'))
-    nose.tools.assert_list_equal(d, ['line1', 'line2', 'line3'])
+    assert d == ['line1', 'line2', 'line3']
 
     f = open(os.path.join(tempfile.gettempdir(), 'saved.txt'), 'r')
     x = f.readlines()
-    nose.tools.assert_list_equal(x, ['line1\n', 'line2\n', 'line3\n'])
+    assert x == ['line1\n', 'line2\n', 'line3\n']
 
     d = ListContainer(
         ['line1', 'line2', 'line3'],
         filename=os.path.join(tempfile.gettempdir(), 'saved.cpickle')
     ).save().load()
-    nose.tools.assert_list_equal(d, ['line1', 'line2', 'line3'])
-
+    assert d == ['line1', 'line2', 'line3']
 
 def test_empty():
     # Test #1
     d = ListContainer([])
-    nose.tools.eq_(d.empty(), True)
+    assert d.empty() == True
 
     # Test #2
     d = ListContainer(['line1', 'line2'])
-    nose.tools.eq_(d.empty(), False)
-
+    assert d.empty() == False
 
 def test_log():
     with dcase_util.utils.DisableLogger():
@@ -60,20 +55,17 @@ def test_log():
             'test1', 'test2'
         ], filename='test.txt').log()
 
-
-@raises(IOError)
 def test_load_not_found2():
-    with dcase_util.utils.DisableLogger():
-        ListContainer().load(filename=os.path.join(tempfile.gettempdir(), 'wrong.txt'))
+    with pytest.raises(IOError):
+        with dcase_util.utils.DisableLogger():
+            ListContainer().load(filename=os.path.join(tempfile.gettempdir(), 'wrong.txt'))
 
-
-@raises(IOError)
 def test_load_wrong_type():
-    with dcase_util.utils.DisableLogger():
-        ListContainer().load(filename=os.path.join(tempfile.gettempdir(), 'wrong.cpickle'))
+    with pytest.raises(IOError):
+        with dcase_util.utils.DisableLogger():
+            ListContainer().load(filename=os.path.join(tempfile.gettempdir(), 'wrong.cpickle'))
 
-
-@raises(IOError)
 def test_load_wrong_type2():
-    with dcase_util.utils.DisableLogger():
-        ListContainer().load(filename=os.path.join(tempfile.gettempdir(), 'wrong.abc'))
+    with pytest.raises(IOError):
+        with dcase_util.utils.DisableLogger():
+            ListContainer().load(filename=os.path.join(tempfile.gettempdir(), 'wrong.abc'))

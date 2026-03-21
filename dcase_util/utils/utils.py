@@ -9,7 +9,9 @@ import sys
 import locale
 import logging
 import logging.config
-import pkg_resources
+from importlib import metadata as importlib_metadata
+
+from packaging.requirements import Requirement
 
 
 def get_class_inheritors(klass):
@@ -104,28 +106,33 @@ def get_byte_string(num_bytes, show_bytes=True):
 
 
 def check_pkg_resources(package_requirement, logger=None):
-    working_set = pkg_resources.WorkingSet()
     if logger is None:
         logger = logging.getLogger(__name__)
 
+    requirement = Requirement(package_requirement)
+    if requirement.marker is not None and not requirement.marker.evaluate():
+        return
+
     try:
-        working_set.require(package_requirement)
-
-    except pkg_resources.VersionConflict:
-        message = '{name}: Version conflict, update package [pip install {package_requirement}]'.format(
-            name=__name__,
-            package_requirement=package_requirement
-        )
-        logger.exception(message)
-        raise
-
-    except pkg_resources.DistributionNotFound:
+        installed_version = importlib_metadata.version(requirement.name)
+    except importlib_metadata.PackageNotFoundError as error:
         message = '{name}: Package not found, install package [pip install {package_requirement}]'.format(
             name=__name__,
             package_requirement=package_requirement
         )
         logger.exception(message)
-        raise
+        raise ModuleNotFoundError(message) from error
+
+    if requirement.specifier and not requirement.specifier.contains(installed_version, prereleases=True):
+        message = '{name}: Version conflict, update package [pip install {package_requirement}]'.format(
+            name=__name__,
+            package_requirement=package_requirement
+        )
+        try:
+            raise RuntimeError(message)
+        except RuntimeError:
+            logger.exception(message)
+            raise
 
 
 def is_int(value):

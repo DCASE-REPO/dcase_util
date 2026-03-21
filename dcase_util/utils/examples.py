@@ -3,8 +3,7 @@
 
 from __future__ import print_function, absolute_import
 
-import os
-import pkg_resources
+from importlib import resources
 import numpy
 
 
@@ -16,20 +15,24 @@ class Example(object):
         pass
 
     @classmethod
+    def _resource_filename(cls, filename):
+        return str(resources.files(__package__).joinpath(cls.example_folder, filename))
+
+    @classmethod
     def audio_filename(cls):
-        return pkg_resources.resource_filename(__name__, os.path.join(cls.example_folder, 'acoustic_scene.wav'))
+        return cls._resource_filename('acoustic_scene.wav')
 
     @classmethod
     def acoustic_scene_audio_filename(cls):
-        return pkg_resources.resource_filename(__name__, os.path.join(cls.example_folder, 'acoustic_scene.wav'))
+        return cls._resource_filename('acoustic_scene.wav')
 
     @classmethod
     def audio_filename_mp3(cls):
-        return pkg_resources.resource_filename(__name__, os.path.join(cls.example_folder, 'acoustic_scene.mp3'))
+        return cls._resource_filename('acoustic_scene.mp3')
 
     @classmethod
     def acoustic_scene_audio_filename_mp3(cls):
-        return pkg_resources.resource_filename(__name__, os.path.join(cls.example_folder, 'acoustic_scene.mp3'))
+        return cls._resource_filename('acoustic_scene.mp3')
 
     @classmethod
     def audio_container(cls):

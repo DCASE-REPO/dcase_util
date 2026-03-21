@@ -1,12 +1,10 @@
 """ Unit tests for ListDictContainer """
 
-import nose.tools
+import pytest
 import dcase_util
 from dcase_util.containers import OneToOneMappingContainer
-from nose.tools import *
 import tempfile
 import os
-
 
 def test_OneToOneMappingContainer():
     m = OneToOneMappingContainer(
@@ -17,18 +15,18 @@ def test_OneToOneMappingContainer():
             'key4': 'mapped4',
         }
     )
-    nose.tools.eq_(m.map('key1'), 'mapped1')
-    nose.tools.eq_(m.map('key2'), 'mapped2')
-    nose.tools.eq_(m.map('key3'), 'mapped3')
-    nose.tools.eq_(m.map('key4'), 'mapped4')
-    nose.tools.eq_(m.map('key5', 'default'), 'default')
+    assert m.map('key1') == 'mapped1'
+    assert m.map('key2') == 'mapped2'
+    assert m.map('key3') == 'mapped3'
+    assert m.map('key4') == 'mapped4'
+    assert m.map('key5', 'default') == 'default'
 
     m_ = m.flipped
-    nose.tools.eq_(m_.map('mapped1'), 'key1')
-    nose.tools.eq_(m_.map('mapped2'), 'key2')
-    nose.tools.eq_(m_.map('mapped3'), 'key3')
-    nose.tools.eq_(m_.map('mapped4'), 'key4')
-    nose.tools.eq_(m_.map('mapped5', 'default'), 'default')
+    assert m_.map('mapped1') == 'key1'
+    assert m_.map('mapped2') == 'key2'
+    assert m_.map('mapped3') == 'key3'
+    assert m_.map('mapped4') == 'key4'
+    assert m_.map('mapped5', 'default') == 'default'
 
     delimiters = [',', ';', '\t']
     for delimiter in delimiters:
@@ -39,8 +37,8 @@ def test_OneToOneMappingContainer():
             tmp.close()
 
             m = OneToOneMappingContainer(filename=tmp.name).load()
-            nose.tools.eq_(m.map('key1'), 'mapped1')
-            nose.tools.eq_(m.map('key2'), 'mapped2')
+            assert m.map('key1') == 'mapped1'
+            assert m.map('key2') == 'mapped2'
         finally:
             try:
                 tmp.close()
@@ -60,18 +58,17 @@ def test_OneToOneMappingContainer():
         ).save()
 
         m_ = OneToOneMappingContainer(filename=tmp.name).load()
-        nose.tools.eq_(m_.map('key1'), 'mapped1')
-        nose.tools.eq_(m_.map('key2'), 'mapped2')
-        nose.tools.eq_(m_.map('key3'), 'mapped3')
-        nose.tools.eq_(m_.map('key4'), 'mapped4')
-        nose.tools.eq_(m_.map('key5', 'default'), 'default')
+        assert m_.map('key1') == 'mapped1'
+        assert m_.map('key2') == 'mapped2'
+        assert m_.map('key3') == 'mapped3'
+        assert m_.map('key4') == 'mapped4'
+        assert m_.map('key5', 'default') == 'default'
     finally:
         try:
             tmp.close()
             os.unlink(tmp.name)
         except:
             pass
-
 
 def test_save():
     # Empty content
@@ -89,24 +86,22 @@ def test_save():
 
     OneToOneMappingContainer(data).save(filename=os.path.join(tempfile.gettempdir(), 'saved.csv'))
     d = OneToOneMappingContainer().load(filename=os.path.join(tempfile.gettempdir(), 'saved.csv'))
-    nose.tools.assert_dict_equal(d, data)
+    assert d == data
 
     OneToOneMappingContainer(data).save(filename=os.path.join(tempfile.gettempdir(), 'saved.txt'))
     d = OneToOneMappingContainer().load(filename=os.path.join(tempfile.gettempdir(), 'saved.txt'))
-    nose.tools.assert_dict_equal(d, data)
+    assert d == data
 
     OneToOneMappingContainer(data).save(filename=os.path.join(tempfile.gettempdir(), 'saved.cpickle'))
     d = OneToOneMappingContainer().load(filename=os.path.join(tempfile.gettempdir(), 'saved.cpickle'))
-    nose.tools.assert_dict_equal(d, data)
+    assert d == data
 
-
-@raises(IOError)
 def test_load_not_found2():
-    with dcase_util.utils.DisableLogger():
-        OneToOneMappingContainer().load(filename=os.path.join(tempfile.gettempdir(), 'wrong.txt'))
+    with pytest.raises(IOError):
+        with dcase_util.utils.DisableLogger():
+            OneToOneMappingContainer().load(filename=os.path.join(tempfile.gettempdir(), 'wrong.txt'))
 
-
-@raises(IOError)
 def test_load_wrong_type():
-    with dcase_util.utils.DisableLogger():
-        OneToOneMappingContainer().load(filename=os.path.join(tempfile.gettempdir(), 'wrong.abc'))
+    with pytest.raises(IOError):
+        with dcase_util.utils.DisableLogger():
+            OneToOneMappingContainer().load(filename=os.path.join(tempfile.gettempdir(), 'wrong.abc'))

@@ -1,6 +1,4 @@
 """ Unit tests for Aggregator """
-
-import nose.tools
 import os
 import numpy
 import tempfile
@@ -24,7 +22,6 @@ data = numpy.array(
         [10, 10],
     ]
 ).T
-
 
 def test_aggregate():
     data_target = numpy.array(
@@ -133,7 +130,6 @@ def test_aggregate():
     data_aggregated = agg.aggregate(data=container)
     numpy.testing.assert_array_equal(data_target, data_aggregated.data)
 
-
 def test_aggregate_flatten():
     data_target = numpy.array(
         [
@@ -162,7 +158,6 @@ def test_aggregate_flatten():
     data_aggregated = agg.aggregate(data=container)
 
     numpy.testing.assert_array_equal(data_target, data_aggregated.data)
-
 
 def test_aggregate_mean():
     data_target = numpy.array(
@@ -194,7 +189,6 @@ def test_aggregate_mean():
 
     numpy.testing.assert_array_equal(data_target, data_aggregated.data)
 
-
 def test_aggregate_std():
     data_target = numpy.array(
         [
@@ -224,7 +218,6 @@ def test_aggregate_std():
     data_aggregated = agg.aggregate(data=container)
 
     numpy.testing.assert_array_equal(data_target, data_aggregated.data)
-
 
 def test_aggregate_cov():
     data_target = numpy.array(
@@ -256,7 +249,6 @@ def test_aggregate_cov():
 
     numpy.testing.assert_array_equal(data_target, data_aggregated.data)
 
-
 def test_aggregate_kurtosis():
     data_target = numpy.array(
         [
@@ -287,7 +279,6 @@ def test_aggregate_kurtosis():
 
     numpy.testing.assert_array_equal(data_target, data_aggregated.data)
 
-
 def test_aggregate_skew():
     data_target = numpy.array(
         [
@@ -317,7 +308,6 @@ def test_aggregate_skew():
     data_aggregated = agg.aggregate(data=container)
 
     numpy.testing.assert_array_equal(data_target, data_aggregated.data)
-
 
 def test_save():
     data_target = numpy.array(
@@ -355,7 +345,6 @@ def test_save():
             os.unlink(tmp.name)
         except:
             pass
-
 
 def test_log():
     with dcase_util.utils.DisableLogger():

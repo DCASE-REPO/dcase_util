@@ -1,12 +1,9 @@
 """ Unit tests for Stacker """
-
-import nose.tools
 import tempfile
 import os
 
 import dcase_util
 from dcase_util.data import Stacker
-
 
 def test_stack():
     # Load audio and extract mel features
@@ -46,32 +43,31 @@ def test_stack():
 
     stacked_data = Stacker(recipe='mel').stack(repository=repository)
 
-    nose.tools.eq_(stacked_data.length, 501)
-    nose.tools.eq_(stacked_data.vector_length, param['feature_extraction']['n_mels'])
+    assert stacked_data.length == 501
+    assert stacked_data.vector_length == param['feature_extraction']['n_mels']
 
     stacked_data = Stacker(recipe='mel=0-5').stack(repository=repository)
 
-    nose.tools.eq_(stacked_data.length, 501)
-    nose.tools.eq_(stacked_data.vector_length, 6)
+    assert stacked_data.length == 501
+    assert stacked_data.vector_length == 6
 
     stacked_data = Stacker(recipe='mel=1-5').stack(repository=repository)
 
-    nose.tools.eq_(stacked_data.length, 501)
-    nose.tools.eq_(stacked_data.vector_length, 5)
+    assert stacked_data.length == 501
+    assert stacked_data.vector_length == 5
 
     stacked_data = Stacker(recipe='mel=1,2,3,4').stack(repository=repository)
 
-    nose.tools.eq_(stacked_data.length, 501)
-    nose.tools.eq_(stacked_data.vector_length, 4)
+    assert stacked_data.length == 501
+    assert stacked_data.vector_length == 4
 
     stacked_data = Stacker(recipe='mel;mfcc=1-10').stack(repository=repository)
-    nose.tools.eq_(stacked_data.length, 501)
-    nose.tools.eq_(stacked_data.vector_length, 50)
+    assert stacked_data.length == 501
+    assert stacked_data.vector_length == 50
 
     stacked_data = Stacker(recipe='mel=0;mfcc=0:1-10').stack(repository=repository)
-    nose.tools.eq_(stacked_data.length, 501)
-    nose.tools.eq_(stacked_data.vector_length, 50)
-
+    assert stacked_data.length == 501
+    assert stacked_data.vector_length == 50
 
 def test_save():
     # Load audio and extract mel features
@@ -113,31 +109,31 @@ def test_save():
     try:
         stacked_data = Stacker(recipe='mel').stack(repository=repository).save(filename=tmp.name).load()
 
-        nose.tools.eq_(stacked_data.length, 501)
-        nose.tools.eq_(stacked_data.vector_length, param['feature_extraction']['n_mels'])
+        assert stacked_data.length == 501
+        assert stacked_data.vector_length == param['feature_extraction']['n_mels']
 
         stacked_data = Stacker(recipe='mel=0-5').stack(repository=repository)
 
-        nose.tools.eq_(stacked_data.length, 501)
-        nose.tools.eq_(stacked_data.vector_length, 6)
+        assert stacked_data.length == 501
+        assert stacked_data.vector_length == 6
 
         stacked_data = Stacker(recipe='mel=1-5').stack(repository=repository)
 
-        nose.tools.eq_(stacked_data.length, 501)
-        nose.tools.eq_(stacked_data.vector_length, 5)
+        assert stacked_data.length == 501
+        assert stacked_data.vector_length == 5
 
         stacked_data = Stacker(recipe='mel=1,2,3,4').stack(repository=repository)
 
-        nose.tools.eq_(stacked_data.length, 501)
-        nose.tools.eq_(stacked_data.vector_length, 4)
+        assert stacked_data.length == 501
+        assert stacked_data.vector_length == 4
 
         stacked_data = Stacker(recipe='mel;mfcc=1-10').stack(repository=repository)
-        nose.tools.eq_(stacked_data.length, 501)
-        nose.tools.eq_(stacked_data.vector_length, 50)
+        assert stacked_data.length == 501
+        assert stacked_data.vector_length == 50
 
         stacked_data = Stacker(recipe='mel=0;mfcc=0:1-10').stack(repository=repository)
-        nose.tools.eq_(stacked_data.length, 501)
-        nose.tools.eq_(stacked_data.vector_length, 50)
+        assert stacked_data.length == 501
+        assert stacked_data.vector_length == 50
 
     finally:
         try:
@@ -145,7 +141,6 @@ def test_save():
             os.unlink(tmp.name)
         except:
             pass
-
 
 def test_log():
     with dcase_util.utils.DisableLogger():

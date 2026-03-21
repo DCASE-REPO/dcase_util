@@ -3,8 +3,12 @@ Unit tests
 
 This directory contains unit tests.
 
-Run ``nosetests -v`` to perform tests.
+Run ``pytest -v`` to perform tests.
 
 With coverage run
 
-``nosetests -v --with-coverage --cover-erase --cover-html --cover-package=dcase_util --nocapture``
+``coverage run -m pytest -v``
+
+and then generate the report with
+
+``coverage html``

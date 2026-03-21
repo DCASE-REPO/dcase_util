@@ -1,7 +1,6 @@
-import nose.tools
+import pytest
 import dcase_util
 import numpy
-
 
 def test_AggregationProcessor():
 
@@ -9,57 +8,55 @@ def test_AggregationProcessor():
         recipe=['flatten']
     )
     processed = a.process(dcase_util.utils.Example.feature_container())
-    nose.tools.eq_(processed.data.shape, (400, 501))
+    assert processed.data.shape == (400, 501)
 
     a = dcase_util.processors.AggregationProcessor(
         recipe=['mean']
     )
     processed = a.process(dcase_util.utils.Example.feature_container())
-    nose.tools.eq_(processed.data.shape, (40, 501))
+    assert processed.data.shape == (40, 501)
 
     a = dcase_util.processors.AggregationProcessor(
         recipe=['mean']
     )
     processed = a.process(dcase_util.utils.Example.feature_container())
-    nose.tools.eq_(processed.data.shape, (40, 501))
+    assert processed.data.shape == (40, 501)
 
     a = dcase_util.processors.AggregationProcessor(
         recipe=['cov']
     )
     processed = a.process(dcase_util.utils.Example.feature_container())
-    nose.tools.eq_(processed.data.shape, (1600, 501))
+    assert processed.data.shape == (1600, 501)
 
     a = dcase_util.processors.AggregationProcessor(
         recipe=['kurtosis']
     )
     processed = a.process(dcase_util.utils.Example.feature_container())
-    nose.tools.eq_(processed.data.shape, (40, 501))
+    assert processed.data.shape == (40, 501)
 
     a = dcase_util.processors.AggregationProcessor(
         recipe=['skew']
     )
     processed = a.process(dcase_util.utils.Example.feature_container())
-    nose.tools.eq_(processed.data.shape, (40, 501))
+    assert processed.data.shape == (40, 501)
 
     a = dcase_util.processors.AggregationProcessor(
         recipe=['flatten', 'mean']
     )
     processed = a.process(dcase_util.utils.Example.feature_container())
-    nose.tools.eq_(processed.data.shape, (440, 501))
+    assert processed.data.shape == (440, 501)
 
     a = dcase_util.processors.AggregationProcessor(
         recipe=['mean', 'std']
     )
     processed = a.process(dcase_util.utils.Example.feature_container())
-    nose.tools.eq_(processed.data.shape, (80, 501))
-
+    assert processed.data.shape == (80, 501)
 
 def test_SequencingProcessor():
 
     s = dcase_util.processors.SequencingProcessor()
     processed = s.process(dcase_util.utils.Example.feature_container())
-    nose.tools.eq_(processed.data.shape, (40, 10, 50))
-
+    assert processed.data.shape == (40, 10, 50)
 
 def test_NormalizationProcessor():
     data = dcase_util.utils.Example.feature_container()
@@ -68,8 +65,7 @@ def test_NormalizationProcessor():
         mean=data.stats['mean'], std=data.stats['std']
     )
     processed = normalizer.process(dcase_util.utils.Example.feature_container())
-    nose.tools.assert_almost_equal(numpy.sum(numpy.std(processed.data, axis=1)), 40.0)
-
+    assert numpy.sum(numpy.std(processed.data, axis=1)) == pytest.approx(40.0)
 
 def test_RepositoryNormalizationProcessor():
     repo = dcase_util.utils.Example.feature_repository()
@@ -81,17 +77,15 @@ def test_RepositoryNormalizationProcessor():
     )
     processed = normalizer.process(repo)
 
-    nose.tools.assert_almost_equal(numpy.sum(numpy.std(processed['mel'][0].data, axis=1)), 40.0, delta=0.0001)
-    nose.tools.assert_almost_equal(numpy.sum(numpy.std(processed['mfcc'][0].data, axis=1)), 20.0, delta=0.0001)
-
+    assert numpy.sum(numpy.std(processed['mel'][0].data, axis=1)) == pytest.approx(40.0, abs=0.0001)
+    assert numpy.sum(numpy.std(processed['mfcc'][0].data, axis=1)) == pytest.approx(20.0, abs=0.0001)
 
 def test_StackingProcessor():
     repo = dcase_util.utils.Example.feature_repository()
     stacker = dcase_util.processors.StackingProcessor(recipe='mel;mfcc')
     processed = stacker.process(repo)
 
-    nose.tools.eq_(processed.data.shape, (60, 501))
-
+    assert processed.data.shape == (60, 501)
 
 def test_RepositoryMaskingProcessor():
     repo = dcase_util.utils.Example.feature_repository()
@@ -103,10 +97,9 @@ def test_RepositoryMaskingProcessor():
         mask_events=mask_events
     )
 
-    nose.tools.eq_(processed['mel'][0].shape, (40, 318))
-    nose.tools.eq_(processed['mfcc'][0].shape, (20, 318))
-    nose.tools.eq_(processed['zcr'][0].shape, (1, 318))
-
+    assert processed['mel'][0].shape == (40, 318)
+    assert processed['mfcc'][0].shape == (20, 318)
+    assert processed['zcr'][0].shape == (1, 318)
 
 def test_OneHotEncodingProcessor():
     encoder = dcase_util.processors.OneHotEncodingProcessor(
@@ -116,8 +109,7 @@ def test_OneHotEncodingProcessor():
     scene = dcase_util.utils.Example.scene_metadata_container().filter(filename='test1.wav')
     processed = encoder.process(scene, length_seconds=10.0)
 
-    nose.tools.eq_(processed.shape, (5, 10))
-
+    assert processed.shape == (5, 10)
 
 def test_ManyHotEncodingProcessor():
     encoder = dcase_util.processors.ManyHotEncodingProcessor(
@@ -129,8 +121,7 @@ def test_ManyHotEncodingProcessor():
 
     processed = encoder.process(scene, length_seconds=10.0)
 
-    nose.tools.eq_(processed.shape, (5, 10))
-
+    assert processed.shape == (5, 10)
 
 def test_EventRollEncodingProcessor():
     encoder = dcase_util.processors.EventRollEncodingProcessor(
@@ -141,4 +132,4 @@ def test_EventRollEncodingProcessor():
     events = dcase_util.utils.Example.event_metadata_container().filter(filename='test1.wav')
     processed = encoder.process(data=events)
 
-    nose.tools.eq_(processed.shape, (2, 8))
+    assert processed.shape == (2, 8)

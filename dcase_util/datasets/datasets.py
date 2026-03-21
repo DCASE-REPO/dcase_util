@@ -1977,7 +1977,7 @@ class Dataset(object):
             training_meta = self.train(fold=fold)
 
         training_files = training_meta.unique_files
-        random.shuffle(training_files, random.random)
+        random.shuffle(training_files)
 
         validation_split_index = int(numpy.ceil(validation_amount * len(training_files)))
         validation_files = training_files[0:validation_split_index]
@@ -2421,7 +2421,7 @@ class AcousticSceneDataset(Dataset):
             for scene_id, scene_label in enumerate(training_meta.unique_scene_labels):
                 scene_files = training_meta.filter(scene_label=scene_label).unique_files
 
-                random.shuffle(scene_files, random.random)
+                random.shuffle(scene_files)
                 validation_split_index = int(numpy.ceil(validation_amount * len(scene_files)))
                 current_validation_files = scene_files[0:validation_split_index]
                 current_training_files = scene_files[validation_split_index:]
@@ -2466,7 +2466,7 @@ class AcousticSceneDataset(Dataset):
 
                 for i in iteration_progress:
                     current_locations = list(data.keys())
-                    random.shuffle(current_locations, random.random)
+                    random.shuffle(current_locations)
                     validation_split_index = int(numpy.ceil(validation_amount * len(data)))
                     current_validation_identifiers = current_locations[0:validation_split_index]
                     current_training_identifiers = current_locations[validation_split_index:]
@@ -2561,7 +2561,7 @@ class AcousticSceneDataset(Dataset):
                     current_validation_identifiers2 = 0
                     for identifier1 in identifier_first_level:
                         current_ids = list(data[identifier1].keys())
-                        random.shuffle(current_ids, random.random)
+                        random.shuffle(current_ids)
                         validation_split_index = int(numpy.ceil(validation_amount * len(current_ids)))
                         current_validation = current_ids[0:validation_split_index]
                         current_training = current_ids[validation_split_index:]
@@ -3300,7 +3300,7 @@ class SoundEventDataset(Dataset):
             scene_labels = self.scene_labels()
 
         training_files = training_meta.unique_files
-        random.shuffle(training_files, random.random)
+        random.shuffle(training_files)
 
         validation_split_index = int(numpy.ceil(validation_amount * len(training_files)))
         validation_files = training_files[0:validation_split_index]
@@ -3503,7 +3503,7 @@ class SoundEventDataset(Dataset):
 
                 for i in iteration_progress:
                     item_ids = list(range(0, len(data[scene_label])))
-                    random.shuffle(item_ids, random.random)
+                    random.shuffle(item_ids)
 
                     valid_percentage_index = int(numpy.ceil(validation_amount * len(item_ids)))
 
@@ -3604,7 +3604,7 @@ class SoundEventDataset(Dataset):
 
                 for i in iteration_progress:
                     identifiers = list(data[scene_label].keys())
-                    random.shuffle(identifiers, random.random)
+                    random.shuffle(identifiers)
 
                     valid_percentage_index = int(numpy.ceil(validation_amount * len(identifiers)))
 
@@ -3811,7 +3811,7 @@ class AudioTaggingDataset(Dataset):
         scene_labels = self.scene_labels()
 
         training_files = training_meta.unique_files
-        random.shuffle(training_files, random.random)
+        random.shuffle(training_files)
 
         validation_split_index = int(numpy.ceil(validation_amount * len(training_files)))
         validation_files = training_files[0:validation_split_index]
@@ -3965,7 +3965,7 @@ class AudioTaggingDataset(Dataset):
 
                 for i in iteration_progress:
                     identifiers = list(data[scene_label].keys())
-                    random.shuffle(identifiers, random.random)
+                    random.shuffle(identifiers)
 
                     valid_percentage_index = int(numpy.ceil(validation_amount * len(identifiers)))
 
@@ -4061,7 +4061,7 @@ class AudioTaggingDataset(Dataset):
 
                 for i in iteration_progress:
                     items_id = list(range(0, len(data[scene_label])))
-                    random.shuffle(items_id, random.random)
+                    random.shuffle(items_id)
 
                     valid_percentage_index = int(numpy.ceil(validation_amount * len(items_id)))
 

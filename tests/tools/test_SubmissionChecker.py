@@ -2,11 +2,7 @@
 
 import os
 import tempfile
-
-import nose.tools
-
 from dcase_util.tools import SubmissionChecker
-
 
 def test_submissionchecker_parameter_file():
     sc = SubmissionChecker(entry_label='Heittola_TUT_task1_1', class_labels=['label1', 'label2'], file_count=2)
@@ -47,10 +43,7 @@ def test_submissionchecker_parameter_file():
         tmp.close()
         data, error_log = sc._parameter_file(filename=tmp.name)
 
-        nose.tools.assert_dict_equal(
-            data.get_path('results.development_dataset.class_wise'),
-            {'label1': {'accuracy': 74.8}, 'label2': {'accuracy': 74.8}}
-        )
+        assert data.get_path('results.development_dataset.class_wise') == {'label1': {'accuracy': 74.8}, 'label2': {'accuracy': 74.8}}
 
     finally:
         try:

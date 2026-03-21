@@ -14,29 +14,42 @@ class SimpleMathStringEvaluator(object):
     """
 
     def __init__(self):
+        use_legacy_pyparsing_api = False
         try:
-            from pyparsing import Word, nums, alphas, Combine, oneOf, opAssoc, operatorPrecedence
+            from pyparsing import Word, nums, alphas, Combine, opAssoc, one_of, infix_notation
 
         except ImportError:
-            message = '{name}: Unable to import pyparsing module. You can install it with `pip install pyparsing`.'.format(
-                name=self.__class__.__name__
-            )
+            try:
+                from pyparsing import Word, nums, alphas, Combine, oneOf, opAssoc, operatorPrecedence
+                one_of = oneOf
+                infix_notation = operatorPrecedence
+                use_legacy_pyparsing_api = True
 
-            self.logger.exception(message)
-            raise ImportError(message)
+            except ImportError:
+                message = '{name}: Unable to import pyparsing module. You can install it with `pip install pyparsing`.'.format(
+                    name=self.__class__.__name__
+                )
+
+                self.logger.exception(message)
+                raise ImportError(message)
 
         # Define the parser
-        integer = Word(nums).setParseAction(lambda t: int(t[0]))
+        integer = Word(nums)
+        if use_legacy_pyparsing_api:
+            integer = integer.setParseAction(lambda t: int(t[0]))
+        else:
+            integer = integer.set_parse_action(lambda t: int(t[0]))
+
         real = Combine(Word(nums) + "." + Word(nums))
         variable = Word(alphas, exact=1)
         operand = real | integer | variable
 
         # Operators
         self.operators = {
-            'sign': oneOf('+ -'),
-            'multiply': oneOf('* /'),
-            'plus': oneOf('+ -'),
-            'comparision': oneOf('< <= > >= != = <> LT GT LE GE EQ NE'),
+            'sign': one_of('+ -'),
+            'multiply': one_of('* /'),
+            'plus': one_of('+ -'),
+            'comparision': one_of('< <= > >= != = <> LT GT LE GE EQ NE'),
         }
 
         def operator_operands(token_list):
@@ -141,8 +154,12 @@ class SimpleMathStringEvaluator(object):
                     return True
                 return False
 
-        operand.setParseAction(EvalConstant)
-        self.arith_expr = operatorPrecedence(
+        if use_legacy_pyparsing_api:
+            operand.setParseAction(EvalConstant)
+        else:
+            operand.set_parse_action(EvalConstant)
+
+        self.arith_expr = infix_notation(
             operand,
             [
                 (self.operators['sign'], 1, opAssoc.RIGHT, EvalSignOp),
@@ -190,7 +207,10 @@ class SimpleMathStringEvaluator(object):
 
                 except ValueError:
                     try:
-                        ret = self.arith_expr.parseString(string, parseAll=True)[0]
+                        if hasattr(self.arith_expr, 'parse_string'):
+                            ret = self.arith_expr.parse_string(string, parse_all=True)[0]
+                        else:
+                            ret = self.arith_expr.parseString(string, parseAll=True)[0]
                         result = ret.eval([])
                         return result
 

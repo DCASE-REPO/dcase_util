@@ -1,10 +1,7 @@
 """ Unit tests for AppParameterContainer """
-
-import nose.tools
 import dcase_util
 import tempfile
 import os
-
 
 def test_container():
     # 1
@@ -32,10 +29,10 @@ def test_container():
         app_base=os.path.join(tempfile.gettempdir(), 'dcase_util_app'),
     )
     param.process()
-    nose.tools.eq_(param['_hash'], 'fa21fe5962a01a67d7e7e4d8f5536c7c')
-    nose.tools.eq_(param['feature_extraction']['_hash'], 'ef0a20431310a36b05ef942f3f5b6a5a')
+    assert param['_hash'] == 'fa21fe5962a01a67d7e7e4d8f5536c7c'
+    assert param['feature_extraction']['_hash'] == 'ef0a20431310a36b05ef942f3f5b6a5a'
 
-    nose.tools.eq_(param['feature_extraction']['stacking_recipe'][0]['label'], 'mel')
+    assert param['feature_extraction']['stacking_recipe'][0]['label'] == 'mel'
 
     # 2
     param = dcase_util.containers.AppParameterContainer(
@@ -61,10 +58,10 @@ def test_container():
         }
     )
     param.process()
-    nose.tools.eq_(param['_hash'], 'fa21fe5962a01a67d7e7e4d8f5536c7c')
-    nose.tools.eq_(param['feature_extraction']['_hash'], 'ef0a20431310a36b05ef942f3f5b6a5a')
+    assert param['_hash'] == 'fa21fe5962a01a67d7e7e4d8f5536c7c'
+    assert param['feature_extraction']['_hash'] == 'ef0a20431310a36b05ef942f3f5b6a5a'
 
-    nose.tools.eq_(param['feature_extraction']['stacking_recipe'][0]['label'], 'mel')
+    assert param['feature_extraction']['stacking_recipe'][0]['label'] == 'mel'
 
     # 3
     param = dcase_util.containers.AppParameterContainer(
@@ -97,14 +94,11 @@ def test_container():
         },
     )
     param.process()
-    nose.tools.eq_(param['_hash'], '74501e81cabe55b4f05f001b502e5e3d')
-    nose.tools.eq_(param['feature_extraction']['_hash'], '7e5e46979cd59e83662703686acd8b82')
+    assert param['_hash'] == '74501e81cabe55b4f05f001b502e5e3d'
+    assert param['feature_extraction']['_hash'] == '7e5e46979cd59e83662703686acd8b82'
 
-    nose.tools.eq_(param['feature_extraction']['stacking_formula'][0]['label'], 'mel')
-    nose.tools.eq_(
-        param['directories']['external']['log'],
-        os.path.join(tempfile.gettempdir(), 'dcase_util_app', 'test')
-    )
+    assert param['feature_extraction']['stacking_formula'][0]['label'] == 'mel'
+    assert param['directories']['external']['log'] == os.path.join(tempfile.gettempdir(), 'dcase_util_app', 'test')
 
     # 4
     param = dcase_util.containers.AppParameterContainer(
@@ -131,9 +125,9 @@ def test_container():
         app_base=os.path.join(tempfile.gettempdir(), 'dcase_util_app')
     )
     param.process()
-    nose.tools.eq_(param['_hash'], '99914b932bd37a50b983c5e7c90ae93b')
-    nose.tools.eq_(param['field1'], 100)
-    nose.tools.eq_(param['set_id'], 'set1')
+    assert param['_hash'] == '99914b932bd37a50b983c5e7c90ae93b'
+    assert param['field1'] == 100
+    assert param['set_id'] == 'set1'
 
     # 5
     param = dcase_util.containers.AppParameterContainer(
@@ -210,23 +204,17 @@ def test_container():
     )
     param.process(create_paths=True)
 
-    nose.tools.eq_(param['general']['field1'], 100)
-    nose.tools.eq_(
-        param['path']['application']['base'],
-        os.path.join(tempfile.gettempdir(), 'dcase_util_app', 'system')
-    )
+    assert param['general']['field1'] == 100
+    assert param['path']['application']['base'] == os.path.join(tempfile.gettempdir(), 'dcase_util_app', 'system')
 
-    nose.tools.eq_(
-        param['path']['application']['feature_extractor'],
-        os.path.join(tempfile.gettempdir(), 'dcase_util_app', 'system', 'feature_extractor')
-    )
+    assert param['path']['application']['feature_extractor'] == os.path.join(tempfile.gettempdir(), 'dcase_util_app', 'system', 'feature_extractor')
 
-    nose.tools.eq_(param['feature_extractor2']['parameters']['n_mels'], 40)
+    assert param['feature_extractor2']['parameters']['n_mels'] == 40
 
-    nose.tools.eq_(param['feature_extractor']['parameters']['mel']['n_mels'], 40)
-    nose.tools.eq_(param['feature_extractor']['parameters']['mfcc']['n_mfccs'], 20)
-    nose.tools.eq_(param['feature_extractor']['parameters']['mfcc']['dependency_method'], 'mel')
-    nose.tools.eq_(param['feature_extractor']['parameters']['mfcc']['dependency_parameters']['n_mels'], 40)
+    assert param['feature_extractor']['parameters']['mel']['n_mels'] == 40
+    assert param['feature_extractor']['parameters']['mfcc']['n_mfccs'] == 20
+    assert param['feature_extractor']['parameters']['mfcc']['dependency_method'] == 'mel'
+    assert param['feature_extractor']['parameters']['mfcc']['dependency_parameters']['n_mels'] == 40
 
     # 6
     param = dcase_util.containers.AppParameterContainer(
@@ -274,9 +262,8 @@ def test_container():
             }
         }
     )
-    nose.tools.eq_(param['field1'], 1000)
-    nose.tools.eq_(param['field2']['field3'], 222)
-
+    assert param['field1'] == 1000
+    assert param['field2']['field3'] == 222
 
 def test_sets():
     param = dcase_util.containers.AppParameterContainer(
@@ -313,17 +300,17 @@ def test_sets():
     )
     param.process()
 
-    nose.tools.eq_(param['set_id'], 'set1')
-    nose.tools.eq_(param['section1']['field1'], 100)
-    nose.tools.eq_(param['section1']['field2'], 100)
-    nose.tools.eq_(param['_hash'], '0afad0d180c377ea63b085bb6de7a9ee')
+    assert param['set_id'] == 'set1'
+    assert param['section1']['field1'] == 100
+    assert param['section1']['field2'] == 100
+    assert param['_hash'] == '0afad0d180c377ea63b085bb6de7a9ee'
 
-    nose.tools.eq_(param.set_ids(), ['set1', 'set2', 'set3'])
+    assert param.set_ids() == ['set1', 'set2', 'set3']
 
     param.update_parameter_set(set_id='set2')
 
-    nose.tools.eq_(param['set_id'], 'set2')
-    nose.tools.eq_(param['section1']['field1'], 200)
-    nose.tools.eq_(param['section1']['field3'], 200)
-    nose.tools.eq_(param['_hash'], 'd350d91259caa812c7eb363c8c065c39')
+    assert param['set_id'] == 'set2'
+    assert param['section1']['field1'] == 200
+    assert param['section1']['field3'] == 200
+    assert param['_hash'] == 'd350d91259caa812c7eb363c8c065c39'
 

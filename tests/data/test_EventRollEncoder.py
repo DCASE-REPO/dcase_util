@@ -1,12 +1,9 @@
 """ Unit tests for EventRollEncoder """
-
-import nose.tools
 import numpy
 import dcase_util
 
 from dcase_util.containers import MetaDataContainer
 from dcase_util.data import EventRollEncoder
-
 
 def test_construction():
     minimal_event_list = [
@@ -44,9 +41,8 @@ def test_construction():
     ).encode(metadata_container=meta)
 
     numpy.testing.assert_array_equal(target_event_roll, event_roll.data)
-    nose.tools.assert_equal(event_roll.shape[0], target_event_roll.shape[0])
-    nose.tools.assert_equal(event_roll.shape[1], target_event_roll.shape[1])
-
+    assert event_roll.shape[0] == target_event_roll.shape[0]
+    assert event_roll.shape[1] == target_event_roll.shape[1]
 
 def test_pad():
     minimal_event_list = [
@@ -88,17 +84,16 @@ def test_pad():
     )
 
     numpy.testing.assert_array_equal(target_event_roll, event_roll.data)
-    nose.tools.assert_equal(event_roll.shape[0], target_event_roll.shape[0])
-    nose.tools.assert_equal(event_roll.shape[1], target_event_roll.shape[1])
+    assert event_roll.shape[0] == target_event_roll.shape[0]
+    assert event_roll.shape[1] == target_event_roll.shape[1]
 
     padded_event_roll = roller.pad(length=18)
-    nose.tools.assert_equal(padded_event_roll.length, 18)
-    nose.tools.assert_equal(padded_event_roll.shape[1], event_roll.shape[1])
+    assert padded_event_roll.length == 18
+    assert padded_event_roll.shape[1] == event_roll.shape[1]
 
     padded_event_roll = roller.pad(length=10)
-    nose.tools.assert_equal(padded_event_roll.length, 10)
-    nose.tools.assert_equal(padded_event_roll.shape[1], event_roll.shape[1])
-
+    assert padded_event_roll.length == 10
+    assert padded_event_roll.shape[1] == event_roll.shape[1]
 
 def test_log():
     with dcase_util.utils.DisableLogger():

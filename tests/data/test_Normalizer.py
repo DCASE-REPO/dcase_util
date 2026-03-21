@@ -1,11 +1,8 @@
 """ Unit tests for Normalizer """
-
-import nose.tools
 import numpy
 
 import dcase_util
 from dcase_util.data import Normalizer
-
 
 def test_normalize():
 
@@ -51,8 +48,7 @@ def test_normalize():
         normalizer.s1,
         numpy.sum(container.data, axis=container.time_axis)
     )
-    nose.tools.eq_(normalizer.n, 501)
-
+    assert normalizer.n == 501
 
 def test_log():
     with dcase_util.utils.DisableLogger():

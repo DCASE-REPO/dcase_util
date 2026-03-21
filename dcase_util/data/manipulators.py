@@ -849,10 +849,12 @@ class Aggregator(ObjectContainer):
                         aggregated_frame.append(numpy.cov(current_frame).flatten())
 
                     if 'kurtosis' in self.recipe:
-                        aggregated_frame.append(scipy.stats.kurtosis(current_frame, axis=data.time_axis))
+                        kurtosis_values = scipy.stats.kurtosis(current_frame, axis=data.time_axis)
+                        aggregated_frame.append(numpy.nan_to_num(kurtosis_values, nan=-3.0))
 
                     if 'skew' in self.recipe:
-                        aggregated_frame.append(scipy.stats.skew(current_frame, axis=data.time_axis))
+                        skew_values = scipy.stats.skew(current_frame, axis=data.time_axis)
+                        aggregated_frame.append(numpy.nan_to_num(skew_values, nan=0.0))
 
                     if 'flatten' in self.recipe:
                         if data.time_axis == 0:

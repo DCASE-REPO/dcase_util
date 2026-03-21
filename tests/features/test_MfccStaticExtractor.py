@@ -1,8 +1,5 @@
 """ Unit tests for MfccStaticExtractor """
-
-import nose.tools
 import dcase_util
-
 
 def test_extract():
 
@@ -26,5 +23,5 @@ def test_extract():
 
     mfccs = mfcc_extractor.extract(y=audio_container)
 
-    nose.tools.eq_(mfccs.shape[0], params['n_mfccs'])
-    nose.tools.eq_(mfccs.shape[1], 101)
+    assert mfccs.shape[0] == params['n_mfccs']
+    assert mfccs.shape[1] == 101

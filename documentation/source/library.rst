@@ -39,10 +39,10 @@ If you fix a bug, you should also add a unit test that exposes the bug to avoid 
 
 To run the tests, use::
 
-    python setup.py nosetests
+    python -m pytest tests
 
 
-After running tests, the coverage report is located at `tests/cover/index.html`
+After running tests with coverage, the HTML report is located at `htmlcov/index.html`.
 
 Tests are located in directory `tests`.
 

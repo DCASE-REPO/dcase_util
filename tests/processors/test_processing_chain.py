@@ -1,6 +1,4 @@
-import nose.tools
 import dcase_util
-
 
 def test_ProcessingChain():
 
@@ -13,15 +11,15 @@ def test_ProcessingChain():
         processor_name='dcase_util.processors.MelExtractorProcessor',
         init_parameters={}
     )
-    nose.tools.eq_(len(chain), 2)
+    assert len(chain) == 2
 
-    nose.tools.eq_(chain.processor_exists('dcase_util.processors.MonoAudioReadingProcessor'), True)
-    nose.tools.eq_(chain.processor_exists('dcase_util.processors.MelExtractorProcessor'), True)
-    nose.tools.eq_(chain.processor_exists('dcase_util.processors.AudioReadingProcessor'), False)
+    assert chain.processor_exists('dcase_util.processors.MonoAudioReadingProcessor') == True
+    assert chain.processor_exists('dcase_util.processors.MelExtractorProcessor') == True
+    assert chain.processor_exists('dcase_util.processors.AudioReadingProcessor') == False
 
     data = chain.process(
         filename=dcase_util.utils.Example().audio_filename(),
         focus_start_seconds=1.0,
         duration_seconds=2.0
     )
-    nose.tools.eq_(data.shape, (40, 501))
+    assert data.shape == (40, 501)
