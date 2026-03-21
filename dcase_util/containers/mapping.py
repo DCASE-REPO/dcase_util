@@ -51,7 +51,7 @@ class OneToOneMappingContainer(DictContainer):
 
             if self.format == FileFormat.TXT or self.format == FileFormat.CSV:
                 map_data = {}
-                with open(self.filename, 'rtU') as f:
+                with open(self.filename, 'r', newline='') as f:
                     for row in csv.reader(f, delimiter=self.delimiter()):
                         if len(row) == 2:
                             map_data[row[0]] = row[1]

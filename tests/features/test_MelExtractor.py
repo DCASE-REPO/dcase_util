@@ -1,8 +1,5 @@
 """ Unit tests for MelExtractor """
-
-import nose.tools
 import dcase_util
-
 
 def test_extract():
 
@@ -25,6 +22,6 @@ def test_extract():
 
     mels = mel_extractor.extract(y=audio_container)
 
-    nose.tools.eq_(mels.shape[0], params['n_mels'])
-    nose.tools.eq_(mels.shape[1], 101)
+    assert mels.shape[0] == params['n_mels']
+    assert mels.shape[1] == 101
 

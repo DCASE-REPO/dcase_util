@@ -1,9 +1,6 @@
 """ Unit tests for Utils """
-
-import nose.tools
 import dcase_util
 from dcase_util.utils import get_parameter_hash, SimpleMathStringEvaluator
-
 
 def test_get_parameter_hash():
     data = {
@@ -17,7 +14,7 @@ def test_get_parameter_hash():
     }
     data_hash_target = '064e6628408f570b9b5904f0af5228f5'
 
-    nose.tools.eq_(get_parameter_hash(data), data_hash_target)
+    assert get_parameter_hash(data) == data_hash_target
 
     data = {
         'field2': {
@@ -28,8 +25,7 @@ def test_get_parameter_hash():
             '1': [1, 2, 3],
         }
     }
-    nose.tools.eq_(get_parameter_hash(data), data_hash_target)
-
+    assert get_parameter_hash(data) == data_hash_target
 
 def test_math_string_evaluator():
     data = [
@@ -71,19 +67,17 @@ def test_math_string_evaluator():
 
     for test_case in data:
         res = math_eval.eval(test_case['input'])
-        nose.tools.eq_(res, test_case['result'])
-
+        assert res == test_case['result']
 
 def test_is_float():
-    nose.tools.eq_(dcase_util.utils.is_float(10.0), True)
-    nose.tools.eq_(dcase_util.utils.is_float(-2.0112121), True)
-    nose.tools.eq_(dcase_util.utils.is_float(120), True)
-    nose.tools.eq_(dcase_util.utils.is_float('str'), False)
-
+    assert dcase_util.utils.is_float(10.0) == True
+    assert dcase_util.utils.is_float(-2.0112121) == True
+    assert dcase_util.utils.is_float(120) == True
+    assert dcase_util.utils.is_float('str') == False
 
 def test_is_int():
-    nose.tools.eq_(dcase_util.utils.is_float(10), True)
-    nose.tools.eq_(dcase_util.utils.is_float(-21), True)
-    nose.tools.eq_(dcase_util.utils.is_float(120.121), True)
-    nose.tools.eq_(dcase_util.utils.is_float('str'), False)
+    assert dcase_util.utils.is_float(10) == True
+    assert dcase_util.utils.is_float(-21) == True
+    assert dcase_util.utils.is_float(120.121) == True
+    assert dcase_util.utils.is_float('str') == False
 

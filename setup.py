@@ -2,18 +2,22 @@ from setuptools import setup, find_packages
 
 requirements = [
     'numpy>=1.9.2',
-    'scipy>=0.19.1',
+    'scipy>=1.8.0',
     'matplotlib>=2.0.0',
-    'librosa>=0.7.0',
+    'librosa>=0.10.0',
+    'resampy>=0.4.3',
     'six>=1.10.0',
     'future>=0.16.0',
     'soundfile>=0.9.0',
     'pyyaml>=3.11',
+    'msgpack>=1.0.0',
     'requests>=2.12.4',
     'tqdm>=4.11.2',
     'pydot-ng>= 1.0.0',
     'validators>=0.12.0',
-    'python-magic>=0.4.13'
+    'pyparsing>=3.0.0',
+    'python-magic>=0.4.13',
+    'packaging>=20.0'
 ]
 
 try:
@@ -49,5 +53,4 @@ setup(
     keywords='audio sound',
     license='MIT',
     install_requires=requirements,
-    setup_requires=['nose>=1.3'],
 )

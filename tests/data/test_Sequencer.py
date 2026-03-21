@@ -1,12 +1,9 @@
 """ Unit tests for Sequencer """
-
-import nose.tools
 import tempfile
 import os
 import numpy
 import dcase_util
 from dcase_util.data import Sequencer
-
 
 def test_sequence():
     # Get data in container
@@ -24,9 +21,9 @@ def test_sequence():
         data=container
     )
     # Check shape
-    nose.tools.eq_(sequenced_data.length, 10)
-    nose.tools.eq_(sequenced_data.vector_length, 3)
-    nose.tools.eq_(sequenced_data.data.shape, (3, 10, 10))
+    assert sequenced_data.length == 10
+    assert sequenced_data.vector_length == 3
+    assert sequenced_data.data.shape == (3, 10, 10)
 
     # Check content
     numpy.testing.assert_equal(sequenced_data.data[0, :, 0], numpy.array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]))
@@ -42,9 +39,9 @@ def test_sequence():
         data=container
     )
     # Check shape
-    nose.tools.eq_(sequenced_data.length, 10)
-    nose.tools.eq_(sequenced_data.vector_length, 3)
-    nose.tools.eq_(sequenced_data.data.shape, (3, 10, 91))
+    assert sequenced_data.length == 10
+    assert sequenced_data.vector_length == 3
+    assert sequenced_data.data.shape == (3, 10, 91)
 
     # Check content
     numpy.testing.assert_equal(sequenced_data.data[0, :, 0], numpy.array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]))
@@ -96,9 +93,9 @@ def test_sequence():
         hop_length=10,
     )
     sequenced_data = sequencer.sequence(data=container)
-    nose.tools.eq_(sequenced_data.length, 10)
-    nose.tools.eq_(sequenced_data.vector_length, 40)
-    nose.tools.eq_(sequenced_data.data.shape, (40, 10, 50))
+    assert sequenced_data.length == 10
+    assert sequenced_data.vector_length == 40
+    assert sequenced_data.data.shape == (40, 10, 50)
 
     sequencer = Sequencer(
         sequence_length=10,
@@ -106,10 +103,9 @@ def test_sequence():
     )
     sequenced_data = sequencer.sequence(data=container)
 
-    nose.tools.eq_(sequenced_data.length, 10)
-    nose.tools.eq_(sequenced_data.vector_length, 40)
-    nose.tools.eq_(sequenced_data.data.shape, (40, 10, 492))
-
+    assert sequenced_data.length == 10
+    assert sequenced_data.vector_length == 40
+    assert sequenced_data.data.shape == (40, 10, 492)
 
 def test_save():
 
@@ -152,9 +148,9 @@ def test_save():
         ).save(filename=tmp.name).load()
 
         sequenced_data = sequencer.sequence(data=container)
-        nose.tools.eq_(sequenced_data.length, 10)
-        nose.tools.eq_(sequenced_data.vector_length, 40)
-        nose.tools.eq_(sequenced_data.data.shape, (40, 10, 50))
+        assert sequenced_data.length == 10
+        assert sequenced_data.vector_length == 40
+        assert sequenced_data.data.shape == (40, 10, 50)
 
     finally:
         try:
@@ -162,7 +158,6 @@ def test_save():
             os.unlink(tmp.name)
         except:
             pass
-
 
 def test_log():
     with dcase_util.utils.DisableLogger():

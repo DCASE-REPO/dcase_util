@@ -379,18 +379,28 @@ class SpectralFeatureExtractor(FeatureExtractor):
 
         """
 
+        def _window(window_name, symmetric):
+            if hasattr(scipy.signal, 'windows') and hasattr(scipy.signal.windows, window_name):
+                return getattr(scipy.signal.windows, window_name)(n, sym=symmetric)
+
+            if hasattr(scipy.signal, window_name):
+                return getattr(scipy.signal, window_name)(n, sym=symmetric)
+
+            # Fallback for compatibility across SciPy versions.
+            return scipy.signal.get_window(window_name, n, fftbins=not symmetric)
+
         # Windowing function
         if window_type == 'hamming_asymmetric':
-            return scipy.signal.hamming(n, sym=False)
+            return _window('hamming', symmetric=False)
 
         elif window_type == 'hamming_symmetric' or window_type == 'hamming':
-            return scipy.signal.hamming(n, sym=True)
+            return _window('hamming', symmetric=True)
 
         elif window_type == 'hann_asymmetric':
-            return scipy.signal.hann(n, sym=False)
+            return _window('hann', symmetric=False)
 
         elif window_type == 'hann_symmetric' or window_type == 'hann':
-            return scipy.signal.hann(n, sym=True)
+            return _window('hann', symmetric=True)
 
         else:
             message = '{name}: Unknown window type [{window_type}]'.format(

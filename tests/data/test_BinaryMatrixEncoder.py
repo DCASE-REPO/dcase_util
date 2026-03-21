@@ -4,7 +4,6 @@ import dcase_util
 
 from dcase_util.data import BinaryMatrixEncoder
 
-
 def test_log():
     with dcase_util.utils.DisableLogger():
         BinaryMatrixEncoder(

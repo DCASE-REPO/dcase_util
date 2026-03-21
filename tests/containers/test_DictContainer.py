@@ -1,9 +1,8 @@
 """ Unit tests for DictFile """
 
-import nose.tools
+import pytest
 import dcase_util
 from dcase_util.containers import DictContainer
-from nose.tools import *
 import os
 import tempfile
 import pickle
@@ -55,21 +54,20 @@ data = {
     }
 }
 
-
 def test_container():
     data_container = DictContainer(data)
-    nose.tools.eq_(data_container.get_path(path='level1.field1'), 1)
-    nose.tools.eq_(data_container.get_path(path='level1.level2a.field2'), 2)
-    nose.tools.eq_(data_container.get_path(path='level1.level2b.field3'), 3)
-    nose.tools.eq_(data_container.get_path(path='level1.level2a.level3a.field1'), 1)
-    nose.tools.eq_(data_container.get_path(path='level1.level2a.level3a'), {'field1': 1, 'field2': 2, 'field3': 3})
-    nose.tools.eq_(data_container.get_path(path='level1.level2c.*.field1'), [1, 1])
+    assert data_container.get_path(path='level1.field1') == 1
+    assert data_container.get_path(path='level1.level2a.field2') == 2
+    assert data_container.get_path(path='level1.level2b.field3') == 3
+    assert data_container.get_path(path='level1.level2a.level3a.field1') == 1
+    assert data_container.get_path(path='level1.level2a.level3a') == {'field1': 1, 'field2': 2, 'field3': 3}
+    assert data_container.get_path(path='level1.level2c.*.field1') == [1, 1]
 
-    nose.tools.eq_(data_container.get_path(path=['level1', 'field1']), 1)
-    nose.tools.eq_(data_container.get_path(path=['level1', 'level2a', 'field2']), 2)
+    assert data_container.get_path(path=['level1', 'field1']) == 1
+    assert data_container.get_path(path=['level1', 'level2a', 'field2']) == 2
 
-    nose.tools.eq_(data_container.get_hash(), '23ffcb8de3af794547779197397ab987')
-    nose.tools.eq_(data_container.get_hash_for_path(dotted_path='level1.level2c'), 'a084001c6e49eef233a95f8996d1183c')
+    assert data_container.get_hash() == '23ffcb8de3af794547779197397ab987'
+    assert data_container.get_hash_for_path(dotted_path='level1.level2c') == 'a084001c6e49eef233a95f8996d1183c'
 
     data_container.merge(override={
         'level1': {
@@ -94,26 +92,25 @@ def test_container():
         }
     })
 
-    nose.tools.eq_(data_container.get_path(path='level1.field1'), 10)
-    nose.tools.eq_(data_container.get_path(path='level1.level2a.field2'), 20)
-    nose.tools.eq_(data_container.get_path(path='level1.level2b.field3'), 3)
+    assert data_container.get_path(path='level1.field1') == 10
+    assert data_container.get_path(path='level1.level2a.field2') == 20
+    assert data_container.get_path(path='level1.level2b.field3') == 3
 
     data_container.set_path(path='level1.field1', new_value=100)
-    nose.tools.eq_(data_container.get_path(path='level1.field1'), 100)
+    assert data_container.get_path(path='level1.field1') == 100
 
     data_container.set_path(path='level1.level2c.*.field1', new_value=100)
-    nose.tools.eq_(data_container.get_path(path='level1.level2c.*.field1'), [100, 100])
+    assert data_container.get_path(path='level1.level2c.*.field1') == [100, 100]
 
-    nose.tools.eq_(data_container.get_hash(), '0adb9bf0f7f579e8b297b7186b0570da')
+    assert data_container.get_hash() == '0adb9bf0f7f579e8b297b7186b0570da'
     data_container['_hash'] = 'test'
-    nose.tools.eq_(data_container.get_hash(), '0adb9bf0f7f579e8b297b7186b0570da')
+    assert data_container.get_hash() == '0adb9bf0f7f579e8b297b7186b0570da'
 
     data_container.set_path(path=['level1', 'field2'], new_value=100)
-    nose.tools.eq_(data_container.get_path(path='level1.field2'), 100)
+    assert data_container.get_path(path='level1.field2') == 100
 
     data_container = DictContainer(data)
-    nose.tools.eq_(data_container.get_leaf_path_list(),
-                   ['level1.field1',
+    assert data_container.get_leaf_path_list() == ['level1.field1',
                     'level1.field2',
                     'level1.field3',
                     'level1.level2a.field1',
@@ -136,20 +133,18 @@ def test_container():
                     'level1.level2c.level3a.field3',
                     'level1.level2c.level3b.field1',
                     'level1.level2c.level3b.field2',
-                    'level1.level2c.level3b.field3'])
+                    'level1.level2c.level3b.field3']
 
-    nose.tools.eq_(data_container.get_leaf_path_list(target_field='field1'),
-                   ['level1.field1',
+    assert data_container.get_leaf_path_list(target_field='field1') == ['level1.field1',
                     'level1.level2a.field1',
                     'level1.level2a.level3a.field1',
                     'level1.level2a.level3b.field1',
                     'level1.level2b.field1',
                     'level1.level2b.level3.field1',
                     'level1.level2c.level3a.field1',
-                    'level1.level2c.level3b.field1'])
+                    'level1.level2c.level3b.field1']
 
-    nose.tools.eq_(data_container.get_leaf_path_list(target_field_startswith='field'),
-                   ['level1.field1',
+    assert data_container.get_leaf_path_list(target_field_startswith='field') == ['level1.field1',
                     'level1.field2',
                     'level1.field3',
                     'level1.level2a.field1',
@@ -172,18 +167,16 @@ def test_container():
                     'level1.level2c.level3a.field3',
                     'level1.level2c.level3b.field1',
                     'level1.level2c.level3b.field2',
-                    'level1.level2c.level3b.field3'])
+                    'level1.level2c.level3b.field3']
 
-    nose.tools.eq_(data_container.get_leaf_path_list(target_field_endswith='d1'),
-                   ['level1.field1',
+    assert data_container.get_leaf_path_list(target_field_endswith='d1') == ['level1.field1',
                     'level1.level2a.field1',
                     'level1.level2a.level3a.field1',
                     'level1.level2a.level3b.field1',
                     'level1.level2b.field1',
                     'level1.level2b.level3.field1',
                     'level1.level2c.level3a.field1',
-                    'level1.level2c.level3b.field1'])
-
+                    'level1.level2c.level3b.field1']
 
 def test_load():
     # YAML
@@ -196,7 +189,7 @@ def test_load():
 
         m = DictContainer().load(filename=tmp.name)
 
-        nose.tools.assert_dict_equal(m, {'section': {'field1': 1, 'field2': 2}})
+        assert m == {'section': {'field1': 1, 'field2': 2}}
     finally:
         try:
             tmp.close()
@@ -212,7 +205,7 @@ def test_load():
 
         m = DictContainer().load(filename=tmp.name)
 
-        nose.tools.assert_dict_equal(m, {'section': {'field1': 1, 'field2': 2}})
+        assert m == {'section': {'field1': 1, 'field2': 2}}
     finally:
         try:
             tmp.close()
@@ -234,7 +227,7 @@ def test_load():
 
         m = DictContainer().load(filename=tmp.name)
 
-        nose.tools.assert_dict_equal(m, {'section': {'field1': 1, 'field2': 2}})
+        assert m == {'section': {'field1': 1, 'field2': 2}}
     finally:
         try:
             tmp.close()
@@ -256,7 +249,7 @@ def test_load():
 
         m = DictContainer().load(filename=tmp.name)
 
-        nose.tools.assert_dict_equal(m, {'section': {'field1': 1, 'field2': 2}})
+        assert m == {'section': {'field1': 1, 'field2': 2}}
     finally:
         try:
             tmp.close()
@@ -274,14 +267,13 @@ def test_load():
 
         m = DictContainer().load(filename=tmp.name)
 
-        nose.tools.assert_dict_equal(m, {0: 'line1\n', 1: 'line2\n', 2: 'line3\n'})
+        assert m == {0: 'line1\n', 1: 'line2\n', 2: 'line3\n'}
     finally:
         try:
             tmp.close()
             os.unlink(tmp.name)
         except:
             pass
-
 
 def test_save():
     # Empty content
@@ -303,49 +295,42 @@ def test_save():
     DictContainer(data2).save(filename=os.path.join(tempfile.gettempdir(), 'saved.yaml'))
     d = DictContainer().load(filename=os.path.join(tempfile.gettempdir(), 'saved.yaml'))
 
-    nose.tools.assert_dict_equal(d, data2)
-
+    assert d == data2
 
 def test_empty():
     # Test #1
     d = DictContainer({})
-    nose.tools.eq_(d.empty(), True)
+    assert d.empty() == True
 
     # Test #2
     d = DictContainer({'sec': 1})
-    nose.tools.eq_(d.empty(), False)
-
+    assert d.empty() == False
 
 def test_log():
     with dcase_util.utils.DisableLogger():
         DictContainer(filename='test.yaml').log()
 
-
-@raises(ValueError)
 def test_wrong_path():
-    with dcase_util.utils.DisableLogger():
-        DictContainer(data).get_path(path=9)
+    with pytest.raises(ValueError):
+        with dcase_util.utils.DisableLogger():
+            DictContainer(data).get_path(path=9)
 
-
-@raises(ValueError)
 def test_wrong_path2():
-    with dcase_util.utils.DisableLogger():
-        DictContainer(data).set_path(path=9, new_value=1)
+    with pytest.raises(ValueError):
+        with dcase_util.utils.DisableLogger():
+            DictContainer(data).set_path(path=9, new_value=1)
 
-
-@raises(IOError)
 def test_load_not_found():
-    with dcase_util.utils.DisableLogger():
-        DictContainer().load(filename=os.path.join(tempfile.gettempdir(), 'wrong.cpickle'))
+    with pytest.raises(IOError):
+        with dcase_util.utils.DisableLogger():
+            DictContainer().load(filename=os.path.join(tempfile.gettempdir(), 'wrong.cpickle'))
 
-
-@raises(IOError)
 def test_load_wrong_type():
-    with dcase_util.utils.DisableLogger():
-        DictContainer().load(filename=os.path.join(tempfile.gettempdir(), 'wrong.wav'))
+    with pytest.raises(IOError):
+        with dcase_util.utils.DisableLogger():
+            DictContainer().load(filename=os.path.join(tempfile.gettempdir(), 'wrong.wav'))
 
-
-@raises(IOError)
 def test_load_wrong_type2():
-    with dcase_util.utils.DisableLogger():
-        DictContainer().load(filename=os.path.join(tempfile.gettempdir(), 'wrong.abc'))
+    with pytest.raises(IOError):
+        with dcase_util.utils.DisableLogger():
+            DictContainer().load(filename=os.path.join(tempfile.gettempdir(), 'wrong.abc'))
